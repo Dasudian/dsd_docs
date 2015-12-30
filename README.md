@@ -149,3 +149,21 @@
             ├── 02_MQ.md
             └── 03_CloudFile.md
 ```
+
+## 编写文档流程
+
+```
+git clone https://github.com/Dasudian/dsd_docs.git
+cd dsd_docs/  
+git checkout -b <your branch for write the doc>
+...
+git commit -m "[doc] Write doc for cloud file api"
+git checkout dev
+git pull origin dev
+git merge --no-ff <branch>
+git push origin dev
+```
+
+在编辑文档可使用下面的命令在本地查看文档：
+`(dsd_docs)$ ./serve `
+
