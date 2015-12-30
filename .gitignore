@@ -1,1 +1,6 @@
-_site/
+node_modules
+.DS_Store
+/sftp-config.json
+static
+
+vendor
