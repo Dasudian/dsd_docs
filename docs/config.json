@@ -17,7 +17,7 @@
     },
     "html": {
         "theme": "daux-red",
-        "breadcrumbs": true,
+        "breadcrumbs": false,
         "breadcrumb_separator": "Chevrons",
         "toggle_code": false,
         "float": false,
