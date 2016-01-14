@@ -19,8 +19,6 @@
         "theme": "daux-red",
         "breadcrumbs": false,
         "breadcrumb_separator": "Chevrons",
-        "toggle_code": false,
-        "float": false,
 
         "links": {
             "大数点": "http://www.dasudian.com",
