@@ -17,5 +17,5 @@ currentMenu: index
 
 ### 服务集成指南
 
-- [Android上集成IM功能](docs/integration-development/inte-im-android.md)  
+- [Android上集成IM功能](docs/integration-dev/integrate-im-android.md)  
 - [iOS上集成IM功能](docs/integration-dev/integrate-im-ios.md)  
