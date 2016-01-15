@@ -9,13 +9,15 @@ exclude:
     - website
     - .couscous
 
+scripts:
+    before:
+        - minify --output template/css/theme.min.css template/css/theme.css
+
 title: "大数点文档中心"
+author: "Dasudian Gruop"
 description: "大数点物联网开发者平台文档，基于大数点物联网平台，帮助开发者快速构建物联网应用"
-
 cname: docs.dasudian.com
-
 branch: gh-pages
-
 baseUrl: http://docs.dasudian.com
 
 navs:

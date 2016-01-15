@@ -1,5 +1,4 @@
-[![Build Status](https://travis-ci.org/Dasudian/dsd_docs.svg?branch-master)](https://travis-ci.org/Dasudian/dsd_docs)  
-[![Build Status](https://travis-ci.org/Dasudian/dsd_docs.svg?branch-dev)](https://travis-ci.org/Dasudian/dsd_docs)  
+[![Build Status](https://travis-ci.org/Dasudian/dsd_docs.svg?branch-master)](https://travis-ci.org/Dasudian/dsd_docs)  [![Build Status](https://travis-ci.org/Dasudian/dsd_docs.svg?branch-dev)](https://travis-ci.org/Dasudian/dsd_docs)  
 
 
 # 大数点文档
