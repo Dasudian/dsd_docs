@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/Dasudian/dsd_docs.svg?branch-master)](https://travis-ci.org/Dasudian/dsd_docs)  
+[![Build Status](https://travis-ci.org/Dasudian/dsd_docs.svg?branch-dev)](https://travis-ci.org/Dasudian/dsd_docs)  
+
+
 # 大数点文档
 
 该项目用于开发大数点的公告文档，所有文档使用**markdown**格式编写，按照目录结构存放在*docs*目录下。  

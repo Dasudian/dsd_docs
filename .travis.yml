@@ -10,4 +10,4 @@ env:
 before_script:
   - composer install --no-progress
 script:
-  - vendor/bin/couscous travis-auto-deploy
+  - vendor/bin/couscous generate
