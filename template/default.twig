@@ -33,7 +33,7 @@
       <div class="navbar-collapse collapse" id="navbar-main">
         <ul class="nav navbar-nav navbar-right">
           {% for nav in navs %}
-          <li><a href="{{ nav.absoluteUrl }}">{{ nav.text }}</a></li>
+          <li><a href="{{ nav.absoluteUrl }}"{%if nav.outside is defined %} target="_blank"{% endif %}>{{ nav.text }}</a></li>
           {% endfor %}
         </ul>
       </div>
