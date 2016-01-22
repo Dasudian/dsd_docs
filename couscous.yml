@@ -32,7 +32,7 @@ navs:
     absoluteUrl: http://price.dasudian.com
   community:
     text: "社区"
-    absoluteUrl: http://community.dasudian.com  
+    absoluteUrl: https://www.github.com/Dasudian  
 
 menu:
   sections:
