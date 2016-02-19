@@ -45,7 +45,7 @@ Here’s a basic example, along with the **record** method signature:
 ```
 dsdSourceRecord("Power on", "{\"type\":\"Start Engine\",\"duration\":\"12.1s\",\"maxVoltage\":\"13\",\"stableVoltage\":\"8\",\"maxCurrency\": \"100mA\",\"stableCurrency\":\"80mA\"}", NULL, 0, NULL);
 ```
-> void dsdSourceRecord(char *event, char *properties, char *options, int callPeriod, DSDCallback callback);
+> void dsdSourceRecord(char *event, char *properties, char *options, DSDCallback callback);
 
 **event**
 The name of the event recordd by your devices or applications that you hope to track. You can read more about the track method and what event names we recommend.
@@ -56,61 +56,8 @@ A dictionary of properties for the event. If the event was 'Added to Cart', it m
 **options**
 A dictionary of options, that let you do things like enable or disable specific integrations for the call. Note: If you do not pass a properties object, pass an empty object (ie, NULL) before options
 
-**callPeriod**
-A integer signifing milliseconds in which the record function will be called again automatically, send 0 meaning this function will be called only once unless it is called explicitly anywhere else. If you hope to recorde an event periotically, please explicitly indicate a period time here.
-
 **callback**
 A callback function that gets called after a short timeout, giving the browser time to make the track requests first. Also checkout our dedicated trackLink and trackForm helpers.
-
-Page
-----
-
-The **page** method lets you record any page/screen views of your applications or on your website, along with optional extra information about the page/screen being viewed.
-
-It’s already included in the SDK snippet by default just after the call to load, so in most cases you never need to touch it. However, if you want to add extra information, like tagging the view with a name or category, read on!
-
-Note that you must call view at least once per page load! (That’s why we put it in your snippet for you.) If you have a single page app you can call it multiple times, whenever a new page view occurs.
-
-Here’s a basic example, along with the page method signature:
-```
-dsdSourcePage("Pricelist", NULL, NULL, NULL, NULL);
-```
-> dsdSourcePage(char *category, char *name, char *properties, char *options, DSDCallback callback);
-
-**category**
-The category of the view. Useful for things like ecommerce where many pages might live under a larger category. Note: if you only pass one string to page we assume it’s a name, not a category. You must include a name if you want to send a category.
-
-**name**
-The name of the of the page, for example Signup or Home.
-
-**properties**
-A dictionary of properties of the page. We’ll automatically send the url, title, referrer and path, but you can add your own too!
-
-**options**
-A dictionary of options, that let you do things like enable or disable specific integrations for the call. Note: If you do not pass a properties object, pass an empty object (ie, NULL) before options
-
-**callback**
-A callback function that gets called after a short timeout, giving the browser time to make outbound requests first.
-
-**Default Properties**
-A few properties are automatically added to each page call. For example, if you call:
-
-```
-dsdSourcePage("Pricelist", NULL, NULL, NULL, NULL);
-```
-We will translate that to the following without any extra work from you:
-
-```
-dsdSourcePage("Pricing", NULL, "{\"title\":\"Segment Pricing\", \"url\": \"https://www.dasudian.com/pricing\",\"path\":\"/pricing/\",\"referrer\": \"https://dasudian.com\"}", NULL, NULL);
-```
-
-You can also override these values if you’d like, for example:
-
-```
-dsdSourcePage("Pricing", NULL, "{\"title\":\"My Overridden Title\",\"path\":\"/pricing/view\"}", NULL, NULL);
-```
-
-In which case we will respect your overridden title of My Overridden Title and add in the default url and referrer.
 
 Track
 ----
@@ -120,10 +67,10 @@ The **track** method lets you track the position of your devices along with opti
 Here’s a basic example, along with the track method signature:
 
 ```
-dsdSourceTrack("Languang Building", "{\"latitude\":\"24.597\",\"Longitude\":\"-24.455\"}", NULL, 0, NULL);
+dsdSourceTrack("Languang Building", "{\"latitude\":\"24.597\",\"Longitude\":\"-24.455\"}", 0, NULL);
 ```
 
-> void dsdSourceTrack(char *name, char *location, char *options, int callPeriod, DSDCallback callback);
+> void dsdSourceTrack(char *name, char *location, char *options, DSDCallback callback);
 
 **name**
 The name of the of the position, for example "Languang Building".
@@ -133,9 +80,6 @@ A dictionary of latitude and longitude properties of the position.
 
 **options**
 A dictionary of options, that let you do things like enable or disable specific integrations for the call. Note: If you do not pass a properties object, pass an empty object (ie, ‘{}’) before options
-
-**callPeriod**
-A integer signifing milliseconds in which the track function will be called again automatically, send 0 meaning this function will be called only once unless it is called explicitly anywhere else. If you hope to recorde an event periotically, please explicitly indicate a period time here.
 
 **callback**
 A callback function that gets called after a short timeout, giving the browser time to make outbound requests first.
@@ -185,7 +129,7 @@ The new Group ID you want to create and associate the currently identified or an
 A dictionary of traits for the group. Example traits for a group include address, website and employees.
 
 **options**
-A dictionary of options, that let you do things like enable or disable specific integrations for the call. Note: If you do not pass a properties object, pass an empty object (ie, ‘{}’) before options
+A dictionary of options, that let you do things like enable or disable specific integrations for the call. Note: If you do not pass a properties object, pass an empty object (ie, NULL) before options
 
 **callback**
 A callback function that gets called after a short timeout, giving the browser time to make the track requests first. Also checkout our dedicated trackLink and trackForm helpers.
