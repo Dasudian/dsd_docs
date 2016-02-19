@@ -9,10 +9,10 @@ menu:
 ---
 
 ## Querying data using the HTTP API
-The HTTP API is the primary means for querying data in DSDB (see the [command line interface](/dsdb/v1.0/tools/shell/) and [client libraries](/dsdb/v1.0/clients/api/) for alternative ways to query the database).
+The HTTP API is the primary means for querying data in DSDB (see the [command line interface](/docs/dsdb/v1.0/tools/shell/) and [client libraries](/docs/dsdb/v1.0/clients/api/) for alternative ways to query the database).
 
 To perform a query send a `GET` request to the `/query` endpoint, set the URL parameter `db` as the target database, and set the URL parameter `q` as your query.
-The example below uses the HTTP API to query the same database that you encountered in [Writing Data](/dsdb/v1.0/guides/writing_data/).
+The example below uses the HTTP API to query the same database that you encountered in [Writing Data](/docs/dsdb/v1.0/guides/writing_data/).
 <br>
 ```sh
 curl -G 'http://localhost:8088/query?pretty=true' --data-urlencode "db=mydb" --data-urlencode "q=SELECT value FROM cpu_load_short WHERE region='us-west'"
@@ -132,7 +132,7 @@ curl -G 'http://localhost:8088/query' --data-urlencode "db=mydb" --data-urlencod
 
 #### Authentication
 Authentication in DSDB is disabled by default.
-See [Authentication and Authorization](/dsdb/v1.0/administration/authentication_and_authorization/) for how to enable and set up authentication.
+See [Authentication and Authorization](/docs/dsdb/v1.0/administration/authentication_and_authorization/) for how to enable and set up authentication.
 
 #### Chunk size
 For large queries, results are returned in batches of 10,000 points unless you use the query string parameter `chunk_size` to explicitly set the batch size.
@@ -144,4 +144,4 @@ curl -G 'http://localhost:8088/query' --data-urlencode "db=deluge" --data-urlenc
 
 ### DSDBQL
 ---
-Now that you know how to query data, check out the [Data Exploration page](/dsdb/v1.0/query_language/data_exploration/) to get acquainted with DSDBQL.
+Now that you know how to query data, check out the [Data Exploration page](/docs/dsdb/v1.0/query_language/data_exploration/) to get acquainted with DSDBQL.
