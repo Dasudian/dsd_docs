@@ -37,12 +37,12 @@ navs:
 
 menu:
   menu1s:
-    dsd-devportal:
-      name: "开发者平台操作指南"
-      items:
-        devportal-register-login:
-          text: "注册和登陆"
-          relativeUrl: dev-platform/register-login.html
+    # dsd-devportal:
+    #   name: "开发者平台操作指南"
+    #   items:
+    #     devportal-register-login:
+    #       text: "注册和登陆"
+    #       relativeUrl: dev-platform/register-login.html
     dsd-srvintegrate:
       name: "服务集成指南"
       items:
