@@ -1,6 +1,8 @@
 ---
 title: Schema Exploration
 currentMenu: dsdb-querylang-scheamexp
+parent2: dsdb-querylang
+parent1: dsd-dsdb
 ---
 
 # Scheam Exploration

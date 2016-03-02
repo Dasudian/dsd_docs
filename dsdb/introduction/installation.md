@@ -1,6 +1,8 @@
 ---
 title: Installation
 currentMenu: dsdb-intro-installation
+parent2: dsdb-intro
+parent1: dsd-dsdb
 ---
 
 # Installation

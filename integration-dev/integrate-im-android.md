@@ -1,6 +1,7 @@
 ---
 title: "Android上集成IM功能"
 currentMenu: "srvintegrate-im-android"
+parent1: dsd-srvintegrate
 ---
 
 # Android上集成IM功能

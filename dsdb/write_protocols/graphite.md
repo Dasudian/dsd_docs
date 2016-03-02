@@ -1,6 +1,8 @@
 ---
 title: Service - Graphite
 currentMenu: dsdb-writepro-graphite
+parent2: dsdb-writepro
+parent1: dsd-dsdb
 ---
 
 # Service - Graphite

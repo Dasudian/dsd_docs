@@ -1,6 +1,8 @@
 ---
 title: "Backup and Restore"
 currentMenu: "dsdb-backup&restore"
+parent2: dsdb-admin
+parent1: dsd-dsdb
 ---
 
 # Backup and Restore

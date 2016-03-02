@@ -1,6 +1,8 @@
 ---
 title: Frequently Encountered Issues
 currentMenu: dsdb-troubleshoot-fei
+parent2: dsdb-troubleshoot
+parent1: dsd-dsdb
 ---
 
 # Frequently Encountered Issues

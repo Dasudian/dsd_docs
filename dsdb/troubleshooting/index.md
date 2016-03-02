@@ -1,6 +1,8 @@
 ---
 title: Troubleshooting
 currentMenu: dsdb-troubleshoot-overview
+parent2: dsdb-troubleshoot
+parent1: dsd-dsdb
 ---
 
 # Troubleshooting

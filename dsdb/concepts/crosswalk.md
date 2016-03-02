@@ -1,6 +1,8 @@
 ---
 title: Comparison to SQL
 currentMenu: dsdb-concepts-vs-sql
+parent2: dsdb-concepts
+parent1: dsd-dsdb
 ---
 
 # Comparison to SQL

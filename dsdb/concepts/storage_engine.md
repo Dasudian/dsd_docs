@@ -1,6 +1,8 @@
 ---
 title: Storage Engine
 currentMenu: dsdb-concepts-storage-engine
+parent2: dsdb-concepts
+parent1: dsd-dsdb
 ---
 
 # Storage Engine

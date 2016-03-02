@@ -1,6 +1,8 @@
 ---
 title: Writing Data
 currentMenu: dsdb-guides-writing
+parent2: dsdb-guides
+parent1: dsd-dsdb
 ---
 
 # Writing Data

@@ -1,6 +1,8 @@
 ---
 title: CLI/Shell
 currentMenu: dsdb-tools-shell
+parent2: dsdb-tools
+parent1: dsd-dsdb
 ---
 
 # CLI/Shell

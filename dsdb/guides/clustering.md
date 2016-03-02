@@ -1,6 +1,8 @@
 ---
 title: Clustering
 currentMenu: dsdb-guides-clustering
+parent2: dsdb-guides
+parent1: dsd-dsdb
 ---
 
 # Clustering

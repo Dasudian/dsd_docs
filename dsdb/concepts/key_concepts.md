@@ -1,6 +1,8 @@
 ---
 title: Key Concepts
 currentMenu: dsdb-key-concepts
+parent2: dsdb-concepts
+parent1: dsd-dsdb
 ---
 
 # Key Concepts

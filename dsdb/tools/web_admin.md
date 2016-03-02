@@ -1,6 +1,8 @@
 ---
 title: Web Admin Interface
 currentMenu: dsdb-tools-webadmin
+parent2: dsdb-tools
+parent1: dsd-dsdb
 ---
 
 # Web Admin Interface

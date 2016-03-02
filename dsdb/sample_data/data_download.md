@@ -1,6 +1,8 @@
 ---
 title: Sample Data Download
 currentMenu: dsdb-sampledata-down
+parent2: dsdb-sampledata
+parent1: dsd-dsdb
 ---
 
 # Sample Data

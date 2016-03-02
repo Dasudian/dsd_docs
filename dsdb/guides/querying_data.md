@@ -1,6 +1,8 @@
 ---
 title: Querying Data
 currentMenu: dsdb-guides-querying
+parent2: dsdb-guides
+parent1: dsd-dsdb
 ---
 
 # Querying Data

@@ -1,6 +1,8 @@
 ---
 title: JSON Protocol
 currentMenu: dsdb-writepro-json
+parent2: dsdb-writepro
+parent1: dsd-dsdb
 ---
 
 # JSON Protocol

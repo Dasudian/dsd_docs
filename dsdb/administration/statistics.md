@@ -1,6 +1,8 @@
 ---
 title: "Server Monitoring"
 currentMenu: "dsdb-monitoring"
+parent2: dsdb-admin
+parent1: dsd-dsdb
 ---
 
 # Server Monitoring

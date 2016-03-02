@@ -1,6 +1,8 @@
 ---
 title: API Endpoints & Ports
 currentMenu: dsdb-concepts-api-endpoints
+parent2: dsdb-concepts
+parent1: dsd-dsdb
 ---
 
 # API Endpoints & Ports

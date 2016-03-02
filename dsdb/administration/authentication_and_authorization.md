@@ -1,6 +1,8 @@
 ---
 title: "Authentication and Authorization"
 currentMenu: "dsdb-authent&authori"
+parent2: dsdb-admin
+parent1: dsd-dsdb
 ---
 
 # Authentication and Authorization

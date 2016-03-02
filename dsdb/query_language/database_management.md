@@ -1,6 +1,8 @@
 ---
 title: Database Management
 currentMenu: dsdb-querylang-mgmt
+parent2: dsdb-querylang
+parent1: dsd-dsdb
 ---
 
 # Database Management

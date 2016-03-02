@@ -1,6 +1,8 @@
 ---
 title: Line Protocol
 currentMenu: dsdb-writepro-line
+parent2: dsdb-writepro
+parent1: dsd-dsdb
 ---
 
 # Line Protocol

@@ -1,6 +1,8 @@
 ---
 title: Schema Design
 currentMenu: dsdb-concepts-schema-data-layout
+parent2: dsdb-concepts
+parent1: dsd-dsdb
 ---
 
 # Scheam Design

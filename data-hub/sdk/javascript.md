@@ -1,6 +1,8 @@
 ---
 title: JavaScript
 currentMenu: datahub-sdk-js
+parent2: datahub-sdk
+parent1: dsd-datahub
 ---
 
 # Data Hub JavaScript SDK

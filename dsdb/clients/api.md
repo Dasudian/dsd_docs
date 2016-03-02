@@ -1,6 +1,8 @@
 ---
 title: "HTTP API Client Libraries"
 currentMenu: "dsdb-clients-httpapi"
+parent2: dsdb-clients
+parent1: dsd-dsdb
 ---
 
 # HTTP API Client Libraries

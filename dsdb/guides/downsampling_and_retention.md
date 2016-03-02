@@ -1,6 +1,8 @@
 ---
 title: Downsampling and Data Retention
 currentMenu: dsdb-guides-ddr
+parent2: dsdb-guides
+parent1: dsd-dsdb
 ---
 
 # Downsampling and Data Retention

@@ -1,6 +1,8 @@
 ---
 title: Data Exploration
 currentMenu: dsdb-querylang-dataexp
+parent2: dsdb-querylang
+parent1: dsd-dsdb
 ---
 
 # Data Exploration

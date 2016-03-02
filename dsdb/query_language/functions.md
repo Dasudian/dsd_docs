@@ -1,6 +1,8 @@
 ---
 title: Functions
 currentMenu: dsdb-querylang-func
+parent2: dsdb-querylang
+parent1: dsd-dsdb
 ---
 
 # Functions

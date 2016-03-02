@@ -1,6 +1,8 @@
 ---
 title: Service - CollectD
 currentMenu: dsdb-writepro-collectd
+parent2: dsdb-writepro
+parent1: dsd-dsdb
 ---
 
 # Service - CollectD

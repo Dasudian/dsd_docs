@@ -1,6 +1,8 @@
 ---
 title: Hardware Sizing Guidelines
 currentMenu: dsdb-guides-hsg
+parent2: dsdb-guides
+parent1: dsd-dsdb
 ---
 
 # Hardware Sizing Guidelines

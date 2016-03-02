@@ -1,6 +1,7 @@
 ---
 title: DAC C API
 currentMenu: dac-c-api
+parent1: dsd-dac
 ---
 
 DAC_CLOUD_API_C指导手册   

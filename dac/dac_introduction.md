@@ -1,6 +1,7 @@
 ---
 title: "DAC工作原理"
 currentMenu: dac-principal
+parent1: dsd-dac
 ---
 
 Dasudian Cloud API工作原理

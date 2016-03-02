@@ -1,6 +1,8 @@
 ---
 title: Getting Started
 currentMenu: dsdb-intro-start
+parent2: dsdb-intro
+parent1: dsd-dsdb
 ---
 
 # Getting Started

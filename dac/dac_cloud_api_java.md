@@ -1,42 +1,47 @@
 ---
 title: DAC Java API
 currentMenu: dac-java-api
+parent1: dsd-dac
 ---
 
-DSD DAC_CLOUD API 指导手册   
-===================   
+# DSD DAC_CLOUD API 指导手册   
    
-引言   
--------------   
- DSD DAC_CLOUD API提供了功能丰富但使用简单的服务器开发的JAVA API，该API极大的降低了服务器开发与维护难度，降低开发成本，缩短开发周期。用户无需关注服务器的负载均衡性能等问题，只需关注简单的业务逻辑，如同开发简单的单机应用，就可以实现丰富的服务器应用。  
-安装环境   
--------------   
- 安装环境就是编译环境，目前只支持Ubuntu 14.06和Ubuntu 14.10。   
+## 引言   
+
+ DSD DAC_CLOUD API提供了功能丰富但使用简单的服务器开发的JAVA API，该API极大的降低了服务器开发与维护难度，降低开发成本，缩短开发周期。用户无需关注服务器的负载均衡性能等问题，只需关注简单的业务逻辑，如同开发简单的单机应用，就可以实现丰富的服务器应用。 
+  
+## 安装环境   
+
+安装环境就是编译环境，目前只支持Ubuntu 14.06和Ubuntu 14.10。   
  
-编译方法   
--------------   
- 1.下载SDK jar包到指定目录   
- 2.在工程中以外部链接库的方式导入该jar包，Eclipse中方法如下:打开工程的properties -> 选择java build path ->选择Add external JARs   
- 3.生成jar时，添加外部的manifest.mf文件，在manifest.mf中添加如下Class-Path: /usr/local/lib/dac-1.0.0/api/java/dasudian.jar
+## 编译方法   
+  
+ 1. 下载SDK jar包到指定目录   
+ 2. 在工程中以外部链接库的方式导入该jar包，Eclipse中方法如下:打开工程的properties -> 选择java build path ->选择Add external JARs   
+ 3. 生成jar时，添加外部的manifest.mf文件，在manifest.mf中添加如下Class-Path: /usr/local/lib/dac-1.0.0/api/java/dasudian.jar
  
-## API 类##
+## API 类
+
 API 类是该sdk的主要类，developers调用该类与erlang虚拟机交互，处理http请求或其他服务请求。
 
-###Package###
+### Package
+
 API 类在com.dasudian.cloud中
 
-###属性###
-1. ASYNC : static final int类型，值为1，标示异步请求类型
-2. SYNC : static final int类型，值为-1，标示同步请求类型
+### 属性
 
-###方法###
-1.  int thread_count() 
++ ASYNC : static final int类型，值为1，标示异步请求类型
++ SYNC : static final int类型，值为-1，标示同步请求类型
+
+### 方法
+
+1. int thread_count() 
         **描述：**   
         获取服务系统支持的与erlang虚拟机交互的最大线程数  
         **参数：**  
         **返回值：**   
         返回系统支持的最大线程数   
-2.   API(int index)  
+2. API(int index)  
         **描述：**   
         API构造函数    
         **参数：**   
@@ -55,7 +60,7 @@ API 类在com.dasudian.cloud中
         IN   methodname 回调函数名。当收到该服务后，SDK会回调该方法。
         **返回值：**   
  
-4.  Response send_sync(String name, byte[] request)   
+4. Response send_sync(String name, byte[] request)   
 **描述：**   
     发送同步请求给服务名为name的服务,其他参数为默认值   
 **参数：**     
@@ -64,7 +69,7 @@ IN response : 请求的内容
 **返回值：**   
       返回一个Response对象    
          
-5.  Response send_sync(String name, byte[] request_info, byte[] request,
+5. Response send_sync(String name, byte[] request_info, byte[] request,
                               Integer timeout, Byte priority)   
 **描述：**   
     发送同步请求给服务名为name的服务   

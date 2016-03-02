@@ -1,6 +1,8 @@
 ---
 title: System Monitoring
 currentMenu: dsdb-troubleshoot-monitor
+parent2: dsdb-troubleshoot
+parent1: dsd-dsdb
 ---
 
 # System Monitoring

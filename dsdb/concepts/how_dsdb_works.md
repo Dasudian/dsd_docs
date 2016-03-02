@@ -1,6 +1,8 @@
 ---
 title: Architecture
 currentMenu: dsdb-concepts-arch
+parent2: dsdb-concepts
+parent1: dsd-dsdb
 ---
 
 # Architecture

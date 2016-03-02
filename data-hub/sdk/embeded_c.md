@@ -1,6 +1,8 @@
 ---
 title: Embeded C
 currentMenu: datahub-sdk-embededc
+parent2: datahub-sdk
+parent1: dsd-datahub
 ---
 
 # Data Hub Embeded C SDK

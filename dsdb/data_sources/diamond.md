@@ -1,6 +1,8 @@
 ---
 title: Diamond
 currentMenu: dsdb-datasource-diamond
+parent2: dsdb-datasource
+parent1: dsd-dsdb
 ---
 
 # Diamond

@@ -1,6 +1,8 @@
 ---
 title: "Logs"
 currentMenu: "dsdb-logs"
+parent2: dsdb-admin
+parent1: dsd-dsdb
 ---
 
 # Logs

@@ -1,6 +1,8 @@
 ---
 title: "DSDB Administration"
 currentMenu: "dsdb-admin-overview"
+parent2: dsdb-admin
+parent1: dsd-dsdb
 ---
 
 # DSDB Administration

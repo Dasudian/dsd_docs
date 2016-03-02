@@ -1,6 +1,8 @@
 ---
 title: Query Language
 currentMenu: dsdb-querylang-overview
+parent2: dsdb-querylang
+parent1: dsd-dsdb
 ---
 
 # Query Language

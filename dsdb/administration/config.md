@@ -1,6 +1,8 @@
 ---
 title: "Database Configuration"
 currentMenu: "dsdb-configuration"
+parent2: dsdb-admin
+parent1: dsd-dsdb
 ---
 
 # Database Configuration

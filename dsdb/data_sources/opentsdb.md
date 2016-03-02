@@ -1,6 +1,8 @@
 ---
 title: OpenTSDB
 currentMenu: dsdb-datasource-opentsdb
+parent2: dsdb-datasource
+parent1: dsd-dsdb
 ---
 
 # OpenTSDB

@@ -1,6 +1,8 @@
 ---
 title: Tools
 currentMenu: dsdb-tools-overview
+parent2: dsdb-tools
+parent1: dsd-dsdb
 ---
 
 # Tools

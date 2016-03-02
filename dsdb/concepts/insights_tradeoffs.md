@@ -1,6 +1,8 @@
 ---
 title: Design Insights and Tradeoffs in DSDB
 currentMenu: dsdb-concepts-insights-tradeoffs
+parent2: dsdb-concepts
+parent1: dsd-dsdb
 ---
 
 # Design Insights and Tradeoffs in DSDB

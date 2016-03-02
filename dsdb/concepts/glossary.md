@@ -1,6 +1,8 @@
 ---
 title: Glossary of Terms
 currentMenu: dsdb-concepts-glossary
+parent2: dsdb-concepts
+parent1: dsd-dsdb
 ---
 
 # Glossary of Terms

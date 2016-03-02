@@ -1,6 +1,8 @@
 ---
 title: Write Syntax
 currentMenu: dsdb-writepro-syntax
+parent2: dsdb-writepro
+parent1: dsd-dsdb
 ---
 
 # Write Syntax

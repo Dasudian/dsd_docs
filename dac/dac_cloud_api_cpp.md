@@ -1,6 +1,7 @@
 ---
 title: DAC C++ API
 currentMenu: dac-cpp-api
+parent1: dsd-dac
 ---
 
 DSD DAC_CLOUD API 指导手册   

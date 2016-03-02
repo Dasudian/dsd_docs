@@ -1,7 +1,11 @@
 ---
 title: "Upgrading from previous versions"
 currentMenu: "dsdb-upgrade"
+parent2: dsdb-admin
+parent1: dsd-dsdb
 ---
+
+# Upgrading from previous versions
 
 If you're thinking about upgrading or if you've recently upgraded from DSDB 0.9 to 1.0, there are several steps you should consider taking to ease the transition:
 

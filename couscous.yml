@@ -14,8 +14,7 @@ scripts:
     before:
         - minify --output template/css/app.min.css template/css/app.css
 
-header_title: "大数点文档中心"
-author: "Dasudian Gruop"
+title: "大数点文档中心"
 description: "大数点物联网开发者平台文档，基于大数点物联网平台，帮助开发者快速构建物联网应用"
 cname: docs.dasudian.com
 branch: gh-pages
@@ -27,10 +26,10 @@ navs:
     absoluteUrl: http://dasudian.com/solution
   docs:
     text: "文档"
-    absoluteUrl: http://docs.dasudian.com
+    absoluteUrl: /
   price:
     text: "定价"
-    absoluteUrl: http://price.dasudian.com
+    absoluteUrl: http://dasudian.com/price
   community:
     text: "社区"
     absoluteUrl: https://www.github.com/Dasudian
@@ -72,7 +71,7 @@ menu:
             dsdb-intro-start:
               text: "Getting Started"
               relativeUrl: dsdb/introduction/getting_started.html
-        dsdb_admin:
+        dsdb-admin:
           name: "Administration"
           items:
             dsdb-admin-overview:

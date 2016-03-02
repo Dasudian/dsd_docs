@@ -1,6 +1,8 @@
 ---
 title: Continuous Queries
 currentMenu: dsdb-querylang-contq
+parent2: dsdb-querylang
+parent1: dsd-dsdb
 ---
 
 # Continuous Queries

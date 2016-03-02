@@ -1,6 +1,8 @@
 ---
 title: Mathematical Operators
 currentMenu: dsdb-querylang-math
+parent2: dsdb-querylang
+parent1: dsd-dsdb
 ---
 
 # Mathematical Operators

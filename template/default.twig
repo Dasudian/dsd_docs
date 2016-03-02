@@ -61,15 +61,15 @@
     <div class="container-fluid0 document">
       <div class="side_left">
         <ul class="menu1">
-{% for menu1 in menu.menu1s %}
+{% for menu1Id, menu1 in menu.menu1s %}
           <li><a class="fold">{{ menu1.name }}</a>
-            <ul class="menu2">
+            <ul class="menu2" {{ menu1Id == parent1 ? 'style="display: block;"' }}>
 {% for itemId, item in menu1.items %}
               <li><a id="{{ itemId }}" class="{{ itemId == currentMenu ? 'active'}}" href="{{ item.absoluteUrl | default(baseUrl ~ '/' ~ item.relativeUrl) }}">{{ item.text | raw }}</a></li>
 {% endfor %}
-{% for menu2 in menu1.menu2s %}
+{% for menu2Id, menu2 in menu1.menu2s %}
               <li><a class="fold">{{ menu2.name }}</a>
-                <ul class="menu3">
+                <ul class="menu3" {{ menu2Id == parent2 ? 'style="display: block;"' }}>
 {% for itemId, item in menu2.items %}
                   <li><a id="{{ itemId }}" class="{{ itemId == currentMenu ? 'active' }}" href="{{ item.absoluteUrl | default(baseUrl ~ '/' ~ item.relativeUrl) }}">{{ item.text | raw }}</a></li>
 {% endfor %}

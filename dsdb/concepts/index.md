@@ -1,6 +1,8 @@
 ---
 title: DSDB Concepts
 currentMenu: dsdb-concepts-overview
+parent2: dsdb-concepts
+parent1: dsd-dsdb
 ---
 
 # DSDB Concepts
