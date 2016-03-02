@@ -12,7 +12,7 @@ exclude:
 
 scripts:
     before:
-        - minify --output template/css/app.min.css template/css/app.css
+        - minify --output .couscous/generated/css/app.min.css template/css/app.css
 
 title: "大数点文档中心"
 description: "大数点物联网开发者平台文档，基于大数点物联网平台，帮助开发者快速构建物联网应用"
