@@ -17,13 +17,13 @@ Installation of the DSDB package may require `root` or administrator privileges 
 
 By default, DSDB uses the following network ports:
 
-- TCP port `8083` is used for DSDB's [Admin panel](/dsdb/v1.0/tools/web_admin/)
+- TCP port `8083` is used for DSDB's [Admin panel](/dsdb/tools/web_admin.md)
 - TCP port `8088` is used for client-server communication over DSDB's HTTP API
 - TCP ports `8088` and `8091` are required for clustered DSDB instances
 
 > Note: In addition to the ports above,
 DSDB also offers multiple plugins that may require custom ports.
-All port mappings can be modified through the [configuration file](/dsdb/v1.0/administration/config),
+All port mappings can be modified through the [configuration file](/dsdb/administration/config.md),
 which is located at `/etc/dsdb/dsdb.conf` for default installations.
 
 ## Installation
@@ -135,9 +135,9 @@ influxd -config /usr/local/etc/dsdb.conf
 
 ## Hosted
 
-For users who don't want to install any software and are ready to use DSDB, you may want to check out our [managed hosted DSDB offering](http://customers.dsdb.com).
+For users who don't want to install any software and are ready to use DSDB, you may want to check out our [managed hosted DSDB offering](http://customers.dasudian.com).
 
-<a href="/dsdb/v1.0/introduction/getting_started/"><font size="6"><b>⇒ Now get started!</b></font></a>
+<a href="/dsdb/introduction/getting_started.html"><font size="6"><b>⇒ Now get started!</b></font></a>
 
 ## Configuration
 
@@ -247,7 +247,7 @@ For example:
 INFLUXD_OPTS='[-join hostname_1:port_1[,hostname_2:port_2]]'
 ```
 
-For more detailed instructions on how to set up a cluster, please see the [Clustering](/dsdb/v1.0/guides/clustering/) section.
+For more detailed instructions on how to set up a cluster, please see the [Clustering](/dsdb/guides/clustering.md) section.
 
 ## Nightly and Development Versions
 

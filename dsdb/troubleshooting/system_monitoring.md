@@ -10,8 +10,8 @@ parent1: dsd-dsdb
 To assist with troubleshooting and performance analysis DSDB makes available statistical and diagnostic information about the system.
 For additional information see the [README on GitHub](https://github.com/dasudian/dsdb/blob/master/monitor/README.md).
 
-* [See statistics for your installation with `SHOW STATS`](/dsdb/v1.0/troubleshooting/system_monitoring/#see-statistics-for-your-installation-with-show-stats)
-* [Show diagnostic information about your installation with `SHOW DIAGNOSTICS`](/dsdb/v1.0/troubleshooting/system_monitoring/#show-diagnostic-information-about-your-installation-with-show-diagnostics)
+* [See statistics for your installation with `SHOW STATS`](/dsdb//troubleshooting/system_monitoring.md#see-statistics-for-your-installation-with-show-stats)
+* [Show diagnostic information about your installation with `SHOW DIAGNOSTICS`](/dsdb//troubleshooting/system_monitoring.md#show-diagnostic-information-about-your-installation-with-show-diagnostics)
 
 ## See statistics for your installation with `SHOW STATS`
 

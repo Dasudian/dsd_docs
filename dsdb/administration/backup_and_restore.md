@@ -52,7 +52,7 @@ stored. Optional flags also include:
 - `-retention <retention policy name>` - This flag can be used to
   backup a specific retention policy. For more information on
   retention policies, please see
-  [here](/dsdb/v1.0/query_language/database_management/#retention-policy-management). If
+  [here](/dsdb/query_language/database_management/#retention-policy-management). If
   not specified, all retention policies will be backed up.
 
 - `-shard <shard ID>` - This flag can be used to backup a specific

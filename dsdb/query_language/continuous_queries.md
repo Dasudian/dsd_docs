@@ -7,25 +7,25 @@ parent1: dsd-dsdb
 
 # Continuous Queries
 
-When writing large amounts of data to DSDB, you may often want to downsample the raw data, that is, use `GROUP BY time()` with an DSDBQL [function](/dsdb/v1.0/query_language/functions/) to change the high frequency data into lower frequency data. Repeatedly running the same queries by hand can be tedious. DSDB's continuous queries (CQ) simplify the downsampling process; CQs run automatically and write the query results to another measurement.
+When writing large amounts of data to DSDB, you may often want to downsample the raw data, that is, use `GROUP BY time()` with an DSDBQL [function](/dsdb/query_language/functions.md) to change the high frequency data into lower frequency data. Repeatedly running the same queries by hand can be tedious. DSDB's continuous queries (CQ) simplify the downsampling process; CQs run automatically and write the query results to another measurement.
 
-* [CQ definition](/dsdb/v1.0/query_language/continuous_queries/#cq-definition)
-* [DSDBQL for creating a CQ](/dsdb/v1.0/query_language/continuous_queries/#influxql-for-creating-a-cq)  
-&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[The `CREATE CONTINUOUS QUERY` statement](/dsdb/v1.0/query_language/continuous_queries/#the-create-continuous-query-statement)  
-&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[CQs with backreferencing](/dsdb/v1.0/query_language/continuous_queries/#cqs-with-backreferencing)  
-* [List CQs with `SHOW`](/dsdb/v1.0/query_language/continuous_queries/#list-cqs-with-show)
-* [Delete CQs with `DROP`](/dsdb/v1.0/query_language/continuous_queries/#delete-cqs-with-drop)
-* [Backfilling](/dsdb/v1.0/query_language/continuous_queries/#backfilling)
-* [Further reading](/dsdb/v1.0/query_language/continuous_queries/#further-reading)
+* [CQ definition](/dsdb/query_language/continuous_queries.md#cq-definition)
+* [DSDBQL for creating a CQ](/dsdb/query_language/continuous_queries.md#influxql-for-creating-a-cq)  
+&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[The `CREATE CONTINUOUS QUERY` statement](/dsdb/query_language/continuous_queries.md#the-create-continuous-query-statement)  
+&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[CQs with backreferencing](/dsdb/query_language/continuous_queries.md#cqs-with-backreferencing)  
+* [List CQs with `SHOW`](/dsdb/query_language/continuous_queries.md#list-cqs-with-show)
+* [Delete CQs with `DROP`](/dsdb/query_language/continuous_queries.md#delete-cqs-with-drop)
+* [Backfilling](/dsdb/query_language/continuous_queries.md#backfilling)
+* [Further reading](/dsdb/query_language/continuous_queries.md#further-reading)
 
 ## CQ definition
-A CQ is an DSDBQL query that the system runs automatically and periodically within a database. DSDB stores the results of the CQ in a specified [measurement](/dsdb/v1.0/concepts/glossary/#measurement). CQs require a function in the `SELECT` clause and must include a `GROUP BY time()` clause.
+A CQ is an DSDBQL query that the system runs automatically and periodically within a database. DSDB stores the results of the CQ in a specified [measurement](/dsdb/concepts/glossary.md#measurement). CQs require a function in the `SELECT` clause and must include a `GROUP BY time()` clause.
 
 The time ranges of the CQ results have round-number boundaries that are set internally by the database. There is currently no way for users to alter the start or end times of the intervals.
 
-Only admin users are allowed to work with continuous queries. For more on user privileges, see [Authentication and Authorization](/dsdb/v1.0/administration/authentication_and_authorization/#user-types-and-their-privileges).
+Only admin users are allowed to work with continuous queries. For more on user privileges, see [Authentication and Authorization](/dsdb/administration/authentication_and_authorization.md#user-types-and-their-privileges).
 
-> **Note:** CQs only execute on data received after the CQ's creation. If you'd like to downsample data written to DSDB before the CQ was created, see the examples in [Data Exploration](/dsdb/v1.0/query_language/data_exploration/#downsample-data).
+> **Note:** CQs only execute on data received after the CQ's creation. If you'd like to downsample data written to DSDB before the CQ was created, see the examples in [Data Exploration](/dsdb/query_language/data_exploration.md#downsample-data).
 
 ## DSDBQL for creating a CQ
 ### The `CREATE CONTINUOUS QUERY` statement
@@ -72,7 +72,7 @@ Because CQs run on regularly incremented time intervals you don't need to (and s
     Once executed, DSDB automatically calculates the 30 minute minimum of the field `mouse` in the measurement `zoo`, and it writes the results to the measurement `min_mouse`.
     Note that the CQ `minnie` only exists in the database `world`.
 
-* Create a CQ with one function and write the results to another [retention policy](/dsdb/v1.0/concepts/glossary/#retention-policy-rp):
+* Create a CQ with one function and write the results to another [retention policy](/dsdb/concepts/glossary.md#retention-policy-rp):
 
     ```sql
 > CREATE CONTINUOUS QUERY minnie_jr ON world BEGIN SELECT min(mouse) INTO world."7days".min_mouse FROM world."1day".zoo GROUP BY time(30m) END
@@ -81,7 +81,7 @@ Because CQs run on regularly incremented time intervals you don't need to (and s
     The CQ `minnie_jr` acts in the same way as the CQ `minnie`, however, DSDB calculates the 30 minute minimum of the field `mouse` in the measurement `zoo` and under the retention policy `1day`, and it automatically writes the results of the query to the measurement `min_mouse` under the retention policy `7days`.
 
     Combining CQs and retention policies provides a useful way to automatically downsample data and expire the unnecessary raw data.
-    For a complete discussion on this topic, see [Downsampling and Data Retention](/dsdb/v1.0/guides/downsampling_and_retention/).
+    For a complete discussion on this topic, see [Downsampling and Data Retention](/dsdb/guides/downsampling_and_retention.md).
 
 * Create a CQ with two functions:
 
@@ -92,16 +92,16 @@ Because CQs run on regularly incremented time intervals you don't need to (and s
     The CQ `minnie_maximus` automatically calculates the 30 minute minimum of the field `mouse` and the 30 minute maximum of the field `imus` (both fields are in the measurement `zoo`), and it writes the results to the measurement `min_max_mouse`.
 
     > **Note:** If we create two CQs, one CQ to calculate the minimum and one CQ to calculate the maximum and we write the results to the same measurement, the data in the destination measurement may appear to be missing data.
-    For a complete explanation, see [Frequently Encountered Issues](/dsdb/v1.0/troubleshooting/frequently_encountered_issues/#writing-more-than-one-continuous-query-to-a-single-series).   
+    For a complete explanation, see [Frequently Encountered Issues](/dsdb/troubleshooting/frequently_encountered_issues.md#writing-more-than-one-continuous-query-to-a-single-series).   
 
-* Create a CQ with two functions and personalize the [field keys](/dsdb/v1.0/concepts/glossary/#field-key) in the results:
+* Create a CQ with two functions and personalize the [field keys](/dsdb/concepts/glossary.md#field-key) in the results:
 
     ```sql
 > CREATE CONTINUOUS QUERY minnie_maximus_1 ON world BEGIN SELECT min(mouse) AS minuscule,max(imus) AS monstrous INTO min_max_mouse FROM zoo GROUP BY time(30m) END
     ```
 
     The CQ `minnie_maximus_1` acts in the same way as `minnie_maximus`, however, DSDB names field keys `miniscule` and `monstrous` in the destination measurement instead of `min` and `max`.
-    For more on `AS`, see [Functions](/dsdb/v1.0/query_language/functions/#rename-the-output-column-s-title-with-as).
+    For more on `AS`, see [Functions](/dsdb/query_language/functions.md#rename-the-output-column-s-title-with-as).
 
 * Create a CQ with a 30 minute `GROUP BY time()` interval that runs every 15 minutes:
 
@@ -240,7 +240,7 @@ WHERE time >= '2015-12-14 00:05:20' AND time < '2015-12-15 00:05:20'
 GROUP BY time(5m), sensor_id
 ```
 
-To prevent the backfill from creating a huge number of "empty" points containing only `null` values, [fill()](/dsdb/v1.0/query_language/data_exploration/#the-group-by-clause-and-fill) can be used at the end of the query:
+To prevent the backfill from creating a huge number of "empty" points containing only `null` values, [fill()](/dsdb/query_language/data_exploration.md#the-group-by-clause-and-fill) can be used at the end of the query:
 ```sql
 > SELECT min(temp) as min_temp, max(temp) as max_temp INTO "reading.minmax.5m" FROM reading
 WHERE time >= '2015-12-14 00:05:20' AND time < '2015-12-15 00:05:20'
@@ -255,4 +255,4 @@ GROUP BY time(5m)
 ```
 
 ## Further reading
-Now that you know how to create CQs with DSDB, check out [Downsampling and Data Retention](/dsdb/v1.0/guides/downsampling_and_retention/) for how to combine CQs with retention policies to automatically downsample data and expire unnecessary data.
+Now that you know how to create CQs with DSDB, check out [Downsampling and Data Retention](/dsdb/guides/downsampling_and_retention.md) for how to combine CQs with retention policies to automatically downsample data and expire unnecessary data.

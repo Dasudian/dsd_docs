@@ -12,36 +12,36 @@ Where applicable, it links to outstanding issues on GitHub.
 
 **Querying data**  
 
-* [Getting unexpected results with `GROUP BY time()`](/dsdb/v1.0/troubleshooting/frequently_encountered_issues/#getting-unexpected-results-with-group-by-time)
-* [Understanding the time intervals returned from `GROUP BY time()` queries](/dsdb/v1.0/troubleshooting/frequently_encountered_issues/#understanding-the-time-intervals-returned-from-group-by-time-queries)    
-* [Querying after `now()`](/dsdb/v1.0/troubleshooting/frequently_encountered_issues/#querying-after-now)  
-* [Querying outside the min/max time range](/dsdb/v1.0/troubleshooting/frequently_encountered_issues/#querying-outside-the-min-max-time-range)  
-* [Querying a time range that spans epoch 0](/dsdb/v1.0/troubleshooting/frequently_encountered_issues/#querying-a-time-range-that-spans-epoch-0)  
-* [Querying with booleans](/dsdb/v1.0/troubleshooting/frequently_encountered_issues/#querying-with-booleans)  
-* [Working with really big or really small integers](/dsdb/v1.0/troubleshooting/frequently_encountered_issues/#working-with-really-big-or-really-small-integers)
-* [Doing math on timestamps](/dsdb/v1.0/troubleshooting/frequently_encountered_issues/#doing-math-on-timestamps)  
-* [Getting an unexpected epoch 0 timestamp in query returns](/dsdb/v1.0/troubleshooting/frequently_encountered_issues/#getting-an-unexpected-epoch-0-timestamp-in-query-returns)  
-* [Getting large query returns in batches when using the HTTP API](/dsdb/v1.0/troubleshooting/frequently_encountered_issues/#getting-large-query-returns-in-batches-when-using-the-http-api)  
-* [Getting the `expected identifier` error, unexpectedly](/dsdb/v1.0/troubleshooting/frequently_encountered_issues/#getting-the-expected-identifier-error-unexpectedly)
-* [Identifying write precision from returned timestamps](/dsdb/v1.0/troubleshooting/frequently_encountered_issues/#identifying-write-precision-from-returned-timestamps)  
-* [Single quoting and double quoting in queries](/dsdb/v1.0/troubleshooting/frequently_encountered_issues/#single-quoting-and-double-quoting-in-queries)  
-* [Missing data after creating a new `DEFAULT` retention policy](/dsdb/v1.0/troubleshooting/frequently_encountered_issues/#missing-data-after-creating-a-new-default-retention-policy)
+* [Getting unexpected results with `GROUP BY time()`](/dsdb/troubleshooting/frequently_encountered_issues.md#getting-unexpected-results-with-group-by-time)
+* [Understanding the time intervals returned from `GROUP BY time()` queries](/dsdb/troubleshooting/frequently_encountered_issues.md#understanding-the-time-intervals-returned-from-group-by-time-queries)    
+* [Querying after `now()`](/dsdb/troubleshooting/frequently_encountered_issues.md#querying-after-now)  
+* [Querying outside the min/max time range](/dsdb/troubleshooting/frequently_encountered_issues.md#querying-outside-the-min-max-time-range)  
+* [Querying a time range that spans epoch 0](/dsdb/troubleshooting/frequently_encountered_issues.md#querying-a-time-range-that-spans-epoch-0)  
+* [Querying with booleans](/dsdb/troubleshooting/frequently_encountered_issues.md#querying-with-booleans)  
+* [Working with really big or really small integers](/dsdb/troubleshooting/frequently_encountered_issues.md#working-with-really-big-or-really-small-integers)
+* [Doing math on timestamps](/dsdb/troubleshooting/frequently_encountered_issues.md#doing-math-on-timestamps)  
+* [Getting an unexpected epoch 0 timestamp in query returns](/dsdb/troubleshooting/frequently_encountered_issues.md#getting-an-unexpected-epoch-0-timestamp-in-query-returns)  
+* [Getting large query returns in batches when using the HTTP API](/dsdb/troubleshooting/frequently_encountered_issues.md#getting-large-query-returns-in-batches-when-using-the-http-api)  
+* [Getting the `expected identifier` error, unexpectedly](/dsdb/troubleshooting/frequently_encountered_issues.md#getting-the-expected-identifier-error-unexpectedly)
+* [Identifying write precision from returned timestamps](/dsdb/troubleshooting/frequently_encountered_issues.md#identifying-write-precision-from-returned-timestamps)  
+* [Single quoting and double quoting in queries](/dsdb/troubleshooting/frequently_encountered_issues.md#single-quoting-and-double-quoting-in-queries)  
+* [Missing data after creating a new `DEFAULT` retention policy](/dsdb/troubleshooting/frequently_encountered_issues.md#missing-data-after-creating-a-new-default-retention-policy)
 
 **Writing data**  
 
-* [Writing integers](/dsdb/v1.0/troubleshooting/frequently_encountered_issues/#writing-integers)   
-* [Writing duplicate points](/dsdb/v1.0/troubleshooting/frequently_encountered_issues/#writing-duplicate-points)  
-* [Getting an unexpected error when sending data over the HTTP API](/dsdb/v1.0/troubleshooting/frequently_encountered_issues/#getting-an-unexpected-error-when-sending-data-over-the-http-api)
-* [Writing more than one continuous query to a single series](/dsdb/v1.0/troubleshooting/frequently_encountered_issues/#writing-more-than-one-continuous-query-to-a-single-series)
-* [Words and characters to avoid](/dsdb/v1.0/troubleshooting/frequently_encountered_issues/#words-and-characters-to-avoid)  
-* [Single quoting and double quoting when writing data](/dsdb/v1.0/troubleshooting/frequently_encountered_issues/#single-quoting-and-double-quoting-when-writing-data)  
+* [Writing integers](/dsdb/troubleshooting/frequently_encountered_issues.md#writing-integers)   
+* [Writing duplicate points](/dsdb/troubleshooting/frequently_encountered_issues.md#writing-duplicate-points)  
+* [Getting an unexpected error when sending data over the HTTP API](/dsdb/troubleshooting/frequently_encountered_issues.md#getting-an-unexpected-error-when-sending-data-over-the-http-api)
+* [Writing more than one continuous query to a single series](/dsdb/troubleshooting/frequently_encountered_issues.md#writing-more-than-one-continuous-query-to-a-single-series)
+* [Words and characters to avoid](/dsdb/troubleshooting/frequently_encountered_issues.md#words-and-characters-to-avoid)  
+* [Single quoting and double quoting when writing data](/dsdb/troubleshooting/frequently_encountered_issues.md#single-quoting-and-double-quoting-when-writing-data)  
 
 **Administration**  
 
-* [Single quoting the password string](/dsdb/v1.0/troubleshooting/frequently_encountered_issues/#single-quoting-the-password-string)
-* [Escaping the single quote in a password](/dsdb/v1.0/troubleshooting/frequently_encountered_issues/#escaping-the-single-quote-in-a-password)  
-* [Identifying your version of DSDB](/dsdb/v1.0/troubleshooting/frequently_encountered_issues/#identifying-your-version-of-dsdb)  
-* [Data aren't dropped after altering a retention policy](/dsdb/v1.0/troubleshooting/frequently_encountered_issues/#data-aren-t-dropped-after-altering-a-retention-policy)
+* [Single quoting the password string](/dsdb/troubleshooting/frequently_encountered_issues.md#single-quoting-the-password-string)
+* [Escaping the single quote in a password](/dsdb/troubleshooting/frequently_encountered_issues.md#escaping-the-single-quote-in-a-password)  
+* [Identifying your version of DSDB](/dsdb/troubleshooting/frequently_encountered_issues.md#identifying-your-version-of-dsdb)  
+* [Data aren't dropped after altering a retention policy](/dsdb/troubleshooting/frequently_encountered_issues.md#data-aren-t-dropped-after-altering-a-retention-policy)
 
 # Querying data
 ## Getting unexpected results with `GROUP BY time()`
@@ -64,7 +64,7 @@ Avoid perplexing `GROUP BY time()` returns by specifying a valid time interval i
 
 ## Understanding the time intervals returned from `GROUP BY time()` queries
 With some `GROUP BY time()` queries, the returned time intervals may not reflect the time range specified in the `WHERE` clause.
-In the example below the first [timestamp](/dsdb/v1.0/concepts/glossary/#timestamp) in the results occurs before the lower bound of the query:
+In the example below the first [timestamp](/dsdb/concepts/glossary.md#timestamp) in the results occurs before the lower bound of the query:
 
 Query with a two day `GROUP BY time()` interval:
 <pre><code class="language-sh">
@@ -146,7 +146,7 @@ For example, `SELECT * FROM hamlet WHERE bool=True` returns all points with `boo
 ## Working with really big or really small integers
 DSDB stores all integers as signed int64 data types.
 The minimum and maximum valid values for int64 are `-9023372036854775808` and `9023372036854775807`.
-See [Go builtins](http://golang.org/pkg/builtin/#int64) for more information.
+See [Go builtins](http://golang.org/pkg/builtin.md#int64) for more information.
 
 Values close to but within those limits may lead to unexpected results; some functions and operators convert the int64 data type to float64 during calculation which can cause overflow issues.
 
@@ -229,7 +229,7 @@ No: `SELECT 'bikes_available' FROM 'bikes' WHERE 'station_id'="9"`
 
 No: `SELECT * from cr@zy where p^e='2'`
 
-See the [Query Syntax](/dsdb/v1.0/query_language/query_syntax/) page for more information.
+See the [Query Syntax](/dsdb/query_language/query_syntax.md) page for more information.
 
 ## Missing data after creating a new `DEFAULT` retention policy
 When you create a new `DEFAULT` retention policy (RP) on a database, the data written to the old `DEFAULT` RP remain in the old RP.
@@ -246,7 +246,7 @@ name: fleeting
 time			               count
 1970-01-01T00:00:00Z	 8
 ```
-We [create](/dsdb/v1.0/query_language/database_management/#create-retention-policies-with-create-retention-policy) a new `DEFAULT` RP (`two_hour`) and perform the same query:
+We [create](/dsdb/query_language/database_management.md#create-retention-policies-with-create-retention-policy) a new `DEFAULT` RP (`two_hour`) and perform the same query:
 ```sh
 > SELECT count(flounders) FROM fleeting
 >
@@ -269,7 +269,7 @@ Writes an integer: `value=100i`
 Writes a float: `value=100`
 
 ## Writing duplicate points
-In DSDB 0.9 a point is uniquely identified by the measurement name, full [tag set]()(/dsdb/v1.0/concepts/glossary/#tag-set), and the nanosecond timestamp.
+In DSDB 0.9 a point is uniquely identified by the measurement name, full [tag set]()(/dsdb/concepts/glossary.md#tag-set), and the nanosecond timestamp.
 If a point is submitted with an identical measurement, tag set, and timestamp it will silently overwrite the previous point.
 This is the intended behavior.
 
@@ -292,7 +292,7 @@ These are still identical points and the last one written would be the only one 
 The last one written will overwrite the other.
 
 ## Getting an unexpected error when sending data over the HTTP API
-First, double check your [line protocol](/dsdb/v1.0/write_protocols/line/) syntax.
+First, double check your [line protocol](/dsdb/write_protocols/line.md) syntax.
 Second, if you continue to receive errors along the lines of `bad timestamp` or `unable to parse`, verify that your newline character is line feed (`\n`, which is ASCII `0x0A`).
 DSDB's line protocol relies on `\n` to indicate the end of a line and the beginning of a new line; files or data that use a newline character other than `\n` will encounter parsing issues.
 Convert the newline character and try sending the data again.
@@ -311,11 +311,11 @@ If you create two separate continuous queries (one for calculating the `MEAN` an
 Separate continuous queries run at slightly different times and DSDB defines a unique point by its measurement, tag set, and timestamp (notice that field is missing from that list).
 So if two continuous queries write to different fields but also write to the same measurement and tag set, only one of the two fields will ever have data; the last continuous query to run will overwrite the results that were written by the first continuous query with the same timestamp.
 
-For more on continuous queries, see [Continuous Queries](/dsdb/v1.0/query_language/continuous_queries/).
+For more on continuous queries, see [Continuous Queries](/dsdb/query_language/continuous_queries.md).
 
 ## Words and characters to avoid
 If you use any of the [DSDBQL keywords](https://github.com/dsdb/dsdb/blob/master/influxql/INFLUXQL.md#keywords) as an identifier you will need to double quote that identifier in every query.
-This can lead to [non-intuitive errors](/dsdb/v1.0/troubleshooting/frequently_encountered_issues/#getting-the-expected-identifier-error-unexpectedly).
+This can lead to [non-intuitive errors](/dsdb/troubleshooting/frequently_encountered_issues.md#getting-the-expected-identifier-error-unexpectedly).
 Identifiers are database names, retention policy names, user names, measurement names, tag keys, and field keys.
 
 To keep regular expressions and quoting simple, avoid using the following characters in identifiers:  
@@ -357,7 +357,7 @@ Identifiers are database names, retention policy names, user names, measurement 
 	Write: `INSERT wacky va\"ue=4`  
 	Applicable query: `SELECT "va\"ue" FROM wacky`
 
-See the [Line Protocol Syntax](/dsdb/v1.0/write_protocols/write_syntax/) page for more information.
+See the [Line Protocol Syntax](/dsdb/write_protocols/write_syntax.md) page for more information.
 
 # Administration
 ## Single quoting the password string
@@ -378,7 +378,7 @@ For example, if you're using 0.9.3 `curl -i 'http://localhost:8088/ping'` return
 ✨`X-DSDBdb-Version: 0.9.3`✨
 `Date: Fri, 04 Sep 2015 19:18:26 GMT`
 
-* Check the text that appears when you [launch](/dsdb/v1.0/tools/shell/) the CLI:
+* Check the text that appears when you [launch](/dsdb/tools/shell.md) the CLI:
 
 `Connected to http://localhost:8088` ✨`version 0.9.3`✨   
 `DSDB shell 0.9.3`
@@ -388,7 +388,7 @@ For example, if you're using 0.9.3 `curl -i 'http://localhost:8088/ping'` return
 `[http] 2015/09/04 12:29:07 ::1 - - [04/Sep/2015:12:29:06 -0700] GET /query?db=&q=create+database+there_you_go HTTP/1.1 200 40 -` ✨`DSDBShell/0.9.3`✨ `357970a0-533b-11e5-8001-000000000000 6.07408ms`
 
 ## Data aren't dropped after altering a retention policy
-After [shortening](/dsdb/v1.0/query_language/database_management/#modify-retention-policies-with-alter-retention-policy) the `DURATION` of a [retention policy](/dsdb/v1.0/concepts/glossary/#retention-policy-rp) (RP), you may notice that DSDB keeps some data that are older than the `DURATION` of the modified RP.
+After [shortening](/dsdb/query_language/database_management.md#modify-retention-policies-with-alter-retention-policy) the `DURATION` of a [retention policy](/dsdb/concepts/glossary.md#retention-policy-rp) (RP), you may notice that DSDB keeps some data that are older than the `DURATION` of the modified RP.
 This behavior is a result of the relationship between the time interval covered by a shard group and the `DURATION` of a retention policy.
 
 DSDB stores data in shard groups.
@@ -414,14 +414,14 @@ On day 11, DSDB is no longer writing to `Shard Group 1` and `Shard Group 2` has 
 ![Retention policy duration infinite](/img/dsdb/fei/alter-rp-inf.png)
 
 On day 11, we notice that `example_db` is accruing data too fast; we want to delete, and keep deleting, all data older than three days.
-We do this by [altering](/dsdb/v1.0/query_language/database_management/#modify-retention-policies-with-alter-retention-policy) the retention policy:
+We do this by [altering](/dsdb/query_language/database_management.md#modify-retention-policies-with-alter-retention-policy) the retention policy:
 <br>
 <br>
 ```
 > ALTER RETENTION POLICY default ON example_db DURATION 3d
 ```
 
-At the next [retention policy enforcement check](/dsdb/v1.0/administration/config/#retention), DSDB immediately drops `Shard Group 1` because all of its data are older than 3 days.
+At the next [retention policy enforcement check](/dsdb/administration/config.md#retention), DSDB immediately drops `Shard Group 1` because all of its data are older than 3 days.
 DSDB does not drop `Shard Group 2`.
 This is because DSDB cannot divide existing shard groups and some data in `Shard Group 2` still fall within the new three day retention policy.
 
@@ -436,4 +436,4 @@ After day 17, all data within the past 3 days will be in one day shard groups.
 DSDB will then be able to drop `Shard Group 2` and `example_db` will have only 3 days worth of data.
 
 > **Note:** The time it takes for DSDB to adjust to the new retention policy may be longer depending on your shard precreation configuration setting.
-See [Database Configuration](/dsdb/v1.0/administration/config/#shard-precreation) for more on that setting.
+See [Database Configuration](/dsdb/administration/config.md#shard-precreation) for more on that setting.

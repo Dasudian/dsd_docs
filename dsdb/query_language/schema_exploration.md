@@ -10,21 +10,21 @@ parent1: dsd-dsdb
 DSDBQL is an SQL-like query language for interacting with data in DSDB.
 The following sections cover useful query syntax for exploring your schema (that is, how you set up your time series data):
 
-* [See all databases with `SHOW DATABASES`](/dsdb/v1.0/query_language/schema_exploration/#see-all-databases-with-show-databases)
-* [Explore retention policies with `SHOW RETENTION POLICIES`](/dsdb/v1.0/query_language/schema_exploration/#explore-retention-policies-with-show-retention-policies)
-* [Explore series with `SHOW SERIES`](/dsdb/v1.0/query_language/schema_exploration/#explore-series-with-show-series)
-* [Explore measurements with `SHOW MEASUREMENTS`](/dsdb/v1.0/query_language/schema_exploration/#explore-measurements-with-show-measurements)
-* [Explore tag keys with `SHOW TAG KEYS`](/dsdb/v1.0/query_language/schema_exploration/#explore-tag-keys-with-show-tag-keys)
-* [Explore tag values with `SHOW TAG VALUES`](/dsdb/v1.0/query_language/schema_exploration/#explore-tag-values-with-show-tag-values)
-* [Explore field keys with `SHOW FIELD KEYS`](/dsdb/v1.0/query_language/schema_exploration/#explore-field-keys-with-show-field-keys)
+* [See all databases with `SHOW DATABASES`](/dsdb/query_language/schema_exploration.md#see-all-databases-with-show-databases)
+* [Explore retention policies with `SHOW RETENTION POLICIES`](/dsdb/query_language/schema_exploration.md#explore-retention-policies-with-show-retention-policies)
+* [Explore series with `SHOW SERIES`](/dsdb/query_language/schema_exploration.md#explore-series-with-show-series)
+* [Explore measurements with `SHOW MEASUREMENTS`](/dsdb/query_language/schema_exploration.md#explore-measurements-with-show-measurements)
+* [Explore tag keys with `SHOW TAG KEYS`](/dsdb/query_language/schema_exploration.md#explore-tag-keys-with-show-tag-keys)
+* [Explore tag values with `SHOW TAG VALUES`](/dsdb/query_language/schema_exploration.md#explore-tag-values-with-show-tag-values)
+* [Explore field keys with `SHOW FIELD KEYS`](/dsdb/query_language/schema_exploration.md#explore-field-keys-with-show-field-keys)
 
-The examples below query data using [DSDB's Command Line Interface (CLI)](/dsdb/v1.0/tools/shell/).
-See the [Querying Data](/dsdb/v1.0/guides/querying_data/) guide for how to directly query data with the HTTP API.
+The examples below query data using [DSDB's Command Line Interface (CLI)](/dsdb/tools/shell.md).
+See the [Querying Data](/dsdb/guides/querying_data.md) guide for how to directly query data with the HTTP API.
 
 **Sample data**
 
-This document uses the same sample data as the [Data Exploration](/dsdb/v1.0/query_language/data_exploration/) page.
-The data are described and are available for download on the [Sample Data](/dsdb/v1.0/sample_data/data_download/) page.
+This document uses the same sample data as the [Data Exploration](/dsdb/query_language/data_exploration.md) page.
+The data are described and are available for download on the [Sample Data](/dsdb/sample_data/data_download.md) page.
 
 ## See all databases with `SHOW DATABASES`
 Get a list of all the databases in your system by entering:
@@ -42,7 +42,7 @@ NOAA_water_database
 ```
 
 ## Explore retention policies with `SHOW RETENTION POLICIES`
-The `SHOW RETENTION POLICIES` query lists the existing [retention policies](/dsdb/v1.0/concepts/glossary/#retention-policy-rp) on a given database, and it takes the following form:
+The `SHOW RETENTION POLICIES` query lists the existing [retention policies](/dsdb/concepts/glossary.md#retention-policy-rp) on a given database, and it takes the following form:
 ```sql
 SHOW RETENTION POLICIES ON <database_name>
 ```
@@ -59,7 +59,7 @@ default	 0		       1		       true
 ```
 
 The first column of the output contains the names of the different retention policies in the specified database.
-The second column shows the [duration](/dsdb/v1.0/concepts/glossary/#duration) and the third column shows the [replication factor](/dsdb/v1.0/concepts/glossary/#replication-factor) of the retention policy.
+The second column shows the [duration](/dsdb/concepts/glossary.md#duration) and the third column shows the [replication factor](/dsdb/concepts/glossary.md#replication-factor) of the retention policy.
 The fourth column specifies if the retention policy is the default retention policy for the database.
 
 The following example shows a hypothetical CLI response where there are four different retention policies in the database, and where the default retention policy is `three_days_only`:
@@ -73,7 +73,7 @@ three_days_only	 72h0m0s		 1		       true
 ```
 
 ## Explore series with `SHOW SERIES`
-The `SHOW SERIES` query returns the distinct [series](/dsdb/v1.0/concepts/glossary/#series) in your database and takes the following form, where the `FROM` and `WHERE` clauses are optional:
+The `SHOW SERIES` query returns the distinct [series](/dsdb/concepts/glossary.md#series) in your database and takes the following form, where the `FROM` and `WHERE` clauses are optional:
 
 ```sql
 SHOW SERIES [FROM <measurement_name> [WHERE <tag_key>='<tag_value>']]
@@ -121,11 +121,11 @@ h2o_temperature,location=coyote_creek	   coyote_creek
 h2o_temperature,location=santa_monica	   santa_monica
 ```
 
-`SHOW SERIES` organizes its output by [measurement](/dsdb/v1.0/concepts/glossary/#measurement) name.
+`SHOW SERIES` organizes its output by [measurement](/dsdb/concepts/glossary.md#measurement) name.
 From the return you can see that the data in the database `NOAA_water_database` have five different measurements and 14 different series.
 The measurements are `average_temperature`, `h2o_feet`, `h2o_pH`, `h2o_quality`, and `h2o_temperature`.
 Every measurement
-has the [tag key](/dsdb/v1.0/concepts/glossary/#tag-key) `location` with the [tag values](/dsdb/v1.0/concepts/glossary/#tag-value) `coyote_creek` and `santa_monica` - that makes 10 series.
+has the [tag key](/dsdb/concepts/glossary.md#tag-key) `location` with the [tag values](/dsdb/concepts/glossary.md#tag-value) `coyote_creek` and `santa_monica` - that makes 10 series.
 The measurement `h2o_quality` has the additional tag key `randtag` with the tag values `1`,`2`, and `3` - that makes 14 series.
 
 Return series for a specific measurement:
@@ -162,7 +162,7 @@ h2o_quality,location=coyote_creek,randtag=3	   coyote_creek	   3
 ```
 
 ## Explore measurements with `SHOW MEASUREMENTS`
-The `SHOW MEASUREMENTS` query returns the [measurements](/dsdb/v1.0/concepts/glossary/#measurement) in your database and it takes the following form:
+The `SHOW MEASUREMENTS` query returns the [measurements](/dsdb/concepts/glossary.md#measurement) in your database and it takes the following form:
 ```sql
 SHOW MEASUREMENTS [WITH MEASUREMENT <regular_expression>] [WHERE <tag_key>=<'tag_value'>]
 ```
@@ -231,7 +231,7 @@ h2o_temperature
 ```
 
 ## Explore tag keys with SHOW TAG KEYS
-`SHOW TAG KEYS` returns the [tag keys](/dsdb/v1.0/concepts/glossary/#tag-key) associated with each measurement and takes the following form, where the `FROM` clause is optional:
+`SHOW TAG KEYS` returns the [tag keys](/dsdb/concepts/glossary.md#tag-key) associated with each measurement and takes the following form, where the `FROM` clause is optional:
 ```sql
 SHOW TAG KEYS [FROM <measurement_name>]
 ```
@@ -287,7 +287,7 @@ location
 ```
 
 ## Explore tag values with SHOW TAG VALUES
-The `SHOW TAG VALUES` query returns the set of [tag values](/dsdb/v1.0/concepts/glossary/#tag-value) for a specific tag key across all measurements in the database.
+The `SHOW TAG VALUES` query returns the set of [tag values](/dsdb/concepts/glossary.md#tag-value) for a specific tag key across all measurements in the database.
 It takes the following form, where the `FROM` clause is optional:
 ```sql
 SHOW TAG VALUES [FROM <measurement_name>] WITH KEY = <tag_key>
@@ -320,7 +320,7 @@ CLI response:
 The measurement `average_temperature` doesn't have the tag key `randtag` so DSDB returns nothing.
 
 ## Explore field keys with `SHOW FIELD KEYS`
-The `SHOW FIELD KEYS` query returns the [field keys](/dsdb/v1.0/concepts/glossary/#field-key) across each measurement in the database.
+The `SHOW FIELD KEYS` query returns the [field keys](/dsdb/concepts/glossary.md#field-key) across each measurement in the database.
 It takes the following form, where the `FROM` clause is optional:
 
 ```sql

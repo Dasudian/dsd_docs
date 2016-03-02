@@ -7,13 +7,13 @@ parent1: dsd-dsdb
 
 # Getting Started
 
-With DSDB [installed](/dsdb/v1.0/introduction/installation), you're ready to start doing some awesome things.
+With DSDB [installed](/dsdb/introduction/installation.md), you're ready to start doing some awesome things.
 In this section we'll use the `influx` command line interface (CLI), which is included in all
 DSDB packages and is a lightweight and simple way to interact with the database.
 The CLI communicates with DSDB directly by making requests to the DSDB HTTP API over port `8088` by default.
 
 > **Note:** The database can also be used by making raw HTTP requests.
-See [Writing Data](/dsdb/v1.0/guides/writing_data/) and [Querying Data](/dsdb/v1.0/guides/querying_data/)
+See [Writing Data](/dsdb/guides/writing_data.md) and [Querying Data](/dsdb/guides/querying_data.md)
 for examples with the `curl` application.
 
 ## Creating a database
@@ -168,7 +168,7 @@ time		                        	 external	  internal	machine	type
 > 
 ```
 
-DSDBQL has many [features and keywords](http://localhost:1313/dsdb/v1.0/query_language/spec/) that are not covered here,
+DSDBQL has many [features and keywords](/dsdb/query_language/spec.md) that are not covered here,
 including support for Go-style regex. For example:
 
 ```sql
@@ -181,8 +181,7 @@ including support for Go-style regex. For example:
 
 This is all you need to know to write data into DSDB and query it back.
 To learn more about the DSDB write protocol,
-check out the guide on [Writing Data](/dsdb/v1.0/guides/writing_data/).
+check out the guide on [Writing Data](/dsdb/guides/writing_data.md).
 To futher explore the query language,
-check out the guide on [Querying Data](/dsdb/v1.0/guides/querying_data/).
-For more information on DSDB concepts, check out the [Key Concepts]
-(/dsdb/v1.0/concepts/key_concepts/) page.
+check out the guide on [Querying Data](/dsdb/guides/querying_data.md).
+For more information on DSDB concepts, check out the [Key Concepts](/dsdb/concepts/key_concepts.md) page.

@@ -9,25 +9,25 @@ parent1: dsd-dsdb
 
 DSDBQL offers a full suite of administrative commands.
 
-* [Data management](/dsdb/v1.0/query_language/database_management/#data-management)  
-&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Create a database with `CREATE DATABASE`](/dsdb/v1.0/query_language/database_management/#create-a-database-with-create-database)  
-&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Delete a database with `DROP DATABASE`](/dsdb/v1.0/query_language/database_management/#delete-a-database-with-drop-database)  
-&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Delete series with `DROP SERIES`](/dsdb/v1.0/query_language/database_management/#delete-series-with-drop-series)  
-&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Delete measurements with `DROP MEASUREMENT`](/dsdb/v1.0/query_language/database_management/#delete-measurements-with-drop-measurement)  
+* [Data management](/dsdb/query_language/database_management.md#data-management)  
+&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Create a database with `CREATE DATABASE`](/dsdb/query_language/database_management.md#create-a-database-with-create-database)  
+&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Delete a database with `DROP DATABASE`](/dsdb/query_language/database_management.md#delete-a-database-with-drop-database)  
+&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Delete series with `DROP SERIES`](/dsdb/query_language/database_management.md#delete-series-with-drop-series)  
+&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Delete measurements with `DROP MEASUREMENT`](/dsdb/query_language/database_management.md#delete-measurements-with-drop-measurement)  
 
-* [Retention policy management](/dsdb/v1.0/query_language/database_management/#retention-policy-management)  
-&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Create retention policies with `CREATE RETENTION POLICY`](/dsdb/v1.0/query_language/database_management/#create-retention-policies-with-create-retention-policy)  
-&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Modify retention policies with `ALTER RETENTION POLICY`](/dsdb/v1.0/query_language/database_management/#modify-retention-policies-with-alter-retention-policy)  
-&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Delete retention policies with `DROP RETENTION POLICY`](/dsdb/v1.0/query_language/database_management/#delete-retention-policies-with-drop-retention-policy)  
+* [Retention policy management](/dsdb/query_language/database_management.md#retention-policy-management)  
+&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Create retention policies with `CREATE RETENTION POLICY`](/dsdb/query_language/database_management.md#create-retention-policies-with-create-retention-policy)  
+&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Modify retention policies with `ALTER RETENTION POLICY`](/dsdb/query_language/database_management.md#modify-retention-policies-with-alter-retention-policy)  
+&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Delete retention policies with `DROP RETENTION POLICY`](/dsdb/query_language/database_management.md#delete-retention-policies-with-drop-retention-policy)  
 
-If you're looking for `SHOW` queries (for example, `SHOW DATABASES` or `SHOW RETENTION POLICIES`), see [Schema Exploration](/dsdb/v1.0/query_language/schema_exploration).
+If you're looking for `SHOW` queries (for example, `SHOW DATABASES` or `SHOW RETENTION POLICIES`), see [Schema Exploration](/dsdb/query_language/schema_exploration).
 
-The examples in the sections below use DSDB's [Command Line Interface (CLI)](/dsdb/v1.0/introduction/getting_started/).
+The examples in the sections below use DSDB's [Command Line Interface (CLI)](/dsdb/introduction/getting_started.md).
 You can also execute the commands using the HTTP API; simply  send a `GET` request to the `/query` endpoint and include the command in the URL parameter `q`.
-See the [Querying Data](/dsdb/v1.0/guides/querying_data/) guide for more on using the HTTP API.
+See the [Querying Data](/dsdb/guides/querying_data.md) guide for more on using the HTTP API.
 
 > **Note:** When authentication is enabled, only admin users can execute most of the commands listed on this page.
-See the documentation on [authentication and authorization](/dsdb/v1.0/administration/authentication_and_authorization/) for more information.
+See the documentation on [authentication and authorization](/dsdb/administration/authentication_and_authorization.md) for more information.
 
 ## Data Management
 
@@ -56,7 +56,7 @@ Create the database `NOAA_water_database` with a new retention policy called `li
 >
 ```
 When specifying a retention policy you can include one or more of the attributes `DURATION`, `REPLICATION`, and `NAME`.
-For more on retention policies, see [Retention Policy Management](/dsdb/v1.0/query_language/database_management/#retention-policy-management)
+For more on retention policies, see [Retention Policy Management](/dsdb/query_language/database_management.md#retention-policy-management)
 
 A successful `CREATE DATABASE` query returns an empty result.
 
@@ -84,7 +84,7 @@ A successful `DROP DATABASE` query returns an empty result.
 
 ### Delete series with DROP SERIES
 ---
-The `DROP SERIES` query deletes all points from [series](/dsdb/v1.0/concepts/glossary/#series) in a database.
+The `DROP SERIES` query deletes all points from [series](/dsdb/concepts/glossary.md#series) in a database.
 The query takes the following form, where you must specify either the `FROM` clause or the `WHERE` clause:
 ```sql
 DROP SERIES FROM <measurement_name[,measurement_name]> WHERE <tag_key>='<tag_value>'
@@ -113,7 +113,7 @@ See GitHub Issue [#1647](https://github.com/dsdb/dsdb/issues/1647) for more info
 
 ### Delete measurements with DROP MEASUREMENT
 ---
-The `DROP MEASUREMENT` query deletes all data and series from the specified [measurement](/dsdb/v1.0/concepts/glossary/#measurement) and, unlike `DROP SERIES`, it also deletes the measurement from the index.
+The `DROP MEASUREMENT` query deletes all data and series from the specified [measurement](/dsdb/concepts/glossary.md#measurement) and, unlike `DROP SERIES`, it also deletes the measurement from the index.
 The query takes the following form:
 ```sql
 DROP MEASUREMENT <measurement_name>
@@ -177,7 +177,7 @@ Create the same retention policy as the one in the example above, but set it as 
 A successful `CREATE RETENTION POLICY` query returns an empty response.
 
 > **Note:** You can also specify a new retention policy in the `CREATE DATABASE` query.
-See [Create a database with CREATE DATABASE](/dsdb/v1.0/query_language/database_management/#create-a-database-with-create-database).
+See [Create a database with CREATE DATABASE](/dsdb/query_language/database_management.md#create-a-database-with-create-database).
 
 ### Modify retention policies with ALTER RETENTION POLICY
 ---

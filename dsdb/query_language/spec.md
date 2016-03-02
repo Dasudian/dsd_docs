@@ -10,24 +10,24 @@ parent1: dsd-dsdb
 ## Introduction
 
 This is a reference for the DSDB Query Language ("DSDBQL").
-If you're looking for less formal documentation see [Data Exploration](/dsdb/v1.0/query_language/data_exploration/), [Schema Exploration](/dsdb/v1.0/query_language/schema_exploration/), [Database Management](/dsdb/v1.0/query_language/database_management/), and [Authentication and Authorization](/dsdb/v1.0/administration/authentication_and_authorization/).
+If you're looking for less formal documentation see [Data Exploration](/dsdb/query_language/data_exploration.md), [Schema Exploration](/dsdb/query_language/schema_exploration.md), [Database Management](/dsdb/query_language/database_management.md), and [Authentication and Authorization](/dsdb/administration/authentication_and_authorization.md).
 
 DSDBQL is a SQL-like query language for interacting with DSDB.
 It has been lovingly crafted to feel familiar to those coming from other SQL or SQL-like environments while providing features specific to storing and analyzing time series data.
 
 Sections:
 
-* [Notation](/dsdb/v1.0/query_language/spec/#notation)
-* [Query representation](/dsdb/v1.0/query_language/spec/#query-representation)
-* [Letters and digits](/dsdb/v1.0/query_language/spec/#letters-and-digits)
-* [Identifiers](/dsdb/v1.0/query_language/spec/#identifiers)
-* [Keywords](/dsdb/v1.0/query_language/spec/#keywords)
-* [Literals](/dsdb/v1.0/query_language/spec/#literals)
-* [Queries](/dsdb/v1.0/query_language/spec/#queries)
-* [Statements](/dsdb/v1.0/query_language/spec/#statements)
-* [Clauses](/dsdb/v1.0/query_language/spec/#clauses)
-* [Expressions](/dsdb/v1.0/query_language/spec/#expressions)
-* [Other](/dsdb/v1.0/query_language/spec/#other)
+* [Notation](/dsdb/query_language/spec.md#notation)
+* [Query representation](/dsdb/query_language/spec.md#query-representation)
+* [Letters and digits](/dsdb/query_language/spec.md#letters-and-digits)
+* [Identifiers](/dsdb/query_language/spec.md#identifiers)
+* [Keywords](/dsdb/query_language/spec.md#keywords)
+* [Literals](/dsdb/query_language/spec.md#literals)
+* [Queries](/dsdb/query_language/spec.md#queries)
+* [Statements](/dsdb/query_language/spec.md#statements)
+* [Clauses](/dsdb/query_language/spec.md#clauses)
+* [Expressions](/dsdb/query_language/spec.md#expressions)
+* [Other](/dsdb/query_language/spec.md#other)
 
 ## Notation
 
@@ -79,7 +79,7 @@ digit               = "0" … "9" .
 
 ## Identifiers
 
-Identifiers are tokens which refer to [database](/dsdb/v1.0/concepts/glossary/#database) names, [retention policy](/dsdb/v1.0/concepts/glossary/#retention-policy-rp) names, [user](/dsdb/v1.0/concepts/glossary/#user) names, [measurement](/dsdb/v1.0/concepts/glossary/#measurement) names, [tag keys](/dsdb/v1.0/concepts/glossary/#tag-key), and [field keys](/dsdb/v1.0/concepts/glossary/#field-key).
+Identifiers are tokens which refer to [database](/dsdb/concepts/glossary.md#database) names, [retention policy](/dsdb/concepts/glossary.md#retention-policy-rp) names, [user](/dsdb/concepts/glossary.md#user) names, [measurement](/dsdb/concepts/glossary.md#measurement) names, [tag keys](/dsdb/concepts/glossary.md#tag-key), and [field keys](/dsdb/concepts/glossary.md#field-key).
 
 The rules:
 
@@ -351,7 +351,7 @@ CREATE RETENTION POLICY "10m.events" ON somedb DURATION 10m REPLICATION 2 DEFAUL
 
 ### CREATE SUBSCRIPTION
 
-Subscriptions tell DSDB to send all the data it receives to [Kapacitor](https://docs.influxdata.com/kapacitor/v1.0/introduction/).
+Subscriptions tell DSDB to send all the data it receives to [Kapacitor](https://docs.influxdata.com/kapacitor/introduction.md).
 
 ```
 create_subscription_stmt = "CREATE SUBSCRIPTION" subscription_name "ON" db_name "." retention_policy "DESTINATIONS" ("ANY"|"ALL") host { "," host} .

@@ -7,17 +7,17 @@ parent1: dsd-dsdb
 
 # Sample Data
 
-Download and write to any DSDB installation the sample data used in [Data Exploration](../query_language/data_exploration.html), [Schema Exploration](../query_language/schema_exploration.html), and [Functions](../query_language/functions.html).
+Download and write to any DSDB installation the sample data used in [Data Exploration](/dsdb/query_language/data_exploration.html), [Schema Exploration](/dsdb/query_language/schema_exploration.html), and [Functions](/dsdb/query_language/functions.html).
 
 ### Download and write the data to DSDB
 The following instructions are compatible with DSDB versions 0.9.5+.
 
-From your terminal, download the text file that contains the data in [line protocol](https://dsdb.com/docs/v1.0/write_protocols/line.html) format:
+From your terminal, download the text file that contains the data in [line protocol](/dsdb/write_protocols/line.html) format:
 ```
 curl https://s3-us-west-1.amazonaws.com/noaa.water.database.0.9/NOAA_data.txt > NOAA_data.txt
 ```
 
-Write the data to DSDB via the [CLI](../tools/shell.html):
+Write the data to DSDB via the [CLI](/dsdb/tools/shell.html):
 ```
 influx -import -path=NOAA_data.txt -precision=s
 ```
@@ -64,8 +64,8 @@ The sample data are publicly available data from the [National Oceanic and Atmos
 The data include 15,258 observations of water levels (ft) collected every six seconds at two stations (Santa Monica, CA (ID 9410840) and Coyote Creek, CA (ID 9414575)) over the period from August 18, 2015 through September 18, 2015.
 
 Note that the measurements `average_temperature`, `h2o_pH`, `h2o_quality`, and `h2o_temperature` contain fictional data.
-Those measurements serve to illuminate query functionality in [Schema Exploration](../query_language/schema_exploration.html).
+Those measurements serve to illuminate query functionality in [Schema Exploration](/dsdb/query_language/schema_exploration.html).
 
 
 The `h2o_feet` measurement is the only measurement that contains the NOAA data.
-Please note that the `level description` field isn't part of the original NOAA data - we snuck it in there for the sake of having a field key with a special character and string [field values](../concepts/glossary.html#field-value).
+Please note that the `level description` field isn't part of the original NOAA data - we snuck it in there for the sake of having a field key with a special character and string [field values](/dsdb/concepts/glossary.html#field-value).

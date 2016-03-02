@@ -8,7 +8,7 @@ parent1: dsd-dsdb
 # Web Admin Interface
 
 The built-in web administration GUI is a simple way to interact with DSDB.
-For any significant use, whether writing or querying data, direct use of the HTTP API ([reading](/dsdb/v1.0/guides/querying_data/), [writing](/dsdb/v1.0/guides/writing_data/)) or the [command line interface](/dsdb/v1.0/tools/shell/) are better options.
+For any significant use, whether writing or querying data, direct use of the HTTP API ([reading](/dsdb/guides/querying_data.md), [writing](/dsdb/guides/writing_data.md)) or the [command line interface](/dsdb/tools/shell.md) are better options.
 
 ## Accessing the UI
 
@@ -33,9 +33,9 @@ If you have recently created a database you will need to refresh the Admin UI pa
 ## Writing Data
 
 The Admin UI has a "Write Data" link in the top menu bar.
-This link pops up a modal dialog that will accept points in the [line protocol](/dsdb/v1.0/write_protocols/line/) format.
+This link pops up a modal dialog that will accept points in the [line protocol](/dsdb/write_protocols/line.md) format.
 
 ## Querying Data
 
-The Admin UI has a "Query" box where you can enter any valid [DSDBQL](/dsdb/v1.0/query_language/spec/) command, including database administration and schema exploration commands.
+The Admin UI has a "Query" box where you can enter any valid [DSDBQL](/dsdb/query_language/spec.md) command, including database administration and schema exploration commands.
 The "Query Templates" pull-down menu will pre-populate the Query box with a number of common DSDBQL queries.

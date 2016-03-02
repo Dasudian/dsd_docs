@@ -7,16 +7,16 @@ parent1: dsd-dsdb
 
 # Tools
 
-## [Shell(CLI)](/dsdb/v1.0/tools/shell/)
+## [Shell(CLI)](/dsdb/tools/shell.md)
 
 The DSDB shell is an interactive shell for DSDB and the recommended *ad hoc* method of using the HTTP API.
 
-## [Web Admin](/dsdb/v1.0/tools/web_admin/)
+## [Web Admin](/dsdb/tools/web_admin.md)
 
 The built-in web administration GUI is a simple way to interact with DSDB.
 For any significant use, whether writing or querying data, the HTTP API is the preferred method.
 
-## [Grafana Graphs and Dashboards](/dsdb/v1.0/tools/grafana/)
+## [Grafana Graphs and Dashboards](/dsdb/tools/grafana.md)
 
 Grafana is a convenient dashboard tool for visuallizing time series data.
 It was originally built for Graphite, modeled after Kibana, and since been updated to support DSDB.

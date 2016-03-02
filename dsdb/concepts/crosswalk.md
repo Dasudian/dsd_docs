@@ -103,8 +103,8 @@ Referencing the example above, in general:
 * DSDB points (for example, `2015-04-16T12:00:00Z	5`) are similar to SQL rows.
 
 Building on this comparison of database terminology,
-DSDB's [continuous queries](/dsdb/v1.0/query_language/continuous_queries/)
-and [replication policies](/dsdb/v1.0/administration/administration/) are
+DSDB's [continuous queries](/dsdb/query_language/continuous_queries.md)
+and [replication policies](/dsdb/administration/administration.md) are
 similar to stored procedures in an SQL database.
 They're specified once and then performed regularly and automatically.
 
@@ -113,7 +113,7 @@ SQL `JOIN`s aren't available for DSDB measurements; your schema design should re
 And, as we mentioned above, a measurement is like an SQL table where the primary index is always pre-set to time.
 DSDB timestamps must be in UNIX epoch (GMT) or formatted as a date-time string valid under RFC3339.
 
-For more detailed descriptions of the DSDB terms mentioned in this section see our [Glossary of Terms](/dsdb/v1.0/concepts/glossary/).
+For more detailed descriptions of the DSDB terms mentioned in this section see our [Glossary of Terms](/dsdb/concepts/glossary.md).
 
 ## InfluxQL and SQL
 
@@ -171,11 +171,11 @@ The options for specifying time durations with `now()` are:
 <br/>
 
 InfluxQL also supports regular expressions, arithmetic in expressions, `SHOW` statements, and `GROUP BY` statements.
-See our [data exploration](/dsdb/v1.0/query_language/data_exploration/) page for an in-depth discussion of those topics.
+See our [data exploration](/dsdb/query_language/data_exploration.md) page for an in-depth discussion of those topics.
 InfluxQL functions include `COUNT`, `MIN`, `MAX`, `MEDIAN`, `DERIVATIVE` and more.
-For a full list check out the [functions](/dsdb/v1.0/query_language/functions/) page.
+For a full list check out the [functions](/dsdb/query_language/functions.md) page.
 
-Now that you have the general idea, check out our [Getting Started Guide](/dsdb/v1.0/introduction/getting_started/).
+Now that you have the general idea, check out our [Getting Started Guide](/dsdb/introduction/getting_started.md).
 
 ## A note on why DSDB isn't CRUD...
 

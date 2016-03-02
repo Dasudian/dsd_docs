@@ -33,26 +33,26 @@ influxd -config /etc/dsdb/dsdb.conf.new
 DSDB will use the default configuration settings when no configuration file is provided.
 A new configuration file should be generated every time DSDB is upgraded.
 
-See the [installation documentation](/dsdb/v1.0/introduction/installation/#generate-a-configuration-file) for more detail on generating and using configuration files.
+See the [installation documentation](/dsdb/introduction/installation.md#generate-a-configuration-file) for more detail on generating and using configuration files.
 
 ## Configuration Sections
 
-* [Global Options](/dsdb/v1.0/administration/config/#global-options)
-* [[meta]](/dsdb/v1.0/administration/config/#meta)
-* [[data]](/dsdb/v1.0/administration/config/#data)
-* [[hinted-handoff]](/dsdb/v1.0/administration/config/#hinted-handoff)
-* [[cluster]](/dsdb/v1.0/administration/config/#cluster)
-* [[retention]](/dsdb/v1.0/administration/config/#retention)
-* [[shard-precreation]](/dsdb/v1.0/administration/config/#shard-precreation)
-* [[admin]](/dsdb/v1.0/administration/config/#admin)
-* [[monitor]](/dsdb/v1.0/administration/config/#monitor)
-* [[subscriber]](/dsdb/v1.0/administration/config/#subscriber)
-* [[http]](/dsdb/v1.0/administration/config/#http)
-* [[graphite]](/dsdb/v1.0/administration/config/#graphite)
-* [[collectd]](/dsdb/v1.0/administration/config/#collectd)
-* [[opentsdb]](/dsdb/v1.0/administration/config/#opentsdb)
-* [[udp]](/dsdb/v1.0/administration/config/#udp)
-* [[continuous_queries]](/dsdb/v1.0/administration/config/#continuous-queries)
+* [Global Options](/dsdb/administration/config.md#global-options)
+* [[meta]](/dsdb/administration/config.md#meta)
+* [[data]](/dsdb/administration/config.md#data)
+* [[hinted-handoff]](/dsdb/administration/config.md#hinted-handoff)
+* [[cluster]](/dsdb/administration/config.md#cluster)
+* [[retention]](/dsdb/administration/config.md#retention)
+* [[shard-precreation]](/dsdb/administration/config.md#shard-precreation)
+* [[admin]](/dsdb/administration/config.md#admin)
+* [[monitor]](/dsdb/administration/config.md#monitor)
+* [[subscriber]](/dsdb/administration/config.md#subscriber)
+* [[http]](/dsdb/administration/config.md#http)
+* [[graphite]](/dsdb/administration/config.md#graphite)
+* [[collectd]](/dsdb/administration/config.md#collectd)
+* [[opentsdb]](/dsdb/administration/config.md#opentsdb)
+* [[udp]](/dsdb/administration/config.md#udp)
+* [[continuous_queries]](/dsdb/administration/config.md#continuous-queries)
 
 ## Configuration Options
 
@@ -77,16 +77,16 @@ The `reporting-disabled` option toggles
 the reporting of anonymous data every 24 hours to `m.dsdb.com`.
 Each report includes a unique, randomly-generated cluster identifier
 (an 8-byte Raft ID), OS, architecture, DSDB version, and the
-number of [databases](/dsdb/v1.0/concepts/glossary/#database),
-[measurements](/dsdb/v1.0/concepts/glossary/#measurement), and
-unique [series](/dsdb/v1.0/concepts/glossary/#series).  Setting
+number of [databases](/dsdb/concepts/glossary.md#database),
+[measurements](/dsdb/concepts/glossary.md#measurement), and
+unique [series](/dsdb/concepts/glossary.md#series).  Setting
 this option to `true` will disable reporting.
 
 ## [meta]
 
 This section controls some of the parameters for the DSDB cluster.
 Specifically, it handles the parameters for the Raft consensus group which coordinates metadata about the cluster.
-For step-by-step instructions on setting up an DSDB cluster, see [Cluster Setup](/dsdb/v1.0/guides/clustering/).
+For step-by-step instructions on setting up an DSDB cluster, see [Cluster Setup](/dsdb/guides/clustering.md).
 
 ### dir = "/var/opt/dsdb/meta"
 
@@ -111,7 +111,7 @@ The bind address is the `port` of the node which is used to communicates with it
 
 ### retention-autocreate = true
 
-Retention policy auto-creation automatically creates a [`default` retention policy](/dsdb/v1.0/concepts/glossary/#retention-policy-rp) when a database is created.
+Retention policy auto-creation automatically creates a [`default` retention policy](/dsdb/concepts/glossary.md#retention-policy-rp) when a database is created.
 The retention policy is named `default`, has an infinite duration, and is also set as the database's default retention policy, which is used when a write or query does not specify a retention policy.
 Disable this setting to prevent the creation of a `default` retention policy when creating databases.
 
@@ -253,7 +253,7 @@ Set to `false` to disable hinted handoff.
 
 The hinted handoff directory.
 For best throughput, the HH directory and the WAL directory should be on different physical devices.
-If you have performance concerns, you will also want to make this setting different from the dir in the [[data]](/dsdb/v1.0/administration/config/#data) section.
+If you have performance concerns, you will also want to make this setting different from the dir in the [[data]](/dsdb/administration/config.md#data) section.
 
 >**Note:** The default directory for OSX installations is `/Users/<username>/.dsdb/hh`
 
@@ -299,13 +299,13 @@ This section controls non-Raft cluster behavior, which generally includes how da
 ### shard-writer-timeout = "5s"
 
 The time that a write from one node to another must complete before the write times out.
-If the write times out, it may still succeed on the remote node but the client node stops waiting and queues it in [hinted handoff](/dsdb/v1.0/concepts/glossary/#hinted-handoff).
+If the write times out, it may still succeed on the remote node but the client node stops waiting and queues it in [hinted handoff](/dsdb/concepts/glossary.md#hinted-handoff).
 This timeout should always be less than or equal to the write-timeout.
 
 ### write-timeout = "10s"
 
 The time during which the coordinating node must receive a successful response for writing to all remote shard owners before it considers the write a failure.
-If the write times out, it may still succeed but we stop waiting and queue those writes in [hinted handoff](/dsdb/v1.0/concepts/glossary/#hinted-handoff).
+If the write times out, it may still succeed but we stop waiting and queue those writes in [hinted handoff](/dsdb/concepts/glossary.md#hinted-handoff).
 Depending on the requested consistency level and the number of successful responses received, the return value will be either `write failure` or `partial write`.
 
 ## [retention]
@@ -344,7 +344,7 @@ This section controls DSDB's [system self-monitoring](https://github.com/dsdb/ds
 By default, DSDB writes the data to the `_internal` database.
 If that database does not exist, DSDB creates it automatically.
 The `DEFAULT` retention policy on the `_internal` database is seven days.
-If you want to use a retention policy other than the seven-day retention policy, you must [create](/dsdb/v1.0/administration/administration/#retention-policy-management) it.
+If you want to use a retention policy other than the seven-day retention policy, you must [create](/dsdb/administration/administration.md#retention-policy-management) it.
 
 ### store-enabled = true
 
@@ -375,7 +375,7 @@ The port used by the admin interface.
 
 Set to `true` to enable HTTPS for the admin interface.
 
->**Note:** HTTPS must be enable for the [[http]](/dsdb/v1.0/administration/config/#http) service for the admin UI to function properly using HTTPS.
+>**Note:** HTTPS must be enable for the [[http]](/dsdb/administration/config.md#http) service for the admin UI to function properly using HTTPS.
 
 ### https-certificate = "/etc/ssl/dsdb.pem"
 
@@ -393,12 +393,12 @@ When a service like Kapacitor has subscribed to DSDB, all incoming writes are se
 This section controls how DSDB configures the HTTP endpoints.
 These are the primary mechanisms for getting data into and out of DSDB.
 Edit the options in this section to enable HTTPS and authentication.
-See [Authentication and Authorization](/dsdb/v1.0/administration/authentication_and_authorization/).
+See [Authentication and Authorization](/dsdb/administration/authentication_and_authorization.md).
 
 ### enabled = true
 
 Set to `false` to disable HTTP.
-Note that the DSDB [command line interface (CLI)](/dsdb/v1.0/tools/shell/) connects to the database using the HTTP API.
+Note that the DSDB [command line interface (CLI)](/dsdb/tools/shell.md) connects to the database using the HTTP API.
 
 ### bind-address = ":8088"
 
@@ -454,7 +454,7 @@ Set to `tcp` or `udp`.
 
 The number of nodes that must confirm the write.
 If the requirement is not met the return value will be either `partial write` if some points in the batch fail or `write failure` if all points in the batch fail.
-For more information, see the Query String Parameters for Writes section in the [Line Protocol Syntax Reference ](/dsdb/v1.0/write_protocols/write_syntax/).
+For more information, see the Query String Parameters for Writes section in the [Line Protocol Syntax Reference ](/dsdb/write_protocols/write_syntax.md).
 
 *The next three options control how batching works.
 You should have this enabled otherwise you could get dropped metrics or poor performance.
@@ -589,7 +589,7 @@ The input will flush at least this often even if it hasn't reached the configure
 ## [[udp]]
 
 This section controls the listeners for DSDB line protocol data via UDP.
-See the [UDP page](/dsdb/v1.0/write_protocols/udp/) for more information.
+See the [UDP page](/dsdb/write_protocols/udp.md) for more information.
 
 ### enabled = false
 
@@ -636,7 +636,7 @@ Lower values tend to yield better performance, default is max UDP size 65536.
 
 ## [continuous_queries]
 
-This section controls how [continuous queries (CQs)](/dsdb/v1.0/concepts/glossary/#continuous-query-cq) run within DSDB.
+This section controls how [continuous queries (CQs)](/dsdb/concepts/glossary.md#continuous-query-cq) run within DSDB.
 CQs are automated batches of queries that execute over recent time intervals.
 DSDB executes one auto-generated query per `GROUP BY time()` interval.
 
@@ -665,7 +665,7 @@ Set to `false` to disable hinted handoff.
 
 The hinted handoff directory.
 For best throughput, the HH directory and the WAL directory should be on different physical devices.
-If you have performance concerns, you will also want to make this setting different from the dir in the [[data]](/dsdb/v1.0/administration/config/#data) section.
+If you have performance concerns, you will also want to make this setting different from the dir in the [[data]](/dsdb/administration/config.md#data) section.
 
 
 ### max-size = 1073741824

@@ -9,30 +9,30 @@ parent1: dsd-dsdb
 
 Understanding the important the following concepts below will help you get the most out of DSDB.
 
-## [Key Concepts](/dsdb/v1.0/concepts/key_concepts/)
+## [Key Concepts](/dsdb/concepts/key_concepts.md)
 
 A brief explanation of DSDB's core architecture useful for new beginners.
 
-## [Schema and Data Layout](/dsdb/v1.0/concepts/schema_and_data_layout/)
+## [Schema and Data Layout](/dsdb/concepts/schema_and_data_layout.md)
 
 A useful overview of the DSDB time series data structure and how it affects performance.
 
-## [Design Insights and Tradeoffs](/dsdb/v1.0/concepts/schema_and_data_layout/)
+## [Design Insights and Tradeoffs](/dsdb/concepts/schema_and_data_layout.md)
 
 A brief treatment of some of the performance tradeoffs made during the design phase of DSDB 
 
-## [HTTP API Endpoints](/dsdb/v1.0/concepts/api/)
+## [HTTP API Endpoints](/dsdb/concepts/api.md)
 
 The list of DSDB's HTTP API endpoints and the parameters they accept.
 
-## [Clustering](/dsdb/v1.0/concepts/clustering/)
+## [Clustering](/dsdb/concepts/clustering.md)
 
 An explanation of how an DSDB cluster works.
 
-## [Storage Engine](/dsdb/v1.0/concepts/storage_engine/)
+## [Storage Engine](/dsdb/concepts/storage_engine.md)
 
 A overview of how DSDB to stores data on disk.
 
-## [Glossary of Terms](/dsdb/v1.0/concepts/glossary/)
+## [Glossary of Terms](/dsdb/concepts/glossary.md)
 
 A list of DSDB terms and their definitions.
