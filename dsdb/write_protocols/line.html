@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="大数点物联网开发者平台文档，基于大数点物联网平台，帮助开发者快速构建物联网应用">
-    <title>大数点文档中心</title>
+    <title>Line Protocol</title>
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
@@ -86,7 +86,7 @@
             </ul>
           </li>
           <li><a class="fold">DS Database</a>
-            <ul class="menu2" >
+            <ul class="menu2" style="display: block;">
               <li><a id="dsdb-overview" class="" href="/dsdb/index.html">DSDB Overview</a></li>
               <li><a class="fold">Introduction</a>
                 <ul class="menu3" >
@@ -171,9 +171,9 @@
                 </ul>
               </li>
               <li><a class="fold">Write Protocols</a>
-                <ul class="menu3" >
+                <ul class="menu3" style="display: block;">
                   <li><a id="dsdb-writepro-overview" class="" href="/dsdb/write_protocols/index.html">Overview</a></li>
-                  <li><a id="dsdb-writepro-line" class="" href="/dsdb/write_protocols/line.html">Line Protocol</a></li>
+                  <li><a id="dsdb-writepro-line" class="active" href="/dsdb/write_protocols/line.html">Line Protocol</a></li>
                   <li><a id="dsdb-writepro-syntax" class="" href="/dsdb/write_protocols/write_syntax.html">Write Syntax</a></li>
                   <li><a id="dsdb-writepro-json" class="" href="/dsdb/write_protocols/json.html">JSON Protocol</a></li>
                   <li><a id="dsdb-writepro-udp" class="" href="/dsdb/write_protocols/udp.html">Service - UDP</a></li>
@@ -214,82 +214,93 @@
 
     <div class="side_right">
       <div class="doc">
-        <h1 id="">大数点开发者文档中心</h1>
-<p>欢迎来到大数点开发文档中心，请阅读以下章节：　　</p>
-<h3 id="-1">服务集成指南</h3>
-<ul>
-<li><a href="integration-dev/integrate-im-android.html">Android上集成IM功能</a>  </li>
-<li><a href="integration-dev/integrate-im-ios.html">iOS上集成IM功能</a>  </li>
-</ul>
-<h3 id="ds-database">DS database</h3>
-<ul>
-<li><a href="dsdb/index.html">DSDB Overview</a>  </li>
-<li>Introduction<br />
-&nbsp; - <a href="dsdb/introduction/installation.html">Installation</a><br />
-&nbsp; - <a href="dsdb/introduction//getting_started.html">Getting Started</a>  </li>
-<li>Administration<br />
-&nbsp; - <a href="dsdb/administration/authentication_and_authorization.html">Authentication and Authorization</a><br />
-&nbsp; - <a href="dsdb/administration/backup_and_restore.html">Backup and Restore</a><br />
-&nbsp; - <a href="dsdb/administration/config.html">Configuration</a><br />
-&nbsp; - <a href="dsdb/administration/logs.html">Logs</a><br />
-&nbsp; - <a href="dsdb/administration/statistics.html">Server Monitoring</a><br />
-&nbsp; - <a href="dsdb/administration/upgrading.html">Upgrading from previous versions</a>  </li>
-<li>Clients<br />
-&nbsp; - <a href="dsdb/clients/api.html">HTTP API Client Libraries</a>  </li>
-<li>Concepts
-&nbsp; - <a href="dsdb/concepts/key_concepts.html">Key Concepts</a><br />
-&nbsp; - <a href="dsdb/concepts/schema_and_data_layout.html">Schema and Data Layout</a><br />
-&nbsp; - <a href="dsdb/concepts/insights_tradeoffs.html">Design Insights and Tradeoffs</a><br />
-&nbsp; - <a href="dsdb/concepts/api.html">HTTP API Endpoints</a><br />
-&nbsp; - <a href="dsdb/concepts/storage_engine.html">Storage Engine</a><br />
-&nbsp; - <a href="dsdb/concepts/glossary.html">Glossary of Terms</a>  </li>
-<li>Data Sources<br />
-&nbsp; - <a href="dsdb/data_sources/diamond.html">Diamond</a><br />
-&nbsp; - <a href="dsdb/data_sources/opentsdb.html">OpenTSDB</a>  </li>
-<li>Guides<br />
-&nbsp; - <a href="dsdb/guides/clustering.html">Clustering</a><br />
-&nbsp; - <a href="dsdb/guides/downsampling_and_retention.html">Downsampling and Data Retention</a><br />
-&nbsp; - <a href="dsdb/guides/hardware_sizing.html">Hardware Sizing Guidelines</a><br />
-&nbsp; - <a href="dsdb/guides/querying_data.html">Querying Data</a><br />
-&nbsp; - <a href="dsdb/guides/writing_data.html">Writing Data</a>  </li>
-<li>Query Language<br />
-&nbsp; - <a href="dsdb/query_language/continuous_queries.html">Continuous Queries</a><br />
-&nbsp; - <a href="dsdb/query_language/data_exploration.html">Data Exploration</a><br />
-&nbsp; - <a href="dsdb/query_language/database_management.html">Database Management</a><br />
-&nbsp; - <a href="dsdb/query_language/functions.html">Functions</a><br />
-&nbsp; - <a href="dsdb/query_language/math_operators.html">Mathematical Operators</a><br />
-&nbsp; - <a href="dsdb/query_language/schema_exploration.html">Scheam Exploration</a><br />
-&nbsp; - <a href="dsdb/query_language/spec.html">Query Language Reference</a>  </li>
-<li>Sample Data<br />
-&nbsp; - <a href="dsdb/sample_data/data_download.html">Sample Data Download</a>  </li>
-<li>Tools<br />
-&nbsp; - <a href="dsdb/tools/shell.html">CLI/Shell</a><br />
-&nbsp; - <a href="dsdb/tools/web_admin.html">Web Admin Interface</a>  </li>
-<li>Troubleshooting<br />
-&nbsp; - <a href="dsdb/troubleshooting/frequently_encountered_issues.html">Frequently Encountered Issues</a><br />
-&nbsp; - <a href="dsdb/troubleshooting/system_monitoring.html">System Monitoring</a>  </li>
-<li>Write Protocols<br />
-&nbsp; - <a href="dsdb/write_protocols/collectd.html">Service - CollectD</a><br />
-&nbsp; - <a href="dsdb/write_protocols/graphite.html">Service - Graphite</a><br />
-&nbsp; - <a href="dsdb/write_protocols/json.html">JSON Protocol</a><br />
-&nbsp; - <a href="dsdb/write_protocols/line.html">Line Protocol</a><br />
-&nbsp; - <a href="dsdb/write_protocols/opentsdb.html">Service - OpenTSDB</a><br />
-&nbsp; - <a href="dsdb/write_protocols/udp.html">Service - UDP</a><br />
-&nbsp; - <a href="dsdb/write_protocols/write_syntax.html">Write Syntax</a>  </li>
-</ul>
-<h3 id="dac-document">DAC Document</h3>
-<ul>
-<li><a href="dac/dac_introduction.html">DAC Introduction</a>  </li>
-<li><a href="dac/dac_cloud_api_java.html">DAC JAVA API</a>  </li>
-<li><a href="dac/dac_cloud_api_c.html">DAC C API</a>  </li>
-<li><a href="dac/dac_cloud_api_cpp.html">DAC C++ API</a>  </li>
-</ul>
-<h3 id="data-hub">Data Hub</h3>
-<ul>
-<li>SDK<br />
-&nbsp; - <a href="data-hub/sdk/embeded_c.html">Embeded C API</a><br />
-&nbsp; - <a href="data-hub/sdk/javascript.html">JavaScript API</a>  </li>
-</ul>
+        <h1 id="line-protocol">Line Protocol</h1>
+<p>The line protocol is a text based format for writing points to DSDB.
+Each line defines a single point.
+Multiple lines must be separated by the newline character <code>\n</code>.
+The format of the line consists of three parts:</p>
+<pre><code>[key] [fields] [timestamp]</code></pre>
+<p>Each section is separated by spaces.
+The minimum required point consists of a measurement name and at least one field.
+Points without a specified timestamp will be written using the server's local timestamp.
+Timestamps are assumed to be in nanoseconds unless a <code>precision</code> value is passed in the query string.</p>
+<h2 id="key">Key</h2>
+<p>The key is the measurement name and any optional tags separated by commas.
+Measurement names, tag keys, and tag values must escape any spaces or commas using a backslash (<code>\</code>).
+For example: <code>\</code> and <code>\,</code>.
+All tag values are stored as strings and should not be surrounded in quotes.</p>
+<p>Tags should be sorted by key before being sent for best performance.
+The sort should match that from the Go <code>bytes.Compare</code> function (<a href="http://golang.org/pkg/bytes/#Compare">http://golang.org/pkg/bytes/#Compare</a>).</p>
+<h3 id="examples">Examples</h3>
+<pre><code># measurement only
+cpu
+
+# measurement and tags
+cpu,host=serverA,region=us-west
+
+# measurement with commas
+cpu\,01,host=serverA,region=us-west
+
+# tag value with spaces
+cpu,host=server\ A,region=us\ west</code></pre>
+<h2 id="fields">Fields</h2>
+<p>Fields are key-value metrics associated with the measurement.
+Every line must have at least one field.
+Multiple fields must be separated with commas and not spaces.</p>
+<p>Field keys are always strings and follow the same syntactical rules as described above for tag keys and values.
+Field values can be one of four types.
+The first value written for a given field on a given measurement defines the type of that field for all series under that measurement.</p>
+<p><strong>Integers</strong> are numeric values that do not include a decimal and are followed by a trailing <code>i</code> when inserted (e.g.
+1i, 345i, 2015i, -10i).
+Note that all values <em>must</em> have a trailing <code>i</code>.
+If they do not they will be written as floats.</p>
+<p><strong>Floats</strong> are numeric values that are not followed by a trailing <code>i</code>.
+(e.g.
+1, 1.0, -3.14, 6.0e5, 10).</p>
+<p><strong>Boolean</strong> values indicate true or false.
+Valid boolean strings for line protocol are (t, T, true, True, TRUE, f, F, false, False and FALSE).</p>
+<p><strong>Strings</strong> are text values.
+All string field values <em>must</em> be surrounded in double-quotes <code>"</code>.
+If the string contains a double-quote, the double-quote must be escaped with a backslash, e.g. <code>\"</code>.</p>
+<pre><code># integer value
+cpu value=1i
+
+# float value
+cpu_load value=1
+
+cpu_load value=1.0
+
+cpu_load value=1.2
+
+# boolean value
+error fatal=true
+
+# string value
+event msg="logged out"
+
+# multiple values
+cpu load=10,alert=true,reason="value above maximum threshold"</code></pre>
+<h2 id="timestamp">Timestamp</h2>
+<p>The timestamp section is optional but should be specified if possible.
+The value is an integer representing nanoseconds since the epoch.
+If the timestamp is not provided the point will inherit the server's local timestamp.</p>
+<p>Some write APIs allow passing a lower precision.
+If the API supports a lower precision, the timestamp may also be an integer epoch in microseconds, milliseconds, seconds, minutes or hours.</p>
+<h2 id="full-example">Full Example</h2>
+<p>A full example is shown below.</p>
+<pre><code>cpu,host=server01,region=uswest value=1 1434055562000000000
+cpu,host=server02,region=uswest value=3 1434055562001.0000
+temperature,machine=unit42,type=assembly internal=32,external=100 1434055562000000035
+temperature,machine=unit143,type=assembly internal=22,external=130 1434055562005000035</code></pre>
+<p>In this example the first line shows a <code>measurement</code> of &quot;cpu&quot;, there are two tags &quot;host&quot; and &quot;region&quot;, the <code>value</code> is 1.0, and the <code>timestamp</code> is 1434055562000000000.
+Following this is a second line, also a point in the <code>measurement</code> &quot;cpu&quot; but belonging to a different &quot;host&quot;.</p>
+<pre><code>cpu,host=server\ 01,region=uswest value=1,msg="all systems nominal"
+cpu,host=server\ 01,region=us\,west value_int=1i</code></pre>
+<p>In these examples, the &quot;host&quot; is set to <code>server 01</code>.
+The field value associated with field key <code>msg</code> is double-quoted, as it is a string.
+The second example shows a region of <code>us,west</code> with the comma properly escaped.
+In the first example <code>value</code> is written as a floating point number.
+In the second, <code>value_int</code> is an integer.</p>
       </div>
 
               <div class="tract"><img src="/images/tract.png"/></div>

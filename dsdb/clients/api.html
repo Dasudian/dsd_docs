@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="大数点物联网开发者平台文档，基于大数点物联网平台，帮助开发者快速构建物联网应用">
-    <title>大数点文档中心</title>
+    <title>HTTP API Client Libraries</title>
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
@@ -86,7 +86,7 @@
             </ul>
           </li>
           <li><a class="fold">DS Database</a>
-            <ul class="menu2" >
+            <ul class="menu2" style="display: block;">
               <li><a id="dsdb-overview" class="" href="/dsdb/index.html">DSDB Overview</a></li>
               <li><a class="fold">Introduction</a>
                 <ul class="menu3" >
@@ -107,9 +107,9 @@
                 </ul>
               </li>
               <li><a class="fold">Clients</a>
-                <ul class="menu3" >
+                <ul class="menu3" style="display: block;">
                   <li><a id="dsdb-clients-overview" class="" href="/dsdb/clients/index.html">Clients Overview</a></li>
-                  <li><a id="dsdb-clients-httpapi" class="" href="/dsdb/clients/api.html">HTTP API</a></li>
+                  <li><a id="dsdb-clients-httpapi" class="active" href="/dsdb/clients/api.html">HTTP API</a></li>
                 </ul>
               </li>
               <li><a class="fold">Concepts</a>
@@ -214,81 +214,67 @@
 
     <div class="side_right">
       <div class="doc">
-        <h1 id="">大数点开发者文档中心</h1>
-<p>欢迎来到大数点开发文档中心，请阅读以下章节：　　</p>
-<h3 id="-1">服务集成指南</h3>
+        <h1 id="http-api-client-libraries">HTTP API Client Libraries</h1>
+<p>This is a list of the client libraries which have some support for DSDB version 1.0.
+Most should be fully compatible with DSDB version 1.0.
+Functionality will vary, and there are, as yet, no standard features that all libraries must implement in order to be listed here.
+Libraries that have been updated for DSDB version 1.0 are listed in <strong>bold</strong>. </p>
+<h2 id="erlang-udp">Erlang UDP</h2>
 <ul>
-<li><a href="integration-dev/integrate-im-android.html">Android上集成IM功能</a>  </li>
-<li><a href="integration-dev/integrate-im-ios.html">iOS上集成IM功能</a>  </li>
+<li><a href="https://github.com/dasudian/dsdb_udp">DSDB Erlang UDP</a></li>
 </ul>
-<h3 id="ds-database">DS database</h3>
+<h2 id="go">Go</h2>
 <ul>
-<li><a href="dsdb/index.html">DSDB Overview</a>  </li>
-<li>Introduction<br />
-&nbsp; - <a href="dsdb/introduction/installation.html">Installation</a><br />
-&nbsp; - <a href="dsdb/introduction//getting_started.html">Getting Started</a>  </li>
-<li>Administration<br />
-&nbsp; - <a href="dsdb/administration/authentication_and_authorization.html">Authentication and Authorization</a><br />
-&nbsp; - <a href="dsdb/administration/backup_and_restore.html">Backup and Restore</a><br />
-&nbsp; - <a href="dsdb/administration/config.html">Configuration</a><br />
-&nbsp; - <a href="dsdb/administration/logs.html">Logs</a><br />
-&nbsp; - <a href="dsdb/administration/statistics.html">Server Monitoring</a><br />
-&nbsp; - <a href="dsdb/administration/upgrading.html">Upgrading from previous versions</a>  </li>
-<li>Clients<br />
-&nbsp; - <a href="dsdb/clients/api.html">HTTP API Client Libraries</a>  </li>
-<li>Concepts
-&nbsp; - <a href="dsdb/concepts/key_concepts.html">Key Concepts</a><br />
-&nbsp; - <a href="dsdb/concepts/schema_and_data_layout.html">Schema and Data Layout</a><br />
-&nbsp; - <a href="dsdb/concepts/insights_tradeoffs.html">Design Insights and Tradeoffs</a><br />
-&nbsp; - <a href="dsdb/concepts/api.html">HTTP API Endpoints</a><br />
-&nbsp; - <a href="dsdb/concepts/storage_engine.html">Storage Engine</a><br />
-&nbsp; - <a href="dsdb/concepts/glossary.html">Glossary of Terms</a>  </li>
-<li>Data Sources<br />
-&nbsp; - <a href="dsdb/data_sources/diamond.html">Diamond</a><br />
-&nbsp; - <a href="dsdb/data_sources/opentsdb.html">OpenTSDB</a>  </li>
-<li>Guides<br />
-&nbsp; - <a href="dsdb/guides/clustering.html">Clustering</a><br />
-&nbsp; - <a href="dsdb/guides/downsampling_and_retention.html">Downsampling and Data Retention</a><br />
-&nbsp; - <a href="dsdb/guides/hardware_sizing.html">Hardware Sizing Guidelines</a><br />
-&nbsp; - <a href="dsdb/guides/querying_data.html">Querying Data</a><br />
-&nbsp; - <a href="dsdb/guides/writing_data.html">Writing Data</a>  </li>
-<li>Query Language<br />
-&nbsp; - <a href="dsdb/query_language/continuous_queries.html">Continuous Queries</a><br />
-&nbsp; - <a href="dsdb/query_language/data_exploration.html">Data Exploration</a><br />
-&nbsp; - <a href="dsdb/query_language/database_management.html">Database Management</a><br />
-&nbsp; - <a href="dsdb/query_language/functions.html">Functions</a><br />
-&nbsp; - <a href="dsdb/query_language/math_operators.html">Mathematical Operators</a><br />
-&nbsp; - <a href="dsdb/query_language/schema_exploration.html">Scheam Exploration</a><br />
-&nbsp; - <a href="dsdb/query_language/spec.html">Query Language Reference</a>  </li>
-<li>Sample Data<br />
-&nbsp; - <a href="dsdb/sample_data/data_download.html">Sample Data Download</a>  </li>
-<li>Tools<br />
-&nbsp; - <a href="dsdb/tools/shell.html">CLI/Shell</a><br />
-&nbsp; - <a href="dsdb/tools/web_admin.html">Web Admin Interface</a>  </li>
-<li>Troubleshooting<br />
-&nbsp; - <a href="dsdb/troubleshooting/frequently_encountered_issues.html">Frequently Encountered Issues</a><br />
-&nbsp; - <a href="dsdb/troubleshooting/system_monitoring.html">System Monitoring</a>  </li>
-<li>Write Protocols<br />
-&nbsp; - <a href="dsdb/write_protocols/collectd.html">Service - CollectD</a><br />
-&nbsp; - <a href="dsdb/write_protocols/graphite.html">Service - Graphite</a><br />
-&nbsp; - <a href="dsdb/write_protocols/json.html">JSON Protocol</a><br />
-&nbsp; - <a href="dsdb/write_protocols/line.html">Line Protocol</a><br />
-&nbsp; - <a href="dsdb/write_protocols/opentsdb.html">Service - OpenTSDB</a><br />
-&nbsp; - <a href="dsdb/write_protocols/udp.html">Service - UDP</a><br />
-&nbsp; - <a href="dsdb/write_protocols/write_syntax.html">Write Syntax</a>  </li>
+<li><a href="https://github.com/dasudian/dsdb/blob/master/client/index.html">DSDB Go</a></li>
 </ul>
-<h3 id="dac-document">DAC Document</h3>
+<h2 id="haskell">Haskell</h2>
 <ul>
-<li><a href="dac/dac_introduction.html">DAC Introduction</a>  </li>
-<li><a href="dac/dac_cloud_api_java.html">DAC JAVA API</a>  </li>
-<li><a href="dac/dac_cloud_api_c.html">DAC C API</a>  </li>
-<li><a href="dac/dac_cloud_api_cpp.html">DAC C++ API</a>  </li>
+<li><a href="https://github.com/dasudian/dsdb-haskell">DSDB Haskell</a></li>
 </ul>
-<h3 id="data-hub">Data Hub</h3>
+<h2 id="java">Java</h2>
 <ul>
-<li>SDK<br />
-&nbsp; - <a href="data-hub/sdk/embeded_c.html">Embeded C API</a><br />
-&nbsp; - <a href="data-hub/sdk/javascript.html">JavaScript API</a>  </li>
+<li><a href="https://github.com/dasudian/dsdb-java">DSDB Java</a></li>
+</ul>
+<h2 id="javascriptnodejs">JavaScript/Node.js</h2>
+<ul>
+<li><a href="https://github.com/dasudian/node-dsdb">node-dsdb</a></li>
+<li><a href="https://github.com/dasudian/js-dsdb">js-dsdb</a></li>
+</ul>
+<h2 id="lisp">Lisp</h2>
+<ul>
+<li><a href="https://github.com/dasudian/cl-dsdb">cl-dsdb</a></li>
+</ul>
+<h2 id="net">.Net</h2>
+<ul>
+<li><a href="https://github.com/dasudian/DSDB.Net">DSDB.Net</a></li>
+</ul>
+<h2 id="perl">Perl</h2>
+<ul>
+<li><a href="https://github.com/dasudian/dsdb-perl">DSDB::LineProtocol</a></li>
+</ul>
+<h2 id="php">PHP</h2>
+<ul>
+<li><a href="https://github.com/dasudian/dsdb-php">DSDB PHP</a></li>
+</ul>
+<h2 id="python">Python</h2>
+<ul>
+<li><a href="https://github.com/dasudian/dsdb-python">DSDB Python</a></li>
+</ul>
+<h2 id="r">R</h2>
+<ul>
+<li><a href="https://github.com/dasudian/dsdbr">dsdbr</a></li>
+</ul>
+<h2 id="ruby">Ruby</h2>
+<ul>
+<li><a href="https://github.com/dasudian/dsdb-ruby">DSDB Ruby</a></li>
+</ul>
+<h2 id="scala">Scala</h2>
+<ul>
+<li><a href="https://github.com/dasudian/scala-dsdb-client">scala-dsdb-client</a></li>
+</ul>
+<h2 id="snmp">SNMP</h2>
+<ul>
+<li><a href="https://github.com/dasudian/dsdbsnmp">influxsnmp</a></li>
 </ul>
       </div>
 

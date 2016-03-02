@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="大数点物联网开发者平台文档，基于大数点物联网平台，帮助开发者快速构建物联网应用">
-    <title>大数点文档中心</title>
+    <title>Embeded C</title>
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
@@ -200,11 +200,11 @@
             </ul>
           </li>
           <li><a class="fold">Data Hub</a>
-            <ul class="menu2" >
+            <ul class="menu2" style="display: block;">
               <li><a class="fold">SDK</a>
-                <ul class="menu3" >
+                <ul class="menu3" style="display: block;">
                   <li><a id="datahub-sdk-js" class="" href="/data-hub/sdk/javascript.html">JavaScript</a></li>
-                  <li><a id="datahub-sdk-embededc" class="" href="/data-hub/sdk/embeded_c.html">Embeded C</a></li>
+                  <li><a id="datahub-sdk-embededc" class="active" href="/data-hub/sdk/embeded_c.html">Embeded C</a></li>
                 </ul>
               </li>
             </ul>
@@ -214,82 +214,94 @@
 
     <div class="side_right">
       <div class="doc">
-        <h1 id="">大数点开发者文档中心</h1>
-<p>欢迎来到大数点开发文档中心，请阅读以下章节：　　</p>
-<h3 id="-1">服务集成指南</h3>
-<ul>
-<li><a href="integration-dev/integrate-im-android.html">Android上集成IM功能</a>  </li>
-<li><a href="integration-dev/integrate-im-ios.html">iOS上集成IM功能</a>  </li>
-</ul>
-<h3 id="ds-database">DS database</h3>
-<ul>
-<li><a href="dsdb/index.html">DSDB Overview</a>  </li>
-<li>Introduction<br />
-&nbsp; - <a href="dsdb/introduction/installation.html">Installation</a><br />
-&nbsp; - <a href="dsdb/introduction//getting_started.html">Getting Started</a>  </li>
-<li>Administration<br />
-&nbsp; - <a href="dsdb/administration/authentication_and_authorization.html">Authentication and Authorization</a><br />
-&nbsp; - <a href="dsdb/administration/backup_and_restore.html">Backup and Restore</a><br />
-&nbsp; - <a href="dsdb/administration/config.html">Configuration</a><br />
-&nbsp; - <a href="dsdb/administration/logs.html">Logs</a><br />
-&nbsp; - <a href="dsdb/administration/statistics.html">Server Monitoring</a><br />
-&nbsp; - <a href="dsdb/administration/upgrading.html">Upgrading from previous versions</a>  </li>
-<li>Clients<br />
-&nbsp; - <a href="dsdb/clients/api.html">HTTP API Client Libraries</a>  </li>
-<li>Concepts
-&nbsp; - <a href="dsdb/concepts/key_concepts.html">Key Concepts</a><br />
-&nbsp; - <a href="dsdb/concepts/schema_and_data_layout.html">Schema and Data Layout</a><br />
-&nbsp; - <a href="dsdb/concepts/insights_tradeoffs.html">Design Insights and Tradeoffs</a><br />
-&nbsp; - <a href="dsdb/concepts/api.html">HTTP API Endpoints</a><br />
-&nbsp; - <a href="dsdb/concepts/storage_engine.html">Storage Engine</a><br />
-&nbsp; - <a href="dsdb/concepts/glossary.html">Glossary of Terms</a>  </li>
-<li>Data Sources<br />
-&nbsp; - <a href="dsdb/data_sources/diamond.html">Diamond</a><br />
-&nbsp; - <a href="dsdb/data_sources/opentsdb.html">OpenTSDB</a>  </li>
-<li>Guides<br />
-&nbsp; - <a href="dsdb/guides/clustering.html">Clustering</a><br />
-&nbsp; - <a href="dsdb/guides/downsampling_and_retention.html">Downsampling and Data Retention</a><br />
-&nbsp; - <a href="dsdb/guides/hardware_sizing.html">Hardware Sizing Guidelines</a><br />
-&nbsp; - <a href="dsdb/guides/querying_data.html">Querying Data</a><br />
-&nbsp; - <a href="dsdb/guides/writing_data.html">Writing Data</a>  </li>
-<li>Query Language<br />
-&nbsp; - <a href="dsdb/query_language/continuous_queries.html">Continuous Queries</a><br />
-&nbsp; - <a href="dsdb/query_language/data_exploration.html">Data Exploration</a><br />
-&nbsp; - <a href="dsdb/query_language/database_management.html">Database Management</a><br />
-&nbsp; - <a href="dsdb/query_language/functions.html">Functions</a><br />
-&nbsp; - <a href="dsdb/query_language/math_operators.html">Mathematical Operators</a><br />
-&nbsp; - <a href="dsdb/query_language/schema_exploration.html">Scheam Exploration</a><br />
-&nbsp; - <a href="dsdb/query_language/spec.html">Query Language Reference</a>  </li>
-<li>Sample Data<br />
-&nbsp; - <a href="dsdb/sample_data/data_download.html">Sample Data Download</a>  </li>
-<li>Tools<br />
-&nbsp; - <a href="dsdb/tools/shell.html">CLI/Shell</a><br />
-&nbsp; - <a href="dsdb/tools/web_admin.html">Web Admin Interface</a>  </li>
-<li>Troubleshooting<br />
-&nbsp; - <a href="dsdb/troubleshooting/frequently_encountered_issues.html">Frequently Encountered Issues</a><br />
-&nbsp; - <a href="dsdb/troubleshooting/system_monitoring.html">System Monitoring</a>  </li>
-<li>Write Protocols<br />
-&nbsp; - <a href="dsdb/write_protocols/collectd.html">Service - CollectD</a><br />
-&nbsp; - <a href="dsdb/write_protocols/graphite.html">Service - Graphite</a><br />
-&nbsp; - <a href="dsdb/write_protocols/json.html">JSON Protocol</a><br />
-&nbsp; - <a href="dsdb/write_protocols/line.html">Line Protocol</a><br />
-&nbsp; - <a href="dsdb/write_protocols/opentsdb.html">Service - OpenTSDB</a><br />
-&nbsp; - <a href="dsdb/write_protocols/udp.html">Service - UDP</a><br />
-&nbsp; - <a href="dsdb/write_protocols/write_syntax.html">Write Syntax</a>  </li>
-</ul>
-<h3 id="dac-document">DAC Document</h3>
-<ul>
-<li><a href="dac/dac_introduction.html">DAC Introduction</a>  </li>
-<li><a href="dac/dac_cloud_api_java.html">DAC JAVA API</a>  </li>
-<li><a href="dac/dac_cloud_api_c.html">DAC C API</a>  </li>
-<li><a href="dac/dac_cloud_api_cpp.html">DAC C++ API</a>  </li>
-</ul>
-<h3 id="data-hub">Data Hub</h3>
-<ul>
-<li>SDK<br />
-&nbsp; - <a href="data-hub/sdk/embeded_c.html">Embeded C API</a><br />
-&nbsp; - <a href="data-hub/sdk/javascript.html">JavaScript API</a>  </li>
-</ul>
+        <h1 id="data-hub-embeded-c-sdk">Data Hub Embeded C SDK</h1>
+<h2 id="getting-started">Getting Started</h2>
+<p>To get started head over to our <a href="/quickstart.html">QuickStart</a> which will help you install IoT Data Analytics tracking your devices, applications and your site in just a few minutes. Once you’ve installed the library, read on for the detailed API reference!</p>
+<h2 id="identify">Identify</h2>
+<p>The <strong>identify</strong> method is how you tie one of your users and their actions to a recognizable userId and traits. You can read more about how to set it up or about how it works.</p>
+<p><em>Note</em>: You won’t need to call identify for anonymous users of your devices or  visitors to your services. We’ll automatically assign them an anonymousId, so just calling page and track will still work just fine without <strong>identify</strong>.</p>
+<p>Here’s what an <strong>identify</strong> call looks like, along with its method signature:</p>
+<pre><code>dsdSourceIdentify("43loelgopw8", "{\"name\":\"Barco You\",\"email\":\"barco@dasudian.com\",\"gender\":\"mail\"}", NULL);</code></pre>
+<blockquote>
+<p>int dsdSourceIdentify(char <em>userId, char </em>traits, char *options);</p>
+</blockquote>
+<p><strong>userId</strong>
+The unique identifier for the user, which is stored in your Database or fetched from 3rd party services (e.g. Facebook or Wechat). If you don’t know who the user is yet, you can omit the userId and just record traits. You can read more about identities in the identify reference.</p>
+<p><strong>traits</strong>
+A dictionary of traits you know about the user, like their email or name. You can read more about traits in the identify reference.</p>
+<p><strong>options</strong>
+A dictionary of options, that let you do things like enable or disable specific integrations for the call. Note: If you do not pass a properties object, pass an empty object (ie, NULL) before options</p>
+<p>The userId is optional. So you can omit the userId if you want to associate traits with the currently identified user, anonymous or not, like so:</p>
+<pre><code>dsdSourceIdentify(NULL, "{\"email\":\"barco@dasudian.com\",\"newsletter\":\"true\",\"industry\":\"Technology\"}", NULL);</code></pre>
+<p>We’ll store those traits internally, and carry them over the next time you call <strong>identify</strong> with a <em>userId</em>. For example, you might do that when someone signs up for a newsletter but hasn’t yet created an account on your site.</p>
+<h2 id="record">Record</h2>
+<p>The <strong>record</strong> method lets you record any envents generated by your devcies or actions your users perform. You can read more about how to set it up or about how it works.</p>
+<p>Here’s a basic example, along with the <strong>record</strong> method signature:</p>
+<pre><code>dsdSourceRecord("Power on", "{\"type\":\"Start Engine\",\"duration\":\"12.1s\",\"maxVoltage\":\"13\",\"stableVoltage\":\"8\",\"maxCurrency\": \"100mA\",\"stableCurrency\":\"80mA\"}", NULL, 0, NULL);</code></pre>
+<blockquote>
+<p>void dsdSourceRecord(char <em>event, char </em>properties, char *options, DSDCallback callback);</p>
+</blockquote>
+<p><strong>event</strong>
+The name of the event recordd by your devices or applications that you hope to track. You can read more about the track method and what event names we recommend.</p>
+<p><strong>properties</strong>
+A dictionary of properties for the event. If the event was 'Added to Cart', it might have properties like price and productType.</p>
+<p><strong>options</strong>
+A dictionary of options, that let you do things like enable or disable specific integrations for the call. Note: If you do not pass a properties object, pass an empty object (ie, NULL) before options</p>
+<p><strong>callback</strong>
+A callback function that gets called after a short timeout, giving the browser time to make the track requests first. Also checkout our dedicated trackLink and trackForm helpers.</p>
+<h2 id="track">Track</h2>
+<p>The <strong>track</strong> method lets you track the position of your devices along with optional extra information about the position in real-time.</p>
+<p>Here’s a basic example, along with the track method signature:</p>
+<pre><code>dsdSourceTrack("Languang Building", "{\"latitude\":\"24.597\",\"Longitude\":\"-24.455\"}", 0, NULL);</code></pre>
+<blockquote>
+<p>void dsdSourceTrack(char <em>name, char </em>location, char *options, DSDCallback callback);</p>
+</blockquote>
+<p><strong>name</strong>
+The name of the of the position, for example &quot;Languang Building&quot;.</p>
+<p><strong>location</strong>
+A dictionary of latitude and longitude properties of the position. </p>
+<p><strong>options</strong>
+A dictionary of options, that let you do things like enable or disable specific integrations for the call. Note: If you do not pass a properties object, pass an empty object (ie, ‘{}’) before options</p>
+<p><strong>callback</strong>
+A callback function that gets called after a short timeout, giving the browser time to make outbound requests first.</p>
+<h2 id="alias">Alias</h2>
+<p>The <strong>alias</strong> method combines two previously unassociated user/client/device identities. This comes in handy if the same user visits from two different services or your devices changed identifiers for different services, and you want to combine their history.</p>
+<p>Some providers also don’t alias automatically for you when an anonymous user signs up (like Mixpanel), so you need to call alias manually right after sign up with their brand new userId.</p>
+<p>Here’s a basic example along with the alias method signature:</p>
+<blockquote>
+<p>int dsdSourceAlias(char <em>Id, char </em>previousId, char *options, DSDCallback callback);</p>
+</blockquote>
+<p><strong>Id</strong>
+The new User/Client/Device ID you want to associate the user/client/device with.</p>
+<p><strong>previousId</strong>
+The previous ID that the user/client/device was recognized by. This defaults to the currently identified user’s ID if you don’t pass one. In most cases you don’t need to worry about this argument.</p>
+<p><strong>options</strong>
+A dictionary of options, that let you do things like enable or disable specific integrations for the call.</p>
+<p><strong>callback</strong>
+A callback function that gets called after a short timeout, giving the browser time to make the alias requests first.</p>
+<h2 id="group">Group</h2>
+<p>The <strong>group</strong> method associates an user or a device with a group. The group can be a company, organization, account, project, workspace, team or any other name you came up with for the same concept.</p>
+<p>A user/device can be in more than one group; however, not all platforms support multiple groups. It also lets you record custom traits about the group, like industry or number of employees. Calling group is a slightly more advanced feature, but it’s helpful if you have accounts with multiple users.</p>
+<p>Here’s a basic example along with the group method signature:</p>
+<pre><code>dsdSourceGroup("IoT_Aliiance", \"{\"name\": \"Dasudian\",\"industry\": \"Technology\",\"employees\": \"120\"}", NULL, NULL);</code></pre>
+<blockquote>
+<p>void dsdSourceGroup(char <em>groupId, char </em>traits, char *options, DSDCallback callback);</p>
+</blockquote>
+<p><strong>groupId</strong>
+The new Group ID you want to create and associate the currently identified or anonymous user/device with.</p>
+<p><strong>traits</strong>
+A dictionary of traits for the group. Example traits for a group include address, website and employees.</p>
+<p><strong>options</strong>
+A dictionary of options, that let you do things like enable or disable specific integrations for the call. Note: If you do not pass a properties object, pass an empty object (ie, NULL) before options</p>
+<p><strong>callback</strong>
+A callback function that gets called after a short timeout, giving the browser time to make the track requests first. Also checkout our dedicated trackLink and trackForm helpers.</p>
+<h2 id="selecting-integrations">Selecting Integrations</h2>
+<p>Filtering events calls can be done right from the <a href="https://dev.dasudian.com">Dasudian Developer's Portal</a> on your project schema page. We recommend using the UI if possible since it’s a much simpler way of managing your filters and can be updated with no code changes on your side.</p>
+<p>The alias, group, identify, page and record calls can all be passed an object of options that lets you turn certain integrations on or off.</p>
+<p>Here’s an example showing an identify call that only goes to Mixpanel and KISSmetrics:</p>
+<pre><code>dsdSourceIdentify("019mr8mf4r", "{\"email\": \"barco@dasudian.com\",\"plan\": \"Premium\"}", 
+"{\"integrations\": {\"All\": \"false\",\"Mixpanel\":\"true\",\"KISSmetrics\":\"true\"}}");</code></pre>
+<p>In this case, we’re specifying that we want this identify to only go to Mixpanel and KISSmetrics. 'All': false says that no integration should be enabled unless otherwise specified. 'Mixpanel': true turns on Mixpanel, etc. Note, you must use an Integration’s formal, case sensitive name (i.e. “AdLearn Open Platform”, “awe.sm”, “MailChimp”, etc.), which is also the title of the integration’s documentation.</p>
       </div>
 
               <div class="tract"><img src="/images/tract.png"/></div>

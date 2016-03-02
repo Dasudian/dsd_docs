@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="大数点物联网开发者平台文档，基于大数点物联网平台，帮助开发者快速构建物联网应用">
+    <title>Schema Exploration</title>
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/app.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/highlight.js/9.2.0/styles/dark.min.css" rel="stylesheet">
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+    <script>
+      $(function() {
+        // $(".document .side_left ul li a").click(function() {
+        //   $(".document .side_left ul li a").removeClass("active");
+        //   $(this).addClass("active");
+        // })
+        $(".menu1>li>a.fold").click(function(){
+				  $(".menu1 a.fold").css("background-image","url(/images/number_down.png)");
+				  $(".menu2,.menu3").slideUp();
+			  })
+			  $(".menu2>li>a.fold").click(function(){
+          $(".menu2 a.fold").css("background-image","url(/images/number_down.png)");
+          $(".menu3").slideUp();
+        })
+        $(".fold").click(function() {
+          if ($(this).next("ul").is(":hidden")) {
+            $(this).css("background-image", "url(/images/number_up.png)");
+            $(this).next("ul").slideDown();
+          } else {
+            $(this).css("background-image", "url(/images/number_down.png)");
+            $(this).next("ul").slideUp();
+          }
+        })
+      })
+      $(function(){
+			  $(".side_right").scroll( function() { 
+				  var scrollValue=$(".side_right").scrollTop();
+				  scrollValue > 100 ? $('div[class=scroll]').fadeIn():$('div[class=scroll]').fadeOut();
+			  });	
+			  $('#scroll').click(function(){
+				  $(".side_right").animate({scrollTop:0},200);	
+			  });	
+		  })
+    </script>
+    <link href='http://fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"><img src="/images/logo.png"/></a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="http://dasudian.com/solution" >解决方案</a></li>
+            <li><a href="/" >文档</a></li>
+            <li><a href="http://dasudian.com/price" >定价</a></li>
+            <li><a href="https://www.github.com/Dasudian"  target="_blank" >社区</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid0 document">
+      <div class="side_left">
+        <ul class="menu1">
+          <li><a class="fold">服务集成指南</a>
+            <ul class="menu2" >
+              <li><a id="srvintegrate-im-android" class="" href="/integration-dev/integrate-im-android.html">Android上集成IM功能</a></li>
+              <li><a id="srvintegrate-im-ios" class="" href="/integration-dev/integrate-im-ios.html">iOS上集成IM功能</a></li>
+            </ul>
+          </li>
+          <li><a class="fold">DS Database</a>
+            <ul class="menu2" style="display: block;">
+              <li><a id="dsdb-overview" class="" href="/dsdb/index.html">DSDB Overview</a></li>
+              <li><a class="fold">Introduction</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-intro-overview" class="" href="/dsdb/introduction/index.html">Overview</a></li>
+                  <li><a id="dsdb-intro-installation" class="" href="/dsdb/introduction/installation.html">Installation</a></li>
+                  <li><a id="dsdb-intro-start" class="" href="/dsdb/introduction/getting_started.html">Getting Started</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Administration</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-admin-overview" class="" href="/dsdb/administration/index.html">administration Overview</a></li>
+                  <li><a id="dsdb-authent&amp;authori" class="" href="/dsdb/administration/authentication_and_authorization.html">Authentication&Authorization</a></li>
+                  <li><a id="dsdb-backup&amp;restore" class="" href="/dsdb/administration/backup_and_restore.html">Backup&Restore</a></li>
+                  <li><a id="dsdb-configuration" class="" href="/dsdb/administration/config.html">Configuration</a></li>
+                  <li><a id="dsdb-logs" class="" href="/dsdb/administration/logs.html">Logs</a></li>
+                  <li><a id="dsdb-monitoring" class="" href="/dsdb/administration/statistics.html">Server Monitoring</a></li>
+                  <li><a id="dsdb-upgrade" class="" href="/dsdb/administration/upgrading.html">Upgrading</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Clients</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-clients-overview" class="" href="/dsdb/clients/index.html">Clients Overview</a></li>
+                  <li><a id="dsdb-clients-httpapi" class="" href="/dsdb/clients/api.html">HTTP API</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Concepts</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-concepts-overview" class="" href="/dsdb/concepts/index.html">Concepts Overview</a></li>
+                  <li><a id="dsdb-key-concepts" class="" href="/dsdb/concepts/key_concepts.html">Key Concepts</a></li>
+                  <li><a id="dsdb-concepts-arch" class="" href="/dsdb/concepts/how_dsdb_works.html">Architecture</a></li>
+                  <li><a id="dsdb-concepts-schema-data-layout" class="" href="/dsdb/concepts/schema_and_data_layout.html">Scheam Design</a></li>
+                  <li><a id="dsdb-concepts-insights-tradeoffs" class="" href="/dsdb/concepts/insights_tradeoffs.html">Insights Tradeoffs</a></li>
+                  <li><a id="dsdb-concepts-api-endpoints" class="" href="/dsdb/concepts/api.html">API Endpoints&Ports</a></li>
+                  <li><a id="dsdb-concepts-storage-engine" class="" href="/dsdb/concepts/storage_engine.html">Storage Engine</a></li>
+                  <li><a id="dsdb-concepts-glossary" class="" href="/dsdb/concepts/glossary.html">Glossary of Terms</a></li>
+                  <li><a id="dsdb-concepts-vs-sql" class="" href="/dsdb/concepts/crosswalk.html">Comparison to SQL</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Data Sources</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-datasource-diamond" class="" href="/dsdb/data_sources/diamond.html">Diamond</a></li>
+                  <li><a id="dsdb-datasource-opentsdb" class="" href="/dsdb/data_sources/opentsdb.html">OpenTSDB</a></li>
+                  <li><a id="dsdb-datasource-carbon" class="" href="/dsdb/data_sources/carbon.html">Carbon</a></li>
+                  <li><a id="dsdb-datasource-collectd" class="" href="/dsdb/data_sources/collectd.html">Collectd</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Guides</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-guides-clustering" class="" href="/dsdb/guides/clustering.html">Clustering</a></li>
+                  <li><a id="dsdb-guides-ddr" class="" href="/dsdb/guides/downsampling_and_retention.html">Downsampling and Data Retention</a></li>
+                  <li><a id="dsdb-guides-hsg" class="" href="/dsdb/guides/hardware_sizing.html">Hardware Sizing Guidelines</a></li>
+                  <li><a id="dsdb-guides-querying" class="" href="/dsdb/guides/querying_data.html">Querying Data</a></li>
+                  <li><a id="dsdb-guides-writing" class="" href="/dsdb/guides/writing_data.html">Writing Data</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Query Language</a>
+                <ul class="menu3" style="display: block;">
+                  <li><a id="dsdb-querylang-overview" class="" href="/dsdb/query_language/index.html">Overview</a></li>
+                  <li><a id="dsdb-querylang-dataexp" class="" href="/dsdb/query_language/data_exploration.html">Data Exploration</a></li>
+                  <li><a id="dsdb-querylang-scheamexp" class="active" href="/dsdb/query_language/schema_exploration.html">Schema Exploration</a></li>
+                  <li><a id="dsdb-querylang-func" class="" href="/dsdb/query_language/functions.html">Functions</a></li>
+                  <li><a id="dsdb-querylang-contq" class="" href="/dsdb/query_language/continuous_queries.html">Continuous Queries</a></li>
+                  <li><a id="dsdb-querylang-spec" class="" href="/dsdb/query_language/spec.html">Query Language Reference</a></li>
+                  <li><a id="dsdb-querylang-mgmt" class="" href="/dsdb/query_language/database_management.html">Database Management</a></li>
+                  <li><a id="dsdb-querylang-math" class="" href="/dsdb/query_language/math_operators.html">Mathematical Operators</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Sample Data</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-sampledata-down" class="" href="/dsdb/sample_data/data_download.html">Sample Data Download</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Tools</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-tools-overview" class="" href="/dsdb/tools/index.html">Tools Overview</a></li>
+                  <li><a id="dsdb-tools-shell" class="" href="/dsdb/tools/shell.html">CLI/Shell</a></li>
+                  <li><a id="dsdb-tools-webadmin" class="" href="/dsdb/tools/web_admin.html">Web Admin Interface</a></li>
+                  <li><a id="dsdb-tools-grafana" class="" href="/dsdb/tools/grafana.html">Grafana Dashboards</a></li>
+                  <li><a id="dsdb-tools-telegraf" class="" href="/dsdb/tools/telegraf.html">Telegraf Metrics Collection</a></li>
+                  <li><a id="dsdb-tools-chronograf" class="" href="/dsdb/tools/chronograf.html">Chronograf Dashboards</a></li>
+                  <li><a id="dsdb-tools-kapacitor" class="" href="/dsdb/tools/kapacitor.html">Kapacitor Monitoring</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Write Protocols</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-writepro-overview" class="" href="/dsdb/write_protocols/index.html">Overview</a></li>
+                  <li><a id="dsdb-writepro-line" class="" href="/dsdb/write_protocols/line.html">Line Protocol</a></li>
+                  <li><a id="dsdb-writepro-syntax" class="" href="/dsdb/write_protocols/write_syntax.html">Write Syntax</a></li>
+                  <li><a id="dsdb-writepro-json" class="" href="/dsdb/write_protocols/json.html">JSON Protocol</a></li>
+                  <li><a id="dsdb-writepro-udp" class="" href="/dsdb/write_protocols/udp.html">Service - UDP</a></li>
+                  <li><a id="dsdb-writepro-graphite" class="" href="/dsdb/write_protocols/graphite.html">Service - Graphite</a></li>
+                  <li><a id="dsdb-writepro-opentsdb" class="" href="/dsdb/write_protocols/opentsdb.html">Servcie - OpenTSDB</a></li>
+                  <li><a id="dsdb-writepro-collectd" class="" href="/dsdb/write_protocols/collectd.html">Service - CollectD</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Troubleshooting</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-troubleshoot-overview" class="" href="/dsdb/troubleshooting/index.html">Troubleshooting Overview</a></li>
+                  <li><a id="dsdb-troubleshoot-fei" class="" href="/dsdb/troubleshooting/frequently_encountered_issues.html">Frequently Encountered Issues</a></li>
+                  <li><a id="dsdb-troubleshoot-monitor" class="" href="/dsdb/troubleshooting/system_monitoring.html">System Monitoring</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><a class="fold">DAC Document</a>
+            <ul class="menu2" >
+              <li><a id="dac-principal" class="" href="/dac/dac_introduction.html">DAC工作原理</a></li>
+              <li><a id="dac-java-api" class="" href="/dac/dac_cloud_api_java.html">DAC Java API</a></li>
+              <li><a id="dac-c-api" class="" href="/dac/dac_cloud_api_c.html">DAC C API</a></li>
+              <li><a id="dac-cpp-api" class="" href="/dac/dac_cloud_api_cpp.html">DAC C++ API</a></li>
+            </ul>
+          </li>
+          <li><a class="fold">Data Hub</a>
+            <ul class="menu2" >
+              <li><a class="fold">SDK</a>
+                <ul class="menu3" >
+                  <li><a id="datahub-sdk-js" class="" href="/data-hub/sdk/javascript.html">JavaScript</a></li>
+                  <li><a id="datahub-sdk-embededc" class="" href="/data-hub/sdk/embeded_c.html">Embeded C</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+    </div>
+
+    <div class="side_right">
+      <div class="doc">
+        <h1 id="scheam-exploration">Scheam Exploration</h1>
+<p>DSDBQL is an SQL-like query language for interacting with data in DSDB.
+The following sections cover useful query syntax for exploring your schema (that is, how you set up your time series data):</p>
+<ul>
+<li><a href="/dsdb/query_language/schema_exploration.html#see-all-databases-with-show-databases">See all databases with <code>SHOW DATABASES</code></a></li>
+<li><a href="/dsdb/query_language/schema_exploration.html#explore-retention-policies-with-show-retention-policies">Explore retention policies with <code>SHOW RETENTION POLICIES</code></a></li>
+<li><a href="/dsdb/query_language/schema_exploration.html#explore-series-with-show-series">Explore series with <code>SHOW SERIES</code></a></li>
+<li><a href="/dsdb/query_language/schema_exploration.html#explore-measurements-with-show-measurements">Explore measurements with <code>SHOW MEASUREMENTS</code></a></li>
+<li><a href="/dsdb/query_language/schema_exploration.html#explore-tag-keys-with-show-tag-keys">Explore tag keys with <code>SHOW TAG KEYS</code></a></li>
+<li><a href="/dsdb/query_language/schema_exploration.html#explore-tag-values-with-show-tag-values">Explore tag values with <code>SHOW TAG VALUES</code></a></li>
+<li><a href="/dsdb/query_language/schema_exploration.html#explore-field-keys-with-show-field-keys">Explore field keys with <code>SHOW FIELD KEYS</code></a></li>
+</ul>
+<p>The examples below query data using <a href="/dsdb/tools/shell.html">DSDB's Command Line Interface (CLI)</a>.
+See the <a href="/dsdb/guides/querying_data.html">Querying Data</a> guide for how to directly query data with the HTTP API.</p>
+<p><strong>Sample data</strong></p>
+<p>This document uses the same sample data as the <a href="/dsdb/query_language/data_exploration.html">Data Exploration</a> page.
+The data are described and are available for download on the <a href="/dsdb/sample_data/data_download.html">Sample Data</a> page.</p>
+<h2 id="see-all-databases-with">See all databases with <code>SHOW DATABASES</code></h2>
+<p>Get a list of all the databases in your system by entering:</p>
+<pre><code class="language-sql">SHOW DATABASES</code></pre>
+<p>CLI example:</p>
+<pre><code class="language-sh">&gt; SHOW DATABASES
+name: databases
+---------------
+name
+NOAA_water_database</code></pre>
+<h2 id="explore-retention-policies-with">Explore retention policies with <code>SHOW RETENTION POLICIES</code></h2>
+<p>The <code>SHOW RETENTION POLICIES</code> query lists the existing <a href="/dsdb/concepts/glossary.html#retention-policy-rp">retention policies</a> on a given database, and it takes the following form:</p>
+<pre><code class="language-sql">SHOW RETENTION POLICIES ON &lt;database_name&gt;</code></pre>
+<p>CLI example:</p>
+<pre><code class="language-sql">&gt; SHOW RETENTION POLICIES ON NOAA_water_database</code></pre>
+<p>CLI response:</p>
+<pre><code class="language-sh">name        duration     replicaN    default
+default  0             1               true</code></pre>
+<p>The first column of the output contains the names of the different retention policies in the specified database.
+The second column shows the <a href="/dsdb/concepts/glossary.html#duration">duration</a> and the third column shows the <a href="/dsdb/concepts/glossary.html#replication-factor">replication factor</a> of the retention policy.
+The fourth column specifies if the retention policy is the default retention policy for the database.</p>
+<p>The following example shows a hypothetical CLI response where there are four different retention policies in the database, and where the default retention policy is <code>three_days_only</code>:</p>
+<pre><code class="language-sh">name                   duration  replicaN    default
+default             0              1               false
+two_days_only      48h0m0s       1             false
+one_day_only        24h0m0s      1             false
+three_days_only  72h0m0s         1             true</code></pre>
+<h2 id="explore-series-with">Explore series with <code>SHOW SERIES</code></h2>
+<p>The <code>SHOW SERIES</code> query returns the distinct <a href="/dsdb/concepts/glossary.html#series">series</a> in your database and takes the following form, where the <code>FROM</code> and <code>WHERE</code> clauses are optional:</p>
+<pre><code class="language-sql">SHOW SERIES [FROM &lt;measurement_name&gt; [WHERE &lt;tag_key&gt;='&lt;tag_value&gt;']]</code></pre>
+<p>Return all series in the database <code>NOAA_water_database</code>:</p>
+<pre><code class="language-sql">&gt; SHOW SERIES</code></pre>
+<p>CLI response:  </p>
+<pre><code class="language-sh">name: average_temperature
+-------------------------
+_key                                                           location
+average_temperature,location=coyote_creek      coyote_creek
+average_temperature,location=santa_monica      santa_monica
+
+name: h2o_feet
+--------------
+_key                                                location
+h2o_feet,location=coyote_creek     coyote_creek
+h2o_feet,location=santa_monica     santa_monica
+
+name: h2o_pH
+------------
+_key                                              location
+h2o_pH,location=coyote_creek       coyote_creek
+h2o_pH,location=santa_monica       santa_monica
+
+name: h2o_quality
+-----------------
+_key                                                             location          randtag
+h2o_quality,location=coyote_creek,randtag=1    coyote_creek    1
+h2o_quality,location=coyote_creek,randtag=2    coyote_creek    2
+h2o_quality,location=coyote_creek,randtag=3    coyote_creek    3
+h2o_quality,location=santa_monica,randtag=3    santa_monica    3
+h2o_quality,location=santa_monica,randtag=2    santa_monica    2
+h2o_quality,location=santa_monica,randtag=1    santa_monica    1
+
+name: h2o_temperature
+---------------------
+_key                                                    location
+h2o_temperature,location=coyote_creek      coyote_creek
+h2o_temperature,location=santa_monica      santa_monica</code></pre>
+<p><code>SHOW SERIES</code> organizes its output by <a href="/dsdb/concepts/glossary.html#measurement">measurement</a> name.
+From the return you can see that the data in the database <code>NOAA_water_database</code> have five different measurements and 14 different series.
+The measurements are <code>average_temperature</code>, <code>h2o_feet</code>, <code>h2o_pH</code>, <code>h2o_quality</code>, and <code>h2o_temperature</code>.
+Every measurement
+has the <a href="/dsdb/concepts/glossary.html#tag-key">tag key</a> <code>location</code> with the <a href="/dsdb/concepts/glossary.html#tag-value">tag values</a> <code>coyote_creek</code> and <code>santa_monica</code> - that makes 10 series.
+The measurement <code>h2o_quality</code> has the additional tag key <code>randtag</code> with the tag values <code>1</code>,<code>2</code>, and <code>3</code> - that makes 14 series.</p>
+<p>Return series for a specific measurement:</p>
+<pre><code class="language-sql">&gt; SHOW SERIES FROM h2o_quality</code></pre>
+<p>CLI response:</p>
+<pre><code class="language-sh">name: h2o_quality
+-----------------
+_key                                                             location          randtag
+h2o_quality,location=coyote_creek,randtag=1    coyote_creek    1
+h2o_quality,location=coyote_creek,randtag=2    coyote_creek    2
+h2o_quality,location=coyote_creek,randtag=3    coyote_creek    3
+h2o_quality,location=santa_monica,randtag=3    santa_monica    3
+h2o_quality,location=santa_monica,randtag=2    santa_monica    2
+h2o_quality,location=santa_monica,randtag=1    santa_monica    1</code></pre>
+<p>Return series for a specific measurement and tag set:</p>
+<pre><code class="language-sql">&gt; SHOW SERIES FROM h2o_quality WHERE location = 'coyote_creek'</code></pre>
+<p>CLI response:</p>
+<pre><code class="language-sh">name: h2o_quality
+-----------------
+_key                                                             location          randtag
+h2o_quality,location=coyote_creek,randtag=1    coyote_creek    1
+h2o_quality,location=coyote_creek,randtag=2    coyote_creek    2
+h2o_quality,location=coyote_creek,randtag=3    coyote_creek    3</code></pre>
+<h2 id="explore-measurements-with">Explore measurements with <code>SHOW MEASUREMENTS</code></h2>
+<p>The <code>SHOW MEASUREMENTS</code> query returns the <a href="/dsdb/concepts/glossary.html#measurement">measurements</a> in your database and it takes the following form:</p>
+<pre><code class="language-sql">SHOW MEASUREMENTS [WITH MEASUREMENT &lt;regular_expression&gt;] [WHERE &lt;tag_key&gt;=&lt;'tag_value'&gt;]</code></pre>
+<p>Return all measurements in the <code>NOAA_water_database</code> database:</p>
+<pre><code class="language-sql">&gt; SHOW MEASUREMENTS</code></pre>
+<p>CLI response:</p>
+<pre><code class="language-sh">name: measurements
+------------------
+name
+average_temperature
+h2o_feet
+h2o_pH
+h2o_quality
+h2o_temperature</code></pre>
+<p>From the output you can see that the database <code>NOAA_water_database</code> has five measurements: <code>average_temperature</code>, <code>h2o_feet</code>, <code>h2o_pH</code>, <code>h2o_quality</code>, and <code>h2o_temperature</code>.</p>
+<p>Return measurements where the tag key <code>randtag</code> equals <code>1</code>:</p>
+<pre><code class="language-sql">&gt; SHOW MEASUREMENTS WHERE randtag = '1'</code></pre>
+<p>CLI response:</p>
+<pre><code class="language-sh">name: measurements
+------------------
+name
+h2o_quality</code></pre>
+<p>Only the measurement <code>h2o_quality</code> contains the tag set <code>randtag = 1</code>.</p>
+<p>Use a regular expression to return measurements where the tag key <code>randtag</code> is a digit:</p>
+<pre><code class="language-sql">SHOW MEASUREMENTS WHERE randtag =~ /\d/</code></pre>
+<p>CLI response:</p>
+<pre><code class="language-sh">name: measurements
+------------------
+name
+h2o_quality</code></pre>
+<p>Use a regular expression with <code>WITH MEASUREMENT</code> to return all measurements that start with <code>h2o</code>:</p>
+<pre><code class="language-sql">&gt; SHOW MEASUREMENTS WITH MEASUREMENT =~ /h2o.*/</code></pre>
+<p>CLI response:</p>
+<pre><code class="language-sh">name: measurements
+------------------
+name
+h2o_feet
+h2o_pH
+h2o_quality
+h2o_temperature</code></pre>
+<h2 id="explore-tag-keys-with-show-tag-keys">Explore tag keys with SHOW TAG KEYS</h2>
+<p><code>SHOW TAG KEYS</code> returns the <a href="/dsdb/concepts/glossary.html#tag-key">tag keys</a> associated with each measurement and takes the following form, where the <code>FROM</code> clause is optional:</p>
+<pre><code class="language-sql">SHOW TAG KEYS [FROM &lt;measurement_name&gt;]</code></pre>
+<p>Return all tag keys that are in the database <code>NOAA_water_database</code>:</p>
+<pre><code class="language-sql">&gt; SHOW TAG KEYS</code></pre>
+<p>CLI response:</p>
+<pre><code class="language-sh">name: average_temperature
+-------------------------
+tagKey
+location
+
+name: h2o_feet
+--------------
+tagKey
+location
+
+name: h2o_pH
+------------
+tagKey
+location
+
+name: h2o_quality
+-----------------
+tagKey
+location
+randtag
+
+name: h2o_temperature
+---------------------
+tagKey
+location</code></pre>
+<p>DSDB organizes the output by measurement.
+Notice that each of the five measurements has the tag key <code>location</code> and that the measurement <code>h2o_quality</code> also has the tag key <code>randtag</code>.</p>
+<p>Return the tag keys for a specific measurement:</p>
+<pre><code class="language-sql">&gt; SHOW TAG KEYS FROM h2o_temperature</code></pre>
+<p>CLI response:</p>
+<pre><code class="language-sh">name: h2o_temperature
+---------------------
+tagKey
+location</code></pre>
+<h2 id="explore-tag-values-with-show-tag-values">Explore tag values with SHOW TAG VALUES</h2>
+<p>The <code>SHOW TAG VALUES</code> query returns the set of <a href="/dsdb/concepts/glossary.html#tag-value">tag values</a> for a specific tag key across all measurements in the database.
+It takes the following form, where the <code>FROM</code> clause is optional:</p>
+<pre><code class="language-sql">SHOW TAG VALUES [FROM &lt;measurement_name&gt;] WITH KEY = &lt;tag_key&gt;</code></pre>
+<p>Return the tag values for the tag key <code>randtag</code> across all measurements in the database <code>NOAA_water_database</code>:</p>
+<pre><code class="language-sql">&gt; SHOW TAG VALUES WITH KEY = randtag</code></pre>
+<p>CLI response:</p>
+<pre><code class="language-sh">name: randtagTagValues
+----------------------
+randtag
+1
+2
+3</code></pre>
+<p>Return the tag values for the tag key <code>randtag</code> for a specific measurement in the <code>NOAA_water_database</code> database:</p>
+<pre><code class="language-sql">&gt; SHOW TAG VALUES FROM average_temperature WITH KEY = randtag</code></pre>
+<p>CLI response:</p>
+<pre><code class="language-sh"></code></pre>
+<p>The measurement <code>average_temperature</code> doesn't have the tag key <code>randtag</code> so DSDB returns nothing.</p>
+<h2 id="explore-field-keys-with">Explore field keys with <code>SHOW FIELD KEYS</code></h2>
+<p>The <code>SHOW FIELD KEYS</code> query returns the <a href="/dsdb/concepts/glossary.html#field-key">field keys</a> across each measurement in the database.
+It takes the following form, where the <code>FROM</code> clause is optional:</p>
+<pre><code class="language-sql">SHOW FIELD KEYS [FROM &lt;measurement_name&gt;]</code></pre>
+<p>Return the field keys across all measurements in the database <code>NOAA_water_database</code>:</p>
+<pre><code class="language-sql">&gt; SHOW FIELD KEYS</code></pre>
+<p>CLI response:</p>
+<pre><code class="language-sh">name: average_temperature
+-------------------------
+fieldKey
+degrees
+
+name: h2o_feet
+--------------
+fieldKey
+level description
+water_level
+
+name: h2o_pH
+------------
+fieldKey
+pH
+
+name: h2o_quality
+-----------------
+fieldKey
+index
+
+name: h2o_temperature
+---------------------
+fieldKey
+degrees</code></pre>
+<p>Return the field keys in the measurement <code>h2o_feet</code> in the database <code>NOAA_water_database</code>:</p>
+<pre><code class="language-sql">&gt; SHOW FIELD KEYS FROM h2o_feet</code></pre>
+<p>CLI response:</p>
+<pre><code class="language-sh">name: h2o_feet
+--------------
+fieldKey
+level description
+water_level</code></pre>
+      </div>
+
+              <div class="tract"><img src="/images/tract.png"/></div>
+            <div class="clearfix"></div>
+      <div class="scroll" id="scroll" style="display:none;">
+			     <img src="/images/top.png"/>
+		  </div>
+    </div>
+  </div>
+  <script>hljs.initHighlightingOnLoad();</script>
+</body>
+
+</html>

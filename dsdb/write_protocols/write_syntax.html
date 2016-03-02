@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="大数点物联网开发者平台文档，基于大数点物联网平台，帮助开发者快速构建物联网应用">
+    <title>Write Syntax</title>
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/app.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/highlight.js/9.2.0/styles/dark.min.css" rel="stylesheet">
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+    <script>
+      $(function() {
+        // $(".document .side_left ul li a").click(function() {
+        //   $(".document .side_left ul li a").removeClass("active");
+        //   $(this).addClass("active");
+        // })
+        $(".menu1>li>a.fold").click(function(){
+				  $(".menu1 a.fold").css("background-image","url(/images/number_down.png)");
+				  $(".menu2,.menu3").slideUp();
+			  })
+			  $(".menu2>li>a.fold").click(function(){
+          $(".menu2 a.fold").css("background-image","url(/images/number_down.png)");
+          $(".menu3").slideUp();
+        })
+        $(".fold").click(function() {
+          if ($(this).next("ul").is(":hidden")) {
+            $(this).css("background-image", "url(/images/number_up.png)");
+            $(this).next("ul").slideDown();
+          } else {
+            $(this).css("background-image", "url(/images/number_down.png)");
+            $(this).next("ul").slideUp();
+          }
+        })
+      })
+      $(function(){
+			  $(".side_right").scroll( function() { 
+				  var scrollValue=$(".side_right").scrollTop();
+				  scrollValue > 100 ? $('div[class=scroll]').fadeIn():$('div[class=scroll]').fadeOut();
+			  });	
+			  $('#scroll').click(function(){
+				  $(".side_right").animate({scrollTop:0},200);	
+			  });	
+		  })
+    </script>
+    <link href='http://fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"><img src="/images/logo.png"/></a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="http://dasudian.com/solution" >解决方案</a></li>
+            <li><a href="/" >文档</a></li>
+            <li><a href="http://dasudian.com/price" >定价</a></li>
+            <li><a href="https://www.github.com/Dasudian"  target="_blank" >社区</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid0 document">
+      <div class="side_left">
+        <ul class="menu1">
+          <li><a class="fold">服务集成指南</a>
+            <ul class="menu2" >
+              <li><a id="srvintegrate-im-android" class="" href="/integration-dev/integrate-im-android.html">Android上集成IM功能</a></li>
+              <li><a id="srvintegrate-im-ios" class="" href="/integration-dev/integrate-im-ios.html">iOS上集成IM功能</a></li>
+            </ul>
+          </li>
+          <li><a class="fold">DS Database</a>
+            <ul class="menu2" style="display: block;">
+              <li><a id="dsdb-overview" class="" href="/dsdb/index.html">DSDB Overview</a></li>
+              <li><a class="fold">Introduction</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-intro-overview" class="" href="/dsdb/introduction/index.html">Overview</a></li>
+                  <li><a id="dsdb-intro-installation" class="" href="/dsdb/introduction/installation.html">Installation</a></li>
+                  <li><a id="dsdb-intro-start" class="" href="/dsdb/introduction/getting_started.html">Getting Started</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Administration</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-admin-overview" class="" href="/dsdb/administration/index.html">administration Overview</a></li>
+                  <li><a id="dsdb-authent&amp;authori" class="" href="/dsdb/administration/authentication_and_authorization.html">Authentication&Authorization</a></li>
+                  <li><a id="dsdb-backup&amp;restore" class="" href="/dsdb/administration/backup_and_restore.html">Backup&Restore</a></li>
+                  <li><a id="dsdb-configuration" class="" href="/dsdb/administration/config.html">Configuration</a></li>
+                  <li><a id="dsdb-logs" class="" href="/dsdb/administration/logs.html">Logs</a></li>
+                  <li><a id="dsdb-monitoring" class="" href="/dsdb/administration/statistics.html">Server Monitoring</a></li>
+                  <li><a id="dsdb-upgrade" class="" href="/dsdb/administration/upgrading.html">Upgrading</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Clients</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-clients-overview" class="" href="/dsdb/clients/index.html">Clients Overview</a></li>
+                  <li><a id="dsdb-clients-httpapi" class="" href="/dsdb/clients/api.html">HTTP API</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Concepts</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-concepts-overview" class="" href="/dsdb/concepts/index.html">Concepts Overview</a></li>
+                  <li><a id="dsdb-key-concepts" class="" href="/dsdb/concepts/key_concepts.html">Key Concepts</a></li>
+                  <li><a id="dsdb-concepts-arch" class="" href="/dsdb/concepts/how_dsdb_works.html">Architecture</a></li>
+                  <li><a id="dsdb-concepts-schema-data-layout" class="" href="/dsdb/concepts/schema_and_data_layout.html">Scheam Design</a></li>
+                  <li><a id="dsdb-concepts-insights-tradeoffs" class="" href="/dsdb/concepts/insights_tradeoffs.html">Insights Tradeoffs</a></li>
+                  <li><a id="dsdb-concepts-api-endpoints" class="" href="/dsdb/concepts/api.html">API Endpoints&Ports</a></li>
+                  <li><a id="dsdb-concepts-storage-engine" class="" href="/dsdb/concepts/storage_engine.html">Storage Engine</a></li>
+                  <li><a id="dsdb-concepts-glossary" class="" href="/dsdb/concepts/glossary.html">Glossary of Terms</a></li>
+                  <li><a id="dsdb-concepts-vs-sql" class="" href="/dsdb/concepts/crosswalk.html">Comparison to SQL</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Data Sources</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-datasource-diamond" class="" href="/dsdb/data_sources/diamond.html">Diamond</a></li>
+                  <li><a id="dsdb-datasource-opentsdb" class="" href="/dsdb/data_sources/opentsdb.html">OpenTSDB</a></li>
+                  <li><a id="dsdb-datasource-carbon" class="" href="/dsdb/data_sources/carbon.html">Carbon</a></li>
+                  <li><a id="dsdb-datasource-collectd" class="" href="/dsdb/data_sources/collectd.html">Collectd</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Guides</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-guides-clustering" class="" href="/dsdb/guides/clustering.html">Clustering</a></li>
+                  <li><a id="dsdb-guides-ddr" class="" href="/dsdb/guides/downsampling_and_retention.html">Downsampling and Data Retention</a></li>
+                  <li><a id="dsdb-guides-hsg" class="" href="/dsdb/guides/hardware_sizing.html">Hardware Sizing Guidelines</a></li>
+                  <li><a id="dsdb-guides-querying" class="" href="/dsdb/guides/querying_data.html">Querying Data</a></li>
+                  <li><a id="dsdb-guides-writing" class="" href="/dsdb/guides/writing_data.html">Writing Data</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Query Language</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-querylang-overview" class="" href="/dsdb/query_language/index.html">Overview</a></li>
+                  <li><a id="dsdb-querylang-dataexp" class="" href="/dsdb/query_language/data_exploration.html">Data Exploration</a></li>
+                  <li><a id="dsdb-querylang-scheamexp" class="" href="/dsdb/query_language/schema_exploration.html">Schema Exploration</a></li>
+                  <li><a id="dsdb-querylang-func" class="" href="/dsdb/query_language/functions.html">Functions</a></li>
+                  <li><a id="dsdb-querylang-contq" class="" href="/dsdb/query_language/continuous_queries.html">Continuous Queries</a></li>
+                  <li><a id="dsdb-querylang-spec" class="" href="/dsdb/query_language/spec.html">Query Language Reference</a></li>
+                  <li><a id="dsdb-querylang-mgmt" class="" href="/dsdb/query_language/database_management.html">Database Management</a></li>
+                  <li><a id="dsdb-querylang-math" class="" href="/dsdb/query_language/math_operators.html">Mathematical Operators</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Sample Data</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-sampledata-down" class="" href="/dsdb/sample_data/data_download.html">Sample Data Download</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Tools</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-tools-overview" class="" href="/dsdb/tools/index.html">Tools Overview</a></li>
+                  <li><a id="dsdb-tools-shell" class="" href="/dsdb/tools/shell.html">CLI/Shell</a></li>
+                  <li><a id="dsdb-tools-webadmin" class="" href="/dsdb/tools/web_admin.html">Web Admin Interface</a></li>
+                  <li><a id="dsdb-tools-grafana" class="" href="/dsdb/tools/grafana.html">Grafana Dashboards</a></li>
+                  <li><a id="dsdb-tools-telegraf" class="" href="/dsdb/tools/telegraf.html">Telegraf Metrics Collection</a></li>
+                  <li><a id="dsdb-tools-chronograf" class="" href="/dsdb/tools/chronograf.html">Chronograf Dashboards</a></li>
+                  <li><a id="dsdb-tools-kapacitor" class="" href="/dsdb/tools/kapacitor.html">Kapacitor Monitoring</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Write Protocols</a>
+                <ul class="menu3" style="display: block;">
+                  <li><a id="dsdb-writepro-overview" class="" href="/dsdb/write_protocols/index.html">Overview</a></li>
+                  <li><a id="dsdb-writepro-line" class="" href="/dsdb/write_protocols/line.html">Line Protocol</a></li>
+                  <li><a id="dsdb-writepro-syntax" class="active" href="/dsdb/write_protocols/write_syntax.html">Write Syntax</a></li>
+                  <li><a id="dsdb-writepro-json" class="" href="/dsdb/write_protocols/json.html">JSON Protocol</a></li>
+                  <li><a id="dsdb-writepro-udp" class="" href="/dsdb/write_protocols/udp.html">Service - UDP</a></li>
+                  <li><a id="dsdb-writepro-graphite" class="" href="/dsdb/write_protocols/graphite.html">Service - Graphite</a></li>
+                  <li><a id="dsdb-writepro-opentsdb" class="" href="/dsdb/write_protocols/opentsdb.html">Servcie - OpenTSDB</a></li>
+                  <li><a id="dsdb-writepro-collectd" class="" href="/dsdb/write_protocols/collectd.html">Service - CollectD</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Troubleshooting</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-troubleshoot-overview" class="" href="/dsdb/troubleshooting/index.html">Troubleshooting Overview</a></li>
+                  <li><a id="dsdb-troubleshoot-fei" class="" href="/dsdb/troubleshooting/frequently_encountered_issues.html">Frequently Encountered Issues</a></li>
+                  <li><a id="dsdb-troubleshoot-monitor" class="" href="/dsdb/troubleshooting/system_monitoring.html">System Monitoring</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><a class="fold">DAC Document</a>
+            <ul class="menu2" >
+              <li><a id="dac-principal" class="" href="/dac/dac_introduction.html">DAC工作原理</a></li>
+              <li><a id="dac-java-api" class="" href="/dac/dac_cloud_api_java.html">DAC Java API</a></li>
+              <li><a id="dac-c-api" class="" href="/dac/dac_cloud_api_c.html">DAC C API</a></li>
+              <li><a id="dac-cpp-api" class="" href="/dac/dac_cloud_api_cpp.html">DAC C++ API</a></li>
+            </ul>
+          </li>
+          <li><a class="fold">Data Hub</a>
+            <ul class="menu2" >
+              <li><a class="fold">SDK</a>
+                <ul class="menu3" >
+                  <li><a id="datahub-sdk-js" class="" href="/data-hub/sdk/javascript.html">JavaScript</a></li>
+                  <li><a id="datahub-sdk-embededc" class="" href="/data-hub/sdk/embeded_c.html">Embeded C</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+    </div>
+
+    <div class="side_right">
+      <div class="doc">
+        <h1 id="write-syntax">Write Syntax</h1>
+<p>Syntax is always a challenge to remember, so here's a reference</p>
+<h2 id="line-protocol">Line Protocol</h2>
+<p>The syntax for the line protocol is</p>
+<p><code>measurement[,tag_key1=tag_value1...] field_key=field_value[,field_key2=field_value2] [timestamp]</code></p>
+<p>For example:</p>
+<pre><code class="language-sh">measurement,tkey1=tval1,tkey2=tval2 fkey=fval,fkey2=fval2 1234567890000000000</code></pre>
+<h3 id="whitespace">Whitespace</h3>
+<p>A space must exist between the measurement and the field(s), or between the tag(s) and the field(s) if tags are
+provided.
+The measurement and tags must be separated by a single comma <code>,</code> with no whitespace.</p>
+<p>There must also be whitespace between the field(s) and the timestamp, if one is provided.</p>
+<p>Valid (<code>value</code> and <code>otherval</code> are fields, <code>foo</code> and <code>bat</code> are tags)</p>
+<pre><code class="language-sh">measurement value=12
+measurement value=12 1439587925
+measurement,foo=bar value=12
+measurement,foo=bar value=12 1439587925
+measurement,foo=bar,bat=baz value=12,otherval=21 1439587925</code></pre>
+<p>Invalid</p>
+<pre><code class="language-sh">measurement,value=12
+measurement value=12,1439587925
+measurement foo=bar value=12
+measurement,foo=bar,value=12 1439587925
+measurement,foo=bar
+measurement,foo=bar 1439587925</code></pre>
+<h3 id="timestamps">Timestamps</h3>
+<p>Timestamps are not required.
+When no timestamp is provided the server will insert the point with the local server
+timestamp.
+If a timestamp is provided it must be separated from the field(s) by a space.
+Timestamps must be in Unix time and are assumed to be in nanoseconds.
+A different precision can be specified, see the HTTP syntax for details.</p>
+<h3 id="key-value-separator">Key-value Separator</h3>
+<p>Tag keys and values, and field keys and values must be separated by the equals sign <code>=</code> without spaces.</p>
+<h3 id="escaping-characters">Escaping Characters</h3>
+<p>If a tag key, tag value, or field key contains a space <code>`, comma</code>,<code>, or an equals sign</code>=<code>it must be escaped using the backslash character</code>`.
+Backslash characters do not need to be escaped.
+Commas <code>,</code> and spaces <code>` will also need to be escaped for measurements, though equals signs</code>=` do not.</p>
+<h3 id="comments">Comments</h3>
+<p><code>#</code> at the beginning of the line is a valid comment character for the line protocol.
+All subsequent characters are ignored.</p>
+<h3 id="data-types">Data Types</h3>
+<p>Measurements, tag keys, tag values, and field keys are always stored as strings in the database.</p>
+<p><code>string</code> values have a length limit of 64 KB.
+All Unicode characters should be valid, although commas and spaces require escaping.
+Backslash characters do not require escaping, but may not be used directly preceding a comma or space.
+(Note that <code>string</code> field values have different quoting and escaping rules than the measurement, tag, and field name <code>string</code> syntax.) The field <code>location="us-west"</code> stores a string value.</p>
+<p>Field values may be stored as <code>float64</code>, <code>int64</code>, <code>boolean</code>, or <code>string</code>.
+All subsequent field values must match the type of the first point written to given measurement.</p>
+<p><code>float64</code> values are the default numerical type.
+<code>1</code> is a float, <code>1i</code> is an integer.</p>
+<p><code>int64</code> values must have a trailing <code>i</code>.
+The field <code>bikes_present=15i</code> stores an integer and the field <code>bikes_present=15</code> stores a float.</p>
+<p><code>boolean</code> values are <code>t</code>, <code>T</code>, <code>true</code>, <code>True</code>, or <code>TRUE</code> for TRUE, and  <code>f</code>, <code>F</code>, <code>false</code>, <code>False</code>, or <code>FALSE</code> for FALSE</p>
+<p><code>string</code> values for field values must be double-quoted.
+Double-quotes contained within the string must be escaped.
+All other characters are supported without escaping.</p>
+<h3 id="examples">Examples</h3>
+<h4 id="simplest-valid-point-measurement--field">Simplest Valid Point (measurement + field)</h4>
+<pre><code>disk_free value=442221834240i</code></pre>
+<h4 id="with-timestamp">With Timestamp</h4>
+<pre><code>disk_free value=442221834240i 1435362189575692182</code></pre>
+<h4 id="with-tags">With Tags</h4>
+<pre><code>disk_free,hostname=server01,disk_type=SSD value=442221834240i</code></pre>
+<h4 id="with-tags-with-timestamp">With Tags, With Timestamp</h4>
+<pre><code>disk_free,hostname=server01,disk_type=SSD value=442221834240i 1435362189575692182</code></pre>
+<h4 id="multiple-fields">Multiple Fields</h4>
+<pre><code>disk_free free_space=442221834240i,disk_type="SSD" 1435362189575692182</code></pre>
+<h4 id="escaping-commas-and-spaces">Escaping Commas and Spaces</h4>
+<pre><code>total\ disk\ free,volumes=/net\,/home\,/ value=442221834240i 1435362189575692182</code></pre>
+<p>In the above example, the measurement is written as <code>total disk free</code> and the tag key <code>volumes</code> has a tag value of <code>/net,/home,/</code></p>
+<h4 id="escaping-equals-signs">Escaping Equals Signs</h4>
+<pre><code>disk_free,a\=b=y\=z value=442221834240i</code></pre>
+<p>In the above example, the tag key <code>a=b</code> has a tag value of <code>y=z</code></p>
+<h4 id="with-backslash-in-tag-value">With Backslash in Tag Value</h4>
+<pre><code>disk_free,path=C:\Windows value=442221834240i</code></pre>
+<p>Backslashes do not need to be escaped when used in strings.
+Unless followed by a comma, space, or equals sign backslashes are treated as a normal character.</p>
+<h4 id="escaping-field-key">Escaping Field Key</h4>
+<pre><code>disk_free value=442221834240i,working\ directories="C:\My Documents\Stuff for examples,C:\My Documents"</code></pre>
+<p>In the above example, the second field key is <code>working directories</code> and the corresponding field value is <code>C:\My Documents\Stuff for examples,C:\My Documents</code>.</p>
+<h4 id="showing-all-escaping-and-quoting-behavior">Showing all escaping and quoting behavior</h4>
+<pre><code>"measurement\ with\ quotes",tag\ key\ with\ spaces=tag\,value\,with"commas" field_key\\\\="string field value, only \" need be quoted"</code></pre>
+<p>In the above example, the measurement is <code>"measurement with quotes"</code>, the tag key is <code>tag key with spaces</code>, the
+tag value is <code>tag,value,with"commas"</code>, the field key is <code>field_key\\\\</code> and the field value is <code>string field value, only " need be quoted</code>.</p>
+<h3 id="caveats">Caveats</h3>
+<blockquote>
+<p><strong>Note:</strong> Prior to version 0.9.3, integers were numeric values that did not include a decimal (e.g.
+1, 345, 2015, -10) and were not followed by a trailing <code>i</code>.
+Including a trailing <code>i</code> when writing integers will cause an error in versions 0.9.2 and prior.
+See <a href="https://github.com/dsdb/dsdb/issues/3519">issue</a> for more information.</p>
+</blockquote>
+<p>If you write points in a batch all points without explicit timestamps will receive the same timestamp when inserted.
+Since a point is defined only by its measurement, tag set, and timestamp, that can lead to duplicate points.
+When DSDB encounters a duplicate point it silently overwrites the previous point.
+It is a best practice to provide explicit timestamps with all points.</p>
+<p>Measurements, tag keys, tag values, and field keys are never quoted.
+Spaces and commas must be escaped.
+Field values that are stored as strings must always be double-quoted.
+Only double-quotes should be escaped.</p>
+<p>Querying measurements or tags that contain double-quotes <code>"</code> can be difficult, since double-quotes are also the syntax for an identifier.
+It's possible to work around the limitations with regular expressions but it's not easy.</p>
+<p>Avoid using Keywords as identifiers (database names, retention policy names, measurement names, tag keys, or field keys) whenever possible.
+Keywords in DSDB are referenced on the <a href="/dsdb/v1.0/query_language/spec/">DSDBQL Syntax</a> page.
+There is no need to quote or escape keywords in the write syntax.</p>
+<p>All values in DSDB are case-sensitive: <code>MyDB</code> != <code>mydb</code> != <code>MYDB</code>.
+The exception is Keywords, which are case-insensitive.</p>
+<h2 id="cli">CLI</h2>
+<p>To write points using the command line interface, use the <code>insert</code> command.</p>
+<h4 id="write-a-point-with-the-cli">Write a Point with the CLI</h4>
+<pre><code class="language-bash">&gt; insert disk_free,hostname=server01 value=442221834240i 1435362189575692182</code></pre>
+<p>The CLI will return nothing on success and should give an informative parser error if the point cannot be written.
+There is currently no way to write a batch of points using the CLI, each point must be inserted individually.</p>
+<h2 id="http">HTTP</h2>
+<p>To write points using HTTP, POST to the <code>/write</code> endpoint at port <code>8086</code>.
+You must specify the target database in the query string using <code>db=&lt;target_database&gt;</code>.</p>
+<p>You may optionally provide a target retention policy, specify the precision of any supplied timestamps, and pass any required authentication in the query string.</p>
+<p>Successful writes will return a <code>204</code> HTTP Status Code.
+Writes will return a <code>400</code> for invalid syntax.</p>
+<h3 id="query-string-parameters-for-writes">Query String Parameters for Writes</h3>
+<p>The following query string parameters can be passed as part of the GET string when using the HTTP API:</p>
+<ul>
+<li><code>db=&lt;database&gt;</code> REQUIRED - sets the target database for the write</li>
+<li><code>rp=&lt;retention_policy&gt;</code> - sets the target retention policy for the write.
+If not present the default retention policy is used</li>
+<li><code>u=&lt;username&gt;</code>, <code>p=&lt;password&gt;</code> - if authentication is enabled, you must authenticate as a user with write permissions to the target database</li>
+<li><code>precision=[n,u,ms,s,m,h]</code> - sets the precision of the supplied Unix time values.
+If not present timestamps are assumed to be in nanoseconds</li>
+<li><code>consistency=[one,quorum,all,any]</code> - set the number of nodes that must confirm the write.
+If the requirement is not met the return value will be <code>partial write</code> if some points in the batch fail, or <code>write failure</code> if all points in the batch fail.
+<ul>
+<li><code>one</code> - the data must be written to disk by at least 1 valid node</li>
+<li><code>quorum</code> - the data must be written to disk by (N/2 + 1) valid nodes (N is the replication factor for the target retention policy)</li>
+<li><code>all</code> - the data must be written to disk by all valid nodes</li>
+<li><code>any</code> - a write is confirmed if hinted-handoff is successful, even if all target nodes report a write failure
+In this context, &quot;valid node&quot; means a node that hosts a copy of the shard containing the series being written to.
+In a clustered system, the replication factor should equal the number of valid nodes.</li>
+</ul></li>
+</ul>
+<h4 id="write-a-point-with">Write a Point with <code>curl</code></h4>
+<pre><code class="language-bash">curl -X POST 'http://localhost:8086/write?db=mydb' --data-binary 'disk_free,hostname=server01 value=442221834240i 1435362189575692182'</code></pre>
+<h4 id="write-a-point-to-a-non-default-retention-policy">Write a Point to a non-default Retention Policy</h4>
+<p>Use the <code>rp=&lt;retention_policy</code> query string parameter to supply a target retention policy.
+If not specified, the default retention policy for the target database will be used.</p>
+<pre><code class="language-bash">curl -X POST 'http://localhost:8086/write?db=mydb&amp;rp=six_month_rollup' --data-binary 'disk_free,hostname=server01 value=442221834240i 1435362189575692182'</code></pre>
+<h4 id="write-a-point-using-authentication">Write a Point Using Authentication</h4>
+<p>Use the <code>u=&lt;user&gt;</code> and <code>p=&lt;password&gt;</code> to pass the authentication details, if required.</p>
+<pre><code class="language-bash">curl -X POST 'http://localhost:8086/write?db=mydb&amp;u=root&amp;p=123456' --data-binary 'disk_free,hostname=server01 value=442221834240i 1435362189575692182'</code></pre>
+<h4 id="specify-non-nanosecond-timestamps">Specify Non-nanosecond Timestamps</h4>
+<p>Use the <code>precision=[n,u,ms,s,m,h]</code> query string parameter to supply a precision for the timestamps.</p>
+<p>All timestamps are assumed to be Unix nanoseconds unless otherwise specified.
+If you provide timestamps in any unit other than nanoseconds, you must supply the appropriate precision in the URL query string.
+Use <code>n</code>, <code>u</code>, <code>ms</code>, <code>s</code>, <code>m</code>, and <code>h</code> for nanoseconds, microseconds, milliseconds, seconds, minutes, and hours, respectively.</p>
+<pre><code class="language-bash">curl -X POST 'http://localhost:8086/write?db=mydb&amp;precision=ms' --data-binary 'disk_free value=442221834240i 1435362189575'</code></pre>
+<h4 id="write-a-batch-of-points-with">Write a Batch of Points with <code>curl</code></h4>
+<p>You can also pass a file using the <code>@</code> flag.
+The file can contain a batch of points, one per line.
+Points must be separated by newline characters <code>\n</code>.
+Batches should be 5000 points or fewer for best performance.</p>
+<p><code>curl -X POST 'http://localhost:8086/write?db=&lt;database&gt;' --data-binary @&lt;filename&gt;</code></p>
+<h3 id="caveats-1">Caveats</h3>
+<p>Use <code>curl</code>'s <code>--data-binary</code> encoding method for all writes in the line protocol format.
+Using any encoding method other than <code>--data-binary</code> is likely to lead to issues with writing points.
+<code>-d</code>, <code>--data-urlencode</code>, and <code>--data-ascii</code> may all strip out newlines or introduce new unintended formatting.</p>
+<p>When passing a file to <code>curl</code>, the points must be separated by newline characters only (<code>\n</code>).
+Files containing carriage returns will cause parser errors.</p>
+      </div>
+
+              <div class="tract"><img src="/images/tract.png"/></div>
+            <div class="clearfix"></div>
+      <div class="scroll" id="scroll" style="display:none;">
+			     <img src="/images/top.png"/>
+		  </div>
+    </div>
+  </div>
+  <script>hljs.initHighlightingOnLoad();</script>
+</body>
+
+</html>

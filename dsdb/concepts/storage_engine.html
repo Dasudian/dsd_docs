@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="大数点物联网开发者平台文档，基于大数点物联网平台，帮助开发者快速构建物联网应用">
-    <title>大数点文档中心</title>
+    <title>Storage Engine</title>
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
@@ -86,7 +86,7 @@
             </ul>
           </li>
           <li><a class="fold">DS Database</a>
-            <ul class="menu2" >
+            <ul class="menu2" style="display: block;">
               <li><a id="dsdb-overview" class="" href="/dsdb/index.html">DSDB Overview</a></li>
               <li><a class="fold">Introduction</a>
                 <ul class="menu3" >
@@ -113,14 +113,14 @@
                 </ul>
               </li>
               <li><a class="fold">Concepts</a>
-                <ul class="menu3" >
+                <ul class="menu3" style="display: block;">
                   <li><a id="dsdb-concepts-overview" class="" href="/dsdb/concepts/index.html">Concepts Overview</a></li>
                   <li><a id="dsdb-key-concepts" class="" href="/dsdb/concepts/key_concepts.html">Key Concepts</a></li>
                   <li><a id="dsdb-concepts-arch" class="" href="/dsdb/concepts/how_dsdb_works.html">Architecture</a></li>
                   <li><a id="dsdb-concepts-schema-data-layout" class="" href="/dsdb/concepts/schema_and_data_layout.html">Scheam Design</a></li>
                   <li><a id="dsdb-concepts-insights-tradeoffs" class="" href="/dsdb/concepts/insights_tradeoffs.html">Insights Tradeoffs</a></li>
                   <li><a id="dsdb-concepts-api-endpoints" class="" href="/dsdb/concepts/api.html">API Endpoints&Ports</a></li>
-                  <li><a id="dsdb-concepts-storage-engine" class="" href="/dsdb/concepts/storage_engine.html">Storage Engine</a></li>
+                  <li><a id="dsdb-concepts-storage-engine" class="active" href="/dsdb/concepts/storage_engine.html">Storage Engine</a></li>
                   <li><a id="dsdb-concepts-glossary" class="" href="/dsdb/concepts/glossary.html">Glossary of Terms</a></li>
                   <li><a id="dsdb-concepts-vs-sql" class="" href="/dsdb/concepts/crosswalk.html">Comparison to SQL</a></li>
                 </ul>
@@ -214,82 +214,80 @@
 
     <div class="side_right">
       <div class="doc">
-        <h1 id="">大数点开发者文档中心</h1>
-<p>欢迎来到大数点开发文档中心，请阅读以下章节：　　</p>
-<h3 id="-1">服务集成指南</h3>
+        <h1 id="storage-engine">Storage Engine</h1>
+<h2 id="properties-of-time-series-data">Properties of Time Series Data</h2>
+<p>The workload of time series data is quite different from normal database workloads.
+There are a number of factors that conspire to make it very difficult to get it to scale and perform well:</p>
 <ul>
-<li><a href="integration-dev/integrate-im-android.html">Android上集成IM功能</a>  </li>
-<li><a href="integration-dev/integrate-im-ios.html">iOS上集成IM功能</a>  </li>
+<li>Billions of individual data points</li>
+<li>High write throughput</li>
+<li>High read throughput</li>
+<li>Large deletes to free up disk space</li>
+<li>Mostly an insert/append workload, very few updates</li>
 </ul>
-<h3 id="ds-database">DS database</h3>
-<ul>
-<li><a href="dsdb/index.html">DSDB Overview</a>  </li>
-<li>Introduction<br />
-&nbsp; - <a href="dsdb/introduction/installation.html">Installation</a><br />
-&nbsp; - <a href="dsdb/introduction//getting_started.html">Getting Started</a>  </li>
-<li>Administration<br />
-&nbsp; - <a href="dsdb/administration/authentication_and_authorization.html">Authentication and Authorization</a><br />
-&nbsp; - <a href="dsdb/administration/backup_and_restore.html">Backup and Restore</a><br />
-&nbsp; - <a href="dsdb/administration/config.html">Configuration</a><br />
-&nbsp; - <a href="dsdb/administration/logs.html">Logs</a><br />
-&nbsp; - <a href="dsdb/administration/statistics.html">Server Monitoring</a><br />
-&nbsp; - <a href="dsdb/administration/upgrading.html">Upgrading from previous versions</a>  </li>
-<li>Clients<br />
-&nbsp; - <a href="dsdb/clients/api.html">HTTP API Client Libraries</a>  </li>
-<li>Concepts
-&nbsp; - <a href="dsdb/concepts/key_concepts.html">Key Concepts</a><br />
-&nbsp; - <a href="dsdb/concepts/schema_and_data_layout.html">Schema and Data Layout</a><br />
-&nbsp; - <a href="dsdb/concepts/insights_tradeoffs.html">Design Insights and Tradeoffs</a><br />
-&nbsp; - <a href="dsdb/concepts/api.html">HTTP API Endpoints</a><br />
-&nbsp; - <a href="dsdb/concepts/storage_engine.html">Storage Engine</a><br />
-&nbsp; - <a href="dsdb/concepts/glossary.html">Glossary of Terms</a>  </li>
-<li>Data Sources<br />
-&nbsp; - <a href="dsdb/data_sources/diamond.html">Diamond</a><br />
-&nbsp; - <a href="dsdb/data_sources/opentsdb.html">OpenTSDB</a>  </li>
-<li>Guides<br />
-&nbsp; - <a href="dsdb/guides/clustering.html">Clustering</a><br />
-&nbsp; - <a href="dsdb/guides/downsampling_and_retention.html">Downsampling and Data Retention</a><br />
-&nbsp; - <a href="dsdb/guides/hardware_sizing.html">Hardware Sizing Guidelines</a><br />
-&nbsp; - <a href="dsdb/guides/querying_data.html">Querying Data</a><br />
-&nbsp; - <a href="dsdb/guides/writing_data.html">Writing Data</a>  </li>
-<li>Query Language<br />
-&nbsp; - <a href="dsdb/query_language/continuous_queries.html">Continuous Queries</a><br />
-&nbsp; - <a href="dsdb/query_language/data_exploration.html">Data Exploration</a><br />
-&nbsp; - <a href="dsdb/query_language/database_management.html">Database Management</a><br />
-&nbsp; - <a href="dsdb/query_language/functions.html">Functions</a><br />
-&nbsp; - <a href="dsdb/query_language/math_operators.html">Mathematical Operators</a><br />
-&nbsp; - <a href="dsdb/query_language/schema_exploration.html">Scheam Exploration</a><br />
-&nbsp; - <a href="dsdb/query_language/spec.html">Query Language Reference</a>  </li>
-<li>Sample Data<br />
-&nbsp; - <a href="dsdb/sample_data/data_download.html">Sample Data Download</a>  </li>
-<li>Tools<br />
-&nbsp; - <a href="dsdb/tools/shell.html">CLI/Shell</a><br />
-&nbsp; - <a href="dsdb/tools/web_admin.html">Web Admin Interface</a>  </li>
-<li>Troubleshooting<br />
-&nbsp; - <a href="dsdb/troubleshooting/frequently_encountered_issues.html">Frequently Encountered Issues</a><br />
-&nbsp; - <a href="dsdb/troubleshooting/system_monitoring.html">System Monitoring</a>  </li>
-<li>Write Protocols<br />
-&nbsp; - <a href="dsdb/write_protocols/collectd.html">Service - CollectD</a><br />
-&nbsp; - <a href="dsdb/write_protocols/graphite.html">Service - Graphite</a><br />
-&nbsp; - <a href="dsdb/write_protocols/json.html">JSON Protocol</a><br />
-&nbsp; - <a href="dsdb/write_protocols/line.html">Line Protocol</a><br />
-&nbsp; - <a href="dsdb/write_protocols/opentsdb.html">Service - OpenTSDB</a><br />
-&nbsp; - <a href="dsdb/write_protocols/udp.html">Service - UDP</a><br />
-&nbsp; - <a href="dsdb/write_protocols/write_syntax.html">Write Syntax</a>  </li>
-</ul>
-<h3 id="dac-document">DAC Document</h3>
-<ul>
-<li><a href="dac/dac_introduction.html">DAC Introduction</a>  </li>
-<li><a href="dac/dac_cloud_api_java.html">DAC JAVA API</a>  </li>
-<li><a href="dac/dac_cloud_api_c.html">DAC C API</a>  </li>
-<li><a href="dac/dac_cloud_api_cpp.html">DAC C++ API</a>  </li>
-</ul>
-<h3 id="data-hub">Data Hub</h3>
-<ul>
-<li>SDK<br />
-&nbsp; - <a href="data-hub/sdk/embeded_c.html">Embeded C API</a><br />
-&nbsp; - <a href="data-hub/sdk/javascript.html">JavaScript API</a>  </li>
-</ul>
+<p>The first and most obvious problem is one of scale.
+In DevOps, for instance, you can collect hundreds of millions or billions of unique data points every day.</p>
+<p>To prove out the numbers, let’s say we have 200 VMs or servers running, with each server collecting an average of 100 measurements every 10 seconds.
+Given there are 86,400 seconds in a day, a single measurement will generate 8,640 points in a day, per server.
+That gives us a total of 200 <em> 100 </em> 8,640 = 172,800,000 individual data points per day.
+We find similar or larger numbers in sensor data use cases.</p>
+<p>The volume of data means that the write throughput can be very high.
+We regularly get requests for setups than can handle hundreds of thousands of writes per second.
+I’ve talked to some larger companies that will only consider systems that can handle millions of writes per second.</p>
+<p>At the same time, time series data can be a high read throughput use case.
+It’s true that if you’re tracking 700,000 unique metrics or time series, you can’t hope to visualize all of them, which is what leads many people to think that you don’t actually read most of the data that goes into the database.
+However, other than dashboards that people have up on their screens, there are automated systems for monitoring or combining the large volume of time series data with other types of data.</p>
+<p>Inside DSDB, we have aggregates that can get calculated on the fly that can combine tens of thousands of time series into a single view.
+Each one of those queries does a read on each data point, which means that for DSDB, the read throughput is often many times higher than the write throughput.</p>
+<p>Given that time series is a mostly an append only workload, you might think that it’s possible to get great performance on a B+Tree.
+Appends in the keyspace are efficient and you can achieve greater than 100,000 per second.
+However, we have those appends happening in individual time series.
+So the inserts end up looking more like random inserts than append only inserts.</p>
+<p>One of the biggest problems we found with time series data is that it’s very common to delete all data after it gets past a certain age.
+The common pattern here is that you’ll have high precision data that is kept for a short period of time like a few hours or a few weeks.
+You’ll then downsample and aggregate that data into lower precision, which you’ll keep around for much longer.</p>
+<p>The naive implementation would be to simply delete each record once it gets past its expiration time.
+However, that means that once you’re up to your window of retention, you’ll be doing just as many deletes as you do writes, which is something most storage engines aren’t designed for.</p>
+<p>Let’s dig into the details of the two types of storage engines we tried and how these properties had a significant impact on our performance.</p>
+<h3 id="leveldb-and-log-structured-merge-trees">LevelDB and Log Structured Merge Trees</h3>
+<p>We picked LevelDB as the storage engine because it was what we used for time series data storage for the product that was the precursor to DSDB.</p>
+<p>We knew that it had great properties for write throughput and everything works fine.</p>
+<p>LevelDB is an implementation of a Log Structured Merge Tree (or LSM Tree) that was built as an open source project at Google.
+It exposes an API for a key/value store where the key space is sorted.
+This last part is important for time series data as it would allow us to quickly go through ranges of time as long as the timestamp was in the key.</p>
+<p>LSM Trees are based on a log that takes writes and two structures known as Mem Tables and SSTables.
+These tables represent the sorted keyspace.
+SSTables are read only files that continuously get replaced by other SSTables that merge inserts and updates into the keyspace.</p>
+<p>The two biggest advantages that LevelDB had for us were high write throughput and built in compression.
+However, as we learned more about what people needed with time series data, we encountered a few insurmountable challenges.</p>
+<p>The first problem we had was that LevelDB doesn’t support hot backups.
+If you want to do a safe backup of the database, you have to close it and then copy it.
+The LevelDB variants RocksDB and HyperLevelDB fix this problem so we could have moved to them, but there was another problem that was more pressing that we didn’t think could be solved with either of them.</p>
+<p>We needed to give our users a way to automatically manage the data retention of their time series data.
+That meant that we’d have to do very large scale deletes.
+In LSM Trees a delete is as expensive, if not more so, than a write.
+A delete will write a new record known as a tombstone.
+After that queries will merge the result set with any tombstones to clear out the deletes.
+Later, a compaction will run that will remove the tombstone and the underlying record from the SSTable file.</p>
+<p>To get around doing deletes, we split data across what we call shards, which are contiguous blocks of time.
+Shards would typically hold either a day or 7 days worth of data.
+Each shard mapped to an underlying LevelDB.
+This meant that we could drop an entire day of data by just closing out the database and removing the underlying files.</p>
+<p>Users of RocksDB may at this point bring up a feature called ColumnFamilies.
+When putting time series data into Rocks, it’s common to split blocks of time into column families and then drop those when their time is up.
+It’s the same general idea that you create a separate area where you can just drop files instead of updating any indexes when you delete a large block of old data.
+Dropping a column family is a very efficient operation.
+However, column families are a fairly new feature and we had another use case for shards.</p>
+<p>Organizing data into shards meant that it could be moved within a cluster without having to examine billions of keys.
+At the time of this writing I don’t think it’s possible to move a column family in one RocksDB to another.
+Old shards are typically cold for writes so moving them around would be cheap and easy and we’d have the added benefit of having a spot in the keyspace that is cold for writes so it would be easier to do consistency checks later.</p>
+<p>The organization of data into shards worked great for a little while until a large amount of data went into DSDB.
+For our users that had 6 months or a year of data in large databases, they would run out of file handles.
+LevelDB splits the data out over many small files.
+Having dozens or hundreds of these databases open in a single process ended up creating a big problem.
+It’s not something we found with a large number of users, but for anyone that was stressing the database to its limits, they were hitting this problem and we had no fix for it.
+There were simply too many file handles open.</p>
+<h3 id="optimized-erlang-ets-table-for-caching">Optimized Erlang ETS table for caching</h3>
       </div>
 
               <div class="tract"><img src="/images/tract.png"/></div>

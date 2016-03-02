@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="大数点物联网开发者平台文档，基于大数点物联网平台，帮助开发者快速构建物联网应用">
+    <title>JavaScript</title>
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/app.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/highlight.js/9.2.0/styles/dark.min.css" rel="stylesheet">
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+    <script>
+      $(function() {
+        // $(".document .side_left ul li a").click(function() {
+        //   $(".document .side_left ul li a").removeClass("active");
+        //   $(this).addClass("active");
+        // })
+        $(".menu1>li>a.fold").click(function(){
+				  $(".menu1 a.fold").css("background-image","url(/images/number_down.png)");
+				  $(".menu2,.menu3").slideUp();
+			  })
+			  $(".menu2>li>a.fold").click(function(){
+          $(".menu2 a.fold").css("background-image","url(/images/number_down.png)");
+          $(".menu3").slideUp();
+        })
+        $(".fold").click(function() {
+          if ($(this).next("ul").is(":hidden")) {
+            $(this).css("background-image", "url(/images/number_up.png)");
+            $(this).next("ul").slideDown();
+          } else {
+            $(this).css("background-image", "url(/images/number_down.png)");
+            $(this).next("ul").slideUp();
+          }
+        })
+      })
+      $(function(){
+			  $(".side_right").scroll( function() { 
+				  var scrollValue=$(".side_right").scrollTop();
+				  scrollValue > 100 ? $('div[class=scroll]').fadeIn():$('div[class=scroll]').fadeOut();
+			  });	
+			  $('#scroll').click(function(){
+				  $(".side_right").animate({scrollTop:0},200);	
+			  });	
+		  })
+    </script>
+    <link href='http://fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"><img src="/images/logo.png"/></a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="http://dasudian.com/solution" >解决方案</a></li>
+            <li><a href="/" >文档</a></li>
+            <li><a href="http://dasudian.com/price" >定价</a></li>
+            <li><a href="https://www.github.com/Dasudian"  target="_blank" >社区</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid0 document">
+      <div class="side_left">
+        <ul class="menu1">
+          <li><a class="fold">服务集成指南</a>
+            <ul class="menu2" >
+              <li><a id="srvintegrate-im-android" class="" href="/integration-dev/integrate-im-android.html">Android上集成IM功能</a></li>
+              <li><a id="srvintegrate-im-ios" class="" href="/integration-dev/integrate-im-ios.html">iOS上集成IM功能</a></li>
+            </ul>
+          </li>
+          <li><a class="fold">DS Database</a>
+            <ul class="menu2" >
+              <li><a id="dsdb-overview" class="" href="/dsdb/index.html">DSDB Overview</a></li>
+              <li><a class="fold">Introduction</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-intro-overview" class="" href="/dsdb/introduction/index.html">Overview</a></li>
+                  <li><a id="dsdb-intro-installation" class="" href="/dsdb/introduction/installation.html">Installation</a></li>
+                  <li><a id="dsdb-intro-start" class="" href="/dsdb/introduction/getting_started.html">Getting Started</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Administration</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-admin-overview" class="" href="/dsdb/administration/index.html">administration Overview</a></li>
+                  <li><a id="dsdb-authent&amp;authori" class="" href="/dsdb/administration/authentication_and_authorization.html">Authentication&Authorization</a></li>
+                  <li><a id="dsdb-backup&amp;restore" class="" href="/dsdb/administration/backup_and_restore.html">Backup&Restore</a></li>
+                  <li><a id="dsdb-configuration" class="" href="/dsdb/administration/config.html">Configuration</a></li>
+                  <li><a id="dsdb-logs" class="" href="/dsdb/administration/logs.html">Logs</a></li>
+                  <li><a id="dsdb-monitoring" class="" href="/dsdb/administration/statistics.html">Server Monitoring</a></li>
+                  <li><a id="dsdb-upgrade" class="" href="/dsdb/administration/upgrading.html">Upgrading</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Clients</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-clients-overview" class="" href="/dsdb/clients/index.html">Clients Overview</a></li>
+                  <li><a id="dsdb-clients-httpapi" class="" href="/dsdb/clients/api.html">HTTP API</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Concepts</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-concepts-overview" class="" href="/dsdb/concepts/index.html">Concepts Overview</a></li>
+                  <li><a id="dsdb-key-concepts" class="" href="/dsdb/concepts/key_concepts.html">Key Concepts</a></li>
+                  <li><a id="dsdb-concepts-arch" class="" href="/dsdb/concepts/how_dsdb_works.html">Architecture</a></li>
+                  <li><a id="dsdb-concepts-schema-data-layout" class="" href="/dsdb/concepts/schema_and_data_layout.html">Scheam Design</a></li>
+                  <li><a id="dsdb-concepts-insights-tradeoffs" class="" href="/dsdb/concepts/insights_tradeoffs.html">Insights Tradeoffs</a></li>
+                  <li><a id="dsdb-concepts-api-endpoints" class="" href="/dsdb/concepts/api.html">API Endpoints&Ports</a></li>
+                  <li><a id="dsdb-concepts-storage-engine" class="" href="/dsdb/concepts/storage_engine.html">Storage Engine</a></li>
+                  <li><a id="dsdb-concepts-glossary" class="" href="/dsdb/concepts/glossary.html">Glossary of Terms</a></li>
+                  <li><a id="dsdb-concepts-vs-sql" class="" href="/dsdb/concepts/crosswalk.html">Comparison to SQL</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Data Sources</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-datasource-diamond" class="" href="/dsdb/data_sources/diamond.html">Diamond</a></li>
+                  <li><a id="dsdb-datasource-opentsdb" class="" href="/dsdb/data_sources/opentsdb.html">OpenTSDB</a></li>
+                  <li><a id="dsdb-datasource-carbon" class="" href="/dsdb/data_sources/carbon.html">Carbon</a></li>
+                  <li><a id="dsdb-datasource-collectd" class="" href="/dsdb/data_sources/collectd.html">Collectd</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Guides</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-guides-clustering" class="" href="/dsdb/guides/clustering.html">Clustering</a></li>
+                  <li><a id="dsdb-guides-ddr" class="" href="/dsdb/guides/downsampling_and_retention.html">Downsampling and Data Retention</a></li>
+                  <li><a id="dsdb-guides-hsg" class="" href="/dsdb/guides/hardware_sizing.html">Hardware Sizing Guidelines</a></li>
+                  <li><a id="dsdb-guides-querying" class="" href="/dsdb/guides/querying_data.html">Querying Data</a></li>
+                  <li><a id="dsdb-guides-writing" class="" href="/dsdb/guides/writing_data.html">Writing Data</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Query Language</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-querylang-overview" class="" href="/dsdb/query_language/index.html">Overview</a></li>
+                  <li><a id="dsdb-querylang-dataexp" class="" href="/dsdb/query_language/data_exploration.html">Data Exploration</a></li>
+                  <li><a id="dsdb-querylang-scheamexp" class="" href="/dsdb/query_language/schema_exploration.html">Schema Exploration</a></li>
+                  <li><a id="dsdb-querylang-func" class="" href="/dsdb/query_language/functions.html">Functions</a></li>
+                  <li><a id="dsdb-querylang-contq" class="" href="/dsdb/query_language/continuous_queries.html">Continuous Queries</a></li>
+                  <li><a id="dsdb-querylang-spec" class="" href="/dsdb/query_language/spec.html">Query Language Reference</a></li>
+                  <li><a id="dsdb-querylang-mgmt" class="" href="/dsdb/query_language/database_management.html">Database Management</a></li>
+                  <li><a id="dsdb-querylang-math" class="" href="/dsdb/query_language/math_operators.html">Mathematical Operators</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Sample Data</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-sampledata-down" class="" href="/dsdb/sample_data/data_download.html">Sample Data Download</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Tools</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-tools-overview" class="" href="/dsdb/tools/index.html">Tools Overview</a></li>
+                  <li><a id="dsdb-tools-shell" class="" href="/dsdb/tools/shell.html">CLI/Shell</a></li>
+                  <li><a id="dsdb-tools-webadmin" class="" href="/dsdb/tools/web_admin.html">Web Admin Interface</a></li>
+                  <li><a id="dsdb-tools-grafana" class="" href="/dsdb/tools/grafana.html">Grafana Dashboards</a></li>
+                  <li><a id="dsdb-tools-telegraf" class="" href="/dsdb/tools/telegraf.html">Telegraf Metrics Collection</a></li>
+                  <li><a id="dsdb-tools-chronograf" class="" href="/dsdb/tools/chronograf.html">Chronograf Dashboards</a></li>
+                  <li><a id="dsdb-tools-kapacitor" class="" href="/dsdb/tools/kapacitor.html">Kapacitor Monitoring</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Write Protocols</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-writepro-overview" class="" href="/dsdb/write_protocols/index.html">Overview</a></li>
+                  <li><a id="dsdb-writepro-line" class="" href="/dsdb/write_protocols/line.html">Line Protocol</a></li>
+                  <li><a id="dsdb-writepro-syntax" class="" href="/dsdb/write_protocols/write_syntax.html">Write Syntax</a></li>
+                  <li><a id="dsdb-writepro-json" class="" href="/dsdb/write_protocols/json.html">JSON Protocol</a></li>
+                  <li><a id="dsdb-writepro-udp" class="" href="/dsdb/write_protocols/udp.html">Service - UDP</a></li>
+                  <li><a id="dsdb-writepro-graphite" class="" href="/dsdb/write_protocols/graphite.html">Service - Graphite</a></li>
+                  <li><a id="dsdb-writepro-opentsdb" class="" href="/dsdb/write_protocols/opentsdb.html">Servcie - OpenTSDB</a></li>
+                  <li><a id="dsdb-writepro-collectd" class="" href="/dsdb/write_protocols/collectd.html">Service - CollectD</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Troubleshooting</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-troubleshoot-overview" class="" href="/dsdb/troubleshooting/index.html">Troubleshooting Overview</a></li>
+                  <li><a id="dsdb-troubleshoot-fei" class="" href="/dsdb/troubleshooting/frequently_encountered_issues.html">Frequently Encountered Issues</a></li>
+                  <li><a id="dsdb-troubleshoot-monitor" class="" href="/dsdb/troubleshooting/system_monitoring.html">System Monitoring</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><a class="fold">DAC Document</a>
+            <ul class="menu2" >
+              <li><a id="dac-principal" class="" href="/dac/dac_introduction.html">DAC工作原理</a></li>
+              <li><a id="dac-java-api" class="" href="/dac/dac_cloud_api_java.html">DAC Java API</a></li>
+              <li><a id="dac-c-api" class="" href="/dac/dac_cloud_api_c.html">DAC C API</a></li>
+              <li><a id="dac-cpp-api" class="" href="/dac/dac_cloud_api_cpp.html">DAC C++ API</a></li>
+            </ul>
+          </li>
+          <li><a class="fold">Data Hub</a>
+            <ul class="menu2" style="display: block;">
+              <li><a class="fold">SDK</a>
+                <ul class="menu3" style="display: block;">
+                  <li><a id="datahub-sdk-js" class="active" href="/data-hub/sdk/javascript.html">JavaScript</a></li>
+                  <li><a id="datahub-sdk-embededc" class="" href="/data-hub/sdk/embeded_c.html">Embeded C</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+    </div>
+
+    <div class="side_right">
+      <div class="doc">
+        <h1 id="data-hub-javascript-sdk">Data Hub JavaScript SDK</h1>
+<h2 id="getting-started">Getting Started</h2>
+<p>To get started head over to our <a href="/quickstart.html">QuickStart</a> which will help you install IoT Data Analytics tracking your devices, applications and your site in just a few minutes. Once you’ve installed the library, read on for the detailed API reference!</p>
+<h2 id="identify">Identify</h2>
+<p>The <strong>identify</strong> method is how you tie one of your users and their actions to a recognizable userId and traits. You can read more about how to set it up or about how it works.</p>
+<p><em>Note</em>: You won’t need to call identify for anonymous users of your devices or  visitors to your services. We’ll automatically assign them an anonymousId, so just calling page and track will still work just fine without <strong>identify</strong>.</p>
+<p>Here’s what an <strong>identify</strong> call looks like, along with its method signature:</p>
+<pre><code>datasource.identify('43loelgopw8', {
+  name: 'Barco You',
+  email: 'barco@dasudian.com',
+  gender:"mail"
+});</code></pre>
+<blockquote>
+<p>datasource.identify([userId], [traits], [options], [callback]);</p>
+</blockquote>
+<p><strong>userId</strong>
+<em>String, optional</em>
+The unique identifier for the user, which is stored in your Database or fetched from 3rd party services (e.g. Facebook or Wechat). If you don’t know who the user is yet, you can omit the userId and just record traits. You can read more about identities in the identify reference.</p>
+<p><strong>traits</strong>
+<em>Object, optional</em>
+A dictionary of traits you know about the user, like their email or name. You can read more about traits in the identify reference.</p>
+<p><strong>options</strong>
+<em>Object, optional</em>
+A dictionary of options, that let you do things like enable or disable specific integrations for the call. Note: If you do not pass a traits object, pass an empty object (ie, ‘{}’) before options</p>
+<p><strong>callback</strong>
+<em>Function, optional</em>
+A callback function that gets called after a short timeout, giving the browser time to make outbound requests first.</p>
+<p>The userId and traits are both optional. So you can omit the userId if you want to associate traits with the currently identified user, anonymous or not, like so:</p>
+<pre><code>datasource.identify({
+  email: 'barco@dasudian.com',
+  newsletter: true,
+  industry: 'Technology'
+});</code></pre>
+<p>We’ll store those traits internally, and carry them over the next time you call <strong>identify</strong> with a <em>userId</em>. For example, you might do that when someone signs up for a newsletter but hasn’t yet created an account on your site.</p>
+<p>You can also omit both traits and options—passing the callback as the second argument—if all you want to do is associate an ID, like so:</p>
+<pre><code>datasource.identify('8he53ols8', function(){
+  // Do something after the identify request has been sent, like
+  // submit a form or redirect to a new page.
+});</code></pre>
+<h2 id="record">Record</h2>
+<p>The <strong>record</strong> method lets you record any envents generated by your devcies or actions your users perform. You can read more about how to set it up or about how it works.</p>
+<p>Here’s a basic example, along with the <strong>record</strong> method signature:</p>
+<pre><code>datasource.record('Power on', { 
+type: 'Start Engine',
+duration: '12.1s', 
+maxVoltage: 13,
+stableVoltage: 8,
+maxCurrency: '100mA',
+stableCurrency: '80mA'
+});</code></pre>
+<blockquote>
+<p>datasource.record(event, [properties], [options], [callback], [timeout]);</p>
+</blockquote>
+<p><strong>event</strong>
+<em>String</em>
+The name of the event recordd by your devices or applications that you hope to track. You can read more about the track method and what event names we recommend.</p>
+<p><strong>properties</strong>
+<em>Object, optional</em>
+A dictionary of properties for the event. If the event was 'Added to Cart', it might have properties like price and productType.</p>
+<p><strong>options</strong>
+<em>Object, optional</em>
+A dictionary of options, that let you do things like enable or disable specific integrations for the call. Note: If you do not pass a properties object, pass an empty object (ie, ‘{}’) before options</p>
+<p><strong>callback</strong>
+<em>Function, optional</em>
+A callback function that gets called after a short timeout, giving the browser time to make the track requests first. Also checkout our dedicated trackLink and trackForm helpers.</p>
+<p><strong>timeout</strong>
+<em>integer, optional</em>
+A integer signifing milliseconds in which the record function will be called again automatically, the default value is 'infinity' meaning this function will be called only once unless it is called explicitly anywhere else. If you hope to recorde an event periotically, please explicitly indicate a period time here.</p>
+<p>The only required argument to record in Datasource.js is an event name string. You can read more about how we recommend naming your events.</p>
+<h2 id="page">Page</h2>
+<p>The <strong>page</strong> method lets you record any page/screen views of your applications or on your website, along with optional extra information about the page/screen being viewed.</p>
+<p>It’s already included in the SDK snippet by default just after the call to load, so in most cases you never need to touch it. However, if you want to add extra information, like tagging the view with a name or category, read on!</p>
+<p>Note that you must call view at least once per page load! (That’s why we put it in your snippet for you.) If you have a single page app you can call it multiple times, whenever a new page view occurs.</p>
+<p>Here’s a basic example, along with the page method signature:</p>
+<pre><code>datasource.page('Pricelist');</code></pre>
+<blockquote>
+<p>datasource.page([category], [name], [properties], [options],
+[callback]);</p>
+</blockquote>
+<p><strong>category</strong>
+<em>String, optional</em>
+The category of the view. Useful for things like ecommerce where many pages might live under a larger category. Note: if you only pass one string to page we assume it’s a name, not a category. You must include a name if you want to send a category.</p>
+<p><strong>name</strong>
+<em>String, optional</em>
+The name of the of the page, for example Signup or Home.</p>
+<p><strong>properties</strong>
+<em>Object, optional</em>
+A dictionary of properties of the page. We’ll automatically send the url, title, referrer and path, but you can add your own too!</p>
+<p><strong>options</strong>
+<em>Object, optional</em>
+A dictionary of options, that let you do things like enable or disable specific integrations for the call. Note: If you do not pass a properties object, pass an empty object (ie, ‘{}’) before options</p>
+<p><strong>callback</strong>
+<em>Function, optional</em>
+A callback function that gets called after a short timeout, giving the browser time to make outbound requests first.</p>
+<p><strong>Default Properties</strong>
+A few properties are automatically added to each page call. For example, if you call:</p>
+<pre><code>datasource.page('Pricing');</code></pre>
+<p>We will translate that to the following without any extra work from you:</p>
+<pre><code>datasource.page('Pricing', {
+  title: 'Dasudian Pricing',
+  url: 'https://www.dasudian.com/pricing',
+  path: '/pricing',
+  referrer: 'https://dasudian.com'
+});</code></pre>
+<p>You can also override these values if you’d like, for example:</p>
+<pre><code>datasource.page('Pricing', {
+  title: 'My Overridden Title',
+  path: '/pricing/view'
+});</code></pre>
+<p>In which case we will respect your overridden title of My Overridden Title and add in the default url and referrer.</p>
+<h2 id="track">Track</h2>
+<p>The <strong>track</strong> method lets you track the position of your devices along with optional extra information about the position in real-time.</p>
+<p>Here’s a basic example, along with the track method signature:</p>
+<pre><code>datasource.track({ 
+        latitude:  24.597,
+        Longitude: -24.455, 
+        });</code></pre>
+<blockquote>
+<p>datasource.track([name], [location], [options], [callback], [timeout]);</p>
+</blockquote>
+<p><strong>name</strong>
+<em>String, optional</em>
+The name of the of the position, for example &quot;Languang Building&quot;.</p>
+<p><strong>location</strong>
+<em>Object, optional</em>
+A dictionary of latitude and longitude properties of the position. </p>
+<p><strong>options</strong>
+<em>Object, optional</em>
+A dictionary of options, that let you do things like enable or disable specific integrations for the call. Note: If you do not pass a properties object, pass an empty object (ie, ‘{}’) before options</p>
+<p><strong>callback</strong>
+<em>Function, optional</em>
+A callback function that gets called after a short timeout, giving the browser time to make outbound requests first.</p>
+<p><strong>timeout</strong>
+<em>integer, optional</em>
+A integer signifing milliseconds in which the track function will be called again automatically, the default value is 'infinity' meaning this function will be called only once unless it is called explicitly anywhere else. If you hope to recorde an event periotically, please explicitly indicate a period time here.</p>
+<h2 id="alias">Alias</h2>
+<p>The <strong>alias</strong> method combines two previously unassociated user/client/device identities. This comes in handy if the same user visits from two different services or your devices changed identifiers for different services, and you want to combine their history.</p>
+<p>Some providers also don’t alias automatically for you when an anonymous user signs up (like Mixpanel), so you need to call alias manually right after sign up with their brand new userId.</p>
+<p>Here’s a basic example along with the alias method signature:</p>
+<pre><code>datasource.alias('019mr8mf4r');</code></pre>
+<blockquote>
+<p>datasource.alias(Id, [previousId], [options], [callback]);</p>
+</blockquote>
+<p><strong>Id</strong>
+<em>String</em>
+The new User/Client/Device ID you want to associate the user/client/device with.</p>
+<p><strong>previousId</strong>
+<em>String, optional</em>
+The previous ID that the user/client/device was recognized by. This defaults to the currently identified user’s ID if you don’t pass one. In most cases you don’t need to worry about this argument.</p>
+<p><strong>options</strong>
+<em>Object, optional</em>
+A dictionary of options, that let you do things like enable or disable specific integrations for the call.</p>
+<p><strong>callback</strong>
+<em>Function, optional</em>
+A callback function that gets called after a short timeout, giving the browser time to make the alias requests first.</p>
+<h2 id="group">Group</h2>
+<p>The <strong>group</strong> method associates an user or a device with a group. The group can be a company, organization, account, project, workspace, team or any other name you came up with for the same concept.</p>
+<p>A user/device can be in more than one group; however, not all platforms support multiple groups. It also lets you record custom traits about the group, like industry or number of employees. Calling group is a slightly more advanced feature, but it’s helpful if you have accounts with multiple users.</p>
+<p>Here’s a basic example along with the group method signature:</p>
+<pre><code>datasource.group('IoT_Aliiance', {
+  name: "Dasudian",
+  industry: "Technology",
+  employees: 120
+});</code></pre>
+<blockquote>
+<p>datasource.group(groupId, [traits], [options], [callback]);</p>
+</blockquote>
+<p><strong>groupId</strong>
+<em>String</em>
+The new Group ID you want to create and associate the currently identified or anonymous user/device with.</p>
+<p><strong>traits</strong>
+<em>Object, optional</em>
+A dictionary of traits for the group. Example traits for a group include address, website and employees.</p>
+<p><strong>options</strong>
+<em>Object, optional</em>
+A dictionary of options, that let you do things like enable or disable specific integrations for the call. Note: If you do not pass a properties object, pass an empty object (ie, ‘{}’) before options</p>
+<p><strong>callback</strong>
+<em>Function, optional</em>
+A callback function that gets called after a short timeout, giving the browser time to make the track requests first. Also checkout our dedicated trackLink and trackForm helpers.</p>
+<h2 id="ready">Ready</h2>
+<p>The ready method allows you to pass in a callback that will be called as soon as all of your enabled integrations have loaded. It’s like jQuery’s ready method, except for integrations.</p>
+<p>If you want to make calls to a specific integration, like adding an extra setting to Mixpanel, you can use a ready callback so that you’re guaranteed to have access to the Mixpanel object, like so:</p>
+<pre><code>datasource.ready(function(){
+  window.mixpanel.set_config({ verbose: true });
+});
+datasource.ready(callback);</code></pre>
+<p><strong>callback</strong>
+<em>Function</em>
+A callback you want to fire after all your enabled integrations have loaded.
+Querystring API</p>
+<h2 id="selecting-integrations">Selecting Integrations</h2>
+<p>Filtering events calls can be done right from the <a href="https://dev.dasudian.com">Dasudian Developer's Portal</a> on your project schema page. We recommend using the UI if possible since it’s a much simpler way of managing your filters and can be updated with no code changes on your side.</p>
+<p>The alias, group, identify, page and record calls can all be passed an object of options that lets you turn certain integrations on or off.</p>
+<p>Here’s an example showing an identify call that only goes to Mixpanel and KISSmetrics:</p>
+<pre><code>datasource.identify('019mr8mf4r', {
+  email: 'barco@dasudian.com',
+  plan: 'Premium'
+}, {
+  integrations: {
+    'All': false,
+    'Mixpanel': true,
+    'KISSmetrics': true
+  }
+});</code></pre>
+<p>In this case, we’re specifying that we want this identify to only go to Mixpanel and KISSmetrics. 'All': false says that no integration should be enabled unless otherwise specified. 'Mixpanel': true turns on Mixpanel, etc. Note, you must use an Integration’s formal, case sensitive name (i.e. “AdLearn Open Platform”, “awe.sm”, “MailChimp”, etc.), which is also the title of the integration’s documentation.</p>
+<h2 id="user-amp-group">User &amp; Group</h2>
+<p>Once Datasource.js loaded, you can retrieve information about the currently identified user or group like their id and traits. Here’s how you’d access information about the user:</p>
+<pre><code>datasource.ready(function(){
+  var user = datasource.user();
+  var id = user.id();
+  var traits = user.traits();
+});</code></pre>
+<p>Similarly, here’s how you’d access information about the group:</p>
+<pre><code>datasource.ready(function(){
+  var group = datasource.group();
+  var id = group.id();
+  var traits = group.traits();
+});</code></pre>
+<h2 id="clearing-traits">Clearing Traits</h2>
+<p>By default we cache traits when you call identify or group. You can clear the traits object by calling one of the following:</p>
+<pre><code>datasource.user().traits({});
+datasource.group().traits({});</code></pre>
+<p><strong>Reset / Logout</strong>
+If you need to clear the user and group id and traits we’ve added a reset function that is most commonly used when your identified users logout of your application.</p>
+<p>Calling datasource.reset() will clear out user and group ids, traits, and reset the anonymousId:</p>
+<pre><code>datasource.reset();</code></pre>
+<p>Note, however, that this function only clears the cookies/localStorage set by Dasudian and not the those of other third-party tools. Our javascript library asynchronously loads the scripts of some of those tools onto the page and those libraries also use cookies to manage user tracking, sessions, and manage state. If you want to completely clear out the user session, then check the documentation of those other tools to learn how to do so.</p>
+<p><strong>Anonymous ID</strong>
+Datasource.js generates an anonymousId for all visitors to your site. It will look something like this:</p>
+<pre><code>7cade20a-8e5f-48d2-aa24-b92e965ab30e</code></pre>
+<p><strong>Retrieving the Anonymous ID</strong>
+You can retrieve the visitor’s current anonymousId like this:</p>
+<pre><code>datasource.user().anonymousId();</code></pre>
+<p><strong>Setting the Anonymous ID</strong>
+If you want to set your own anonymousId that can be done independently, like this:</p>
+<pre><code>datasource.user().anonymousId('ABC-123-XYZ');</code></pre>
+<p>Or in the options object of identify, page, or record calls, like this:</p>
+<pre><code>datasource.identify('123', {
+  gender: 'Male',
+}, {
+  anonymousId: 'ABC-123-XYZ'
+});
+datasource.page({}, { anonymousId: 'ABC-123-XYZ' });
+datasource.track('Clicked CTA', {
+  callToAction: 'Signup'
+}, {
+  anonymousId: 'ABC-123-XYZ'
+});</code></pre>
+<p>Keep in mind that setting the anonymousId in Datasource.js does not overwrite the anonymous tracking IDs for any integrations you’re using.</p>
+<p><strong>Refreshing the Anonymous ID</strong>
+A user’s anonymousId will refresh if any of the following conditions occur:</p>
+<p><strong>A user clears their cache or cookies</strong>
+A datasource.reset() call is made during in the user’s browser session
+A datasource.identify() call is made with a userId that differs from the current userId for a user</p>
+<h2 id="debug">Debug</h2>
+<p>Datasource.js has a debug mode that logs helpful messages to the console. You can enable it by firing:</p>
+<pre><code>datasource.debug();</code></pre>
+<p>And turn it off with:</p>
+<pre><code>datasource.debug(false);</code></pre>
+<h2 id="emitter">Emitter</h2>
+<p>The global analytics object emits events whenever you call alias, group, identify, record or page. That way you can listen to those events and run your own custom code. For example, you could use them to send data to your own custom integration:</p>
+<pre><code>datasource.on('record', function(event, properties, options){
+  bigdata.push(['recordEvent', event]);
+});</code></pre>
+<h2 id="extending-timeout">Extending Timeout</h2>
+<p>You can extend the length (in milliseconds) of the method callbacks and helpers like this:</p>
+<pre><code>datasource.timeout(500);</code></pre>
+<p>This will set the timeout to 500ms. This is helpful if you have multiple scripts that need to fire in your callback or trackLink, trackForm helper function. We recommend extending to 500ms if you’re triggering ad network conversion pixels since those are often a bit slower to load.</p>
+      </div>
+
+              <div class="tract"><img src="/images/tract.png"/></div>
+            <div class="clearfix"></div>
+      <div class="scroll" id="scroll" style="display:none;">
+			     <img src="/images/top.png"/>
+		  </div>
+    </div>
+  </div>
+  <script>hljs.initHighlightingOnLoad();</script>
+</body>
+
+</html>

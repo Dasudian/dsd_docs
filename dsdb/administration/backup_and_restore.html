@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="大数点物联网开发者平台文档，基于大数点物联网平台，帮助开发者快速构建物联网应用">
-    <title>大数点文档中心</title>
+    <title>Backup and Restore</title>
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
@@ -86,7 +86,7 @@
             </ul>
           </li>
           <li><a class="fold">DS Database</a>
-            <ul class="menu2" >
+            <ul class="menu2" style="display: block;">
               <li><a id="dsdb-overview" class="" href="/dsdb/index.html">DSDB Overview</a></li>
               <li><a class="fold">Introduction</a>
                 <ul class="menu3" >
@@ -96,10 +96,10 @@
                 </ul>
               </li>
               <li><a class="fold">Administration</a>
-                <ul class="menu3" >
+                <ul class="menu3" style="display: block;">
                   <li><a id="dsdb-admin-overview" class="" href="/dsdb/administration/index.html">administration Overview</a></li>
                   <li><a id="dsdb-authent&amp;authori" class="" href="/dsdb/administration/authentication_and_authorization.html">Authentication&Authorization</a></li>
-                  <li><a id="dsdb-backup&amp;restore" class="" href="/dsdb/administration/backup_and_restore.html">Backup&Restore</a></li>
+                  <li><a id="dsdb-backup&amp;restore" class="active" href="/dsdb/administration/backup_and_restore.html">Backup&Restore</a></li>
                   <li><a id="dsdb-configuration" class="" href="/dsdb/administration/config.html">Configuration</a></li>
                   <li><a id="dsdb-logs" class="" href="/dsdb/administration/logs.html">Logs</a></li>
                   <li><a id="dsdb-monitoring" class="" href="/dsdb/administration/statistics.html">Server Monitoring</a></li>
@@ -214,82 +214,139 @@
 
     <div class="side_right">
       <div class="doc">
-        <h1 id="">大数点开发者文档中心</h1>
-<p>欢迎来到大数点开发文档中心，请阅读以下章节：　　</p>
-<h3 id="-1">服务集成指南</h3>
+        <h1 id="backup-and-restore">Backup and Restore</h1>
+<p>Starting with v1.0.0, DSDB has the ability to snapshot a single
+data node at a point-in-time and restore it.</p>
+<h2 id="backups">Backups</h2>
+<h3 id="backing-up-the-metastore">Backing up the Metastore</h3>
+<p>DSDB's metastore contains internal information about the status of
+the system, including: user information, database/shard metadata, and
+which retention policies are enabled. While a node is running, you can
+create a backup of your instance's metastore by running the command:</p>
+<pre><code>influxd backup /path/to/backup</code></pre>
+<p>Where <code>/path/to/backup</code> can be replaced with the directory where you
+would like the backup to be written to. Without any other arguments,
+the backup will only record the current state of the system
+metastore. For example, the command:</p>
+<pre><code class="language-sh">$ influxd backup /tmp/backup
+2016/02/01 17:15:03 backing up metastore to /tmp/backup/meta.00
+2016/02/01 17:15:03 backup complete</code></pre>
+<p>Will create a metastore backup in the directory <code>/tmp/backup</code> (the
+directory will be created if it doesn't already exist). </p>
+<h3 id="backing-up-a-database">Backing up a Database</h3>
+<p>To backup a database, you will need to add the <code>-database</code> flag:</p>
+<pre><code>influxd backup -database mydatabase /path/to/backup</code></pre>
+<p>Where <code>mydatabase</code> is the name of the database you would like to
+backup, and <code>/path/to/backup</code> is where the backup data should be
+stored. Optional flags also include:</p>
 <ul>
-<li><a href="integration-dev/integrate-im-android.html">Android上集成IM功能</a>  </li>
-<li><a href="integration-dev/integrate-im-ios.html">iOS上集成IM功能</a>  </li>
+<li>
+<p><code>-retention &lt;retention policy name&gt;</code> - This flag can be used to
+backup a specific retention policy. For more information on
+retention policies, please see
+<a href="/dsdb/query_language/database_management/#retention-policy-management">here</a>. If
+not specified, all retention policies will be backed up.</p>
+</li>
+<li>
+<p><code>-shard &lt;shard ID&gt;</code> - This flag can be used to backup a specific
+shard ID. To see which shards are available, you can run the command
+<code>SHOW SHARDS</code> using the DSDB query language. If not specified,
+all shards will be backed up.</p>
+</li>
+<li><code>-since &lt;date&gt;</code> - This flag can be used to create a backup <em>since</em> a
+specific date, where the date must be in
+<a href="https://www.ietf.org/rfc/rfc3339.txt">RFC3339</a> format (ex:
+<code>2015-12-24T08:12:23</code>). This flag is important if you would like to
+take incremental backups of your database. If not specified, all
+timeranges within the database will be backed up.</li>
 </ul>
-<h3 id="ds-database">DS database</h3>
+<blockquote>
+<p><strong>Note:</strong> Metastore backups are also included in per-database backups</p>
+</blockquote>
+<p>As a real-world example, you can take a backup of the <code>default</code>
+retention policy for the <code>telegraf</code> database since midnight UTC on
+February 1st, 2016 by using the command:</p>
+<pre><code>$ influxd backup -database telegraf -retention default -since 2016-02-01T00:00:00Z /tmp/backup
+2016/02/01 18:02:36 backing up rp=default since 2016-02-01 00:00:00 +0000 UTC
+2016/02/01 18:02:36 backing up metastore to /tmp/backup/meta.01
+2016/02/01 18:02:36 backing up db=telegraf rp=default shard=2 to /tmp/backup/telegraf.default.00002.01 since 2016-02-01 00:00:00 +0000 UTC
+2016/02/01 18:02:36 backup complete</code></pre>
+<p>Which will send the resulting backup to <code>/tmp/backup</code>, where it can
+then be compressed and sent to long-term storage.</p>
+<h3 id="remote-backups">Remote Backups</h3>
+<p>To capture a backup from a remote node, specify the host and port of
+the remote instance using the <code>-host</code> configuration switch:</p>
+<pre><code class="language-sh">$ influxd backup -database mydatabase -host 10.0.0.1:8088 /tmp/mysnapshot</code></pre>
+<p>Where all of the flags above still apply to remote hosts.</p>
+<h2 id="restore">Restore</h2>
+<p>To restore a backup, you will need to use the <code>influxd restore</code> command.</p>
+<blockquote>
+<p><strong>Note:</strong> Restoring from backup is only supported while the DSDB daemon is stopped.</p>
+</blockquote>
+<p>In order to restore from a backup, you will need to provide the path
+to the backup. The command:</p>
+<pre><code>influxd restore /tmp/backup</code></pre>
+<p>Will attempt to restore the contents of the <code>/tmp/backup</code>. The
+optional flags for restoring a backup are:</p>
 <ul>
-<li><a href="dsdb/index.html">DSDB Overview</a>  </li>
-<li>Introduction<br />
-&nbsp; - <a href="dsdb/introduction/installation.html">Installation</a><br />
-&nbsp; - <a href="dsdb/introduction//getting_started.html">Getting Started</a>  </li>
-<li>Administration<br />
-&nbsp; - <a href="dsdb/administration/authentication_and_authorization.html">Authentication and Authorization</a><br />
-&nbsp; - <a href="dsdb/administration/backup_and_restore.html">Backup and Restore</a><br />
-&nbsp; - <a href="dsdb/administration/config.html">Configuration</a><br />
-&nbsp; - <a href="dsdb/administration/logs.html">Logs</a><br />
-&nbsp; - <a href="dsdb/administration/statistics.html">Server Monitoring</a><br />
-&nbsp; - <a href="dsdb/administration/upgrading.html">Upgrading from previous versions</a>  </li>
-<li>Clients<br />
-&nbsp; - <a href="dsdb/clients/api.html">HTTP API Client Libraries</a>  </li>
-<li>Concepts
-&nbsp; - <a href="dsdb/concepts/key_concepts.html">Key Concepts</a><br />
-&nbsp; - <a href="dsdb/concepts/schema_and_data_layout.html">Schema and Data Layout</a><br />
-&nbsp; - <a href="dsdb/concepts/insights_tradeoffs.html">Design Insights and Tradeoffs</a><br />
-&nbsp; - <a href="dsdb/concepts/api.html">HTTP API Endpoints</a><br />
-&nbsp; - <a href="dsdb/concepts/storage_engine.html">Storage Engine</a><br />
-&nbsp; - <a href="dsdb/concepts/glossary.html">Glossary of Terms</a>  </li>
-<li>Data Sources<br />
-&nbsp; - <a href="dsdb/data_sources/diamond.html">Diamond</a><br />
-&nbsp; - <a href="dsdb/data_sources/opentsdb.html">OpenTSDB</a>  </li>
-<li>Guides<br />
-&nbsp; - <a href="dsdb/guides/clustering.html">Clustering</a><br />
-&nbsp; - <a href="dsdb/guides/downsampling_and_retention.html">Downsampling and Data Retention</a><br />
-&nbsp; - <a href="dsdb/guides/hardware_sizing.html">Hardware Sizing Guidelines</a><br />
-&nbsp; - <a href="dsdb/guides/querying_data.html">Querying Data</a><br />
-&nbsp; - <a href="dsdb/guides/writing_data.html">Writing Data</a>  </li>
-<li>Query Language<br />
-&nbsp; - <a href="dsdb/query_language/continuous_queries.html">Continuous Queries</a><br />
-&nbsp; - <a href="dsdb/query_language/data_exploration.html">Data Exploration</a><br />
-&nbsp; - <a href="dsdb/query_language/database_management.html">Database Management</a><br />
-&nbsp; - <a href="dsdb/query_language/functions.html">Functions</a><br />
-&nbsp; - <a href="dsdb/query_language/math_operators.html">Mathematical Operators</a><br />
-&nbsp; - <a href="dsdb/query_language/schema_exploration.html">Scheam Exploration</a><br />
-&nbsp; - <a href="dsdb/query_language/spec.html">Query Language Reference</a>  </li>
-<li>Sample Data<br />
-&nbsp; - <a href="dsdb/sample_data/data_download.html">Sample Data Download</a>  </li>
-<li>Tools<br />
-&nbsp; - <a href="dsdb/tools/shell.html">CLI/Shell</a><br />
-&nbsp; - <a href="dsdb/tools/web_admin.html">Web Admin Interface</a>  </li>
-<li>Troubleshooting<br />
-&nbsp; - <a href="dsdb/troubleshooting/frequently_encountered_issues.html">Frequently Encountered Issues</a><br />
-&nbsp; - <a href="dsdb/troubleshooting/system_monitoring.html">System Monitoring</a>  </li>
-<li>Write Protocols<br />
-&nbsp; - <a href="dsdb/write_protocols/collectd.html">Service - CollectD</a><br />
-&nbsp; - <a href="dsdb/write_protocols/graphite.html">Service - Graphite</a><br />
-&nbsp; - <a href="dsdb/write_protocols/json.html">JSON Protocol</a><br />
-&nbsp; - <a href="dsdb/write_protocols/line.html">Line Protocol</a><br />
-&nbsp; - <a href="dsdb/write_protocols/opentsdb.html">Service - OpenTSDB</a><br />
-&nbsp; - <a href="dsdb/write_protocols/udp.html">Service - UDP</a><br />
-&nbsp; - <a href="dsdb/write_protocols/write_syntax.html">Write Syntax</a>  </li>
+<li>
+<p><code>-metadir &lt;path to meta directory&gt;</code> - This is the path to the meta
+directory where you would like the metastore backup recovered
+to. For packaged installations, this should be specified as
+<code>/var/lib/dsdb/meta</code>.</p>
+</li>
+<li>
+<p><code>-datadir &lt;path to data directory&gt;</code> - This is the path to the data
+directory where you would like the database backup recovered to. For
+packaged installations, this should be specified as
+<code>/var/lib/dsdb/data</code>.</p>
+</li>
+<li>
+<p><code>-database &lt;database&gt;</code> - This is the database that you would like to
+restore the data to. This option is required if no <code>-metadir</code> option
+is provided.</p>
+</li>
+<li>
+<p><code>-retention &lt;retention policy&gt;</code> - This is the target retention policy
+for the stored data to be restored to.</p>
+</li>
+<li><code>-shard &lt;shard id&gt;</code> - This is the shard data that should be
+restored. If specified, <code>-database</code> and <code>-retention</code> must also be
+set.</li>
 </ul>
-<h3 id="dac-document">DAC Document</h3>
-<ul>
-<li><a href="dac/dac_introduction.html">DAC Introduction</a>  </li>
-<li><a href="dac/dac_cloud_api_java.html">DAC JAVA API</a>  </li>
-<li><a href="dac/dac_cloud_api_c.html">DAC C API</a>  </li>
-<li><a href="dac/dac_cloud_api_cpp.html">DAC C++ API</a>  </li>
-</ul>
-<h3 id="data-hub">Data Hub</h3>
-<ul>
-<li>SDK<br />
-&nbsp; - <a href="data-hub/sdk/embeded_c.html">Embeded C API</a><br />
-&nbsp; - <a href="data-hub/sdk/javascript.html">JavaScript API</a>  </li>
-</ul>
+<p>Following the backup example above, the backup can be restored in two
+steps. First, the metastore needs to be restored so that DSDB
+knows which databases exist:</p>
+<pre><code>$ influxd restore -metadir /var/lib/dsdb/meta /tmp/backup
+Using metastore snapshot: /tmp/backup/meta.00</code></pre>
+<p>Once the metastore has been restored, we can now recover the backed up
+data. In the real-world example above, we backed up the <code>telegraf</code>
+database to <code>/tmp/backup</code>, so let's restore that same dataset. To
+restore the <code>telegraf</code> database:</p>
+<pre><code>$ influxd restore -database telegraf -datadir /var/lib/dsdb/data /tmp/backup                                                                         
+Restoring from backup /tmp/backup/telegraf.*
+unpacking /var/lib/dsdb/data/telegraf/default/2/000000004-000000003.tsm
+unpacking /var/lib/dsdb/data/telegraf/default/2/000000005-000000001.tsm</code></pre>
+<blockquote>
+<p><strong>Note:</strong> Once the backed up data has been recovered, the
+permissions on the shards may no longer be accurate. To ensure
+the file permissions are correct, please run:</p>
+<p><code>$ sudo chown -R dsdb:dsdb /var/lib/dsdb</code></p>
+</blockquote>
+<p>Once the data and metastore are recovered, it's time to start the database:</p>
+<pre><code>$ service dsdb start</code></pre>
+<p>As a quick check, we can verify the database is known to the metastore
+by running a <code>SHOW DATABASES</code> command:</p>
+<pre><code>influx -execute 'show databases'
+name: databases
+---------------
+name
+_internal
+telegraf</code></pre>
+<p>The database has now been successfully restored!</p>
+<h2 id="caveats">Caveats</h2>
+<p>This approach currently only works in clusters where the replication factor is the same as the number of nodes in the cluster.
+A cluster wide backup and restore will be done in the future.</p>
       </div>
 
               <div class="tract"><img src="/images/tract.png"/></div>

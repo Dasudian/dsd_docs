@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="大数点物联网开发者平台文档，基于大数点物联网平台，帮助开发者快速构建物联网应用">
-    <title>大数点文档中心</title>
+    <title>Writing Data</title>
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
@@ -86,7 +86,7 @@
             </ul>
           </li>
           <li><a class="fold">DS Database</a>
-            <ul class="menu2" >
+            <ul class="menu2" style="display: block;">
               <li><a id="dsdb-overview" class="" href="/dsdb/index.html">DSDB Overview</a></li>
               <li><a class="fold">Introduction</a>
                 <ul class="menu3" >
@@ -134,12 +134,12 @@
                 </ul>
               </li>
               <li><a class="fold">Guides</a>
-                <ul class="menu3" >
+                <ul class="menu3" style="display: block;">
                   <li><a id="dsdb-guides-clustering" class="" href="/dsdb/guides/clustering.html">Clustering</a></li>
                   <li><a id="dsdb-guides-ddr" class="" href="/dsdb/guides/downsampling_and_retention.html">Downsampling and Data Retention</a></li>
                   <li><a id="dsdb-guides-hsg" class="" href="/dsdb/guides/hardware_sizing.html">Hardware Sizing Guidelines</a></li>
                   <li><a id="dsdb-guides-querying" class="" href="/dsdb/guides/querying_data.html">Querying Data</a></li>
-                  <li><a id="dsdb-guides-writing" class="" href="/dsdb/guides/writing_data.html">Writing Data</a></li>
+                  <li><a id="dsdb-guides-writing" class="active" href="/dsdb/guides/writing_data.html">Writing Data</a></li>
                 </ul>
               </li>
               <li><a class="fold">Query Language</a>
@@ -214,82 +214,110 @@
 
     <div class="side_right">
       <div class="doc">
-        <h1 id="">大数点开发者文档中心</h1>
-<p>欢迎来到大数点开发文档中心，请阅读以下章节：　　</p>
-<h3 id="-1">服务集成指南</h3>
+        <h1 id="writing-data">Writing Data</h1>
+<p>There are many ways to write data into DSDB including the <a href="/docs/dsdb/tools/shell.html">command line interface</a>, <a href="/docs/dsdb/clients/api.html">client libraries</a> and plugins for common data formats such as <a href="/docs/dsdb/write_protocols/graphite.html">Graphite</a>.
+Here we'll show you how to create a database and write data to that database using the built-in HTTP API.</p>
+<h2 id="creating-a-database-using-the-http-api">Creating a database using the HTTP API</h2>
+<p>To create a database send a <code>GET</code> request to the <code>/query</code> endpoint and set the URL parameter <code>q</code> to <code>CREATE DATABASE &lt;new_database_name&gt;</code>.
+The example below sends a request to DSDB running on <code>localhost</code> and creates the database <code>mydb</code>:<br />
+<br></p>
+<pre><code class="language-sh">curl -G http://localhost:8088/query --data-urlencode "q=CREATE DATABASE mydb"</code></pre>
+<h2 id="writing-data-using-the-http-api">Writing data using the HTTP API</h2>
+<p>The HTTP API is the primary means of putting data into DSDB.
+To write data send a <code>POST</code> request to the <code>/write</code> endpoint.
+The example below writes a single point to the <code>mydb</code> database.
+The data consist of the <a href="/docs/dsdb/concepts/glossary.html#measurement">measurement</a> <code>cpu_load_short</code>, the <a href="/docs/dsdb/concepts/glossary.html#tag-key">tag keys</a> <code>host</code> and <code>region</code> with the <a href="/docs/dsdb/concepts/glossary.html#tag-value">tag values</a> <code>server01</code> and <code>us-west</code>, the <a href="/docs/dsdb/concepts/glossary.html#field-key">field key</a> <code>value</code> with a <a href="/docs/dsdb/concepts/glossary.html#field-value">field value</a> of <code>0.64</code>, and the <a href="/docs/dsdb/concepts/glossary.html#timestamp">timestamp</a> <code>1434055562000000000</code>.
+<br></p>
+<pre><code class="language-sh">curl -i -XPOST 'http://localhost:8088/write?db=mydb' --data-binary 'cpu_load_short,host=server01,region=us-west value=0.64 1434055562000000000'</code></pre>
+<p>When writing points, you must specify an existing database in the <code>db</code> query parameter.
+See the <a href="/docs/dsdb/write_protocols/write_syntax.html#http">HTTP section</a> on the Write Syntax page for a complete list of the available query parameters.</p>
+<p>The body of the POST - we call this the <a href="/docs/dsdb/write_protocols/line.html">Line Protocol</a> - contains the time-series data that you wish to store.
+They consist of a measurement, tags, fields, and a timestamp.
+DSDB requires a measurement name.
+Strictly speaking, tags are optional but most series include tags to differentiate data sources and to make querying both easy and efficient.
+Both tag keys and tag values are strings.
+Field keys are required and are always strings, and, <a href="/docs/dsdb/write_protocols/write_syntax.html#line-protocol">by default</a>, field values are floats.
+The timestamp - supplied at the end of the line in Unix time in nanoseconds since January 1, 1970 UTC - is optional.
+If you do not specify a timestamp DSDB uses the server's local nanosecond timestamp in Unix epoch.
+Anything that has to do with time in DSDB is always UTC.</p>
+<h3 id="writing-multiple-points">Writing multiple points</h3>
+<hr />
+<p>Post multiple points to multiple series at the same time by separating each point with a new line.
+Batching points in this manner results in much higher performance.</p>
+<p>The following example writes three points to the database <code>mydb</code>.
+The first point belongs to the series with the measurement <code>cpu_load_short</code> and tag set <code>host=server02</code> and has the server's local timestamp.
+The second point belongs to the series with the measurement <code>cpu_load_short</code> and tag set <code>host=server02,region=us-west</code> and has the specified timestamp <code>1422568543702900257</code>.
+The third point has the same specified timestamp as the second point, but it is written to the series with the measurement <code>cpu_load_short</code> and tag set <code>direction=in,host=server01,region=us-west</code>.
+<br></p>
+<pre><code class="language-sh">curl -i -XPOST 'http://localhost:8088/write?db=mydb' --data-binary 'cpu_load_short,host=server02 value=0.67
+cpu_load_short,host=server02,region=us-west value=0.55 1422568543702900257
+cpu_load_short,direction=in,host=server01,region=us-west value=2.0 1422568543702900257'</code></pre>
+<h3 id="writing-points-from-a-file">Writing points from a file</h3>
+<hr />
+<p>Write points from a file by passing <code>@filename</code> to <code>curl</code>.
+The data in the file should follow DSDB's <a href="/docs/dsdb/write_protocols/write_syntax.html">line protocol syntax</a>.</p>
+<p>Example of a properly-formatted file (<code>cpu_data.txt</code>):<br />
+<br></p>
+<pre><code class="language-txt">cpu_load_short,host=server02 value=0.67
+cpu_load_short,host=server02,region=us-west value=0.55 1422568543702900257
+cpu_load_short,direction=in,host=server01,region=us-west value=2.0 1422568543702900257</code></pre>
+<p>Write the data in <code>cpu_data.txt</code> to the <code>mydb</code> database with:<br />
+<br>
+<code>curl -i -XPOST 'http://localhost:8088/write?db=mydb' --data-binary @cpu_data.txt</code></p>
+<blockquote>
+<p><strong>Note:</strong> If your data file has more than 5,000 points, it may be necessary to split that file into several files in order to write your data in batches to DSDB.
+<a href="/docs/dsdb/administration/config.html#cluster">By default</a>, the HTTP request times out after five seconds.
+DSDB will still attempt to write the points after that time out but there will be no confirmation that they were successfully written.</p>
+</blockquote>
+<h3 id="schemaless-design">Schemaless Design</h3>
+<hr />
+<p>DSDB is a schemaless database.
+You can add new measurements, tags, and fields at any time.
+Note that if you attempt to write data with a different type than previously used (for example, writing a string to a field that previously accepted integers), DSDB will reject those data.</p>
+<h3 id="a-note-on-rest">A note on REST...</h3>
+<hr />
+<p>DSDB uses HTTP solely as a convenient and widely supported data transfer protocol.</p>
+<p>Modern web APIs have settled on REST because it addresses a common need.
+As the number of endpoints grows the need for an organizing system becomes pressing.
+REST is the industry agreed style for organizing large numbers of endpoints.
+This consistency is good for those developing and consuming the API: everyone involved knows what to expect.</p>
+<p>REST, however, is a convention.
+DSDB makes do with three API endpoints.
+This simple, easy to understand system uses HTTP as a transfer system for <a href="https://github.com/docs/dsdb/dsdb/blob/master/influxql/influxql.html">DSDBQL</a>.
+The DSDB API makes no attempt to be RESTful.</p>
+<h3 id="http-response-summary">HTTP response summary</h3>
+<hr />
 <ul>
-<li><a href="integration-dev/integrate-im-android.html">Android上集成IM功能</a>  </li>
-<li><a href="integration-dev/integrate-im-ios.html">iOS上集成IM功能</a>  </li>
+<li>2xx: If it's <code>HTTP 204 No Content</code>, success!
+If it's  <code>HTTP 200 OK</code>, DSDB understood the request but couldn't complete it.
+The body of the response will contain additional error information.</li>
+<li>4xx: DSDB could not understand the request.</li>
+<li>5xx: The system is overloaded or significantly impaired.</li>
 </ul>
-<h3 id="ds-database">DS database</h3>
+<p><strong>Examples of error responses:</strong></p>
 <ul>
-<li><a href="dsdb/index.html">DSDB Overview</a>  </li>
-<li>Introduction<br />
-&nbsp; - <a href="dsdb/introduction/installation.html">Installation</a><br />
-&nbsp; - <a href="dsdb/introduction//getting_started.html">Getting Started</a>  </li>
-<li>Administration<br />
-&nbsp; - <a href="dsdb/administration/authentication_and_authorization.html">Authentication and Authorization</a><br />
-&nbsp; - <a href="dsdb/administration/backup_and_restore.html">Backup and Restore</a><br />
-&nbsp; - <a href="dsdb/administration/config.html">Configuration</a><br />
-&nbsp; - <a href="dsdb/administration/logs.html">Logs</a><br />
-&nbsp; - <a href="dsdb/administration/statistics.html">Server Monitoring</a><br />
-&nbsp; - <a href="dsdb/administration/upgrading.html">Upgrading from previous versions</a>  </li>
-<li>Clients<br />
-&nbsp; - <a href="dsdb/clients/api.html">HTTP API Client Libraries</a>  </li>
-<li>Concepts
-&nbsp; - <a href="dsdb/concepts/key_concepts.html">Key Concepts</a><br />
-&nbsp; - <a href="dsdb/concepts/schema_and_data_layout.html">Schema and Data Layout</a><br />
-&nbsp; - <a href="dsdb/concepts/insights_tradeoffs.html">Design Insights and Tradeoffs</a><br />
-&nbsp; - <a href="dsdb/concepts/api.html">HTTP API Endpoints</a><br />
-&nbsp; - <a href="dsdb/concepts/storage_engine.html">Storage Engine</a><br />
-&nbsp; - <a href="dsdb/concepts/glossary.html">Glossary of Terms</a>  </li>
-<li>Data Sources<br />
-&nbsp; - <a href="dsdb/data_sources/diamond.html">Diamond</a><br />
-&nbsp; - <a href="dsdb/data_sources/opentsdb.html">OpenTSDB</a>  </li>
-<li>Guides<br />
-&nbsp; - <a href="dsdb/guides/clustering.html">Clustering</a><br />
-&nbsp; - <a href="dsdb/guides/downsampling_and_retention.html">Downsampling and Data Retention</a><br />
-&nbsp; - <a href="dsdb/guides/hardware_sizing.html">Hardware Sizing Guidelines</a><br />
-&nbsp; - <a href="dsdb/guides/querying_data.html">Querying Data</a><br />
-&nbsp; - <a href="dsdb/guides/writing_data.html">Writing Data</a>  </li>
-<li>Query Language<br />
-&nbsp; - <a href="dsdb/query_language/continuous_queries.html">Continuous Queries</a><br />
-&nbsp; - <a href="dsdb/query_language/data_exploration.html">Data Exploration</a><br />
-&nbsp; - <a href="dsdb/query_language/database_management.html">Database Management</a><br />
-&nbsp; - <a href="dsdb/query_language/functions.html">Functions</a><br />
-&nbsp; - <a href="dsdb/query_language/math_operators.html">Mathematical Operators</a><br />
-&nbsp; - <a href="dsdb/query_language/schema_exploration.html">Scheam Exploration</a><br />
-&nbsp; - <a href="dsdb/query_language/spec.html">Query Language Reference</a>  </li>
-<li>Sample Data<br />
-&nbsp; - <a href="dsdb/sample_data/data_download.html">Sample Data Download</a>  </li>
-<li>Tools<br />
-&nbsp; - <a href="dsdb/tools/shell.html">CLI/Shell</a><br />
-&nbsp; - <a href="dsdb/tools/web_admin.html">Web Admin Interface</a>  </li>
-<li>Troubleshooting<br />
-&nbsp; - <a href="dsdb/troubleshooting/frequently_encountered_issues.html">Frequently Encountered Issues</a><br />
-&nbsp; - <a href="dsdb/troubleshooting/system_monitoring.html">System Monitoring</a>  </li>
-<li>Write Protocols<br />
-&nbsp; - <a href="dsdb/write_protocols/collectd.html">Service - CollectD</a><br />
-&nbsp; - <a href="dsdb/write_protocols/graphite.html">Service - Graphite</a><br />
-&nbsp; - <a href="dsdb/write_protocols/json.html">JSON Protocol</a><br />
-&nbsp; - <a href="dsdb/write_protocols/line.html">Line Protocol</a><br />
-&nbsp; - <a href="dsdb/write_protocols/opentsdb.html">Service - OpenTSDB</a><br />
-&nbsp; - <a href="dsdb/write_protocols/udp.html">Service - UDP</a><br />
-&nbsp; - <a href="dsdb/write_protocols/write_syntax.html">Write Syntax</a>  </li>
+<li>Writing a float to a field that previously accepted booleans:</li>
 </ul>
-<h3 id="dac-document">DAC Document</h3>
+<pre><code class="language-sh">curl -i -XPOST 'http://localhost:8088/write?db=hamlet' --data-binary 'tobeornottobe booleanonly=true'  
+
+curl -i -XPOST 'http://localhost:8088/write?db=hamlet' --data-binary 'tobeornottobe booleanonly=5'</code></pre>
+<p>returns:<br />
+<br></p>
+<pre><code class="language-sh">HTTP/1.1 400 Bad Request
+[...]
+write failed: field type conflict: input field "booleanonly" on measurement "tobeornottobe" is type float64, already exists as type boolean</code></pre>
 <ul>
-<li><a href="dac/dac_introduction.html">DAC Introduction</a>  </li>
-<li><a href="dac/dac_cloud_api_java.html">DAC JAVA API</a>  </li>
-<li><a href="dac/dac_cloud_api_c.html">DAC C API</a>  </li>
-<li><a href="dac/dac_cloud_api_cpp.html">DAC C++ API</a>  </li>
+<li>Writing a point to a database that doesn't exist:</li>
 </ul>
-<h3 id="data-hub">Data Hub</h3>
-<ul>
-<li>SDK<br />
-&nbsp; - <a href="data-hub/sdk/embeded_c.html">Embeded C API</a><br />
-&nbsp; - <a href="data-hub/sdk/javascript.html">JavaScript API</a>  </li>
-</ul>
+<pre><code class="language-sh">curl -i -XPOST 'http://localhost:8088/write?db=atlantis' --data-binary 'liters value=10'</code></pre>
+<p>returns:<br />
+<br></p>
+<pre><code class="language-sh">HTTP/1.1 404 Not Found
+[...]
+database not found: "atlantis"</code></pre>
+<h3 id="next-steps">Next steps</h3>
+<hr />
+<p>Now that you know how to write data with the built-in HTTP API discover how to query them with the <a href="/docs/dsdb/guides/querying_data.html">Querying Data</a> guide!</p>
       </div>
 
               <div class="tract"><img src="/images/tract.png"/></div>

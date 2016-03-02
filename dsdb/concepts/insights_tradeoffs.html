@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="大数点物联网开发者平台文档，基于大数点物联网平台，帮助开发者快速构建物联网应用">
-    <title>大数点文档中心</title>
+    <title>Design Insights and Tradeoffs in DSDB</title>
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
@@ -86,7 +86,7 @@
             </ul>
           </li>
           <li><a class="fold">DS Database</a>
-            <ul class="menu2" >
+            <ul class="menu2" style="display: block;">
               <li><a id="dsdb-overview" class="" href="/dsdb/index.html">DSDB Overview</a></li>
               <li><a class="fold">Introduction</a>
                 <ul class="menu3" >
@@ -113,12 +113,12 @@
                 </ul>
               </li>
               <li><a class="fold">Concepts</a>
-                <ul class="menu3" >
+                <ul class="menu3" style="display: block;">
                   <li><a id="dsdb-concepts-overview" class="" href="/dsdb/concepts/index.html">Concepts Overview</a></li>
                   <li><a id="dsdb-key-concepts" class="" href="/dsdb/concepts/key_concepts.html">Key Concepts</a></li>
                   <li><a id="dsdb-concepts-arch" class="" href="/dsdb/concepts/how_dsdb_works.html">Architecture</a></li>
                   <li><a id="dsdb-concepts-schema-data-layout" class="" href="/dsdb/concepts/schema_and_data_layout.html">Scheam Design</a></li>
-                  <li><a id="dsdb-concepts-insights-tradeoffs" class="" href="/dsdb/concepts/insights_tradeoffs.html">Insights Tradeoffs</a></li>
+                  <li><a id="dsdb-concepts-insights-tradeoffs" class="active" href="/dsdb/concepts/insights_tradeoffs.html">Insights Tradeoffs</a></li>
                   <li><a id="dsdb-concepts-api-endpoints" class="" href="/dsdb/concepts/api.html">API Endpoints&Ports</a></li>
                   <li><a id="dsdb-concepts-storage-engine" class="" href="/dsdb/concepts/storage_engine.html">Storage Engine</a></li>
                   <li><a id="dsdb-concepts-glossary" class="" href="/dsdb/concepts/glossary.html">Glossary of Terms</a></li>
@@ -214,82 +214,58 @@
 
     <div class="side_right">
       <div class="doc">
-        <h1 id="">大数点开发者文档中心</h1>
-<p>欢迎来到大数点开发文档中心，请阅读以下章节：　　</p>
-<h3 id="-1">服务集成指南</h3>
+        <h1 id="design-insights-and-tradeoffs-in-dsdb">Design Insights and Tradeoffs in DSDB</h1>
+<p>DSDB is a discrete time-series database.
+Optimizing for this use-case entails some tradeoffs, primarily to increase performance at the cost of functionality.
+Below is a list of some of those design insights that lead to tradeoffs:</p>
+<ol>
+<li>For the time series use case, we assume that if the same data point is sent multiple times, it is the exact same data that a client just sent several times.
 <ul>
-<li><a href="integration-dev/integrate-im-android.html">Android上集成IM功能</a>  </li>
-<li><a href="integration-dev/integrate-im-ios.html">iOS上集成IM功能</a>  </li>
-</ul>
-<h3 id="ds-database">DS database</h3>
+<li><em>Pro:</em> Simplified conflict resolution increases write performance</li>
+<li><em>Con:</em> May lose data in rare circumstances</li>
+</ul></li>
+<li>Deletes are a rare occurrence.
+When they do occur it is almost always against large ranges of old data that are cold for writes.
 <ul>
-<li><a href="dsdb/index.html">DSDB Overview</a>  </li>
-<li>Introduction<br />
-&nbsp; - <a href="dsdb/introduction/installation.html">Installation</a><br />
-&nbsp; - <a href="dsdb/introduction//getting_started.html">Getting Started</a>  </li>
-<li>Administration<br />
-&nbsp; - <a href="dsdb/administration/authentication_and_authorization.html">Authentication and Authorization</a><br />
-&nbsp; - <a href="dsdb/administration/backup_and_restore.html">Backup and Restore</a><br />
-&nbsp; - <a href="dsdb/administration/config.html">Configuration</a><br />
-&nbsp; - <a href="dsdb/administration/logs.html">Logs</a><br />
-&nbsp; - <a href="dsdb/administration/statistics.html">Server Monitoring</a><br />
-&nbsp; - <a href="dsdb/administration/upgrading.html">Upgrading from previous versions</a>  </li>
-<li>Clients<br />
-&nbsp; - <a href="dsdb/clients/api.html">HTTP API Client Libraries</a>  </li>
-<li>Concepts
-&nbsp; - <a href="dsdb/concepts/key_concepts.html">Key Concepts</a><br />
-&nbsp; - <a href="dsdb/concepts/schema_and_data_layout.html">Schema and Data Layout</a><br />
-&nbsp; - <a href="dsdb/concepts/insights_tradeoffs.html">Design Insights and Tradeoffs</a><br />
-&nbsp; - <a href="dsdb/concepts/api.html">HTTP API Endpoints</a><br />
-&nbsp; - <a href="dsdb/concepts/storage_engine.html">Storage Engine</a><br />
-&nbsp; - <a href="dsdb/concepts/glossary.html">Glossary of Terms</a>  </li>
-<li>Data Sources<br />
-&nbsp; - <a href="dsdb/data_sources/diamond.html">Diamond</a><br />
-&nbsp; - <a href="dsdb/data_sources/opentsdb.html">OpenTSDB</a>  </li>
-<li>Guides<br />
-&nbsp; - <a href="dsdb/guides/clustering.html">Clustering</a><br />
-&nbsp; - <a href="dsdb/guides/downsampling_and_retention.html">Downsampling and Data Retention</a><br />
-&nbsp; - <a href="dsdb/guides/hardware_sizing.html">Hardware Sizing Guidelines</a><br />
-&nbsp; - <a href="dsdb/guides/querying_data.html">Querying Data</a><br />
-&nbsp; - <a href="dsdb/guides/writing_data.html">Writing Data</a>  </li>
-<li>Query Language<br />
-&nbsp; - <a href="dsdb/query_language/continuous_queries.html">Continuous Queries</a><br />
-&nbsp; - <a href="dsdb/query_language/data_exploration.html">Data Exploration</a><br />
-&nbsp; - <a href="dsdb/query_language/database_management.html">Database Management</a><br />
-&nbsp; - <a href="dsdb/query_language/functions.html">Functions</a><br />
-&nbsp; - <a href="dsdb/query_language/math_operators.html">Mathematical Operators</a><br />
-&nbsp; - <a href="dsdb/query_language/schema_exploration.html">Scheam Exploration</a><br />
-&nbsp; - <a href="dsdb/query_language/spec.html">Query Language Reference</a>  </li>
-<li>Sample Data<br />
-&nbsp; - <a href="dsdb/sample_data/data_download.html">Sample Data Download</a>  </li>
-<li>Tools<br />
-&nbsp; - <a href="dsdb/tools/shell.html">CLI/Shell</a><br />
-&nbsp; - <a href="dsdb/tools/web_admin.html">Web Admin Interface</a>  </li>
-<li>Troubleshooting<br />
-&nbsp; - <a href="dsdb/troubleshooting/frequently_encountered_issues.html">Frequently Encountered Issues</a><br />
-&nbsp; - <a href="dsdb/troubleshooting/system_monitoring.html">System Monitoring</a>  </li>
-<li>Write Protocols<br />
-&nbsp; - <a href="dsdb/write_protocols/collectd.html">Service - CollectD</a><br />
-&nbsp; - <a href="dsdb/write_protocols/graphite.html">Service - Graphite</a><br />
-&nbsp; - <a href="dsdb/write_protocols/json.html">JSON Protocol</a><br />
-&nbsp; - <a href="dsdb/write_protocols/line.html">Line Protocol</a><br />
-&nbsp; - <a href="dsdb/write_protocols/opentsdb.html">Service - OpenTSDB</a><br />
-&nbsp; - <a href="dsdb/write_protocols/udp.html">Service - UDP</a><br />
-&nbsp; - <a href="dsdb/write_protocols/write_syntax.html">Write Syntax</a>  </li>
-</ul>
-<h3 id="dac-document">DAC Document</h3>
+<li><em>Pro:</em> Restricting access to deletes allows for increased query and write performance</li>
+<li><em>Con:</em> Delete functionality is significantly restricted</li>
+</ul></li>
+<li>Updates to existing data are a rare occurrence and contentious updates never happen.
+Time series data is predominantly new data that is never updated.
 <ul>
-<li><a href="dac/dac_introduction.html">DAC Introduction</a>  </li>
-<li><a href="dac/dac_cloud_api_java.html">DAC JAVA API</a>  </li>
-<li><a href="dac/dac_cloud_api_c.html">DAC C API</a>  </li>
-<li><a href="dac/dac_cloud_api_cpp.html">DAC C++ API</a>  </li>
-</ul>
-<h3 id="data-hub">Data Hub</h3>
+<li><em>Pro:</em> Restricting access to updates allows for increased query and write performance</li>
+<li><em>Con:</em> Update functionality is significantly restricted</li>
+</ul></li>
+<li>The vast majority of writes are for data with very recent timestamps and the data is added in time ascending order.
 <ul>
-<li>SDK<br />
-&nbsp; - <a href="data-hub/sdk/embeded_c.html">Embeded C API</a><br />
-&nbsp; - <a href="data-hub/sdk/javascript.html">JavaScript API</a>  </li>
-</ul>
+<li><em>Pro:</em> Adding data in time ascending order is significantly more performant</li>
+<li><em>Con:</em> Writing points with random times or with time not in ascending order is significantly less performant</li>
+</ul></li>
+<li>Scale is critical.
+The database must be able to handle a <em>high</em> volume of reads and writes.
+<ul>
+<li><em>Pro:</em> The database can handle a <em>high</em> volume of reads and writes</li>
+<li><em>Con:</em> The DSDB development team was forced to make tradeoffs to increase performance</li>
+</ul></li>
+<li>Being able to write and query the data is more important than having a strongly consistent view.
+<ul>
+<li><em>Pro:</em> Writing and querying the database can be done by multiple clients and at high loads</li>
+<li><em>Con:</em> Query returns may not include the most recent points if database is under heavy load</li>
+</ul></li>
+<li>Many time series are ephemeral.
+There are often time series that appear only for a few hours and then go away, e.g.
+a new host that gets started and reports for a while and then gets shut down.
+<ul>
+<li><em>Pro:</em> DSDB is good at managing discontinuous data</li>
+<li><em>Con:</em> Schema-less design means that some database functions are not supported e.g.
+there are no cross table joins</li>
+</ul></li>
+<li>No one point is too important.
+<ul>
+<li><em>Pro:</em> DSDB has very powerful tools to deal with aggregate data and large data sets</li>
+<li><em>Con:</em> Points don't have IDs in the traditional sense, they are differentiated by timestamp and series</li>
+</ul></li>
+</ol>
       </div>
 
               <div class="tract"><img src="/images/tract.png"/></div>

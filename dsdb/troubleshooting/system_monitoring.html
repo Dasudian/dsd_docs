@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="大数点物联网开发者平台文档，基于大数点物联网平台，帮助开发者快速构建物联网应用">
-    <title>大数点文档中心</title>
+    <title>System Monitoring</title>
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
@@ -86,7 +86,7 @@
             </ul>
           </li>
           <li><a class="fold">DS Database</a>
-            <ul class="menu2" >
+            <ul class="menu2" style="display: block;">
               <li><a id="dsdb-overview" class="" href="/dsdb/index.html">DSDB Overview</a></li>
               <li><a class="fold">Introduction</a>
                 <ul class="menu3" >
@@ -183,10 +183,10 @@
                 </ul>
               </li>
               <li><a class="fold">Troubleshooting</a>
-                <ul class="menu3" >
+                <ul class="menu3" style="display: block;">
                   <li><a id="dsdb-troubleshoot-overview" class="" href="/dsdb/troubleshooting/index.html">Troubleshooting Overview</a></li>
                   <li><a id="dsdb-troubleshoot-fei" class="" href="/dsdb/troubleshooting/frequently_encountered_issues.html">Frequently Encountered Issues</a></li>
-                  <li><a id="dsdb-troubleshoot-monitor" class="" href="/dsdb/troubleshooting/system_monitoring.html">System Monitoring</a></li>
+                  <li><a id="dsdb-troubleshoot-monitor" class="active" href="/dsdb/troubleshooting/system_monitoring.html">System Monitoring</a></li>
                 </ul>
               </li>
             </ul>
@@ -214,82 +214,83 @@
 
     <div class="side_right">
       <div class="doc">
-        <h1 id="">大数点开发者文档中心</h1>
-<p>欢迎来到大数点开发文档中心，请阅读以下章节：　　</p>
-<h3 id="-1">服务集成指南</h3>
+        <h1 id="system-monitoring">System Monitoring</h1>
+<p>To assist with troubleshooting and performance analysis DSDB makes available statistical and diagnostic information about the system.
+For additional information see the <a href="https://github.com/dasudian/dsdb/blob/master/monitor/index.html">README on GitHub</a>.</p>
 <ul>
-<li><a href="integration-dev/integrate-im-android.html">Android上集成IM功能</a>  </li>
-<li><a href="integration-dev/integrate-im-ios.html">iOS上集成IM功能</a>  </li>
+<li><a href="/dsdb//troubleshooting/system_monitoring.html#see-statistics-for-your-installation-with-show-stats">See statistics for your installation with <code>SHOW STATS</code></a></li>
+<li><a href="/dsdb//troubleshooting/system_monitoring.html#show-diagnostic-information-about-your-installation-with-show-diagnostics">Show diagnostic information about your installation with <code>SHOW DIAGNOSTICS</code></a></li>
 </ul>
-<h3 id="ds-database">DS database</h3>
-<ul>
-<li><a href="dsdb/index.html">DSDB Overview</a>  </li>
-<li>Introduction<br />
-&nbsp; - <a href="dsdb/introduction/installation.html">Installation</a><br />
-&nbsp; - <a href="dsdb/introduction//getting_started.html">Getting Started</a>  </li>
-<li>Administration<br />
-&nbsp; - <a href="dsdb/administration/authentication_and_authorization.html">Authentication and Authorization</a><br />
-&nbsp; - <a href="dsdb/administration/backup_and_restore.html">Backup and Restore</a><br />
-&nbsp; - <a href="dsdb/administration/config.html">Configuration</a><br />
-&nbsp; - <a href="dsdb/administration/logs.html">Logs</a><br />
-&nbsp; - <a href="dsdb/administration/statistics.html">Server Monitoring</a><br />
-&nbsp; - <a href="dsdb/administration/upgrading.html">Upgrading from previous versions</a>  </li>
-<li>Clients<br />
-&nbsp; - <a href="dsdb/clients/api.html">HTTP API Client Libraries</a>  </li>
-<li>Concepts
-&nbsp; - <a href="dsdb/concepts/key_concepts.html">Key Concepts</a><br />
-&nbsp; - <a href="dsdb/concepts/schema_and_data_layout.html">Schema and Data Layout</a><br />
-&nbsp; - <a href="dsdb/concepts/insights_tradeoffs.html">Design Insights and Tradeoffs</a><br />
-&nbsp; - <a href="dsdb/concepts/api.html">HTTP API Endpoints</a><br />
-&nbsp; - <a href="dsdb/concepts/storage_engine.html">Storage Engine</a><br />
-&nbsp; - <a href="dsdb/concepts/glossary.html">Glossary of Terms</a>  </li>
-<li>Data Sources<br />
-&nbsp; - <a href="dsdb/data_sources/diamond.html">Diamond</a><br />
-&nbsp; - <a href="dsdb/data_sources/opentsdb.html">OpenTSDB</a>  </li>
-<li>Guides<br />
-&nbsp; - <a href="dsdb/guides/clustering.html">Clustering</a><br />
-&nbsp; - <a href="dsdb/guides/downsampling_and_retention.html">Downsampling and Data Retention</a><br />
-&nbsp; - <a href="dsdb/guides/hardware_sizing.html">Hardware Sizing Guidelines</a><br />
-&nbsp; - <a href="dsdb/guides/querying_data.html">Querying Data</a><br />
-&nbsp; - <a href="dsdb/guides/writing_data.html">Writing Data</a>  </li>
-<li>Query Language<br />
-&nbsp; - <a href="dsdb/query_language/continuous_queries.html">Continuous Queries</a><br />
-&nbsp; - <a href="dsdb/query_language/data_exploration.html">Data Exploration</a><br />
-&nbsp; - <a href="dsdb/query_language/database_management.html">Database Management</a><br />
-&nbsp; - <a href="dsdb/query_language/functions.html">Functions</a><br />
-&nbsp; - <a href="dsdb/query_language/math_operators.html">Mathematical Operators</a><br />
-&nbsp; - <a href="dsdb/query_language/schema_exploration.html">Scheam Exploration</a><br />
-&nbsp; - <a href="dsdb/query_language/spec.html">Query Language Reference</a>  </li>
-<li>Sample Data<br />
-&nbsp; - <a href="dsdb/sample_data/data_download.html">Sample Data Download</a>  </li>
-<li>Tools<br />
-&nbsp; - <a href="dsdb/tools/shell.html">CLI/Shell</a><br />
-&nbsp; - <a href="dsdb/tools/web_admin.html">Web Admin Interface</a>  </li>
-<li>Troubleshooting<br />
-&nbsp; - <a href="dsdb/troubleshooting/frequently_encountered_issues.html">Frequently Encountered Issues</a><br />
-&nbsp; - <a href="dsdb/troubleshooting/system_monitoring.html">System Monitoring</a>  </li>
-<li>Write Protocols<br />
-&nbsp; - <a href="dsdb/write_protocols/collectd.html">Service - CollectD</a><br />
-&nbsp; - <a href="dsdb/write_protocols/graphite.html">Service - Graphite</a><br />
-&nbsp; - <a href="dsdb/write_protocols/json.html">JSON Protocol</a><br />
-&nbsp; - <a href="dsdb/write_protocols/line.html">Line Protocol</a><br />
-&nbsp; - <a href="dsdb/write_protocols/opentsdb.html">Service - OpenTSDB</a><br />
-&nbsp; - <a href="dsdb/write_protocols/udp.html">Service - UDP</a><br />
-&nbsp; - <a href="dsdb/write_protocols/write_syntax.html">Write Syntax</a>  </li>
-</ul>
-<h3 id="dac-document">DAC Document</h3>
-<ul>
-<li><a href="dac/dac_introduction.html">DAC Introduction</a>  </li>
-<li><a href="dac/dac_cloud_api_java.html">DAC JAVA API</a>  </li>
-<li><a href="dac/dac_cloud_api_c.html">DAC C API</a>  </li>
-<li><a href="dac/dac_cloud_api_cpp.html">DAC C++ API</a>  </li>
-</ul>
-<h3 id="data-hub">Data Hub</h3>
-<ul>
-<li>SDK<br />
-&nbsp; - <a href="data-hub/sdk/embeded_c.html">Embeded C API</a><br />
-&nbsp; - <a href="data-hub/sdk/javascript.html">JavaScript API</a>  </li>
-</ul>
+<h2 id="see-statistics-for-your-installation-with">See statistics for your installation with <code>SHOW STATS</code></h2>
+<p>Show a series of statistics related to your DSDB instance</p>
+<pre><code class="language-sql">&gt; SHOW STATS</code></pre>
+<p>CLI response:</p>
+<pre><code class="language-sh">name: engine
+tags: path=/Users/johnzampolin/.dsdb/data/telegraf/default/65, version=bz1
+blks_write  blks_write_bytes    blks_write_bytes_c  points_write    points_write_dedupe
+----------  ----------------    ------------------  ------------    -------------------
+227422      4781938         6382683         227422      227422
+
+name: httpd
+tags: bind=:8088
+points_written_ok   query_req   query_resp_bytes    req write_req   write_req_bytes
+-----------------   ---------   ----------------    --- ---------   ---------------
+227684          30      5027            899 869     15178945
+
+name: shard
+tags: engine=bz1, id=65, path=/Users/johnzampolin/.dsdb/data/telegraf/default/65
+fields_create   series_create   write_points_ok write_req
+-------------   -------------   --------------- ---------
+0       268     227684      869
+
+name: wal
+tags: path=/Users/johnzampolin/.dsdb/wal/_internal/monitor/66
+auto_flush  meta_flush
+----------  ----------
+8671            14
+
+name: wal
+tags: path=/Users/johnzampolin/.dsdb/wal/_internal/monitor/67
+auto_flush  flush_duration      idle_flush  mem_size    meta_flush  points_flush    points_write    points_write_req    series_flush
+----------  --------------      ----------  --------    ----------  ------------    ------------    ----------------    ------------
+8659        2.966561441000001   868     934     14      17356       17376       869         17356
+
+name: write
+-----------
+point_req   point_req_local req write_ok
+245060      245060      1738    1738
+
+name: runtime
+-------------
+Alloc       Frees       HeapAlloc   HeapIdle    HeapInUse   HeapObjects HeapReleased    HeapSys     Lookups Mallocs     NumGC   NumGoroutine    PauseTotalNs    Sys     TotalAlloc
+96657936    19481852    96657936    47718401.08355584   898912      2121728     156073984   7262    20380764    95  50      54495600    168606776   5823932752</code></pre>
+<blockquote>
+<p><strong>Note:</strong> Depending on your local configuration there may be multiple <code>name: engine</code>, <code>name: shard</code>, and <code>name: wal</code> fields</p>
+</blockquote>
+<h2 id="show-diagnostic-information-about-your-installation-with">Show diagnostic information about your installation with <code>SHOW DIAGNOSTICS</code></h2>
+<p>Retrieve a collection of diagnostic information helpful for troubleshooting.</p>
+<pre><code class="language-sql">&gt; SHOW DIAGNOSTICS</code></pre>
+<p>CLI response:</p>
+<pre><code class="language-sh">name: build
+-----------
+Branch   Commit                                                Version
+0.9.4      c4f85f84765e27bfb5e58630d0dea38adeacf543 0.9.4.1
+
+name: runtime
+-------------
+GOARCH  GOMAXPROCS    GOOS       version
+amd64    8                darwin       go1.5.1
+
+name: network
+-------------
+hostname
+eruditorum.local
+
+name: system
+------------
+PID   currentTime                         started                                uptime
+30780   2015-10-16T21:53:42.118130213Z  2015-10-16T19:28:58.069413146Z  2h24m44.048717342s
+</code></pre>
       </div>
 
               <div class="tract"><img src="/images/tract.png"/></div>

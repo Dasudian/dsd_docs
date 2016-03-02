@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="大数点物联网开发者平台文档，基于大数点物联网平台，帮助开发者快速构建物联网应用">
+    <title>Authentication and Authorization</title>
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/app.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/highlight.js/9.2.0/styles/dark.min.css" rel="stylesheet">
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+    <script>
+      $(function() {
+        // $(".document .side_left ul li a").click(function() {
+        //   $(".document .side_left ul li a").removeClass("active");
+        //   $(this).addClass("active");
+        // })
+        $(".menu1>li>a.fold").click(function(){
+				  $(".menu1 a.fold").css("background-image","url(/images/number_down.png)");
+				  $(".menu2,.menu3").slideUp();
+			  })
+			  $(".menu2>li>a.fold").click(function(){
+          $(".menu2 a.fold").css("background-image","url(/images/number_down.png)");
+          $(".menu3").slideUp();
+        })
+        $(".fold").click(function() {
+          if ($(this).next("ul").is(":hidden")) {
+            $(this).css("background-image", "url(/images/number_up.png)");
+            $(this).next("ul").slideDown();
+          } else {
+            $(this).css("background-image", "url(/images/number_down.png)");
+            $(this).next("ul").slideUp();
+          }
+        })
+      })
+      $(function(){
+			  $(".side_right").scroll( function() { 
+				  var scrollValue=$(".side_right").scrollTop();
+				  scrollValue > 100 ? $('div[class=scroll]').fadeIn():$('div[class=scroll]').fadeOut();
+			  });	
+			  $('#scroll').click(function(){
+				  $(".side_right").animate({scrollTop:0},200);	
+			  });	
+		  })
+    </script>
+    <link href='http://fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"><img src="/images/logo.png"/></a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="http://dasudian.com/solution" >解决方案</a></li>
+            <li><a href="/" >文档</a></li>
+            <li><a href="http://dasudian.com/price" >定价</a></li>
+            <li><a href="https://www.github.com/Dasudian"  target="_blank" >社区</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid0 document">
+      <div class="side_left">
+        <ul class="menu1">
+          <li><a class="fold">服务集成指南</a>
+            <ul class="menu2" >
+              <li><a id="srvintegrate-im-android" class="" href="/integration-dev/integrate-im-android.html">Android上集成IM功能</a></li>
+              <li><a id="srvintegrate-im-ios" class="" href="/integration-dev/integrate-im-ios.html">iOS上集成IM功能</a></li>
+            </ul>
+          </li>
+          <li><a class="fold">DS Database</a>
+            <ul class="menu2" style="display: block;">
+              <li><a id="dsdb-overview" class="" href="/dsdb/index.html">DSDB Overview</a></li>
+              <li><a class="fold">Introduction</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-intro-overview" class="" href="/dsdb/introduction/index.html">Overview</a></li>
+                  <li><a id="dsdb-intro-installation" class="" href="/dsdb/introduction/installation.html">Installation</a></li>
+                  <li><a id="dsdb-intro-start" class="" href="/dsdb/introduction/getting_started.html">Getting Started</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Administration</a>
+                <ul class="menu3" style="display: block;">
+                  <li><a id="dsdb-admin-overview" class="" href="/dsdb/administration/index.html">administration Overview</a></li>
+                  <li><a id="dsdb-authent&amp;authori" class="active" href="/dsdb/administration/authentication_and_authorization.html">Authentication&Authorization</a></li>
+                  <li><a id="dsdb-backup&amp;restore" class="" href="/dsdb/administration/backup_and_restore.html">Backup&Restore</a></li>
+                  <li><a id="dsdb-configuration" class="" href="/dsdb/administration/config.html">Configuration</a></li>
+                  <li><a id="dsdb-logs" class="" href="/dsdb/administration/logs.html">Logs</a></li>
+                  <li><a id="dsdb-monitoring" class="" href="/dsdb/administration/statistics.html">Server Monitoring</a></li>
+                  <li><a id="dsdb-upgrade" class="" href="/dsdb/administration/upgrading.html">Upgrading</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Clients</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-clients-overview" class="" href="/dsdb/clients/index.html">Clients Overview</a></li>
+                  <li><a id="dsdb-clients-httpapi" class="" href="/dsdb/clients/api.html">HTTP API</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Concepts</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-concepts-overview" class="" href="/dsdb/concepts/index.html">Concepts Overview</a></li>
+                  <li><a id="dsdb-key-concepts" class="" href="/dsdb/concepts/key_concepts.html">Key Concepts</a></li>
+                  <li><a id="dsdb-concepts-arch" class="" href="/dsdb/concepts/how_dsdb_works.html">Architecture</a></li>
+                  <li><a id="dsdb-concepts-schema-data-layout" class="" href="/dsdb/concepts/schema_and_data_layout.html">Scheam Design</a></li>
+                  <li><a id="dsdb-concepts-insights-tradeoffs" class="" href="/dsdb/concepts/insights_tradeoffs.html">Insights Tradeoffs</a></li>
+                  <li><a id="dsdb-concepts-api-endpoints" class="" href="/dsdb/concepts/api.html">API Endpoints&Ports</a></li>
+                  <li><a id="dsdb-concepts-storage-engine" class="" href="/dsdb/concepts/storage_engine.html">Storage Engine</a></li>
+                  <li><a id="dsdb-concepts-glossary" class="" href="/dsdb/concepts/glossary.html">Glossary of Terms</a></li>
+                  <li><a id="dsdb-concepts-vs-sql" class="" href="/dsdb/concepts/crosswalk.html">Comparison to SQL</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Data Sources</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-datasource-diamond" class="" href="/dsdb/data_sources/diamond.html">Diamond</a></li>
+                  <li><a id="dsdb-datasource-opentsdb" class="" href="/dsdb/data_sources/opentsdb.html">OpenTSDB</a></li>
+                  <li><a id="dsdb-datasource-carbon" class="" href="/dsdb/data_sources/carbon.html">Carbon</a></li>
+                  <li><a id="dsdb-datasource-collectd" class="" href="/dsdb/data_sources/collectd.html">Collectd</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Guides</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-guides-clustering" class="" href="/dsdb/guides/clustering.html">Clustering</a></li>
+                  <li><a id="dsdb-guides-ddr" class="" href="/dsdb/guides/downsampling_and_retention.html">Downsampling and Data Retention</a></li>
+                  <li><a id="dsdb-guides-hsg" class="" href="/dsdb/guides/hardware_sizing.html">Hardware Sizing Guidelines</a></li>
+                  <li><a id="dsdb-guides-querying" class="" href="/dsdb/guides/querying_data.html">Querying Data</a></li>
+                  <li><a id="dsdb-guides-writing" class="" href="/dsdb/guides/writing_data.html">Writing Data</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Query Language</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-querylang-overview" class="" href="/dsdb/query_language/index.html">Overview</a></li>
+                  <li><a id="dsdb-querylang-dataexp" class="" href="/dsdb/query_language/data_exploration.html">Data Exploration</a></li>
+                  <li><a id="dsdb-querylang-scheamexp" class="" href="/dsdb/query_language/schema_exploration.html">Schema Exploration</a></li>
+                  <li><a id="dsdb-querylang-func" class="" href="/dsdb/query_language/functions.html">Functions</a></li>
+                  <li><a id="dsdb-querylang-contq" class="" href="/dsdb/query_language/continuous_queries.html">Continuous Queries</a></li>
+                  <li><a id="dsdb-querylang-spec" class="" href="/dsdb/query_language/spec.html">Query Language Reference</a></li>
+                  <li><a id="dsdb-querylang-mgmt" class="" href="/dsdb/query_language/database_management.html">Database Management</a></li>
+                  <li><a id="dsdb-querylang-math" class="" href="/dsdb/query_language/math_operators.html">Mathematical Operators</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Sample Data</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-sampledata-down" class="" href="/dsdb/sample_data/data_download.html">Sample Data Download</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Tools</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-tools-overview" class="" href="/dsdb/tools/index.html">Tools Overview</a></li>
+                  <li><a id="dsdb-tools-shell" class="" href="/dsdb/tools/shell.html">CLI/Shell</a></li>
+                  <li><a id="dsdb-tools-webadmin" class="" href="/dsdb/tools/web_admin.html">Web Admin Interface</a></li>
+                  <li><a id="dsdb-tools-grafana" class="" href="/dsdb/tools/grafana.html">Grafana Dashboards</a></li>
+                  <li><a id="dsdb-tools-telegraf" class="" href="/dsdb/tools/telegraf.html">Telegraf Metrics Collection</a></li>
+                  <li><a id="dsdb-tools-chronograf" class="" href="/dsdb/tools/chronograf.html">Chronograf Dashboards</a></li>
+                  <li><a id="dsdb-tools-kapacitor" class="" href="/dsdb/tools/kapacitor.html">Kapacitor Monitoring</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Write Protocols</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-writepro-overview" class="" href="/dsdb/write_protocols/index.html">Overview</a></li>
+                  <li><a id="dsdb-writepro-line" class="" href="/dsdb/write_protocols/line.html">Line Protocol</a></li>
+                  <li><a id="dsdb-writepro-syntax" class="" href="/dsdb/write_protocols/write_syntax.html">Write Syntax</a></li>
+                  <li><a id="dsdb-writepro-json" class="" href="/dsdb/write_protocols/json.html">JSON Protocol</a></li>
+                  <li><a id="dsdb-writepro-udp" class="" href="/dsdb/write_protocols/udp.html">Service - UDP</a></li>
+                  <li><a id="dsdb-writepro-graphite" class="" href="/dsdb/write_protocols/graphite.html">Service - Graphite</a></li>
+                  <li><a id="dsdb-writepro-opentsdb" class="" href="/dsdb/write_protocols/opentsdb.html">Servcie - OpenTSDB</a></li>
+                  <li><a id="dsdb-writepro-collectd" class="" href="/dsdb/write_protocols/collectd.html">Service - CollectD</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Troubleshooting</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-troubleshoot-overview" class="" href="/dsdb/troubleshooting/index.html">Troubleshooting Overview</a></li>
+                  <li><a id="dsdb-troubleshoot-fei" class="" href="/dsdb/troubleshooting/frequently_encountered_issues.html">Frequently Encountered Issues</a></li>
+                  <li><a id="dsdb-troubleshoot-monitor" class="" href="/dsdb/troubleshooting/system_monitoring.html">System Monitoring</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><a class="fold">DAC Document</a>
+            <ul class="menu2" >
+              <li><a id="dac-principal" class="" href="/dac/dac_introduction.html">DAC工作原理</a></li>
+              <li><a id="dac-java-api" class="" href="/dac/dac_cloud_api_java.html">DAC Java API</a></li>
+              <li><a id="dac-c-api" class="" href="/dac/dac_cloud_api_c.html">DAC C API</a></li>
+              <li><a id="dac-cpp-api" class="" href="/dac/dac_cloud_api_cpp.html">DAC C++ API</a></li>
+            </ul>
+          </li>
+          <li><a class="fold">Data Hub</a>
+            <ul class="menu2" >
+              <li><a class="fold">SDK</a>
+                <ul class="menu3" >
+                  <li><a id="datahub-sdk-js" class="" href="/data-hub/sdk/javascript.html">JavaScript</a></li>
+                  <li><a id="datahub-sdk-embededc" class="" href="/data-hub/sdk/embeded_c.html">Embeded C</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+    </div>
+
+    <div class="side_right">
+      <div class="doc">
+        <h1 id="authentication-and-authorization">Authentication and Authorization</h1>
+<p>This document covers setting up and managing authentication and authorization in DSDB.</p>
+<p><a href="/dsdb/administration/authentication_and_authorization.html#authentication">Authentication</a></p>
+<ul>
+<li><a href="/dsdb/administration/authentication_and_authorization.html#set-up-authentication">Set up authentication</a></li>
+<li><a href="/dsdb/administration/authentication_and_authorization.html#authenticating-requests">Authenticating requests</a><br />
+&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/dsdb/administration/authentication_and_authorization.html#authenticate-using-the-http-api">Authenticate using the HTTP API</a><br />
+&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/dsdb/administration/authentication_and_authorization.html#authenticate-using-the-cli">Authenticate using the CLI</a>  </li>
+</ul>
+<p><a href="/dsdb/administration/authentication_and_authorization.html#authorization">Authorization</a></p>
+<ul>
+<li><a href="/dsdb/administration/authentication_and_authorization.html#user-types-and-their-privileges">User types and their privileges</a><br />
+&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/dsdb/administration/authentication_and_authorization.html#admin-users">Admin users</a><br />
+&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/dsdb/administration/authentication_and_authorization.html#non-admin-users">Non-admin users</a>  </li>
+<li><a href="/dsdb/administration/authentication_and_authorization.html#user-management-commands">User management commands</a><br />
+&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/dsdb/administration/authentication_and_authorization.html#admin-user-management">Admin user management</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;□&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/dsdb/administration/authentication_and_authorization.html#create-a-new-admin-user"><code>CREATE</code> a new admin user</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;□&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/dsdb/administration/authentication_and_authorization.html#grant-administrative-privileges-to-an-existing-user"><code>GRANT</code> administrative privileges to an existing user</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;□&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/dsdb/administration/authentication_and_authorization.html#revoke-administrative-privileges-from-an-admin-user"><code>REVOKE</code> administrative privileges from an admin user</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;□&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/dsdb/administration/authentication_and_authorization.html#show-all-existing-users-and-their-admin-status"><code>SHOW</code> all existing users and their admin status</a><br />
+&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/dsdb/administration/authentication_and_authorization.html#non-admin-user-management">Non-admin user management</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;□&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/dsdb/administration/authentication_and_authorization.html#create-a-new-non-admin-user"><code>CREATE</code> a new non-admin user</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;□&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/dsdb/administration/authentication_and_authorization.html#grant-read-write-or-all-database-privileges-to-an-existing-user"><code>GRANT</code> <code>READ</code>,<code>WRITE</code>, or <code>ALL</code> database privileges to an existing user</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;□&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/dsdb/administration/authentication_and_authorization.html#revoke-read-write-or-all-database-privileges-from-an-existing-user"><code>REVOKE</code> <code>READ</code>,<code>WRITE</code>, or <code>ALL</code> database privileges from an existing user</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;□&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/dsdb/administration/authentication_and_authorization.html#show-a-user-s-database-privileges"><code>SHOW</code> a user's database privileges</a><br />
+&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/dsdb/administration/authentication_and_authorization.html#show-a-user-s-database-privileges">General admin and non-admin user management</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;□&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/dsdb/administration/authentication_and_authorization.html#re-set-a-user-s-password">Re<code>SET</code> a user's password</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;□&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/dsdb/administration/authentication_and_authorization.html#drop-a-user"><code>DROP</code> a user</a>  </li>
+</ul>
+<p><a href="/dsdb/administration/authentication_and_authorization.html#authentication-and-authorization-http-errors">Authentication and authorization HTTP errors</a></p>
+<blockquote>
+<p><strong>Note:</strong> Authentication and authorization should not be relied upon to prevent access and protect data from malicious actors.
+If additional security or compliance features are desired, DSDB should be run behind a third-party service.</p>
+</blockquote>
+<h2 id="authentication">Authentication</h2>
+<p>DSDB's HTTP API and the command line interface (CLI), which connects to the database using the API, include simple, built-in authentication based on user credentials.
+When you enable authentication DSDB only executes HTTP requests that are sent with valid credentials.</p>
+<blockquote>
+<p><strong>Note:</strong> Authentication only occurs at the HTTP request scope.
+Plugins do not currently have the ability to authenticate requests and service endpoints (for example, Graphite, collectd, etc.) are not authenticated.</p>
+</blockquote>
+<h3 id="set-up-authentication">Set up authentication</h3>
+<hr />
+<ol>
+<li>
+<p>Create at least one <a href="/dsdb/administration/authentication_and_authorization.html#admin-users">admin user</a>.
+See the <a href="/dsdb/administration/authentication_and_authorization.html#authorization">authorization section</a> for how to create an admin user.</p>
+</li>
+<li>
+<p>By default, authentication is disabled in the configuration file.
+Enable authentication by setting the <code>auth-enabled</code> option to <code>true</code> in the <code>[http]</code> section of the configuration file:</p>
+<pre><code>[http]  
+enabled = true  
+bind-address = ":8088"  
+auth-enabled = true # ✨
+log-enabled = true  
+write-tracing = false  
+pprof-enabled = false  
+https-enabled = false  
+https-certificate = "/etc/ssl/dsdb.pem"  </code></pre>
+</li>
+<li>Restart the process.</li>
+</ol>
+<p>Now DSDB will check user credentials on every request and will only process requests that have valid credentials for an existing user.</p>
+<blockquote>
+<p><strong>Note:</strong> If you enable authentication and have no users, DSDB will <strong>not</strong> enforce authentication until you create the first admin user, and DSDB will only accept the <a href="/dsdb/administration/authentication_and_authorization.html#create-a-new-admin-user">query</a> that creates an admin user.</p>
+</blockquote>
+<h3 id="authenticating-requests">Authenticating requests</h3>
+<hr />
+<h4 id="authenticate-using-the-http-api">Authenticate using the HTTP API</h4>
+<p>There are two options for authenticating with the HTTP API.</p>
+<ul>
+<li>Authenticate with Basic Authentication as described in <a href="http://tools.ietf.org/html/rfc2617">RFC 2617, Section 2</a> - this is the preferred method for providing user credentials.</li>
+</ul>
+<p>Example:</p>
+<pre><code class="language-bash">curl -G http://localhost:8088/query -u todd:dsdb4ever --data-urlencode "q=SHOW DATABASES"</code></pre>
+<ul>
+<li>Authenticate by providing query parameters in the URL.
+Set <code>u</code> as the username and <code>p</code> as the password.</li>
+</ul>
+<p>Example:</p>
+<pre><code class="language-bash">curl -G http://localhost:8088/query --data-urlencode "u=todd" --data-urlencode "p=dsdb4ever" --data-urlencode "q=SHOW DATABASES"</code></pre>
+<p>The queries in both examples assume that the user is an <a href="/dsdb/administration/authentication_and_authorization.html#admin-users">admin user</a>.
+See the section on <a href="/dsdb/administration/authentication_and_authorization.html#authorization">authorization</a> for the different user types, their privileges, and more on user management.</p>
+<p>If you authenticate with both Basic Authentication <strong>and</strong> the URL query parameters, the user credentials specified in the query parameters take precedence.</p>
+<blockquote>
+<p><strong>Note:</strong> DSDB redacts passwords when you enable authentication. </p>
+</blockquote>
+<h4 id="authenticate-using-the-cli">Authenticate using the CLI</h4>
+<p>There are two options for authenticating with the CLI.</p>
+<ul>
+<li>
+<p>Authenticate with <code>auth &lt;username&gt; &lt;password&gt;</code> after starting the CLI.</p>
+<p>Example:</p>
+<pre><code class="language-sh">$ influx
+Connected to http://localhost:8088 version 0.9.1
+DSDB shell 0.9.1
+&gt; auth todd dsdb4ever
+&gt;</code></pre>
+</li>
+<li>
+<p>Authenticate by setting the <code>username</code> and <code>password</code> flags when you start the CLI.</p>
+<p>Example:</p>
+<pre><code class="language-sh">influx -username todd -password dsdb4ever</code></pre>
+</li>
+</ul>
+<h2 id="authorization">Authorization</h2>
+<p>Authorization is only enforced once you've <a href="/dsdb/administration/authentication_and_authorization.html#set-up-authentication">enabled authentication</a>.
+By default, authentication is disabled, all credentials are silently ignored, and all users have all privileges.</p>
+<h3 id="user-types-and-their-privileges">User types and their privileges</h3>
+<hr />
+<h4 id="admin-users">Admin users</h4>
+<p>Admin users have <code>READ</code> and <code>WRITE</code> access to all databases and full access to the following administrative queries:</p>
+<p>Database management:<br />
+&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>CREATE DATABASE</code>, and <code>DROP DATABASE</code><br />
+&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>DROP SERIES</code> and <code>DROP MEASUREMENT</code><br />
+&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>CREATE RETENTION POLICY</code>, <code>ALTER RETENTION POLICY</code>, and <code>DROP RETENTION POLICY</code><br />
+&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>CREATE CONTINUOUS QUERY</code> and <code>DROP CONTINUOUS QUERY</code>  </p>
+<p>See the <a href="/dsdb/query_language/database_management.html">database management</a> and <a href="/dsdb/query_language/continuous_queries.html">continuous queries</a> page for a complete discussion of the commands listed above.</p>
+<p>User management:<br />
+&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Admin user management:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/dsdb/administration/authentication_and_authorization.html#create-a-new-admin-user"><code>CREATE USER</code></a>, <a href="/dsdb/administration/authentication_and_authorization.html#grant-administrative-privileges-to-an-existing-user"><code>GRANT ALL PRIVILEGES</code></a>, <a href="/dsdb/administration/authentication_and_authorization.html#revoke-administrative-privileges-from-an-admin-user"><code>REVOKE ALL PRIVILEGES</code></a>, and <a href="/dsdb/administration/authentication_and_authorization.html#show-all-existing-users-and-their-admin-status"><code>SHOW USERS</code></a><br />
+&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Non-admin user management:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/dsdb/administration/authentication_and_authorization.html#create-a-new-non-admin-user"><code>CREATE USER</code></a>, <a href="/dsdb/administration/authentication_and_authorization.md#grant-read-write-or-all-database-privileges-to-an-existing-user"><code>GRANT [READ,WRITE,ALL]</code></a>, <a href="/dsdb/administration/authentication_and_authorization.md#revoke-read-write-or-all-database-privileges-from-an-existing-user"><code>REVOKE [READ,WRITE,ALL]</code></a>, and <a href="/dsdb/administration/authentication_and_authorization.html#show-a-user-s-database-privileges"><code>SHOW GRANTS</code></a><br />
+&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;General user management:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/dsdb/administration/authentication_and_authorization.html#re-set-a-user-s-password"><code>SET PASSWORD</code></a> and <a href="/dsdb/administration/authentication_and_authorization.html#drop-a-user"><code>DROP USER</code></a>  </p>
+<p>See <a href="/dsdb/administration/authentication_and_authorization.html#user-management-commands">below</a> for a complete discussion of the user management commands.</p>
+<h4 id="non-admin-users">Non-admin users</h4>
+<p>Non-admin users can have one of the following three privileges per database:<br />
+&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>READ</code><br />
+&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>WRITE</code><br />
+&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>ALL</code> (both <code>READ</code> and <code>WRITE</code> access)</p>
+<p><code>READ</code>, <code>WRITE</code>, and <code>ALL</code> privileges are controlled per user per database.
+A new non-admin user has no access to any database until they are specifically <a href="/dsdb/administration/authentication_and_authorization.html#grant-read-write-or-all-database-privileges-to-an-existing-user">granted privileges to a database</a> by an admin user.</p>
+<h3 id="user-management-commands">User management commands</h3>
+<hr />
+<h4 id="admin-user-management">Admin user management</h4>
+<ul>
+<li>
+<h5><code>CREATE</code> a new admin user:</h5>
+<pre><code class="language-sql">CREATE USER &lt;username&gt; WITH PASSWORD '&lt;password&gt;' WITH ALL PRIVILEGES</code></pre>
+<p>CLI example:</p>
+<pre><code class="language-sh">&gt; CREATE USER paul WITH PASSWORD 'timeseries4days' WITH ALL PRIVILEGES
+&gt;</code></pre>
+</li>
+<li>
+<h5><code>GRANT</code> administrative privileges to an existing user:</h5>
+<pre><code class="language-sql">GRANT ALL PRIVILEGES TO &lt;username&gt;</code></pre>
+<p>CLI example:</p>
+<pre><code class="language-sh">&gt; GRANT ALL PRIVILEGES TO todd
+&gt;</code></pre>
+</li>
+<li>
+<h5><code>REVOKE</code> administrative privileges from an admin user:</h5>
+<pre><code class="language-sql">REVOKE ALL PRIVILEGES FROM &lt;username&gt;</code></pre>
+<p>CLI example:</p>
+<pre><code class="language-sh">&gt; REVOKE ALL PRIVILEGES FROM todd
+&gt;</code></pre>
+</li>
+<li>
+<h5><code>SHOW</code> all existing users and their admin status:</h5>
+<pre><code class="language-sql">SHOW USERS</code></pre>
+<p>CLI example:</p>
+<pre><code class="language-sh">&gt; SHOW USERS
+user     admin
+todd     false
+paul     true
+hermione false
+dobby    false</code></pre>
+</li>
+</ul>
+<h4 id="non-admin-user-management">Non-admin user management</h4>
+<ul>
+<li>
+<h5><code>CREATE</code> a new non-admin user:</h5>
+<pre><code class="language-sql">CREATE USER &lt;username&gt; WITH PASSWORD '&lt;password&gt;'</code></pre>
+<p>CLI example:</p>
+<pre><code class="language-sh">&gt; CREATE USER todd WITH PASSWORD 'dsdb41yf3'
+&gt;</code></pre>
+<blockquote>
+<p><strong>Note:</strong> The password <a href="/dsdb/query_language/query_syntax.html#string-literals-single-quoted">string</a> must be wrapped in single quotes.
+Do not include the single quotes when authenticating requests.
+For passwords that include a single quote or a newline character, escape the single quote or newline character with a backslash both when creating the password and when submitting authentication requests.</p>
+</blockquote>
+</li>
+<li>
+<h5><code>GRANT</code> <code>READ</code>, <code>WRITE</code> or <code>ALL</code> database privileges to an existing user:</h5>
+<pre><code class="language-sql">GRANT [READ,WRITE,ALL] ON &lt;database_name&gt; TO &lt;username&gt;</code></pre>
+<p>CLI examples:</p>
+<p><code>GRANT</code> <code>READ</code> access to <code>todd</code> on the <code>NOAA_water_database</code> database:</p>
+<pre><code class="language-sh">&gt; GRANT READ ON NOAA_water_database TO todd
+&gt;</code></pre>
+<p><code>GRANT</code> <code>ALL</code> access to <code>todd</code> on the <code>NOAA_water_database</code> database:</p>
+<pre><code class="language-sh">&gt; GRANT ALL ON NOAA_water_database TO todd
+&gt;</code></pre>
+</li>
+<li>
+<h5><code>REVOKE</code> <code>READ</code>, <code>WRITE</code>, or <code>ALL</code> database privileges from an existing user:</h5>
+<pre><code class="language-sql">REVOKE [READ,WRITE,ALL] ON &lt;database_name&gt; FROM &lt;username&gt;</code></pre>
+<p>CLI examples:</p>
+<p><code>REVOKE</code> <code>ALL</code> privileges from <code>todd</code> on the <code>NOAA_water_database</code> database:</p>
+<pre><code class="language-sh">&gt; REVOKE ALL ON NOAA_water_database FROM todd
+&gt;</code></pre>
+<p><code>REVOKE</code> <code>WRITE</code> privileges from <code>todd</code> on the <code>NOAA_water_database</code> database:</p>
+<pre><code class="language-sh">&gt; REVOKE WRITE ON NOAA_water_database FROM todd
+&gt;</code></pre>
+<blockquote>
+<p><strong>Note:</strong> If a user with <code>ALL</code> privileges has <code>WRITE</code> privileges revoked, they are left with <code>READ</code> privileges, and vice versa.</p>
+</blockquote>
+</li>
+<li>
+<h5><code>SHOW</code> a user's database privileges:</h5>
+<pre><code class="language-sql">SHOW GRANTS FOR &lt;user_name&gt;</code></pre>
+<p>CLI example:</p>
+<pre><code class="language-sh">&gt; SHOW GRANTS FOR todd
+database                    privilege
+NOAA_water_database         WRITE
+another_database_name       READ
+yet_another_database_name   ALL PRIVILEGES</code></pre>
+</li>
+</ul>
+<h4 id="general-admin-and-non-admin-user-management">General admin and non-admin user management</h4>
+<ul>
+<li>
+<h5 id="re">Re<code>SET</code> a user's password:</h5>
+<pre><code class="language-sql">SET PASSWORD FOR &lt;username&gt; = '&lt;password&gt;'</code></pre>
+<p>CLI example:</p>
+<pre><code class="language-sh">&gt; SET PASSWORD FOR todd = 'dsdb4ever'
+&gt;</code></pre>
+<blockquote>
+<p><strong>Note:</strong> The password <a href="/dsdb/query_language/query_syntax.html#string-literals-single-quoted">string</a> must be wrapped in single quotes.
+Do not include the single quotes when authenticating requests.
+For passwords that include a single quote or a newline character, escape the single quote or newline character with a backslash both when creating the password and when submitting authentication requests.</p>
+</blockquote>
+</li>
+<li>
+<h5><code>DROP</code> a user:</h5>
+<pre><code class="language-sql">DROP USER &lt;username&gt;</code></pre>
+<p>CLI example:</p>
+<pre><code class="language-sh">&gt; DROP USER todd
+&gt;</code></pre>
+</li>
+</ul>
+<h2 id="authentication-and-authorization-http-errors">Authentication and authorization HTTP errors</h2>
+<p>Requests with invalid credentials and requests by unauthorized users yield the <code>HTTP 401 Unauthorized</code> response.</p>
+      </div>
+
+              <div class="tract"><img src="/images/tract.png"/></div>
+            <div class="clearfix"></div>
+      <div class="scroll" id="scroll" style="display:none;">
+			     <img src="/images/top.png"/>
+		  </div>
+    </div>
+  </div>
+  <script>hljs.initHighlightingOnLoad();</script>
+</body>
+
+</html>

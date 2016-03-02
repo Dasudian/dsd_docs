@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="大数点物联网开发者平台文档，基于大数点物联网平台，帮助开发者快速构建物联网应用">
-    <title>大数点文档中心</title>
+    <title>Comparison to SQL</title>
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
@@ -86,7 +86,7 @@
             </ul>
           </li>
           <li><a class="fold">DS Database</a>
-            <ul class="menu2" >
+            <ul class="menu2" style="display: block;">
               <li><a id="dsdb-overview" class="" href="/dsdb/index.html">DSDB Overview</a></li>
               <li><a class="fold">Introduction</a>
                 <ul class="menu3" >
@@ -113,7 +113,7 @@
                 </ul>
               </li>
               <li><a class="fold">Concepts</a>
-                <ul class="menu3" >
+                <ul class="menu3" style="display: block;">
                   <li><a id="dsdb-concepts-overview" class="" href="/dsdb/concepts/index.html">Concepts Overview</a></li>
                   <li><a id="dsdb-key-concepts" class="" href="/dsdb/concepts/key_concepts.html">Key Concepts</a></li>
                   <li><a id="dsdb-concepts-arch" class="" href="/dsdb/concepts/how_dsdb_works.html">Architecture</a></li>
@@ -122,7 +122,7 @@
                   <li><a id="dsdb-concepts-api-endpoints" class="" href="/dsdb/concepts/api.html">API Endpoints&Ports</a></li>
                   <li><a id="dsdb-concepts-storage-engine" class="" href="/dsdb/concepts/storage_engine.html">Storage Engine</a></li>
                   <li><a id="dsdb-concepts-glossary" class="" href="/dsdb/concepts/glossary.html">Glossary of Terms</a></li>
-                  <li><a id="dsdb-concepts-vs-sql" class="" href="/dsdb/concepts/crosswalk.html">Comparison to SQL</a></li>
+                  <li><a id="dsdb-concepts-vs-sql" class="active" href="/dsdb/concepts/crosswalk.html">Comparison to SQL</a></li>
                 </ul>
               </li>
               <li><a class="fold">Data Sources</a>
@@ -214,82 +214,170 @@
 
     <div class="side_right">
       <div class="doc">
-        <h1 id="">大数点开发者文档中心</h1>
-<p>欢迎来到大数点开发文档中心，请阅读以下章节：　　</p>
-<h3 id="-1">服务集成指南</h3>
+        <h1 id="comparison-to-sql">Comparison to SQL</h1>
+<p>This page gives SQL users an overview of how DSDB is like an SQL database and how it's not.
+It highlights some of the major distinctions between the two and provides a loose crosswalk between the different database terminologies and query languages.</p>
+<h2 id="in-general">In general...</h2>
+<p>DSDB is designed to work with time-series data.
+SQL databases can handle time-series but weren't created strictly for that purpose.
+In short, DSDB is made to store a large volume of time-series data and perform real-time analysis on those data, quickly.</p>
+<h3 id="timing-is-everything">Timing is everything</h3>
+<p>In DSDB, a timestamp identifies a single point in any given data series.
+This is like an SQL database table where the primary key is pre-set by the system and is always time.</p>
+<p>DSDB also recognizes that your schema preferences may change over time.
+In DSDB you don't have to define schemas up front.
+Data points can have one of the fields on a measurement, all of the fields on a measurement, or any number in-between.
+You can add new fields to a measurement simply by writing a point for that new field.
+If you need an explanation of the terms measurements, tags, and fields check out the next section for an SQL database to DSDB terminology crosswalk.</p>
+<h2 id="terminology">Terminology</h2>
+<p>The table below is a (very) simple example of a table  called <code>foodships</code> in an SQL database
+with the unindexed column <code>#_foodships</code> and the indexed columns <code>park_id</code>, <code>planet</code>, and <code>time</code>.</p>
+<pre><code class="language-sql">+---------+---------+---------------------+--------------+
+| park_id | planet  | time                | #_foodships  |
++---------+---------+---------------------+--------------+
+|       1 | Earth   | 1429185600000000000 |            0 |
+|       1 | Earth   | 1429185601000000000 |            3 |
+|       1 | Earth   | 1429185602000000000 |           15 |
+|       1 | Earth   | 1429185603000000000 |           15 |
+|       2 | Saturn  | 1429185600000000000 |            5 |
+|       2 | Saturn  | 1429185601000000000 |            9 |
+|       2 | Saturn  | 1429185602000000000 |           10 |
+|       2 | Saturn  | 1429185603000000000 |           14 |
+|       3 | Jupiter | 1429185600000000000 |           20 |
+|       3 | Jupiter | 1429185601000000000 |           21 |
+|       3 | Jupiter | 1429185602000000000 |           21 |
+|       3 | Jupiter | 1429185603000000000 |           20 |
+|       4 | Saturn  | 1429185600000000000 |            5 |
+|       4 | Saturn  | 1429185601000000000 |            5 |
+|       4 | Saturn  | 1429185602000000000 |            6 |
+|       4 | Saturn  | 1429185603000000000 |            5 |
++---------+---------+---------------------+--------------+</code></pre>
+<p>Those same data look like this in DSDB:</p>
+<pre><code class="language-sql">name: foodships
+tags: park_id=1, planet=Earth
+time            #_foodships
+----            ------------
+2015-04-16T12:00:00Z    0
+2015-04-16T12:00:01Z    3
+2015-04-16T12:00:02Z    15
+2015-04-16T12:00:03Z    15
+
+name: foodships
+tags: park_id=2, planet=Saturn
+time            #_foodships
+----            ------------
+2015-04-16T12:00:00Z    5
+2015-04-16T12:00:01Z    9
+2015-04-16T12:00:02Z    10
+2015-04-16T12:00:03Z    14
+
+name: foodships
+tags: park_id=3, planet=Jupiter
+time            #_foodships
+----            ------------
+2015-04-16T12:00:00Z    20
+2015-04-16T12:00:01Z    21
+2015-04-16T12:00:02Z    21
+2015-04-16T12:00:03Z    20
+
+name: foodships
+tags: park_id=4, planet=Saturn
+time            #_foodships
+----            ------------
+2015-04-16T12:00:00Z    5
+2015-04-16T12:00:01Z    5
+2015-04-16T12:00:02Z    6
+2015-04-16T12:00:03Z    5</code></pre>
+<p>Referencing the example above, in general:</p>
 <ul>
-<li><a href="integration-dev/integrate-im-android.html">Android上集成IM功能</a>  </li>
-<li><a href="integration-dev/integrate-im-ios.html">iOS上集成IM功能</a>  </li>
+<li>An DSDB measurement (<code>foodships</code>) is similar to an SQL database table.</li>
+<li>DSDB tags ( <code>park_id</code> and <code>planet</code>) are like indexed columns in an SQL database.</li>
+<li>DSDB fields (<code>#_foodships</code>) are like unindexed columns in an SQL database.</li>
+<li>DSDB points (for example, <code>2015-04-16T12:00:00Z   5</code>) are similar to SQL rows.</li>
 </ul>
-<h3 id="ds-database">DS database</h3>
-<ul>
-<li><a href="dsdb/index.html">DSDB Overview</a>  </li>
-<li>Introduction<br />
-&nbsp; - <a href="dsdb/introduction/installation.html">Installation</a><br />
-&nbsp; - <a href="dsdb/introduction//getting_started.html">Getting Started</a>  </li>
-<li>Administration<br />
-&nbsp; - <a href="dsdb/administration/authentication_and_authorization.html">Authentication and Authorization</a><br />
-&nbsp; - <a href="dsdb/administration/backup_and_restore.html">Backup and Restore</a><br />
-&nbsp; - <a href="dsdb/administration/config.html">Configuration</a><br />
-&nbsp; - <a href="dsdb/administration/logs.html">Logs</a><br />
-&nbsp; - <a href="dsdb/administration/statistics.html">Server Monitoring</a><br />
-&nbsp; - <a href="dsdb/administration/upgrading.html">Upgrading from previous versions</a>  </li>
-<li>Clients<br />
-&nbsp; - <a href="dsdb/clients/api.html">HTTP API Client Libraries</a>  </li>
-<li>Concepts
-&nbsp; - <a href="dsdb/concepts/key_concepts.html">Key Concepts</a><br />
-&nbsp; - <a href="dsdb/concepts/schema_and_data_layout.html">Schema and Data Layout</a><br />
-&nbsp; - <a href="dsdb/concepts/insights_tradeoffs.html">Design Insights and Tradeoffs</a><br />
-&nbsp; - <a href="dsdb/concepts/api.html">HTTP API Endpoints</a><br />
-&nbsp; - <a href="dsdb/concepts/storage_engine.html">Storage Engine</a><br />
-&nbsp; - <a href="dsdb/concepts/glossary.html">Glossary of Terms</a>  </li>
-<li>Data Sources<br />
-&nbsp; - <a href="dsdb/data_sources/diamond.html">Diamond</a><br />
-&nbsp; - <a href="dsdb/data_sources/opentsdb.html">OpenTSDB</a>  </li>
-<li>Guides<br />
-&nbsp; - <a href="dsdb/guides/clustering.html">Clustering</a><br />
-&nbsp; - <a href="dsdb/guides/downsampling_and_retention.html">Downsampling and Data Retention</a><br />
-&nbsp; - <a href="dsdb/guides/hardware_sizing.html">Hardware Sizing Guidelines</a><br />
-&nbsp; - <a href="dsdb/guides/querying_data.html">Querying Data</a><br />
-&nbsp; - <a href="dsdb/guides/writing_data.html">Writing Data</a>  </li>
-<li>Query Language<br />
-&nbsp; - <a href="dsdb/query_language/continuous_queries.html">Continuous Queries</a><br />
-&nbsp; - <a href="dsdb/query_language/data_exploration.html">Data Exploration</a><br />
-&nbsp; - <a href="dsdb/query_language/database_management.html">Database Management</a><br />
-&nbsp; - <a href="dsdb/query_language/functions.html">Functions</a><br />
-&nbsp; - <a href="dsdb/query_language/math_operators.html">Mathematical Operators</a><br />
-&nbsp; - <a href="dsdb/query_language/schema_exploration.html">Scheam Exploration</a><br />
-&nbsp; - <a href="dsdb/query_language/spec.html">Query Language Reference</a>  </li>
-<li>Sample Data<br />
-&nbsp; - <a href="dsdb/sample_data/data_download.html">Sample Data Download</a>  </li>
-<li>Tools<br />
-&nbsp; - <a href="dsdb/tools/shell.html">CLI/Shell</a><br />
-&nbsp; - <a href="dsdb/tools/web_admin.html">Web Admin Interface</a>  </li>
-<li>Troubleshooting<br />
-&nbsp; - <a href="dsdb/troubleshooting/frequently_encountered_issues.html">Frequently Encountered Issues</a><br />
-&nbsp; - <a href="dsdb/troubleshooting/system_monitoring.html">System Monitoring</a>  </li>
-<li>Write Protocols<br />
-&nbsp; - <a href="dsdb/write_protocols/collectd.html">Service - CollectD</a><br />
-&nbsp; - <a href="dsdb/write_protocols/graphite.html">Service - Graphite</a><br />
-&nbsp; - <a href="dsdb/write_protocols/json.html">JSON Protocol</a><br />
-&nbsp; - <a href="dsdb/write_protocols/line.html">Line Protocol</a><br />
-&nbsp; - <a href="dsdb/write_protocols/opentsdb.html">Service - OpenTSDB</a><br />
-&nbsp; - <a href="dsdb/write_protocols/udp.html">Service - UDP</a><br />
-&nbsp; - <a href="dsdb/write_protocols/write_syntax.html">Write Syntax</a>  </li>
-</ul>
-<h3 id="dac-document">DAC Document</h3>
-<ul>
-<li><a href="dac/dac_introduction.html">DAC Introduction</a>  </li>
-<li><a href="dac/dac_cloud_api_java.html">DAC JAVA API</a>  </li>
-<li><a href="dac/dac_cloud_api_c.html">DAC C API</a>  </li>
-<li><a href="dac/dac_cloud_api_cpp.html">DAC C++ API</a>  </li>
-</ul>
-<h3 id="data-hub">Data Hub</h3>
-<ul>
-<li>SDK<br />
-&nbsp; - <a href="data-hub/sdk/embeded_c.html">Embeded C API</a><br />
-&nbsp; - <a href="data-hub/sdk/javascript.html">JavaScript API</a>  </li>
-</ul>
+<p>Building on this comparison of database terminology,
+DSDB's <a href="/dsdb/query_language/continuous_queries.html">continuous queries</a>
+and <a href="/dsdb/administration/administration.html">replication policies</a> are
+similar to stored procedures in an SQL database.
+They're specified once and then performed regularly and automatically.</p>
+<p>Of course, there are some major disparities between SQL databases and DSDB.
+SQL <code>JOIN</code>s aren't available for DSDB measurements; your schema design should reflect that difference.
+And, as we mentioned above, a measurement is like an SQL table where the primary index is always pre-set to time.
+DSDB timestamps must be in UNIX epoch (GMT) or formatted as a date-time string valid under RFC3339.</p>
+<p>For more detailed descriptions of the DSDB terms mentioned in this section see our <a href="/dsdb/concepts/glossary.html">Glossary of Terms</a>.</p>
+<h2 id="influxql-and-sql">InfluxQL and SQL</h2>
+<p>InfluxQL is an SQL-like query language for interacting with DSDB.
+It has been lovingly crafted to feel familiar to those coming from other
+SQL or SQL-like environments while also providing features specific
+to storing and analyzing time series data.</p>
+<p>InfluxQL's <code>SELECT</code> statement follows the form of an SQL <code>SELECT</code> statement:</p>
+<pre><code class="language-sql">SELECT &lt;stuff&gt; FROM &lt;measurement_name&gt; WHERE &lt;some_conditions&gt;</code></pre>
+<p>where <code>WHERE</code> is optional.
+To get the DSDB output in the section above, you'd enter:</p>
+<pre><code class="language-sql">SELECT * FROM foodships</code></pre>
+<p>If you only wanted to see data for the planet <code>Saturn</code>, you'd enter:</p>
+<pre><code class="language-sql">SELECT * FROM foodships WHERE planet = 'Saturn'</code></pre>
+<p>If you wanted to see data for the planet <code>Saturn</code> after 12:00:01 UTC on April 16, 2015, you'd enter:</p>
+<pre><code class="language-sql">SELECT * FROM foodships WHERE planet = 'Saturn' AND time &gt; '2015-04-16 12:00:01'</code></pre>
+<p>As shown in the example above, InfluxQL allows you to specify the time range of your query in the <code>WHERE</code> clause.
+You can use date-time strings wrapped in single quotes that have the
+format <code>YYYY-MM-DD HH:MM:SS.mmm</code>
+( <code>mmm</code> is milliseconds and is optional, and you can also specify microseconds or nanoseconds).
+You can also use relative time with <code>now()</code> which refers to the server's current timestamp:</p>
+<pre><code class="language-sql">SELECT * FROM foodships WHERE time &gt; now() - 1h</code></pre>
+<p>That query outputs the data in the <code>foodships</code> measure where the timestamp is newer than the server's current time minus one hour.
+The options for specifying time durations with <code>now()</code> are:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Letter</th>
+<th style="text-align: center;">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">u</td>
+<td style="text-align: center;">microseconds</td>
+</tr>
+<tr>
+<td style="text-align: center;">s</td>
+<td style="text-align: center;">seconds</td>
+</tr>
+<tr>
+<td style="text-align: center;">m</td>
+<td style="text-align: center;">minutes</td>
+</tr>
+<tr>
+<td style="text-align: center;">h</td>
+<td style="text-align: center;">hours</td>
+</tr>
+<tr>
+<td style="text-align: center;">d</td>
+<td style="text-align: center;">days</td>
+</tr>
+<tr>
+<td style="text-align: center;">w</td>
+<td style="text-align: center;">weeks</td>
+</tr>
+</tbody>
+</table>
+<p><br/></p>
+<p>InfluxQL also supports regular expressions, arithmetic in expressions, <code>SHOW</code> statements, and <code>GROUP BY</code> statements.
+See our <a href="/dsdb/query_language/data_exploration.html">data exploration</a> page for an in-depth discussion of those topics.
+InfluxQL functions include <code>COUNT</code>, <code>MIN</code>, <code>MAX</code>, <code>MEDIAN</code>, <code>DERIVATIVE</code> and more.
+For a full list check out the <a href="/dsdb/query_language/functions.html">functions</a> page.</p>
+<p>Now that you have the general idea, check out our <a href="/dsdb/introduction/getting_started.html">Getting Started Guide</a>.</p>
+<h2 id="a-note-on-why-dsdb-isnt-crud">A note on why DSDB isn't CRUD...</h2>
+<p>DSDB is a database that has been optimized for time series data.
+This data commonly comes from sources like distributed sensor groups, click data from large websites, or lists of financial transactions.</p>
+<p>One thing this data has in common is that it is more useful in the aggregate.
+One reading saying that your computer’s CPU is at 12% utilization at 12:38:35 UTC on a Tuesday is hard to draw conclusions from.
+It becomes more useful when combined with the rest of the series and visualized.
+This is where trends over time begin to show, and actionable insight can be drawn from the data.
+In addition, time series data is generally written once and rarely updated.</p>
+<p>The result is that DSDB is not a full CRUD database but more like a CR-ud,
+prioritizing the performance of creating and reading data over update and destroy,
+and preventing some update and destroy behaviors to make create and read more performant.</p>
       </div>
 
               <div class="tract"><img src="/images/tract.png"/></div>
