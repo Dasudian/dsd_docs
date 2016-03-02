@@ -21,6 +21,14 @@
         //   $(".document .side_left ul li a").removeClass("active");
         //   $(this).addClass("active");
         // })
+        $(".menu1>li>a.fold").click(function(){
+				  $(".menu1 a.fold").css("background-image","url(/images/number_down.png)");
+				  $(".menu2,.menu3").slideUp();
+			  })
+			  $(".menu2>li>a.fold").click(function(){
+          $(".menu2 a.fold").css("background-image","url(/images/number_down.png)");
+          $(".menu3").slideUp();
+        })
         $(".fold").click(function() {
           if ($(this).next("ul").is(":hidden")) {
             $(this).css("background-image", "url(/images/number_up.png)");
@@ -31,6 +39,15 @@
           }
         })
       })
+      $(function(){
+			  $(".side_right").scroll( function() { 
+				  var scrollValue=$(".side_right").scrollTop();
+				  scrollValue > 100 ? $('div[class=scroll]').fadeIn():$('div[class=scroll]').fadeOut();
+			  });	
+			  $('#scroll').click(function(){
+				  $(".side_right").animate({scrollTop:0},200);	
+			  });	
+		  })
     </script>
     <link href='http://fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
   </head>
@@ -88,9 +105,12 @@
       </div>
 
       {% if menu is defined %}
-        <div class="tract"><img src="images/tract.png"/></div>
+        <div class="tract"><img src="/images/tract.png"/></div>
       {% endif %}
       <div class="clearfix"></div>
+      <div class="scroll" id="scroll" style="display:none;">
+			     <img src="/images/top.png"/>
+		  </div>
     </div>
   </div>
   <script>hljs.initHighlightingOnLoad();</script>
