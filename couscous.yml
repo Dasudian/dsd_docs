@@ -268,7 +268,7 @@ menu:
               text: "System Monitoring"
               relativeUrl: dsdb/troubleshooting/system_monitoring.html
     dsd-dac:
-      name: "DAC Document"
+      name: "DSD API Container(DAC)"
       items:
         dac-principal:
           text: "DAC工作原理"
