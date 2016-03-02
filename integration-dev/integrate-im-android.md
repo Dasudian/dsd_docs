@@ -1,5 +1,6 @@
 ---
-currentMenu: "integrate-im-android"
+title: "Android上集成IM功能"
+currentMenu: "srvintegrate-im-android"
 ---
 
 # Android上集成IM功能

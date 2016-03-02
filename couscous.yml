@@ -8,6 +8,7 @@ exclude:
     - vendor
     - website
     - .couscous
+    - README.md
 
 scripts:
     before:
@@ -37,41 +38,46 @@ navs:
 
 menu:
   menu1s:
-    1:
-      name: "介绍"
-      items:
-        intro-dsd:
-          text: "大数点介绍"
-          relativeUrl: get-started/intro-dsd.html
-      items:
-        into-serv:
-          text: "大数点服务介绍"
-          relativeUrl: get-started/intro-serv.html          
-    2:
+    dsd-devportal:
       name: "开发者平台操作指南"
       items:
-        register-login:
+        devportal-register-login:
           text: "注册和登陆"
           relativeUrl: dev-platform/register-login.html
-    3:
+    dsd-srvintegrate:
       name: "服务集成指南"
       items:
-        integrate-im-android:
+        srvintegrate-im-android:
           text: "Android上集成IM功能"
           relativeUrl: integration-dev/integrate-im-android.html
-        integrate-im-ios:
+        srvintegrate-im-ios:
           text: "iOS上集成IM功能"
           relativeUrl: integration-dev/integrate-im-ios.html
-    4:
+    dsd-dsdb:
       name: "DS Database"
-      menuid: "dsdb_document"
-      relativeUrl: dsdb/index.html
+      items:
+        dsdb-overview:
+          text: "DSDB Overview"
+          relativeUrl: dsdb/index.html
       menu2s:
-        1:
-          name: "Administration"
-          menuid: "dsdb_administration"
-          relativeUrl: dsdb/administration/
+        dsdb-intro:
+          name: "Introduction"
           items:
+            dsdb-intro-overview:
+              text: "Overview"
+              relativeUrl: dsdb/introduction/index.html
+            dsdb-intro-installation:
+              text: "Installation"
+              relativeUrl: dsdb/introduction/installation.html
+            dsdb-intro-start:
+              text: "Getting Started"
+              relativeUrl: dsdb/introduction/getting_started.html
+        dsdb_admin:
+          name: "Administration"
+          items:
+            dsdb-admin-overview:
+              text: "administration Overview"
+              relativeUrl: dsdb/administration/index.html
             dsdb-authent&authori:
               text: "Authentication&Authorization"
               relativeUrl: dsdb/administration/authentication_and_authorization.html
@@ -90,19 +96,21 @@ menu:
             dsdb-upgrade:
               text: "Upgrading"
               relativeUrl: dsdb/administration/upgrading.html
-        2:
+        dsdb-clients:
           name: "Clients"
-          menuid: "dsdb-clients"
-          relativeUrl: dsdb/clients/
           items:
-            dsdb-httpapi:
+            dsdb-clients-overview:
+              text: "Clients Overview"
+              relativeUrl: dsdb/clients/index.html
+            dsdb-clients-httpapi:
               text: "HTTP API"
               relativeUrl: dsdb/clients/api.html
-        3:
+        dsdb-concepts:
           name: "Concepts"
-          menuid: "dsdb-concepts"
-          relativeUrl: dsdb/concepts/
           items:
+            dsdb-concepts-overview:
+              text: "Concepts Overview"
+              relativeUrl: dsdb/concepts/index.html
             dsdb-key-concepts:
               text: "Key Concepts"
               relativeUrl: dsdb/concepts/key_concepts.html
@@ -127,7 +135,7 @@ menu:
             dsdb-concepts-vs-sql:
               text: "Comparison to SQL"
               relativeUrl: dsdb/concepts/crosswalk.html
-        4:
+        dsdb-datasource:
           name: "Data Sources"
           items:
             dsdb-datasource-diamond:
@@ -142,9 +150,8 @@ menu:
             dsdb-datasource-collectd:
               text: "Collectd"
               relativeUrl: dsdb/data_sources/collectd.html
-        5:
+        dsdb-guides:
           name: "Guides"
-          menuid: "dsdb-guides"
           relativeUrl: dsdb/guides/
           items:
             dsdb-guides-clustering:
@@ -162,22 +169,12 @@ menu:
             dsdb-guides-writing:
               text: "Writing Data"
               relativeUrl: dsdb/guides/writing_data.html
-        6:
-          name: "Introduction"
-          menuid: "dsdb-intro"
-          relativeUrl: dsdb/introduction/
-          items:
-            dsdb-intro-installation:
-              text: "Installation"
-              relativeUrl: dsdb/introduction/installation.html
-            dsdb-intro-start:
-              text: "Getting Started"
-              relativeUrl: dsdb/introduction/getting_started.html
-        7:
+        dsdb-querylang:
           name: "Query Language"
-          menuid: "dsdb-querylang"
-          relativeUrl: dsdb/query_language/
           items:
+            dsdb-querylang-overview:
+              text: "Overview"
+              relativeUrl: dsdb/query_language/index.html
             dsdb-querylang-dataexp:
               text: "Data Exploration"
               relativeUrl: dsdb/query_language/data_exploration.html
@@ -199,17 +196,19 @@ menu:
             dsdb-querylang-math:
               text: "Mathematical Operators"
               relativeUrl: dsdb/query_language/math_operators.html
-        8:
+        dsdb-sampledata:
           name: "Sample Data"
           items:
-            dsdb-sample-data:
+            dsdb-sampledata-down:
               text: "Sample Data Download"
               relativeUrl: dsdb/sample_data/data_download.html
-        9:
+        dsdb-tools:
           name: "Tools"
-          menuid: "dsdb-tools"
           relativeUrl: dsdb/tools/
           items:
+            dsdb-tools-overview:
+              text: "Tools Overview"
+              relativeUrl: dsdb/tools/index.html
             dsdb-tools-shell:
               text: "CLI/Shell"
               relativeUrl: dsdb/tools/shell.html
@@ -228,47 +227,49 @@ menu:
             dsdb-tools-kapacitor:
               text: "Kapacitor Monitoring"
               relativeUrl: dsdb/tools/kapacitor.html
-        10:
+        dsdb-writepro:
           name: "Write Protocols"
-          menuid: dsdb-wrtiepro
           relativeUrl: dsdb/write_protocols/
           items:
-            dsdb-wrtiepro-line:
+            dsdb-writepro-overview:
+              text: "Overview"
+              relativeUrl: dsdb/write_protocols/index.html
+            dsdb-writepro-line:
               text: "Line Protocol"
               relativeUrl: dsdb/write_protocols/line.html
-            dsdb-wrtiepro-syntax:
+            dsdb-writepro-syntax:
               text: "Write Syntax"
               relativeUrl: dsdb/write_protocols/write_syntax.html
-            dsdb-wrtiepro-json:
+            dsdb-writepro-json:
               text: "JSON Protocol"
               relativeUrl: dsdb/write_protocols/json.html
-            dsdb-wrtiepro-udp:
+            dsdb-writepro-udp:
               text: "Service - UDP"
               relativeUrl: dsdb/write_protocols/udp.html
-            dsdb-wrtiepro-graphite:
+            dsdb-writepro-graphite:
               text: "Service - Graphite"
               relativeUrl: dsdb/write_protocols/graphite.html
-            dsdb-wrtiepro-opentsdb:
+            dsdb-writepro-opentsdb:
               text: "Servcie - OpenTSDB"
               relativeUrl: dsdb/write_protocols/opentsdb.html
-            dsdb-wrtiepro-collectd:
+            dsdb-writepro-collectd:
               text: "Service - CollectD"
               relativeUrl: dsdb/write_protocols/collectd.html
-        11:
+        dsdb-troubleshoot:
           name: "Troubleshooting"
-          menuid: "dsdb-troubleshooting"
           relativeUrl: dsdb/troubleshooting/
           items:
-            dsdb-troubshooting-fei:
+            dsdb-troubleshoot-overview:
+              text: "Troubleshooting Overview"
+              relativeUrl: dsdb/troubleshooting/index.html
+            dsdb-troubleshoot-fei:
               text: "Frequently Encountered Issues"
               relativeUrl: dsdb/troubleshooting/frequently_encountered_issues.html
-            dsdb-troubleshooting-monitor:
+            dsdb-troubleshoot-monitor:
               text: "System Monitoring"
               relativeUrl: dsdb/troubleshooting/system_monitoring.html
-    5:
+    dsd-dac:
       name: "DAC Document"
-      menuid: "dac"
-      relativeUrl: dac/
       items:
         dac-principal:
           text: "DAC工作原理"
@@ -282,24 +283,15 @@ menu:
         dac-cpp-api:
           text: "DAC C++ API"
           relativeUrl: dac/dac_cloud_api_cpp.html
-    5:
-      name: "Test"
+    dsd-datahub:
+      name: "Data Hub"
       menu2s:
-        1:
-          name: "Level1"
+        datahub-sdk:
+          name: "SDK"
           items:
-            test-level-11:
-              text: "Test Level 11"
-              relativeUrl: dsdb/v1.0/tools/chronograf.md
-            test-level-12:
-              text: "Test Level 12"
-              relativeUrl: dsdb/v1.0/tools/grafana.md
-        2:
-          name: "Level3"
-          items:
-            test-level-21:
-              text: "Test Level 21"
-              relativeUrl: dsdb/v1.0/write_protocols/udp.md
-            test-level-22:
-              text: "Test Level 22"
-              relativeUrl: dsdb/v1.0/write_protocols/graphite.md
+            datahub-sdk-js:
+              text: "JavaScript"
+              relativeUrl: data-hub/sdk/javascript.html
+            datahub-sdk-embededc:
+              text: "Embeded C"
+              relativeUrl: data-hub/sdk/embeded_c.html

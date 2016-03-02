@@ -1,106 +1,99 @@
 <!DOCTYPE html>
 <html lang="zh">
 
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="{{ description }}">
-  <title>{{ title }}</title>
-  <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
-	<link href="/css/bootstrap.min.css" rel="stylesheet">
-	<link href="/css/app.css" rel="stylesheet">
-	<script src="/js/jquery.js"></script>
-	<script src="/js/bootstrap.min.js"></script>
-	<script src="/js/common.js"></script>
-  <script>
-		$(function(){
-			$(".document .side_left ul li a").click(function(){
-				$(".document .side_left ul li a").removeClass("active");
-				$(this).addClass("active");
-			})
-			$(".fold").click(function(){
-				if($(this).next("ul").is(":hidden")){
-					$(this).css("background-image","url(images/number_up.png)");
-					$(this).next("ul").slideDown();
-				}else{
-					$(this).css("background-image","url(images/number_down.png)");
-					$(this).next("ul").slideUp();
-				}
-			})
-		})
-  </script>
-  <link href='http://fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
-</head>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ description }}">
+    <title>{{ title }}</title>
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/app.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/highlight.js/9.2.0/styles/dark.min.css" rel="stylesheet">
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+    <script>
+      $(function() {
+        // $(".document .side_left ul li a").click(function() {
+        //   $(".document .side_left ul li a").removeClass("active");
+        //   $(this).addClass("active");
+        // })
+        $(".fold").click(function() {
+          if ($(this).next("ul").is(":hidden")) {
+            $(this).css("background-image", "url(/images/number_up.png)");
+            $(this).next("ul").slideDown();
+          } else {
+            $(this).css("background-image", "url(/images/number_down.png)");
+            $(this).next("ul").slideUp();
+          }
+        })
+      })
+    </script>
+    <link href='http://fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
+  </head>
 
-<body>
-  <nav class="navbar navbar-default">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="/"><img src="/images/logo.png"/></a>
-			</div>
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"><img src="/images/logo.png"/></a>
+        </div>
 
-			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav navbar-right">
-          {% for nav in navs %}
-          <li><a href="{{ nav.absoluteUrl }}"{%if nav.outside is defined %} target="_blank"{% endif %}>{{ nav.text }}</a></li>
-          {% endfor %}
-				</ul>
-			</div>
-		</div>
-	</nav>
-  
-  <div class="container-fluid0 document">
-		<div class="side_left">
-      {% for menu1 in menu.menu1s %}
-			<ul class="menu1">
-				<li><a class="fold">{{ menu1.name }}</a>
-          {% if menu1.menu2s is defined %}
-					<ul class="menu2">
-            {% for menu2 in menu1.menu2s %}
-						<li><a class="fold ">{{ menu2.name }}</a>
-							<ul class="menu3">
-                {% for itemId, item in menu2.items %}
-								<li class="{{ itemId == currentMenu ? 'open' }}"><a id="{{ itemId }}" href="{{ item.absoluteUrl | default(baseUrl ~ '/' ~ item.relativeUrl) }}">{{ item.text | raw }}</a></li>
-                {% endfor %}
-							</ul>
-						</li>
-            {% endfor %}
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+{% for nav in navs %}
+            <li><a href="{{ nav.absoluteUrl }}" {%if nav.outside is defined %} target="_blank" {% endif %}>{{ nav.text }}</a></li>
+{% endfor %}
           </ul>
-          {% else %}
-          <ul>
-            {% for itemId, item in menu1.items %}
-            <li class="{{ itemId == currentMenu ? 'open' }}">
-              <a href="{{ item.absoluteUrl | default(baseUrl ~ '/' ~ item.relativeUrl) }}">{{ item.text | raw }}</a>
-            </li>
-            {% endfor %}
-          </ul>
-          {% endif %}
-        </li>
-      </ul>
-      {% endfor %}
-		</div>
+        </div>
+      </div>
+    </nav>
 
-    <div class="side_right">		
-			<div class="doc">
+    <div class="container-fluid0 document">
+      <div class="side_left">
+        <ul class="menu1">
+{% for menu1 in menu.menu1s %}
+          <li><a class="fold">{{ menu1.name }}</a>
+            <ul class="menu2">
+{% for itemId, item in menu1.items %}
+              <li><a id="{{ itemId }}" class="{{ itemId == currentMenu ? 'active'}}" href="{{ item.absoluteUrl | default(baseUrl ~ '/' ~ item.relativeUrl) }}">{{ item.text | raw }}</a></li>
+{% endfor %}
+{% for menu2 in menu1.menu2s %}
+              <li><a class="fold">{{ menu2.name }}</a>
+                <ul class="menu3">
+{% for itemId, item in menu2.items %}
+                  <li><a id="{{ itemId }}" class="{{ itemId == currentMenu ? 'active' }}" href="{{ item.absoluteUrl | default(baseUrl ~ '/' ~ item.relativeUrl) }}">{{ item.text | raw }}</a></li>
+{% endfor %}
+                </ul>
+              </li>
+{% endfor %}
+            </ul>
+          </li>
+{% endfor %}
+        </ul>
+    </div>
+
+    <div class="side_right">
+      <div class="doc">
         {{ content | raw }}
       </div>
-		
-      {% if menu is defined %}
-			<div class="tract"><img src="images/tract.png"/></div>
-      {% endif %}
-			<div class="clearfix"></div>
-		</div>
-	</div>
-  
-  <script src="/js/highlight.min.js"></script>
 
+      {% if menu is defined %}
+        <div class="tract"><img src="images/tract.png"/></div>
+      {% endif %}
+      <div class="clearfix"></div>
+    </div>
+  </div>
+  <script>hljs.initHighlightingOnLoad();</script>
 </body>
 
 </html>

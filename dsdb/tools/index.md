@@ -1,6 +1,6 @@
 ---
 title: Tools
-currentMenu: dsdb-tools
+currentMenu: dsdb-tools-overview
 ---
 
 # Tools

@@ -1,6 +1,6 @@
 ---
 title: Service - OpenTSDB
-currentMenu: dsdb-wrtiepro-opentsdb
+currentMenu: dsdb-writepro-opentsdb
 ---
 
 # Service - OpenTSDB

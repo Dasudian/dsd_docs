@@ -1,6 +1,6 @@
 ---
 title: DSDB Concepts
-currentMenu: dsdb-concepts
+currentMenu: dsdb-concepts-overview
 ---
 
 # DSDB Concepts

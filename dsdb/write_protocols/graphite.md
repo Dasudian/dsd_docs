@@ -1,6 +1,6 @@
 ---
 title: Service - Graphite
-currentMenu: dsdb-wrtiepro-graphite
+currentMenu: dsdb-writepro-graphite
 ---
 
 # Service - Graphite

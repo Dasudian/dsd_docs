@@ -1,6 +1,6 @@
 ---
 title: Service - UDP
-currentMenu: dsdb-wrtiepro-udp
+currentMenu: dsdb-writepro-udp
 ---
 
 # Service - UDP

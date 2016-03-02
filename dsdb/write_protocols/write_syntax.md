@@ -1,6 +1,6 @@
 ---
 title: Write Syntax
-currentMenu: dsdb-wrtiepro-syntax
+currentMenu: dsdb-writepro-syntax
 ---
 
 # Write Syntax

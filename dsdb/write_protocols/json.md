@@ -1,6 +1,6 @@
 ---
 title: JSON Protocol
-currentMenu: dsdb-wrtiepro-json
+currentMenu: dsdb-writepro-json
 ---
 
 # JSON Protocol

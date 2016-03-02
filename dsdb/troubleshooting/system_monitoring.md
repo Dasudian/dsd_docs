@@ -1,6 +1,6 @@
 ---
 title: System Monitoring
-currentMenu: dsdb-troubleshooting-monitor
+currentMenu: dsdb-troubleshoot-monitor
 ---
 
 # System Monitoring

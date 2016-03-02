@@ -1,6 +1,6 @@
 ---
 title: Write Protocols
-currentMenu: dsdb-wrtiepro
+currentMenu: dsdb-writepro-overview
 ---
 
 # Write Protocols

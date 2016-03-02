@@ -1,6 +1,6 @@
 ---
 title: Service - CollectD
-currentMenu: dsdb-wrtiepro-collectd
+currentMenu: dsdb-writepro-collectd
 ---
 
 # Service - CollectD

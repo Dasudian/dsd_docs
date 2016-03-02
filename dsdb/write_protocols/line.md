@@ -1,6 +1,6 @@
 ---
 title: Line Protocol
-currentMenu: dsdb-wrtiepro-line
+currentMenu: dsdb-writepro-line
 ---
 
 # Line Protocol

@@ -1,3 +1,10 @@
+---
+title: JavaScript
+currentMenu: datahub-sdk-js
+---
+
+# Data Hub JavaScript SDK
+
 Getting Started
 ---------------
 

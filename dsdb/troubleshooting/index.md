@@ -1,6 +1,6 @@
 ---
 title: Troubleshooting
-currentMenu: dsdb-troubleshooting
+currentMenu: dsdb-troubleshoot-overview
 ---
 
 # Troubleshooting

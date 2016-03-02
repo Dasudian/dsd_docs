@@ -1,3 +1,10 @@
+---
+title: Embeded C
+currentMenu: datahub-sdk-embededc
+---
+
+# Data Hub Embeded C SDK
+
 Getting Started
 ---------------
 
@@ -148,4 +155,3 @@ dsdSourceIdentify("019mr8mf4r", "{\"email\": \"barco@dasudian.com\",\"plan\": \"
 "{\"integrations\": {\"All\": \"false\",\"Mixpanel\":\"true\",\"KISSmetrics\":\"true\"}}");
 ```
 In this case, we’re specifying that we want this identify to only go to Mixpanel and KISSmetrics. 'All': false says that no integration should be enabled unless otherwise specified. 'Mixpanel': true turns on Mixpanel, etc. Note, you must use an Integration’s formal, case sensitive name (i.e. “AdLearn Open Platform”, “awe.sm”, “MailChimp”, etc.), which is also the title of the integration’s documentation.
-

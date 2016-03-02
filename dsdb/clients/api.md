@@ -1,6 +1,6 @@
 ---
 title: "HTTP API Client Libraries"
-currentMenu: "dsdb-httpapi"
+currentMenu: "dsdb-clients-httpapi"
 ---
 
 # HTTP API Client Libraries

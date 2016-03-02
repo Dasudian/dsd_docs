@@ -1,7 +1,9 @@
 ---
 title: DSDB Documentation
-currentMenu: dsdb_document
+currentMenu: dsdb_overview
 ---
+
+# DSDB Documentation
 
 DSDB is a [time series database](https://en.wikipedia.org/wiki/Time_series_database) built from the ground up to handle high write and query loads.
 DSDB is meant to be used as a backing store for any use case involving large amounts of timestamped data, including DevOps monitoring, application metrics, IoT sensor data, and real-time analytics.
