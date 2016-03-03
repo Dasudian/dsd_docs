@@ -188,3 +188,21 @@ pre code {
   background-color: transparent;
   border-radius: 0;
 }
+
+.doc table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.doc th, .doc td {
+	border: 1px solid #98bf21;
+	padding: 3px 7px 2px 7px;
+}
+
+.doc th {
+	text-align: left;
+	padding-top: 5px;
+	padding-bottom: 4px;
+	background-color: #A7c942;
+	color: #ffffff;
+}
