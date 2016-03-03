@@ -294,14 +294,14 @@ menu:
       items:
         datahub-index:
           text: "Data Hub Overview"
-          relativeUrl: data-hub/index.html
+          relativeUrl: datahub/index.html
       menu2s:
         datahub-sdk:
           name: "SDK"
           items:
             datahub-sdk-js:
               text: "JavaScript"
-              relativeUrl: data-hub/sdk/javascript.html
+              relativeUrl: datahub/sdk/javascript.html
             datahub-sdk-embededc:
               text: "Embeded C"
-              relativeUrl: data-hub/sdk/embeded_c.html
+              relativeUrl: datahub/sdk/embeded_c.html

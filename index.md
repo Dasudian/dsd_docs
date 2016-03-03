@@ -78,7 +78,7 @@ currentMenu: index
 
 ### Data Hub
 
-- [Data Hub Overview](data-hub/index.md)  
+- [Data Hub Overview](datahub/index.md)  
 - SDK  
-&nbsp; - [Embeded C API](data-hub/sdk/embeded_c.md)  
-&nbsp; - [JavaScript API](data-hub/sdk/javascript.md)  
+&nbsp; - [Embeded C API](datahub/sdk/embeded_c.md)  
+&nbsp; - [JavaScript API](datahub/sdk/javascript.md)  
