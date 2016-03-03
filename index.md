@@ -8,8 +8,10 @@ currentMenu: index
 
 ### 服务集成指南
 
-- [Android上集成IM功能](integration-dev/integrate-im-android.md)  
-- [iOS上集成IM功能](integration-dev/integrate-im-ios.md)  
+- [服务集成](integration-dev/index.md)  
+- IM即时消息服务  
+&nbsp; - [Android上集成IM功能](integration-dev/im/integrate-im-android.md)  
+&nbsp; - [iOS上集成IM功能](integration-dev/im/integrate-im-ios.md)  
 
 ### DS database
 
@@ -69,13 +71,14 @@ currentMenu: index
 
 ### DAC Document
 
-- [DAC Introduction](dac/dac_introduction.md)  
+- [DAC Overview](dac/index.md)  
 - [DAC JAVA API](dac/dac_cloud_api_java.md)  
 - [DAC C API](dac/dac_cloud_api_c.md)  
 - [DAC C++ API](dac/dac_cloud_api_cpp.md)  
 
 ### Data Hub
 
+- [Data Hub Overview](data-hub/index.md)  
 - SDK  
 &nbsp; - [Embeded C API](data-hub/sdk/embeded_c.md)  
 &nbsp; - [JavaScript API](data-hub/sdk/javascript.md)  
