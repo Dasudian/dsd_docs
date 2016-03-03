@@ -206,11 +206,11 @@
           </li>
           <li><a class="fold">Data Hub</a>
             <ul class="menu2" >
-              <li><a id="datahub-index" class="" href="/data-hub/index.html">Data Hub Overview</a></li>
+              <li><a id="datahub-index" class="" href="/datahub/index.html">Data Hub Overview</a></li>
               <li><a class="fold">SDK</a>
                 <ul class="menu3" >
-                  <li><a id="datahub-sdk-js" class="" href="/data-hub/sdk/javascript.html">JavaScript</a></li>
-                  <li><a id="datahub-sdk-embededc" class="" href="/data-hub/sdk/embeded_c.html">Embeded C</a></li>
+                  <li><a id="datahub-sdk-js" class="" href="/datahub/sdk/javascript.html">JavaScript</a></li>
+                  <li><a id="datahub-sdk-embededc" class="" href="/datahub/sdk/embeded_c.html">Embeded C</a></li>
                 </ul>
               </li>
             </ul>
@@ -222,27 +222,125 @@
       <div class="doc">
         <p><a href="https://travis-ci.org/Dasudian/dsd_docs"><img src="https://travis-ci.org/Dasudian/dsd_docs.svg?branch-master" alt="Build Status" /></a>  <a href="https://travis-ci.org/Dasudian/dsd_docs"><img src="https://travis-ci.org/Dasudian/dsd_docs.svg?branch-dev" alt="Build Status" /></a>  </p>
 <h1 id="">大数点文档</h1>
-<p>该项目用于开发大数点的公告文档，所有文档使用<strong>markdown</strong>格式编写，按照目录结构存放在<em>docs</em>目录下。  </p>
+<p>该项目用于开发大数点的公告文档，所有文档使用<strong>markdown</strong>格式编写，按照相应文档目录结构存放。  </p>
 <h2 id="-1">文档目录结构</h2>
-<pre><code>docs/
-├── get-started　（开始）
-│   ├── intro-dsd.md　（大数点介绍）
-│   └── intro-serv.md　（开发者服务介绍）
-├── dev-platform　（开发者平台操作指南）
-│   └── register-login.md　（注册和登陆）
-└── integration-dev　（服务集成指南）
-    ├── integrate-im-android.md　（Android上集成IM功能）
-    └── integrate-im-ios.md　（iOS上集成IM功能）</code></pre>
+<pre><code>integration-dev/ （服务集成指南）
+├── im （IM即时消息服务）
+│   ├── integrate-im-android.md （Android上集成IM服务）
+│   └── integrate-im-ios.md （iOS上集成IM服务）
+└── index.md
+
+dsdb/ （Dasudian Database)
+├── index.md
+├── administration
+│   ├── index.md
+│   ├── authentication_and_authorization.md
+│   ├── backup_and_restore.md
+│   ├── config.md
+│   ├── logs.md
+│   ├── statistics.md
+│   └── upgrading.md
+├── clients
+│   ├── index.md
+│   └── api.md
+├── concepts
+│   ├── index.md
+│   ├── api.md
+│   ├── crosswalk.md
+│   ├── glossary.md
+│   ├── how_dsdb_works.md
+│   ├── insights_tradeoffs.md
+│   ├── key_concepts.md
+│   ├── schema_and_data_layout.md
+│   └── storage_engine.md
+├── data_sources
+│   ├── carbon.md
+│   ├── collectd.md
+│   ├── diamond.md
+│   └── opentsdb.md
+├── guides
+│   ├── clustering.md
+│   ├── downsampling_and_retention.md
+│   ├── hardware_sizing.md
+│   ├── querying_data.md
+│   └── writing_data.md
+├── introduction
+│   ├── index.md
+│   ├── getting_started.md
+│   └── installation.md
+├── query_language
+│   ├── index.md
+│   ├── continuous_queries.md
+│   ├── database_management.md
+│   ├── data_exploration.md
+│   ├── functions.md
+│   ├── math_operators.md
+│   ├── schema_exploration.md
+│   └── spec.md
+├── sample_data
+│   └── data_download.md
+├── tools
+│   ├── index.md
+│   ├── chronograf.md
+│   ├── grafana.md
+│   ├── kapacitor.md
+│   ├── shell.md
+│   ├── telegraf.md
+│   └── web_admin.md
+├── troubleshooting
+│   ├── index.md
+│   ├── frequently_encountered_issues.md
+│   └── system_monitoring.md
+└── write_protocols
+    ├── index.md
+    ├── collectd.md
+    ├── graphite.md
+    ├── json.md
+    ├── line.md
+    ├── opentsdb.md
+    ├── udp.md
+    └── write_syntax.md
+
+dac/ （Dasudian API Container）
+├── index.md
+├── dac_cloud_api_cpp.md
+├── dac_cloud_api_java.md
+└── dac_cloud_api_c.md
+
+data-hub/ （Dasudian Data Hub）
+├── index.md
+└── sdk
+    ├── embeded_c.md
+    └── javascript.md</code></pre>
 <h2 id="-2">编写文档流程</h2>
 <pre><code class="language-bash">git clone https://github.com/Dasudian/dsd_docs.git
 cd dsd_docs/  
 git checkout -b &lt;your branch for write the doc&gt;
-...
+... （Update the exist markdown files or add new markdown files)
 git commit -m "[doc] Write doc for cloud file api"
 git checkout dev
 git pull origin dev
 git merge --no-ff &lt;branch&gt;
 git push origin dev</code></pre>
+<h2 id="-3">设置编译和部署环境</h2>
+<p>要在本地编译和查看文档，需要PHP环境。</p>
+<h3 id="php">安装PHP环境</h3>
+<p><code>$sudo apt-get install php</code></p>
+<p>安装composer:  </p>
+<pre><code class="language-bash">$php -r "readfile('https://getcomposer.org/installer');" &gt; composer-setup.php
+$php composer-setup.php --install-dir=/home/&lt;your_home&gt;/bin --filename=composer
+$php -r "unlink('composer-setup.php');"</code></pre>
+<h3 id="-4">编译</h3>
+<p>进入本地源码，如：<br />
+<code>$cd ~/git/dsd_docs</code>  </p>
+<p>执行安装依赖：<br />
+<code>$composer install</code>  </p>
+<p>生成静态文件：<br />
+<code>$vendor/bin/couscous generate</code></p>
+<p>所有的静态文件将会编译到 <em>.couscous/generated/</em> 。  </p>
+<p>可以运行：<br />
+<code>$vendor/bin/couscous preview</code></p>
+<p>然后浏览器访问 [<a href="http://localhost:8000">http://localhost:8000</a>] 查看。</p>
       </div>
 
               <div class="tract"><img src="/images/tract.png"/></div>
