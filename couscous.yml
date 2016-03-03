@@ -271,8 +271,8 @@ menu:
       name: "DSD API Container(DAC)"
       items:
         dac-principal:
-          text: "DAC工作原理"
-          relativeUrl: dac/dac_introduction.html
+          text: "DAC介绍"
+          relativeUrl: dac/index.html
         dac-java-api:
           text: "DAC Java API"
           relativeUrl: dac/dac_cloud_api_java.html
