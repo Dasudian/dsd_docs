@@ -46,12 +46,19 @@ menu:
     dsd-srvintegrate:
       name: "服务集成指南"
       items:
-        srvintegrate-im-android:
-          text: "Android上集成IM功能"
-          relativeUrl: integration-dev/integrate-im-android.html
-        srvintegrate-im-ios:
-          text: "iOS上集成IM功能"
-          relativeUrl: integration-dev/integrate-im-ios.html
+        srvintegrate-index:
+          text: "服务集成"
+          relativeUrl: integration-dev/index.html
+      menu2s:
+        srvintegrate-im:
+          name: "IM即时消息服务"
+          items:
+            srvintegrate-im-android:
+              text: "Android上集成IM功能"
+              relativeUrl: integration-dev/im/integrate-im-android.html
+            srvintegrate-im-ios:
+              text: "iOS上集成IM功能"
+              relativeUrl: integration-dev/im/integrate-im-ios.html
     dsd-dsdb:
       name: "DS Database"
       items:
@@ -284,6 +291,10 @@ menu:
           relativeUrl: dac/dac_cloud_api_cpp.html
     dsd-datahub:
       name: "Data Hub"
+      items:
+        datahub-index:
+          text: "Data Hub Overview"
+          relativeUrl: data-hub/index.html
       menu2s:
         datahub-sdk:
           name: "SDK"
