@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="大数点物联网开发者平台文档，基于大数点物联网平台，帮助开发者快速构建物联网应用">
-    <title>DSDB Clients</title>
+    <title>大数点文档中心</title>
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
@@ -86,7 +86,7 @@
             </ul>
           </li>
           <li><a class="fold">DS Database</a>
-            <ul class="menu2" style="display: block;">
+            <ul class="menu2" >
               <li><a id="dsdb-overview" class="" href="/dsdb/index.html">DSDB Overview</a></li>
               <li><a class="fold">Introduction</a>
                 <ul class="menu3" >
@@ -107,8 +107,8 @@
                 </ul>
               </li>
               <li><a class="fold">Clients</a>
-                <ul class="menu3" style="display: block;">
-                  <li><a id="dsdb-clients-overview" class="active" href="/dsdb/clients/index.html">Clients Overview</a></li>
+                <ul class="menu3" >
+                  <li><a id="dsdb-clients-overview" class="" href="/dsdb/clients/index.html">Clients Overview</a></li>
                   <li><a id="dsdb-clients-httpapi" class="" href="/dsdb/clients/api.html">HTTP API</a></li>
                 </ul>
               </li>
@@ -214,7 +214,29 @@
 
     <div class="side_right">
       <div class="doc">
-        <h2><a href="/dsdb/clients/api.html">Compatible Libraries</a></h2>
+        <p><a href="https://travis-ci.org/Dasudian/dsd_docs"><img src="https://travis-ci.org/Dasudian/dsd_docs.svg?branch-master" alt="Build Status" /></a>  <a href="https://travis-ci.org/Dasudian/dsd_docs"><img src="https://travis-ci.org/Dasudian/dsd_docs.svg?branch-dev" alt="Build Status" /></a>  </p>
+<h1 id="">大数点文档</h1>
+<p>该项目用于开发大数点的公告文档，所有文档使用<strong>markdown</strong>格式编写，按照目录结构存放在<em>docs</em>目录下。  </p>
+<h2 id="-1">文档目录结构</h2>
+<pre><code>docs/
+├── get-started　（开始）
+│   ├── intro-dsd.md　（大数点介绍）
+│   └── intro-serv.md　（开发者服务介绍）
+├── dev-platform　（开发者平台操作指南）
+│   └── register-login.md　（注册和登陆）
+└── integration-dev　（服务集成指南）
+    ├── integrate-im-android.md　（Android上集成IM功能）
+    └── integrate-im-ios.md　（iOS上集成IM功能）</code></pre>
+<h2 id="-2">编写文档流程</h2>
+<pre><code class="language-bash">git clone https://github.com/Dasudian/dsd_docs.git
+cd dsd_docs/  
+git checkout -b &lt;your branch for write the doc&gt;
+...
+git commit -m "[doc] Write doc for cloud file api"
+git checkout dev
+git pull origin dev
+git merge --no-ff &lt;branch&gt;
+git push origin dev</code></pre>
       </div>
 
               <div class="tract"><img src="/images/tract.png"/></div>
