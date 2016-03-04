@@ -5,7 +5,7 @@ parent2: dsdb-concepts
 parent1: dsd-dsdb
 ---
 
-# Key Concepts
+## Key Concepts
 
 Before diving into DSDB it's good to get acquainted with some of the key concepts of the database.
 This document provides a gentle introduction to those concepts and common DSDB terminology.
@@ -36,7 +36,7 @@ We've provided a list below of all the terms we'll cover, but we recommend readi
 
 Check out the [Glossary](/dsdb/concepts/glossary.md) if you prefer the cold, hard facts.
 
-### Sample data
+#### Sample data
 The next section references the data printed out below.
 The data are fictional, but represent a believable setup in DSDB.
 They show the number of butterflies and honeybees counted by two scientists (`langstroth` and `perpetua`) in two locations (location `1` and location `2`) over the time period from August 18, 2015 at midnight through August 18, 2015 at 6:12 AM.
@@ -56,7 +56,7 @@ time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs
 2015-08-18T06:06:00Z&nbsp;&nbsp;&nbsp;8	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;23&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;perpetua  
 2015-08-18T06:12:00Z&nbsp;&nbsp;&nbsp;7	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;22	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;perpetua  
 
-### Discussion
+#### Discussion
 Now that you've seen some sample data in DSDB this section covers what it all means.
 
 DSDB is a time series database so it makes sense to start with what is at the root of everything we do: time.

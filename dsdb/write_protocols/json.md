@@ -5,7 +5,7 @@ parent2: dsdb-writepro
 parent1: dsd-dsdb
 ---
 
-# JSON Protocol
+## JSON Protocol
 
 The JSON write protocol is deprecated as of DSDB 0.9.1.
 It is still present in DSDB 1.0 but it will be removed no later than the DSDB 1.0 release.

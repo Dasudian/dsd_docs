@@ -5,15 +5,13 @@ parent2: datahub-sdk
 parent1: dsd-datahub
 ---
 
-# Data Hub Embeded C SDK
+## Data Hub Embeded C SDK
 
-Getting Started
----------------
+### Getting Started
 
 To get started head over to our [QuickStart](/quickstart.html) which will help you install IoT Data Analytics tracking your devices, applications and your site in just a few minutes. Once you’ve installed the library, read on for the detailed API reference!
 
-Identify
---------
+### Identify
 
 The **identify** method is how you tie one of your users and their actions to a recognizable userId and traits. You can read more about how to set it up or about how it works.
 
@@ -93,8 +91,7 @@ A dictionary of options, that let you do things like enable or disable specific 
 **callback**
 A callback function that gets called after a short timeout, giving the browser time to make outbound requests first.
 
-Alias
------
+### Alias
 
 The **alias** method combines two previously unassociated user/client/device identities. This comes in handy if the same user visits from two different services or your devices changed identifiers for different services, and you want to combine their history.
 

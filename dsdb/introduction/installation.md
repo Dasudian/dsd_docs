@@ -5,15 +5,15 @@ parent2: dsdb-intro
 parent1: dsd-dsdb
 ---
 
-# Installation
+## Installation
 
 This page provides directions for installing, starting, and configuring DSDB.
 
-## Requirements
+### Requirements
 
 Installation of the DSDB package may require `root` or administrator privileges in order to complete successfully.
 
-### Networking
+#### Networking
 
 By default, DSDB uses the following network ports:
 
@@ -26,9 +26,9 @@ DSDB also offers multiple plugins that may require custom ports.
 All port mappings can be modified through the [configuration file](/dsdb/administration/config.md),
 which is located at `/etc/dsdb/dsdb.conf` for default installations.
 
-## Installation
+### Installation
 
-### Ubuntu & Debian
+#### Ubuntu & Debian
 Debian and Ubuntu users can install the latest stable version of DSDB using the `apt-get` package manager.
 For Ubuntu users, you can add the DSDBData repository by using the following commands:
 
@@ -54,7 +54,7 @@ sudo apt-get update && sudo apt-get install dsdb
 sudo service dsdb start
 ```
 
-### RedHat & CentOS
+#### RedHat & CentOS
 RedHat and CentOS users can install the latest stable version of DSDB using the `yum` package manager:
 
 ```shell
@@ -76,17 +76,17 @@ sudo yum install dsdb
 sudo service dsdb start
 ```
 
-### SLES & openSUSE
+#### SLES & openSUSE
 There are RPM packages provided by openSUSE Build Service for SUSE Linux users:
 
 ```shell
-# add go repository
+## add go repository
 zypper ar -f obs://devel:languages:go/ go
-# install latest dsdb
+## install latest dsdb
 zypper in dsdb
 ```
 
-### FreeBSD/PC-BSD
+#### FreeBSD/PC-BSD
 
 DSDB is part of the FreeBSD package system.
 It can be installed by running:
@@ -105,7 +105,7 @@ sudo service influxd onestart
 
 To have DSDB start at system boot, add `influxd_enable="YES"` to `/etc/rc.conf`.
 
-### Mac OS X
+#### Mac OS X
 
 Users of OS X 10.8 and higher can install DSDB using the [Homebrew](http://brew.sh/) package manager.
 Once `brew` is installed, you can install DSDB by running:
@@ -133,13 +133,13 @@ Or, if you don't want/need launchctl, in a separate terminal window you can just
 influxd -config /usr/local/etc/dsdb.conf
 ```
 
-## Hosted
+### Hosted
 
 For users who don't want to install any software and are ready to use DSDB, you may want to check out our [managed hosted DSDB offering](http://customers.dasudian.com).
 
 <a href="/dsdb/introduction/getting_started.html"><font size="6"><b>⇒ Now get started!</b></font></a>
 
-## Configuration
+### Configuration
 
 For non-packaged installations, it is a best practice to generate a new configuration
 for each upgrade to ensure you have the latest features and settings.
@@ -184,9 +184,9 @@ The output will show every option configured in the `dsdb.partial.conf` file and
 The example configuration file shipped with the installer is for information only.
 It is an identical file to the internally generated configuration except that the example file has comments.
 
-## Hosting on AWS
+### Hosting on AWS
 
-### Hardware
+#### Hardware
 
 We recommend using two SSD volumes.
 One for the `dsdb/wal` and one for the `dsdb/data`.
@@ -197,13 +197,13 @@ Each machine should have a minimum of 8G RAM.
 
 We’ve seen the best performance with the C3 class of machines.
 
-### Configuring the Instance
+#### Configuring the Instance
 
 This example assumes that you are using two SSD volumes and that you have mounted them appropriately.
 This example also assumes that each of those volumes is mounted at `/mnt/influx` and `/mnt/db`.
 For more information on how to do that see the Amazon documentation on how to [Add a Volume to Your Instance](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-add-volume-to-instance.html).
 
-### Config File
+#### Config File
 You'll have to update the config file appropriately for each DSDB instance you have.
 
 ```
@@ -229,7 +229,7 @@ dir = "/mnt/db/hh"
     ...
 ```
 
-### Permissions
+#### Permissions
 
 When using non-standard directories for DSDB data and configurations, also be sure to set filesystem permissions correctly:
 
@@ -238,7 +238,7 @@ chown dsdb:dsdb /mnt/influx
 chown dsdb:dsdb /mnt/db
 ```
 
-### Other Considerations
+#### Other Considerations
 
 If you're planning on using a cluster, you may also want to set `-join` flags for the `INFLUXD_OPTS` variable in `/etc/default/dsdb`.
 For example:
@@ -249,7 +249,7 @@ INFLUXD_OPTS='[-join hostname_1:port_1[,hostname_2:port_2]]'
 
 For more detailed instructions on how to set up a cluster, please see the [Clustering](/dsdb/guides/clustering.md) section.
 
-## Nightly and Development Versions
+### Nightly and Development Versions
 
 Nightly packages are available for Linux through the DSDBData package repository by using the `nightly` channel.
 Other package options can be found on the [downloads page](https://dasudian.com/downloads/)

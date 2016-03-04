@@ -5,18 +5,18 @@ parent2: dsdb-concepts
 parent1: dsd-dsdb
 ---
 
-# Comparison to SQL
+## Comparison to SQL
 
 This page gives SQL users an overview of how DSDB is like an SQL database and how it's not.
 It highlights some of the major distinctions between the two and provides a loose crosswalk between the different database terminologies and query languages.
 
-## In general...
+### In general...
 
 DSDB is designed to work with time-series data.
 SQL databases can handle time-series but weren't created strictly for that purpose.
 In short, DSDB is made to store a large volume of time-series data and perform real-time analysis on those data, quickly.
 
-### Timing is everything
+#### Timing is everything
 
 In DSDB, a timestamp identifies a single point in any given data series.
 This is like an SQL database table where the primary key is pre-set by the system and is always time.
@@ -27,7 +27,7 @@ Data points can have one of the fields on a measurement, all of the fields on a 
 You can add new fields to a measurement simply by writing a point for that new field.
 If you need an explanation of the terms measurements, tags, and fields check out the next section for an SQL database to DSDB terminology crosswalk.
 
-## Terminology
+### Terminology
 
 The table below is a (very) simple example of a table  called `foodships` in an SQL database
 with the unindexed column `#_foodships` and the indexed columns `park_id`, `planet`, and `time`.
@@ -115,7 +115,7 @@ DSDB timestamps must be in UNIX epoch (GMT) or formatted as a date-time string v
 
 For more detailed descriptions of the DSDB terms mentioned in this section see our [Glossary of Terms](/dsdb/concepts/glossary.md).
 
-## InfluxQL and SQL
+### InfluxQL and SQL
 
 InfluxQL is an SQL-like query language for interacting with DSDB.
 It has been lovingly crafted to feel familiar to those coming from other
@@ -177,7 +177,7 @@ For a full list check out the [functions](/dsdb/query_language/functions.md) pag
 
 Now that you have the general idea, check out our [Getting Started Guide](/dsdb/introduction/getting_started.md).
 
-## A note on why DSDB isn't CRUD...
+### A note on why DSDB isn't CRUD...
 
 DSDB is a database that has been optimized for time series data.
 This data commonly comes from sources like distributed sensor groups, click data from large websites, or lists of financial transactions.

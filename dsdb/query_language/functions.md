@@ -5,7 +5,7 @@ parent2: dsdb-querylang
 parent1: dsd-dsdb
 ---
 
-# Functions
+## Functions
 
 Use DSDBQL functions to aggregate, select, and transform data.
 
@@ -33,9 +33,9 @@ See the [Querying Data](/dsdb/guides/querying_data.md) guide for how to query da
 The examples in this document use the same sample data as the [Data Exploration](/dsdb/query_language/data_exploration.md) page.
 The data are described and are available for download on the [Sample Data](/dsdb/sample_data/data_download.md) page.
 
-# Aggregations
+## Aggregations
 
-## COUNT()
+### COUNT()
 Returns the number of non-null values in a single [field](/dsdb/concepts/glossary.md#field).
 ```sql
 SELECT COUNT(<field_key>) FROM <measurement_name> [WHERE <stuff>] [GROUP BY <stuff>]
@@ -82,7 +82,7 @@ time			               count
 2015-09-18T00:00:00Z	 335
 ```
 
-> #### `COUNT()` and controlling the values reported for intervals with no data
+> ##### `COUNT()` and controlling the values reported for intervals with no data
 > <br>
 > Other DSDBQL functions report `null` values for intervals with no data, and appending `fill(<stuff>)` to queries with those functions replaces `null` values in the output with `<stuff>`.
 `COUNT()`, however, reports `0`s for intervals with no data, so appending `fill(<stuff>)` to queries with `COUNT()` replaces `0`s in the output with `<stuff>`.
@@ -111,7 +111,7 @@ time			               count
 
 > For a more general discussion of `fill()`, see [Data Exploration](/dsdb/query_language/data_exploration.md#the-group-by-clause-and-fill).
 
-## DISTINCT()
+### DISTINCT()
 Returns an array of the unique values in a single [field](/dsdb/concepts/glossary.md#field).
 ```sql
 SELECT DISTINCT(<field_key>) FROM <measurement_name> [WHERE <stuff>] [GROUP BY <stuff>]
@@ -181,13 +181,13 @@ time			               count
 1970-01-01T00:00:00Z	 3
 ```
 
-## INTEGRAL()
+### INTEGRAL()
 `INTEGRAL()` is not yet functional.
 
 <dt> See GitHub Issue [#1400](https://github.com/dsdb/dsdb/issues/1400) for more information.
 </dt>
 
-## MEAN()
+### MEAN()
 Returns the arithmetic mean (average) for the values in a single [field](/dsdb/concepts/glossary.md#field).
 The field type must be int64 or float64.
 ```sql
@@ -235,7 +235,7 @@ time			               mean
 2015-09-18T00:00:00Z	 4.232829850746268
 ```
 
-## MEDIAN()
+### MEDIAN()
 Returns the middle value from the sorted values in a single [field](/dsdb/concepts/glossary.md#field).
 The field values must be of type int64 or float64.
 
@@ -289,7 +289,7 @@ time			               median
 See GitHub Issue [#4680](https://github.com/dsdb/dsdb/issues/4680) for more information.
 </dt>
 
-## SPREAD()
+### SPREAD()
 Returns the difference between the minimum and maximum values of a [field](/dsdb/concepts/glossary.md#field).
 The field must be of type int64 or float64.
 ```sql
@@ -333,7 +333,7 @@ time			                spread
 ```
 
 
-## SUM()
+### SUM()
 Returns the sum of the all values in a single [field](/dsdb/concepts/glossary.md#field).
 The field must be of type int64 or float64.
 ```sql
@@ -376,9 +376,9 @@ time			               sum
 2015-09-17T00:00:00Z	 3627.7619999999997
 ```
 
-# Selectors
+## Selectors
 
-## BOTTOM()
+### BOTTOM()
 Returns the smallest `N` values in a single [field](/dsdb/concepts/glossary.md#field).
 The field type must be int64 or float64.
 ```sql
@@ -522,7 +522,7 @@ time			               bottom
 Note that in the raw data, `water_level` equals `4.055` at `2015-08-18T04:06:00Z` and at `2015-08-18T04:12:00Z`.
 In the case of a tie, DSDB returns the value with the earlier timestamp.
 
-## FIRST()
+### FIRST()
 Returns the oldest value (determined by the timestamp) of a single [field](/dsdb/concepts/glossary.md#field).
 ```sql
 SELECT FIRST(<field_key>) FROM <measurement_name> [WHERE <stuff>] [GROUP BY <stuff>]
@@ -569,7 +569,7 @@ time			               first
 See GitHub Issue [#4680](https://github.com/dsdb/dsdb/issues/4680) for more information.
 </dt>
 
-## LAST()
+### LAST()
 Returns the newest value (determined by the timestamp) of a single [field](/dsdb/concepts/glossary.md#field).
 ```sql
 SELECT LAST(<field_key>) FROM <measurement_name> [WHERE <stuff>] [GROUP BY <stuff>]
@@ -619,7 +619,7 @@ See GitHub Issue [#4680](https://github.com/dsdb/dsdb/issues/4680) for more info
 > **Note:** `LAST()` does not return points that occur after `now()` unless the `WHERE` clause specifies that time range.
 See [Frequently Encountered Issues](/dsdb/troubleshooting/frequently_encountered_issues.md#querying-after-now) for how to query after `now()`.
 
-## MAX()
+### MAX()
 Returns the highest value in a single [field](/dsdb/concepts/glossary.md#field).
 The field must be of type int64 or float64.
 ```sql
@@ -671,7 +671,7 @@ time			              max
 2015-08-18T00:48:00Z	1.991
 ```
 
-## MIN()
+### MIN()
 Returns the lowest value in a single [field](/dsdb/concepts/glossary.md#field).
 The field must be of type int64 or float64.
 ```sql
@@ -723,7 +723,7 @@ time			               min
 2015-08-18T00:48:00Z	 1.991
 ```
 
-## PERCENTILE()
+### PERCENTILE()
 Returns the `N`th percentile value for the sorted values of a single [field](/dsdb/concepts/glossary.md#field).
 The field must be of type int64 or float64.
 The percentile `N` must be an integer or floating point number between 0 and 100, inclusive.
@@ -778,7 +778,7 @@ See GitHub Issue [#4418](https://github.com/influxdata/dsdb/issues/4418) for mor
 
 > **Note**: `PERCENTILE(<field_key>, 50)` is nearly equivalent to `MEDIAN()`, except `MEDIAN()` returns the average of the two middle values if the field contains an even number of points.
 
-## TOP()
+### TOP()
 Returns the largest `N` values in a single [field](/dsdb/concepts/glossary.md#field).
 The field type must be int64 or float64.
 ```sql
@@ -922,15 +922,15 @@ time			               top
 Note that in the raw data, `water_level` equals `4.055` at `2015-08-18T04:06:00Z` and at `2015-08-18T04:12:00Z`.
 In the case of a tie, DSDB returns the value with the earlier timestamp.
 
-# Transformations
+## Transformations
 
-## CEILING()
+### CEILING()
 `CEILING()` is not yet functional.
 
 <dt> See GitHub Issue [#3691](https://github.com/dsdb/dsdb/issues/3691) for more information.
 </dt>
 
-## DERIVATIVE()
+### DERIVATIVE()
 Returns the rate of change for the values in a single [field](/dsdb/concepts/glossary.md#field) in a [series](/dsdb/concepts/glossary.md#series).
 DSDB calculates the difference between chronological field values and converts those results into the rate of change per `unit`.
 The `unit` argument is optional and, if not specified, defaults to one second (`1s`).
@@ -1142,25 +1142,25 @@ The numerator is the difference between chronological field values.
 The denominator is the difference between the relevant timestamps in minutes (`2015-08-18T00:18:00Z` - `2015-08-18T00:00:00Z` = `18m`) divided by `unit` (`6m`).
 This returns the rate of change per six minutes for the aggregated data from `2015-08-18T00:00:00Z` to `2015-08-18T00:18:00Z`.
 
-## DIFFERENCE()
+### DIFFERENCE()
 `DIFFERENCE()` is not yet functional.
 
 <dt> See GitHub Issue [#1825](https://github.com/dsdb/dsdb/issues/1825) for more information.
 </dt>
 
-## FLOOR()
+### FLOOR()
 `FLOOR()` is not yet functional.
 
 <dt> See GitHub Issue [#3691](https://github.com/dsdb/dsdb/issues/3691) for more information.
 </dt>
 
-## HISTOGRAM()
+### HISTOGRAM()
 `HISTOGRAM()` is not yet functional.
 
 <dt> See GitHub Issue [#3674](https://github.com/dsdb/dsdb/issues/3674) for more information.
 </dt>
 
-## NON_NEGATIVE_DERIVATIVE()
+### NON_NEGATIVE_DERIVATIVE()
 Returns the non-negative rate of change for the values in a single [field](/dsdb/concepts/glossary.md#field) in a [series](/dsdb/concepts/glossary.md#series).
 DSDB calculates the difference between chronological field values and converts those results into the rate of change per `unit`.
 The `unit` argument is optional and, if not specified, defaults to one second (`1s`).
@@ -1189,7 +1189,7 @@ SELECT NON_NEGATIVE_DERIVATIVE(AGGREGATION_FUNCTION(<field_key>),[<unit>]) FROM 
 See [`DERIVATIVE()`](/dsdb/query_language/functions.md#derivative) for example queries.
 All query results are the same for `DERIVATIVE()` and `NON_NEGATIVE_DERIVATIVE` except that `NON_NEGATIVE_DERIVATIVE()` returns only the positive values.
 
-## STDDEV()
+### STDDEV()
 Returns the standard deviation of the values in a single [field](/dsdb/concepts/glossary.md#field).
 The field must be of type int64 or float64.
 ```sql
@@ -1243,7 +1243,7 @@ time			               stddev
 2015-09-17T00:00:00Z	 1.075701669442093
 ```
 
-## Include multiple functions in a single query
+### Include multiple functions in a single query
 Separate multiple functions in one query with a `,`.
 
 Calculate the [minimum](/dsdb/query_language/functions.md#min) `water_level` and the [maximum](/dsdb/query_language/functions.md#max) `water_level` with a single query:
@@ -1259,7 +1259,7 @@ time			               min	   max
 1970-01-01T00:00:00Z	 -0.61	 9.964
 ```
 
-## Change the value reported for intervals with no data with `fill()`
+### Change the value reported for intervals with no data with `fill()`
 By default, queries with an DSDBQL function report `null` values for intervals with no data.
 Append `fill()` to the end of your query to alter that value.
 For a complete discussion of `fill()`, see [Data Exploration](/dsdb/query_language/data_exploration.md#the-group-by-clause-and-fill).
@@ -1267,7 +1267,7 @@ For a complete discussion of `fill()`, see [Data Exploration](/dsdb/query_langua
 > **Note:** `fill()` works differently with `COUNT()`.
 See [the documentation on `COUNT()`](http://localhost:1313/dsdb/query_language/functions.md#count-and-controlling-the-values-reported-for-intervals-with-no-data) for a function-specific use of `fill()`.
 
-## Rename the output column's title with `AS`
+### Rename the output column's title with `AS`
 
 By default, queries that include a function output a column that has the same name as that function.
 If you'd like a different column name change it with an `AS` clause.

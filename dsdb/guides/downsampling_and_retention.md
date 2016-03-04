@@ -5,7 +5,7 @@ parent2: dsdb-guides
 parent1: dsd-dsdb
 ---
 
-# Downsampling and Data Retention
+## Downsampling and Data Retention
 
 DSDB can handle hundreds of thousands of data points per second.
 Working with that much data over a long period of time can create storage concerns.
@@ -13,17 +13,17 @@ A natural solution is to downsample the data; keep the high precision raw data f
 
 This guide shows how to combine two DSDB features -- retention policies and continuous queries -- to automatically downsample and expire data.
 
-## Retention Policies
-### Definition  
+### Retention Policies
+#### Definition  
 A retention policy (RP) is the part of DSDB's data structure that describes for how long DSDB keeps data (duration) and how many copies of those data are stored in the cluster (replication factor).
 A database can have several RPs and RPs are unique per database.
 
-### Purpose
+#### Purpose
 In general, DSDB wasn't built to process deletes.
 One of the fundamental assumptions in its architecture is that deletes are infrequent and need not be highly performant.
 However, DSDB recognizes the necessity of purging data that have outlived their usefulness - that is the purpose of RPs.
 
-### Working with RPs
+#### Working with RPs
 When you create a database, DSDB automatically creates an RP called `default` with an infinite duration and a replication factor set to the number of nodes in the cluster.
 `default` also serves as the `DEFAULT` RP; if you do not supply an explicit RP when you write a point to the database, the data are subject to the `DEFAULT` RP.
 
@@ -41,20 +41,20 @@ It is initially the `DEFAULT` RP as well, but that can be altered.
 
 > `DEFAULT`: The RP that DSDB writes to if you do not supply an explicit RP in the write.
 
-## Continuous Queries
-### Definition
+### Continuous Queries
+#### Definition
 A continuous query (CQ) is an DSDBQL query that runs automatically and periodically within a database.
 CQs require a function in the `SELECT` clause and must include a `GROUP BY time()` clause.
 DSDB stores the results of the CQ in a specified measurement.
 
-### Purpose
+#### Purpose
 CQs are optimal for regularly downsampling data - once you implement the CQ, DSDB automatically and periodically runs the query, and, instead of simply returning the results like a normal query, DSDB stores the results of a CQ in a measurement for future use.
 
-### Working with CQs
+#### Working with CQs
 The section below offers a very brief introduction to creating CQs.
 See [Continuous Queries](/docs/dsdb/query_language/continuous_queries.md) for a detailed discussion on how to create and manage CQs.
 
-## Combining RPs and CQs - a casestudy
+### Combining RPs and CQs - a casestudy
 We have real-time data that track the number of food orders to a restaurant via phone and via website at 10 second intervals.
 In the long run, we're only interested in the average number of orders by phone and by website at 30 minute intervals.
 In the next steps, we use RPs and CQs to make DSDB:
@@ -66,12 +66,12 @@ In the next steps, we use RPs and CQs to make DSDB:
 The following steps work with a fictional [database](/docs/dsdb/concepts/glossary.md#database) called `food_data` and the [measurement](/docs/dsdb/concepts/glossary.md#measurement) `orders`.
 `orders` has two [fields](/docs/dsdb/concepts/glossary.md#field), `phone` and `website`, which store the number of orders that arrive via each channel every 10 seconds.
 
-### Prepare the database
+#### Prepare the database
 Before writing the data to the database `food_data`, we perform the following steps.
 
 > **Note:** We do this before inserting any data because DSDB only performs CQs on new data, that is, data with timestamps that occur after the time at which we create the CQ.
 
-#### Create a new `DEFAULT` RP
+##### Create a new `DEFAULT` RP
 When we initially [created the database](/docs/dsdb/query_language/database_management.md#create-a-database-with-create-database) `food_data`, DSDB automatically generated an RP called `default` with an infinite duration and a replication factor set to the number of nodes in the cluster.
 `default` is also the `DEFAULT` RP for `food_data`; if we do not supply an explicit RP when we write a point to the database, DSDB writes the point to `default` and it keeps those data forever.
 
@@ -96,7 +96,7 @@ default		   0		        1		        false
 two_hours	  2h0m0s		   1		        true
 ```
 
-#### Create the CQ
+##### Create the CQ
 Now we create a CQ that automatically downsamples the 10 second level data to 30 minute level data:
 
 ```sql
@@ -112,7 +112,7 @@ If you do not fully qualify the measurement, DSDB writes the results of the quer
 
 For a more detailed discussion on the `CREATE CONTINUOUS QUERY` syntax, see [Continuous Queries](/docs/dsdb/query_language/continuous_queries.md).
 
-### Write the data to DSDB and see the results
+#### Write the data to DSDB and see the results
 Now that we've prepped `food_data`, we start writing the data to DSDB and let things run for a bit.
 After a while, we see that the database has two measurements: `orders` and `downsampled_orders`.
 

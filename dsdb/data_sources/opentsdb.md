@@ -5,7 +5,7 @@ parent2: dsdb-datasource
 parent1: dsd-dsdb
 ---
 
-# OpenTSDB
+## OpenTSDB
 
 DSDB supports the OpenTSDB ["telnet" protocol](http://opentsdb.net/docs/build/html/user_guide/writing.html#telnet).
 When OpenTSDB support is enabled, DSDB can act as a drop-in replacement for your OpenTSDB system.

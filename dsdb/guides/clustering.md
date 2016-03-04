@@ -5,7 +5,7 @@ parent2: dsdb-guides
 parent1: dsd-dsdb
 ---
 
-# Clustering
+## Clustering
 
 > **NOTE:** Clustering is still considered _experimental_, and there are still quite a few rough edges. If you encounter any issues, please [report them](https://github.com/dasudian/dsdb/issues/new).
 
@@ -27,13 +27,13 @@ Any node can be a meta node, data node, or both. Each cluster must
 have _at least_ three meta nodes in order to form a Raft concensus and
 remain in a healthy state.
 
-## Configuration
+### Configuration
 
 The following is the current recommended procedure for configuring a cluster.
 
 > **Note:** You should always use the most recent release for clustering as there are significant improvements with each release.
 
-### Start the Initial Raft Cluster
+#### Start the Initial Raft Cluster
 
 Throughout this example, each node will be given a hostname that
 denotes the order in which it was started (e.g. `influx1` for the
@@ -83,7 +83,7 @@ id	http_addr	tcp_addr
 
 If you believe that you did the following steps correctly, but are still experiencing problems, try restarting each node in your cluster.
 
-### Adding More Nodes
+#### Adding More Nodes
 
 Once you have verified that your cluster is healthy and running appropriately, you can add extra nodes by following the same steps above. When specifying the `-join` address, you will need to use the hostname/IP address of a pre-existing member of the cluster (either `influx1`, `influx2`, or `influx3` if following the example above).
 

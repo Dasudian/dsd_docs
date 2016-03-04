@@ -5,12 +5,12 @@ parent2: dsdb-admin
 parent1: dsd-dsdb
 ---
 
-# Server Monitoring
+## Server Monitoring
 
 DSDB can display statistical and diagnostic information about each node.
 This information can be very useful for troubleshooting and performance monitoring.
  
-## SHOW STATS
+### SHOW STATS
 To see node stats execute the command `SHOW STATS`.
 An example is shown below.
 
@@ -54,16 +54,16 @@ SHOW STATS
 
 The statistics returned by `SHOW STATS` are stored in memory only, and are reset to zero when the node is restarted.
 
-## SHOW DIAGNOSTICS
+### SHOW DIAGNOSTICS
 To see node diagnostics execute the command `SHOW DIAGNOSTICS`.
 This returns information such as build information, uptime, hostname, server configuration, memory usage, and Go runtime diagnostics.
 
-## Internal Monitoring
+### Internal Monitoring
 DSDB also writes statistical and diagnostic information to database named `_internal`, which records metrics on the internal runtime and service performance.
 The `_internal` database can be queried and manipulated like any other DSDB database.
 Check out the [monitor service README](https://github.com/Dasudian/dsdb/blob/master/monitor/README.md) and the [internal monitoring blog post](https://dsdb.com/blog/2015/09/22/monitoring_internal_show_stats.html) for more detail.
 
-## Useful Commands
+### Useful Commands
 
 Below are a collection of commands to find useful performance metrics about your DSDB instance. 
 

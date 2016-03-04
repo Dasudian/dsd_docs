@@ -5,9 +5,9 @@ parent2: dsdb-concepts
 parent1: dsd-dsdb
 ---
 
-# Storage Engine
+## Storage Engine
 
-## Properties of Time Series Data
+### Properties of Time Series Data
 
 The workload of time series data is quite different from normal database workloads.
 There are a number of factors that conspire to make it very difficult to get it to scale and perform well:
@@ -51,7 +51,7 @@ However, that means that once you’re up to your window of retention, you’ll 
 
 Let’s dig into the details of the two types of storage engines we tried and how these properties had a significant impact on our performance.
 
-### LevelDB and Log Structured Merge Trees
+#### LevelDB and Log Structured Merge Trees
 
 We picked LevelDB as the storage engine because it was what we used for time series data storage for the product that was the precursor to DSDB.
 
@@ -101,4 +101,4 @@ Having dozens or hundreds of these databases open in a single process ended up c
 It’s not something we found with a large number of users, but for anyone that was stressing the database to its limits, they were hitting this problem and we had no fix for it.
 There were simply too many file handles open.
 
-### Optimized Erlang ETS table for caching
+#### Optimized Erlang ETS table for caching

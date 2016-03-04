@@ -5,12 +5,12 @@ parent2: dsdb-concepts
 parent1: dsd-dsdb
 ---
 
-# Scheam Design
+## Scheam Design
 
 Every DSDB use case is special and your [schema](/dsdb/concepts/glossary.md#schema) will reflect that uniqueness.
 There are, however, general guidelines to follow and pitfalls to avoid when designing your schema.
 
-## Encouraged Schema Design
+### Encouraged Schema Design
 
 In no particular order, we recommend that you:
 
@@ -33,7 +33,7 @@ In no particular order, we recommend that you:
 
     Note that you will also need to wrap identifiers in double quotes in queries if they contain characters other than `[A-z,_]`.
 
-## Discouraged Schema Design
+### Discouraged Schema Design
 
 In no particular order, we recommend that you:
 

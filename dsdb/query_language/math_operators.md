@@ -5,7 +5,7 @@ parent2: dsdb-querylang
 parent1: dsd-dsdb
 ---
 
-# Mathematical Operators
+## Mathematical Operators
 
 > **Note:** Currently all mathematical operators work solely on `floats`.
 Currently, DSDB converts any `int` involved to a `float` as any operation performed on an `int` would return a `null` value.
@@ -16,9 +16,9 @@ Mathematical operators follow the standard order of operations.
 That is, *parentheses* take precedence to *division* and *multiplication*, which takes precedence to *addition* and *substraction*.
 For example `5 / 2 + 3 * 2 =  (5 / 2) + (3 * 2)` and `5 + 2 * 3 - 2 = 5 + (2 * 3) - 2`.
 
-## Supported Operators
+### Supported Operators
 
-### Addition
+#### Addition
 
 You can add a constant.
 
@@ -32,7 +32,7 @@ You can add together other field keys.
 SELECT A + B FROM add
 ```
 
-### Subtraction
+#### Subtraction
 
 You can subtract a constant.
 
@@ -46,7 +46,7 @@ You can subtract one field key from another field key.
 SELECT A - B FROM sub
 ```
 
-### Multiplication
+#### Multiplication
 
 You can multiply by a constant.
 
@@ -75,7 +75,7 @@ SELECT 10 * (A - B - C) FROM mult
 SELECT 10 * (A + B - C) FROM mult
 ```
 
-### Division
+#### Division
 You can divide by a constant.
 
 ```sql
@@ -94,7 +94,7 @@ Division distributes across other operators
 SELECT 10 / (A + B + C) FROM mult
 ```
 
-## Operators with Functions
+### Operators with Functions
 
 The use of mathematical operators inside of function calls is currently unsupported.
 
@@ -109,19 +109,19 @@ SELECT mean(10 * value) FROM cpu
 ```
 will yield a parse error.
 
-## Unsupported Operators
+### Unsupported Operators
 
-### Inequalities
+#### Inequalities
 
 Using any of `=`,`!=`,`<`,`>`,`<=`,`>=` in the `SELECT` clause yields empty results for all types.
 See GitHub issue [3525](https://github.com/dsdb/dsdb/issues/3525).
 
-### Miscellaneous
+#### Miscellaneous
 
 Using any of `%`, `^` will yield a parse error.
 If you would like to see support for these operators open an [issue](https://github.com/dsdb/dsdb/issues/new).
 
-## Logical Operators are Unsupported
+### Logical Operators are Unsupported
 
 Using any of `&`,`|`,`!|`,`NAND`,`XOR`,`NOR` will yield parse error.
 

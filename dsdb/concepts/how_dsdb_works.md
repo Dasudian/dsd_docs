@@ -5,7 +5,7 @@ parent2: dsdb-concepts
 parent1: dsd-dsdb
 ---
 
-# Architecture
+## Architecture
 
 DSDB consists of a Discrete Series Database Daemon (DSDBd) as well as set of command line utilities. Interaction with DSDB is primarily achieved by running one or more of the DSDBds. Each DSDBd is independently distributed. There is no master, no shared state so you can run as many DSDBds as required to handle any load you push to it. Each DSDBd stores discrete-series data to and retrieves discrete-series data from DSDB Storage Engine Cluster (DSEC), which is composed of pluggable database backends (the open source database Riak, CouchDB, HBase, Mysql etc.). The database backends are schemaless or with highly optimized schema for fast aggregations of similar discrete/time series to minimize storage space. Users/Clients of the DSDB never need to access database backend directly, whilst you can communicate with the DSDBd via a simple telnet-style protocol, an HTTP API or a simple built-in GUI. All communications happen on the same port (the DSDBd figures out the protocol of the client by looking at the first few bytes it receives).
 

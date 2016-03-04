@@ -5,7 +5,7 @@ parent2: dsdb-writepro
 parent1: dsd-dsdb
 ---
 
-# Line Protocol
+## Line Protocol
 
 The line protocol is a text based format for writing points to DSDB.
 Each line defines a single point.
@@ -21,7 +21,7 @@ The minimum required point consists of a measurement name and at least one field
 Points without a specified timestamp will be written using the server's local timestamp.
 Timestamps are assumed to be in nanoseconds unless a `precision` value is passed in the query string.
 
-## Key
+### Key
 
 The key is the measurement name and any optional tags separated by commas.
 Measurement names, tag keys, and tag values must escape any spaces or commas using a backslash (`\`).
@@ -32,23 +32,23 @@ All tag values are stored as strings and should not be surrounded in quotes.
 Tags should be sorted by key before being sent for best performance.
 The sort should match that from the Go `bytes.Compare` function (http://golang.org/pkg/bytes/#Compare).
 
-### Examples
+#### Examples
 
 ```
-# measurement only
+## measurement only
 cpu
 
-# measurement and tags
+## measurement and tags
 cpu,host=serverA,region=us-west
 
-# measurement with commas
+## measurement with commas
 cpu\,01,host=serverA,region=us-west
 
-# tag value with spaces
+## tag value with spaces
 cpu,host=server\ A,region=us\ west
 ```
 
-## Fields
+### Fields
 
 Fields are key-value metrics associated with the measurement.
 Every line must have at least one field.
@@ -75,27 +75,27 @@ All string field values _must_ be surrounded in double-quotes `"`.
 If the string contains a double-quote, the double-quote must be escaped with a backslash, e.g. `\"`.
 
 ```
-# integer value
+## integer value
 cpu value=1i
 
-# float value
+## float value
 cpu_load value=1
 
 cpu_load value=1.0
 
 cpu_load value=1.2
 
-# boolean value
+## boolean value
 error fatal=true
 
-# string value
+## string value
 event msg="logged out"
 
-# multiple values
+## multiple values
 cpu load=10,alert=true,reason="value above maximum threshold"
 ```
 
-## Timestamp
+### Timestamp
 
 The timestamp section is optional but should be specified if possible.
 The value is an integer representing nanoseconds since the epoch.
@@ -104,7 +104,7 @@ If the timestamp is not provided the point will inherit the server's local times
 Some write APIs allow passing a lower precision.
 If the API supports a lower precision, the timestamp may also be an integer epoch in microseconds, milliseconds, seconds, minutes or hours.
 
-## Full Example
+### Full Example
 A full example is shown below.
 ```
 cpu,host=server01,region=uswest value=1 1434055562000000000

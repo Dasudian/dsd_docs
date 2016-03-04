@@ -5,7 +5,7 @@ parent2: dsdb-intro
 parent1: dsd-dsdb
 ---
 
-# Getting Started
+## Getting Started
 
 With DSDB [installed](/dsdb/introduction/installation.md), you're ready to start doing some awesome things.
 In this section we'll use the `influx` command line interface (CLI), which is included in all
@@ -16,7 +16,7 @@ The CLI communicates with DSDB directly by making requests to the DSDB HTTP API 
 See [Writing Data](/dsdb/guides/writing_data.md) and [Querying Data](/dsdb/guides/querying_data.md)
 for examples with the `curl` application.
 
-## Creating a database
+### Creating a database
 
 If you've installed DSDB locally, the `influx` command should be available via the command line.
 Executing `influx` will start the CLI and automatically connect to the local DSDB instance
@@ -87,7 +87,7 @@ Using database mydb
 
 Now future commands will only be run against the `mydb` database.
 
-## Writing and exploring data
+### Writing and exploring data
 
 Now that we have a database, DSDB is ready to accept queries and writes.
 

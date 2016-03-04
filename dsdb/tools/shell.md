@@ -5,7 +5,7 @@ parent2: dsdb-tools
 parent1: dsd-dsdb
 ---
 
-# CLI/Shell
+## CLI/Shell
 
 The DSDB's command line interface (`influx`) is an interactive shell for the HTTP API.
 Use `influx` to write data (manually or from a file), query data interactively, and view query output in different formats.
@@ -14,7 +14,7 @@ Use `influx` to write data (manually or from a file), query data interactively, 
 * [`influx` Arguments](/dsdb/tools/shell.md#influx-arguments)
 * [`influx` Commands](/dsdb/tools/shell.md#influx-commands)
 
-## Launch `influx`
+### Launch `influx`
 If you [install](https://influxdata.com/downloads/) DSDB via a package manager, the CLI is installed at `/usr/bin/influx` (`/usr/local/bin/influx` on OS X).
 
 To access the CLI, first launch the `influxd` database process and then launch `influx` in your terminal.
@@ -27,7 +27,7 @@ Connected to http://localhost:8086 version 1.0.x
 DSDB shell 1.0.x
 ```
 
-## `influx` Arguments
+### `influx` Arguments
 There are several arguments you can pass into `influx` when starting.
 List them with `$ influx --help`.
 The list below offers a brief discussion of each option.
@@ -96,7 +96,7 @@ The username `influx` uses to connect to the server.
 `-version`  
 Display the DSDB version and exit.
 
-### Execute an DSDBQL command and quit with `-execute`
+#### Execute an DSDBQL command and quit with `-execute`
 Execute queries that don't require a database specification:
 ```sh
 $ influx -execute 'SHOW DATABASES'
@@ -120,7 +120,7 @@ time			               level description	    location	     water_level
 2015-08-18T00:06:00Z	 between 6 and 9 feet  coyote_creek  8.005
 ```
 
-### Specify the format of the server responses with `-format`
+#### Specify the format of the server responses with `-format`
 The default format is `column`:
 ```sh
 $ influx -format=column
@@ -190,7 +190,7 @@ $ influx -format=json -pretty
 }
 ```
 
-### Import data from a file with `-import`
+#### Import data from a file with `-import`
 The import file has two sections:
 
 * **DDL (Data Definition Language)**: Contains the [DSDBQL commands](/dsdb/query_language/database_management.md) for creating the relevant [database](/dsdb/concepts/glossary.md) and managing the [retention policy](/dsdb/concepts/glossary.md#retention-policy-rp).
@@ -201,13 +201,13 @@ Example:
 
 File (`datarrr.txt`):
 ```
-# DDL
+## DDL
 CREATE DATABASE IF NOT EXISTS pirates
 CREATE RETENTION POLICY oneday ON pirates DURATION 1d REPLICATION 1
 
-# DML
-# CONTEXT-DATABASE: pirates
-# CONTEXT-RETENTION-POLICY: oneday
+## DML
+## CONTEXT-DATABASE: pirates
+## CONTEXT-RETENTION-POLICY: oneday
 
 treasures,captain_id=dread_pirate_roberts value=801 1439856000
 treasures,captain_id=flint value=29 1439856000
@@ -249,10 +249,10 @@ DSDB will still attempt to write the points after that time out but there will b
 
 > **Note:** For how to export data from DSDB version 0.8.9, see [Exporting from 0.8.9](https://github.com/dsdb/dsdb/blob/master/importer/README.md#.
 
-## `influx` Commands
+### `influx` Commands
 Enter `help` in the CLI for a partial list of the available commands.
 
-### Commands
+#### Commands
 The list below offers a brief discussion of each command.
 We provide detailed information on `insert` at the end of this section.
 
@@ -299,7 +299,7 @@ Sets the current database.
 Once `influx` sets the current database, there is no need to specify that database in queries.
 `influx` automatically queries the current database and its `DEFAULT` retention policy.
 
-#### Write data to DSDB with `insert`
+##### Write data to DSDB with `insert`
 Enter `insert` followed by the data in [line protocol](/dsdb/write_protocols/line.md) to write data to DSDB.
 Use `insert into <retention policy> <line protocol>` to write data to a specific [retention policy](/dsdb/concepts/glossary.md#retention-policy-rp).
 
@@ -321,6 +321,6 @@ Note that once you specify a retention policy with `INSERT INTO`, `influx` autom
 This occurs even for later `INSERT` entries that do not include an `INTO` clause.
 Restarting the CLI will revert to using the `DEFAULT` retention policy.
 
-### Queries
+#### Queries
 Execute all DSDBQL queries in `influx`.
 See [Data Exploration](/dsdb/query_language/data_exploration.md), [Schema Exploration](/dsdb/query_language/schema_exploration.md), [Database Management](/dsdb/query_language/database_management.md), [Authentication and Authorization](/dsdb/administration/authentication_and_authorization.md) for DSDBQL documentation.

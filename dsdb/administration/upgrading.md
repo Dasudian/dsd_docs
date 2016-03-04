@@ -5,7 +5,7 @@ parent2: dsdb-admin
 parent1: dsd-dsdb
 ---
 
-# Upgrading from previous versions
+## Upgrading from previous versions
 
 If you're thinking about upgrading or if you've recently upgraded from DSDB 0.9 to 1.0, there are several steps you should consider taking to ease the transition:
 
@@ -15,7 +15,7 @@ If you're thinking about upgrading or if you've recently upgraded from DSDB 0.9 
 
 While none of these steps are required, we highly recommend carrying them out when you update the DSDB binary.
 
-## Generate a new configuration file
+### Generate a new configuration file
 
 DSDB 1.0 has several new settings in the [configuration file](/dsdb/administration/config.md).
 
@@ -28,7 +28,7 @@ influxd config > /etc/dsdb/dsdb_010.conf.generated
 
 Compare your DSDB 0.9 configuration file against the newly generated [DSDB 1.0 file](/dsdb/administration/config.md) and manually update any defaults with your localized settings.
 
-## Convert b1 and bz1 shards to tsm1
+### Convert b1 and bz1 shards to tsm1
 DSDB version 1.0 uses a new default storage engine, `tsm1`.
 Converting existing `b1` and `bz1` shards to `tsm1` format results in a significant permanent reduction in disk usage and significantly improved write throughput to those shards.
 
@@ -43,7 +43,7 @@ If downtime is not acceptable see [below](/dsdb/administration/upgrading.md#how-
 * By default, the tool backs up databases so that you can undo a conversion (we cover how to undo a conversion [below](/dsdb/administration/upgrading.md#rollback-a-conversion)).
 Before you start, ensure that the host system has at least as much free disk space as the disk space consumed by the data directory of your DSDB system.
 
-#### Conversion steps
+##### Conversion steps
 
 1. [Upgrade](https://dasudian.com/downloads.md) your system to DSDB 1.0 before proceeding.
 2. Stop all write traffic to your DSDB system.
@@ -91,7 +91,7 @@ rm -r /tmp/dsdb_backup
     ```
 12. Restart write traffic and you're done!
 
-#### Rollback a conversion
+##### Rollback a conversion
 After a successful backup, you have a duplicate of your database(s) in the backup directory that you provided on the command line.
 If, when checking your data after a conversion, you notice things missing or something just isn't right, you can rollback the conversion.
 
@@ -109,7 +109,7 @@ Where `/var/opt/dsdb/data` is your data directory and `stats` is the name of the
     ```
 4. Restart DSDB.
 
-#### How to avoid downtime when upgrading shards
+##### How to avoid downtime when upgrading shards
 
 *Identify non-`tsm1` shards*
 
@@ -140,7 +140,7 @@ influx_tsm -parallel /tmp/data/
 Nothing in DSDB will prevent writes to cold shards, they are merely unexpected, not impossible.
 It is your responsibility to prevent writes to cold shards to prevent data loss.
 
-## Revisit any existing continuous queries
+### Revisit any existing continuous queries
 
 CQs defined in DSDB 0.9 will still run in DSDB 1.0, but at a reduced frequency and with no resampling of data.
 

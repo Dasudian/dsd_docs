@@ -5,11 +5,11 @@ parent2: dsdb-writepro
 parent1: dsd-dsdb
 ---
 
-# Write Syntax
+## Write Syntax
 
 Syntax is always a challenge to remember, so here's a reference
 
-## Line Protocol
+### Line Protocol
 
 The syntax for the line protocol is
 
@@ -21,7 +21,7 @@ For example:
 measurement,tkey1=tval1,tkey2=tval2 fkey=fval,fkey2=fval2 1234567890000000000
 ```
 
-### Whitespace
+#### Whitespace
 
 A space must exist between the measurement and the field(s), or between the tag(s) and the field(s) if tags are
 provided.
@@ -48,7 +48,7 @@ measurement,foo=bar
 measurement,foo=bar 1439587925
 ```
 
-### Timestamps
+#### Timestamps
 
 Timestamps are not required.
 When no timestamp is provided the server will insert the point with the local server
@@ -57,22 +57,22 @@ If a timestamp is provided it must be separated from the field(s) by a space.
 Timestamps must be in Unix time and are assumed to be in nanoseconds.
 A different precision can be specified, see the HTTP syntax for details.
 
-### Key-value Separator
+#### Key-value Separator
 
 Tag keys and values, and field keys and values must be separated by the equals sign `=` without spaces.
 
-### Escaping Characters
+#### Escaping Characters
 
 If a tag key, tag value, or field key contains a space ` `, comma `,`, or an equals sign `=` it must be escaped using the backslash character `\`.
 Backslash characters do not need to be escaped.
 Commas `,` and spaces ` ` will also need to be escaped for measurements, though equals signs `=` do not.
 
-### Comments
+#### Comments
 
 `#` at the beginning of the line is a valid comment character for the line protocol.
 All subsequent characters are ignored.
 
-### Data Types
+#### Data Types
 
 Measurements, tag keys, tag values, and field keys are always stored as strings in the database.
 
@@ -96,48 +96,48 @@ The field `bikes_present=15i` stores an integer and the field `bikes_present=15`
 Double-quotes contained within the string must be escaped.
 All other characters are supported without escaping.
 
-### Examples
+#### Examples
 
-#### Simplest Valid Point (measurement + field)
+##### Simplest Valid Point (measurement + field)
 ```
 disk_free value=442221834240i
 ```
 
-#### With Timestamp
+##### With Timestamp
 ```
 disk_free value=442221834240i 1435362189575692182
 ```
 
-#### With Tags
+##### With Tags
 ```
 disk_free,hostname=server01,disk_type=SSD value=442221834240i
 ```
 
-#### With Tags, With Timestamp
+##### With Tags, With Timestamp
 ```
 disk_free,hostname=server01,disk_type=SSD value=442221834240i 1435362189575692182
 ```
 
-#### Multiple Fields
+##### Multiple Fields
 ```
 disk_free free_space=442221834240i,disk_type="SSD" 1435362189575692182
 ```
 
-#### Escaping Commas and Spaces
+##### Escaping Commas and Spaces
 ```
 total\ disk\ free,volumes=/net\,/home\,/ value=442221834240i 1435362189575692182
 ```
 
 In the above example, the measurement is written as `total disk free` and the tag key `volumes` has a tag value of `/net,/home,/`
 
-#### Escaping Equals Signs
+##### Escaping Equals Signs
 ```
 disk_free,a\=b=y\=z value=442221834240i
 ```
 
 In the above example, the tag key `a=b` has a tag value of `y=z`
 
-#### With Backslash in Tag Value
+##### With Backslash in Tag Value
 ```
 disk_free,path=C:\Windows value=442221834240i
 ```
@@ -145,14 +145,14 @@ disk_free,path=C:\Windows value=442221834240i
 Backslashes do not need to be escaped when used in strings.
 Unless followed by a comma, space, or equals sign backslashes are treated as a normal character.
 
-#### Escaping Field Key
+##### Escaping Field Key
 ```
 disk_free value=442221834240i,working\ directories="C:\My Documents\Stuff for examples,C:\My Documents"
 ```
 
 In the above example, the second field key is `working directories` and the corresponding field value is `C:\My Documents\Stuff for examples,C:\My Documents`.
 
-#### Showing all escaping and quoting behavior
+##### Showing all escaping and quoting behavior
 
 ```
 "measurement\ with\ quotes",tag\ key\ with\ spaces=tag\,value\,with"commas" field_key\\\\="string field value, only \" need be quoted"
@@ -161,7 +161,7 @@ In the above example, the second field key is `working directories` and the corr
 In the above example, the measurement is `"measurement with quotes"`, the tag key is `tag key with spaces`, the
 tag value is `tag,value,with"commas"`, the field key is `field_key\\\\` and the field value is `string field value, only " need be quoted`.
 
-### Caveats
+#### Caveats
 
 > **Note:** Prior to version 0.9.3, integers were numeric values that did not include a decimal (e.g.
 1, 345, 2015, -10) and were not followed by a trailing `i`.
@@ -188,11 +188,11 @@ There is no need to quote or escape keywords in the write syntax.
 All values in DSDB are case-sensitive: `MyDB` != `mydb` != `MYDB`.
 The exception is Keywords, which are case-insensitive.
 
-## CLI
+### CLI
 
 To write points using the command line interface, use the `insert` command.
 
-#### Write a Point with the CLI
+##### Write a Point with the CLI
 
 ```bash
 > insert disk_free,hostname=server01 value=442221834240i 1435362189575692182
@@ -201,7 +201,7 @@ To write points using the command line interface, use the `insert` command.
 The CLI will return nothing on success and should give an informative parser error if the point cannot be written.
 There is currently no way to write a batch of points using the CLI, each point must be inserted individually.
 
-## HTTP
+### HTTP
 
 To write points using HTTP, POST to the `/write` endpoint at port `8086`.
 You must specify the target database in the query string using `db=<target_database>`.
@@ -211,7 +211,7 @@ You may optionally provide a target retention policy, specify the precision of a
 Successful writes will return a `204` HTTP Status Code.
 Writes will return a `400` for invalid syntax.
 
-### Query String Parameters for Writes
+#### Query String Parameters for Writes
 
 The following query string parameters can be passed as part of the GET string when using the HTTP API:
 
@@ -230,13 +230,13 @@ If the requirement is not met the return value will be `partial write` if some p
 In this context, "valid node" means a node that hosts a copy of the shard containing the series being written to.
 In a clustered system, the replication factor should equal the number of valid nodes.
 
-#### Write a Point with `curl`
+##### Write a Point with `curl`
 
 ```bash
 curl -X POST 'http://localhost:8086/write?db=mydb' --data-binary 'disk_free,hostname=server01 value=442221834240i 1435362189575692182'
 ```
 
-#### Write a Point to a non-default Retention Policy
+##### Write a Point to a non-default Retention Policy
 
 Use the `rp=<retention_policy` query string parameter to supply a target retention policy.
 If not specified, the default retention policy for the target database will be used.
@@ -245,7 +245,7 @@ If not specified, the default retention policy for the target database will be u
 curl -X POST 'http://localhost:8086/write?db=mydb&rp=six_month_rollup' --data-binary 'disk_free,hostname=server01 value=442221834240i 1435362189575692182'
 ```
 
-#### Write a Point Using Authentication
+##### Write a Point Using Authentication
 
 Use the `u=<user>` and `p=<password>` to pass the authentication details, if required.
 
@@ -253,7 +253,7 @@ Use the `u=<user>` and `p=<password>` to pass the authentication details, if req
 curl -X POST 'http://localhost:8086/write?db=mydb&u=root&p=123456' --data-binary 'disk_free,hostname=server01 value=442221834240i 1435362189575692182'
 ```
 
-#### Specify Non-nanosecond Timestamps
+##### Specify Non-nanosecond Timestamps
 
 Use the `precision=[n,u,ms,s,m,h]` query string parameter to supply a precision for the timestamps.
 
@@ -265,7 +265,7 @@ Use `n`, `u`, `ms`, `s`, `m`, and `h` for nanoseconds, microseconds, millisecond
 curl -X POST 'http://localhost:8086/write?db=mydb&precision=ms' --data-binary 'disk_free value=442221834240i 1435362189575'
 ```
 
-#### Write a Batch of Points with `curl`
+##### Write a Batch of Points with `curl`
 
 You can also pass a file using the `@` flag.
 The file can contain a batch of points, one per line.
@@ -274,7 +274,7 @@ Batches should be 5000 points or fewer for best performance.
 
 `curl -X POST 'http://localhost:8086/write?db=<database>' --data-binary @<filename>`
 
-### Caveats
+#### Caveats
 
 Use `curl`'s `--data-binary` encoding method for all writes in the line protocol format.
 Using any encoding method other than `--data-binary` is likely to lead to issues with writing points.

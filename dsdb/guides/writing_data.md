@@ -5,12 +5,12 @@ parent2: dsdb-guides
 parent1: dsd-dsdb
 ---
 
-# Writing Data
+## Writing Data
 
 There are many ways to write data into DSDB including the [command line interface](/docs/dsdb/tools/shell.md), [client libraries](/docs/dsdb/clients/api.md) and plugins for common data formats such as [Graphite](/docs/dsdb/write_protocols/graphite.md).
 Here we'll show you how to create a database and write data to that database using the built-in HTTP API.
 
-## Creating a database using the HTTP API
+### Creating a database using the HTTP API
 To create a database send a `GET` request to the `/query` endpoint and set the URL parameter `q` to `CREATE DATABASE <new_database_name>`.
 The example below sends a request to DSDB running on `localhost` and creates the database `mydb`:  
 <br>
@@ -19,7 +19,7 @@ The example below sends a request to DSDB running on `localhost` and creates the
 curl -G http://localhost:8088/query --data-urlencode "q=CREATE DATABASE mydb"
 ```
 
-## Writing data using the HTTP API
+### Writing data using the HTTP API
 The HTTP API is the primary means of putting data into DSDB.
 To write data send a `POST` request to the `/write` endpoint.
 The example below writes a single point to the `mydb` database.
@@ -42,7 +42,7 @@ The timestamp - supplied at the end of the line in Unix time in nanoseconds sinc
 If you do not specify a timestamp DSDB uses the server's local nanosecond timestamp in Unix epoch.
 Anything that has to do with time in DSDB is always UTC.
 
-### Writing multiple points
+#### Writing multiple points
 ---
 Post multiple points to multiple series at the same time by separating each point with a new line.
 Batching points in this manner results in much higher performance.
@@ -59,7 +59,7 @@ cpu_load_short,host=server02,region=us-west value=0.55 1422568543702900257
 cpu_load_short,direction=in,host=server01,region=us-west value=2.0 1422568543702900257'
 ```
 
-### Writing points from a file
+#### Writing points from a file
 ---
 Write points from a file by passing `@filename` to `curl`.
 The data in the file should follow DSDB's [line protocol syntax](/docs/dsdb/write_protocols/write_syntax.md).
@@ -80,13 +80,13 @@ Write the data in `cpu_data.txt` to the `mydb` database with:
 [By default](/docs/dsdb/administration/config.md#cluster), the HTTP request times out after five seconds.
 DSDB will still attempt to write the points after that time out but there will be no confirmation that they were successfully written.
 
-### Schemaless Design
+#### Schemaless Design
 ---
 DSDB is a schemaless database.
 You can add new measurements, tags, and fields at any time.
 Note that if you attempt to write data with a different type than previously used (for example, writing a string to a field that previously accepted integers), DSDB will reject those data.
 
-### A note on REST...
+#### A note on REST...
 ---
 DSDB uses HTTP solely as a convenient and widely supported data transfer protocol.
 
@@ -101,7 +101,7 @@ DSDB makes do with three API endpoints.
 This simple, easy to understand system uses HTTP as a transfer system for [DSDBQL](https://github.com/docs/dsdb/dsdb/blob/master/influxql/INFLUXQL.md).
 The DSDB API makes no attempt to be RESTful.
 
-### HTTP response summary
+#### HTTP response summary
 ---
 * 2xx: If it's `HTTP 204 No Content`, success!
 If it's  `HTTP 200 OK`, DSDB understood the request but couldn't complete it.
@@ -143,6 +143,6 @@ HTTP/1.1 404 Not Found
 database not found: "atlantis"
 ```
 
-### Next steps
+#### Next steps
 ---
 Now that you know how to write data with the built-in HTTP API discover how to query them with the [Querying Data](/docs/dsdb/guides/querying_data.md) guide!

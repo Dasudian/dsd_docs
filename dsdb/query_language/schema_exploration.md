@@ -5,7 +5,7 @@ parent2: dsdb-querylang
 parent1: dsd-dsdb
 ---
 
-# Scheam Exploration
+## Scheam Exploration
 
 DSDBQL is an SQL-like query language for interacting with data in DSDB.
 The following sections cover useful query syntax for exploring your schema (that is, how you set up your time series data):
@@ -26,7 +26,7 @@ See the [Querying Data](/dsdb/guides/querying_data.md) guide for how to directly
 This document uses the same sample data as the [Data Exploration](/dsdb/query_language/data_exploration.md) page.
 The data are described and are available for download on the [Sample Data](/dsdb/sample_data/data_download.md) page.
 
-## See all databases with `SHOW DATABASES`
+### See all databases with `SHOW DATABASES`
 Get a list of all the databases in your system by entering:
 ```sql
 SHOW DATABASES
@@ -41,7 +41,7 @@ name
 NOAA_water_database
 ```
 
-## Explore retention policies with `SHOW RETENTION POLICIES`
+### Explore retention policies with `SHOW RETENTION POLICIES`
 The `SHOW RETENTION POLICIES` query lists the existing [retention policies](/dsdb/concepts/glossary.md#retention-policy-rp) on a given database, and it takes the following form:
 ```sql
 SHOW RETENTION POLICIES ON <database_name>
@@ -72,7 +72,7 @@ one_day_only	    24h0m0s		 1		       false
 three_days_only	 72h0m0s		 1		       true
 ```
 
-## Explore series with `SHOW SERIES`
+### Explore series with `SHOW SERIES`
 The `SHOW SERIES` query returns the distinct [series](/dsdb/concepts/glossary.md#series) in your database and takes the following form, where the `FROM` and `WHERE` clauses are optional:
 
 ```sql
@@ -161,7 +161,7 @@ h2o_quality,location=coyote_creek,randtag=2	   coyote_creek	   2
 h2o_quality,location=coyote_creek,randtag=3	   coyote_creek	   3
 ```
 
-## Explore measurements with `SHOW MEASUREMENTS`
+### Explore measurements with `SHOW MEASUREMENTS`
 The `SHOW MEASUREMENTS` query returns the [measurements](/dsdb/concepts/glossary.md#measurement) in your database and it takes the following form:
 ```sql
 SHOW MEASUREMENTS [WITH MEASUREMENT <regular_expression>] [WHERE <tag_key>=<'tag_value'>]
@@ -230,7 +230,7 @@ h2o_quality
 h2o_temperature
 ```
 
-## Explore tag keys with SHOW TAG KEYS
+### Explore tag keys with SHOW TAG KEYS
 `SHOW TAG KEYS` returns the [tag keys](/dsdb/concepts/glossary.md#tag-key) associated with each measurement and takes the following form, where the `FROM` clause is optional:
 ```sql
 SHOW TAG KEYS [FROM <measurement_name>]
@@ -286,7 +286,7 @@ tagKey
 location
 ```
 
-## Explore tag values with SHOW TAG VALUES
+### Explore tag values with SHOW TAG VALUES
 The `SHOW TAG VALUES` query returns the set of [tag values](/dsdb/concepts/glossary.md#tag-value) for a specific tag key across all measurements in the database.
 It takes the following form, where the `FROM` clause is optional:
 ```sql
@@ -319,7 +319,7 @@ CLI response:
 
 The measurement `average_temperature` doesn't have the tag key `randtag` so DSDB returns nothing.
 
-## Explore field keys with `SHOW FIELD KEYS`
+### Explore field keys with `SHOW FIELD KEYS`
 The `SHOW FIELD KEYS` query returns the [field keys](/dsdb/concepts/glossary.md#field-key) across each measurement in the database.
 It takes the following form, where the `FROM` clause is optional:
 
