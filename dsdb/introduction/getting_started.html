@@ -10,6 +10,7 @@
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/doc.css" rel="stylesheet">
     <link href="//cdn.bootcss.com/highlight.js/9.2.0/styles/dark.min.css" rel="stylesheet">
     <script src="/js/jquery.js"></script>
     <script src="/js/bootstrap.min.js"></script>
@@ -71,6 +72,8 @@
             <li><a href="/" >文档</a></li>
             <li><a href="http://dasudian.com/price" >定价</a></li>
             <li><a href="https://www.github.com/Dasudian"  target="_blank" >社区</a></li>
+            <li><a href="https://dev.dasudian.com/login/view" class="btn-small">登录</a></li>
+            <li><a href="https://dev.dasudian.com/sign_up/view" class="btn-small">注册</a></li>
           </ul>
         </div>
       </div>
@@ -220,7 +223,7 @@
 
     <div class="side_right">
       <div class="doc">
-        <h1 id="getting-started">Getting Started</h1>
+        <h2 id="getting-started">Getting Started</h2>
 <p>With DSDB <a href="/dsdb/introduction/installation.html">installed</a>, you're ready to start doing some awesome things.
 In this section we'll use the <code>influx</code> command line interface (CLI), which is included in all
 DSDB packages and is a lightweight and simple way to interact with the database.
@@ -230,7 +233,7 @@ The CLI communicates with DSDB directly by making requests to the DSDB HTTP API 
 See <a href="/dsdb/guides/writing_data.html">Writing Data</a> and <a href="/dsdb/guides/querying_data.html">Querying Data</a>
 for examples with the <code>curl</code> application.</p>
 </blockquote>
-<h2 id="creating-a-database">Creating a database</h2>
+<h3 id="creating-a-database">Creating a database</h3>
 <p>If you've installed DSDB locally, the <code>influx</code> command should be available via the command line.
 Executing <code>influx</code> will start the CLI and automatically connect to the local DSDB instance
 (assuming you have already started the server with <code>service dsdb start</code> or by running <code>influxd</code> directly).
@@ -284,7 +287,7 @@ which will automatically set the database for all future requests. For example:<
 Using database mydb
 &gt; </code></pre>
 <p>Now future commands will only be run against the <code>mydb</code> database.</p>
-<h2 id="writing-and-exploring-data">Writing and exploring data</h2>
+<h3 id="writing-and-exploring-data">Writing and exploring data</h3>
 <p>Now that we have a database, DSDB is ready to accept queries and writes.</p>
 <p>First, a short primer on the datastore.
 Data in DSDB is organized by &quot;time series&quot;,

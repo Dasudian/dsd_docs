@@ -10,6 +10,7 @@
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/doc.css" rel="stylesheet">
     <link href="//cdn.bootcss.com/highlight.js/9.2.0/styles/dark.min.css" rel="stylesheet">
     <script src="/js/jquery.js"></script>
     <script src="/js/bootstrap.min.js"></script>
@@ -71,6 +72,8 @@
             <li><a href="/" >文档</a></li>
             <li><a href="http://dasudian.com/price" >定价</a></li>
             <li><a href="https://www.github.com/Dasudian"  target="_blank" >社区</a></li>
+            <li><a href="https://dev.dasudian.com/login/view" class="btn-small">登录</a></li>
+            <li><a href="https://dev.dasudian.com/sign_up/view" class="btn-small">注册</a></li>
           </ul>
         </div>
       </div>
@@ -220,10 +223,10 @@
 
     <div class="side_right">
       <div class="doc">
-        <h1 id="scheam-design">Scheam Design</h1>
+        <h2 id="scheam-design">Scheam Design</h2>
 <p>Every DSDB use case is special and your <a href="/dsdb/concepts/glossary.html#schema">schema</a> will reflect that uniqueness.
 There are, however, general guidelines to follow and pitfalls to avoid when designing your schema.</p>
-<h2 id="encouraged-schema-design">Encouraged Schema Design</h2>
+<h3 id="encouraged-schema-design">Encouraged Schema Design</h3>
 <p>In no particular order, we recommend that you:</p>
 <ul>
 <li>
@@ -246,7 +249,7 @@ See <a href="https://github.com/dasudian/dsdb/blob/master/dsdbql/influxql.html#k
 <p>Note that you will also need to wrap identifiers in double quotes in queries if they contain characters other than <code>[A-z,_]</code>.</p>
 </li>
 </ul>
-<h2 id="discouraged-schema-design">Discouraged Schema Design</h2>
+<h3 id="discouraged-schema-design">Discouraged Schema Design</h3>
 <p>In no particular order, we recommend that you:</p>
 <ul>
 <li>

@@ -10,6 +10,7 @@
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/doc.css" rel="stylesheet">
     <link href="//cdn.bootcss.com/highlight.js/9.2.0/styles/dark.min.css" rel="stylesheet">
     <script src="/js/jquery.js"></script>
     <script src="/js/bootstrap.min.js"></script>
@@ -71,6 +72,8 @@
             <li><a href="/" >文档</a></li>
             <li><a href="http://dasudian.com/price" >定价</a></li>
             <li><a href="https://www.github.com/Dasudian"  target="_blank" >社区</a></li>
+            <li><a href="https://dev.dasudian.com/login/view" class="btn-small">登录</a></li>
+            <li><a href="https://dev.dasudian.com/sign_up/view" class="btn-small">注册</a></li>
           </ul>
         </div>
       </div>
@@ -220,7 +223,7 @@
 
     <div class="side_right">
       <div class="doc">
-        <h1 id="clishell">CLI/Shell</h1>
+        <h2 id="clishell">CLI/Shell</h2>
 <p>The DSDB's command line interface (<code>influx</code>) is an interactive shell for the HTTP API.
 Use <code>influx</code> to write data (manually or from a file), query data interactively, and view query output in different formats.</p>
 <ul>
@@ -228,7 +231,7 @@ Use <code>influx</code> to write data (manually or from a file), query data inte
 <li><a href="/dsdb/tools/shell.html#influx-arguments"><code>influx</code> Arguments</a></li>
 <li><a href="/dsdb/tools/shell.html#influx-commands"><code>influx</code> Commands</a></li>
 </ul>
-<h2 id="launch">Launch <code>influx</code></h2>
+<h3 id="launch">Launch <code>influx</code></h3>
 <p>If you <a href="https://influxdata.com/downloads/">install</a> DSDB via a package manager, the CLI is installed at <code>/usr/bin/influx</code> (<code>/usr/local/bin/influx</code> on OS X).</p>
 <p>To access the CLI, first launch the <code>influxd</code> database process and then launch <code>influx</code> in your terminal.
 Once you've entered the shell and successfully connected to an DSDB node, you'll see the following output:
@@ -237,7 +240,7 @@ Once you've entered the shell and successfully connected to an DSDB node, you'll
 <pre><code class="language-sh">$ influx
 Connected to http://localhost:8086 version 1.0.x
 DSDB shell 1.0.x</code></pre>
-<h2><code>influx</code> Arguments</h2>
+<h3><code>influx</code> Arguments</h3>
 <p>There are several arguments you can pass into <code>influx</code> when starting.
 List them with <code>$ influx --help</code>.
 The list below offers a brief discussion of each option.
@@ -290,7 +293,7 @@ Use https for requests.</p>
 The username <code>influx</code> uses to connect to the server.</p>
 <p><code>-version</code><br />
 Display the DSDB version and exit.</p>
-<h3 id="execute-an-dsdbql-command-and-quit-with">Execute an DSDBQL command and quit with <code>-execute</code></h3>
+<h4 id="execute-an-dsdbql-command-and-quit-with">Execute an DSDBQL command and quit with <code>-execute</code></h4>
 <p>Execute queries that don't require a database specification:</p>
 <pre><code class="language-sh">$ influx -execute 'SHOW DATABASES'
 name: databases
@@ -308,7 +311,7 @@ time                           level description        location         water_l
 2015-08-18T00:00:00Z     below 3 feet               santa_monica     2.064
 2015-08-18T00:00:00Z     between 6 and 9 feet  coyote_creek  8.12
 2015-08-18T00:06:00Z     between 6 and 9 feet  coyote_creek  8.005</code></pre>
-<h3 id="specify-the-format-of-the-server-responses-with">Specify the format of the server responses with <code>-format</code></h3>
+<h4 id="specify-the-format-of-the-server-responses-with">Specify the format of the server responses with <code>-format</code></h4>
 <p>The default format is <code>column</code>:</p>
 <pre><code class="language-sh">$ influx -format=column
 [...]
@@ -366,7 +369,7 @@ databases,pirates</code></pre>
         }
     ]
 }</code></pre>
-<h3 id="import-data-from-a-file-with">Import data from a file with <code>-import</code></h3>
+<h4 id="import-data-from-a-file-with">Import data from a file with <code>-import</code></h4>
 <p>The import file has two sections:</p>
 <ul>
 <li><strong>DDL (Data Definition Language)</strong>: Contains the <a href="/dsdb/query_language/database_management.html">DSDBQL commands</a> for creating the relevant <a href="/dsdb/concepts/glossary.html">database</a> and managing the <a href="/dsdb/concepts/glossary.html#retention-policy-rp">retention policy</a>.
@@ -375,13 +378,13 @@ If your database and retention policy already exist, your file can skip this sec
 </ul>
 <p>Example:</p>
 <p>File (<code>datarrr.txt</code>):</p>
-<pre><code># DDL
+<pre><code>## DDL
 CREATE DATABASE IF NOT EXISTS pirates
 CREATE RETENTION POLICY oneday ON pirates DURATION 1d REPLICATION 1
 
-# DML
-# CONTEXT-DATABASE: pirates
-# CONTEXT-RETENTION-POLICY: oneday
+## DML
+## CONTEXT-DATABASE: pirates
+## CONTEXT-RETENTION-POLICY: oneday
 
 treasures,captain_id=dread_pirate_roberts value=801 1439856000
 treasures,captain_id=flint value=29 1439856000
@@ -415,9 +418,9 @@ DSDB will still attempt to write the points after that time out but there will b
 <blockquote>
 <p><strong>Note:</strong> For how to export data from DSDB version 0.8.9, see [Exporting from 0.8.9](<a href="https://github.com/dsdb/dsdb/blob/master/importer/README.md">https://github.com/dsdb/dsdb/blob/master/importer/README.md</a>#.</p>
 </blockquote>
-<h2><code>influx</code> Commands</h2>
+<h3><code>influx</code> Commands</h3>
 <p>Enter <code>help</code> in the CLI for a partial list of the available commands.</p>
-<h3 id="commands">Commands</h3>
+<h4 id="commands">Commands</h4>
 <p>The list below offers a brief discussion of each command.
 We provide detailed information on <code>insert</code> at the end of this section.</p>
 <p><code>auth</code><br />
@@ -452,7 +455,7 @@ Outputs the current settings for the shell including the <code>Host</code>, <cod
 Sets the current database.
 Once <code>influx</code> sets the current database, there is no need to specify that database in queries.
 <code>influx</code> automatically queries the current database and its <code>DEFAULT</code> retention policy.</p>
-<h4 id="write-data-to-dsdb-with">Write data to DSDB with <code>insert</code></h4>
+<h5 id="write-data-to-dsdb-with">Write data to DSDB with <code>insert</code></h5>
 <p>Enter <code>insert</code> followed by the data in <a href="/dsdb/write_protocols/line.html">line protocol</a> to write data to DSDB.
 Use <code>insert into &lt;retention policy&gt; &lt;line protocol&gt;</code> to write data to a specific <a href="/dsdb/concepts/glossary.html#retention-policy-rp">retention policy</a>.</p>
 <p>Write data to a single field in the measurement <code>treasures</code> with the tag <code>captain_id = pirate_king</code>.
@@ -466,7 +469,7 @@ Using retention policy oneday
 <p>Note that once you specify a retention policy with <code>INSERT INTO</code>, <code>influx</code> automatically writes data to that retention policy.
 This occurs even for later <code>INSERT</code> entries that do not include an <code>INTO</code> clause.
 Restarting the CLI will revert to using the <code>DEFAULT</code> retention policy.</p>
-<h3 id="queries">Queries</h3>
+<h4 id="queries">Queries</h4>
 <p>Execute all DSDBQL queries in <code>influx</code>.
 See <a href="/dsdb/query_language/data_exploration.html">Data Exploration</a>, <a href="/dsdb/query_language/schema_exploration.html">Schema Exploration</a>, <a href="/dsdb/query_language/database_management.html">Database Management</a>, <a href="/dsdb/administration/authentication_and_authorization.html">Authentication and Authorization</a> for DSDBQL documentation.</p>
       </div>

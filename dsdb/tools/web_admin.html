@@ -10,6 +10,7 @@
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/doc.css" rel="stylesheet">
     <link href="//cdn.bootcss.com/highlight.js/9.2.0/styles/dark.min.css" rel="stylesheet">
     <script src="/js/jquery.js"></script>
     <script src="/js/bootstrap.min.js"></script>
@@ -71,6 +72,8 @@
             <li><a href="/" >文档</a></li>
             <li><a href="http://dasudian.com/price" >定价</a></li>
             <li><a href="https://www.github.com/Dasudian"  target="_blank" >社区</a></li>
+            <li><a href="https://dev.dasudian.com/login/view" class="btn-small">登录</a></li>
+            <li><a href="https://dev.dasudian.com/sign_up/view" class="btn-small">注册</a></li>
           </ul>
         </div>
       </div>
@@ -220,27 +223,27 @@
 
     <div class="side_right">
       <div class="doc">
-        <h1 id="web-admin-interface">Web Admin Interface</h1>
+        <h2 id="web-admin-interface">Web Admin Interface</h2>
 <p>The built-in web administration GUI is a simple way to interact with DSDB.
 For any significant use, whether writing or querying data, direct use of the HTTP API (<a href="/dsdb/guides/querying_data.html">reading</a>, <a href="/dsdb/guides/writing_data.html">writing</a>) or the <a href="/dsdb/tools/shell.html">command line interface</a> are better options.</p>
-<h2 id="accessing-the-ui">Accessing the UI</h2>
+<h3 id="accessing-the-ui">Accessing the UI</h3>
 <p>The Admin UI is available by default at port 8083, i.e. <a href="http://localhost:8083"><a href="http://localhost:8083">http://localhost:8083</a></a>.
 You can control the port in the DSDB config file using the <code>port</code> option in the <code>[admin]</code> section.</p>
 <p>You can also access remote DSDB instances, although you may only connect to one instance at a time.
 To access an instance at a location other than than <a href="http://localhost:8083">http://localhost:8083</a>, click the Settings icon in the upper right and enter the proper connection settings for the target DSDB instance.</p>
-<h3 id="http-vs-https">HTTP vs HTTPS</h3>
+<h4 id="http-vs-https">HTTP vs HTTPS</h4>
 <p>The Admin UI uses HTTP by default but can be configured to use HTTPS.
 In the DSDB config file, find the <code>[admin]</code> section and set <code>https-enabled = true</code>.</p>
 <blockquote>
 <p><strong>Note:</strong> If HTTPS is enabled, you must explicitly connect to the instance using <code>https://</code>, there is no redirect from <code>http</code> to <code>https</code>.</p>
 </blockquote>
-<h3 id="selecting-the-database">Selecting the Database</h3>
+<h4 id="selecting-the-database">Selecting the Database</h4>
 <p>Choose your target database for writes and queries from the &quot;Databases&quot; pull-down menu in the upper right.
 If you have recently created a database you will need to refresh the Admin UI page before it appears in the pull-down menu.</p>
-<h2 id="writing-data">Writing Data</h2>
+<h3 id="writing-data">Writing Data</h3>
 <p>The Admin UI has a &quot;Write Data&quot; link in the top menu bar.
 This link pops up a modal dialog that will accept points in the <a href="/dsdb/write_protocols/line.html">line protocol</a> format.</p>
-<h2 id="querying-data">Querying Data</h2>
+<h3 id="querying-data">Querying Data</h3>
 <p>The Admin UI has a &quot;Query&quot; box where you can enter any valid <a href="/dsdb/query_language/spec.html">DSDBQL</a> command, including database administration and schema exploration commands.
 The &quot;Query Templates&quot; pull-down menu will pre-populate the Query box with a number of common DSDBQL queries.</p>
       </div>

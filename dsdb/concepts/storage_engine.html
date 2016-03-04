@@ -10,6 +10,7 @@
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/doc.css" rel="stylesheet">
     <link href="//cdn.bootcss.com/highlight.js/9.2.0/styles/dark.min.css" rel="stylesheet">
     <script src="/js/jquery.js"></script>
     <script src="/js/bootstrap.min.js"></script>
@@ -71,6 +72,8 @@
             <li><a href="/" >文档</a></li>
             <li><a href="http://dasudian.com/price" >定价</a></li>
             <li><a href="https://www.github.com/Dasudian"  target="_blank" >社区</a></li>
+            <li><a href="https://dev.dasudian.com/login/view" class="btn-small">登录</a></li>
+            <li><a href="https://dev.dasudian.com/sign_up/view" class="btn-small">注册</a></li>
           </ul>
         </div>
       </div>
@@ -220,8 +223,8 @@
 
     <div class="side_right">
       <div class="doc">
-        <h1 id="storage-engine">Storage Engine</h1>
-<h2 id="properties-of-time-series-data">Properties of Time Series Data</h2>
+        <h2 id="storage-engine">Storage Engine</h2>
+<h3 id="properties-of-time-series-data">Properties of Time Series Data</h3>
 <p>The workload of time series data is quite different from normal database workloads.
 There are a number of factors that conspire to make it very difficult to get it to scale and perform well:</p>
 <ul>
@@ -255,7 +258,7 @@ You’ll then downsample and aggregate that data into lower precision, which you
 <p>The naive implementation would be to simply delete each record once it gets past its expiration time.
 However, that means that once you’re up to your window of retention, you’ll be doing just as many deletes as you do writes, which is something most storage engines aren’t designed for.</p>
 <p>Let’s dig into the details of the two types of storage engines we tried and how these properties had a significant impact on our performance.</p>
-<h3 id="leveldb-and-log-structured-merge-trees">LevelDB and Log Structured Merge Trees</h3>
+<h4 id="leveldb-and-log-structured-merge-trees">LevelDB and Log Structured Merge Trees</h4>
 <p>We picked LevelDB as the storage engine because it was what we used for time series data storage for the product that was the precursor to DSDB.</p>
 <p>We knew that it had great properties for write throughput and everything works fine.</p>
 <p>LevelDB is an implementation of a Log Structured Merge Tree (or LSM Tree) that was built as an open source project at Google.
@@ -293,7 +296,7 @@ LevelDB splits the data out over many small files.
 Having dozens or hundreds of these databases open in a single process ended up creating a big problem.
 It’s not something we found with a large number of users, but for anyone that was stressing the database to its limits, they were hitting this problem and we had no fix for it.
 There were simply too many file handles open.</p>
-<h3 id="optimized-erlang-ets-table-for-caching">Optimized Erlang ETS table for caching</h3>
+<h4 id="optimized-erlang-ets-table-for-caching">Optimized Erlang ETS table for caching</h4>
       </div>
 
               <div class="tract"><img src="/images/tract.png"/></div>

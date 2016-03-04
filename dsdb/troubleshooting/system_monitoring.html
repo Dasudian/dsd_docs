@@ -10,6 +10,7 @@
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/doc.css" rel="stylesheet">
     <link href="//cdn.bootcss.com/highlight.js/9.2.0/styles/dark.min.css" rel="stylesheet">
     <script src="/js/jquery.js"></script>
     <script src="/js/bootstrap.min.js"></script>
@@ -71,6 +72,8 @@
             <li><a href="/" >文档</a></li>
             <li><a href="http://dasudian.com/price" >定价</a></li>
             <li><a href="https://www.github.com/Dasudian"  target="_blank" >社区</a></li>
+            <li><a href="https://dev.dasudian.com/login/view" class="btn-small">登录</a></li>
+            <li><a href="https://dev.dasudian.com/sign_up/view" class="btn-small">注册</a></li>
           </ul>
         </div>
       </div>
@@ -220,14 +223,14 @@
 
     <div class="side_right">
       <div class="doc">
-        <h1 id="system-monitoring">System Monitoring</h1>
+        <h2 id="system-monitoring">System Monitoring</h2>
 <p>To assist with troubleshooting and performance analysis DSDB makes available statistical and diagnostic information about the system.
 For additional information see the <a href="https://github.com/dasudian/dsdb/blob/master/monitor/index.html">README on GitHub</a>.</p>
 <ul>
 <li><a href="/dsdb//troubleshooting/system_monitoring.html#see-statistics-for-your-installation-with-show-stats">See statistics for your installation with <code>SHOW STATS</code></a></li>
 <li><a href="/dsdb//troubleshooting/system_monitoring.html#show-diagnostic-information-about-your-installation-with-show-diagnostics">Show diagnostic information about your installation with <code>SHOW DIAGNOSTICS</code></a></li>
 </ul>
-<h2 id="see-statistics-for-your-installation-with">See statistics for your installation with <code>SHOW STATS</code></h2>
+<h3 id="see-statistics-for-your-installation-with">See statistics for your installation with <code>SHOW STATS</code></h3>
 <p>Show a series of statistics related to your DSDB instance</p>
 <pre><code class="language-sql">&gt; SHOW STATS</code></pre>
 <p>CLI response:</p>
@@ -273,7 +276,7 @@ Alloc       Frees       HeapAlloc   HeapIdle    HeapInUse   HeapObjects HeapRele
 <blockquote>
 <p><strong>Note:</strong> Depending on your local configuration there may be multiple <code>name: engine</code>, <code>name: shard</code>, and <code>name: wal</code> fields</p>
 </blockquote>
-<h2 id="show-diagnostic-information-about-your-installation-with">Show diagnostic information about your installation with <code>SHOW DIAGNOSTICS</code></h2>
+<h3 id="show-diagnostic-information-about-your-installation-with">Show diagnostic information about your installation with <code>SHOW DIAGNOSTICS</code></h3>
 <p>Retrieve a collection of diagnostic information helpful for troubleshooting.</p>
 <pre><code class="language-sql">&gt; SHOW DIAGNOSTICS</code></pre>
 <p>CLI response:</p>

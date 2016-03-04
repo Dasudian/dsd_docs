@@ -10,6 +10,7 @@
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/doc.css" rel="stylesheet">
     <link href="//cdn.bootcss.com/highlight.js/9.2.0/styles/dark.min.css" rel="stylesheet">
     <script src="/js/jquery.js"></script>
     <script src="/js/bootstrap.min.js"></script>
@@ -71,6 +72,8 @@
             <li><a href="/" >文档</a></li>
             <li><a href="http://dasudian.com/price" >定价</a></li>
             <li><a href="https://www.github.com/Dasudian"  target="_blank" >社区</a></li>
+            <li><a href="https://dev.dasudian.com/login/view" class="btn-small">登录</a></li>
+            <li><a href="https://dev.dasudian.com/sign_up/view" class="btn-small">注册</a></li>
           </ul>
         </div>
       </div>
@@ -220,15 +223,15 @@
 
     <div class="side_right">
       <div class="doc">
-        <h1 id="writing-data">Writing Data</h1>
+        <h2 id="writing-data">Writing Data</h2>
 <p>There are many ways to write data into DSDB including the <a href="/docs/dsdb/tools/shell.html">command line interface</a>, <a href="/docs/dsdb/clients/api.html">client libraries</a> and plugins for common data formats such as <a href="/docs/dsdb/write_protocols/graphite.html">Graphite</a>.
 Here we'll show you how to create a database and write data to that database using the built-in HTTP API.</p>
-<h2 id="creating-a-database-using-the-http-api">Creating a database using the HTTP API</h2>
+<h3 id="creating-a-database-using-the-http-api">Creating a database using the HTTP API</h3>
 <p>To create a database send a <code>GET</code> request to the <code>/query</code> endpoint and set the URL parameter <code>q</code> to <code>CREATE DATABASE &lt;new_database_name&gt;</code>.
 The example below sends a request to DSDB running on <code>localhost</code> and creates the database <code>mydb</code>:<br />
 <br></p>
 <pre><code class="language-sh">curl -G http://localhost:8088/query --data-urlencode "q=CREATE DATABASE mydb"</code></pre>
-<h2 id="writing-data-using-the-http-api">Writing data using the HTTP API</h2>
+<h3 id="writing-data-using-the-http-api">Writing data using the HTTP API</h3>
 <p>The HTTP API is the primary means of putting data into DSDB.
 To write data send a <code>POST</code> request to the <code>/write</code> endpoint.
 The example below writes a single point to the <code>mydb</code> database.
@@ -246,7 +249,7 @@ Field keys are required and are always strings, and, <a href="/docs/dsdb/write_p
 The timestamp - supplied at the end of the line in Unix time in nanoseconds since January 1, 1970 UTC - is optional.
 If you do not specify a timestamp DSDB uses the server's local nanosecond timestamp in Unix epoch.
 Anything that has to do with time in DSDB is always UTC.</p>
-<h3 id="writing-multiple-points">Writing multiple points</h3>
+<h4 id="writing-multiple-points">Writing multiple points</h4>
 <hr />
 <p>Post multiple points to multiple series at the same time by separating each point with a new line.
 Batching points in this manner results in much higher performance.</p>
@@ -258,7 +261,7 @@ The third point has the same specified timestamp as the second point, but it is 
 <pre><code class="language-sh">curl -i -XPOST 'http://localhost:8088/write?db=mydb' --data-binary 'cpu_load_short,host=server02 value=0.67
 cpu_load_short,host=server02,region=us-west value=0.55 1422568543702900257
 cpu_load_short,direction=in,host=server01,region=us-west value=2.0 1422568543702900257'</code></pre>
-<h3 id="writing-points-from-a-file">Writing points from a file</h3>
+<h4 id="writing-points-from-a-file">Writing points from a file</h4>
 <hr />
 <p>Write points from a file by passing <code>@filename</code> to <code>curl</code>.
 The data in the file should follow DSDB's <a href="/docs/dsdb/write_protocols/write_syntax.html">line protocol syntax</a>.</p>
@@ -275,12 +278,12 @@ cpu_load_short,direction=in,host=server01,region=us-west value=2.0 1422568543702
 <a href="/docs/dsdb/administration/config.html#cluster">By default</a>, the HTTP request times out after five seconds.
 DSDB will still attempt to write the points after that time out but there will be no confirmation that they were successfully written.</p>
 </blockquote>
-<h3 id="schemaless-design">Schemaless Design</h3>
+<h4 id="schemaless-design">Schemaless Design</h4>
 <hr />
 <p>DSDB is a schemaless database.
 You can add new measurements, tags, and fields at any time.
 Note that if you attempt to write data with a different type than previously used (for example, writing a string to a field that previously accepted integers), DSDB will reject those data.</p>
-<h3 id="a-note-on-rest">A note on REST...</h3>
+<h4 id="a-note-on-rest">A note on REST...</h4>
 <hr />
 <p>DSDB uses HTTP solely as a convenient and widely supported data transfer protocol.</p>
 <p>Modern web APIs have settled on REST because it addresses a common need.
@@ -291,7 +294,7 @@ This consistency is good for those developing and consuming the API: everyone in
 DSDB makes do with three API endpoints.
 This simple, easy to understand system uses HTTP as a transfer system for <a href="https://github.com/docs/dsdb/dsdb/blob/master/influxql/influxql.html">DSDBQL</a>.
 The DSDB API makes no attempt to be RESTful.</p>
-<h3 id="http-response-summary">HTTP response summary</h3>
+<h4 id="http-response-summary">HTTP response summary</h4>
 <hr />
 <ul>
 <li>2xx: If it's <code>HTTP 204 No Content</code>, success!
@@ -321,7 +324,7 @@ write failed: field type conflict: input field "booleanonly" on measurement "tob
 <pre><code class="language-sh">HTTP/1.1 404 Not Found
 [...]
 database not found: "atlantis"</code></pre>
-<h3 id="next-steps">Next steps</h3>
+<h4 id="next-steps">Next steps</h4>
 <hr />
 <p>Now that you know how to write data with the built-in HTTP API discover how to query them with the <a href="/docs/dsdb/guides/querying_data.html">Querying Data</a> guide!</p>
       </div>

@@ -10,6 +10,7 @@
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/doc.css" rel="stylesheet">
     <link href="//cdn.bootcss.com/highlight.js/9.2.0/styles/dark.min.css" rel="stylesheet">
     <script src="/js/jquery.js"></script>
     <script src="/js/bootstrap.min.js"></script>
@@ -71,6 +72,8 @@
             <li><a href="/" >文档</a></li>
             <li><a href="http://dasudian.com/price" >定价</a></li>
             <li><a href="https://www.github.com/Dasudian"  target="_blank" >社区</a></li>
+            <li><a href="https://dev.dasudian.com/login/view" class="btn-small">登录</a></li>
+            <li><a href="https://dev.dasudian.com/sign_up/view" class="btn-small">注册</a></li>
           </ul>
         </div>
       </div>
@@ -220,17 +223,17 @@
 
     <div class="side_right">
       <div class="doc">
-        <h1 id="iosim">iOS上集成IM功能</h1>
-<h2 id="">集成前准备</h2>
+        <h2 id="iosim">iOS上集成IM功能</h2>
+<h3 id="">集成前准备</h3>
 <p>到<a href="https://dev.dasudian.com/">大数点开发者平台</a>注册成为大数点合作伙伴并创建应用，每创建一个应用大数点平台会为其生成一个AppID和AppKey，AppID在大数点平台唯一标识一个应用，而AppKey可以被更新。AppID和AppKey将在您的代码里使用，保证您的应用与大数点平台间的安全传输。</p>
 <p>若您还没有注册，请使用如下Demo App作测试：</p>
 <p>Demo App:</p>
 <pre><code>AppID: 3_95F8TwKfyN7Lj35j8q_A
 AppKey: ec55784a5db3268a</code></pre>
-<h2 id="sdkdemo">下载SDK和Demo</h2>
+<h3 id="sdkdemo">下载SDK和Demo</h3>
 <p><a href="http://main.dasudian.com/downloads/sdk/latest/im-sdk-ios.zip">SDK</a><br />
 <a href="https://github.com/Dasudian/imsdk-example-ios/archive/v1.0.0.zip">Demo</a></p>
-<h2 id="-1">制作并上传推送证书</h2>
+<h3 id="-1">制作并上传推送证书</h3>
 <p>如果不需要实现离线推送功能，请忽略这步</p>
 <p>step1. 打开苹果开发者网站</p>
 <p><img src="images/ios-im_1.jpg" alt="Alt one" /></p>
@@ -250,7 +253,7 @@ AppKey: ec55784a5db3268a</code></pre>
 <p><img src="images/ios-im_6.jpg" alt="Alt six" /></p>
 <p>step7. 上传完毕后, 推送证书就被正确生成了, 之后我们下载下来这个证书, 并双击导入系统</p>
 <p><img src="images/ios-im_7.jpg" alt="Alt seven" />  </p>
-<h2 id="-2">上传推送证书</h2>
+<h3 id="-2">上传推送证书</h3>
 <p>step1. 打开Application –&gt; Utilities –&gt; Keychain Access应用, 我们会看到有刚刚我们制作好的推送证书。</p>
 <p>step2. 打开浏览器进入<a href="https://dev.dasudian.com">大数点开发者平台</a></p>
 <p>step3. 登录大数点开发者平台。</p>
@@ -263,16 +266,16 @@ AppKey: ec55784a5db3268a</code></pre>
 <ul>
 <li>在您阅读此文档时，我们假定您已经具备了基础的 iOS 应用开发经验，并能够理解相关基础概念。</li>
 </ul>
-<h2 id="sdk">下载SDK</h2>
+<h3 id="sdk">下载SDK</h3>
 <ul>
 <li>注: 由于iOS编译的特殊性，为了方便开发者使用，我们将i386 x86_64 armv7 armv7s arm64几个平台都合并到了一起，所以SDK的静态库(.a文件)比较大。实际集成编译出ipa后，根据调用功能的多少，实际只会增加2MB左右。 </li>
 </ul>
-<h2 id="sdk-1">SDK目录讲解</h2>
+<h3 id="sdk-1">SDK目录讲解</h3>
 <p>从官网上下载下来的包中分为如下三部分：</p>
 <p>第一部分：libdsd_im.a是ios的sdk静态库，将其直接导入到工程目录下即可使用。</p>
 <p>第二部分：DSDIMClient.h是ios接口文件，里面有大数点IM提供的所有方法，将其直接导入到工程目录下即可使用。</p>
 <p>第三部分：RELEASENOTE.md当前版本的SDK功能说明和更新说明。</p>
-<h2 id="-3">配置工程</h2>
+<h3 id="-3">配置工程</h3>
 <p>1.导入SDK </p>
 <p>将下载好的SDK文件拖入到项目中，并勾选上Destination </p>
 <p><img src="images/ios-im_8.jpg" alt="Alt ten" /></p>
@@ -280,10 +283,10 @@ AppKey: ec55784a5db3268a</code></pre>
 <p>向Build Phases → Link Binary With Libraries 中添加依赖库 </p>
 <p><img src="images/ios-im_9.jpg" alt="Alt event" /></p>
 <p>SDK依赖库有 libz.tbd.</p>
-<h2 id="sdk-2">集成SDK基础功能</h2>
+<h3 id="sdk-2">集成SDK基础功能</h3>
 <p>SDK中的回调目前都是用代理实现的方法，方法简单易懂，方便用户实现各种回调的操作。</p>
 <p>SDK中基本客户端类提供了基本的单播，组播，广播等一系列方法，同时客户端类也定义了一系列的协议用于回调，比如收到单播消息的回调，收到广播消息的回调。客户端类功能简单易懂且功能全面。</p>
-<h2 id="sdk-3">初始化SDK</h2>
+<h3 id="sdk-3">初始化SDK</h3>
 <pre><code> /**
  *  初始化sdk,退出时需要调用dsdDisConnect()来销毁分配得内存.
  *
@@ -304,7 +307,7 @@ AppKey: ec55784a5db3268a</code></pre>
    devicetoken:(NSString *)ocdevicetoken
  serverAddress:(NSString *)ocserveraddress;
 </code></pre>
-<h2 id="-4">登录</h2>
+<h3 id="-4">登录</h3>
 <pre><code>
   /**
  *
@@ -318,22 +321,22 @@ AppKey: ec55784a5db3268a</code></pre>
 
 - (void)dsdCallbackConnect:(NSInteger)reason data:(NSString *)data lenth:(NSInteger)len;
 </code></pre>
-<h2 id="-5">重连</h2>
+<h3 id="-5">重连</h3>
 <p>当掉线时，IOS SDK会自动重连，只需要监听重连相关的回调，无需进行任何操作。 </p>
-<h2 id="-6">退出登录</h2>
+<h3 id="-6">退出登录</h3>
 <p>当主动退出登录的时候调用方法 ：- (void)dsdDisConnect;</p>
 <pre><code>  /**
  *  退出登录，退出后将收不到远程推送的消息。
  */
 - (void)dsdDisConnect;
 </code></pre>
-<h2 id="-7">消息格式定义</h2>
+<h3 id="-7">消息格式定义</h3>
 <p>必须要指出的是不论是发消息还是接收消息，其中msg格式为：{“t”:&quot;*&quot; , &quot;b&quot;:&quot;string&quot;}这个字段中的t指的是消息类型（必填项），b指的是消息体我们发出的消息内容。</p>
 <p>t为0:发出的消息类型是文本类型。</p>
 <p>t为1:发出的消息类型是图片类型。</p>
 <p>t为2:发出的消息类型是语音类型。</p>
 <p>同时需要注意的是在异步发送消息的时候，messageid是必须要带的。</p>
-<h2 id="-8">异步单播发送消息：</h2>
+<h3 id="-8">异步单播发送消息：</h3>
 <p>在代码中导入客户端基本类 调用异步发送单播消息方法就OK了。
 使用大数点公有云服务器，非VIP用户可以发送的最大消息长度为1024个字节。</p>
 <pre><code>/**
@@ -351,7 +354,7 @@ AppKey: ec55784a5db3268a</code></pre>
             message:(NSString *)message
           messageid:(NSString *)messageid;
 </code></pre>
-<h2 id="-9">同步单播发送消息：</h2>
+<h3 id="-9">同步单播发送消息：</h3>
 <pre><code>
 /**
  *  同步发送单播消息.该方法会阻塞主线程.
@@ -368,7 +371,7 @@ AppKey: ec55784a5db3268a</code></pre>
                   number:(NSInteger)number
                  message:(NSString *)message;
 </code></pre>
-<h2 id="-10">收到单播消息的回调：</h2>
+<h3 id="-10">收到单播消息的回调：</h3>
 <pre><code> /**
  *  收到单播消息的回调
  *
@@ -385,7 +388,7 @@ AppKey: ec55784a5db3268a</code></pre>
 @optional
 - (void)dsdCallbackReceive:(NSInteger)reason data:(NSString *)data lenth:(NSInteger)len;
 </code></pre>
-<h2 id="-11">同步发送组播消息</h2>
+<h3 id="-11">同步发送组播消息</h3>
 <pre><code>/**
  *  同步发送组播消息,该方法会阻塞主线程.
  *
@@ -400,7 +403,7 @@ AppKey: ec55784a5db3268a</code></pre>
                        groupid:(NSString *)groupid
                        message:(NSString *)message;
 </code></pre>
-<h2 id="-12">异步发送组播消息</h2>
+<h3 id="-12">异步发送组播消息</h3>
 <pre><code>/**
  *  异步发送组播消息,该方法不会阻塞主线程.
  *
@@ -419,7 +422,7 @@ AppKey: ec55784a5db3268a</code></pre>
 <ul>
 <li>特别注意的地方是异步发送组播最后多了一个参数messageid，该missageid会在所有异步发送消息的代理回调方法里的参数data中返回给用户，开发者可以通过messageid来知道哪些消息发送成功了。</li>
 </ul>
-<h2 id="-13">收到组播消息的回调</h2>
+<h3 id="-13">收到组播消息的回调</h3>
 <pre><code>/**
  *   收到组播消息的回调
  *
@@ -437,7 +440,7 @@ AppKey: ec55784a5db3268a</code></pre>
 @optional
 - (void)dsdCallbackReceiveGroup:(NSInteger)reason data:(NSString *)data lenth:(NSInteger)len;
 </code></pre>
-<h2 id="-14">同步发送广播消息</h2>
+<h3 id="-14">同步发送广播消息</h3>
 <pre><code>/**
  *  同步得发送广播消息,该方法会阻塞主线程.
  *
@@ -449,7 +452,7 @@ AppKey: ec55784a5db3268a</code></pre>
 
 - (NSInteger)dsdSyncBroadcast:(NSString *)fromuserid message:(NSString *)message;
 </code></pre>
-<h2 id="-15">异步发送广播消息</h2>
+<h3 id="-15">异步发送广播消息</h3>
 <pre><code>/**
  *  异步发送广播消息,该方法不会阻塞主线程
  *
@@ -464,7 +467,7 @@ AppKey: ec55784a5db3268a</code></pre>
                           messageid:(NSString *)messageid;
 
         一般选择此方法发送广播消息。</code></pre>
-<h2 id="-16">收到广播消息的回调</h2>
+<h3 id="-16">收到广播消息的回调</h3>
 <pre><code>/**
  *  收到广播消息的回调
  *
@@ -482,7 +485,7 @@ AppKey: ec55784a5db3268a</code></pre>
 @optional
 - (void)dsdCallbackReceiveBroad:(NSInteger)reason data:(NSString *)data lenth:(NSInteger)len;
 </code></pre>
-<h2 id="-17">创建组</h2>
+<h3 id="-17">创建组</h3>
 <pre><code>/**
  *  创建组,该方法会阻塞主线程.
  *
@@ -494,7 +497,7 @@ AppKey: ec55784a5db3268a</code></pre>
 
 - (NSString *)dsdCreateGroup:(NSString *)creatuserid groupName:(NSString *)groupName;
 </code></pre>
-<h2 id="-18">加入组</h2>
+<h3 id="-18">加入组</h3>
 <pre><code>/**
  *  加入组,该方法会阻塞主线程
  *
@@ -506,7 +509,7 @@ AppKey: ec55784a5db3268a</code></pre>
 
 - (NSInteger) dsdJoinGroup:(NSString *)joinuserid groupid:(NSString *)groupid;
 </code></pre>
-<h2 id="-19">离开组</h2>
+<h3 id="-19">离开组</h3>
 <pre><code>/**
  *  离开组,该方法会阻塞主线程.
  *
@@ -517,7 +520,7 @@ AppKey: ec55784a5db3268a</code></pre>
  */
 - (NSInteger) dsdLeaveGroup:(NSString *)leaveuserid groupid:(NSString *)groupid;
 </code></pre>
-<h2 id="-20">将某人踢出组</h2>
+<h3 id="-20">将某人踢出组</h3>
 <pre><code>/**
  *  将某人踢出组
  *
@@ -531,7 +534,7 @@ AppKey: ec55784a5db3268a</code></pre>
                      groupid:(NSString *)groupid
                  groupmember:(NSString *)groupmember;
 </code></pre>
-<h2 id="-21">踢出组的回调：</h2>
+<h3 id="-21">踢出组的回调：</h3>
 <pre><code>/**
  *  踢出组的回调
  *
@@ -542,7 +545,7 @@ AppKey: ec55784a5db3268a</code></pre>
 @optional
 - (void)dsdCallbackKickOutGroup:(NSInteger)reason data:(NSString *)data lenth:(NSInteger)len;
 </code></pre>
-<h2 id="-22">发送异步消息的回调</h2>
+<h3 id="-22">发送异步消息的回调</h3>
 <pre><code>/**
  *  发送所有的异步消息的回调
  *
@@ -553,7 +556,7 @@ AppKey: ec55784a5db3268a</code></pre>
 @optional
 - (void)dsdCallbackAsyncSend:(NSInteger)reason data:(NSString *)data lenth:(NSInteger)len;
 </code></pre>
-<h3 id="sdk-4">此方法是sdk层封装的一个转换方法，用户可以用自己的方法去实现解析接收到的消息。</h3>
+<h4 id="sdk-4">此方法是sdk层封装的一个转换方法，用户可以用自己的方法去实现解析接收到的消息。</h4>
 <pre><code>/**
  *  增加的一种数据转化方法，可以自己去解析回调方法中传回来的data值。
  *

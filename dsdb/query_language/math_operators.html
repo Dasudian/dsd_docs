@@ -10,6 +10,7 @@
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/doc.css" rel="stylesheet">
     <link href="//cdn.bootcss.com/highlight.js/9.2.0/styles/dark.min.css" rel="stylesheet">
     <script src="/js/jquery.js"></script>
     <script src="/js/bootstrap.min.js"></script>
@@ -71,6 +72,8 @@
             <li><a href="/" >文档</a></li>
             <li><a href="http://dasudian.com/price" >定价</a></li>
             <li><a href="https://www.github.com/Dasudian"  target="_blank" >社区</a></li>
+            <li><a href="https://dev.dasudian.com/login/view" class="btn-small">登录</a></li>
+            <li><a href="https://dev.dasudian.com/sign_up/view" class="btn-small">注册</a></li>
           </ul>
         </div>
       </div>
@@ -220,7 +223,7 @@
 
     <div class="side_right">
       <div class="doc">
-        <h1 id="mathematical-operators">Mathematical Operators</h1>
+        <h2 id="mathematical-operators">Mathematical Operators</h2>
 <blockquote>
 <p><strong>Note:</strong> Currently all mathematical operators work solely on <code>floats</code>.
 Currently, DSDB converts any <code>int</code> involved to a <code>float</code> as any operation performed on an <code>int</code> would return a <code>null</code> value.
@@ -230,18 +233,18 @@ Issue <a href="https://github.com/dsdb/dsdb/issues/3614">3614</a> tracks impleme
 <p>Mathematical operators follow the standard order of operations.
 That is, <em>parentheses</em> take precedence to <em>division</em> and <em>multiplication</em>, which takes precedence to <em>addition</em> and <em>substraction</em>.
 For example <code>5 / 2 + 3 * 2 =  (5 / 2) + (3 * 2)</code> and <code>5 + 2 * 3 - 2 = 5 + (2 * 3) - 2</code>.</p>
-<h2 id="supported-operators">Supported Operators</h2>
-<h3 id="addition">Addition</h3>
+<h3 id="supported-operators">Supported Operators</h3>
+<h4 id="addition">Addition</h4>
 <p>You can add a constant.</p>
 <pre><code class="language-sql">SELECT A + 5 FROM add</code></pre>
 <p>You can add together other field keys.</p>
 <pre><code class="language-sql">SELECT A + B FROM add</code></pre>
-<h3 id="subtraction">Subtraction</h3>
+<h4 id="subtraction">Subtraction</h4>
 <p>You can subtract a constant.</p>
 <pre><code class="language-sql">SELECT 1 - A FROM sub</code></pre>
 <p>You can subtract one field key from another field key.</p>
 <pre><code class="language-sql">SELECT A - B FROM sub</code></pre>
-<h3 id="multiplication">Multiplication</h3>
+<h4 id="multiplication">Multiplication</h4>
 <p>You can multiply by a constant.</p>
 <pre><code class="language-sql">SELECT A + B FROM add
 SELECT 10 * A FROM mult</code></pre>
@@ -251,28 +254,28 @@ SELECT 10 * A FROM mult</code></pre>
 <pre><code class="language-sql">SELECT 10 * (A + B + C) FROM mult</code></pre>
 <pre><code class="language-sql">SELECT 10 * (A - B - C) FROM mult</code></pre>
 <pre><code class="language-sql">SELECT 10 * (A + B - C) FROM mult</code></pre>
-<h3 id="division">Division</h3>
+<h4 id="division">Division</h4>
 <p>You can divide by a constant.</p>
 <pre><code class="language-sql">SELECT 10 / A FROM div</code></pre>
 <p>You can divide by other field keys.</p>
 <pre><code class="language-sql">SELECT A / B FROM div</code></pre>
 <p>Division distributes across other operators</p>
 <pre><code class="language-sql">SELECT 10 / (A + B + C) FROM mult</code></pre>
-<h2 id="operators-with-functions">Operators with Functions</h2>
+<h3 id="operators-with-functions">Operators with Functions</h3>
 <p>The use of mathematical operators inside of function calls is currently unsupported.</p>
 <p>For example</p>
 <pre><code class="language-sql">SELECT 10 * mean(value) FROM cpu</code></pre>
 <p>will work, however</p>
 <pre><code class="language-sql">SELECT mean(10 * value) FROM cpu</code></pre>
 <p>will yield a parse error.</p>
-<h2 id="unsupported-operators">Unsupported Operators</h2>
-<h3 id="inequalities">Inequalities</h3>
+<h3 id="unsupported-operators">Unsupported Operators</h3>
+<h4 id="inequalities">Inequalities</h4>
 <p>Using any of <code>=</code>,<code>!=</code>,<code>&lt;</code>,<code>&gt;</code>,<code>&lt;=</code>,<code>&gt;=</code> in the <code>SELECT</code> clause yields empty results for all types.
 See GitHub issue <a href="https://github.com/dsdb/dsdb/issues/3525">3525</a>.</p>
-<h3 id="miscellaneous">Miscellaneous</h3>
+<h4 id="miscellaneous">Miscellaneous</h4>
 <p>Using any of <code>%</code>, <code>^</code> will yield a parse error.
 If you would like to see support for these operators open an <a href="https://github.com/dsdb/dsdb/issues/new">issue</a>.</p>
-<h2 id="logical-operators-are-unsupported">Logical Operators are Unsupported</h2>
+<h3 id="logical-operators-are-unsupported">Logical Operators are Unsupported</h3>
 <p>Using any of <code>&amp;</code>,<code>|</code>,<code>!|</code>,<code>NAND</code>,<code>XOR</code>,<code>NOR</code> will yield parse error.</p>
 <p>Additionally using <code>AND</code>, <code>OR</code> in the <code>SELECT</code> clause of a query will not behave as mathematical operators and simply yield empty results, as they are tokens in DSDBQL.</p>
       </div>

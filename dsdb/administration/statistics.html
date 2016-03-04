@@ -10,6 +10,7 @@
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/doc.css" rel="stylesheet">
     <link href="//cdn.bootcss.com/highlight.js/9.2.0/styles/dark.min.css" rel="stylesheet">
     <script src="/js/jquery.js"></script>
     <script src="/js/bootstrap.min.js"></script>
@@ -71,6 +72,8 @@
             <li><a href="/" >文档</a></li>
             <li><a href="http://dasudian.com/price" >定价</a></li>
             <li><a href="https://www.github.com/Dasudian"  target="_blank" >社区</a></li>
+            <li><a href="https://dev.dasudian.com/login/view" class="btn-small">登录</a></li>
+            <li><a href="https://dev.dasudian.com/sign_up/view" class="btn-small">注册</a></li>
           </ul>
         </div>
       </div>
@@ -220,10 +223,10 @@
 
     <div class="side_right">
       <div class="doc">
-        <h1 id="server-monitoring">Server Monitoring</h1>
+        <h2 id="server-monitoring">Server Monitoring</h2>
 <p>DSDB can display statistical and diagnostic information about each node.
 This information can be very useful for troubleshooting and performance monitoring.</p>
-<h2 id="show-stats">SHOW STATS</h2>
+<h3 id="show-stats">SHOW STATS</h3>
 <p>To see node stats execute the command <code>SHOW STATS</code>.
 An example is shown below.</p>
 <pre><code class="language-sql">SHOW STATS</code></pre>
@@ -259,14 +262,14 @@ An example is shown below.</p>
     ]
 }</code></pre>
 <p>The statistics returned by <code>SHOW STATS</code> are stored in memory only, and are reset to zero when the node is restarted.</p>
-<h2 id="show-diagnostics">SHOW DIAGNOSTICS</h2>
+<h3 id="show-diagnostics">SHOW DIAGNOSTICS</h3>
 <p>To see node diagnostics execute the command <code>SHOW DIAGNOSTICS</code>.
 This returns information such as build information, uptime, hostname, server configuration, memory usage, and Go runtime diagnostics.</p>
-<h2 id="internal-monitoring">Internal Monitoring</h2>
+<h3 id="internal-monitoring">Internal Monitoring</h3>
 <p>DSDB also writes statistical and diagnostic information to database named <code>_internal</code>, which records metrics on the internal runtime and service performance.
 The <code>_internal</code> database can be queried and manipulated like any other DSDB database.
 Check out the <a href="https://github.com/Dasudian/dsdb/blob/master/monitor/index.html">monitor service README</a> and the <a href="https://dsdb.com/blog/2015/09/22/monitoring_internal_show_stats.html">internal monitoring blog post</a> for more detail.</p>
-<h2 id="useful-commands">Useful Commands</h2>
+<h3 id="useful-commands">Useful Commands</h3>
 <p>Below are a collection of commands to find useful performance metrics about your DSDB instance. </p>
 <p>To find the number of unique series in a database run the following command: </p>
 <pre><code class="language-bash">$ influx -execute "SHOW SERIES" -database "mydb" | sed '/name: .*/d' | sed '/\-\-/d' | sed '/_key/d' | sed '/^$/d' | wc -l</code></pre>

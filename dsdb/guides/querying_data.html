@@ -10,6 +10,7 @@
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/doc.css" rel="stylesheet">
     <link href="//cdn.bootcss.com/highlight.js/9.2.0/styles/dark.min.css" rel="stylesheet">
     <script src="/js/jquery.js"></script>
     <script src="/js/bootstrap.min.js"></script>
@@ -71,6 +72,8 @@
             <li><a href="/" >文档</a></li>
             <li><a href="http://dasudian.com/price" >定价</a></li>
             <li><a href="https://www.github.com/Dasudian"  target="_blank" >社区</a></li>
+            <li><a href="https://dev.dasudian.com/login/view" class="btn-small">登录</a></li>
+            <li><a href="https://dev.dasudian.com/sign_up/view" class="btn-small">注册</a></li>
           </ul>
         </div>
       </div>
@@ -220,8 +223,8 @@
 
     <div class="side_right">
       <div class="doc">
-        <h1 id="querying-data">Querying Data</h1>
-<h2 id="querying-data-using-the-http-api">Querying data using the HTTP API</h2>
+        <h2 id="querying-data">Querying Data</h2>
+<h3 id="querying-data-using-the-http-api">Querying data using the HTTP API</h3>
 <p>The HTTP API is the primary means for querying data in DSDB (see the <a href="/docs/dsdb/tools/shell.html">command line interface</a> and <a href="/docs/dsdb/clients/api.html">client libraries</a> for alternative ways to query the database).</p>
 <p>To perform a query send a <code>GET</code> request to the <code>/query</code> endpoint, set the URL parameter <code>db</code> as the target database, and set the URL parameter <code>q</code> as your query.
 The example below uses the HTTP API to query the same database that you encountered in <a href="/docs/dsdb/guides/writing_data.html">Writing Data</a>.
@@ -264,7 +267,7 @@ If an error occurs, DSDB sets an <code>"error"</code> key with an explanation of
 <p><strong>Note:</strong> Appending <code>pretty=true</code> to the URL enables pretty-printed JSON output.
 While this is useful for debugging or when querying directly with tools like <code>curl</code>, it is not recommended for production use as it consumes unnecessary network bandwidth.</p>
 </blockquote>
-<h3 id="multiple-queries">Multiple queries</h3>
+<h4 id="multiple-queries">Multiple queries</h4>
 <hr />
 <p>Send multiple queries to DSDB in a single API call.
 Simply delimit each query using a semicolon, for example:<br />
@@ -318,24 +321,24 @@ Simply delimit each query using a semicolon, for example:<br />
         }
     ]
 }</code></pre>
-<h3 id="other-options-when-querying-data">Other options when querying data</h3>
+<h4 id="other-options-when-querying-data">Other options when querying data</h4>
 <hr />
-<h4 id="timestamp-format">Timestamp Format</h4>
+<h5 id="timestamp-format">Timestamp Format</h5>
 <p>Everything in DSDB is stored and reported in UTC.
 By default, timestamps are returned in RFC3339 UTC and have nanosecond precision, for example <code>2015-08-04T19:05:14.318570484Z</code>.
 If you want timestamps in Unix epoch format include in your request the query string parameter <code>epoch</code> where <code>epoch=[h,m,s,ms,u,ns]</code>.
 For example, get epoch in seconds with:<br />
 <br></p>
 <pre><code class="language-sh">curl -G 'http://localhost:8088/query' --data-urlencode "db=mydb" --data-urlencode "epoch=s" --data-urlencode "q=SELECT value FROM cpu_load_short WHERE region='us-west'"</code></pre>
-<h4 id="authentication">Authentication</h4>
+<h5 id="authentication">Authentication</h5>
 <p>Authentication in DSDB is disabled by default.
 See <a href="/docs/dsdb/administration/authentication_and_authorization.html">Authentication and Authorization</a> for how to enable and set up authentication.</p>
-<h4 id="chunk-size">Chunk size</h4>
+<h5 id="chunk-size">Chunk size</h5>
 <p>For large queries, results are returned in batches of 10,000 points unless you use the query string parameter <code>chunk_size</code> to explicitly set the batch size.
 For example, get your results in batches of 20,000 points with:<br />
 <br></p>
 <pre><code class="language-sh">curl -G 'http://localhost:8088/query' --data-urlencode "db=deluge" --data-urlencode "chunk_size=20000" --data-urlencode "q=SELECT * FROM liters"</code></pre>
-<h3 id="dsdbql">DSDBQL</h3>
+<h4 id="dsdbql">DSDBQL</h4>
 <hr />
 <p>Now that you know how to query data, check out the <a href="/docs/dsdb/query_language/data_exploration.html">Data Exploration page</a> to get acquainted with DSDBQL.</p>
       </div>

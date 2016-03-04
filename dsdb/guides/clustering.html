@@ -10,6 +10,7 @@
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/doc.css" rel="stylesheet">
     <link href="//cdn.bootcss.com/highlight.js/9.2.0/styles/dark.min.css" rel="stylesheet">
     <script src="/js/jquery.js"></script>
     <script src="/js/bootstrap.min.js"></script>
@@ -71,6 +72,8 @@
             <li><a href="/" >文档</a></li>
             <li><a href="http://dasudian.com/price" >定价</a></li>
             <li><a href="https://www.github.com/Dasudian"  target="_blank" >社区</a></li>
+            <li><a href="https://dev.dasudian.com/login/view" class="btn-small">登录</a></li>
+            <li><a href="https://dev.dasudian.com/sign_up/view" class="btn-small">注册</a></li>
           </ul>
         </div>
       </div>
@@ -220,7 +223,7 @@
 
     <div class="side_right">
       <div class="doc">
-        <h1 id="clustering">Clustering</h1>
+        <h2 id="clustering">Clustering</h2>
 <blockquote>
 <p><strong>NOTE:</strong> Clustering is still considered <em>experimental</em>, and there are still quite a few rough edges. If you encounter any issues, please <a href="https://github.com/dasudian/dsdb/issues/new">report them</a>.</p>
 </blockquote>
@@ -242,12 +245,12 @@ more detail.</li>
 <p>Any node can be a meta node, data node, or both. Each cluster must
 have <em>at least</em> three meta nodes in order to form a Raft concensus and
 remain in a healthy state.</p>
-<h2 id="configuration">Configuration</h2>
+<h3 id="configuration">Configuration</h3>
 <p>The following is the current recommended procedure for configuring a cluster.</p>
 <blockquote>
 <p><strong>Note:</strong> You should always use the most recent release for clustering as there are significant improvements with each release.</p>
 </blockquote>
-<h3 id="start-the-initial-raft-cluster">Start the Initial Raft Cluster</h3>
+<h4 id="start-the-initial-raft-cluster">Start the Initial Raft Cluster</h4>
 <p>Throughout this example, each node will be given a hostname that
 denotes the order in which it was started (e.g. <code>influx1</code> for the
 first node, <code>influx2</code> for the second node, etc.). Each machine
@@ -295,7 +298,7 @@ id  http_addr   tcp_addr
 3   influx3:8091    influx3:8088
 4   influx2:8091    influx2:8088</code></pre>
 <p>If you believe that you did the following steps correctly, but are still experiencing problems, try restarting each node in your cluster.</p>
-<h3 id="adding-more-nodes">Adding More Nodes</h3>
+<h4 id="adding-more-nodes">Adding More Nodes</h4>
 <p>Once you have verified that your cluster is healthy and running appropriately, you can add extra nodes by following the same steps above. When specifying the <code>-join</code> address, you will need to use the hostname/IP address of a pre-existing member of the cluster (either <code>influx1</code>, <code>influx2</code>, or <code>influx3</code> if following the example above).</p>
 <blockquote>
 <p><strong>Note:</strong> When using the <code>-join</code> you need only specify one <code>hostname:port</code> pair.

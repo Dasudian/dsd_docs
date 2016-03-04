@@ -10,6 +10,7 @@
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/doc.css" rel="stylesheet">
     <link href="//cdn.bootcss.com/highlight.js/9.2.0/styles/dark.min.css" rel="stylesheet">
     <script src="/js/jquery.js"></script>
     <script src="/js/bootstrap.min.js"></script>
@@ -71,6 +72,8 @@
             <li><a href="/" >文档</a></li>
             <li><a href="http://dasudian.com/price" >定价</a></li>
             <li><a href="https://www.github.com/Dasudian"  target="_blank" >社区</a></li>
+            <li><a href="https://dev.dasudian.com/login/view" class="btn-small">登录</a></li>
+            <li><a href="https://dev.dasudian.com/sign_up/view" class="btn-small">注册</a></li>
           </ul>
         </div>
       </div>
@@ -220,7 +223,7 @@
 
     <div class="side_right">
       <div class="doc">
-        <h1 id="functions">Functions</h1>
+        <h2 id="functions">Functions</h2>
 <p>Use DSDBQL functions to aggregate, select, and transform data.</p>
 <table>
 <thead>
@@ -279,8 +282,8 @@ See the <a href="/dsdb/guides/querying_data.html">Querying Data</a> guide for ho
 <p><strong>Sample data</strong></p>
 <p>The examples in this document use the same sample data as the <a href="/dsdb/query_language/data_exploration.html">Data Exploration</a> page.
 The data are described and are available for download on the <a href="/dsdb/sample_data/data_download.html">Sample Data</a> page.</p>
-<h1 id="aggregations">Aggregations</h1>
-<h2 id="count">COUNT()</h2>
+<h2 id="aggregations">Aggregations</h2>
+<h3 id="count">COUNT()</h3>
 <p>Returns the number of non-null values in a single <a href="/dsdb/concepts/glossary.html#field">field</a>.</p>
 <pre><code class="language-sql">SELECT COUNT(&lt;field_key&gt;) FROM &lt;measurement_name&gt; [WHERE &lt;stuff&gt;] [GROUP BY &lt;stuff&gt;]</code></pre>
 <p>Examples:</p>
@@ -315,7 +318,7 @@ time                           count
 2015-09-14T00:00:00Z     1920
 2015-09-18T00:00:00Z     335</code></pre>
 <blockquote>
-<h4><code>COUNT()</code> and controlling the values reported for intervals with no data</h4>
+<h5><code>COUNT()</code> and controlling the values reported for intervals with no data</h5>
 <p><br>
 Other DSDBQL functions report <code>null</code> values for intervals with no data, and appending <code>fill(&lt;stuff&gt;)</code> to queries with those functions replaces <code>null</code> values in the output with <code>&lt;stuff&gt;</code>.
 <code>COUNT()</code>, however, reports <code>0</code>s for intervals with no data, so appending <code>fill(&lt;stuff&gt;)</code> to queries with <code>COUNT()</code> replaces <code>0</code>s in the output with <code>&lt;stuff&gt;</code>.</p>
@@ -336,7 +339,7 @@ time                           count
 2015-09-18T21:30:00Z     1</code></pre>
 <p>For a more general discussion of <code>fill()</code>, see <a href="/dsdb/query_language/data_exploration.html#the-group-by-clause-and-fill">Data Exploration</a>.</p>
 </blockquote>
-<h2 id="distinct">DISTINCT()</h2>
+<h3 id="distinct">DISTINCT()</h3>
 <p>Returns an array of the unique values in a single <a href="/dsdb/concepts/glossary.html#field">field</a>.</p>
 <pre><code class="language-sql">SELECT DISTINCT(&lt;field_key&gt;) FROM &lt;measurement_name&gt; [WHERE &lt;stuff&gt;] [GROUP BY &lt;stuff&gt;]</code></pre>
 <p>Examples:</p>
@@ -385,11 +388,11 @@ tags: location = santa_monica
 time                           count
 ----                           -----
 1970-01-01T00:00:00Z     3</code></pre>
-<h2 id="integral">INTEGRAL()</h2>
+<h3 id="integral">INTEGRAL()</h3>
 <p><code>INTEGRAL()</code> is not yet functional.</p>
 <dt> See GitHub Issue [#1400](https://github.com/dsdb/dsdb/issues/1400) for more information.
 </dt>
-<h2 id="mean">MEAN()</h2>
+<h3 id="mean">MEAN()</h3>
 <p>Returns the arithmetic mean (average) for the values in a single <a href="/dsdb/concepts/glossary.html#field">field</a>.
 The field type must be int64 or float64.</p>
 <pre><code class="language-sql">SELECT MEAN(&lt;field_key&gt;) FROM &lt;measurement_name&gt; [WHERE &lt;stuff&gt;] [GROUP BY &lt;stuff&gt;]</code></pre>
@@ -424,7 +427,7 @@ time                           mean
 2015-09-10T00:00:00Z     4.658127604166671
 2015-09-14T00:00:00Z     4.7635046875
 2015-09-18T00:00:00Z     4.232829850746268</code></pre>
-<h2 id="median">MEDIAN()</h2>
+<h3 id="median">MEDIAN()</h3>
 <p>Returns the middle value from the sorted values in a single <a href="/dsdb/concepts/glossary.html#field">field</a>.
 The field values must be of type int64 or float64.</p>
 <pre><code class="language-sql">SELECT MEDIAN(&lt;field_key&gt;) FROM &lt;measurement_name&gt; [WHERE &lt;stuff&gt;] [GROUP BY &lt;stuff&gt;]</code></pre>
@@ -464,7 +467,7 @@ time                           median
 <dt> The returned timestamps mark the start of the relevant time interval for the query.
 See GitHub Issue [#4680](https://github.com/dsdb/dsdb/issues/4680) for more information.
 </dt>
-<h2 id="spread">SPREAD()</h2>
+<h3 id="spread">SPREAD()</h3>
 <p>Returns the difference between the minimum and maximum values of a <a href="/dsdb/concepts/glossary.html#field">field</a>.
 The field must be of type int64 or float64.</p>
 <pre><code class="language-sql">SELECT SPREAD(&lt;field_key&gt;) FROM &lt;measurement_name&gt; [WHERE &lt;stuff&gt;] [GROUP BY &lt;stuff&gt;]</code></pre>
@@ -493,7 +496,7 @@ time                            spread
 2015-09-18T19:00:00Z      0.23899999999999988
 2015-09-18T19:30:00Z      0.1609999999999996
 2015-09-18T20:00:00Z      0.16800000000000015</code></pre>
-<h2 id="sum">SUM()</h2>
+<h3 id="sum">SUM()</h3>
 <p>Returns the sum of the all values in a single <a href="/dsdb/concepts/glossary.html#field">field</a>.
 The field must be of type int64 or float64.</p>
 <pre><code class="language-sql">SELECT SUM(&lt;field_key&gt;) FROM &lt;measurement_name&gt; [WHERE &lt;stuff&gt;] [GROUP BY &lt;stuff&gt;]</code></pre>
@@ -522,8 +525,8 @@ time                           sum
 2015-09-07T00:00:00Z     10871.817999999988
 2015-09-12T00:00:00Z     11459.1.000000007
 2015-09-17T00:00:00Z     3627.7619999999997</code></pre>
-<h1 id="selectors">Selectors</h1>
-<h2 id="bottom">BOTTOM()</h2>
+<h2 id="selectors">Selectors</h2>
+<h3 id="bottom">BOTTOM()</h3>
 <p>Returns the smallest <code>N</code> values in a single <a href="/dsdb/concepts/glossary.html#field">field</a>.
 The field type must be int64 or float64.</p>
 <pre><code class="language-sql">SELECT BOTTOM(&lt;field_key&gt;[,&lt;tag_keys&gt;],&lt;N&gt;)[,&lt;tag_keys&gt;] FROM &lt;measurement_name&gt; [WHERE &lt;stuff&gt;] [GROUP BY &lt;stuff&gt;]</code></pre>
@@ -622,7 +625,7 @@ time                           bottom
 2015-08-18T04:06:00Z     4.055</code></pre>
 <p>Note that in the raw data, <code>water_level</code> equals <code>4.055</code> at <code>2015-08-18T04:06:00Z</code> and at <code>2015-08-18T04:12:00Z</code>.
 In the case of a tie, DSDB returns the value with the earlier timestamp.</p>
-<h2 id="first">FIRST()</h2>
+<h3 id="first">FIRST()</h3>
 <p>Returns the oldest value (determined by the timestamp) of a single <a href="/dsdb/concepts/glossary.html#field">field</a>.</p>
 <pre><code class="language-sql">SELECT FIRST(&lt;field_key&gt;) FROM &lt;measurement_name&gt; [WHERE &lt;stuff&gt;] [GROUP BY &lt;stuff&gt;]</code></pre>
 <p>Examples:</p>
@@ -654,7 +657,7 @@ time                           first
 <dt> The returned timestamps mark the start of the relevant time interval for the query.
 See GitHub Issue [#4680](https://github.com/dsdb/dsdb/issues/4680) for more information.
 </dt>
-<h2 id="last">LAST()</h2>
+<h3 id="last">LAST()</h3>
 <p>Returns the newest value (determined by the timestamp) of a single <a href="/dsdb/concepts/glossary.html#field">field</a>.</p>
 <pre><code class="language-sql">SELECT LAST(&lt;field_key&gt;) FROM &lt;measurement_name&gt; [WHERE &lt;stuff&gt;] [GROUP BY &lt;stuff&gt;]</code></pre>
 <p>Examples:</p>
@@ -690,7 +693,7 @@ See GitHub Issue [#4680](https://github.com/dsdb/dsdb/issues/4680) for more info
 <p><strong>Note:</strong> <code>LAST()</code> does not return points that occur after <code>now()</code> unless the <code>WHERE</code> clause specifies that time range.
 See <a href="/dsdb/troubleshooting/frequently_encountered_issues.html#querying-after-now">Frequently Encountered Issues</a> for how to query after <code>now()</code>.</p>
 </blockquote>
-<h2 id="max">MAX()</h2>
+<h3 id="max">MAX()</h3>
 <p>Returns the highest value in a single <a href="/dsdb/concepts/glossary.html#field">field</a>.
 The field must be of type int64 or float64.</p>
 <pre><code class="language-sql">SELECT MAX(&lt;field_key&gt;) FROM &lt;measurement_name&gt; [WHERE &lt;stuff&gt;] [GROUP BY &lt;stuff&gt;]</code></pre>
@@ -728,7 +731,7 @@ time                          max
 2015-08-18T00:24:00Z    2.051
 2015-08-18T00:36:00Z    2.067
 2015-08-18T00:48:00Z    1.991</code></pre>
-<h2 id="min">MIN()</h2>
+<h3 id="min">MIN()</h3>
 <p>Returns the lowest value in a single <a href="/dsdb/concepts/glossary.html#field">field</a>.
 The field must be of type int64 or float64.</p>
 <pre><code class="language-sql">SELECT MIN(&lt;field_key&gt;) FROM &lt;measurement_name&gt; [WHERE &lt;stuff&gt;] [GROUP BY &lt;stuff&gt;]</code></pre>
@@ -766,7 +769,7 @@ time                           min
 2015-08-18T00:24:00Z     2.041
 2015-08-18T00:36:00Z     2.057
 2015-08-18T00:48:00Z     1.991</code></pre>
-<h2 id="percentile">PERCENTILE()</h2>
+<h3 id="percentile">PERCENTILE()</h3>
 <p>Returns the <code>N</code>th percentile value for the sorted values of a single <a href="/dsdb/concepts/glossary.html#field">field</a>.
 The field must be of type int64 or float64.
 The percentile <code>N</code> must be an integer or floating point number between 0 and 100, inclusive.</p>
@@ -805,7 +808,7 @@ See GitHub Issue [#4418](https://github.com/influxdata/dsdb/issues/4418) for mor
 <blockquote>
 <p><strong>Note</strong>: <code>PERCENTILE(&lt;field_key&gt;, 50)</code> is nearly equivalent to <code>MEDIAN()</code>, except <code>MEDIAN()</code> returns the average of the two middle values if the field contains an even number of points.</p>
 </blockquote>
-<h2 id="top">TOP()</h2>
+<h3 id="top">TOP()</h3>
 <p>Returns the largest <code>N</code> values in a single <a href="/dsdb/concepts/glossary.html#field">field</a>.
 The field type must be int64 or float64.</p>
 <pre><code class="language-sql">SELECT TOP(&lt;field_key&gt;[,&lt;tag_keys&gt;],&lt;N&gt;)[,&lt;tag_keys&gt;] FROM &lt;measurement_name&gt; [WHERE &lt;stuff&gt;] [GROUP BY &lt;stuff&gt;]</code></pre>
@@ -904,12 +907,12 @@ time                           top
 2015-08-18T04:18:00Z     4.124</code></pre>
 <p>Note that in the raw data, <code>water_level</code> equals <code>4.055</code> at <code>2015-08-18T04:06:00Z</code> and at <code>2015-08-18T04:12:00Z</code>.
 In the case of a tie, DSDB returns the value with the earlier timestamp.</p>
-<h1 id="transformations">Transformations</h1>
-<h2 id="ceiling">CEILING()</h2>
+<h2 id="transformations">Transformations</h2>
+<h3 id="ceiling">CEILING()</h3>
 <p><code>CEILING()</code> is not yet functional.</p>
 <dt> See GitHub Issue [#3691](https://github.com/dsdb/dsdb/issues/3691) for more information.
 </dt>
-<h2 id="derivative">DERIVATIVE()</h2>
+<h3 id="derivative">DERIVATIVE()</h3>
 <p>Returns the rate of change for the values in a single <a href="/dsdb/concepts/glossary.html#field">field</a> in a <a href="/dsdb/concepts/glossary.html#series">series</a>.
 DSDB calculates the difference between chronological field values and converts those results into the rate of change per <code>unit</code>.
 The <code>unit</code> argument is optional and, if not specified, defaults to one second (<code>1s</code>).</p>
@@ -1058,19 +1061,19 @@ The calculation of the first value in the <code>derivative</code> column looks l
 <p>The numerator is the difference between chronological field values.
 The denominator is the difference between the relevant timestamps in minutes (<code>2015-08-18T00:18:00Z</code> - <code>2015-08-18T00:00:00Z</code> = <code>18m</code>) divided by <code>unit</code> (<code>6m</code>).
 This returns the rate of change per six minutes for the aggregated data from <code>2015-08-18T00:00:00Z</code> to <code>2015-08-18T00:18:00Z</code>.</p>
-<h2 id="difference">DIFFERENCE()</h2>
+<h3 id="difference">DIFFERENCE()</h3>
 <p><code>DIFFERENCE()</code> is not yet functional.</p>
 <dt> See GitHub Issue [#1825](https://github.com/dsdb/dsdb/issues/1825) for more information.
 </dt>
-<h2 id="floor">FLOOR()</h2>
+<h3 id="floor">FLOOR()</h3>
 <p><code>FLOOR()</code> is not yet functional.</p>
 <dt> See GitHub Issue [#3691](https://github.com/dsdb/dsdb/issues/3691) for more information.
 </dt>
-<h2 id="histogram">HISTOGRAM()</h2>
+<h3 id="histogram">HISTOGRAM()</h3>
 <p><code>HISTOGRAM()</code> is not yet functional.</p>
 <dt> See GitHub Issue [#3674](https://github.com/dsdb/dsdb/issues/3674) for more information.
 </dt>
-<h2 id="non_negative_derivative">NON_NEGATIVE_DERIVATIVE()</h2>
+<h3 id="non_negative_derivative">NON_NEGATIVE_DERIVATIVE()</h3>
 <p>Returns the non-negative rate of change for the values in a single <a href="/dsdb/concepts/glossary.html#field">field</a> in a <a href="/dsdb/concepts/glossary.html#series">series</a>.
 DSDB calculates the difference between chronological field values and converts those results into the rate of change per <code>unit</code>.
 The <code>unit</code> argument is optional and, if not specified, defaults to one second (<code>1s</code>).</p>
@@ -1089,7 +1092,7 @@ For queries that include those options, DSDB first performs the aggregation, sel
 <pre><code class="language-sql">SELECT NON_NEGATIVE_DERIVATIVE(AGGREGATION_FUNCTION(&lt;field_key&gt;),[&lt;unit&gt;]) FROM &lt;measurement_name&gt; WHERE &lt;stuff&gt; GROUP BY time(&lt;aggregation_interval&gt;)</code></pre>
 <p>See <a href="/dsdb/query_language/functions.html#derivative"><code>DERIVATIVE()</code></a> for example queries.
 All query results are the same for <code>DERIVATIVE()</code> and <code>NON_NEGATIVE_DERIVATIVE</code> except that <code>NON_NEGATIVE_DERIVATIVE()</code> returns only the positive values.</p>
-<h2 id="stddev">STDDEV()</h2>
+<h3 id="stddev">STDDEV()</h3>
 <p>Returns the standard deviation of the values in a single <a href="/dsdb/concepts/glossary.html#field">field</a>.
 The field must be of type int64 or float64.</p>
 <pre><code class="language-sql">SELECT STDDEV(&lt;field_key&gt;) FROM &lt;measurement_name&gt; [WHERE &lt;stuff&gt;] [GROUP BY &lt;stuff&gt;]</code></pre>
@@ -1129,7 +1132,7 @@ time                           stddev
 2015-09-03T00:00:00Z     1.3516778450902067
 2015-09-10T00:00:00Z     1.4960573811500588
 2015-09-17T00:00:00Z     1.075701669442093</code></pre>
-<h2 id="include-multiple-functions-in-a-single-query">Include multiple functions in a single query</h2>
+<h3 id="include-multiple-functions-in-a-single-query">Include multiple functions in a single query</h3>
 <p>Separate multiple functions in one query with a <code>,</code>.</p>
 <p>Calculate the <a href="/dsdb/query_language/functions.html#min">minimum</a> <code>water_level</code> and the <a href="/dsdb/query_language/functions.html#max">maximum</a> <code>water_level</code> with a single query:</p>
 <pre><code class="language-sql">&gt; SELECT MIN(water_level), MAX(water_level) FROM h2o_feet</code></pre>
@@ -1138,7 +1141,7 @@ time                           stddev
 --------------
 time                           min     max
 1970-01-01T00:00:00Z     -0.61   9.964</code></pre>
-<h2 id="change-the-value-reported-for-intervals-with-no-data-with">Change the value reported for intervals with no data with <code>fill()</code></h2>
+<h3 id="change-the-value-reported-for-intervals-with-no-data-with">Change the value reported for intervals with no data with <code>fill()</code></h3>
 <p>By default, queries with an DSDBQL function report <code>null</code> values for intervals with no data.
 Append <code>fill()</code> to the end of your query to alter that value.
 For a complete discussion of <code>fill()</code>, see <a href="/dsdb/query_language/data_exploration.html#the-group-by-clause-and-fill">Data Exploration</a>.</p>
@@ -1146,7 +1149,7 @@ For a complete discussion of <code>fill()</code>, see <a href="/dsdb/query_langu
 <p><strong>Note:</strong> <code>fill()</code> works differently with <code>COUNT()</code>.
 See <a href="http://localhost:1313/dsdb/query_language/functions.html#count-and-controlling-the-values-reported-for-intervals-with-no-data">the documentation on <code>COUNT()</code></a> for a function-specific use of <code>fill()</code>.</p>
 </blockquote>
-<h2 id="rename-the-output-columns-title-with">Rename the output column's title with <code>AS</code></h2>
+<h3 id="rename-the-output-columns-title-with">Rename the output column's title with <code>AS</code></h3>
 <p>By default, queries that include a function output a column that has the same name as that function.
 If you'd like a different column name change it with an <code>AS</code> clause.</p>
 <p>Before:</p>

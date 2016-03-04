@@ -10,6 +10,7 @@
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/doc.css" rel="stylesheet">
     <link href="//cdn.bootcss.com/highlight.js/9.2.0/styles/dark.min.css" rel="stylesheet">
     <script src="/js/jquery.js"></script>
     <script src="/js/bootstrap.min.js"></script>
@@ -71,6 +72,8 @@
             <li><a href="/" >文档</a></li>
             <li><a href="http://dasudian.com/price" >定价</a></li>
             <li><a href="https://www.github.com/Dasudian"  target="_blank" >社区</a></li>
+            <li><a href="https://dev.dasudian.com/login/view" class="btn-small">登录</a></li>
+            <li><a href="https://dev.dasudian.com/sign_up/view" class="btn-small">注册</a></li>
           </ul>
         </div>
       </div>
@@ -220,10 +223,10 @@
 
     <div class="side_right">
       <div class="doc">
-        <h1 id="api-endpoints-amp-ports">API Endpoints &amp; Ports</h1>
-<h2 id="endpoints">Endpoints</h2>
+        <h2 id="api-endpoints-amp-ports">API Endpoints &amp; Ports</h2>
+<h3 id="endpoints">Endpoints</h3>
 <p>All current API Endpoints are listed below.</p>
-<h3 id="ping">/ping</h3>
+<h4 id="ping">/ping</h4>
 <p>The ping endpoint accepts both <code>GET</code> and <code>HEAD</code> HTTP requests.
 The response body is empty.
 The version of the DSDB server you issued the request to can be extracted through the <code>X-DSDB-Version</code> field of the header.
@@ -245,19 +248,19 @@ HTTP/1.1 204 No Content
 Request-Id: 58aedfb1-53e5-14e5-a7f5-000000000000
 X-DSDB-Version: 1.0.0-nightly-5a8b19b
 Date: Wed, 21 Oct 2015 16:29:35 GMT</code></pre>
-<h3 id="query">/query</h3>
+<h4 id="query">/query</h4>
 <p>For more information on the <code>/query</code> endpoint see the <a href="/dsdb/guides/querying_data.html">Querying Data</a> section of our docs.</p>
-<h3 id="write">/write</h3>
+<h4 id="write">/write</h4>
 <p>For more information on the <code>/write</code> endpoint see the <a href="/dsdb/guides/writing_data.html">Writing Data</a> section of our docs.</p>
-<h2 id="ports">Ports</h2>
-<h3 id="http-api-port">HTTP API PORT</h3>
+<h3 id="ports">Ports</h3>
+<h4 id="http-api-port">HTTP API PORT</h4>
 <p>By default the DSDB HTTP API listens on port <code>8088</code>.
 The <code>/ping</code>, <code>/write</code>, and <code>/query</code> endpoints are all part of the HTTP API.</p>
-<h3 id="internal-communication-port">Internal Communication port</h3>
+<h4 id="internal-communication-port">Internal Communication port</h4>
 <p>By default, the communication between clustered instances of DSDB occurs over ports <code>8088</code> and <code>8091</code>.</p>
-<h3 id="admin-interface-port">Admin interface port</h3>
+<h4 id="admin-interface-port">Admin interface port</h4>
 <p>The admin interface for DSDB runs on port <code>8084</code> and exposes web UI for the server.</p>
-<h3 id="secondary-ports">Secondary Ports</h3>
+<h4 id="secondary-ports">Secondary Ports</h4>
 <p>DSDB also supports communication through UDP, Graphite, Collectd, and OpenTSDB.
 By default DSDB makes port <code>2003</code> available for Graphite.
 No default ports are assigned for UDP, Collectd, or OpenTSDB.</p>

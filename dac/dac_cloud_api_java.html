@@ -10,6 +10,7 @@
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/doc.css" rel="stylesheet">
     <link href="//cdn.bootcss.com/highlight.js/9.2.0/styles/dark.min.css" rel="stylesheet">
     <script src="/js/jquery.js"></script>
     <script src="/js/bootstrap.min.js"></script>
@@ -71,6 +72,8 @@
             <li><a href="/" >文档</a></li>
             <li><a href="http://dasudian.com/price" >定价</a></li>
             <li><a href="https://www.github.com/Dasudian"  target="_blank" >社区</a></li>
+            <li><a href="https://dev.dasudian.com/login/view" class="btn-small">登录</a></li>
+            <li><a href="https://dev.dasudian.com/sign_up/view" class="btn-small">注册</a></li>
           </ul>
         </div>
       </div>
@@ -220,105 +223,102 @@
 
     <div class="side_right">
       <div class="doc">
-        <h1 id="dsd-dac_cloud-api-">DSD DAC_CLOUD API 指导手册</h1>
-<h2 id="">引言</h2>
+        <h2 id="dsd-dac_cloud-api-">DSD DAC_CLOUD API 指导手册</h2>
+<h3 id="">引言</h3>
 <p>DSD DAC_CLOUD API提供了功能丰富但使用简单的服务器开发的JAVA API，该API极大的降低了服务器开发与维护难度，降低开发成本，缩短开发周期。用户无需关注服务器的负载均衡性能等问题，只需关注简单的业务逻辑，如同开发简单的单机应用，就可以实现丰富的服务器应用。 </p>
-<h2 id="-1">安装环境</h2>
-<p>安装环境就是编译环境，目前只支持Ubuntu 14.06和Ubuntu 14.10。   </p>
-<h2 id="-2">编译方法</h2>
+<h3 id="-1">安装环境</h3>
+<p>安装环境就是编译环境，目前只支持<br />
+Ubuntu 14.06和Ubuntu 14.10。   </p>
+<h3 id="-2">编译方法</h3>
 <ol>
 <li>下载SDK jar包到指定目录   </li>
 <li>在工程中以外部链接库的方式导入该jar包，Eclipse中方法如下:打开工程的properties -&gt; 选择java build path -&gt;选择Add external JARs   </li>
-<li>生成jar时，添加外部的manifest.mf文件，在manifest.mf中添加如下Class-Path: /usr/local/lib/dac-1.0.0/api/java/dasudian.jar</li>
+<li>生成jar时，添加外部的manifest.mf文件，在manifest.mf中添加如下Class-Path: <code>/usr/local/lib/dac-1.0.0/api/java/dasudian.jar</code></li>
 </ol>
-<h2 id="api-">API 类</h2>
+<h3 id="api-">API 类</h3>
 <p>API 类是该sdk的主要类，developers调用该类与erlang虚拟机交互，处理http请求或其他服务请求。</p>
-<h3 id="package">Package</h3>
+<h4 id="package">Package</h4>
 <p>API 类在com.dasudian.cloud中</p>
-<h3 id="-3">属性</h3>
+<h4 id="-3">属性</h4>
 <ul>
 <li>ASYNC : static final int类型，值为1，标示异步请求类型</li>
 <li>SYNC : static final int类型，值为-1，标示同步请求类型</li>
 </ul>
-<h3 id="-4">方法</h3>
+<h4 id="-4">方法</h4>
 <ol>
-<li>int thread_count()
+<li><code>int thread_count()</code><br />
 <strong>描述：</strong><br />
 获取服务系统支持的与erlang虚拟机交互的最大线程数<br />
 <strong>参数：</strong><br />
 <strong>返回值：</strong><br />
 返回系统支持的最大线程数   </li>
 <li>
-<p>API(int index)<br />
+<p><code>API(int index)</code><br />
 <strong>描述：</strong><br />
 API构造函数<br />
 <strong>参数：</strong><br />
-index:与erlang虚拟机交互的线程索引，不能超过thread_count的返回值
+<code>index</code> :与erlang虚拟机交互的线程索引，不能超过thread_count的返回值
 <strong>返回值：</strong><br />
 返回当前的API实例   </p>
 </li>
 <li>
-<p>void subscribe(final String pattern,
-final Object instance,
-final String methodName)<br />
+<p><code>void subscribe(final String pattern, final Object instance, final String methodName)</code><br />
 <strong>描述：</strong><br />
 订阅一个服务，服务由服务名和服务前缀唯一标示<br />
 <strong>参数：</strong><br />
-IN   pattern：服务名。服务id由服务前缀和服务名来唯一标示，服务前缀是包含该服务的应用上传时确定的。具体格式为/prefix/pattern，对于http服务，get和post服务是分开的，格式如name/get 或者name/post<br />
-IN   instance：服务的回调函数的执行对象<br />
-IN   methodname 回调函数名。当收到该服务后，SDK会回调该方法。
+<code>IN   pattern</code> ：服务名。服务id由服务前缀和服务名来唯一标示，服务前缀是包含该服务的应用上传时确定的。具体格式为/prefix/pattern，对于http服务，get和post服务是分开的，格式如name/get 或者name/post<br />
+<code>IN   instance</code> ：服务的回调函数的执行对象<br />
+<code>IN   methodname</code>  回调函数名。当收到该服务后，SDK会回调该方法。<br />
 <strong>返回值：</strong>   </p>
 </li>
 <li>
-<p>Response send_sync(String name, byte[] request)<br />
+<p><code>Response send_sync(String name, byte[] request)</code><br />
 <strong>描述：</strong><br />
 发送同步请求给服务名为name的服务,其他参数为默认值<br />
 <strong>参数：</strong><br />
-IN name  : 请求的服务名<br />
-IN response : 请求的内容<br />
+<code>IN name</code>  : 请求的服务名<br />
+<code>IN response</code> : 请求的内容<br />
 <strong>返回值：</strong><br />
-返回一个Response对象    </p>
+返回一个Response对象     </p>
 </li>
 <li>
-<p>Response send_sync(String name, byte[] request_info, byte[] request,
-Integer timeout, Byte priority)<br />
+<p><code>Response send_sync(String name, byte[] request_info, byte[] request, Integer timeout, Byte priority)</code><br />
 <strong>描述：</strong><br />
 发送同步请求给服务名为name的服务<br />
 <strong>参数：</strong><br />
-IN name  : 请求的服务名<br />
-IN request_info 请求的metedata数据<br />
-IN response : 请求的内容<br />
-IN timeout :阻塞时间<br />
-IN priority :请求的优先级
+<code>IN name</code>  : 请求的服务名<br />
+<code>IN request_info</code> 请求的metedata数据<br />
+<code>IN response</code> : 请求的内容<br />
+<code>IN timeout</code> :阻塞时间<br />
+<code>IN priority</code> :请求的优先级<br />
 <strong>返回值：</strong><br />
 返回一个Response对象</p>
 </li>
 <li>
-<p>TransId send_async(String name, byte[] request)<br />
+<p><code>TransId send_async(String name, byte[] request)</code><br />
 <strong>描述：</strong><br />
 异步请求服务名为name的服务，其他参数为默认值
 <strong>参数：</strong><br />
-IN name  : 请求的服务名<br />
-IN response : 请求的内容<br />
+<code>IN name</code>  : 请求的服务名<br />
+<code>IN response</code> : 请求的内容<br />
 <strong>返回值：</strong><br />
 返回一个TransId对象，表示该次请求的会话id     </p>
 </li>
 <li>
-<p>TransId send_async(tring name, byte[] request_info, byte[] request,
-Integer timeout, Byte priority)<br />
+<p><code>TransId send_async(tring name, byte[] request_info, byte[] request, Integer timeout, Byte priority)</code><br />
 <strong>描述：</strong><br />
 异步请求服务名为name的服务<br />
 <strong>参数：</strong><br />
-IN name  : 请求的服务名<br />
-IN request_info 请求的metedata数据<br />
-IN response : 请求的内容<br />
-IN timeout   :阻塞时间<br />
-IN priority : 请求的优先级<br />
+<code>IN name</code>  : 请求的服务名<br />
+<code>IN request_info</code> 请求的metedata数据<br />
+<code>IN response</code> : 请求的内容<br />
+<code>IN timeout</code>   :阻塞时间<br />
+<code>IN priority</code> : 请求的优先级<br />
 <strong>返回值：</strong><br />
 返回一个TransId对象，表示该次请求的会话id   </p>
 </li>
 <li>
-<p>Response recv_async();<br />
+<p><code>Response recv_async()</code><br />
 <strong>描述：</strong><br />
 获取最后一次请求transid的返回内容,阻塞时间为默认值<br />
 <strong>参数：</strong><br />
@@ -326,230 +326,218 @@ IN priority : 请求的优先级<br />
 返回一个Response对象   </p>
 </li>
 <li>
-<p>Response recv_async(Integer timeout);<br />
+<p><code>Response recv_async(Integer timeout);</code><br />
 <strong>描述：</strong><br />
 获取最后一个transid的返回内容,阻塞timeout 毫秒数<br />
 <strong>参数：</strong><br />
-IN timeout 方法的阻塞时间<br />
+<code>IN timeout</code> 方法的阻塞时间<br />
 <strong>返回值：</strong><br />
 返回一个Response对象   </p>
 </li>
 <li>
-<p>Response recv_async(byte[] trans_id);<br />
+<p><code>Response recv_async(byte[] trans_id);</code><br />
 <strong>描述：</strong><br />
 获取会话trans_id的返回内容<br />
 <strong>参数：</strong><br />
-IN trans_id；会话id<br />
+<code>IN trans_id</code> ；会话id<br />
 <strong>返回值：</strong><br />
 返回一个Response对象   </p>
 </li>
 <li>
-<p>Response recv_async(Integer timeout, byte[] trans_id);<br />
+<p><code>Response recv_async(Integer timeout, byte[] trans_id);</code><br />
 <strong>描述：</strong><br />
 获取会话trans_id的返回内容 ，阻塞时间为timeout<br />
 <strong>参数：</strong><br />
-IN trans_id；会话id<br />
-IN timeout 阻塞时间，单位为ms
+<code>IN trans_id</code>  ；会话id<br />
+<code>IN timeout</code>  阻塞时间，单位为ms<br />
 <strong>返回值：</strong><br />
 返回一个Response对象   </p>
 </li>
 <li>
-<p>List&lt; TransId &gt; publish(String name, byte[] request)<br />
+<p><code>List&lt; TransId &gt; publish(String name, byte[] request)</code><br />
 <strong>描述：</strong><br />
 向服务名为name的所有服务发布请求<br />
 <strong>参数：</strong><br />
-IN name  服务名，可以为正则表达式<br />
-IN request 请求内容
+<code>IN name</code>  服务名，可以为正则表达式<br />
+<code>IN request</code> 请求内容
 <strong>返回值：</strong><br />
 返回一个TransId列表    </p>
 </li>
 <li>
-<p>List&lt; TransId &gt; publish(String name,
-byte[] request_info, byte[] request,
-Integer timeout, Byte priority)<br />
+<p><code>List&lt; TransId &gt; publish(String name, byte[] request_info, byte[] request, Integer timeout, Byte priority)</code><br />
 <strong>描述：</strong><br />
 向服务名为name的所有服务发布请求<br />
 <strong>参数：</strong><br />
-IN name  服务名，可以为正则表达式<br />
-IN request 请求内容
-IN request_info 请求的metedata数据
-IN timeout ： publish的阻塞时间
-IN priority : 服务请求的优先级
+<code>IN name</code>  服务名，可以为正则表达式<br />
+<code>IN request</code> 请求内容<br />
+<code>IN request_info</code> 请求的metedata数据<br />
+<code>IN timeout</code> ： publish的阻塞时间<br />
+<code>IN priority</code> : 服务请求的优先级<br />
 <strong>返回值：</strong><br />
 返回一个TransId列表  </p>
 </li>
 <li>
-<p>void forward_async(String name, byte[] request_info, byte[] request,
-Integer timeout, Byte priority,
-byte[] trans_id, DacPid pid)<br />
+<p><code>void forward_async(String name, byte[] request_info, byte[] request, Integer timeout, Byte priority, byte[] trans_id, DacPid pid)</code><br />
 <strong>描述：</strong><br />
-异步转发请求给服务名为name的服务,执行完毕后抛出一个SDK必须要获取的ForwardAsyncException异常，应用程序必须将其抛出，否则会报错。即之后的代码 不会执行。目的服务执行完会直接回复请求
+异步转发请求给服务名为name的服务,执行完毕后抛出一个SDK必须要获取的ForwardAsyncException异常，应用程序必须将其抛出，否则会报错。即之后的代码 不会执行。目的服务执行完会直接回复请求<br />
 <strong>参数：</strong><br />
-IN name  目的服务名，可以为正则表达式<br />
-IN request_info 请求的元数据<br />
-IN request 请求内容<br />
-IN timeout 请求的阻塞时间<br />
-IN priority 请求的优先级<br />
-IN trans_id 转发请求的事务id<br />
-IN pi  转发请求的pid
+<code>IN name</code>  目的服务名，可以为正则表达式<br />
+<code>IN request_info</code> 请求的元数据<br />
+<code>IN request</code> 请求内容<br />
+<code>IN timeout</code> 请求的阻塞时间<br />
+<code>IN priority</code> 请求的优先级<br />
+<code>IN trans_id</code> 转发请求的事务id<br />
+<code>IN pi</code>  转发请求的pid
 <strong>返回值：</strong>   </p>
 </li>
 <li>
-<p>void forward_sync(String name, byte[] request_info, byte[] request,
-Integer timeout, Byte priority,
-byte[] trans_id, DacPid pid)<br />
+<p><code>void forward_sync(String name, byte[] request_info, byte[] request, Integer timeout, Byte priority, byte[] trans_id, DacPid pid)</code><br />
 <strong>描述：</strong><br />
 同步转发外界请求给服务名为name的服务,执行完毕后抛出一个SDK必须要获取的ForwardsyncException异常，应用程序必须将其抛出，否则会报错。即之后的代码 不会执行。目的服务执行完后会回复请求<br />
 <strong>参数：</strong><br />
-IN name  目的服务名，可以为正则表达式<br />
-IN request_info 请求的元数据<br />
-IN request 请求内容<br />
-IN timeout 请求的阻塞时间<br />
-IN priority 请求的优先级<br />
-IN trans_id 转发请求的事务id<br />
-IN pi  转发请求的pid
+<code>IN name</code>  目的服务名，可以为正则表达式<br />
+<code>IN request_info</code> 请求的元数据<br />
+<code>IN request</code> 请求内容<br />
+<code>IN timeout</code> 请求的阻塞时间<br />
+<code>IN priority</code> 请求的优先级<br />
+<code>IN trans_id</code> 转发请求的事务id<br />
+<code>IN pi</code>  转发请求的pid
 <strong>返回值：</strong>   </p>
 </li>
 <li>
-<p>void poll(int timeout)<br />
+<p><code>void poll(int timeout)</code><br />
 <strong>描述：</strong><br />
 轮询是否有请求到达<br />
 <strong>参数：</strong><br />
-IN timeout  轮询周期，单位ms,如果设置为-1,表示永久阻塞直到有请求到来<br />
+<code>IN timeout</code>  轮询周期，单位ms,如果设置为-1,表示永久阻塞直到有请求到来<br />
 <strong>返回值：</strong>    </p>
 </li>
 <li>
-<p>void return_(Integer command,
-String name, String pattern,
-byte[] response_info, byte[] response,
-Integer timeout, byte[] trans_id, DacPid pid)<br />
+<p><code>void return_(Integer command, String name, String pattern, byte[] response_info, byte[] response, Integer timeout, byte[] trans_id, DacPid pid)</code><br />
 <strong>描述：</strong><br />
 响应请求回复，该函数执行完毕后会抛出ReturnAsyncException或ReturnSyncException异常，应用程序不可捕获它，该异常必须得由SDK捕获，否则会报错。所以可以在回调函数的最后一行返回。<br />
 <strong>参数：</strong><br />
-Integer command 回复类型，API.ASYNC：异步回复；API.SYNC:同步回复，必须与回调函数的参数保持一致
-IN name  服务名，与回调函数的参数保持一致<br />
-IN request_info 请求的元数据<br />
-IN request 请求内容<br />
-IN timeout 请求的阻塞时间<br />
-IN priority 请求的优先级<br />
-IN trans_id 转发请求的事务id<br />
-IN pi  转发请求的pid
+<code>Integer command</code> 回复类型，API.ASYNC：异步回复；API.SYNC:同步回复，必须与回调函数的参数保持一致
+<code>IN name</code>  服务名，与回调函数的参数保持一致<br />
+<code>IN request_info</code> 请求的元数据<br />
+<code>IN request</code> 请求内容<br />
+<code>IN timeout</code> 请求的阻塞时间<br />
+<code>IN priority</code> 请求的优先级<br />
+<code>IN trans_id</code> 转发请求的事务id<br />
+<code>IN pi</code>  转发请求的pid<br />
 <strong>返回值：</strong>    </p>
 </li>
 <li>
-<p>void return_async(string name, String pattern, byte[] response_info, byte[] response,
-Integer timeout, byte[] trans_id, DacPid pid)<br />
+<p><code>void return_async(string name, String pattern, byte[] response_info, byte[] response, Integer timeout, byte[] trans_id, DacPid pid)</code><br />
 <strong>描述：</strong><br />
 异步响应请求回复，该函数执行完毕后会抛出ReturnAsyncException异常，应用程序不可捕获它，该异常必须得由SDK捕获，否则会报错。所以可以在回调函数的最后一行调用该方法。<br />
 <strong>参数：</strong><br />
-IN name  服务名，与回调函数的参数保持一致<br />
-IN request_info 请求的元数据<br />
-IN request 请求内容<br />
-IN timeout 请求的阻塞时间<br />
-IN priority 请求的优先级<br />
-IN trans_id 转发请求的事务id<br />
-IN pi  转发请求的pid
+<code>IN name</code>  服务名，与回调函数的参数保持一致<br />
+<code>IN request_info</code> 请求的元数据<br />
+<code>IN request</code> 请求内容<br />
+<code>IN timeout</code> 请求的阻塞时间<br />
+<code>IN priority</code> 请求的优先级<br />
+<code>IN trans_id</code> 转发请求的事务id<br />
+<code>IN pi</code>  转发请求的pid<br />
 <strong>返回值：</strong>    </p>
 </li>
 <li>
-<p>void return_sync(string name, String pattern, byte[] response_info, byte[] response,
-Integer timeout, byte[] trans_id, DacPid pid)<br />
+<p><code>void return_sync(string name, String pattern, byte[] response_info, byte[] response, Integer timeout, byte[] trans_id, DacPid pid)</code><br />
 <strong>描述：</strong><br />
 同步响应请求回复，该函数执行完毕后会抛出ReturnAsyncException异常，应用程序不可捕获它，该异常必须得由SDK捕获，否则会报错。所以可以在回调函数的最后一行调用该方法。<br />
 <strong>参数：</strong><br />
-IN name  服务名，与回调函数的参数保持一致<br />
-IN request_info 请求的元数据<br />
-IN request 请求内容<br />
-IN timeout 请求的阻塞时间<br />
-IN priority 请求的优先级<br />
-IN trans_id 转发请求的事务id<br />
-IN pi  转发请求的pid
+<code>IN name</code> 服务名，与回调函数的参数保持一致<br />
+<code>IN request_info</code> 请求的元数据<br />
+<code>IN request</code> 请求内容<br />
+<code>IN timeout</code> 请求的阻塞时间<br />
+<code>IN priority</code> 请求的优先级<br />
+<code>IN trans_id</code> 转发请求的事务id<br />
+<code>IN pi</code>  转发请求的pid<br />
 <strong>返回值：</strong>    </p>
 </li>
-<li>HashMap&lt; String, List&lt; String &gt;&gt; info_key_value_parse(byte[] info)<br />
+<li><code>HashMap&lt; String, List&lt; String &gt;&gt; info_key_value_parse(byte[] info)</code><br />
 <strong>描述：</strong><br />
 对于http get 请求，其携带的参数会被转成一个byte数组，developers可以调用该函数来转成对应的&lt; key, value&gt;的结构，value为string list<br />
 <strong>参数：</strong><br />
-IN info: byte[]类型的数据
-<strong>返回值：</strong> HashMap&lt; String, List&lt; String&gt;&gt;类型的转换值    </li>
+<code>IN info</code> : byte[]类型的数据
+<strong>返回值：</strong><br />
+HashMap&lt; String, List&lt; String&gt;&gt;类型的转换值    </li>
 </ol>
-<h3 id="note">NOTE</h3>
+<p><strong>NOTE</strong>:  </p>
 <ol>
-<li>
-<p>callback函数返回值为object类型，如果不调用forward_async或forward<em>sync或return</em>，必须要返回数据，否则会产生NULL异常。SDK会检查callback的返回值，然后返回给服务请求者。检查类型为如下三种：
-byte[]: SDK将其作为response的内容，response_info为空string，
-byte[2][]: SDK把byte[0]作为response_info, byte[1]作为response的内容
-其他: SDK对其进行string处理然后作为response的内容返回给服务请求者。
-如果返回内容为空字符串，SDK不会回复服务请求者。所以建议返回格式为{&quot;ok&quot;,&quot;error&quot;}这种格式。如果是http请求，返回类型不能是byte[2][]     </p>
-</li>
-<li>response的对象主要由transid,response_info,response内容构成。</li>
+<li>callback函数返回值为object类型，如果不调用forward_async或forward<em>sync或return</em>，必须要返回数据，否则会产生NULL异常。SDK会检查callback的返回值，然后返回给服务请求者。检查类型为如下三种：<br />
+byte[]: SDK将其作为response的内容，response_info为空string，<br />
+byte[2][]: SDK把byte[0]作为response_info, byte[1]作为response的内容<br />
+其他: SDK对其进行string处理然后作为response的内容返回给服务请求者。<br />
+如果返回内容为空字符串，SDK不会回复服务请求者。所以建议返回格式为{&quot;ok&quot;,&quot;error&quot;}这种格式。 如果是http请求，返回类型不能是byte[2][]     </li>
+<li>response的对象主要由transid,response_info,response内容构成。  </li>
 </ol>
-<h2 id="response-">Response 类</h2>
+<h3 id="response-">Response 类</h3>
 <p>Response 类是API类的内部类，developers一般通过它来获取请求内容</p>
-<h3 id="package-1">Package</h3>
-<p>API 类在com.dasudian.cloud.API中 </p>
-<h3 id="-5">属性</h3>
-<p>请参见相关方法</p>
-<h3 id="-6">方法</h3>
+<h4 id="package-1">Package</h4>
+<p>API 类在<code>com.dasudian.cloud.API</code>中  </p>
+<h4 id="-5">属性</h4>
+<p>请参见相关方法  </p>
+<h4 id="-6">方法</h4>
 <ol>
 <li>
-<p>Response(byte[] info, byte[] resp, byte[] trans_id)
+<p><code>Response(byte[] info, byte[] resp, byte[] trans_id)</code><br />
 <strong>描述：</strong><br />
 初始化一个response对象<br />
 <strong>参数：</strong><br />
-IN info 返回数据的元数据
-IN resp 返回内容<br />
-IN trans_id 会话id    </p>
+<code>IN info</code> 返回数据的元数据
+<code>IN resp</code> 返回内容<br />
+<code>IN trans_id</code> 会话id     </p>
 </li>
 <li>
-<p>boolean isEmpty()
+<p><code>boolean isEmpty()</code><br />
 <strong>描述：</strong><br />
-检查response是否为空，空返回true ，否则false
+检查response是否为空，空返回true ，否则false<br />
 <strong>参数：</strong><br />
-<strong>返回值：</strong>
+<strong>返回值：</strong><br />
 boolean类型   </p>
 </li>
 <li>
-<p>string getResponse()
+<p><code>string getResponse()</code><br />
 <strong>描述：</strong><br />
-获取response内容
+获取response内容<br />
 <strong>参数：</strong><br />
-<strong>返回值：</strong>
-返回response内容  </p>
+<strong>返回值：</strong><br />
+返回response内容   </p>
 </li>
 <li>
-<p>string getResponseInfo()
+<p><code>string getResponseInfo()</code><br />
 <strong>描述：</strong><br />
-获取responseInfo内容
+获取responseInfo内容<br />
 <strong>参数：</strong><br />
-<strong>返回值：</strong>
-返回responseInfo内容  </p>
+<strong>返回值：</strong><br />
+返回responseInfo内容    </p>
 </li>
 <li>
-<p>string getTransId()
+<p><code>string getTransId()</code><br />
 <strong>描述：</strong><br />
-获取TransId内容
+获取TransId内容<br />
 <strong>参数：</strong><br />
-<strong>返回值：</strong>
-返回获取TransId内容 </p>
+<strong>返回值：</strong><br />
+返回获取TransId内容    </p>
 </li>
-<li>string toString()
+<li><code>string toString()</code><br />
 <strong>描述：</strong><br />
-把response对象转化为string 类型，其转化后的格式如(responseInfo,response,transId)
+把response对象转化为string 类型，其转化后的格式如(responseInfo,response,transId)<br />
 <strong>参数：</strong><br />
-<strong>返回值：</strong>
-string 化response对象</li>
+<strong>返回值：</strong><br />
+string 化response对象   </li>
 </ol>
-<h2 id="dsd_log-">Dsd_log 类</h2>
-<p>DSD dac cloud api 提供了简单易用的日志记录类Dsd_log，支持日志按级别输出，日志级别共有Debug, Info, Warn, Error, Fatal</p>
-<h3 id="package-2">Package</h3>
+<h3 id="dsd_log-">Dsd_log 类</h3>
+<p>DSD dac cloud api 提供了简单易用的日志记录类<code>Dsd_log</code>，支持日志按级别输出，日志级别共有Debug, Info, Warn, Error, Fatal  </p>
+<h4 id="package-2">Package</h4>
 <p>Dsd_log 类在com.dasudian.cloud中 </p>
-<h3 id="-7">属性</h3>
+<h4 id="-7">属性</h4>
 <p>请参见相关方法</p>
-<h3 id="-8">方法</h3>
+<h4 id="-8">方法</h4>
 <ol>
 <li>
-<p>Dsd_log getLog();<br />
+<p><code>Dsd_log getLog();</code><br />
 <strong>描述：</strong><br />
 返回一个Dsd_log的实例，该方法是一个类方法<br />
 <strong>参数：</strong><br />
@@ -557,15 +545,15 @@ string 化response对象</li>
 返回一个Dsd_log类    </p>
 </li>
 <li>
-<p>void set_level(string level);<br />
+<p><code>void set_level(string level);</code><br />
 <strong>描述：</strong><br />
 设置日志记录级别，必须是DEBUG，INFO, WARN, ERROR, ALL, FATAL, OFF这些关键字，否则会抛出DsdException异常<br />
 <strong>参数：</strong>
-IN level : 日志级别，必须是DEBUG，INFO, WARN, ERROR, ALL, FATAL, OFF这些关键字 ，否则会抛出DsdException异常<br />
+<code>IN level</code> : 日志级别，必须是DEBUG，INFO, WARN, ERROR, ALL, FATAL, OFF这些关键字 ，否则会抛出DsdException异常<br />
 <strong>返回值：</strong>  </p>
 </li>
 <li>
-<p>string get_level()
+<p><code>string get_level()</code><br />
 <strong>描述：</strong><br />
 获取日志级别<br />
 <strong>参数：</strong><br />
@@ -573,223 +561,223 @@ IN level : 日志级别，必须是DEBUG，INFO, WARN, ERROR, ALL, FATAL, OFF这
 返回当前日志的打印级别    </p>
 </li>
 <li>
-<p>void info(Object message)
+<p><code>void info(Object message)</code><br />
 <strong>描述：</strong><br />
 打印日志message，级别为info<br />
 <strong>参数：</strong>
-IN message: 打印日志内容<br />
+<code>IN message</code>: 打印日志内容<br />
 <strong>返回值：</strong><br />
 无    </p>
 </li>
 <li>
-<p>void debug(Object message)
+<p><code>void debug(Object message)</code><br />
 <strong>描述：</strong><br />
 打印日志message，级别为debug<br />
 <strong>参数：</strong>
-IN message: 打印日志内容<br />
+<code>IN message</code>: 打印日志内容<br />
 <strong>返回值：</strong><br />
 无     </p>
 </li>
 <li>
-<p>void warn(Object message)
+<p><code>void warn(Object message)</code><br />
 <strong>描述：</strong><br />
 打印日志message，级别为warn<br />
 <strong>参数：</strong>
-IN message: 打印日志内容<br />
+<code>IN message</code>  : 打印日志内容<br />
 <strong>返回值：</strong><br />
 无     </p>
 </li>
 <li>
-<p>void error(Object message)
+<p><code>void error(Object message)</code><br />
 <strong>描述：</strong><br />
 打印日志message，级别为error<br />
 <strong>参数：</strong>
-IN message: 打印日志内容<br />
+<code>IN message</code>: 打印日志内容<br />
 <strong>返回值：</strong><br />
 无    </p>
 </li>
-<li>void fatal(Object message)
+<li><code>void fatal(Object message)</code><br />
 <strong>描述：</strong><br />
 打印日志message，级别为fatal<br />
 <strong>参数：</strong>
-IN message: 打印日志内容<br />
+<code>IN message</code>: 打印日志内容<br />
 <strong>返回值：</strong><br />
 无 </li>
 </ol>
-<h2 id="dsd_memcached-">Dsd_memcached 类</h2>
+<h3 id="dsd_memcached-">Dsd_memcached 类</h3>
 <p>DSD dac cloud api 提供了访问memcacahed数据库的方法。</p>
-<h3 id="package-3">Package</h3>
+<h4 id="package-3">Package</h4>
 <p>API 类在com.dasudian.cloud中 </p>
-<h3 id="-9">属性</h3>
+<h4 id="-9">属性</h4>
 <p>请参见相关方法</p>
-<h3 id="-10">方法</h3>
+<h4 id="-10">方法</h4>
 <ol>
 <li>
-<p>Dsd_memcached(API m)<br />
+<p><code>Dsd_memcached(API m)</code><br />
 <strong>描述：</strong><br />
 实例化Dsd_memcached类，必须传入一个API实例
 <strong>参数：</strong>
-IN API m : 实例化Dsd_memcached类所需要的API 实例<br />
+<code>IN API m</code> : 实例化Dsd_memcached类所需要的API 实例<br />
 <strong>返回值：</strong><br />
 无   </p>
 </li>
 <li>
-<p>byte[] get_key(final String serv_name, final String key)<br />
+<p><code>byte[] get_key(final String serv_name, final String key)</code><br />
 <strong>描述：</strong><br />
 访问服务名为serv_name的memcached 服务，请求key的值，返回一个byte数组，developers可以将其转成string ,或其他类型，这根据value的类型而定。如果没有该key或查询失败,返回null
 <strong>参数：</strong>
-IN serv_name: memcached服务名
-IN key: 查询的key名<br />
+<code>IN serv_name</code> : memcached服务名
+<code>IN key</code> : 查询的key名<br />
 <strong>返回值：</strong><br />
 返回key的值，格式为byte数组，如果没有该key或查询失败，返回null   </p>
 </li>
 <li>
-<p>int add_key(final String serv_name, final String key, final String value)
+<p><code>int add_key(final String serv_name, final String key, final String value)</code><br />
 <strong>描述：</strong><br />
 向数据库serv_name添加一个key, 值为value, 成功返回0，失败返回非0
 <strong>参数：</strong>
-IN serv_name: memcached 服务名
-IN key： key名
-IN value ： key 的值<br />
+<code>IN serv_name</code>: memcached 服务名
+<code>IN key</code>： key名
+<code>IN value</code> ： key 的值<br />
 <strong>返回值：</strong><br />
 成功：返回0；失败：返回 -1    </p>
 </li>
 <li>
-<p>int add_key_expiredTime(final String serv_name, final String key, final String value, final int time)<br />
+<p><code>int add_key_expiredTime(final String serv_name, final String key, final String value, final int time)</code><br />
 <strong>描述：</strong><br />
 向数据库serv_name添加一个key, 值为value, 该key的生成周期为time 秒, 成功返回0，失败返回非0
 <strong>参数：</strong>
-IN serv_name: memcached 服务名
-IN key： key名
-IN value ： key 的值
-IN time : key的生成周期，单位为秒<br />
+<code>IN serv_name</code>: memcached 服务名
+<code>IN key</code>： key名
+<code>IN value</code> ： key 的值
+<code>IN time</code> : key的生成周期，单位为秒<br />
 <strong>返回值：</strong><br />
 成功：返回0；失败：返回 -1     </p>
 </li>
 <li>
-<p>int increment_key(final String serv_name, final String key, final int inc)<br />
+<p><code>int increment_key(final String serv_name, final String key, final int inc)</code><br />
 <strong>描述：</strong><br />
 请求数据库serv_name，修改key的值，在原来的基础上增加inc，成功返回0，失败非0
 <strong>参数：</strong>
-IN serv_name: memcached 服务名
-IN key： key名
-IN inc ： 增加量<br />
+<code>IN serv_name</code>: memcached 服务名
+<code>IN key</code>： key名
+<code>IN inc</code> ： 增加量<br />
 <strong>返回值：</strong><br />
 成功返回0，失败返回非0    </p>
 </li>
 <li>
-<p>int decrement_key(final String serv_name, final String key, final int dec)
+<p><code>int decrement_key(final String serv_name, final String key, final int dec)</code><br />
 <strong>描述：</strong><br />
 请求数据库serv_name，修改key的值，在原来的基础上减小dec，成功返回0，失败非0
 <strong>参数：</strong>
-IN serv_name: memcached 服务名
-IN key： key名
-IN dec ： 减小量<br />
+<code>IN serv_name</code>: memcached 服务名
+<code>IN key</code>： key名
+<code>IN dec</code> ： 减小量<br />
 <strong>返回值：</strong><br />
 成功返回0，失败返回非0    </p>
 </li>
 <li>
-<p>int set_key(final String serv_name, final String key, final String value)
+<p><code>int set_key(final String serv_name, final String key, final String value)</code><br />
 <strong>描述：</strong><br />
 请求数据库serv_name，设置key的值为value
 <strong>参数：</strong>
-IN serv_name: memcached 服务名
-IN key： key名
-IN value： 待修改的值<br />
+<code>IN serv_name</code>: memcached 服务名
+<code>IN key</code>： key名
+<code>IN value</code>： 待修改的值<br />
 <strong>返回值：</strong><br />
 成功返回0，失败返回非0    </p>
 </li>
 <li>
-<p>set_key_expiredTime(final String serv_name, final String key, final String value, final int time)<br />
+<p><code>set_key_expiredTime(final String serv_name, final String key, final String value, final int time)</code><br />
 <strong>描述：</strong><br />
 请求数据库serv_name，设置key的值为value，生成周期为time
 <strong>参数：</strong>
-IN serv_name: memcached 服务名
-IN key： key名
-IN value： 待修改的值
-IN time : key的生存周期，单位为秒<br />
+<code>IN serv_name</code>: memcached 服务名
+<code>IN key</code>： key名
+<code>IN value</code>： 待修改的值
+<code>IN time</code> : key的生存周期，单位为秒<br />
 <strong>返回值：</strong><br />
 成功返回0，失败返回非0    </p>
 </li>
 <li>
-<p>int delete_key(final String serv_name, final String key)
+<p><code>int delete_key(final String serv_name, final String key)</code><br />
 <strong>描述：</strong><br />
 请求数据库serv_name，删掉key
 <strong>参数：</strong>
-IN serv_name: memcached 服务名
-IN key： key名<br />
+<code>IN serv_name</code>: memcached 服务名
+<code>IN key</code>： key名<br />
 <strong>返回值：</strong><br />
 成功返回0，失败非0</p>
 </li>
 <li>
-<p>int replace_key(final String serv_name, final String key, final String value)
+<p><code>int replace_key(final String serv_name, final String key, final String value)</code><br />
 <strong>描述：</strong><br />
 请求数据库serv_name，替换key的值为value
 <strong>参数：</strong>
-IN serv_name: memcached 服务名
-IN key： key名
-IN value： 待修改的值
+<code>IN serv_name</code>: memcached 服务名
+<code>IN key</code>： key名
+<code>IN value</code>： 待修改的值
 <strong>返回值：</strong><br />
 成功返回0，失败返回非0    </p>
 </li>
 <li>
-<p>int append_key(final String serv_name, final String key, final String value)
+<p><code>int append_key(final String serv_name, final String key, final String value)</code><br />
 <strong>描述：</strong><br />
 请求数据库serv_name, 修改key的值，添加一个后缀value
 <strong>参数：</strong>
-IN serv_name: memcached 服务名
-IN key： key名
-IN value： 添加的 后缀<br />
+<code>IN serv_name</code>: memcached 服务名
+<code>IN key</code>： key名
+<code>IN value</code>： 添加的 后缀<br />
 <strong>返回值：</strong><br />
 成功返回0，失败返回非0    </p>
 </li>
 <li>
-<p>int prepend_key(final String serv_name, final String key, final String value)
+<p><code>int prepend_key(final String serv_name, final String key, final String value)</code><br />
 <strong>描述：</strong><br />
 请求数据库serv_name, 修改key的值，添加一个前缀value
 <strong>参数：</strong>
-IN serv_name: memcached 服务名
-IN key： key名
-IN value： 添加的 前缀<br />
+<code>IN serv_name</code>: memcached 服务名
+<code>IN key</code>： key名
+<code>IN value</code>： 添加的 前缀<br />
 <strong>返回值：</strong><br />
 成功返回0，失败返回非0    </p>
 </li>
 <li>
-<p>String get_version(final String serv_name)
+<p><code>String get_version(final String serv_name)</code><br />
 <strong>描述：</strong><br />
 请求数据库serv_name的版本号
 <strong>参数：</strong>
-IN serv_name: memcached 服务名
+<code>IN serv_name</code>: memcached 服务名
 <strong>返回值：</strong><br />
 返回数据的版本号，请求失败返回null     </p>
 </li>
-<li>int flush(final String serv_name)
+<li><code>int flush(final String serv_name)</code><br />
 <strong>描述：</strong><br />
 请求数据库serv_name，清空所有的key
 <strong>参数：</strong>
-IN serv_name: memcached 服务名
+<code>IN serv_name</code>: memcached 服务名
 <strong>返回值：</strong><br />
 成功返回0，失败返回非0</li>
 </ol>
-<h2 id="dsd_dsdb">Dsd_dsdb类</h2>
+<h3 id="dsd_dsdb">Dsd_dsdb类</h3>
 <p>DSD dac cloud api 提供了访问dsdb数据库的方法。</p>
-<h3 id="package-4">Package</h3>
+<h4 id="package-4">Package</h4>
 <p>Dsd_dsdb 类在com.dasudian.cloud中 </p>
-<h3 id="-11">属性</h3>
+<h4 id="-11">属性</h4>
 <p>请参见相关方法</p>
-<h3 id="-12">方法</h3>
+<h4 id="-12">方法</h4>
 <ol>
 <li>
-<p>Dsd_dsdb(API m)
+<p><code>Dsd_dsdb(API m)</code><br />
 <strong>描述：</strong><br />
 实例化Dsd_dsdb类，必须传入一个API实例
 <strong>参数：</strong>
-IN API m : 实例化Dsd_dsdb类所需要的API 实例<br />
+<code>IN API m</code> : 实例化Dsd_dsdb类所需要的API 实例<br />
 <strong>返回值：</strong><br />
 无    </p>
 </li>
 <li>
-<p>List&lt; string&gt; get_result()
+<p><code>List&lt; string&gt; get_result()</code><br />
 <strong>描述：</strong><br />
 获取查询请求的结果，返回内容为一个List&lt; string &gt;类型
 <strong>参数：</strong><br />
@@ -797,7 +785,7 @@ IN API m : 实例化Dsd_dsdb类所需要的API 实例<br />
 dsdb查询请求的结果，List&lt; string&gt;类型</p>
 </li>
 <li>
-<p>int get_result_length()
+<p><code>int get_result_length()</code><br />
 <strong>描述：</strong><br />
 dsdb查询请求的返回结果为list&lt; string&gt;类型，该函数返回list中元素个数
 <strong>参数：</strong><br />
@@ -805,7 +793,7 @@ dsdb查询请求的返回结果为list&lt; string&gt;类型，该函数返回lis
 查询结果string的个数   </p>
 </li>
 <li>
-<p>string get_next_page_id()
+<p><code>string get_next_page_id()</code><br />
 <strong>描述：</strong><br />
 dsdb支持分页查询，分页查询返回的结果携带查询下一页请求的索引，developer调用该方法来获取查询下页的索引
 <strong>参数：</strong><br />
@@ -813,267 +801,267 @@ dsdb支持分页查询，分页查询返回的结果携带查询下一页请求�
 查询下页的索引字符串</p>
 </li>
 <li>
-<p>int put(String database, String key, String value)
+<p><code>int put(String database, String key, String value)</code><br />
 <strong>描述：</strong><br />
 向数据库database添加一个值为value的key，成功返回0，失败返回非0
 <strong>参数：</strong>
-IN database: 请求的数据库
-IN key: 待添加的key
-IN value: 添加的值<br />
+<code>IN database</code>: 请求的数据库
+<code>IN key</code>: 待添加的key
+<code>IN value</code>: 添加的值<br />
 <strong>返回值：</strong><br />
 成功返回0，失败返回非0  </p>
 </li>
 <li>
-<p>int get(String database, String key, String value)
+<p><code>int get(String database, String key, String value)</code><br />
 <strong>描述：</strong><br />
 向数据库database添加一个值为value的key，成功返回0，失败返回非0，developers调用get_result方法获取查询结果
 <strong>参数：</strong>
-IN database: 请求的数据库
-IN key: 待添加的key
+<code>IN database</code>: 请求的数据库
+<code>IN key</code>: 待添加的key
 <strong>返回值：</strong><br />
 成功返回0，失败返回非0   </p>
 </li>
 <li>
-<p>int delete(String database, String key)
+<p><code>int delete(String database, String key)</code><br />
 <strong>描述：</strong><br />
 删除database中key
 <strong>参数：</strong>
-IN database: 请求的数据库
-IN key: 待删除的key
+<code>IN database</code>: 请求的数据库
+<code>IN key</code>: 待删除的key
 <strong>返回值：</strong><br />
 成功返回0，失败返回非0   </p>
 </li>
 <li>
-<p>int search(String database, String key, float value)
+<p><code>int search(String database, String key, float value)</code><br />
 <strong>描述：</strong><br />
 请求database数据库，搜索内容符合key=value的所有记录，返回记录的列表，成功返回0，失败返回非0。developers调用get_result方法获取查询结果，查询结果为符合条件的记录项名字
 <strong>参数：</strong>
-IN database: 请求的数据库
-IN key: 搜索关键字
-IN value : 关键字内容
+<code>IN database:</code> 请求的数据库
+<code>IN key</code>: 搜索关键字
+<code>IN value</code> : 关键字内容
 <strong>返回值：</strong><br />
 成功返回0，失败返回非0   </p>
 </li>
 <li>
-<p>int search(String database, String key, String value)
+<p><code>int search(String database, String key, String value)</code><br />
 <strong>描述：</strong><br />
 请求database数据库，搜索内容符合key=value的所有记录，成功返回0，失败返回非0。developers调用get_result方法获取查询结果，查询结果为符合条件的记录项名字
 <strong>参数：</strong>
-IN database: 请求的数据库
-IN key: 搜索关键字
-IN value : 关键字内容
+<code>IN database</code>: 请求的数据库<br />
+<code>IN key</code>: 搜索关键字
+<code>IN value</code> : 关键字内容
 <strong>返回值：</strong><br />
 成功返回0，失败返回非0  </p>
 </li>
 <li>
-<p>int search_range(String database, String key, String start, String end)
+<p><code>int search_range(String database, String key, String start, String end)</code><br />
 <strong>描述：</strong><br />
 请求database数据库，搜索内容符合关键字key的内容在[start, end]之间的所有记录，成功返回0，失败返回非0。developers调用get_result方法获取查询结果，查询结果为符合条件的记录项名字
 <strong>参数：</strong>
-IN database: 请求的数据库
-IN key: 搜索关键字
-IN start : 最小值
-IN end : 最大值
+<code>IN database</code>: 请求的数据库
+<code>IN key</code>: 搜索关键字
+<code>IN start</code> : 最小值
+<code>IN end</code> : 最大值
 <strong>返回值：</strong><br />
 成功返回0，失败返回非0</p>
 </li>
 <li>
-<p>int search_range(String database, String key, float start, float end)
+<p><code>int search_range(String database, String key, float start, float end)</code><br />
 <strong>描述：</strong><br />
 请求database数据库，搜索内容符合关键字key的内容在[start, end]之间的所有记录，成功返回0，失败返回非0。developers调用get_result方法获取查询结果，查询结果为符合条件的记录项名字
 <strong>参数：</strong>
-IN database: 请求的数据库
-IN key: 搜索关键字
-IN start : 最小值
-IN end : 最大值
+<code>IN database</code> : 请求的数据库
+<code>IN key</code> : 搜索关键字
+<code>IN start</code> : 最小值
+<code>IN end</code> : 最大值
 <strong>返回值：</strong><br />
 成功返回0，失败返回非0    </p>
 </li>
 <li>
-<p>int search_pagination(String database, String key, String value, String next_page_id , int num_per_page)
+<p><code>int search_pagination(String database, String key, String value, String next_page_id , int num_per_page)</code><br />
 <strong>描述：</strong><br />
 请求database数据库，分页搜索内容符合关键字key=value所有记录，每页num_per_page个数据，next_page为分页查询索引，如果为null或空字符串，则是查询第一页的数据，成功返回0，失败返回非0。developers调用get_result方法获取查询结果，查询结果为符合条件的记录项名字，调用get_next_page_id获取下页的查询索引
 <strong>参数：</strong>
-IN database: 请求的数据库
-IN key: 搜索关键字
-IN value : 关键字内容
-IN next_page_id : 查询下页的索引，如果为空或null，则是查询首页
-IN num_per_page: 每页的返回数据条数
+<code>IN database</code>: 请求的数据库
+<code>IN key</code>: 搜索关键字
+<code>IN value</code> : 关键字内容
+<code>IN next_page_id</code> : 查询下页的索引，如果为空或null，则是查询首页
+<code>IN num_per_page</code>: 每页的返回数据条数
 <strong>返回值：</strong><br />
 成功返回0，失败返回非0   </p>
 </li>
 <li>
-<p>int int search_pagination(String database, String key, float value, String next_page_id , int num_per_page)
+<p><code>int int search_pagination(String database, String key, float value, String next_page_id , int num_per_page)</code><br />
 <strong>描述：</strong><br />
 请求database数据库，分页搜索内容符合关键字key=value所有记录，每页num_per_page个数据，next_page为分页查询索引，如果为null或空字符串，则是查询第一页的数据，成功返回0，失败返回非0。developers调用get_result方法获取查询结果，查询结果为符合条件的记录项名字，调用get_next_page_id获取下页的查询索引
 <strong>参数：</strong>
-IN database: 请求的数据库
-IN key: 搜索关键字
-IN value : 关键字内容
-IN next_page_id : 查询下页的索引，如果为空或null，则是查询首页
-IN num_per_page: 每页的返回数据条数
+<code>IN database</code>: 请求的数据库
+<code>IN key</code>: 搜索关键字
+<code>IN value</code> : 关键字内容
+<code>IN next_page_id</code> : 查询下页的索引，如果为空或null，则是查询首页
+<code>IN num_per_page</code>: 每页的返回数据条数
 <strong>返回值：</strong><br />
 成功返回0，失败返回非0   </p>
 </li>
 <li>
-<p>int search_range_pagination(String database, String key, String start, String end, String next_page_id , int num_per_page)
+<p><code>int search_range_pagination(String database, String key, String start, String end, String next_page_id , int num_per_page)</code><br />
 <strong>描述：</strong><br />
 请求database数据库，搜索内容符合关键字key的内容在[start, end]之间的所有记录，每页num_per_page个数据，next_page为分页查询索引，如果为null或空字符串，则是查询第一页的数据，成功返回0，失败返回非0。developers调用get_result方法获取查询结果，查询结果为符合条件的记录项名字，调用get_next_page_id获取下页的查询索引
 <strong>参数：</strong>
-IN database: 请求的数据库
-IN key: 搜索关键字
-IN start : 最小值
-IN end : 最大值
-IN next_page_id : 查询下页的索引，如果为空或null，则是查询首页
-IN num_per_page: 每页的返回数据条数
+<code>IN database</code>: 请求的数据库
+<code>IN key</code>: 搜索关键字
+<code>IN start</code> : 最小值
+<code>IN end</code> : 最大值
+<code>IN next_page_id</code> : 查询下页的索引，如果为空或null，则是查询首页
+<code>IN num_per_page</code>: 每页的返回数据条数
 <strong>返回值：</strong><br />
 成功返回0，失败返回非0   </p>
 </li>
 <li>
-<p>int search_range_pagination(String database, String key, float start, float end, String next_page_id , int num_per_page)
+<p><code>int search_range_pagination(String database, String key, float start, float end, String next_page_id , int num_per_page)</code><br />
 <strong>描述：</strong><br />
 请求database数据库，搜索内容符合关键字key的内容在[start, end]之间的所有记录，每页num_per_page个数据，next_page为分页查询索引，如果为null或空字符串，则是查询第一页的数据，成功返回0，失败返回非0。developers调用get_result方法获取查询结果，查询结果为符合条件的记录项名字，调用get_next_page_id获取下页的查询索引
 <strong>参数：</strong>
-IN database: 请求的数据库
-IN key: 搜索关键字
-IN start : 最小值
-IN end : 最大值
-IN next_page_id : 查询下页的索引，如果为空或null，则是查询首页
-IN num_per_page: 每页的返回数据条数
+<code>IN database</code>: 请求的数据库
+<code>IN key</code>: 搜索关键字
+<code>IN start</code> : 最小值
+<code>IN end</code> : 最大值
+<code>IN next_page_id</code> : 查询下页的索引，如果为空或null，则是查询首页
+<code>IN num_per_page</code>: 每页的返回数据条数
 <strong>返回值：</strong><br />
 成功返回0，失败返回非0   </p>
 </li>
 <li>
-<p>int search_value(String database, String key, String value)
+<p><code>int search_value(String database, String key, String value)</code><br />
 <strong>描述：</strong><br />
 请求database数据库，搜索内容符合key=value的所有记录，成功返回0，失败返回非0。developers调用get_result方法获取查询结果，查询结果为符合条件的记录项的内容
 <strong>参数：</strong>
-IN database: 请求的数据库
-IN key: 搜索关键字
-IN value : 关键字内容
+<code>IN database</code>: 请求的数据库
+<code>IN key</code>: 搜索关键字
+<code>IN value</code> : 关键字内容
 <strong>返回值：</strong><br />
 成功返回0，失败返回非0    </p>
 </li>
 <li>
-<p>int search_value(String database, String key, float value)
+<p><code>int search_value(String database, String key, float value)</code><br />
 <strong>描述：</strong><br />
 请求database数据库，搜索内容符合key=value的所有记录，成功返回0，失败返回非0。developers调用get_result方法获取查询结果，查询结果为符合条件的记录项的内容
 <strong>参数：</strong>
-IN database: 请求的数据库
-IN key: 搜索关键字
-IN value : 关键字内容
+<code>IN database</code>: 请求的数据库
+<code>IN key</code>: 搜索关键字
+<code>IN value</code> : 关键字内容
 <strong>返回值：</strong><br />
 成功返回0，失败返回非0    </p>
 </li>
 <li>
-<p>int search_value_range(String database, String key, String start, String end)
+<p><code>int search_value_range(String database, String key, String start, String end)</code><br />
 <strong>描述：</strong><br />
 请求database数据库，搜索内容符合关键字key的内容在[start, end]之间的所有记录，成功返回0，失败返回非0。developers调用get_result方法获取查询结果，查询结果为符合条件的记录项的内容
 <strong>参数：</strong>
-IN database: 请求的数据库
-IN key: 搜索关键字
-IN start : 最小值
-IN end : 最大值
+<code>IN database</code>: 请求的数据库
+<code>IN key</code>: 搜索关键字
+<code>IN start</code> : 最小值
+<code>IN end</code> : 最大值
 <strong>返回值：</strong><br />
 成功返回0，失败返回非0   </p>
 </li>
 <li>
-<p>int search_value_range(String database, String key, float start, float end)
+<p><code>int search_value_range(String database, String key, float start, float end)</code><br />
 <strong>描述：</strong><br />
 请求database数据库，搜索内容符合关键字key的内容在[start, end]之间的所有记录，成功返回0，失败返回非0。developers调用get_result方法获取查询结果，查询结果为符合条件的记录项的内容
 <strong>参数：</strong>
-IN database: 请求的数据库
-IN key: 搜索关键字
-IN start : 最小值
-IN end : 最大值
+<code>IN database</code>: 请求的数据库
+<code>IN key</code>: 搜索关键字
+<code>IN start</code> : 最小值
+<code>IN end</code> : 最大值
 <strong>返回值：</strong><br />
 成功返回0，失败返回非0   </p>
 </li>
 <li>
-<p>int int search_value_pagination(String database, String key, float value, String next_page_id , int num_per_page)
+<p><code>int int search_value_pagination(String database, String key, float value, String next_page_id , int num_per_page)</code><br />
 <strong>描述：</strong><br />
 请求database数据库，分页搜索内容符合关键字key=value所有记录，每页num_per_page个数据，next_page为分页查询索引，如果为null或空字符串，则是查询第一页的数据，成功返回0，失败返回非0。developers调用get_result方法获取查询结果，查询结果为符合条件的记录项的内容，调用get_next_page_id获取下页的查询索引
 <strong>参数：</strong>
-IN database: 请求的数据库
-IN key: 搜索关键字
-IN value : 关键字内容
-IN next_page_id : 查询下页的索引，如果为空或null，则是查询首页
-IN num_per_page: 每页的返回数据条数
+<code>IN database</code>: 请求的数据库
+<code>IN key</code>: 搜索关键字
+<code>IN value</code> : 关键字内容
+<code>IN next_page_id</code> : 查询下页的索引，如果为空或null，则是查询首页
+<code>IN num_per_page</code> : 每页的返回数据条数
 <strong>返回值：</strong><br />
 成功返回0，失败返回非0    </p>
 </li>
 <li>
-<p>int int search_value_pagination(String database, String key, String value, String next_page_id , int num_per_page)
+<p><code>int int search_value_pagination(String database, String key, String value, String next_page_id , int num_per_page)</code><br />
 <strong>描述：</strong><br />
 请求database数据库，分页搜索内容符合关键字key=value所有记录，每页num_per_page个数据，next_page为分页查询索引，如果为null或空字符串，则是查询第一页的数据，成功返回0，失败返回非0。developers调用get_result方法获取查询结果，查询结果为符合条件的记录项的内容，调用get_next_page_id获取下页的查询索引
 <strong>参数：</strong>
-IN database: 请求的数据库
-IN key: 搜索关键字
-IN value : 关键字内容
-IN next_page_id : 查询下页的索引，如果为空或null，则是查询首页
-IN num_per_page: 每页的返回数据条数
+<code>IN database</code>: 请求的数据库
+<code>IN key</code>: 搜索关键字
+<code>IN value</code> : 关键字内容
+<code>IN next_page_id</code> : 查询下页的索引，如果为空或null，则是查询首页
+<code>IN num_per_page</code>: 每页的返回数据条数
 <strong>返回值：</strong><br />
 成功返回0，失败返回非0   </p>
 </li>
 <li>
-<p>int search_value_range_pagination(String database, String key, float start, float end, String next_page_id , int num_per_page)
+<p><code>int search_value_range_pagination(String database, String key, float start, float end, String next_page_id , int num_per_page)</code><br />
 <strong>描述：</strong><br />
 请求database数据库，搜索内容符合关键字key的内容在[start, end]之间的所有记录，每页num_per_page个数据，next_page为分页查询索引，如果为null或空字符串，则是查询第一页的数据，成功返回0，失败返回非0。developers调用get_result方法获取查询结果，查询结果为符合条件的记录项的内容，调用get_next_page_id获取下页的查询索引
 <strong>参数：</strong>
-IN database: 请求的数据库
-IN key: 搜索关键字
-IN start : 最小值
-IN end : 最大值
-IN next_page_id : 查询下页的索引，如果为空或null，则是查询首页
-IN num_per_page: 每页的返回数据条数
+<code>IN database</code>: 请求的数据库
+<code>IN key</code>: 搜索关键字
+<code>IN start</code> : 最小值
+<code>IN end</code> : 最大值
+<code>IN next_page_id</code> : 查询下页的索引，如果为空或null，则是查询首页
+<code>IN num_per_page</code>: 每页的返回数据条数
 <strong>返回值：</strong><br />
 成功返回0，失败返回非0    </p>
 </li>
 <li>
-<p>int search_value_range_pagination(String database, String key, String start, String end, String next_page_id , int num_per_page)
+<p><code>int search_value_range_pagination(String database, String key, String start, String end, String next_page_id , int num_per_page)</code><br />
 <strong>描述：</strong><br />
 请求database数据库，搜索内容符合关键字key的内容在[start, end]之间的所有记录，每页num_per_page个数据，next_page为分页查询索引，如果为null或空字符串，则是查询第一页的数据，成功返回0，失败返回非0。developers调用get_result方法获取查询结果，查询结果为符合条件的记录项的内容，调用get_next_page_id获取下页的查询索引
 <strong>参数：</strong>
-IN database: 请求的数据库
-IN key: 搜索关键字
-IN start : 最小值
-IN end : 最大值
-IN next_page_id : 查询下页的索引，如果为空或null，则是查询首页
-IN num_per_page: 每页的返回数据条数
+<code>IN database</code>: 请求的数据库
+<code>IN key</code>: 搜索关键字
+<code>IN start</code> : 最小值
+<code>IN end</code> : 最大值
+<code>IN next_page_id</code> : 查询下页的索引，如果为空或null，则是查询首页
+<code>IN num_per_page</code>: 每页的返回数据条数
 <strong>返回值：</strong><br />
 成功返回0，失败返回非0  </p>
 </li>
 <li>
-<p>int list_all(String database)
+<p><code>int list_all(String database)</code><br />
 <strong>描述：</strong><br />
 请求database数据库，列出所有的key，成功返回0，失败返回非0。developers调用get_result方法获取查询结果，查询结果为符合条件的记录项的名字
 <strong>参数：</strong>
-IN database: 请求的数据库
+<code>IN database</code>: 请求的数据库
 <strong>返回值：</strong><br />
 成功返回0，失败返回非0   </p>
 </li>
 <li>
-<p>int search_or(String database, Dsdb_search_cond conds)
+<p><code>int search_or(String database, Dsdb_search_cond conds)</code><br />
 <strong>描述：</strong><br />
 请求database数据库，搜索内容符合conds中任何一个条件的记录，成功返回0，失败返回非0。developers调用get_result方法获取查询结果，查询结果为符合条件的所有记录项
 <strong>参数：</strong>
-IN database: 请求的数据库
-IN conds: 查询条件列表
+<code>IN database</code>: 请求的数据库<br />
+<code>IN conds</code>: 查询条件列表<br />
 <strong>返回值：</strong><br />
 成功返回0，失败返回非0  </p>
 </li>
 <li>
-<p>int search_and(String database, Dsdb_search_cond conds)
+<p><code>int search_and(String database, Dsdb_search_cond conds)</code><br />
 <strong>描述：</strong><br />
 请求database数据库，搜索内容符合conds中所有条件的记录，成功返回0，失败返回非0。developers调用get_result方法获取查询结果，查询结果为符合条件的所有记录项
 <strong>参数：</strong>
-IN database: 请求的数据库
-IN conds: 查询条件列表
+<code>IN database</code>: 请求的数据库
+<code>IN conds</code>: 查询条件列表
 <strong>返回值：</strong><br />
 成功返回0，失败返回非0   </p>
 </li>
 <li>
-<p>int search_or_pagination(String database, Dsdb_search_cond conds, String next_pag, int num_per_page)
+<p>`int search_or_pagination(String database, Dsdb_search_cond conds, String next_pag, int num_per_page)``
 <strong>描述：</strong><br />
 请求database数据库，分页搜索内容符合conds中任何一个条件的记录，搜索的page索引为next_pag, 每页返回num_per_page个数据，成功返回0，失败返回非0。developers调用get_result方法获取查询结果，查询结果为符合条件的所有记录项，调用get_next_page_id获取下页的查询索引
 <strong>参数：</strong>
@@ -1085,145 +1073,145 @@ IN num_per_page: 每页返回的数据个数
 成功返回0，失败返回非0   </p>
 </li>
 <li>
-<p>int search_and_pagination(String database, Dsdb_search_cond conds, String next_pag, int num_per_page)
+<p><code>int search_and_pagination(String database, Dsdb_search_cond conds, String next_pag, int num_per_page)</code><br />
 <strong>描述：</strong><br />
 请求database数据库，分页搜索内容符合conds中所有条件的记录，搜索的page索引为next_pag, 每页返回num_per_page个数据，成功返回0，失败返回非0。developers调用get_result方法获取查询结果，查询结果为符合条件的所有记录项，调用get_next_page_id获取下页的查询索引
 <strong>参数：</strong>
-IN database: 请求的数据库
-IN conds: 查询条件列表
-IN next_pag : 分页查询索引
-IN num_per_page: 每页返回的数据个数
+<code>IN database</code>: 请求的数据库<br />
+<code>IN conds</code>: 查询条件列表<br />
+<code>IN next_pag</code> : 分页查询索引<br />
+<code>IN num_per_page</code>: 每页返回的数据个数<br />
 <strong>返回值：</strong><br />
 成功返回0，失败返回非0  </p>
 </li>
 <li>
-<p>int search_value_or(String database, Dsdb_search_cond conds)
+<p><code>int search_value_or(String database, Dsdb_search_cond conds)</code><br />
 <strong>描述：</strong><br />
 请求database数据库，搜索内容符合conds中任何一个条件的记录，成功返回0，失败返回非0。developers调用get_result方法获取查询结果，查询结果为符合条件的所有记录项的内容
 <strong>参数：</strong>
-IN database: 请求的数据库
-IN conds: 查询条件列表
+<code>IN database</code>: 请求的数据库<br />
+<code>IN conds</code>: 查询条件列表<br />
 <strong>返回值：</strong><br />
 成功返回0，失败返回非0  </p>
 </li>
 <li>
-<p>int search_value_and(String database, Dsdb_search_cond conds)
+<p><code>int search_value_and(String database, Dsdb_search_cond conds)</code><br />
 <strong>描述：</strong><br />
 请求database数据库，搜索内容符合conds中所有条件的记录，成功返回0，失败返回非0。developers调用get_result方法获取查询结果，查询结果为符合条件的所有记录项的内容
 <strong>参数：</strong>
-IN database: 请求的数据库
-IN conds: 查询条件列表
+<code>IN database</code>: 请求的数据库
+<code>IN conds</code>: 查询条件列表
 <strong>返回值：</strong><br />
 成功返回0，失败返回非0   </p>
 </li>
 <li>
-<p>int search_value_or_pagination(String database, Dsdb_search_cond conds, String next_pag, int num_per_page)
+<p><code>int search_value_or_pagination(String database, Dsdb_search_cond conds, String next_pag, int num_per_page)</code><br />
 <strong>描述：</strong><br />
 请求database数据库，分页搜索内容符合conds中任何一个条件的记录，搜索的page索引为next_pag, 每页返回num_per_page个数据，成功返回0，失败返回非0。developers调用get_result方法获取查询结果，查询结果为符合条件的所有记录项的内容，调用get_next_page_id获取下页的查询索引
 <strong>参数：</strong>
-IN database: 请求的数据库
-IN conds: 查询条件列表
-IN next_pag : 分页查询索引
-IN num_per_page: 每页返回的数据个数
+<code>IN database</code>: 请求的数据库
+<code>IN conds</code>: 查询条件列表
+<code>IN next_pag</code> : 分页查询索引
+<code>IN num_per_page</code>: 每页返回的数据个数
 <strong>返回值：</strong><br />
 成功返回0，失败返回非0   </p>
 </li>
-<li>int search_value_and_pagination(String database, Dsdb_search_cond conds, String next_pag, int num_per_page)
+<li><code>int search_value_and_pagination(String database, Dsdb_search_cond conds, String next_pag, int num_per_page)</code><br />
 <strong>描述：</strong><br />
 请求database数据库，分页搜索内容符合conds中所有条件的记录，搜索的page索引为next_pag, 每页返回num_per_page个数据，成功返回0，失败返回非0。developers调用get_result方法获取查询结果，查询结果为符合条件的所有记录项的内容，调用get_next_page_id获取下页的查询索引
 <strong>参数：</strong>
-IN database: 请求的数据库
-IN conds: 查询条件列表
-IN next_pag : 分页查询索引
-IN num_per_page: 每页返回的数据个数
+<code>IN database</code>: 请求的数据库<br />
+<code>IN conds</code>: 查询条件列表<br />
+<code>IN next_pag</code> : 分页查询索引<br />
+<code>IN num_per_page</code>: 每页返回的数据个数<br />
 <strong>返回值：</strong><br />
 成功返回0，失败返回非0</li>
 </ol>
-<h2 id="dsd_search_cond-">Dsd_search_cond 类</h2>
+<h3 id="dsd_search_cond-">Dsd_search_cond 类</h3>
 <p>DSD_search_cond是Dsd_dsdb的内部类，方便developers按条件查询dsdb数据库</p>
-<h3 id="package-5">Package</h3>
-<p>Dsd_search_cond 类在com.dasudian.cloud.Dsd_dsdb中 </p>
-<h3 id="-13">属性</h3>
+<h4 id="package-5">Package</h4>
+<p>Dsd_search_cond 类在<code>com.dasudian.cloud.Dsd_dsdb</code>中 </p>
+<h4 id="-13">属性</h4>
 <p>请参见相关方法</p>
-<h3 id="-14">方法</h3>
+<h4 id="-14">方法</h4>
 <ol>
 <li>
-<p>Dsdb_search_cond()
+<p><code>Dsdb_search_cond()</code><br />
 <strong>描述：</strong><br />
 初始化一个Dsdb_search_cond的实例
 <strong>参数：</strong>
 <strong>返回值：</strong>     </p>
 </li>
 <li>
-<p>void insert(String key , String value)
+<p><code>void insert(String key , String value)</code><br />
 <strong>描述：</strong><br />
 插入一个key=value的查询条件
 <strong>参数：</strong>
-IN key : 搜索条件的关键字key
-IN  value： 关键字的内容
+<code>IN key</code> : 搜索条件的关键字key
+<code>IN  value</code>： 关键字的内容
 <strong>返回值：</strong>   </p>
 </li>
 <li>
-<p>void insert(String key , int value)
+<p><code>void insert(String key , int value)</code><br />
 <strong>描述：</strong><br />
 插入一个key=value的查询条件
 <strong>参数：</strong>
-IN key : 搜索条件的关键字key
-IN  value： 关键字的内容
+<code>IN key</code> : 搜索条件的关键字key
+<code>IN  value</code>： 关键字的内容
 <strong>返回值：</strong>    </p>
 </li>
 <li>
-<p>void insert(String key , String start, String end)
+<p><code>void insert(String key , String start, String end)</code><br />
 <strong>描述：</strong><br />
 插入一个key的值在[start, end]之间的条件
 <strong>参数：</strong>
-IN key : 搜索条件的关键字key
-IN  start： 最小值
-IN end :最大值
+<code>IN key</code> : 搜索条件的关键字key
+<code>IN  start</code>： 最小值
+<code>IN end</code> :最大值
 <strong>返回值：</strong> </p>
 </li>
-<li>void insert(String key , String start, String end)
+<li><code>void insert(String key , String start, String end)</code><br />
 <strong>描述：</strong><br />
 插入一个key的值在[start, end]之间的条件
 <strong>参数：</strong>
-IN key : 搜索条件的关键字key
-IN  start： 最小值
-IN end :最大值
+<code>IN key</code> : 搜索条件的关键字key
+<code>IN  start</code>： 最小值
+<code>IN end</code> :最大值
 <strong>返回值：</strong></li>
 </ol>
-<h2 id="dsd_redis-">Dsd_redis 类</h2>
+<h3 id="dsd_redis-">Dsd_redis 类</h3>
 <p>Dsd dac cloud api 提供了简单的访问redis数据库的方法。</p>
-<h3 id="package-6">Package</h3>
+<h4 id="package-6">Package</h4>
 <p>Dsd_redis 类在com.dasudian.cloud中 </p>
-<h3 id="-15">属性</h3>
+<h4 id="-15">属性</h4>
 <p>请参见相关方法</p>
-<h3 id="-16">方法</h3>
+<h4 id="-16">方法</h4>
 <ol>
 <li>
-<p>Dsd_redis(API m)<br />
+<p><code>Dsd_redis(API m)</code><br />
 <strong>描述：</strong><br />
 实例化Dsd_redis类，必须传入一个API实例
 <strong>参数：</strong>
-IN API m : 实例化Dsd_redis类所需要的API 实例<br />
+<code>IN API m</code> : 实例化Dsd_redis类所需要的API 实例<br />
 <strong>返回值：</strong><br />
 无   </p>
 </li>
 <li>
-<p>byte[] execute(final String serv_name, final String cmd)<br />
+<p><code>byte[] execute(final String serv_name, final String cmd)</code><br />
 <strong>描述：</strong><br />
 请求redis数据库serv_name,执行cmd命令
 <strong>参数：</strong>
-IN serv_name : 数据库
-IN cmd: 待执行的命令<br />
+<code>IN serv_name</code> : 数据库
+<code>IN cmd</code>: 待执行的命令<br />
 <strong>返回值：</strong><br />
 返回byte数组格式的返回结果。 </p>
 </li>
-<li>byte[] execute_transaction(final String serv_name, @SuppressWarnings(&quot;String&quot;) final List<String> cmds)<br />
+<li><code>byte[] execute_transaction(final String serv_name, @SuppressWarnings("String") final List&lt;String&gt; cmds)</code><br />
 <strong>描述：</strong><br />
 请求redis数据库serv_name, 以事务的方式执行cmds命令列表
 <strong>参数：</strong>
-IN serv_name : 数据库
-IN cmd: 待执行的命令列表<br />
+<code>IN serv_name</code> : 数据库
+<code>IN cmd</code>: 待执行的命令列表<br />
 <strong>返回值：</strong><br />
 返回byte数组格式的返回结果。</li>
 </ol>
