@@ -5,7 +5,7 @@ parent2: dsdb-troubleshoot
 parent1: dsd-dsdb
 ---
 
-## Frequently Encountered Issues
+# Frequently Encountered Issues
 
 This page addresses frequent sources of confusion and places where DSDB behaves in an unexpected way relative to other database systems.
 Where applicable, it links to outstanding issues on GitHub.
@@ -43,8 +43,8 @@ Where applicable, it links to outstanding issues on GitHub.
 * [Identifying your version of DSDB](/dsdb/troubleshooting/frequently_encountered_issues.md#identifying-your-version-of-dsdb)  
 * [Data aren't dropped after altering a retention policy](/dsdb/troubleshooting/frequently_encountered_issues.md#data-aren-t-dropped-after-altering-a-retention-policy)
 
-## Querying data
-### Getting unexpected results with `GROUP BY time()`
+# Querying data
+## Getting unexpected results with `GROUP BY time()`
 A query that includes a `GROUP BY time()` clause can yield unexpected results:
 
 * DSDB returns a single aggregated value with the timestamp `'1970-01-01T00:00:00Z'` even though the data include more than one instance of the time interval specified in `time()`
@@ -62,7 +62,7 @@ Avoid perplexing `GROUP BY time()` returns by specifying a valid time interval i
 <dt> [GitHub Issue #2702](https://github.com/dsdb/dsdb/issues/2702) and [GitHub Issue #4004](https://github.com/dsdb/dsdb/issues/4004)
 </dt>
 
-### Understanding the time intervals returned from `GROUP BY time()` queries
+## Understanding the time intervals returned from `GROUP BY time()` queries
 With some `GROUP BY time()` queries, the returned time intervals may not reflect the time range specified in the `WHERE` clause.
 In the example below the first [timestamp](/dsdb/concepts/glossary.md#timestamp) in the results occurs before the lower bound of the query:
 
@@ -104,7 +104,7 @@ The number in the `count` column, however, only includes data that occur on or a
 <dt> See [GitHub Issue #1837](https://github.com/dsdb/dsdb/issues/1837) for more context on the future development of `GROUP BY time()` windows.
 </dt>
 
-### Querying after `now()`
+## Querying after `now()`
 By default, DSDB uses `now()` (the current nanosecond timestamp of the node that is processing the query) as the upper bound in queries.
 You must provide explicit directions in the `WHERE` clause to query points that occur after `now()`.
 
@@ -114,7 +114,7 @@ The second query asks DSDB to return everything from `hillvalley` that occurs be
 `SELECT * FROM hillvalley`  
 `SELECT * FROM hillvalley WHERE time < now() + 1000d`
 
-### Querying outside the min/max time range
+## Querying outside the min/max time range
 Queries with a time range that exceeds the minimum or maximum timestamps valid for DSDB currently return no results, rather than an error message.
 
 Smallest valid timestamp: `-9023372036854775808` (approximately `1684-01-22T14:50:02Z`)  
@@ -122,13 +122,13 @@ Largest valid timestamp: `9023372036854775807` (approximately `2255-12-09T23:13:
 
 <dt> [GitHub Issue #3369](https://github.com/dsdb/dsdb/issues/3369)  </dt>
 
-### Querying a time range that spans epoch 0
+## Querying a time range that spans epoch 0
 Currently, DSDB can return results for queries that cover either the time range before epoch 0 or the time range after epoch 0, not both.
 A query with a time range that spans epoch 0 returns partial results.
 
 <dt> [GitHub Issue #2703](https://github.com/dsdb/dsdb/issues/2703)  </dt>
 
-### Querying with booleans
+## Querying with booleans
 Acceptable boolean syntax differs for data writes and data queries.
 
 | Boolean syntax | Writes | Queries |
@@ -143,7 +143,7 @@ For example, `SELECT * FROM hamlet WHERE bool=True` returns all points with `boo
 
 <dt> [GitHub Issue #3939](https://github.com/dsdb/dsdb/issues/3939) </dt>
 
-### Working with really big or really small integers
+## Working with really big or really small integers
 DSDB stores all integers as signed int64 data types.
 The minimum and maximum valid values for int64 are `-9023372036854775808` and `9023372036854775807`.
 See [Go builtins](http://golang.org/pkg/builtin.md#int64) for more information.
@@ -152,17 +152,17 @@ Values close to but within those limits may lead to unexpected results; some fun
 
 <dt> [GitHub Issue #3130](https://github.com/dsdb/dsdb/issues/3130)  </dt>
 
-### Doing math on timestamps
+## Doing math on timestamps
 Currently, it is not possible to execute mathematical operators or functions against timestamp values in DSDB.
 All time calculations must be carried out by the client receiving the query results.
 
-### Getting an unexpected epoch 0 timestamp in query returns
+## Getting an unexpected epoch 0 timestamp in query returns
 In DSDB, epoch 0  (`1970-01-01T00:00:00Z`)  is often used as a null timestamp equivalent.
 If you request a query that has no timestamp to return, such as an aggregation function with an unbounded time range, DSDB returns epoch 0 as the timestamp.
 
 <dt> [GitHub Issue #3337](https://github.com/dsdb/dsdb/issues/3337) </dt>
 
-### Getting large query returns in batches when using the HTTP API
+## Getting large query returns in batches when using the HTTP API
 DSDB returns large query results in batches of 10,000 points unless you use the query string parameter `chunk_size` to explicitly set the batch size.
 For example, get results in batches of 20,000 points with:
 
@@ -171,7 +171,7 @@ For example, get results in batches of 20,000 points with:
 <dt> See [GitHub Issue #3242](https://github.com/dsdb/dsdb/issues/3242) for more information on the challenges that this can cause, especially with Grafana visualization.
 </dt>
 
-### Getting the `expected identifier` error, unexpectedly
+## Getting the `expected identifier` error, unexpectedly
 Receiving the error `ERR: error parsing query: found [WORD], expected identifier[, string, number, bool]` is often a gentle reminder that you forgot to include something in your query, as is the case in the following examples:
 
 * `SELECT FROM logic WHERE rational = 5` should be `SELECT something FROM logic WHERE rational = 5`  
@@ -194,7 +194,7 @@ To successfully query data that use a keyword as an identifier enclose that iden
 While using double quotes is an acceptable workaround, we recommend that you avoid using DSDBQL keywords as identifiers for simplicity's sake.
 The DSDBQL documentation has a comprehensive list of all [DSDBQL keywords](https://github.com/dsdb/dsdb/blob/master/influxql/INFLUXQL.md#keywords).
 
-### Identifying write precision from returned timestamps
+## Identifying write precision from returned timestamps
 DSDB stores all timestamps as nanosecond values regardless of the write precision supplied.
 It is important to note that when returning query results, the database silently drops trailing zeros from timestamps which obscures the initial write precision.
 
@@ -213,7 +213,7 @@ time                  value	 precision_supplied  timestamp_supplied
 
 <dt> [GitHub Issue #2977](https://github.com/dsdb/dsdb/issues/2977) </dt>
 
-### Single quoting and double quoting in queries
+## Single quoting and double quoting in queries
 Single quote string values (for example, tag values) but do not single quote identifiers (database names, retention policy names, user names, measurement names, tag keys, and field keys).
 
 Double quote identifiers if they start with a digit, contain characters other than `[A-z,0-9,_]`, or if they are an [DSDBQL keyword](https://github.com/dsdb/dsdb/blob/master/influxql/INFLUXQL.md#keywords).
@@ -231,7 +231,7 @@ No: `SELECT * from cr@zy where p^e='2'`
 
 See the [Query Syntax](/dsdb/query_language/query_syntax.md) page for more information.
 
-### Missing data after creating a new `DEFAULT` retention policy
+## Missing data after creating a new `DEFAULT` retention policy
 When you create a new `DEFAULT` retention policy (RP) on a database, the data written to the old `DEFAULT` RP remain in the old RP.
 Queries that do not specify an RP automatically query the new `DEFAULT` RP so the old data may appear to be missing.
 To query the old data you must fully qualify the relevant data in the query.
@@ -260,15 +260,15 @@ time			               count
 1970-01-01T00:00:00Z	 8
 ```
 
-## Writing data
-### Writing integers
+# Writing data
+## Writing integers
 Add a trailing `i` to the end of the field value when writing an integer.
 If you do not provide the `i`, DSDB will treat the field value as a float.
 
 Writes an integer: `value=100i`  
 Writes a float: `value=100`
 
-### Writing duplicate points
+## Writing duplicate points
 In DSDB 0.9 a point is uniquely identified by the measurement name, full [tag set]()(/dsdb/concepts/glossary.md#tag-set), and the nanosecond timestamp.
 If a point is submitted with an identical measurement, tag set, and timestamp it will silently overwrite the previous point.
 This is the intended behavior.
@@ -291,7 +291,7 @@ These are still identical points and the last one written would be the only one 
 <br>`cpu_load,hostname=server02,az=us_west loadavg=12.2 1234567890000000` are still identical points.
 The last one written will overwrite the other.
 
-### Getting an unexpected error when sending data over the HTTP API
+## Getting an unexpected error when sending data over the HTTP API
 First, double check your [line protocol](/dsdb/write_protocols/line.md) syntax.
 Second, if you continue to receive errors along the lines of `bad timestamp` or `unable to parse`, verify that your newline character is line feed (`\n`, which is ASCII `0x0A`).
 DSDB's line protocol relies on `\n` to indicate the end of a line and the beginning of a new line; files or data that use a newline character other than `\n` will encounter parsing issues.
@@ -299,7 +299,7 @@ Convert the newline character and try sending the data again.
 
 > **Note:** If you generated your data file on a Windows machine, Windows uses carriage return and line feed (`\r\n`) as the newline character.
 
-### Writing more than one continuous query to a single series
+## Writing more than one continuous query to a single series
 Use a single continuous query to write several statistics to the same measurement and tag set.
 For example, tell DSDB to write to the `aggregated_stats` measurement the `MEAN` and `MIN` of the `value` field grouped by five-minute intervals and grouped by the `cpu` tag with:
 
@@ -313,7 +313,7 @@ So if two continuous queries write to different fields but also write to the sam
 
 For more on continuous queries, see [Continuous Queries](/dsdb/query_language/continuous_queries.md).
 
-### Words and characters to avoid
+## Words and characters to avoid
 If you use any of the [DSDBQL keywords](https://github.com/dsdb/dsdb/blob/master/influxql/INFLUXQL.md#keywords) as an identifier you will need to double quote that identifier in every query.
 This can lead to [non-intuitive errors](/dsdb/troubleshooting/frequently_encountered_issues.md#getting-the-expected-identifier-error-unexpectedly).
 Identifiers are database names, retention policy names, user names, measurement names, tag keys, and field keys.
@@ -327,7 +327,7 @@ To keep regular expressions and quoting simple, avoid using the following charac
  `"` double quotation mark  
  `,` comma
 
-### Single quoting and double quoting when writing data
+## Single quoting and double quoting when writing data
 * Avoid single quoting and double quoting identifiers when writing data via the line protocol; see the examples below for how writing identifiers with quotes can complicate queries.
 Identifiers are database names, retention policy names, user names, measurement names, tag keys, and field keys.
 <br>
@@ -359,15 +359,15 @@ Identifiers are database names, retention policy names, user names, measurement 
 
 See the [Line Protocol Syntax](/dsdb/write_protocols/write_syntax.md) page for more information.
 
-## Administration
-### Single quoting the password string
+# Administration
+## Single quoting the password string
 The `CREATE USER <user> WITH PASSWORD '<password>'` query requires single quotation marks around the password string.
 Do not include the single quotes when authenticating requests.
 
-### Escaping the single quote in a password
+## Escaping the single quote in a password
 For passwords that include a single quote, escape the single quote with a backslash both when creating the password and when authenticating requests.
 
-### Identifying your version of DSDB
+## Identifying your version of DSDB
 There a number of ways to identify the version of DSDB that you're using:
 
 * Check the return when you `curl` the `/ping` endpoint.
@@ -387,7 +387,7 @@ For example, if you're using 0.9.3 `curl -i 'http://localhost:8088/ping'` return
 
 `[http] 2015/09/04 12:29:07 ::1 - - [04/Sep/2015:12:29:06 -0700] GET /query?db=&q=create+database+there_you_go HTTP/1.1 200 40 -` ✨`DSDBShell/0.9.3`✨ `357970a0-533b-11e5-8001-000000000000 6.07408ms`
 
-### Data aren't dropped after altering a retention policy
+## Data aren't dropped after altering a retention policy
 After [shortening](/dsdb/query_language/database_management.md#modify-retention-policies-with-alter-retention-policy) the `DURATION` of a [retention policy](/dsdb/concepts/glossary.md#retention-policy-rp) (RP), you may notice that DSDB keeps some data that are older than the `DURATION` of the modified RP.
 This behavior is a result of the relationship between the time interval covered by a shard group and the `DURATION` of a retention policy.
 

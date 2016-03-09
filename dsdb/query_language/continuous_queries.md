@@ -5,7 +5,7 @@ parent2: dsdb-querylang
 parent1: dsd-dsdb
 ---
 
-## Continuous Queries
+# Continuous Queries
 
 When writing large amounts of data to DSDB, you may often want to downsample the raw data, that is, use `GROUP BY time()` with an DSDBQL [function](/dsdb/query_language/functions.md) to change the high frequency data into lower frequency data. Repeatedly running the same queries by hand can be tedious. DSDB's continuous queries (CQ) simplify the downsampling process; CQs run automatically and write the query results to another measurement.
 
@@ -18,7 +18,7 @@ When writing large amounts of data to DSDB, you may often want to downsample the
 * [Backfilling](/dsdb/query_language/continuous_queries.md#backfilling)
 * [Further reading](/dsdb/query_language/continuous_queries.md#further-reading)
 
-### CQ definition
+## CQ definition
 A CQ is an DSDBQL query that the system runs automatically and periodically within a database. DSDB stores the results of the CQ in a specified [measurement](/dsdb/concepts/glossary.md#measurement). CQs require a function in the `SELECT` clause and must include a `GROUP BY time()` clause.
 
 The time ranges of the CQ results have round-number boundaries that are set internally by the database. There is currently no way for users to alter the start or end times of the intervals.
@@ -27,8 +27,8 @@ Only admin users are allowed to work with continuous queries. For more on user p
 
 > **Note:** CQs only execute on data received after the CQ's creation. If you'd like to downsample data written to DSDB before the CQ was created, see the examples in [Data Exploration](/dsdb/query_language/data_exploration.md#downsample-data).
 
-### DSDBQL for creating a CQ
-#### The `CREATE CONTINUOUS QUERY` statement
+## DSDBQL for creating a CQ
+### The `CREATE CONTINUOUS QUERY` statement
 ```sql
 CREATE CONTINUOUS QUERY <cq_name> ON <database_name> [RESAMPLE [EVERY <interval>] [FOR <interval>]] BEGIN SELECT <function>(<stuff>)[,<function>(<stuff>)] INTO <different_measurement> FROM <current_measurement> [WHERE <stuff>] GROUP BY time(<interval>)[,<stuff>] END
 ```
@@ -36,7 +36,7 @@ CREATE CONTINUOUS QUERY <cq_name> ON <database_name> [RESAMPLE [EVERY <interval>
 The `CREATE CONTINUOUS QUERY` statement is essentially an DSDBQL query surrounded by `CREATE CONTINUOUS QUERY [...] BEGIN` and `END`.
 The following discussion breaks the CQ statement into its meta portion (everything between `CREATE` and `BEGIN`) and query portion (everything between `BEGIN` and `END`).
 
-##### Meta syntax:
+#### Meta syntax:
 ```
 CREATE CONTINUOUS QUERY ON <database_name> [RESAMPLE [EVERY <interval>] [FOR <interval>]]
 ```
@@ -48,7 +48,7 @@ The optional `RESAMPLE` clause determines how often DSDB runs the CQ (`EVERY <in
 If included, the `RESAMPLE` clause must specify either `EVERY`, or `FOR`, or both.
 Without the `RESAMPLE` clause, DSDB runs the CQ at the same interval as the `GROUP BY time()` interval and it calculates the query for the most recent `GROUP BY time()` interval (that is, where time is between `now()` and `now()` minus the `GROUP BY time()` interval).
 
-##### Query syntax:
+#### Query syntax:
 ```
 BEGIN SELECT <function>(<stuff>)[,<function>(<stuff>)] INTO <different_measurement> FROM <current_measurement> [WHERE <stuff>] GROUP BY time(<interval>)[,<stuff>] END
 ```
@@ -61,7 +61,7 @@ This is where you specify the destination measurement for the query results.
 2. The optional `WHERE` clause:
 Because CQs run on regularly incremented time intervals you don't need to (and shouldn't!) specify a time range in the `WHERE` clause. When included, the CQ's `WHERE` clause should filter information about tags.
 
-##### CQ examples:
+#### CQ examples:
 
 * Create a CQ with one function:
 
@@ -130,7 +130,7 @@ Because CQs run on regularly incremented time intervals you don't need to (and s
     `vampires_2` runs every 15 minutes and computes two queries per run:
     one where time is between `now()` and `now() - 30m` and one where time is between `now() - 30m` and `now() - 60m`
 
-#### CQs with backreferencing
+### CQs with backreferencing
 Use `:MEASUREMENT` in the `INTO` statement to backreference measurement names:
 ```sql
 CREATE CONTINUOUS QUERY <cq_name> ON <database_name> BEGIN SELECT <function>(<stuff>)[,<function>(<stuff>)] INTO <database_name>.<retention_policy>.:MEASUREMENT FROM </relevant_measurement(s)/> [WHERE <stuff>] GROUP BY time(<interval>)[,<stuff>] END
@@ -183,7 +183,7 @@ time			               mean
 2015-12-19T01:30:00Z	 95.99739053789172
 ```
 
-### List CQs with `SHOW`
+## List CQs with `SHOW`
 List every CQ by database with:
 ```sql
 SHOW CONTINUOUS QUERIES
@@ -205,7 +205,7 @@ elsewhere	 CREATE CONTINUOUS QUERY elsewhere ON fantasy BEGIN SELECT mean(value)
 
 The output shows that the database `reality` has no CQs and the database `fantasy` has one CQ called `elsewhere`.
 
-### Delete CQs with `DROP`
+## Delete CQs with `DROP`
 Delete a CQ from a specific database with:
 ```sql
 DROP CONTINUOUS QUERY <cq_name> ON <database_name>
@@ -220,11 +220,11 @@ DROP CONTINUOUS QUERY <cq_name> ON <database_name>
 
 A successful `DROP CONTINUOUS QUERY` returns an empty response.
 
-### Backfilling
+## Backfilling
 
 CQs do not backfill data, that is, they do not compute results for data written to the database before the CQ existed. Instead, users can backfill data with the `INTO` clause. Unlike CQs, backfill queries require a `WHERE` clause with a `time` restriction.
 
-#### Examples
+### Examples
 
 Here is a basic backfill example:
 ```sql
@@ -254,5 +254,5 @@ WHERE sensor_id="EG-21442" AND time >= '2015-12-14 00:05:20' AND time < '2015-12
 GROUP BY time(5m)
 ```
 
-### Further reading
+## Further reading
 Now that you know how to create CQs with DSDB, check out [Downsampling and Data Retention](/dsdb/guides/downsampling_and_retention.md) for how to combine CQs with retention policies to automatically downsample data and expire unnecessary data.

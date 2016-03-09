@@ -5,4 +5,6 @@ parent2: dsdb-clients
 parent1: dsd-dsdb
 ---
 
-### [Compatible Libraries](/dsdb/clients/api.md)
+# DSDB Clients
+
+## [Compatible Libraries](/dsdb/clients/api.md)

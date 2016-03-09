@@ -4,7 +4,7 @@ currentMenu: dac-principal
 parent1: dsd-dac
 ---
 
-## Dasudian Cloud API
+# Dasudian Cloud API
 
 **Dasudian Cloud API** 是一种基于简单消息模型的服务API，帮助服务构建者快速、简单地实现各种业务逻辑的REST API服务和Real-Time API服务。大数点Cloud API同时支持Publish/Subscribe和Request/Response两种通信模型，并且可基于我们提供的SDK使用任何一种支持的开发语言实现，目前包括：Java、C/C++、PHP、Javascript、Python、Ruby、Go和Perl。通过任何一种支持语言实现的API，经过编译后都可以运行在Dasudian API容器（DAC）内。而Dasudian API容器为大数点IoT云平台的一个基础PaaS服务，基于电信级服务开发平台Erlang实现，将合作伙伴实现的Cloud API运行在大数点分布在世界各地的计算容器内，帮助合作伙伴快速实现业务扩展、业务定点部署和业务升级。
 

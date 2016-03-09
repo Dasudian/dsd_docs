@@ -5,7 +5,7 @@ parent2: dsdb-troubleshoot
 parent1: dsd-dsdb
 ---
 
-## System Monitoring
+# System Monitoring
 
 To assist with troubleshooting and performance analysis DSDB makes available statistical and diagnostic information about the system.
 For additional information see the [README on GitHub](https://github.com/dasudian/dsdb/blob/master/monitor/README.md).
@@ -13,7 +13,7 @@ For additional information see the [README on GitHub](https://github.com/dasudia
 * [See statistics for your installation with `SHOW STATS`](/dsdb//troubleshooting/system_monitoring.md#see-statistics-for-your-installation-with-show-stats)
 * [Show diagnostic information about your installation with `SHOW DIAGNOSTICS`](/dsdb//troubleshooting/system_monitoring.md#show-diagnostic-information-about-your-installation-with-show-diagnostics)
 
-### See statistics for your installation with `SHOW STATS`
+## See statistics for your installation with `SHOW STATS`
 
 Show a series of statistics related to your DSDB instance
 
@@ -67,7 +67,7 @@ Alloc		Frees		HeapAlloc	HeapIdle	HeapInUse	HeapObjects	HeapReleased	HeapSys		Loo
 
 > **Note:** Depending on your local configuration there may be multiple `name: engine`, `name: shard`, and `name: wal` fields
 
-### Show diagnostic information about your installation with `SHOW DIAGNOSTICS`
+## Show diagnostic information about your installation with `SHOW DIAGNOSTICS`
 
 Retrieve a collection of diagnostic information helpful for troubleshooting.
 

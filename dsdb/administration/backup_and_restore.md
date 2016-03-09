@@ -5,14 +5,14 @@ parent2: dsdb-admin
 parent1: dsd-dsdb
 ---
 
-## Backup and Restore
+# Backup and Restore
 
 Starting with v1.0.0, DSDB has the ability to snapshot a single
 data node at a point-in-time and restore it.
 
-### Backups
+## Backups
 
-#### Backing up the Metastore
+### Backing up the Metastore
 
 DSDB's metastore contains internal information about the status of
 the system, including: user information, database/shard metadata, and
@@ -37,7 +37,7 @@ $ influxd backup /tmp/backup
 Will create a metastore backup in the directory `/tmp/backup` (the
 directory will be created if it doesn't already exist). 
 
-#### Backing up a Database
+### Backing up a Database
 
 To backup a database, you will need to add the `-database` flag:
 
@@ -84,7 +84,7 @@ $ influxd backup -database telegraf -retention default -since 2016-02-01T00:00:0
 Which will send the resulting backup to `/tmp/backup`, where it can
 then be compressed and sent to long-term storage.
 
-#### Remote Backups
+### Remote Backups
 
 To capture a backup from a remote node, specify the host and port of
 the remote instance using the `-host` configuration switch:
@@ -95,7 +95,7 @@ $ influxd backup -database mydatabase -host 10.0.0.1:8088 /tmp/mysnapshot
 
 Where all of the flags above still apply to remote hosts.
 
-### Restore
+## Restore
 
 To restore a backup, you will need to use the `influxd restore` command.
 
@@ -179,7 +179,7 @@ telegraf
 
 The database has now been successfully restored!
 
-### Caveats
+## Caveats
 
 This approach currently only works in clusters where the replication factor is the same as the number of nodes in the cluster.
 A cluster wide backup and restore will be done in the future.

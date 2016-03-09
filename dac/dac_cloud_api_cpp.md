@@ -4,18 +4,18 @@ currentMenu: dac-cpp-api
 parent1: dsd-dac
 ---
 
-## DSD DAC_CLOUD API 指导手册   
+# DSD DAC_CLOUD API 指导手册   
 
-### 引言   
+## 引言   
 
 DSD DAC_CLOUD API提供了功能丰富但使用简单的服务器开发的C++ API，该API极大的降低了服务器开发与维护难度，降低开发成本，缩短开发周期。用户无需关注服务器的负载均衡性能等问题，只需关注简单的业务逻辑，如同开发简单的单机应用，就可以实现丰富的服务器应用。
    
-### 安装环境   
+## 安装环境   
  
 安装环境就是编译环境，目前只支持  
 Ubuntu 14.06和Ubuntu 14.10  
  
-### 编译方法   
+## 编译方法   
 
  1. 下载并解压SDK到指定目录   
  2. 修改工程的Makefile，添加CLOUD_API_C的头文件引用路径和动态库的链接路径   
@@ -35,17 +35,17 @@ gcc -o dm_test dm_test.o $(CFLAGS) $(LDFLAGS) dm_test.o:dm_test.c
 gcc  -c dm_test.c $(CFLAGS)`   
 ```
  
-### API 类
+## API 类
 API 类是该sdk的主要类，developers调用该类与erlang虚拟机交互，处理http请求或其他服务请求。开发者需要引用头文件`dsd_cloud.hpp`
 
-#### 名称空间
+### 名称空间
 API 类在dsd_cloud名称空间下  
 
-#### 属性
+### 属性
 1. ASYNC : static final int类型，值为1，标示异步请求类型  
 2. SYNC : static final int类型，值为-1，标示同步请求类型  
 
-#### 方法
+### 方法
 1.  `staici int thread_count()`   
     **描述：**   
     静态方法， 获取服务系统支持的与erlang虚拟机交互的最大线程数  
@@ -540,14 +540,14 @@ API 类在dsd_cloud名称空间下
     **返回值：**  
     成功，返回0；失败，返回非0   
 
-### function_object_cxx 类
+## function_object_cxx 类
 
 function_object_cxx类为API 类方法subscribe的回调接口类，该类是个纯虚函数，开发者如果调用 `int subscribe(std::string const & pattern, function_object_cxx * object)`方法，需要生成一个子类，并且需要实现operator()方法。
 
-#### 属性
+### 属性
 请参见相关方法
 
-#### 方法
+### 方法
 1. `virtual void operator() (API const &,
                                          int const command,
                                           char const * const name,
@@ -577,7 +577,7 @@ function_object_cxx类为API 类方法subscribe的回调接口类，该类是个
     `IN pid`  转发请求的pid   
     **返回值：**  
 
-### Dsd_log
+## Dsd_log
 
 开发者调用如下函数打印日志，引用头文件`dsd_log.h` 。  
 
@@ -619,18 +619,18 @@ function_object_cxx类为API 类方法subscribe的回调接口类，该类是个
     **参数：**     
     **返回值：**   
 
-### dsd_mchdb类
+## dsd_mchdb类
 
 DSD dac cloud api 提供了访问memcacahed数据库的方法。开发者只需要引用头文件`dsd_mchdb.hpp` 。  
 
-#### 名称空间
+### 名称空间
 
 dsd_mchdb类在dsd_cloud名称下
 
-#### 属性
+### 属性
 请参见相关方法
 
-#### 方法
+### 方法
 
 1. `dsd_mchdb(API &m)`     
     **描述：**   
@@ -776,19 +776,19 @@ dsd_mchdb类在dsd_cloud名称下
     **返回值：**   
     成功返回0，失败返回非0
 
-### dsd_dsdb类
+## dsd_dsdb类
 
 DSD dac cloud api 提供了访问dsdb数据库的方法。
 
-#### 名称空间
+### 名称空间
 
 dsd_dsdb 类在dsd_cloud中 
 
-#### 属性
+### 属性
 
 请参见相关方法
 
-#### 方法
+### 方法
 
 1.  `dsd_dsdb(API &m)`    
     **描述：**   
@@ -1113,19 +1113,19 @@ dsd_dsdb 类在dsd_cloud中
     成功返回0，失败返回非0
 
 
-### dsdb_search_cond 类
+## dsdb_search_cond 类
 
 dac cloud api 支持用户按组合条件查询，dsd_search_cond类就是为了方便developers按条件查询dsdb数据库
 
-#### 名称空间
+### 名称空间
 
 dsd_search_cond 类在dsd_cloud中 
 
-#### 属性
+### 属性
 
 请参见相关方法
 
-#### 方法
+### 方法
 
 1. `dsdb_search_cond()`  
     **描述：**    
@@ -1167,19 +1167,19 @@ dsd_search_cond 类在dsd_cloud中
     `IN end` : 最大值  
     **返回值：**
 
-### dsd_redis 类
+## dsd_redis 类
 
 Dsd dac cloud api 提供了简单的访问redis数据库的方法。
 
-#### 名称空间
+### 名称空间
 
 Dsd_redis 类在dsd_cloud中 
 
-#### 属性
+### 属性
 
 请参见相关方法
 
-#### 方法
+### 方法
 
 1.  `dsd_redis(API m)`      
     **描述：**    
@@ -1207,7 +1207,7 @@ Dsd_redis 类在dsd_cloud中
     **返回值：**   
     返回dsd_redis_reply结构体。  
 
-### dsd_redis_reply 结构体
+## dsd_redis_reply 结构体
 
 该结构体格式如下：  
 

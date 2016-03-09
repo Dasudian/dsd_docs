@@ -5,13 +5,13 @@ parent2: dsdb-concepts
 parent1: dsd-dsdb
 ---
 
-## API Endpoints & Ports
+# API Endpoints & Ports
 
-### Endpoints
+## Endpoints
 
 All current API Endpoints are listed below.
 
-#### /ping
+### /ping
 
 The ping endpoint accepts both `GET` and `HEAD` HTTP requests.
 The response body is empty.
@@ -42,28 +42,28 @@ X-DSDB-Version: 1.0.0-nightly-5a8b19b
 Date: Wed, 21 Oct 2015 16:29:35 GMT
 ```
 
-#### /query
+### /query
 For more information on the `/query` endpoint see the [Querying Data](/dsdb/guides/querying_data.md) section of our docs.
 
-#### /write
+### /write
 For more information on the `/write` endpoint see the [Writing Data](/dsdb/guides/writing_data.md) section of our docs.
 
-### Ports
+## Ports
 
-#### HTTP API PORT
+### HTTP API PORT
 
 By default the DSDB HTTP API listens on port `8088`.
 The `/ping`, `/write`, and `/query` endpoints are all part of the HTTP API.
 
-#### Internal Communication port
+### Internal Communication port
 
 By default, the communication between clustered instances of DSDB occurs over ports `8088` and `8091`.
 
-#### Admin interface port
+### Admin interface port
 
 The admin interface for DSDB runs on port `8084` and exposes web UI for the server.
 
-#### Secondary Ports
+### Secondary Ports
 
 DSDB also supports communication through UDP, Graphite, Collectd, and OpenTSDB.
 By default DSDB makes port `2003` available for Graphite.

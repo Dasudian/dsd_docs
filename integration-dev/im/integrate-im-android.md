@@ -5,31 +5,31 @@ parent2: srvintegrate-im
 parent1: dsd-srvintegrate
 ---
 
-## Android上集成IM功能
+# Android上集成IM功能
 
-### 集成前准备
+## 集成前准备
 
 到[大数点开发者平台](https://dev.dasudian.com/)注册成为大数点合作伙伴并创建应用。  
 
-### 下载SDK
+## 下载SDK
 
 到[大数点官网](http://doc.dasudian.com/api/sdk)下载IM SDK　。  
 
-### SDK内容
+## SDK内容
 
 - dsd-lib-IM-v1.jar
 - libdsd_im.so
  
-### 配置工程
+## 配置工程
 
-#### 导入库和jar包
+### 导入库和jar包
 
 拷贝libdsd_im.so到libs/armeabi目录下，如果没有armeabi目录，请手动创建该目录。  
 拷贝dsd-lib-IM-v1到libs目录下，如下图所示。 
 
 ![导入.so到工程目录下](images/andorid_im-1.png)
 
-#### 配置权限
+### 配置权限
 
 如下图所示,在AndroidManifest.xml中加入如下内容使能必要的访问权限。  
 
@@ -43,9 +43,9 @@ parent1: dsd-srvintegrate
 <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 ```
 
-### 初始化SDK
+## 初始化SDK
 
-#### 实现如下接口
+### 实现如下接口
 
 ```java
 public class MainActivity extends Activity implements DsdClientInterface  
@@ -73,7 +73,7 @@ public void docallback(int event, String content, int len)
 | 6:用户被踢出组播组 | NULL                                                                            | 0          |
 | 7:与服务器链接断开 | NULL                                                                            | 0          |
 
-#### 链接服务器
+### 链接服务器
 
 ```java
 // 获取sdk实例
@@ -100,7 +100,7 @@ dsdClientTest.setCallfuc(this);
 int dsdInit(String serverAddress, String version, String appID, String appSpec, String userID, String opt, String clientID, DsdImClientJNI obj);
 ```
 
-### 发送单播消息
+## 发送单播消息
 
 注意：所有发送消息相关的函数，消息都必须以如下JSON格式发送。  
 
@@ -140,7 +140,7 @@ int dsdSyncSendWithAck(String from, String[] toUserList, int users, String msg);
 void dsdAsyncSendWithAck(String from, String[] toUserList, int users, String msg, String msgid);
 ```
 
-### 发送组播消息
+## 发送组播消息
 
 同步发送  
 
@@ -168,7 +168,7 @@ int dsdSyncMulticastwithAck(String user, String groupid, String msg);
 void dsdAsyncMulticastwithAck(String user, String groupid, String msg, String msgid);
 ```
 
-### 发送广播消息
+## 发送广播消息
 
 同步广播  
 
@@ -194,7 +194,7 @@ int dsdSyncBroadcastWithAck(String user, String msg);
 void dsdAsyncBroadcastWithAck(String user, String msg, String msgid);
 ```
 
-### 组管理
+## 组管理
 
 创建组
 
@@ -245,7 +245,7 @@ int dsdLeaveGroup(String user, String groupid);
 int dsdKickOutGroup(String user, String groupid, String groupMember);
 ```
 
-### 与服务器断开链接
+## 与服务器断开链接
 
 ```java
 /**
@@ -254,6 +254,6 @@ int dsdKickOutGroup(String user, String groupid, String groupMember);
 void dsdDisConnect();
 ```
 
-### 下载Android示例程序
+## 下载Android示例程序
 
 [下载Android示例程序](https://www.github.com/Dasudian/imsdk-example-android)

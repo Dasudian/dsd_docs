@@ -4,17 +4,17 @@ currentMenu: dac-c-api
 parent1: dsd-dac
 ---
 
-## DAC_CLOUD_API_C指导手册
+# DAC_CLOUD_API_C指导手册
   
-### 引言   
+## 引言   
   
 CLOUD_API_C提供了功能丰富但使用简单的API，用户无需关注性能负载均衡等，就可以实现丰富的http及其他类型的服务。  
  
-### 安装环境    
+## 安装环境    
 
 ubuntu 14.04或14.10
 
-### 编译方法
+## 编译方法
 
 1. 下载并解压SDK到指定目录   
 2. 修改工程的Makefile，添加CLOUD_API_C的头文件引用路径和动态库的链接路径   
@@ -34,7 +34,7 @@ gcc -o dm_test dm_test.o $(CFLAGS) $(LDFLAGS) dm_test.o：dm_test.c
 gcc  -c dm_test.c $(CFLAGS)
 ```
 
-### CLOUD API使用方法
+## CLOUD API使用方法
 developers 引用头文件`dsd_cloud.h`，调用如下的方法，实现负载均衡，性能分布等功能。 
 
 1. `int dsd_cloud_initialize_thread_count(unsigned int * const thread_count)`   
@@ -205,7 +205,7 @@ developers 引用头文件`dsd_cloud.h`，调用如下的方法，实现负载�
   返回响应信息长度   
 
 
-### MemCached数据库访问方法
+## MemCached数据库访问方法
 
 dsd dac cloud api 提供了非常丰富的访问memcached的API，开发者无需安装及维护MemCached数据库。开发者需要引用头文件`dsd_mchdb.h`。具体的函数如下：  
 
@@ -371,7 +371,7 @@ dsd dac cloud api 提供了非常丰富的访问memcached的API，开发者无�
   清空数据库 
 
 
-## Redis数据库访问方法
+# Redis数据库访问方法
 
 dsd dac cloud api 提供了简单易用的访问redis的API，开发者无需安装及维护redis数据库。开发者需要引用头文件dsd_redis.h。具体的函数如下：   
   
@@ -413,11 +413,11 @@ dsd dac cloud api 提供了简单易用的访问redis的API，开发者无需安
   客户端需要先判断err,然后在获取返回值的长度。  
 
 
-### Dsdb数据库访问方法
+## Dsdb数据库访问方法
 
 dsd dac cloud api 提供了丰富易用的访问Dsdb数据库的API，开发者无需安装及维护Dsdb数据库。开发者需要引用头文件`dsd_dsdb.h`。具体的函数如下： 
 
-#### 结构体
+### 结构体
 数据库查询接口返回数据格式：  
 ```c
 typedef struct dsdb_result_s
@@ -431,7 +431,7 @@ typedef struct dsdb_result_s
 `int length` ： 字符串的个数
 `char * next_page_id` ： 分页查询时，下页的搜索id，如果没有，则为NULL
 
-#### 函数
+### 函数
 
 1. `int put(dsd_cloud_instance_t * p, char * database, char *key, char *value)`   
   **描述：**  
