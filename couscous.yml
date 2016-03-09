@@ -8,56 +8,282 @@ exclude:
     - vendor
     - website
     - .couscous
+    - README.md
 
-scripts:
-    before:
-        - minify --output template/css/theme.min.css template/css/theme.css
+# scripts:
+#     before:
+#         - minify --output .couscous/generated/css/app.min.css template/css/app.css
 
 title: "大数点文档中心"
-author: "Dasudian Gruop"
 description: "大数点物联网开发者平台文档，基于大数点物联网平台，帮助开发者快速构建物联网应用"
 cname: docs.dasudian.com
 branch: gh-pages
-baseUrl: http://docs.dasudian.com
+# baseUrl: http://docs.dasudian.com
 
 navs:
   solution:
     text: "解决方案"
-    absoluteUrl: http://solution.dasudian.com
+    absoluteUrl: http://dasudian.com/solution
   docs:
     text: "文档"
-    absoluteUrl: http://docs.dasudian.com
+    absoluteUrl: /
   price:
     text: "定价"
-    absoluteUrl: http://price.dasudian.com
+    absoluteUrl: http://dasudian.com/price
   community:
     text: "社区"
-    absoluteUrl: http://community.dasudian.com  
+    absoluteUrl: https://www.github.com/Dasudian
+    outside: yes  
 
 menu:
-  sections:
-    first:
-      name: "介绍"
-      items:
-        intro-dsd:
-          text: "大数点介绍"
-          relativeUrl: docs/get-started/intro-dsd.html
-      items:
-        into-serv:
-          text: "大数点服务介绍"
-          relativeUrl: docs/get-started/intro-serv.html          
-    second:
-      name: "开发者平台操作指南"
-      items:
-        register-login:
-          text: "注册和登陆"
-          relativeUrl: docs/dev-platform/register-login.html
-    third:
+  menu1s:
+    # dsd-devportal:
+    #   name: "开发者平台操作指南"
+    #   items:
+    #     devportal-register-login:
+    #       text: "注册和登陆"
+    #       relativeUrl: dev-platform/register-login.html
+    dsd-srvintegrate:
       name: "服务集成指南"
       items:
-        integrate-im-android:
-          text: "Android上集成IM功能"
-          relativeUrl: docs/integration-dev/integrate-im-android.html
-        integrate-im-ios:
-          text: "iOS上集成IM功能"
-          relativeUrl: docs/integration-dev/integrate-im-ios.html
+        srvintegrate-index:
+          text: "服务集成"
+          relativeUrl: integration-dev/index.html
+      menu2s:
+        srvintegrate-im:
+          name: "IM即时消息服务"
+          items:
+            srvintegrate-im-android:
+              text: "Android上集成IM功能"
+              relativeUrl: integration-dev/im/integrate-im-android.html
+            srvintegrate-im-ios:
+              text: "iOS上集成IM功能"
+              relativeUrl: integration-dev/im/integrate-im-ios.html
+    dsd-dsdb:
+      name: "DS Database"
+      items:
+        dsdb-overview:
+          text: "DSDB Overview"
+          relativeUrl: dsdb/index.html
+      menu2s:
+        dsdb-intro:
+          name: "Introduction"
+          items:
+            dsdb-intro-overview:
+              text: "Overview"
+              relativeUrl: dsdb/introduction/index.html
+            dsdb-intro-installation:
+              text: "Installation"
+              relativeUrl: dsdb/introduction/installation.html
+            dsdb-intro-start:
+              text: "Getting Started"
+              relativeUrl: dsdb/introduction/getting_started.html
+        dsdb-admin:
+          name: "Administration"
+          items:
+            dsdb-admin-overview:
+              text: "administration Overview"
+              relativeUrl: dsdb/administration/index.html
+            dsdb-authent&authori:
+              text: "Authentication&Authorization"
+              relativeUrl: dsdb/administration/authentication_and_authorization.html
+            dsdb-backup&restore:
+              text: "Backup&Restore"
+              relativeUrl: dsdb/administration/backup_and_restore.html
+            dsdb-configuration:
+              text: "Configuration"
+              relativeUrl: dsdb/administration/config.html
+            dsdb-logs:
+              text: "Logs"
+              relativeUrl: dsdb/administration/logs.html
+            dsdb-monitoring:
+              text: "Server Monitoring"
+              relativeUrl: dsdb/administration/statistics.html
+            dsdb-upgrade:
+              text: "Upgrading"
+              relativeUrl: dsdb/administration/upgrading.html
+        dsdb-clients:
+          name: "Clients"
+          items:
+            dsdb-clients-overview:
+              text: "Clients Overview"
+              relativeUrl: dsdb/clients/index.html
+            dsdb-clients-httpapi:
+              text: "HTTP API"
+              relativeUrl: dsdb/clients/api.html
+        dsdb-concepts:
+          name: "Concepts"
+          items:
+            dsdb-concepts-overview:
+              text: "Concepts Overview"
+              relativeUrl: dsdb/concepts/index.html
+            dsdb-key-concepts:
+              text: "Key Concepts"
+              relativeUrl: dsdb/concepts/key_concepts.html
+            dsdb-concepts-arch:
+              text: "Architecture"
+              relativeUrl: dsdb/concepts/how_dsdb_works.html
+            dsdb-concepts-schema-data-layout:
+              text: "Scheam Design"
+              relativeUrl: dsdb/concepts/schema_and_data_layout.html
+            dsdb-concepts-insights-tradeoffs:
+              text: "Insights Tradeoffs"
+              relativeUrl: dsdb/concepts/insights_tradeoffs.html
+            dsdb-concepts-api-endpoints:
+              text: "API Endpoints&Ports"
+              relativeUrl: dsdb/concepts/api.html
+            dsdb-concepts-storage-engine:
+              text: "Storage Engine"
+              relativeUrl: dsdb/concepts/storage_engine.html
+            dsdb-concepts-glossary:
+              text: "Glossary of Terms"
+              relativeUrl: dsdb/concepts/glossary.html
+            dsdb-concepts-vs-sql:
+              text: "Comparison to SQL"
+              relativeUrl: dsdb/concepts/crosswalk.html
+        dsdb-datasource:
+          name: "Data Sources"
+          items:
+            dsdb-datasource-diamond:
+              text: "Diamond"
+              relativeUrl: dsdb/data_sources/diamond.html
+            dsdb-datasource-opentsdb:
+              text: "OpenTSDB"
+              relativeUrl: dsdb/data_sources/opentsdb.html
+        dsdb-guides:
+          name: "Guides"
+          relativeUrl: dsdb/guides/
+          items:
+            dsdb-guides-clustering:
+              text: "Clustering"
+              relativeUrl: dsdb/guides/clustering.html
+            dsdb-guides-ddr:
+              text: "Downsampling and Data Retention"
+              relativeUrl: dsdb/guides/downsampling_and_retention.html
+            dsdb-guides-hsg:
+              text: "Hardware Sizing Guidelines"
+              relativeUrl: dsdb/guides/hardware_sizing.html
+            dsdb-guides-querying:
+              text: "Querying Data"
+              relativeUrl: dsdb/guides/querying_data.html
+            dsdb-guides-writing:
+              text: "Writing Data"
+              relativeUrl: dsdb/guides/writing_data.html
+        dsdb-querylang:
+          name: "Query Language"
+          items:
+            dsdb-querylang-overview:
+              text: "Overview"
+              relativeUrl: dsdb/query_language/index.html
+            dsdb-querylang-dataexp:
+              text: "Data Exploration"
+              relativeUrl: dsdb/query_language/data_exploration.html
+            dsdb-querylang-scheamexp:
+              text: "Schema Exploration"
+              relativeUrl: dsdb/query_language/schema_exploration.html
+            dsdb-querylang-func:
+              text: "Functions"
+              relativeUrl: dsdb/query_language/functions.html
+            dsdb-querylang-contq:
+              text: "Continuous Queries"
+              relativeUrl: dsdb/query_language/continuous_queries.html
+            dsdb-querylang-spec:
+              text: "Query Language Reference"
+              relativeUrl: dsdb/query_language/spec.html
+            dsdb-querylang-mgmt:
+              text: "Database Management"
+              relativeUrl: dsdb/query_language/database_management.html
+            dsdb-querylang-math:
+              text: "Mathematical Operators"
+              relativeUrl: dsdb/query_language/math_operators.html
+        dsdb-sampledata:
+          name: "Sample Data"
+          items:
+            dsdb-sampledata-down:
+              text: "Sample Data Download"
+              relativeUrl: dsdb/sample_data/data_download.html
+        dsdb-tools:
+          name: "Tools"
+          relativeUrl: dsdb/tools/
+          items:
+            dsdb-tools-overview:
+              text: "Tools Overview"
+              relativeUrl: dsdb/tools/index.html
+            dsdb-tools-shell:
+              text: "CLI/Shell"
+              relativeUrl: dsdb/tools/shell.html
+            dsdb-tools-webadmin:
+              text: "Web Admin Interface"
+              relativeUrl: dsdb/tools/web_admin.html
+        dsdb-writepro:
+          name: "Write Protocols"
+          relativeUrl: dsdb/write_protocols/
+          items:
+            dsdb-writepro-overview:
+              text: "Overview"
+              relativeUrl: dsdb/write_protocols/index.html
+            dsdb-writepro-line:
+              text: "Line Protocol"
+              relativeUrl: dsdb/write_protocols/line.html
+            dsdb-writepro-syntax:
+              text: "Write Syntax"
+              relativeUrl: dsdb/write_protocols/write_syntax.html
+            dsdb-writepro-json:
+              text: "JSON Protocol"
+              relativeUrl: dsdb/write_protocols/json.html
+            dsdb-writepro-udp:
+              text: "Service - UDP"
+              relativeUrl: dsdb/write_protocols/udp.html
+            dsdb-writepro-graphite:
+              text: "Service - Graphite"
+              relativeUrl: dsdb/write_protocols/graphite.html
+            dsdb-writepro-opentsdb:
+              text: "Servcie - OpenTSDB"
+              relativeUrl: dsdb/write_protocols/opentsdb.html
+            dsdb-writepro-collectd:
+              text: "Service - CollectD"
+              relativeUrl: dsdb/write_protocols/collectd.html
+        dsdb-troubleshoot:
+          name: "Troubleshooting"
+          relativeUrl: dsdb/troubleshooting/
+          items:
+            dsdb-troubleshoot-overview:
+              text: "Troubleshooting Overview"
+              relativeUrl: dsdb/troubleshooting/index.html
+            dsdb-troubleshoot-fei:
+              text: "Frequently Encountered Issues"
+              relativeUrl: dsdb/troubleshooting/frequently_encountered_issues.html
+            dsdb-troubleshoot-monitor:
+              text: "System Monitoring"
+              relativeUrl: dsdb/troubleshooting/system_monitoring.html
+    dsd-dac:
+      name: "DSD API Container(DAC)"
+      items:
+        dac-principal:
+          text: "DAC介绍"
+          relativeUrl: dac/index.html
+        dac-java-api:
+          text: "DAC Java API"
+          relativeUrl: dac/dac_cloud_api_java.html
+        dac-c-api:
+          text: "DAC C API"
+          relativeUrl: dac/dac_cloud_api_c.html
+        dac-cpp-api:
+          text: "DAC C++ API"
+          relativeUrl: dac/dac_cloud_api_cpp.html
+    dsd-datahub:
+      name: "Data Hub"
+      items:
+        datahub-index:
+          text: "Data Hub Overview"
+          relativeUrl: datahub/index.html
+      menu2s:
+        datahub-sdk:
+          name: "SDK"
+          items:
+            datahub-sdk-js:
+              text: "JavaScript"
+              relativeUrl: datahub/sdk/javascript.html
+            datahub-sdk-embededc:
+              text: "Embeded C"
+              relativeUrl: datahub/sdk/embeded_c.html

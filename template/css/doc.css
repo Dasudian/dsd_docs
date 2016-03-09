@@ -1,0 +1,69 @@
+.doc {
+	font-size: 1.2em;
+}
+
+.doc h1 {
+	font-size: 3em;
+	padding-bottom:5px;
+	border-bottom:1px solid #999;
+}
+
+.doc h2 {
+	font-size: 2.4em;
+}
+
+.doc h3 {
+	font-size: 1.8em;
+}
+
+.doc h4 {
+	font-size: 1.5em;
+}
+
+.doc h5 {
+	font-size: 1.2em;
+}
+
+.doc li {
+	list-style-type: square;
+	margin-left: 40px;
+	padding-left: 5px;
+}
+
+pre {
+  overflow: auto;
+}
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+pre code {
+  padding: 0;
+  font-size: inherit;
+  color: inherit;
+  white-space: pre-wrap;
+  background-color: transparent;
+  border-radius: 0;
+}
+
+.doc table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.doc th, .doc td {
+	border: 1px solid #98bf21;
+	padding: 3px 7px 2px 7px;
+}
+
+.doc th {
+	text-align: left;
+	padding-top: 5px;
+	padding-bottom: 4px;
+	background-color: #A7c942;
+	color: #ffffff;
+}
