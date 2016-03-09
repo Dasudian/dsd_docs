@@ -150,12 +150,6 @@ menu:
             dsdb-datasource-opentsdb:
               text: "OpenTSDB"
               relativeUrl: dsdb/data_sources/opentsdb.html
-            dsdb-datasource-carbon:
-              text: "Carbon"
-              relativeUrl: dsdb/data_sources/carbon.html
-            dsdb-datasource-collectd:
-              text: "Collectd"
-              relativeUrl: dsdb/data_sources/collectd.html
         dsdb-guides:
           name: "Guides"
           relativeUrl: dsdb/guides/
@@ -221,18 +215,6 @@ menu:
             dsdb-tools-webadmin:
               text: "Web Admin Interface"
               relativeUrl: dsdb/tools/web_admin.html
-            dsdb-tools-grafana:
-              text: "Grafana Dashboards"
-              relativeUrl: dsdb/tools/grafana.html
-            dsdb-tools-telegraf:
-              text: "Telegraf Metrics Collection"
-              relativeUrl: dsdb/tools/telegraf.html
-            dsdb-tools-chronograf:
-              text: "Chronograf Dashboards"
-              relativeUrl: dsdb/tools/chronograf.html
-            dsdb-tools-kapacitor:
-              text: "Kapacitor Monitoring"
-              relativeUrl: dsdb/tools/kapacitor.html
         dsdb-writepro:
           name: "Write Protocols"
           relativeUrl: dsdb/write_protocols/

@@ -4,12 +4,12 @@ currentMenu: dsdb-overview
 parent1: dsd-dsdb
 ---
 
-## DSDB Documentation
+# DSDB Documentation
 
 DSDB is a [time series database](https://en.wikipedia.org/wiki/Time_series_database) built from the ground up to handle high write and query loads.
 DSDB is meant to be used as a backing store for any use case involving large amounts of timestamped data, including DevOps monitoring, application metrics, IoT sensor data, and real-time analytics.
 
-### Key Features
+## Key Features
 
 Here are some of the features that DSDB currently supports that make it a great choice for working with time series data.
 
@@ -27,7 +27,7 @@ Nothing else is needed to make data highly available (unlike Redis, ZooKeeper, C
 * Continuous queries automatically compute aggregate data to make frequent queries more efficient.
 * Built in web admin interface.
 
-### Project Status
+## Project Status
 
 * Clustering, replication, and high-availability are in a beta state.
 * The query engine is not optimized for the new TSM engine.

@@ -5,7 +5,7 @@ parent2: dsdb-querylang
 parent1: dsd-dsdb
 ---
 
-## Data Exploration
+# Data Exploration
 
 DSDBQL is an SQL-like query language for interacting with data in DSDB.
 The following sections cover useful query syntax for exploring your data.
@@ -45,7 +45,7 @@ General tips on query syntax:
 The examples below query data using [DSDB's Command Line Interface (CLI)](/dsdb/tools/shell.md).
 See the [Querying Data](/dsdb/guides/querying_data.md) guide for how to query data directly using the HTTP API.
 
-##### Sample data
+#### Sample data
 <br>
 If you'd like to follow along with the queries in this document, see [Sample Data](/dsdb/sample_data/data_download.md) for how to download and write the data to DSDB.
 
@@ -75,13 +75,13 @@ All of the data are in the `NOAA_water_database` database.
 
 > **Disclaimer:** The `level description` field isn't part of the original NOAA data - we snuck it in there for the sake of having a field key with a special character and string [field values](/dsdb/concepts/glossary.md#field-value).
 
-### The SELECT statement and the `WHERE` clause
+## The SELECT statement and the `WHERE` clause
 DSDBQL's `SELECT` statement follows the form of an SQL `SELECT` statement where the `WHERE` clause is optional:
 ```sql
 SELECT <stuff> FROM <measurement_name> WHERE <some_conditions>
 ```  
 
-#### The basic `SELECT` statement
+### The basic `SELECT` statement
 ---
 The following three examples return everything from the measurement `h2o_feet` (see the CLI response at the end of this section).
 While they all return the same result, they get to that result in slightly different ways and serve to introduce some of the specifics of the `SELECT` syntax:
@@ -127,7 +127,7 @@ time			                 level description	      location	       water_level
 2015-09-18T21:42:00Z	   between 3 and 6 feet	   santa_monica	   4.938
 ```
 
-#### The `SELECT` statement and arithmetic
+### The `SELECT` statement and arithmetic
 ---
 Perform basic arithmetic operations on fields that store floats and integers.
 
@@ -166,7 +166,7 @@ time
 > **Note:** When performing arithmetic on fields that store integers be aware that DSDB casts those integers to floats for all mathematical operations.
 This can lead to [overflow issues](/dsdb/troubleshooting/frequently_encountered_issues.md#working-with-really-big-or-really-small-integers) for some numbers.
 
-#### The `WHERE` clause
+### The `WHERE` clause
 ---
 Use a `WHERE` clause to filter your data based on tags, time ranges, and/or field values.
 
@@ -226,14 +226,14 @@ It supports using regular expressions to match tags, but not to match fields.
 `=~` matches against  
 `!~` doesn't match against  
 
-### The GROUP BY clause
+## The GROUP BY clause
 
 Use the `GROUP BY` clause to group data by tags and/or time intervals.
 To successfully implement `GROUP BY`,  append the`GROUP BY` clause to a `SELECT` statement and pair the `SELECT` statement with one of DSDBQL's [functions](/dsdb/query_language/functions.md).
 
 > **Note:** If your query includes both a `WHERE` clause and a `GROUP BY` clause, the `GROUP BY` clause must come after the `WHERE` clause.
 
-#### The basic `GROUP BY` clause
+### The basic `GROUP BY` clause
 ---
 **GROUP BY tag values**  
 Calculate the [`MEAN()`](../query_language/functions.html#mean) `water_level` for the different tag values of `location`:
@@ -356,7 +356,7 @@ Calculate the average `water_level` for the different tag values of `location` i
 ```
 * Separate multiple `GROUP BY` arguments with a comma.
 
-#### The `GROUP BY` clause and `fill()`
+### The `GROUP BY` clause and `fill()`
 ---
 By default, a `GROUP BY` interval with no data has `null` as its value in the output column.
 Use `fill()` to change the value reported for intervals that have no data.
@@ -418,8 +418,8 @@ time			mean
 
 > **Note:** If you're `GROUP(ing) BY` several things (for example, both tags and a time interval) `fill()` must go at the end of the `GROUP BY` clause.
 
-### The INTO clause
-#### Relocate data
+## The INTO clause
+### Relocate data
 Copy data to another database, retention policy, and measurement with the `INTO` clause:
 ```sql
 SELECT <field_key> INTO <different_measurement> FROM <current_measurement> [WHERE <stuff>] [GROUP BY <stuff>]
@@ -455,7 +455,7 @@ time			               written
 This can cause DSDB to overwrite points that were previously differentiated by a tag value.
 Use `GROUP BY <tag_key>` to preserve tags as tags.
 
-#### Downsample data
+### Downsample data
 Combine the `INTO` clause with an DSDBQL [function](/dsdb/query_language/functions.md) and a `GROUP BY` clause to write the lower precision query results to a different measurement:
 ```sql
 SELECT <function>(<field_key>) INTO <different_measurement> FROM <current_measurement> WHERE <stuff> GROUP BY <stuff>
@@ -551,7 +551,7 @@ Depending on the frequency of your data, the query results may be missing time i
 Use [fill()](/dsdb/query_language/data_exploration.md#the-group-by-clause-and-fill) to ensure that every time interval appears in the results.
 * The number of writes in the CLI response includes one write for every time interval in the query's time range even if there is no data for some of the time intervals.
 
-### Limit query returns with LIMIT and SLIMIT
+## Limit query returns with LIMIT and SLIMIT
 DSDBQL supports two different clauses to limit your query results.
 Currently, they are mutually exclusive so you may use one or the other, but not both in the same query.
 
@@ -559,7 +559,7 @@ Currently, they are mutually exclusive so you may use one or the other, but not 
 See [GitHub Issue #4232](https://github.com/dsdb/dsdb/issues/4232) for more information.
 </dt>
 
-#### Limit the number of results returned per series with `LIMIT`
+### Limit the number of results returned per series with `LIMIT`
 ---
 Use `LIMIT <N>` with `SELECT` and `GROUP BY *` to return the first N points from each series.
 
@@ -589,7 +589,7 @@ time			              water_level
 
 > **Note:** If N is greater than the number of points in the series, DSDB returns all points in the series.
 
-#### Limit the number of series returned with `SLIMIT`
+### Limit the number of series returned with `SLIMIT`
 ---
 Use `SLIMIT <N>` with `SELECT` and `GROUP BY *` to return every point from N [series](/dsdb/concepts/glossary.md#series).
 
@@ -615,7 +615,7 @@ time			              water_level
 
 > **Note:** If N is greater than the number of series associated with the specified measurement, DSDB returns all points from every series.
 
-### Sort query returns with ORDER BY time DESC
+## Sort query returns with ORDER BY time DESC
 By default, DSDB returns results in ascending time order - so the first points that are returned are the oldest points by timestamp.
 Use `ORDER BY time DESC` to see the newest points by timestamp.
 
@@ -681,7 +681,7 @@ time			water_level
 2015-09-18T21:18:00Z	5.072
 ```
 
-### Paginate query returns with OFFSET
+## Paginate query returns with OFFSET
 Use `OFFSET` to paginate the results returned.
 For example, get the first three points written to a series:
 
@@ -715,7 +715,7 @@ time			water_level
 2015-08-18T00:30:00Z	7.5
 ```
 
-### Multiple statements in queries
+## Multiple statements in queries
 
 Separate multiple statements in a query with a semicolon.
 For example:
@@ -725,7 +725,7 @@ For example:
 > SELECT mean(water_level) FROM h2o_feet WHERE time > now() - 2w GROUP BY location,time(24h) fill(none); SELECT count(water_level) FROM h2o_feet WHERE time > now() - 2w GROUP BY location,time(24h) fill(80)
 ```
 
-### Merge series in queries
+## Merge series in queries
 
 In DSDB, queries merge series automatically.
 
@@ -763,12 +763,12 @@ time			              mean
 > **NOTE:** In DSDB, [epoch 0](https://en.wikipedia.org/wiki/Unix_time) (`1970-01-01T00:00:00Z`) is often used as a null timestamp equivalent.
 If you request a query that has no timestamp to return, such as an aggregation function with an unbounded time range, DSDB returns epoch 0 as the timestamp.
 
-### Time syntax in queries  
+## Time syntax in queries  
 DSDB is a time series database so, unsurprisingly, DSDBQL has a lot to do with specifying time ranges.
 If you do not specify start and end times in your query, they default to epoch 0 (`1970-01-01T00:00:00Z`) and `now()`.
 The following sections detail how to specify different start and end times in queries.
 
-#### Relative time
+### Relative time
 ---
 `now()` is the Unix time of the server at the time the query is executed on that server.
 Use `now()` to calculate a timestamp relative to the server's
@@ -795,7 +795,7 @@ The other options for specifying time durations with `now()` are listed below.
 `d` days  
 `w` weeks   
 
-#### Absolute time
+### Absolute time
 ---
 **Date time strings**  
 Specify time with date time strings.
@@ -826,7 +826,7 @@ Return all points that occur after  `2014-01-01 00:00:00`:
 > SELECT * FROM h2o_feet WHERE time > 1388534400s
 ```
 
-### Regular expressions in queries
+## Regular expressions in queries
 
 Regular expressions are surrounded by `/` characters and use [Golang's regular expression syntax](http://golang.org/pkg/regexp/syntax.md).
 Use regular expressions when selecting measurements and tags.
@@ -838,7 +838,7 @@ The [sample data](/dsdb/query_language/data_exploration.md#sample-data) need to 
 Assume that the database `NOAA_water_database` now holds several measurements: `h2o_feet`, `h2o_quality`, `h2o_pH`, `average_temperature`, and `h2o_temperature`.
 Please note that every measurement besides `h2o_feet` is fictional and contains fictional data.
 
-#### Regular expressions and selecting measurements
+### Regular expressions and selecting measurements
 ---
 Select the oldest point from every measurement in the `NOAA_water_database` database:
 ```sql
@@ -940,7 +940,7 @@ time			              degrees	location
 2015-08-18T00:12:00Z	68	     coyote_creek
 ```
 
-#### Regular expressions and specifying tags
+### Regular expressions and specifying tags
 ---
 Use regular expressions to specify tags in the `WHERE` clause.
 The relevant comparators include:  

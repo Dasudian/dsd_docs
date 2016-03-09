@@ -5,9 +5,9 @@ parent2: dsdb-querylang
 parent1: dsd-dsdb
 ---
 
-## Query Language Reference
+# Query Language Reference
 
-### Introduction
+## Introduction
 
 This is a reference for the DSDB Query Language ("DSDBQL").
 If you're looking for less formal documentation see [Data Exploration](/dsdb/query_language/data_exploration.md), [Schema Exploration](/dsdb/query_language/schema_exploration.md), [Database Management](/dsdb/query_language/database_management.md), and [Authentication and Authorization](/dsdb/administration/authentication_and_authorization.md).
@@ -29,7 +29,7 @@ Sections:
 * [Expressions](/dsdb/query_language/spec.md#expressions)
 * [Other](/dsdb/query_language/spec.md#other)
 
-### Notation
+## Notation
 
 The syntax is specified using Extended Backus-Naur Form ("EBNF").
 EBNF is the same notation used in the [Go](http://golang.org) programming language specification, which can be found [here](https://golang.org/ref/spec).
@@ -54,9 +54,9 @@ Notation operators in order of increasing precedence:
 {}  repetition (0 to n times)
 ```
 
-### Query representation
+## Query representation
 
-#### Characters
+### Characters
 
 DSDBQL is Unicode text encoded in [UTF-8](http://en.wikipedia.org/wiki/UTF-8).
 
@@ -65,7 +65,7 @@ newline             = /* the Unicode code point U+000A */ .
 unicode_char        = /* an arbitrary Unicode code point except newline */ .
 ```
 
-### Letters and digits
+## Letters and digits
 
 Letters are the set of ASCII characters plus the underscore character _ (U+005F) is considered a letter.
 
@@ -77,7 +77,7 @@ ascii_letter        = "A" … "Z" | "a" … "z" .
 digit               = "0" … "9" .
 ```
 
-### Identifiers
+## Identifiers
 
 Identifiers are tokens which refer to [database](/dsdb/concepts/glossary.md#database) names, [retention policy](/dsdb/concepts/glossary.md#retention-policy-rp) names, [user](/dsdb/concepts/glossary.md#user) names, [measurement](/dsdb/concepts/glossary.md#measurement) names, [tag keys](/dsdb/concepts/glossary.md#tag-key), and [field keys](/dsdb/concepts/glossary.md#field-key).
 
@@ -94,7 +94,7 @@ unquoted_identifier = ( letter ) { letter | digit } .
 quoted_identifier   = `"` unicode_char { unicode_char } `"` .
 ```
 
-##### Examples:
+#### Examples:
 
 ```
 cpu
@@ -104,7 +104,7 @@ _cpu_stats
 "1_Crazy-1337.identifier>NAME👍"
 ```
 
-### Keywords
+## Keywords
 
 ```
 ALL           ALTER         ANY           AS            ASC           BEGIN
@@ -122,9 +122,9 @@ SOFFSET       STATS         SUBSCRIPTION  SUBSCRIPTIONS TAG           TO
 USER          USERS         VALUES        WHERE         WITH          WRITE
 ```
 
-### Literals
+## Literals
 
-#### Integers
+### Integers
 
 DSDBQL supports decimal integer literals.
 Hexadecimal and octal literals are not currently supported.
@@ -133,7 +133,7 @@ Hexadecimal and octal literals are not currently supported.
 int_lit             = ( "1" … "9" ) { digit } .
 ```
 
-#### Floats
+### Floats
 
 DSDBQL supports floating-point literals.
 Exponents are not currently supported.
@@ -142,7 +142,7 @@ Exponents are not currently supported.
 float_lit           = int_lit "." int_lit .
 ```
 
-#### Strings
+### Strings
 
 String literals must be surrounded by single quotes.
 Strings may contain `'` characters as long as they are escaped (i.e., `\'`).
@@ -151,12 +151,12 @@ Strings may contain `'` characters as long as they are escaped (i.e., `\'`).
 string_lit          = `'` { unicode_char } `'`' .
 ```
 
-#### Durations
+### Durations
 
 Duration literals specify a length of time.
 An integer literal followed immediately (with no spaces) by a duration unit listed below is interpreted as a duration literal.
 
-##### Duration units
+#### Duration units
 
 | Units  | Meaning                                 |
 |:-------|:----------------------------------------|
@@ -174,7 +174,7 @@ duration_lit        = int_lit duration_unit .
 duration_unit       = "u" | "µ" | "s" | "h" | "d" | "w" | "ms" .
 ```
 
-#### Dates & Times
+### Dates & Times
 
 The date and time literal format is not specified in EBNF like the rest of this document.
 It is specified using Go's date / time parsing format, which is a reference date written in the format required by DSDBQL.
@@ -186,13 +186,13 @@ DSDBQL reference date time: January 2nd, 2006 at 3:04:05 PM
 time_lit            = "2006-01-02 15:04:05.999999" | "2006-01-02"
 ```
 
-#### Booleans
+### Booleans
 
 ```
 bool_lit            = TRUE | FALSE .
 ```
 
-#### Regular Expressions
+### Regular Expressions
 
 ```
 regex_lit           = "/" { unicode_char } "/" .
@@ -205,7 +205,7 @@ regex_lit           = "/" { unicode_char } "/" .
 > **Note:** Use regular expressions to match measurements and tags.
 You cannot use regular expressions to match databases, retention policies, or fields.
 
-### Queries
+## Queries
 
 A query is composed of one or more statements separated by a semicolon.
 
@@ -244,9 +244,9 @@ statement           = alter_retention_policy_stmt |
                       select_stmt .
 ```
 
-### Statements
+## Statements
 
-#### ALTER RETENTION POLICY
+### ALTER RETENTION POLICY
 
 ```
 alter_retention_policy_stmt  = "ALTER RETENTION POLICY" policy_name on_clause
@@ -255,7 +255,7 @@ alter_retention_policy_stmt  = "ALTER RETENTION POLICY" policy_name on_clause
                                [ retention_policy_option ] .
 ```
 
-##### Examples:
+#### Examples:
 
 ```sql
 -- Set default retention policy for mydb to 1h.cpu.
@@ -265,7 +265,7 @@ ALTER RETENTION POLICY "1h.cpu" ON mydb DEFAULT
 ALTER RETENTION POLICY policy1 ON somedb DURATION 1h REPLICATION 4
 ```
 
-#### CREATE CONTINUOUS QUERY
+### CREATE CONTINUOUS QUERY
 
 ```
 create_continuous_query_stmt = "CREATE CONTINUOUS QUERY" query_name on_clause
@@ -279,7 +279,7 @@ every_stmt                   = "EVERY" duration_lit
 for_stmt                     = "FOR" duration_lit
 ```
 
-##### Examples:
+#### Examples:
 
 ```sql
 -- selects from default retention policy and writes into 6_months retention policy
@@ -315,13 +315,13 @@ BEGIN
 END;
 ```
 
-#### CREATE DATABASE
+### CREATE DATABASE
 
 ```
 create_database_stmt = "CREATE DATABASE" ["IF NOT EXISTS"] db_name
 ```
 
-##### Examples:
+#### Examples:
 
 ```sql
 CREATE DATABASE foo
@@ -330,7 +330,7 @@ CREATE DATABASE foo
 CREATE DATABASE IF NOT EXISTS foo
 ```
 
-#### CREATE RETENTION POLICY
+### CREATE RETENTION POLICY
 
 ```
 create_retention_policy_stmt = "CREATE RETENTION POLICY" policy_name on_clause
@@ -339,7 +339,7 @@ create_retention_policy_stmt = "CREATE RETENTION POLICY" policy_name on_clause
                                [ "DEFAULT" ] .
 ```
 
-##### Examples
+#### Examples
 
 ```sql
 -- Create a retention policy.
@@ -349,7 +349,7 @@ CREATE RETENTION POLICY "10m.events" ON somedb DURATION 10m REPLICATION 2
 CREATE RETENTION POLICY "10m.events" ON somedb DURATION 10m REPLICATION 2 DEFAULT
 ```
 
-#### CREATE SUBSCRIPTION
+### CREATE SUBSCRIPTION
 
 Subscriptions tell DSDB to send all the data it receives to [Kapacitor](https://docs.influxdata.com/kapacitor/introduction.md).
 
@@ -357,7 +357,7 @@ Subscriptions tell DSDB to send all the data it receives to [Kapacitor](https://
 create_subscription_stmt = "CREATE SUBSCRIPTION" subscription_name "ON" db_name "." retention_policy "DESTINATIONS" ("ANY"|"ALL") host { "," host} .
 ```
 
-##### Examples:
+#### Examples:
 ```sql
 -- Create a SUBSCRIPTION on database 'mydb' and retention policy 'default' that send data to 'example.com:9090' via UDP.
 CREATE SUBSCRIPTION sub0 ON "mydb"."default" DESTINATIONS ALL 'udp://example.com:9090'
@@ -366,14 +366,14 @@ CREATE SUBSCRIPTION sub0 ON "mydb"."default" DESTINATIONS ALL 'udp://example.com
 CREATE SUBSCRIPTION sub0 ON "mydb"."default" DESTINATIONS ANY 'udp://h1.example.com:9090', 'udp://h2.example.com:9090'
 ```
 
-#### CREATE USER
+### CREATE USER
 
 ```
 create_user_stmt = "CREATE USER" user_name "WITH PASSWORD" password
                    [ "WITH ALL PRIVILEGES" ] .
 ```
 
-##### Examples:
+#### Examples:
 ```sql
 -- Create a normal database user.
 CREATE USER jdoe WITH PASSWORD '1337password'
@@ -385,25 +385,25 @@ CREATE USER jdoe WITH PASSWORD '1337password' WITH ALL PRIVILEGES
 
 > **Note:** The password string must be wrapped in single quotes.
 
-#### DROP CONTINUOUS QUERY
+### DROP CONTINUOUS QUERY
 
 ```
 drop_continuous_query_stmt = "DROP CONTINUOUS QUERY" query_name "ON" db_name.
 ```
 
-##### Example:
+#### Example:
 
 ```sql
 DROP CONTINUOUS QUERY myquery ON mydb
 ```
 
-#### DROP DATABASE
+### DROP DATABASE
 
 ```
 drop_database_stmt = "DROP DATABASE" ["IF EXISTS"] db_name .
 ```
 
-##### Example:
+#### Example:
 
 ```sql
 DROP DATABASE mydb
@@ -412,69 +412,69 @@ DROP DATABASE mydb
 DROP DATABASE IF EXISTS mydb
 ```
 
-#### DROP MEASUREMENT
+### DROP MEASUREMENT
 
 ```
 drop_measurement_stmt = "DROP MEASUREMENT" measurement .
 ```
 
-##### Examples:
+#### Examples:
 
 ```sql
 -- drop the cpu measurement
 DROP MEASUREMENT cpu
 ```
 
-#### DROP RETENTION POLICY
+### DROP RETENTION POLICY
 
 ```
 drop_retention_policy_stmt = "DROP RETENTION POLICY" policy_name on_clause .
 ```
 
-##### Example:
+#### Example:
 
 ```sql
 -- drop the retention policy named 1h.cpu from mydb
 DROP RETENTION POLICY "1h.cpu" ON mydb
 ```
 
-#### DROP SERIES
+### DROP SERIES
 
 ```
 drop_series_stmt = "DROP SERIES" ( from_clause | where_clause | from_clause where_clause ) .
 ```
 
-##### Example:
+#### Example:
 
 ```sql
 
 ```
 
-#### DROP SUBSCRIPTION
+### DROP SUBSCRIPTION
 
 ```
 drop_subscription_stmt = "DROP SUBSCRIPTION" subscription_name "ON" db_name "." retention_policy .
 ```
 
-##### Example:
+#### Example:
 
 ```sql
 DROP SUBSCRIPTION sub0 ON "mydb"."default"
 ```
 
-#### DROP USER
+### DROP USER
 
 ```
 drop_user_stmt = "DROP USER" user_name .
 ```
 
-##### Example:
+#### Example:
 
 ```sql
 DROP USER jdoe
 ```
 
-#### GRANT
+### GRANT
 
 > **NOTE:** Users can be granted privileges on databases that do not exist.
 
@@ -482,7 +482,7 @@ DROP USER jdoe
 grant_stmt = "GRANT" privilege [ on_clause ] to_clause
 ```
 
-##### Examples:
+#### Examples:
 
 ```sql
 -- grant cluster admin privileges
@@ -492,39 +492,39 @@ GRANT ALL TO jdoe
 GRANT READ ON mydb TO jdoe
 ```
 
-#### SHOW CONTINUOUS QUERIES
+### SHOW CONTINUOUS QUERIES
 
 ```
 show_continuous_queries_stmt = "SHOW CONTINUOUS QUERIES" .
 ```
 
-##### Example:
+#### Example:
 
 ```sql
 -- show all continuous queries
 SHOW CONTINUOUS QUERIES
 ```
 
-#### SHOW DATABASES
+### SHOW DATABASES
 
 ```
 show_databases_stmt = "SHOW DATABASES" .
 ```
 
-##### Example:
+#### Example:
 
 ```sql
 -- show all databases
 SHOW DATABASES
 ```
 
-#### SHOW FIELD KEYS
+### SHOW FIELD KEYS
 
 ```
 show_field_keys_stmt = "SHOW FIELD KEYS" [ from_clause ] .
 ```
 
-##### Examples:
+#### Examples:
 
 ```sql
 -- show field keys from all measurements
@@ -534,20 +534,20 @@ SHOW FIELD KEYS
 SHOW FIELD KEYS FROM cpu
 ```
 
-#### SHOW GRANTS
+### SHOW GRANTS
 
 ```
 show_grants_stmt = "SHOW GRANTS FOR" user_name .
 ```
 
-##### Example:
+#### Example:
 
 ```sql
 -- show grants for jdoe
 SHOW GRANTS FOR jdoe
 ```
 
-#### SHOW MEASUREMENTS
+### SHOW MEASUREMENTS
 
 ```
 show_measurements_stmt = "SHOW MEASUREMENTS" [ with_measurement_clause ] [ where_clause ] [ limit_clause ] [ offset_clause ] .
@@ -564,75 +564,75 @@ SHOW MEASUREMENTS WHERE region = 'uswest' AND host = 'serverA'
 SHOW MEASUREMENTS WITH MEASUREMENT =~ /h2o.*/
 ```
 
-#### SHOW RETENTION POLICIES
+### SHOW RETENTION POLICIES
 
 ```
 show_retention_policies = "SHOW RETENTION POLICIES" on_clause .
 ```
 
-##### Example:
+#### Example:
 
 ```sql
 -- show all retention policies on a database
 SHOW RETENTION POLICIES ON mydb
 ```
 
-#### SHOW SERIES
+### SHOW SERIES
 
 ```
 show_series_stmt = "SHOW SERIES" [ from_clause ] [ where_clause ] [ limit_clause ] [ offset_clause ] .
 ```
 
-##### Example:
+#### Example:
 
 ```sql
 
 ```
 
-#### SHOW SHARD GROUPS
+### SHOW SHARD GROUPS
 
 ```
 show_shard_groups_stmt = "SHOW SHARD GROUPS" .
 ```
 
-##### Example:
+#### Example:
 
 ```sql
 SHOW SHARD GROUPS
 ```
 
-#### SHOW SHARDS
+### SHOW SHARDS
 
 ```
 show_shards_stmt = "SHOW SHARDS" .
 ```
 
-##### Example:
+#### Example:
 
 ```sql
 SHOW SHARDS
 ```
 
-#### SHOW SUBSCRIPTIONS
+### SHOW SUBSCRIPTIONS
 
 ```
 show_subscriptions_stmt = "SHOW SUBSCRIPTIONS" .
 ```
 
-##### Example:
+#### Example:
 
 ```sql
 SHOW SUBSCRIPTIONS
 ```
 
-#### SHOW TAG KEYS
+### SHOW TAG KEYS
 
 ```
 show_tag_keys_stmt = "SHOW TAG KEYS" [ from_clause ] [ where_clause ] [ group_by_clause ]
                      [ limit_clause ] [ offset_clause ] .
 ```
 
-##### Examples:
+#### Examples:
 
 ```sql
 -- show all tag keys
@@ -648,14 +648,14 @@ SHOW TAG KEYS FROM cpu WHERE region = 'uswest'
 SHOW TAG KEYS WHERE host = 'serverA'
 ```
 
-#### SHOW TAG VALUES
+### SHOW TAG VALUES
 
 ```
 show_tag_values_stmt = "SHOW TAG VALUES" [ from_clause ] with_tag_clause [ where_clause ]
                        [ group_by_clause ] [ limit_clause ] [ offset_clause ] .
 ```
 
-##### Examples:
+#### Examples:
 
 ```sql
 -- show all tag values across all measurements for the region tag
@@ -668,26 +668,26 @@ SHOW TAG VALUES FROM cpu WITH KEY = 'region'
 SHOW TAG VALUES FROM cpu WITH KEY IN (region, host) WHERE service = 'redis'
 ```
 
-#### SHOW USERS
+### SHOW USERS
 
 ```
 show_users_stmt = "SHOW USERS" .
 ```
 
-##### Example:
+#### Example:
 
 ```sql
 -- show all users
 SHOW USERS
 ```
 
-#### REVOKE
+### REVOKE
 
 ```
 revoke_stmt = "REVOKE" privilege [ on_clause ] "FROM" user_name .
 ```
 
-##### Examples:
+#### Examples:
 
 ```sql
 -- revoke cluster admin from jdoe
@@ -697,7 +697,7 @@ REVOKE ALL PRIVILEGES FROM jdoe
 REVOKE READ ON mydb FROM jdoe
 ```
 
-#### SELECT
+### SELECT
 
 ```
 select_stmt = "SELECT" fields from_clause [ into_clause ] [ where_clause ]
@@ -705,7 +705,7 @@ select_stmt = "SELECT" fields from_clause [ into_clause ] [ where_clause ]
               [ offset_clause ] [ slimit_clause ] [ soffset_clause ] .
 ```
 
-##### Examples:
+#### Examples:
 
 ```sql
 -- select mean value from the cpu measurement where region = 'uswest' grouped by 10 minute intervals
@@ -715,7 +715,7 @@ SELECT mean(value) FROM cpu WHERE region = 'uswest' GROUP BY time(10m) fill(0)
 SELECT mean(value) INTO cpu_1h.:MEASUREMENT FROM /cpu.*/
 ```
 
-### Clauses
+## Clauses
 
 ```
 from_clause     = "FROM" measurements .
@@ -745,7 +745,7 @@ with_measurement_clause = "WITH MEASUREMENT" ( "=" measurement | "=~" regex_lit 
 with_tag_clause = "WITH KEY" ( "=" tag_key | "IN (" tag_keys ")" ) .
 ```
 
-### Expressions
+## Expressions
 
 ```
 binary_op        = "+" | "-" | "*" | "/" | "AND" | "OR" | "=" | "!=" | "<" |
@@ -757,7 +757,7 @@ unary_expr       = "(" expr ")" | var_ref | time_lit | string_lit | int_lit |
                    float_lit | bool_lit | duration_lit | regex_lit .
 ```
 
-### Other
+## Other
 
 ```
 alias            = "AS" identifier .

@@ -5,11 +5,11 @@ parent2: dsdb-sampledata
 parent1: dsd-dsdb
 ---
 
-## Sample Data
+# Sample Data
 
 Download and write to any DSDB installation the sample data used in [Data Exploration](/dsdb/query_language/data_exploration.html), [Schema Exploration](/dsdb/query_language/schema_exploration.html), and [Functions](/dsdb/query_language/functions.html).
 
-#### Download and write the data to DSDB
+### Download and write the data to DSDB
 The following instructions are compatible with DSDB versions 0.9.5+.
 
 From your terminal, download the text file that contains the data in [line protocol](/dsdb/write_protocols/line.html) format:
@@ -22,7 +22,7 @@ Write the data to DSDB via the [CLI](/dsdb/tools/shell.html):
 influx -import -path=NOAA_data.txt -precision=s
 ```
 
-#### Test queries
+### Test queries
 See all five measurements:
 ```sh
 > SHOW measurements
@@ -59,7 +59,7 @@ time			                 level description	      location	       water_level
 2015-08-18T00:12:00Z	   between 6 and 9 feet	   coyote_creek	   7.887
 ```
 
-#### Data sources and things to note
+### Data sources and things to note
 The sample data are publicly available data from the [National Oceanic and Atmospheric Administration’s (NOAA) Center for Operational Oceanographic Products and Services](http://tidesandcurrents.noaa.gov/stations.html?type=Water+Levels).
 The data include 15,258 observations of water levels (ft) collected every six seconds at two stations (Santa Monica, CA (ID 9410840) and Coyote Creek, CA (ID 9414575)) over the period from August 18, 2015 through September 18, 2015.
 

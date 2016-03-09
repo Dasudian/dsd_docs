@@ -5,7 +5,7 @@ parent2: dsdb-admin
 parent1: dsd-dsdb
 ---
 
-## Authentication and Authorization
+# Authentication and Authorization
 
 This document covers setting up and managing authentication and authorization in DSDB.
 
@@ -42,7 +42,7 @@ This document covers setting up and managing authentication and authorization in
 > **Note:** Authentication and authorization should not be relied upon to prevent access and protect data from malicious actors.
 If additional security or compliance features are desired, DSDB should be run behind a third-party service.
 
-### Authentication
+## Authentication
 
 DSDB's HTTP API and the command line interface (CLI), which connects to the database using the API, include simple, built-in authentication based on user credentials.
 When you enable authentication DSDB only executes HTTP requests that are sent with valid credentials.
@@ -51,7 +51,7 @@ When you enable authentication DSDB only executes HTTP requests that are sent wi
 > **Note:** Authentication only occurs at the HTTP request scope.
 Plugins do not currently have the ability to authenticate requests and service endpoints (for example, Graphite, collectd, etc.) are not authenticated.
 
-#### Set up authentication
+### Set up authentication
 ---
 1. Create at least one [admin user](/dsdb/administration/authentication_and_authorization.md#admin-users).
 See the [authorization section](/dsdb/administration/authentication_and_authorization.md#authorization) for how to create an admin user.
@@ -63,7 +63,7 @@ Enable authentication by setting the `auth-enabled` option to `true` in the `[ht
 [http]  
   enabled = true  
   bind-address = ":8088"  
- auth-enabled = true ## ✨
+ auth-enabled = true # ✨
   log-enabled = true  
   write-tracing = false  
   pprof-enabled = false  
@@ -77,9 +77,9 @@ Now DSDB will check user credentials on every request and will only process requ
 
 > **Note:** If you enable authentication and have no users, DSDB will **not** enforce authentication until you create the first admin user, and DSDB will only accept the [query](/dsdb/administration/authentication_and_authorization.md#create-a-new-admin-user) that creates an admin user.
 
-#### Authenticating requests
+### Authenticating requests
 ---
-##### Authenticate using the HTTP API
+#### Authenticate using the HTTP API
 There are two options for authenticating with the HTTP API.
 
 
@@ -108,7 +108,7 @@ If you authenticate with both Basic Authentication **and** the URL query paramet
 
 > **Note:** DSDB redacts passwords when you enable authentication. 
 
-##### Authenticate using the CLI
+#### Authenticate using the CLI
 There are two options for authenticating with the CLI.
 
 * Authenticate with `auth <username> <password>` after starting the CLI.
@@ -131,13 +131,13 @@ DSDB shell 0.9.1
 influx -username todd -password dsdb4ever
     ```
 
-### Authorization
+## Authorization
 Authorization is only enforced once you've [enabled authentication](/dsdb/administration/authentication_and_authorization.md#set-up-authentication).
 By default, authentication is disabled, all credentials are silently ignored, and all users have all privileges.
 
-#### User types and their privileges
+### User types and their privileges
 ---
-##### Admin users
+#### Admin users
 Admin users have `READ` and `WRITE` access to all databases and full access to the following administrative queries:
 
 Database management:  
@@ -158,7 +158,7 @@ User management:
 
 See [below](/dsdb/administration/authentication_and_authorization.md#user-management-commands) for a complete discussion of the user management commands.
 
-##### Non-admin users
+#### Non-admin users
 Non-admin users can have one of the following three privileges per database:  
 &nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`READ`  
 &nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`WRITE`  
@@ -167,10 +167,10 @@ Non-admin users can have one of the following three privileges per database:
 `READ`, `WRITE`, and `ALL` privileges are controlled per user per database.
 A new non-admin user has no access to any database until they are specifically [granted privileges to a database](/dsdb/administration/authentication_and_authorization.md#grant-read-write-or-all-database-privileges-to-an-existing-user) by an admin user.
 
-#### User management commands
+### User management commands
 ---
-##### Admin user management
-* ###### `CREATE` a new admin user:  
+#### Admin user management
+* ##### `CREATE` a new admin user:  
 
     ```sql
 CREATE USER <username> WITH PASSWORD '<password>' WITH ALL PRIVILEGES
@@ -183,7 +183,7 @@ CREATE USER <username> WITH PASSWORD '<password>' WITH ALL PRIVILEGES
 >
     ```
 
-* ###### `GRANT` administrative privileges to an existing user:
+* ##### `GRANT` administrative privileges to an existing user:
 
     ```sql
 GRANT ALL PRIVILEGES TO <username>
@@ -196,7 +196,7 @@ GRANT ALL PRIVILEGES TO <username>
 >
     ```
 
-* ###### `REVOKE` administrative privileges from an admin user:
+* ##### `REVOKE` administrative privileges from an admin user:
 
     ```sql
 REVOKE ALL PRIVILEGES FROM <username>
@@ -209,7 +209,7 @@ REVOKE ALL PRIVILEGES FROM <username>
 >
     ```
 
-* ###### `SHOW` all existing users and their admin status:
+* ##### `SHOW` all existing users and their admin status:
 
     ```sql
 SHOW USERS
@@ -226,8 +226,8 @@ hermione false
 dobby    false
     ```
 
-##### Non-admin user management
-* ###### `CREATE` a new non-admin user:
+#### Non-admin user management
+* ##### `CREATE` a new non-admin user:
 
     ```sql
 CREATE USER <username> WITH PASSWORD '<password>'
@@ -243,7 +243,7 @@ CREATE USER <username> WITH PASSWORD '<password>'
 Do not include the single quotes when authenticating requests.
 > For passwords that include a single quote or a newline character, escape the single quote or newline character with a backslash both when creating the password and when submitting authentication requests.
 
-* ###### `GRANT` `READ`, `WRITE` or `ALL` database privileges to an existing user:
+* ##### `GRANT` `READ`, `WRITE` or `ALL` database privileges to an existing user:
 
     ```sql
 GRANT [READ,WRITE,ALL] ON <database_name> TO <username>
@@ -265,7 +265,7 @@ GRANT [READ,WRITE,ALL] ON <database_name> TO <username>
 >
     ```
 
-* ###### `REVOKE` `READ`, `WRITE`, or `ALL` database privileges from an existing user:
+* ##### `REVOKE` `READ`, `WRITE`, or `ALL` database privileges from an existing user:
 
     ```sql
 REVOKE [READ,WRITE,ALL] ON <database_name> FROM <username>
@@ -289,7 +289,7 @@ REVOKE [READ,WRITE,ALL] ON <database_name> FROM <username>
 
     >**Note:** If a user with `ALL` privileges has `WRITE` privileges revoked, they are left with `READ` privileges, and vice versa.
 
-* ###### `SHOW` a user's database privileges:
+* ##### `SHOW` a user's database privileges:
 
     ```sql
 SHOW GRANTS FOR <user_name>
@@ -305,9 +305,9 @@ another_database_name	    READ
 yet_another_database_name   ALL PRIVILEGES
     ```
 
-##### General admin and non-admin user management
+#### General admin and non-admin user management
 
-* ###### Re`SET` a user's password:  
+* ##### Re`SET` a user's password:  
 
     ```sql
 SET PASSWORD FOR <username> = '<password>'
@@ -324,7 +324,7 @@ SET PASSWORD FOR <username> = '<password>'
 Do not include the single quotes when authenticating requests.
 > For passwords that include a single quote or a newline character, escape the single quote or newline character with a backslash both when creating the password and when submitting authentication requests.
 
-* ###### `DROP` a user:
+* ##### `DROP` a user:
 
     ```sql
 DROP USER <username>
@@ -337,5 +337,5 @@ DROP USER <username>
 >
     ```
 
-### Authentication and authorization HTTP errors
+## Authentication and authorization HTTP errors
 Requests with invalid credentials and requests by unauthorized users yield the `HTTP 401 Unauthorized` response.

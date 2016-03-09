@@ -5,7 +5,7 @@ parent2: dsdb-concepts
 parent1: dsd-dsdb
 ---
 
-## Design Insights and Tradeoffs in DSDB
+# Design Insights and Tradeoffs in DSDB
 
 DSDB is a discrete time-series database.
 Optimizing for this use-case entails some tradeoffs, primarily to increase performance at the cost of functionality.
