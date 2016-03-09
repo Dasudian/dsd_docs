@@ -50,7 +50,7 @@
 			  });	
 		  })
     </script>
-    <link href='http://fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
+    <link href='//fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
   </head>
 
   <body>
@@ -137,8 +137,6 @@
                 <ul class="menu3" >
                   <li><a id="dsdb-datasource-diamond" class="" href="/dsdb/data_sources/diamond.html">Diamond</a></li>
                   <li><a id="dsdb-datasource-opentsdb" class="" href="/dsdb/data_sources/opentsdb.html">OpenTSDB</a></li>
-                  <li><a id="dsdb-datasource-carbon" class="" href="/dsdb/data_sources/carbon.html">Carbon</a></li>
-                  <li><a id="dsdb-datasource-collectd" class="" href="/dsdb/data_sources/collectd.html">Collectd</a></li>
                 </ul>
               </li>
               <li><a class="fold">Guides</a>
@@ -172,10 +170,6 @@
                   <li><a id="dsdb-tools-overview" class="" href="/dsdb/tools/index.html">Tools Overview</a></li>
                   <li><a id="dsdb-tools-shell" class="" href="/dsdb/tools/shell.html">CLI/Shell</a></li>
                   <li><a id="dsdb-tools-webadmin" class="" href="/dsdb/tools/web_admin.html">Web Admin Interface</a></li>
-                  <li><a id="dsdb-tools-grafana" class="" href="/dsdb/tools/grafana.html">Grafana Dashboards</a></li>
-                  <li><a id="dsdb-tools-telegraf" class="" href="/dsdb/tools/telegraf.html">Telegraf Metrics Collection</a></li>
-                  <li><a id="dsdb-tools-chronograf" class="" href="/dsdb/tools/chronograf.html">Chronograf Dashboards</a></li>
-                  <li><a id="dsdb-tools-kapacitor" class="" href="/dsdb/tools/kapacitor.html">Kapacitor Monitoring</a></li>
                 </ul>
               </li>
               <li><a class="fold">Write Protocols</a>
@@ -223,7 +217,7 @@
 
     <div class="side_right">
       <div class="doc">
-        <h2 id="clustering">Clustering</h2>
+        <h1 id="clustering">Clustering</h1>
 <blockquote>
 <p><strong>NOTE:</strong> Clustering is still considered <em>experimental</em>, and there are still quite a few rough edges. If you encounter any issues, please <a href="https://github.com/dasudian/dsdb/issues/new">report them</a>.</p>
 </blockquote>
@@ -245,12 +239,12 @@ more detail.</li>
 <p>Any node can be a meta node, data node, or both. Each cluster must
 have <em>at least</em> three meta nodes in order to form a Raft concensus and
 remain in a healthy state.</p>
-<h3 id="configuration">Configuration</h3>
+<h2 id="configuration">Configuration</h2>
 <p>The following is the current recommended procedure for configuring a cluster.</p>
 <blockquote>
 <p><strong>Note:</strong> You should always use the most recent release for clustering as there are significant improvements with each release.</p>
 </blockquote>
-<h4 id="start-the-initial-raft-cluster">Start the Initial Raft Cluster</h4>
+<h3 id="start-the-initial-raft-cluster">Start the Initial Raft Cluster</h3>
 <p>Throughout this example, each node will be given a hostname that
 denotes the order in which it was started (e.g. <code>influx1</code> for the
 first node, <code>influx2</code> for the second node, etc.). Each machine
@@ -298,7 +292,7 @@ id  http_addr   tcp_addr
 3   influx3:8091    influx3:8088
 4   influx2:8091    influx2:8088</code></pre>
 <p>If you believe that you did the following steps correctly, but are still experiencing problems, try restarting each node in your cluster.</p>
-<h4 id="adding-more-nodes">Adding More Nodes</h4>
+<h3 id="adding-more-nodes">Adding More Nodes</h3>
 <p>Once you have verified that your cluster is healthy and running appropriately, you can add extra nodes by following the same steps above. When specifying the <code>-join</code> address, you will need to use the hostname/IP address of a pre-existing member of the cluster (either <code>influx1</code>, <code>influx2</code>, or <code>influx3</code> if following the example above).</p>
 <blockquote>
 <p><strong>Note:</strong> When using the <code>-join</code> you need only specify one <code>hostname:port</code> pair.

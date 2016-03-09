@@ -50,7 +50,7 @@
 			  });	
 		  })
     </script>
-    <link href='http://fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
+    <link href='//fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
   </head>
 
   <body>
@@ -137,8 +137,6 @@
                 <ul class="menu3" >
                   <li><a id="dsdb-datasource-diamond" class="" href="/dsdb/data_sources/diamond.html">Diamond</a></li>
                   <li><a id="dsdb-datasource-opentsdb" class="" href="/dsdb/data_sources/opentsdb.html">OpenTSDB</a></li>
-                  <li><a id="dsdb-datasource-carbon" class="" href="/dsdb/data_sources/carbon.html">Carbon</a></li>
-                  <li><a id="dsdb-datasource-collectd" class="" href="/dsdb/data_sources/collectd.html">Collectd</a></li>
                 </ul>
               </li>
               <li><a class="fold">Guides</a>
@@ -172,10 +170,6 @@
                   <li><a id="dsdb-tools-overview" class="" href="/dsdb/tools/index.html">Tools Overview</a></li>
                   <li><a id="dsdb-tools-shell" class="" href="/dsdb/tools/shell.html">CLI/Shell</a></li>
                   <li><a id="dsdb-tools-webadmin" class="" href="/dsdb/tools/web_admin.html">Web Admin Interface</a></li>
-                  <li><a id="dsdb-tools-grafana" class="" href="/dsdb/tools/grafana.html">Grafana Dashboards</a></li>
-                  <li><a id="dsdb-tools-telegraf" class="" href="/dsdb/tools/telegraf.html">Telegraf Metrics Collection</a></li>
-                  <li><a id="dsdb-tools-chronograf" class="" href="/dsdb/tools/chronograf.html">Chronograf Dashboards</a></li>
-                  <li><a id="dsdb-tools-kapacitor" class="" href="/dsdb/tools/kapacitor.html">Kapacitor Monitoring</a></li>
                 </ul>
               </li>
               <li><a class="fold">Write Protocols</a>
@@ -223,14 +217,14 @@
 
     <div class="side_right">
       <div class="doc">
-        <h2 id="system-monitoring">System Monitoring</h2>
+        <h1 id="system-monitoring">System Monitoring</h1>
 <p>To assist with troubleshooting and performance analysis DSDB makes available statistical and diagnostic information about the system.
 For additional information see the <a href="https://github.com/dasudian/dsdb/blob/master/monitor/index.html">README on GitHub</a>.</p>
 <ul>
 <li><a href="/dsdb//troubleshooting/system_monitoring.html#see-statistics-for-your-installation-with-show-stats">See statistics for your installation with <code>SHOW STATS</code></a></li>
 <li><a href="/dsdb//troubleshooting/system_monitoring.html#show-diagnostic-information-about-your-installation-with-show-diagnostics">Show diagnostic information about your installation with <code>SHOW DIAGNOSTICS</code></a></li>
 </ul>
-<h3 id="see-statistics-for-your-installation-with">See statistics for your installation with <code>SHOW STATS</code></h3>
+<h2 id="see-statistics-for-your-installation-with">See statistics for your installation with <code>SHOW STATS</code></h2>
 <p>Show a series of statistics related to your DSDB instance</p>
 <pre><code class="language-sql">&gt; SHOW STATS</code></pre>
 <p>CLI response:</p>
@@ -276,7 +270,7 @@ Alloc       Frees       HeapAlloc   HeapIdle    HeapInUse   HeapObjects HeapRele
 <blockquote>
 <p><strong>Note:</strong> Depending on your local configuration there may be multiple <code>name: engine</code>, <code>name: shard</code>, and <code>name: wal</code> fields</p>
 </blockquote>
-<h3 id="show-diagnostic-information-about-your-installation-with">Show diagnostic information about your installation with <code>SHOW DIAGNOSTICS</code></h3>
+<h2 id="show-diagnostic-information-about-your-installation-with">Show diagnostic information about your installation with <code>SHOW DIAGNOSTICS</code></h2>
 <p>Retrieve a collection of diagnostic information helpful for troubleshooting.</p>
 <pre><code class="language-sql">&gt; SHOW DIAGNOSTICS</code></pre>
 <p>CLI response:</p>

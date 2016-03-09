@@ -50,7 +50,7 @@
 			  });	
 		  })
     </script>
-    <link href='http://fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
+    <link href='//fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
   </head>
 
   <body>
@@ -137,8 +137,6 @@
                 <ul class="menu3" >
                   <li><a id="dsdb-datasource-diamond" class="" href="/dsdb/data_sources/diamond.html">Diamond</a></li>
                   <li><a id="dsdb-datasource-opentsdb" class="" href="/dsdb/data_sources/opentsdb.html">OpenTSDB</a></li>
-                  <li><a id="dsdb-datasource-carbon" class="" href="/dsdb/data_sources/carbon.html">Carbon</a></li>
-                  <li><a id="dsdb-datasource-collectd" class="" href="/dsdb/data_sources/collectd.html">Collectd</a></li>
                 </ul>
               </li>
               <li><a class="fold">Guides</a>
@@ -172,10 +170,6 @@
                   <li><a id="dsdb-tools-overview" class="" href="/dsdb/tools/index.html">Tools Overview</a></li>
                   <li><a id="dsdb-tools-shell" class="" href="/dsdb/tools/shell.html">CLI/Shell</a></li>
                   <li><a id="dsdb-tools-webadmin" class="" href="/dsdb/tools/web_admin.html">Web Admin Interface</a></li>
-                  <li><a id="dsdb-tools-grafana" class="" href="/dsdb/tools/grafana.html">Grafana Dashboards</a></li>
-                  <li><a id="dsdb-tools-telegraf" class="" href="/dsdb/tools/telegraf.html">Telegraf Metrics Collection</a></li>
-                  <li><a id="dsdb-tools-chronograf" class="" href="/dsdb/tools/chronograf.html">Chronograf Dashboards</a></li>
-                  <li><a id="dsdb-tools-kapacitor" class="" href="/dsdb/tools/kapacitor.html">Kapacitor Monitoring</a></li>
                 </ul>
               </li>
               <li><a class="fold">Write Protocols</a>
@@ -223,86 +217,86 @@
 
     <div class="side_right">
       <div class="doc">
-        <h2 id="glossary-of-terms">Glossary of Terms</h2>
-<h3 id="aggregation">aggregation</h3>
+        <h1 id="glossary-of-terms">Glossary of Terms</h1>
+<h2 id="aggregation">aggregation</h2>
 <p>An DSDBQL function that returns an aggregated value across a set of points.
 See <a href="/dsdb/query_language/functions.html#aggregations">DSDBQL Functions</a> for a complete list of the available and upcoming aggregations.</p>
 <p>Related entries: <a href="/dsdb/concepts/glossary.html#function">function</a>, <a href="/dsdb/concepts/glossary.html#selector">selector</a>, <a href="/dsdb/concepts/glossary.html#transformation">transformation</a></p>
-<h3 id="cluster">cluster</h3>
+<h2 id="cluster">cluster</h2>
 <p>A collection of servers running DSDB nodes.
 All nodes in a cluster have the same users, databases, retention policies, and continuous queries.
 See <a href="/dsdb/guides/clustering.html">Clustering</a> for how to set up an DSDB cluster.</p>
 <p>Related entries: <a href="/dsdb/concepts/glossary.html#node">node</a>, <a href="/dsdb/concepts/glossary.html#server">server</a></p>
-<h3 id="continuous-query-cq">continuous query (CQ)</h3>
+<h2 id="continuous-query-cq">continuous query (CQ)</h2>
 <p>An DSDBQL query that runs automatically and periodically within a database.
 Continuous queries require a function in the <code>SELECT</code> clause and must include a <code>GROUP BY time()</code> clause.
 See <a href="/dsdb/query_language/continuous_queries.html">Continuous Queries</a>.</p>
 <p>Related entries: <a href="/dsdb/concepts/glossary.html#function">function</a></p>
-<h3 id="coordinator-node">coordinator node</h3>
+<h2 id="coordinator-node">coordinator node</h2>
 <p>The node that receives write and query requests for the cluster.</p>
 <p>Related entries: <a href="/dsdb/concepts/glossary.html#cluster">cluster</a>, <a href="/dsdb/concepts/glossary.html#hinted-handoff">hinted handoff</a>, <a href="/dsdb/concepts/glossary.html#node">node</a></p>
-<h3 id="data-node">data node</h3>
+<h2 id="data-node">data node</h2>
 <p>A node that stores data. A data node may also be a meta node, but it is not required.</p>
 <p>Related entries: <a href="/dsdb/concepts/glossary.html#cluster">cluster</a>, <a href="/dsdb/concepts/glossary.html#meta-node">meta node</a>, <a href="/dsdb/concepts/glossary.html#node">node</a></p>
-<h3 id="database">database</h3>
+<h2 id="database">database</h2>
 <p>A logical container for users, retention policies, continuous queries, and time series data.</p>
 <p>Related entries: <a href="/dsdb/concepts/glossary.html#continuous-query-cq">continuous query</a>, <a href="/dsdb/concepts/glossary.html#retention-policy-rp">retention policy</a>, <a href="/dsdb/concepts/glossary.html#user">user</a></p>
-<h3 id="duration">duration</h3>
+<h2 id="duration">duration</h2>
 <p>The attribute of the retention policy that determines how long DSDB stores data.
 Data older than the duration are automatically dropped from the database.
 See <a href="/dsdb/query_language/database_management.html#create-retention-policies-with-create-retention-policy">Database Management</a> for how to set duration.</p>
 <p>Related entries: <a href="/dsdb/concepts/glossary.html#replication-factor">replication factor</a>, <a href="/dsdb/concepts/glossary.html#retention-policy-rp">retention policy</a></p>
-<h3 id="field">field</h3>
+<h2 id="field">field</h2>
 <p>The key-value pair in DSDB's data structure that records metadata and the actual data value.
 Fields are required in DSDB's data structure and they are not indexed - queries on field values scan all points that match the specified time range and, as a result, are not performant relative to tags.</p>
 <p><em>Query tip:</em> Compare fields to tags; tags are indexed.</p>
 <p>Related entries: <a href="/dsdb/concepts/glossary.html#field-key">field key</a>, <a href="/dsdb/concepts/glossary.html#field-set">field set</a>, <a href="/dsdb/concepts/glossary.html#field-value">field value</a>, <a href="/dsdb/concepts/glossary.html#tag">tag</a></p>
-<h3 id="field-key">field key</h3>
+<h2 id="field-key">field key</h2>
 <p>The key part of the key-value pair that makes up a field.
 Field keys are strings and they store metadata.</p>
 <p>Related entries: <a href="/dsdb/concepts/glossary.html#field">field</a>, <a href="/dsdb/concepts/glossary.html#field-set">field set</a>, <a href="/dsdb/concepts/glossary.html#field-value">field value</a>, <a href="/dsdb/concepts/glossary.html#tag-key">tag key</a></p>
-<h3 id="field-set">field set</h3>
+<h2 id="field-set">field set</h2>
 <p>The collection of field keys and field values on a point.</p>
 <p>Related entries: <a href="/dsdb/concepts/glossary.html#field">field</a>, <a href="/dsdb/concepts/glossary.html#field-key">field key</a>, <a href="/dsdb/concepts/glossary.html#field-value">field value</a>, <a href="/dsdb/concepts/glossary.html#point">point</a>  </p>
-<h3 id="field-value">field value</h3>
+<h2 id="field-value">field value</h2>
 <p>The value part of the key-value pair that makes up a field.
 Field values are the actual data; they can be strings, floats, integers, or booleans.
 A field value is always associated with a timestamp.</p>
 <p>Field values are not indexed - queries on field values scan all points that match the specified time range and, as a result, are not performant.</p>
 <p><em>Query tip:</em> Compare field values to tag values; tag values are indexed.</p>
 <p>Related entries: <a href="/dsdb/concepts/glossary.html#field">field</a>, <a href="/dsdb/concepts/glossary.html#field-key">field key</a>, <a href="/dsdb/concepts/glossary.html#field-set">field set</a>, <a href="/dsdb/concepts/glossary.html#tag-value">tag value</a>, <a href="/dsdb/concepts/glossary.html#timestamp">timestamp</a></p>
-<h3 id="function">function</h3>
+<h2 id="function">function</h2>
 <p>DSDBQL aggregations, selectors, and transformations.
 See <a href="/dsdb/query_language/functions.html">DSDBQL Functions</a> for a complete list of DSDBQL functions.</p>
 <p>Related entries: <a href="/dsdb/concepts/glossary.html#aggregation">aggregation</a>, <a href="/dsdb/concepts/glossary.html#selector">selector</a>, <a href="/dsdb/concepts/glossary.html#transformation">transformation</a>  </p>
-<h3 id="hinted-handoff">hinted handoff</h3>
+<h2 id="hinted-handoff">hinted handoff</h2>
 <p>A durable queue of data destined for a server which was unavailable at the time the data was received.
 Coordinating nodes temporarily store queued data when a target node for a write is down for a short period of time.</p>
 <p>Related entries: <a href="/dsdb/concepts/glossary.html#cluster">cluster</a>, <a href="/dsdb/concepts/glossary.html#node">node</a>, <a href="/dsdb/concepts/glossary.html#server">server</a></p>
-<h3 id="identifier">identifier</h3>
+<h2 id="identifier">identifier</h2>
 <p>Tokens which refer to database names, retention policy names, user names, measurement names, tag keys, and field keys.
 See <a href="/dsdb/query_language/spec.html#identifiers">Query Language Specification</a>.</p>
 <p>Related entries: <a href="/dsdb/concepts/glossary.html#database">database</a>, <a href="/dsdb/concepts/glossary.html#field-key">field key</a>, <a href="/dsdb/concepts/glossary.html#measurement">measurement</a>, <a href="/dsdb/concepts/glossary.html#retention-policy-rp">retention policy</a>, <a href="/dsdb/concepts/glossary.html#tag-key">tag key</a>, <a href="/dsdb/concepts/glossary.html#user">user</a></p>
-<h3 id="measurement">measurement</h3>
+<h2 id="measurement">measurement</h2>
 <p>The part of DSDB's structure that describes the data stored in the associated fields.
 Measurements are strings.</p>
 <p>Related entries: <a href="/dsdb/concepts/glossary.html#field">field</a>, <a href="/dsdb/concepts/glossary.html#series">series</a></p>
-<h3 id="meta-node">meta node</h3>
+<h2 id="meta-node">meta node</h2>
 <p>A node that participates in the raft consensus group. A meta node may also be a data node, but it is not required. A cluster should have at least three meta nodes, but it can have more. There should be an odd number of meta nodes in a cluster.</p>
 <p>Related entries: <a href="/dsdb/concepts/glossary.html#cluster">cluster</a>, <a href="/dsdb/concepts/glossary.html#data-node">data node</a>, <a href="/dsdb/concepts/glossary.html#node">node</a></p>
-<h3 id="node">node</h3>
+<h2 id="node">node</h2>
 <p>An independent <code>influxd</code> process.</p>
 <p>Related entries: <a href="/dsdb/concepts/glossary.html#cluster">cluster</a>, <a href="/dsdb/concepts/glossary.html#server">server</a></p>
-<h3 id="point">point</h3>
+<h2 id="point">point</h2>
 <p>The part of DSDB's data structure that consists of a single collection of fields in a series.
 Each point is uniquely identified by its series and timestamp.</p>
 <p>You cannot store more than one point with the same timestamp in the same series.
 Instead, when you write a new point to the same series with the same timestamp as an existing point in that series, DSDB silently overwrites the old field set with the new field set.</p>
 <p>Related entries: <a href="/dsdb/concepts/glossary.html#field-set">field set</a>, <a href="/dsdb/concepts/glossary.html#series">series</a>, <a href="/dsdb/concepts/glossary.html#timestamp">timestamp</a></p>
-<h3 id="query">query</h3>
+<h2 id="query">query</h2>
 <p>An operation that retrieves data from DSDB.
 See <a href="/dsdb/query_language/data_exploration.html">Data Exploration</a>, <a href="/dsdb/query_language/schema_exploration.html">Schema Exploration</a>, <a href="/dsdb/query_language/database_management.html">Database Management</a>.</p>
-<h3 id="replication-factor">replication factor</h3>
+<h2 id="replication-factor">replication factor</h2>
 <p>The attribute of the retention policy that determines how many copies of the data are stored in the cluster.
 DSDB replicates data across <code>N</code> data nodes, where <code>N</code> is the replication factor.</p>
 <p>To maintain data availability for queries, the replication factor should be less than or equal to the number of data nodes in the cluster:</p>
@@ -314,67 +308,67 @@ DSDB replicates data across <code>N</code> data nodes, where <code>N</code> is t
 Replication is for ensuring data availability when a data node or nodes are unavailable.
 See <a href="/dsdb/query_language/database_management.html#create-retention-policies-with-create-retention-policy">Database Management</a> for how to set the replication factor.</p>
 <p>Related entries: <a href="/dsdb/concepts/glossary.html#cluster">cluster</a>, <a href="/dsdb/concepts/glossary.html#duration">duration</a>, <a href="/dsdb/concepts/glossary.html#node">node</a>, <a href="/dsdb/concepts/glossary.html#retention-policy-rp">retention policy</a></p>
-<h3 id="retention-policy-rp">retention policy (RP)</h3>
+<h2 id="retention-policy-rp">retention policy (RP)</h2>
 <p>The part of DSDB's data structure that describes for how long DSDB keeps data (duration) and how many copies of those data are stored in the cluster (replication factor).
 RPs are unique per database and along with the measurement and tag set define a series.</p>
 <p>When you create a database, DSDB automatically creates a retention policy called <code>default</code> with an infinite duration and a replication factor set to the number of nodes in the cluster.
 See <a href="/dsdb/query_language/database_management.html#retention-policy-management">Database Management</a> for retention policy management.</p>
 <p>Related entries: <a href="/dsdb/concepts/glossary.html#duration">duration</a>, <a href="/dsdb/concepts/glossary.html#measurement">measurement</a>, <a href="/dsdb/concepts/glossary.html#replication-factor">replication factor</a>, <a href="/dsdb/concepts/glossary.html#series">series</a>, <a href="/dsdb/concepts/glossary.html#tag-set">tag set</a></p>
-<h3 id="schema">schema</h3>
+<h2 id="schema">schema</h2>
 <p>How the data are organized in DSDB.
 The fundamentals of the DSDB schema are databases, retention policies, series, measurements, tag keys, tag values, and field keys.
 See <a href="/dsdb/concepts/schema_and_data_layout.html">Schema Design</a> for more information.</p>
 <p>Related entries: <a href="/dsdb/concepts/glossary.html#database">database</a>, <a href="/dsdb/concepts/glossary.html#field-key">field key</a>, <a href="/dsdb/concepts/glossary.html#measurement">measurement</a>, <a href="/dsdb/concepts/glossary.html#retention-policy-rp">retention policy</a>, <a href="/dsdb/concepts/glossary.html#series">series</a>, <a href="/dsdb/concepts/glossary.html#tag-key">tag key</a>, <a href="/dsdb/concepts/glossary.html#tag-value">tag value</a></p>
-<h3 id="selector">selector</h3>
+<h2 id="selector">selector</h2>
 <p>An DSDBQL function that returns a single point from the range of specified points.
 See <a href="/dsdb/query_language/functions.html#selectors">DSDBQL Functions</a> for a complete list of the available and upcoming selectors.</p>
 <p>Related entries: <a href="/dsdb/concepts/glossary.html#aggregation">aggregation</a>, <a href="/dsdb/concepts/glossary.html#function">function</a>, <a href="/dsdb/concepts/glossary.html#transformation">transformation</a></p>
-<h3 id="series">series</h3>
+<h2 id="series">series</h2>
 <p>The collection of data in DSDB's data structure that share a measurement, tag set, and retention policy.</p>
 <blockquote>
 <p><strong>Note:</strong> The field set is not part of the series identification!</p>
 </blockquote>
 <p>Related entries: <a href="/dsdb/concepts/glossary.html#field-set">field set</a>, <a href="/dsdb/concepts/glossary.html#measurement">measurement</a>, <a href="/dsdb/concepts/glossary.html#retention-policy-rp">retention policy</a>, <a href="/dsdb/concepts/glossary.html#tag-set">tag set</a></p>
-<h3 id="series-cardinality">series cardinality</h3>
+<h2 id="series-cardinality">series cardinality</h2>
 <p>The count of all combinations of measurements and tags within a given data set.
 For example, take measurement <code>mem_available</code> with tags <code>host</code> and <code>total_mem</code>.
 If there are 35 different <code>host</code>s and 15 different <code>total_mem</code> values then series cardinality for that measurement is <code>35 * 15 = 525</code>.
 To calculate series cardinality for a database add the series cardinalities for the individual measurements together.</p>
 <p>Related entries: <a href="/dsdb/concepts/glossary.html#tag-set">tag set</a>, <a href="/dsdb/concepts/glossary.html#measurement">measurement</a>, <a href="/dsdb/concepts/glossary.html#tag-key">tag key</a></p>
-<h3 id="server">server</h3>
+<h2 id="server">server</h2>
 <p>A machine, virtual or physical, that is running DSDB.
 There should only be one DSDB process per server.</p>
 <p>Related entries: <a href="/dsdb/concepts/glossary.html#cluster">cluster</a>, <a href="/dsdb/concepts/glossary.html#node">node</a></p>
-<h3 id="tag">tag</h3>
+<h2 id="tag">tag</h2>
 <p>The key-value pair in DSDB's data structure that records metadata.
 Tags are an optional part of DSDB's data structure but they are useful for storing commonly-queried metadata; tags are indexed so queries on tags are performant.
 <em>Query tip:</em> Compare tags to fields; fields are not indexed.</p>
 <p>Related entries: <a href="/dsdb/concepts/glossary.html#field">field</a>, <a href="/dsdb/concepts/glossary.html#tag-key">tag key</a>, <a href="/dsdb/concepts/glossary.html#tag-set">tag set</a>, <a href="/dsdb/concepts/glossary.html#tag-value">tag value</a></p>
-<h3 id="tag-key">tag key</h3>
+<h2 id="tag-key">tag key</h2>
 <p>The key part of the key-value pair that makes up a tag.
 Tag keys are strings and they store metadata.
 Tag keys are indexed so queries on tag keys are performant.</p>
 <p><em>Query tip:</em> Compare tag keys to field keys; field keys are not indexed.</p>
 <p>Related entries: <a href="/dsdb/concepts/glossary.html#field-key">field key</a>, <a href="/dsdb/concepts/glossary.html#tag">tag</a>, <a href="/dsdb/concepts/glossary.html#tag-set">tag set</a>, <a href="/dsdb/concepts/glossary.html#tag-value">tag value</a></p>
-<h3 id="tag-set">tag set</h3>
+<h2 id="tag-set">tag set</h2>
 <p>The collection of tag keys and tag values on a point.</p>
 <p>Related entries: <a href="/dsdb/concepts/glossary.html#point">point</a>, <a href="/dsdb/concepts/glossary.html#series">series</a>, <a href="/dsdb/concepts/glossary.html#tag">tag</a>, <a href="/dsdb/concepts/glossary.html#tag-key">tag key</a>, <a href="/dsdb/concepts/glossary.html#tag-value">tag value</a></p>
-<h3 id="tag-value">tag value</h3>
+<h2 id="tag-value">tag value</h2>
 <p>The value part of the key-value pair that makes up a tag.
 Tag values are strings and they store metadata.
 Tag values are indexed so queries on tag values are performant.</p>
 <p>Related entries: <a href="/dsdb/concepts/glossary.html#tag">tag</a>, <a href="/dsdb/concepts/glossary.html#tag-key">tag key</a>, <a href="/dsdb/concepts/glossary.html#tag-set">tag set</a></p>
-<h3 id="timestamp">timestamp</h3>
+<h2 id="timestamp">timestamp</h2>
 <p>The date and time associated with a point.
 All time in DSDB is UTC.</p>
 <p>For how to specify time when writing data, see <a href="/dsdb/write_protocols/write_syntax.html">Write Syntax</a>.
 For how to specify time when querying data, see <a href="/dsdb/query_language/data_exploration.html#time-syntax-in-queries">Data Exploration</a>.</p>
 <p>Related entries: <a href="/dsdb/concepts/glossary.html#point">point</a></p>
-<h3 id="transformation">transformation</h3>
+<h2 id="transformation">transformation</h2>
 <p>An DSDBQL function that returns a value or a set of values calculated from specified points, but does not return an aggregated value across those points.
 See <a href="/dsdb/query_language/functions.html#transformations">DSDBQL Functions</a> for a complete list of the available and upcoming aggregations.</p>
 <p>Related entries: <a href="/dsdb/concepts/glossary.html#aggregation">aggregation</a>, <a href="/dsdb/concepts/glossary.html#function">function</a>, <a href="/dsdb/concepts/glossary.html#selector">selector</a></p>
-<h3 id="user">user</h3>
+<h2 id="user">user</h2>
 <p>There are two kinds of users in DSDB:</p>
 <ul>
 <li><em>Admin users</em> have <code>READ</code> and <code>WRITE</code> access to all databases and full access to administrative queries and user management commands.</li>
@@ -383,10 +377,10 @@ See <a href="/dsdb/query_language/functions.html#transformations">DSDBQL Functio
 <p>When authentication is enabled, DSDB only executes HTTP requests that are sent with a valid username and password.
 See <a href="/dsdb/administration/authentication_and_authorization.html">Authentication and Authorization</a>.</p>
 <!--
-### wal
-### shard
-### shard group
-### storage engines (tsm1, b1, bz1)
+## wal
+## shard
+## shard group
+## storage engines (tsm1, b1, bz1)
 -->
       </div>
 

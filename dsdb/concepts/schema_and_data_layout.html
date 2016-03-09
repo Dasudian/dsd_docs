@@ -50,7 +50,7 @@
 			  });	
 		  })
     </script>
-    <link href='http://fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
+    <link href='//fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
   </head>
 
   <body>
@@ -137,8 +137,6 @@
                 <ul class="menu3" >
                   <li><a id="dsdb-datasource-diamond" class="" href="/dsdb/data_sources/diamond.html">Diamond</a></li>
                   <li><a id="dsdb-datasource-opentsdb" class="" href="/dsdb/data_sources/opentsdb.html">OpenTSDB</a></li>
-                  <li><a id="dsdb-datasource-carbon" class="" href="/dsdb/data_sources/carbon.html">Carbon</a></li>
-                  <li><a id="dsdb-datasource-collectd" class="" href="/dsdb/data_sources/collectd.html">Collectd</a></li>
                 </ul>
               </li>
               <li><a class="fold">Guides</a>
@@ -172,10 +170,6 @@
                   <li><a id="dsdb-tools-overview" class="" href="/dsdb/tools/index.html">Tools Overview</a></li>
                   <li><a id="dsdb-tools-shell" class="" href="/dsdb/tools/shell.html">CLI/Shell</a></li>
                   <li><a id="dsdb-tools-webadmin" class="" href="/dsdb/tools/web_admin.html">Web Admin Interface</a></li>
-                  <li><a id="dsdb-tools-grafana" class="" href="/dsdb/tools/grafana.html">Grafana Dashboards</a></li>
-                  <li><a id="dsdb-tools-telegraf" class="" href="/dsdb/tools/telegraf.html">Telegraf Metrics Collection</a></li>
-                  <li><a id="dsdb-tools-chronograf" class="" href="/dsdb/tools/chronograf.html">Chronograf Dashboards</a></li>
-                  <li><a id="dsdb-tools-kapacitor" class="" href="/dsdb/tools/kapacitor.html">Kapacitor Monitoring</a></li>
                 </ul>
               </li>
               <li><a class="fold">Write Protocols</a>
@@ -223,10 +217,10 @@
 
     <div class="side_right">
       <div class="doc">
-        <h2 id="scheam-design">Scheam Design</h2>
+        <h1 id="scheam-design">Scheam Design</h1>
 <p>Every DSDB use case is special and your <a href="/dsdb/concepts/glossary.html#schema">schema</a> will reflect that uniqueness.
 There are, however, general guidelines to follow and pitfalls to avoid when designing your schema.</p>
-<h3 id="encouraged-schema-design">Encouraged Schema Design</h3>
+<h2 id="encouraged-schema-design">Encouraged Schema Design</h2>
 <p>In no particular order, we recommend that you:</p>
 <ul>
 <li>
@@ -249,7 +243,7 @@ See <a href="https://github.com/dasudian/dsdb/blob/master/dsdbql/influxql.html#k
 <p>Note that you will also need to wrap identifiers in double quotes in queries if they contain characters other than <code>[A-z,_]</code>.</p>
 </li>
 </ul>
-<h3 id="discouraged-schema-design">Discouraged Schema Design</h3>
+<h2 id="discouraged-schema-design">Discouraged Schema Design</h2>
 <p>In no particular order, we recommend that you:</p>
 <ul>
 <li>

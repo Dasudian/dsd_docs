@@ -50,7 +50,7 @@
 			  });	
 		  })
     </script>
-    <link href='http://fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
+    <link href='//fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
   </head>
 
   <body>
@@ -137,8 +137,6 @@
                 <ul class="menu3" >
                   <li><a id="dsdb-datasource-diamond" class="" href="/dsdb/data_sources/diamond.html">Diamond</a></li>
                   <li><a id="dsdb-datasource-opentsdb" class="" href="/dsdb/data_sources/opentsdb.html">OpenTSDB</a></li>
-                  <li><a id="dsdb-datasource-carbon" class="" href="/dsdb/data_sources/carbon.html">Carbon</a></li>
-                  <li><a id="dsdb-datasource-collectd" class="" href="/dsdb/data_sources/collectd.html">Collectd</a></li>
                 </ul>
               </li>
               <li><a class="fold">Guides</a>
@@ -172,10 +170,6 @@
                   <li><a id="dsdb-tools-overview" class="" href="/dsdb/tools/index.html">Tools Overview</a></li>
                   <li><a id="dsdb-tools-shell" class="" href="/dsdb/tools/shell.html">CLI/Shell</a></li>
                   <li><a id="dsdb-tools-webadmin" class="" href="/dsdb/tools/web_admin.html">Web Admin Interface</a></li>
-                  <li><a id="dsdb-tools-grafana" class="" href="/dsdb/tools/grafana.html">Grafana Dashboards</a></li>
-                  <li><a id="dsdb-tools-telegraf" class="" href="/dsdb/tools/telegraf.html">Telegraf Metrics Collection</a></li>
-                  <li><a id="dsdb-tools-chronograf" class="" href="/dsdb/tools/chronograf.html">Chronograf Dashboards</a></li>
-                  <li><a id="dsdb-tools-kapacitor" class="" href="/dsdb/tools/kapacitor.html">Kapacitor Monitoring</a></li>
                 </ul>
               </li>
               <li><a class="fold">Write Protocols</a>
@@ -223,11 +217,11 @@
 
     <div class="side_right">
       <div class="doc">
-        <h2 id="installation">Installation</h2>
+        <h1 id="installation">Installation</h1>
 <p>This page provides directions for installing, starting, and configuring DSDB.</p>
-<h3 id="requirements">Requirements</h3>
+<h2 id="requirements">Requirements</h2>
 <p>Installation of the DSDB package may require <code>root</code> or administrator privileges in order to complete successfully.</p>
-<h4 id="networking">Networking</h4>
+<h3 id="networking">Networking</h3>
 <p>By default, DSDB uses the following network ports:</p>
 <ul>
 <li>TCP port <code>8083</code> is used for DSDB's <a href="/dsdb/tools/web_admin.html">Admin panel</a></li>
@@ -240,8 +234,8 @@ DSDB also offers multiple plugins that may require custom ports.
 All port mappings can be modified through the <a href="/dsdb/administration/config.html">configuration file</a>,
 which is located at <code>/etc/dsdb/dsdb.conf</code> for default installations.</p>
 </blockquote>
-<h3 id="installation-1">Installation</h3>
-<h4 id="ubuntu-amp-debian">Ubuntu &amp; Debian</h4>
+<h2 id="installation-1">Installation</h2>
+<h3 id="ubuntu-amp-debian">Ubuntu &amp; Debian</h3>
 <p>Debian and Ubuntu users can install the latest stable version of DSDB using the <code>apt-get</code> package manager.
 For Ubuntu users, you can add the DSDBData repository by using the following commands:</p>
 <pre><code class="language-shell">curl -sL https://repos.dasudian.com/dsdb.key | sudo apt-key add -
@@ -255,7 +249,7 @@ test $VERSION_ID = "8" &amp;&amp; echo "deb https://repos.dasudian.com/debian je
 <p>And then to install and start the DSDB service:</p>
 <pre><code class="language-shell">sudo apt-get update &amp;&amp; sudo apt-get install dsdb
 sudo service dsdb start</code></pre>
-<h4 id="redhat-amp-centos">RedHat &amp; CentOS</h4>
+<h3 id="redhat-amp-centos">RedHat &amp; CentOS</h3>
 <p>RedHat and CentOS users can install the latest stable version of DSDB using the <code>yum</code> package manager:</p>
 <pre><code class="language-shell">cat &lt;&lt;EOF | sudo tee /etc/yum.repos.d/dsdb.repo
 [dsdb]
@@ -269,13 +263,13 @@ EOF</code></pre>
 you can install and start the DSDB service by running:</p>
 <pre><code class="language-shell">sudo yum install dsdb
 sudo service dsdb start</code></pre>
-<h4 id="sles-amp-opensuse">SLES &amp; openSUSE</h4>
+<h3 id="sles-amp-opensuse">SLES &amp; openSUSE</h3>
 <p>There are RPM packages provided by openSUSE Build Service for SUSE Linux users:</p>
-<pre><code class="language-shell">## add go repository
+<pre><code class="language-shell"># add go repository
 zypper ar -f obs://devel:languages:go/ go
-## install latest dsdb
+# install latest dsdb
 zypper in dsdb</code></pre>
-<h4 id="freebsdpc-bsd">FreeBSD/PC-BSD</h4>
+<h3 id="freebsdpc-bsd">FreeBSD/PC-BSD</h3>
 <p>DSDB is part of the FreeBSD package system.
 It can be installed by running:</p>
 <pre><code class="language-shell">sudo pkg install dsdb</code></pre>
@@ -283,7 +277,7 @@ It can be installed by running:</p>
 <p>Start the backend by executing:</p>
 <pre><code class="language-shell">sudo service influxd onestart</code></pre>
 <p>To have DSDB start at system boot, add <code>influxd_enable="YES"</code> to <code>/etc/rc.conf</code>.</p>
-<h4 id="mac-os-x">Mac OS X</h4>
+<h3 id="mac-os-x">Mac OS X</h3>
 <p>Users of OS X 10.8 and higher can install DSDB using the <a href="http://brew.sh/">Homebrew</a> package manager.
 Once <code>brew</code> is installed, you can install DSDB by running:</p>
 <pre><code class="language-shell">brew update
@@ -294,10 +288,10 @@ brew install dsdb</code></pre>
 <pre><code class="language-shell">launchctl load ~/Library/LaunchAgents/homebrew.mxcl.dsdb.plist</code></pre>
 <p>Or, if you don't want/need launchctl, in a separate terminal window you can just run:</p>
 <pre><code class="language-shell">influxd -config /usr/local/etc/dsdb.conf</code></pre>
-<h3 id="hosted">Hosted</h3>
+<h2 id="hosted">Hosted</h2>
 <p>For users who don't want to install any software and are ready to use DSDB, you may want to check out our <a href="http://customers.dasudian.com">managed hosted DSDB offering</a>.</p>
 <p><a href="/dsdb/introduction/getting_started.html"><font size="6"><b>⇒ Now get started!</b></font></a></p>
-<h3 id="configuration">Configuration</h3>
+<h2 id="configuration">Configuration</h2>
 <p>For non-packaged installations, it is a best practice to generate a new configuration
 for each upgrade to ensure you have the latest features and settings.
 Any changes made in the old file will need to be manually ported to the newly generated file.
@@ -326,19 +320,19 @@ The options specified in the configuration file will overwrite any internally ge
 <p>The output will show every option configured in the <code>dsdb.partial.conf</code> file and will substitute internal defaults for any configuration options not specified in that file.</p>
 <p>The example configuration file shipped with the installer is for information only.
 It is an identical file to the internally generated configuration except that the example file has comments.</p>
-<h3 id="hosting-on-aws">Hosting on AWS</h3>
-<h4 id="hardware">Hardware</h4>
+<h2 id="hosting-on-aws">Hosting on AWS</h2>
+<h3 id="hardware">Hardware</h3>
 <p>We recommend using two SSD volumes.
 One for the <code>dsdb/wal</code> and one for the <code>dsdb/data</code>.
 Depending on your load each volume should have around 1k-3k provisioned IOPS.
 The <code>dsdb/data</code> volume should have more disk space with lower IOPS and the <code>dsdb/wal</code> volume should have less disk space with higher IOPS.</p>
 <p>Each machine should have a minimum of 8G RAM.</p>
 <p>We’ve seen the best performance with the C3 class of machines.</p>
-<h4 id="configuring-the-instance">Configuring the Instance</h4>
+<h3 id="configuring-the-instance">Configuring the Instance</h3>
 <p>This example assumes that you are using two SSD volumes and that you have mounted them appropriately.
 This example also assumes that each of those volumes is mounted at <code>/mnt/influx</code> and <code>/mnt/db</code>.
 For more information on how to do that see the Amazon documentation on how to <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-add-volume-to-instance.html">Add a Volume to Your Instance</a>.</p>
-<h4 id="config-file">Config File</h4>
+<h3 id="config-file">Config File</h3>
 <p>You'll have to update the config file appropriately for each DSDB instance you have.</p>
 <pre><code>...
 
@@ -360,16 +354,16 @@ wal-dir = "/mnt/influx/wal"
     ...
 dir = "/mnt/db/hh"
     ...</code></pre>
-<h4 id="permissions">Permissions</h4>
+<h3 id="permissions">Permissions</h3>
 <p>When using non-standard directories for DSDB data and configurations, also be sure to set filesystem permissions correctly:</p>
 <pre><code class="language-shell">chown dsdb:dsdb /mnt/influx
 chown dsdb:dsdb /mnt/db</code></pre>
-<h4 id="other-considerations">Other Considerations</h4>
+<h3 id="other-considerations">Other Considerations</h3>
 <p>If you're planning on using a cluster, you may also want to set <code>-join</code> flags for the <code>INFLUXD_OPTS</code> variable in <code>/etc/default/dsdb</code>.
 For example:</p>
 <pre><code>INFLUXD_OPTS='[-join hostname_1:port_1[,hostname_2:port_2]]'</code></pre>
 <p>For more detailed instructions on how to set up a cluster, please see the <a href="/dsdb/guides/clustering.html">Clustering</a> section.</p>
-<h3 id="nightly-and-development-versions">Nightly and Development Versions</h3>
+<h2 id="nightly-and-development-versions">Nightly and Development Versions</h2>
 <p>Nightly packages are available for Linux through the DSDBData package repository by using the <code>nightly</code> channel.
 Other package options can be found on the <a href="https://dasudian.com/downloads/">downloads page</a></p>
       </div>

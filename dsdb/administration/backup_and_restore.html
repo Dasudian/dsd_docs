@@ -50,7 +50,7 @@
 			  });	
 		  })
     </script>
-    <link href='http://fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
+    <link href='//fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
   </head>
 
   <body>
@@ -137,8 +137,6 @@
                 <ul class="menu3" >
                   <li><a id="dsdb-datasource-diamond" class="" href="/dsdb/data_sources/diamond.html">Diamond</a></li>
                   <li><a id="dsdb-datasource-opentsdb" class="" href="/dsdb/data_sources/opentsdb.html">OpenTSDB</a></li>
-                  <li><a id="dsdb-datasource-carbon" class="" href="/dsdb/data_sources/carbon.html">Carbon</a></li>
-                  <li><a id="dsdb-datasource-collectd" class="" href="/dsdb/data_sources/collectd.html">Collectd</a></li>
                 </ul>
               </li>
               <li><a class="fold">Guides</a>
@@ -172,10 +170,6 @@
                   <li><a id="dsdb-tools-overview" class="" href="/dsdb/tools/index.html">Tools Overview</a></li>
                   <li><a id="dsdb-tools-shell" class="" href="/dsdb/tools/shell.html">CLI/Shell</a></li>
                   <li><a id="dsdb-tools-webadmin" class="" href="/dsdb/tools/web_admin.html">Web Admin Interface</a></li>
-                  <li><a id="dsdb-tools-grafana" class="" href="/dsdb/tools/grafana.html">Grafana Dashboards</a></li>
-                  <li><a id="dsdb-tools-telegraf" class="" href="/dsdb/tools/telegraf.html">Telegraf Metrics Collection</a></li>
-                  <li><a id="dsdb-tools-chronograf" class="" href="/dsdb/tools/chronograf.html">Chronograf Dashboards</a></li>
-                  <li><a id="dsdb-tools-kapacitor" class="" href="/dsdb/tools/kapacitor.html">Kapacitor Monitoring</a></li>
                 </ul>
               </li>
               <li><a class="fold">Write Protocols</a>
@@ -223,11 +217,11 @@
 
     <div class="side_right">
       <div class="doc">
-        <h2 id="backup-and-restore">Backup and Restore</h2>
+        <h1 id="backup-and-restore">Backup and Restore</h1>
 <p>Starting with v1.0.0, DSDB has the ability to snapshot a single
 data node at a point-in-time and restore it.</p>
-<h3 id="backups">Backups</h3>
-<h4 id="backing-up-the-metastore">Backing up the Metastore</h4>
+<h2 id="backups">Backups</h2>
+<h3 id="backing-up-the-metastore">Backing up the Metastore</h3>
 <p>DSDB's metastore contains internal information about the status of
 the system, including: user information, database/shard metadata, and
 which retention policies are enabled. While a node is running, you can
@@ -242,7 +236,7 @@ metastore. For example, the command:</p>
 2016/02/01 17:15:03 backup complete</code></pre>
 <p>Will create a metastore backup in the directory <code>/tmp/backup</code> (the
 directory will be created if it doesn't already exist). </p>
-<h4 id="backing-up-a-database">Backing up a Database</h4>
+<h3 id="backing-up-a-database">Backing up a Database</h3>
 <p>To backup a database, you will need to add the <code>-database</code> flag:</p>
 <pre><code>influxd backup -database mydatabase /path/to/backup</code></pre>
 <p>Where <code>mydatabase</code> is the name of the database you would like to
@@ -282,12 +276,12 @@ February 1st, 2016 by using the command:</p>
 2016/02/01 18:02:36 backup complete</code></pre>
 <p>Which will send the resulting backup to <code>/tmp/backup</code>, where it can
 then be compressed and sent to long-term storage.</p>
-<h4 id="remote-backups">Remote Backups</h4>
+<h3 id="remote-backups">Remote Backups</h3>
 <p>To capture a backup from a remote node, specify the host and port of
 the remote instance using the <code>-host</code> configuration switch:</p>
 <pre><code class="language-sh">$ influxd backup -database mydatabase -host 10.0.0.1:8088 /tmp/mysnapshot</code></pre>
 <p>Where all of the flags above still apply to remote hosts.</p>
-<h3 id="restore">Restore</h3>
+<h2 id="restore">Restore</h2>
 <p>To restore a backup, you will need to use the <code>influxd restore</code> command.</p>
 <blockquote>
 <p><strong>Note:</strong> Restoring from backup is only supported while the DSDB daemon is stopped.</p>
@@ -353,7 +347,7 @@ name
 _internal
 telegraf</code></pre>
 <p>The database has now been successfully restored!</p>
-<h3 id="caveats">Caveats</h3>
+<h2 id="caveats">Caveats</h2>
 <p>This approach currently only works in clusters where the replication factor is the same as the number of nodes in the cluster.
 A cluster wide backup and restore will be done in the future.</p>
       </div>

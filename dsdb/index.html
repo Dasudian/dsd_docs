@@ -50,7 +50,7 @@
 			  });	
 		  })
     </script>
-    <link href='http://fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
+    <link href='//fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
   </head>
 
   <body>
@@ -137,8 +137,6 @@
                 <ul class="menu3" >
                   <li><a id="dsdb-datasource-diamond" class="" href="/dsdb/data_sources/diamond.html">Diamond</a></li>
                   <li><a id="dsdb-datasource-opentsdb" class="" href="/dsdb/data_sources/opentsdb.html">OpenTSDB</a></li>
-                  <li><a id="dsdb-datasource-carbon" class="" href="/dsdb/data_sources/carbon.html">Carbon</a></li>
-                  <li><a id="dsdb-datasource-collectd" class="" href="/dsdb/data_sources/collectd.html">Collectd</a></li>
                 </ul>
               </li>
               <li><a class="fold">Guides</a>
@@ -172,10 +170,6 @@
                   <li><a id="dsdb-tools-overview" class="" href="/dsdb/tools/index.html">Tools Overview</a></li>
                   <li><a id="dsdb-tools-shell" class="" href="/dsdb/tools/shell.html">CLI/Shell</a></li>
                   <li><a id="dsdb-tools-webadmin" class="" href="/dsdb/tools/web_admin.html">Web Admin Interface</a></li>
-                  <li><a id="dsdb-tools-grafana" class="" href="/dsdb/tools/grafana.html">Grafana Dashboards</a></li>
-                  <li><a id="dsdb-tools-telegraf" class="" href="/dsdb/tools/telegraf.html">Telegraf Metrics Collection</a></li>
-                  <li><a id="dsdb-tools-chronograf" class="" href="/dsdb/tools/chronograf.html">Chronograf Dashboards</a></li>
-                  <li><a id="dsdb-tools-kapacitor" class="" href="/dsdb/tools/kapacitor.html">Kapacitor Monitoring</a></li>
                 </ul>
               </li>
               <li><a class="fold">Write Protocols</a>
@@ -223,10 +217,10 @@
 
     <div class="side_right">
       <div class="doc">
-        <h2 id="dsdb-documentation">DSDB Documentation</h2>
+        <h1 id="dsdb-documentation">DSDB Documentation</h1>
 <p>DSDB is a <a href="https://en.wikipedia.org/wiki/Time_series_database">time series database</a> built from the ground up to handle high write and query loads.
 DSDB is meant to be used as a backing store for any use case involving large amounts of timestamped data, including DevOps monitoring, application metrics, IoT sensor data, and real-time analytics.</p>
-<h3 id="key-features">Key Features</h3>
+<h2 id="key-features">Key Features</h2>
 <p>Here are some of the features that DSDB currently supports that make it a great choice for working with time series data.</p>
 <ul>
 <li>Custom high performance datastore written specifically for time series data.
@@ -243,7 +237,7 @@ Nothing else is needed to make data highly available (unlike Redis, ZooKeeper, C
 <li>Continuous queries automatically compute aggregate data to make frequent queries more efficient.</li>
 <li>Built in web admin interface.</li>
 </ul>
-<h3 id="project-status">Project Status</h3>
+<h2 id="project-status">Project Status</h2>
 <ul>
 <li>Clustering, replication, and high-availability are in a beta state.</li>
 <li>The query engine is not optimized for the new TSM engine.

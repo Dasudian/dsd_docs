@@ -50,7 +50,7 @@
 			  });	
 		  })
     </script>
-    <link href='http://fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
+    <link href='//fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
   </head>
 
   <body>
@@ -137,8 +137,6 @@
                 <ul class="menu3" >
                   <li><a id="dsdb-datasource-diamond" class="" href="/dsdb/data_sources/diamond.html">Diamond</a></li>
                   <li><a id="dsdb-datasource-opentsdb" class="" href="/dsdb/data_sources/opentsdb.html">OpenTSDB</a></li>
-                  <li><a id="dsdb-datasource-carbon" class="" href="/dsdb/data_sources/carbon.html">Carbon</a></li>
-                  <li><a id="dsdb-datasource-collectd" class="" href="/dsdb/data_sources/collectd.html">Collectd</a></li>
                 </ul>
               </li>
               <li><a class="fold">Guides</a>
@@ -172,10 +170,6 @@
                   <li><a id="dsdb-tools-overview" class="" href="/dsdb/tools/index.html">Tools Overview</a></li>
                   <li><a id="dsdb-tools-shell" class="" href="/dsdb/tools/shell.html">CLI/Shell</a></li>
                   <li><a id="dsdb-tools-webadmin" class="" href="/dsdb/tools/web_admin.html">Web Admin Interface</a></li>
-                  <li><a id="dsdb-tools-grafana" class="" href="/dsdb/tools/grafana.html">Grafana Dashboards</a></li>
-                  <li><a id="dsdb-tools-telegraf" class="" href="/dsdb/tools/telegraf.html">Telegraf Metrics Collection</a></li>
-                  <li><a id="dsdb-tools-chronograf" class="" href="/dsdb/tools/chronograf.html">Chronograf Dashboards</a></li>
-                  <li><a id="dsdb-tools-kapacitor" class="" href="/dsdb/tools/kapacitor.html">Kapacitor Monitoring</a></li>
                 </ul>
               </li>
               <li><a class="fold">Write Protocols</a>
@@ -223,7 +217,7 @@
 
     <div class="side_right">
       <div class="doc">
-        <h2 id="mathematical-operators">Mathematical Operators</h2>
+        <h1 id="mathematical-operators">Mathematical Operators</h1>
 <blockquote>
 <p><strong>Note:</strong> Currently all mathematical operators work solely on <code>floats</code>.
 Currently, DSDB converts any <code>int</code> involved to a <code>float</code> as any operation performed on an <code>int</code> would return a <code>null</code> value.
@@ -233,18 +227,18 @@ Issue <a href="https://github.com/dsdb/dsdb/issues/3614">3614</a> tracks impleme
 <p>Mathematical operators follow the standard order of operations.
 That is, <em>parentheses</em> take precedence to <em>division</em> and <em>multiplication</em>, which takes precedence to <em>addition</em> and <em>substraction</em>.
 For example <code>5 / 2 + 3 * 2 =  (5 / 2) + (3 * 2)</code> and <code>5 + 2 * 3 - 2 = 5 + (2 * 3) - 2</code>.</p>
-<h3 id="supported-operators">Supported Operators</h3>
-<h4 id="addition">Addition</h4>
+<h2 id="supported-operators">Supported Operators</h2>
+<h3 id="addition">Addition</h3>
 <p>You can add a constant.</p>
 <pre><code class="language-sql">SELECT A + 5 FROM add</code></pre>
 <p>You can add together other field keys.</p>
 <pre><code class="language-sql">SELECT A + B FROM add</code></pre>
-<h4 id="subtraction">Subtraction</h4>
+<h3 id="subtraction">Subtraction</h3>
 <p>You can subtract a constant.</p>
 <pre><code class="language-sql">SELECT 1 - A FROM sub</code></pre>
 <p>You can subtract one field key from another field key.</p>
 <pre><code class="language-sql">SELECT A - B FROM sub</code></pre>
-<h4 id="multiplication">Multiplication</h4>
+<h3 id="multiplication">Multiplication</h3>
 <p>You can multiply by a constant.</p>
 <pre><code class="language-sql">SELECT A + B FROM add
 SELECT 10 * A FROM mult</code></pre>
@@ -254,28 +248,28 @@ SELECT 10 * A FROM mult</code></pre>
 <pre><code class="language-sql">SELECT 10 * (A + B + C) FROM mult</code></pre>
 <pre><code class="language-sql">SELECT 10 * (A - B - C) FROM mult</code></pre>
 <pre><code class="language-sql">SELECT 10 * (A + B - C) FROM mult</code></pre>
-<h4 id="division">Division</h4>
+<h3 id="division">Division</h3>
 <p>You can divide by a constant.</p>
 <pre><code class="language-sql">SELECT 10 / A FROM div</code></pre>
 <p>You can divide by other field keys.</p>
 <pre><code class="language-sql">SELECT A / B FROM div</code></pre>
 <p>Division distributes across other operators</p>
 <pre><code class="language-sql">SELECT 10 / (A + B + C) FROM mult</code></pre>
-<h3 id="operators-with-functions">Operators with Functions</h3>
+<h2 id="operators-with-functions">Operators with Functions</h2>
 <p>The use of mathematical operators inside of function calls is currently unsupported.</p>
 <p>For example</p>
 <pre><code class="language-sql">SELECT 10 * mean(value) FROM cpu</code></pre>
 <p>will work, however</p>
 <pre><code class="language-sql">SELECT mean(10 * value) FROM cpu</code></pre>
 <p>will yield a parse error.</p>
-<h3 id="unsupported-operators">Unsupported Operators</h3>
-<h4 id="inequalities">Inequalities</h4>
+<h2 id="unsupported-operators">Unsupported Operators</h2>
+<h3 id="inequalities">Inequalities</h3>
 <p>Using any of <code>=</code>,<code>!=</code>,<code>&lt;</code>,<code>&gt;</code>,<code>&lt;=</code>,<code>&gt;=</code> in the <code>SELECT</code> clause yields empty results for all types.
 See GitHub issue <a href="https://github.com/dsdb/dsdb/issues/3525">3525</a>.</p>
-<h4 id="miscellaneous">Miscellaneous</h4>
+<h3 id="miscellaneous">Miscellaneous</h3>
 <p>Using any of <code>%</code>, <code>^</code> will yield a parse error.
 If you would like to see support for these operators open an <a href="https://github.com/dsdb/dsdb/issues/new">issue</a>.</p>
-<h3 id="logical-operators-are-unsupported">Logical Operators are Unsupported</h3>
+<h2 id="logical-operators-are-unsupported">Logical Operators are Unsupported</h2>
 <p>Using any of <code>&amp;</code>,<code>|</code>,<code>!|</code>,<code>NAND</code>,<code>XOR</code>,<code>NOR</code> will yield parse error.</p>
 <p>Additionally using <code>AND</code>, <code>OR</code> in the <code>SELECT</code> clause of a query will not behave as mathematical operators and simply yield empty results, as they are tokens in DSDBQL.</p>
       </div>

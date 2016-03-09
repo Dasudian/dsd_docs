@@ -50,7 +50,7 @@
 			  });	
 		  })
     </script>
-    <link href='http://fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
+    <link href='//fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
   </head>
 
   <body>
@@ -137,8 +137,6 @@
                 <ul class="menu3" style="display: block;">
                   <li><a id="dsdb-datasource-diamond" class="active" href="/dsdb/data_sources/diamond.html">Diamond</a></li>
                   <li><a id="dsdb-datasource-opentsdb" class="" href="/dsdb/data_sources/opentsdb.html">OpenTSDB</a></li>
-                  <li><a id="dsdb-datasource-carbon" class="" href="/dsdb/data_sources/carbon.html">Carbon</a></li>
-                  <li><a id="dsdb-datasource-collectd" class="" href="/dsdb/data_sources/collectd.html">Collectd</a></li>
                 </ul>
               </li>
               <li><a class="fold">Guides</a>
@@ -172,10 +170,6 @@
                   <li><a id="dsdb-tools-overview" class="" href="/dsdb/tools/index.html">Tools Overview</a></li>
                   <li><a id="dsdb-tools-shell" class="" href="/dsdb/tools/shell.html">CLI/Shell</a></li>
                   <li><a id="dsdb-tools-webadmin" class="" href="/dsdb/tools/web_admin.html">Web Admin Interface</a></li>
-                  <li><a id="dsdb-tools-grafana" class="" href="/dsdb/tools/grafana.html">Grafana Dashboards</a></li>
-                  <li><a id="dsdb-tools-telegraf" class="" href="/dsdb/tools/telegraf.html">Telegraf Metrics Collection</a></li>
-                  <li><a id="dsdb-tools-chronograf" class="" href="/dsdb/tools/chronograf.html">Chronograf Dashboards</a></li>
-                  <li><a id="dsdb-tools-kapacitor" class="" href="/dsdb/tools/kapacitor.html">Kapacitor Monitoring</a></li>
                 </ul>
               </li>
               <li><a class="fold">Write Protocols</a>
@@ -223,14 +217,14 @@
 
     <div class="side_right">
       <div class="doc">
-        <h2 id="diamond">Diamond</h2>
-<h3 id="saving-diamond-metrics-into-dsdb">Saving Diamond Metrics into DSDB</h3>
+        <h1 id="diamond">Diamond</h1>
+<h2 id="saving-diamond-metrics-into-dsdb">Saving Diamond Metrics into DSDB</h2>
 <p>Diamond is a metrics collection and delivery daemon written in Python.
 It is capable of collecting cpu, memory, network, i/o, load and disk metrics.
 Additionally, it features an API for implementing custom collectors for gathering metrics from almost any source.</p>
 <p><a href="https://github.com/python-diamond">Diamond homepage</a></p>
 <p>Diamond started supporting DSDB at version 3.5.</p>
-<h3 id="configuring-diamond-to-send-metrics-to-dsdb">Configuring Diamond to send metrics to DSDB</h3>
+<h2 id="configuring-diamond-to-send-metrics-to-dsdb">Configuring Diamond to send metrics to DSDB</h2>
 <p>Prerequisites: Diamond depends on the <a href="https://github.com/dasudian/dsdb-python">dsdb python client</a>.
 DSDB-version-specific installation instructions for the dsdb python client can be found on their <a href="https://github.com/dasudian/dsdb-python">github page</a>.</p>
       </div>

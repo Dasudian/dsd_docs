@@ -50,7 +50,7 @@
 			  });	
 		  })
     </script>
-    <link href='http://fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
+    <link href='//fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
   </head>
 
   <body>
@@ -137,8 +137,6 @@
                 <ul class="menu3" >
                   <li><a id="dsdb-datasource-diamond" class="" href="/dsdb/data_sources/diamond.html">Diamond</a></li>
                   <li><a id="dsdb-datasource-opentsdb" class="" href="/dsdb/data_sources/opentsdb.html">OpenTSDB</a></li>
-                  <li><a id="dsdb-datasource-carbon" class="" href="/dsdb/data_sources/carbon.html">Carbon</a></li>
-                  <li><a id="dsdb-datasource-collectd" class="" href="/dsdb/data_sources/collectd.html">Collectd</a></li>
                 </ul>
               </li>
               <li><a class="fold">Guides</a>
@@ -172,10 +170,6 @@
                   <li><a id="dsdb-tools-overview" class="" href="/dsdb/tools/index.html">Tools Overview</a></li>
                   <li><a id="dsdb-tools-shell" class="" href="/dsdb/tools/shell.html">CLI/Shell</a></li>
                   <li><a id="dsdb-tools-webadmin" class="" href="/dsdb/tools/web_admin.html">Web Admin Interface</a></li>
-                  <li><a id="dsdb-tools-grafana" class="" href="/dsdb/tools/grafana.html">Grafana Dashboards</a></li>
-                  <li><a id="dsdb-tools-telegraf" class="" href="/dsdb/tools/telegraf.html">Telegraf Metrics Collection</a></li>
-                  <li><a id="dsdb-tools-chronograf" class="" href="/dsdb/tools/chronograf.html">Chronograf Dashboards</a></li>
-                  <li><a id="dsdb-tools-kapacitor" class="" href="/dsdb/tools/kapacitor.html">Kapacitor Monitoring</a></li>
                 </ul>
               </li>
               <li><a class="fold">Write Protocols</a>
@@ -223,12 +217,12 @@
 
     <div class="side_right">
       <div class="doc">
-        <h2 id="dac_cloud_api_c">DAC_CLOUD_API_C指导手册</h2>
-<h3 id="">引言</h3>
+        <h1 id="dac_cloud_api_c">DAC_CLOUD_API_C指导手册</h1>
+<h2 id="">引言</h2>
 <p>CLOUD_API_C提供了功能丰富但使用简单的API，用户无需关注性能负载均衡等，就可以实现丰富的http及其他类型的服务。  </p>
-<h3 id="-1">安装环境</h3>
+<h2 id="-1">安装环境</h2>
 <p>ubuntu 14.04或14.10</p>
-<h3 id="-2">编译方法</h3>
+<h2 id="-2">编译方法</h2>
 <ol>
 <li>下载并解压SDK到指定目录   </li>
 <li>修改工程的Makefile，添加CLOUD_API_C的头文件引用路径和动态库的链接路径<br />
@@ -244,7 +238,7 @@ CFLAGS+= -I$(INCLUDE_DIR) -g -O0 -fexceptions
 LDFLAGS+= -L$(LIB_DIR) -ldsdcloud  dm_test： dm_test.o   
 gcc -o dm_test dm_test.o $(CFLAGS) $(LDFLAGS) dm_test.o：dm_test.c   
 gcc  -c dm_test.c $(CFLAGS)</code></pre>
-<h3 id="cloud-api">CLOUD API使用方法</h3>
+<h2 id="cloud-api">CLOUD API使用方法</h2>
 <p>developers 引用头文件<code>dsd_cloud.h</code>，调用如下的方法，实现负载均衡，性能分布等功能。 </p>
 <ol>
 <li>
@@ -429,7 +423,7 @@ gcc  -c dm_test.c $(CFLAGS)</code></pre>
 返回响应信息长度   </p>
 </li>
 </ol>
-<h3 id="memcached">MemCached数据库访问方法</h3>
+<h2 id="memcached">MemCached数据库访问方法</h2>
 <p>dsd dac cloud api 提供了非常丰富的访问memcached的API，开发者无需安装及维护MemCached数据库。开发者需要引用头文件<code>dsd_mchdb.h</code>。具体的函数如下：  </p>
 <ol>
 <li>
@@ -605,7 +599,7 @@ key的值，如果没有该key则返回ＮＵＬＬ   </p>
 <strong>返回值：</strong><br />
 清空数据库 </li>
 </ol>
-<h2 id="redis">Redis数据库访问方法</h2>
+<h1 id="redis">Redis数据库访问方法</h1>
 <p>dsd dac cloud api 提供了简单易用的访问redis的API，开发者无需安装及维护redis数据库。开发者需要引用头文件dsd_redis.h。具体的函数如下：   </p>
 <ol>
 <li>
@@ -642,9 +636,9 @@ key的值，如果没有该key则返回ＮＵＬＬ   </p>
 ｝</code></pre>
 <p>客户端需要先判断err,然后在获取返回值的长度。  </p></li>
 </ol>
-<h3 id="dsdb">Dsdb数据库访问方法</h3>
+<h2 id="dsdb">Dsdb数据库访问方法</h2>
 <p>dsd dac cloud api 提供了丰富易用的访问Dsdb数据库的API，开发者无需安装及维护Dsdb数据库。开发者需要引用头文件<code>dsd_dsdb.h</code>。具体的函数如下： </p>
-<h4 id="-3">结构体</h4>
+<h3 id="-3">结构体</h3>
 <p>数据库查询接口返回数据格式：  </p>
 <pre><code class="language-c">typedef struct dsdb_result_s
 {
@@ -655,7 +649,7 @@ key的值，如果没有该key则返回ＮＵＬＬ   </p>
 <p><code>char ** result</code> ： 返回结果，字符串数组，
 <code>int length</code> ： 字符串的个数
 <code>char * next_page_id</code> ： 分页查询时，下页的搜索id，如果没有，则为NULL</p>
-<h4 id="-4">函数</h4>
+<h3 id="-4">函数</h3>
 <ol>
 <li>
 <p><code>int put(dsd_cloud_instance_t * p, char * database, char *key, char *value)</code><br />

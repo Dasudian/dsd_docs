@@ -50,7 +50,7 @@
 			  });	
 		  })
     </script>
-    <link href='http://fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
+    <link href='//fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
   </head>
 
   <body>
@@ -137,8 +137,6 @@
                 <ul class="menu3" >
                   <li><a id="dsdb-datasource-diamond" class="" href="/dsdb/data_sources/diamond.html">Diamond</a></li>
                   <li><a id="dsdb-datasource-opentsdb" class="" href="/dsdb/data_sources/opentsdb.html">OpenTSDB</a></li>
-                  <li><a id="dsdb-datasource-carbon" class="" href="/dsdb/data_sources/carbon.html">Carbon</a></li>
-                  <li><a id="dsdb-datasource-collectd" class="" href="/dsdb/data_sources/collectd.html">Collectd</a></li>
                 </ul>
               </li>
               <li><a class="fold">Guides</a>
@@ -172,10 +170,6 @@
                   <li><a id="dsdb-tools-overview" class="" href="/dsdb/tools/index.html">Tools Overview</a></li>
                   <li><a id="dsdb-tools-shell" class="" href="/dsdb/tools/shell.html">CLI/Shell</a></li>
                   <li><a id="dsdb-tools-webadmin" class="" href="/dsdb/tools/web_admin.html">Web Admin Interface</a></li>
-                  <li><a id="dsdb-tools-grafana" class="" href="/dsdb/tools/grafana.html">Grafana Dashboards</a></li>
-                  <li><a id="dsdb-tools-telegraf" class="" href="/dsdb/tools/telegraf.html">Telegraf Metrics Collection</a></li>
-                  <li><a id="dsdb-tools-chronograf" class="" href="/dsdb/tools/chronograf.html">Chronograf Dashboards</a></li>
-                  <li><a id="dsdb-tools-kapacitor" class="" href="/dsdb/tools/kapacitor.html">Kapacitor Monitoring</a></li>
                 </ul>
               </li>
               <li><a class="fold">Write Protocols</a>
@@ -223,7 +217,7 @@
 
     <div class="side_right">
       <div class="doc">
-        <h2 id="getting-started">Getting Started</h2>
+        <h1 id="getting-started">Getting Started</h1>
 <p>With DSDB <a href="/dsdb/introduction/installation.html">installed</a>, you're ready to start doing some awesome things.
 In this section we'll use the <code>influx</code> command line interface (CLI), which is included in all
 DSDB packages and is a lightweight and simple way to interact with the database.
@@ -233,7 +227,7 @@ The CLI communicates with DSDB directly by making requests to the DSDB HTTP API 
 See <a href="/dsdb/guides/writing_data.html">Writing Data</a> and <a href="/dsdb/guides/querying_data.html">Querying Data</a>
 for examples with the <code>curl</code> application.</p>
 </blockquote>
-<h3 id="creating-a-database">Creating a database</h3>
+<h2 id="creating-a-database">Creating a database</h2>
 <p>If you've installed DSDB locally, the <code>influx</code> command should be available via the command line.
 Executing <code>influx</code> will start the CLI and automatically connect to the local DSDB instance
 (assuming you have already started the server with <code>service dsdb start</code> or by running <code>influxd</code> directly).
@@ -287,7 +281,7 @@ which will automatically set the database for all future requests. For example:<
 Using database mydb
 &gt; </code></pre>
 <p>Now future commands will only be run against the <code>mydb</code> database.</p>
-<h3 id="writing-and-exploring-data">Writing and exploring data</h3>
+<h2 id="writing-and-exploring-data">Writing and exploring data</h2>
 <p>Now that we have a database, DSDB is ready to accept queries and writes.</p>
 <p>First, a short primer on the datastore.
 Data in DSDB is organized by &quot;time series&quot;,

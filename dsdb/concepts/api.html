@@ -50,7 +50,7 @@
 			  });	
 		  })
     </script>
-    <link href='http://fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
+    <link href='//fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
   </head>
 
   <body>
@@ -137,8 +137,6 @@
                 <ul class="menu3" >
                   <li><a id="dsdb-datasource-diamond" class="" href="/dsdb/data_sources/diamond.html">Diamond</a></li>
                   <li><a id="dsdb-datasource-opentsdb" class="" href="/dsdb/data_sources/opentsdb.html">OpenTSDB</a></li>
-                  <li><a id="dsdb-datasource-carbon" class="" href="/dsdb/data_sources/carbon.html">Carbon</a></li>
-                  <li><a id="dsdb-datasource-collectd" class="" href="/dsdb/data_sources/collectd.html">Collectd</a></li>
                 </ul>
               </li>
               <li><a class="fold">Guides</a>
@@ -172,10 +170,6 @@
                   <li><a id="dsdb-tools-overview" class="" href="/dsdb/tools/index.html">Tools Overview</a></li>
                   <li><a id="dsdb-tools-shell" class="" href="/dsdb/tools/shell.html">CLI/Shell</a></li>
                   <li><a id="dsdb-tools-webadmin" class="" href="/dsdb/tools/web_admin.html">Web Admin Interface</a></li>
-                  <li><a id="dsdb-tools-grafana" class="" href="/dsdb/tools/grafana.html">Grafana Dashboards</a></li>
-                  <li><a id="dsdb-tools-telegraf" class="" href="/dsdb/tools/telegraf.html">Telegraf Metrics Collection</a></li>
-                  <li><a id="dsdb-tools-chronograf" class="" href="/dsdb/tools/chronograf.html">Chronograf Dashboards</a></li>
-                  <li><a id="dsdb-tools-kapacitor" class="" href="/dsdb/tools/kapacitor.html">Kapacitor Monitoring</a></li>
                 </ul>
               </li>
               <li><a class="fold">Write Protocols</a>
@@ -223,10 +217,10 @@
 
     <div class="side_right">
       <div class="doc">
-        <h2 id="api-endpoints-amp-ports">API Endpoints &amp; Ports</h2>
-<h3 id="endpoints">Endpoints</h3>
+        <h1 id="api-endpoints-amp-ports">API Endpoints &amp; Ports</h1>
+<h2 id="endpoints">Endpoints</h2>
 <p>All current API Endpoints are listed below.</p>
-<h4 id="ping">/ping</h4>
+<h3 id="ping">/ping</h3>
 <p>The ping endpoint accepts both <code>GET</code> and <code>HEAD</code> HTTP requests.
 The response body is empty.
 The version of the DSDB server you issued the request to can be extracted through the <code>X-DSDB-Version</code> field of the header.
@@ -248,19 +242,19 @@ HTTP/1.1 204 No Content
 Request-Id: 58aedfb1-53e5-14e5-a7f5-000000000000
 X-DSDB-Version: 1.0.0-nightly-5a8b19b
 Date: Wed, 21 Oct 2015 16:29:35 GMT</code></pre>
-<h4 id="query">/query</h4>
+<h3 id="query">/query</h3>
 <p>For more information on the <code>/query</code> endpoint see the <a href="/dsdb/guides/querying_data.html">Querying Data</a> section of our docs.</p>
-<h4 id="write">/write</h4>
+<h3 id="write">/write</h3>
 <p>For more information on the <code>/write</code> endpoint see the <a href="/dsdb/guides/writing_data.html">Writing Data</a> section of our docs.</p>
-<h3 id="ports">Ports</h3>
-<h4 id="http-api-port">HTTP API PORT</h4>
+<h2 id="ports">Ports</h2>
+<h3 id="http-api-port">HTTP API PORT</h3>
 <p>By default the DSDB HTTP API listens on port <code>8088</code>.
 The <code>/ping</code>, <code>/write</code>, and <code>/query</code> endpoints are all part of the HTTP API.</p>
-<h4 id="internal-communication-port">Internal Communication port</h4>
+<h3 id="internal-communication-port">Internal Communication port</h3>
 <p>By default, the communication between clustered instances of DSDB occurs over ports <code>8088</code> and <code>8091</code>.</p>
-<h4 id="admin-interface-port">Admin interface port</h4>
+<h3 id="admin-interface-port">Admin interface port</h3>
 <p>The admin interface for DSDB runs on port <code>8084</code> and exposes web UI for the server.</p>
-<h4 id="secondary-ports">Secondary Ports</h4>
+<h3 id="secondary-ports">Secondary Ports</h3>
 <p>DSDB also supports communication through UDP, Graphite, Collectd, and OpenTSDB.
 By default DSDB makes port <code>2003</code> available for Graphite.
 No default ports are assigned for UDP, Collectd, or OpenTSDB.</p>

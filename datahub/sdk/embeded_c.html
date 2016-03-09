@@ -50,7 +50,7 @@
 			  });	
 		  })
     </script>
-    <link href='http://fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
+    <link href='//fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
   </head>
 
   <body>
@@ -137,8 +137,6 @@
                 <ul class="menu3" >
                   <li><a id="dsdb-datasource-diamond" class="" href="/dsdb/data_sources/diamond.html">Diamond</a></li>
                   <li><a id="dsdb-datasource-opentsdb" class="" href="/dsdb/data_sources/opentsdb.html">OpenTSDB</a></li>
-                  <li><a id="dsdb-datasource-carbon" class="" href="/dsdb/data_sources/carbon.html">Carbon</a></li>
-                  <li><a id="dsdb-datasource-collectd" class="" href="/dsdb/data_sources/collectd.html">Collectd</a></li>
                 </ul>
               </li>
               <li><a class="fold">Guides</a>
@@ -172,10 +170,6 @@
                   <li><a id="dsdb-tools-overview" class="" href="/dsdb/tools/index.html">Tools Overview</a></li>
                   <li><a id="dsdb-tools-shell" class="" href="/dsdb/tools/shell.html">CLI/Shell</a></li>
                   <li><a id="dsdb-tools-webadmin" class="" href="/dsdb/tools/web_admin.html">Web Admin Interface</a></li>
-                  <li><a id="dsdb-tools-grafana" class="" href="/dsdb/tools/grafana.html">Grafana Dashboards</a></li>
-                  <li><a id="dsdb-tools-telegraf" class="" href="/dsdb/tools/telegraf.html">Telegraf Metrics Collection</a></li>
-                  <li><a id="dsdb-tools-chronograf" class="" href="/dsdb/tools/chronograf.html">Chronograf Dashboards</a></li>
-                  <li><a id="dsdb-tools-kapacitor" class="" href="/dsdb/tools/kapacitor.html">Kapacitor Monitoring</a></li>
                 </ul>
               </li>
               <li><a class="fold">Write Protocols</a>
@@ -223,10 +217,10 @@
 
     <div class="side_right">
       <div class="doc">
-        <h2 id="data-hub-embeded-c-sdk">Data Hub Embeded C SDK</h2>
-<h3 id="getting-started">Getting Started</h3>
+        <h1 id="data-hub-embeded-c-sdk">Data Hub Embeded C SDK</h1>
+<h2 id="getting-started">Getting Started</h2>
 <p>To get started head over to our <a href="/quickstart.html">QuickStart</a> which will help you install IoT Data Analytics tracking your devices, applications and your site in just a few minutes. Once you’ve installed the library, read on for the detailed API reference!</p>
-<h3 id="identify">Identify</h3>
+<h2 id="identify">Identify</h2>
 <p>The <strong>identify</strong> method is how you tie one of your users and their actions to a recognizable userId and traits. You can read more about how to set it up or about how it works.</p>
 <p><em>Note</em>: You won’t need to call identify for anonymous users of your devices or  visitors to your services. We’ll automatically assign them an anonymousId, so just calling page and track will still work just fine without <strong>identify</strong>.</p>
 <p>Here’s what an <strong>identify</strong> call looks like, along with its method signature:</p>
@@ -273,7 +267,7 @@ A dictionary of latitude and longitude properties of the position. </p>
 A dictionary of options, that let you do things like enable or disable specific integrations for the call. Note: If you do not pass a properties object, pass an empty object (ie, ‘{}’) before options</p>
 <p><strong>callback</strong>
 A callback function that gets called after a short timeout, giving the browser time to make outbound requests first.</p>
-<h3 id="alias">Alias</h3>
+<h2 id="alias">Alias</h2>
 <p>The <strong>alias</strong> method combines two previously unassociated user/client/device identities. This comes in handy if the same user visits from two different services or your devices changed identifiers for different services, and you want to combine their history.</p>
 <p>Some providers also don’t alias automatically for you when an anonymous user signs up (like Mixpanel), so you need to call alias manually right after sign up with their brand new userId.</p>
 <p>Here’s a basic example along with the alias method signature:</p>

@@ -50,7 +50,7 @@
 			  });	
 		  })
     </script>
-    <link href='http://fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
+    <link href='//fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
   </head>
 
   <body>
@@ -137,8 +137,6 @@
                 <ul class="menu3" >
                   <li><a id="dsdb-datasource-diamond" class="" href="/dsdb/data_sources/diamond.html">Diamond</a></li>
                   <li><a id="dsdb-datasource-opentsdb" class="" href="/dsdb/data_sources/opentsdb.html">OpenTSDB</a></li>
-                  <li><a id="dsdb-datasource-carbon" class="" href="/dsdb/data_sources/carbon.html">Carbon</a></li>
-                  <li><a id="dsdb-datasource-collectd" class="" href="/dsdb/data_sources/collectd.html">Collectd</a></li>
                 </ul>
               </li>
               <li><a class="fold">Guides</a>
@@ -172,10 +170,6 @@
                   <li><a id="dsdb-tools-overview" class="" href="/dsdb/tools/index.html">Tools Overview</a></li>
                   <li><a id="dsdb-tools-shell" class="" href="/dsdb/tools/shell.html">CLI/Shell</a></li>
                   <li><a id="dsdb-tools-webadmin" class="" href="/dsdb/tools/web_admin.html">Web Admin Interface</a></li>
-                  <li><a id="dsdb-tools-grafana" class="" href="/dsdb/tools/grafana.html">Grafana Dashboards</a></li>
-                  <li><a id="dsdb-tools-telegraf" class="" href="/dsdb/tools/telegraf.html">Telegraf Metrics Collection</a></li>
-                  <li><a id="dsdb-tools-chronograf" class="" href="/dsdb/tools/chronograf.html">Chronograf Dashboards</a></li>
-                  <li><a id="dsdb-tools-kapacitor" class="" href="/dsdb/tools/kapacitor.html">Kapacitor Monitoring</a></li>
                 </ul>
               </li>
               <li><a class="fold">Write Protocols</a>
@@ -223,7 +217,7 @@
 
     <div class="side_right">
       <div class="doc">
-        <h2 id="line-protocol">Line Protocol</h2>
+        <h1 id="line-protocol">Line Protocol</h1>
 <p>The line protocol is a text based format for writing points to DSDB.
 Each line defines a single point.
 Multiple lines must be separated by the newline character <code>\n</code>.
@@ -233,26 +227,26 @@ The format of the line consists of three parts:</p>
 The minimum required point consists of a measurement name and at least one field.
 Points without a specified timestamp will be written using the server's local timestamp.
 Timestamps are assumed to be in nanoseconds unless a <code>precision</code> value is passed in the query string.</p>
-<h3 id="key">Key</h3>
+<h2 id="key">Key</h2>
 <p>The key is the measurement name and any optional tags separated by commas.
 Measurement names, tag keys, and tag values must escape any spaces or commas using a backslash (<code>\</code>).
 For example: <code>\</code> and <code>\,</code>.
 All tag values are stored as strings and should not be surrounded in quotes.</p>
 <p>Tags should be sorted by key before being sent for best performance.
 The sort should match that from the Go <code>bytes.Compare</code> function (<a href="http://golang.org/pkg/bytes/#Compare">http://golang.org/pkg/bytes/#Compare</a>).</p>
-<h4 id="examples">Examples</h4>
-<pre><code>## measurement only
+<h3 id="examples">Examples</h3>
+<pre><code># measurement only
 cpu
 
-## measurement and tags
+# measurement and tags
 cpu,host=serverA,region=us-west
 
-## measurement with commas
+# measurement with commas
 cpu\,01,host=serverA,region=us-west
 
-## tag value with spaces
+# tag value with spaces
 cpu,host=server\ A,region=us\ west</code></pre>
-<h3 id="fields">Fields</h3>
+<h2 id="fields">Fields</h2>
 <p>Fields are key-value metrics associated with the measurement.
 Every line must have at least one field.
 Multiple fields must be separated with commas and not spaces.</p>
@@ -271,31 +265,31 @@ Valid boolean strings for line protocol are (t, T, true, True, TRUE, f, F, false
 <p><strong>Strings</strong> are text values.
 All string field values <em>must</em> be surrounded in double-quotes <code>"</code>.
 If the string contains a double-quote, the double-quote must be escaped with a backslash, e.g. <code>\"</code>.</p>
-<pre><code>## integer value
+<pre><code># integer value
 cpu value=1i
 
-## float value
+# float value
 cpu_load value=1
 
 cpu_load value=1.0
 
 cpu_load value=1.2
 
-## boolean value
+# boolean value
 error fatal=true
 
-## string value
+# string value
 event msg="logged out"
 
-## multiple values
+# multiple values
 cpu load=10,alert=true,reason="value above maximum threshold"</code></pre>
-<h3 id="timestamp">Timestamp</h3>
+<h2 id="timestamp">Timestamp</h2>
 <p>The timestamp section is optional but should be specified if possible.
 The value is an integer representing nanoseconds since the epoch.
 If the timestamp is not provided the point will inherit the server's local timestamp.</p>
 <p>Some write APIs allow passing a lower precision.
 If the API supports a lower precision, the timestamp may also be an integer epoch in microseconds, milliseconds, seconds, minutes or hours.</p>
-<h3 id="full-example">Full Example</h3>
+<h2 id="full-example">Full Example</h2>
 <p>A full example is shown below.</p>
 <pre><code>cpu,host=server01,region=uswest value=1 1434055562000000000
 cpu,host=server02,region=uswest value=3 1434055562001.0000

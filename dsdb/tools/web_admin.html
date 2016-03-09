@@ -50,7 +50,7 @@
 			  });	
 		  })
     </script>
-    <link href='http://fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
+    <link href='//fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
   </head>
 
   <body>
@@ -137,8 +137,6 @@
                 <ul class="menu3" >
                   <li><a id="dsdb-datasource-diamond" class="" href="/dsdb/data_sources/diamond.html">Diamond</a></li>
                   <li><a id="dsdb-datasource-opentsdb" class="" href="/dsdb/data_sources/opentsdb.html">OpenTSDB</a></li>
-                  <li><a id="dsdb-datasource-carbon" class="" href="/dsdb/data_sources/carbon.html">Carbon</a></li>
-                  <li><a id="dsdb-datasource-collectd" class="" href="/dsdb/data_sources/collectd.html">Collectd</a></li>
                 </ul>
               </li>
               <li><a class="fold">Guides</a>
@@ -172,10 +170,6 @@
                   <li><a id="dsdb-tools-overview" class="" href="/dsdb/tools/index.html">Tools Overview</a></li>
                   <li><a id="dsdb-tools-shell" class="" href="/dsdb/tools/shell.html">CLI/Shell</a></li>
                   <li><a id="dsdb-tools-webadmin" class="active" href="/dsdb/tools/web_admin.html">Web Admin Interface</a></li>
-                  <li><a id="dsdb-tools-grafana" class="" href="/dsdb/tools/grafana.html">Grafana Dashboards</a></li>
-                  <li><a id="dsdb-tools-telegraf" class="" href="/dsdb/tools/telegraf.html">Telegraf Metrics Collection</a></li>
-                  <li><a id="dsdb-tools-chronograf" class="" href="/dsdb/tools/chronograf.html">Chronograf Dashboards</a></li>
-                  <li><a id="dsdb-tools-kapacitor" class="" href="/dsdb/tools/kapacitor.html">Kapacitor Monitoring</a></li>
                 </ul>
               </li>
               <li><a class="fold">Write Protocols</a>
@@ -223,27 +217,27 @@
 
     <div class="side_right">
       <div class="doc">
-        <h2 id="web-admin-interface">Web Admin Interface</h2>
+        <h1 id="web-admin-interface">Web Admin Interface</h1>
 <p>The built-in web administration GUI is a simple way to interact with DSDB.
 For any significant use, whether writing or querying data, direct use of the HTTP API (<a href="/dsdb/guides/querying_data.html">reading</a>, <a href="/dsdb/guides/writing_data.html">writing</a>) or the <a href="/dsdb/tools/shell.html">command line interface</a> are better options.</p>
-<h3 id="accessing-the-ui">Accessing the UI</h3>
+<h2 id="accessing-the-ui">Accessing the UI</h2>
 <p>The Admin UI is available by default at port 8083, i.e. <a href="http://localhost:8083"><a href="http://localhost:8083">http://localhost:8083</a></a>.
 You can control the port in the DSDB config file using the <code>port</code> option in the <code>[admin]</code> section.</p>
 <p>You can also access remote DSDB instances, although you may only connect to one instance at a time.
 To access an instance at a location other than than <a href="http://localhost:8083">http://localhost:8083</a>, click the Settings icon in the upper right and enter the proper connection settings for the target DSDB instance.</p>
-<h4 id="http-vs-https">HTTP vs HTTPS</h4>
+<h3 id="http-vs-https">HTTP vs HTTPS</h3>
 <p>The Admin UI uses HTTP by default but can be configured to use HTTPS.
 In the DSDB config file, find the <code>[admin]</code> section and set <code>https-enabled = true</code>.</p>
 <blockquote>
 <p><strong>Note:</strong> If HTTPS is enabled, you must explicitly connect to the instance using <code>https://</code>, there is no redirect from <code>http</code> to <code>https</code>.</p>
 </blockquote>
-<h4 id="selecting-the-database">Selecting the Database</h4>
+<h3 id="selecting-the-database">Selecting the Database</h3>
 <p>Choose your target database for writes and queries from the &quot;Databases&quot; pull-down menu in the upper right.
 If you have recently created a database you will need to refresh the Admin UI page before it appears in the pull-down menu.</p>
-<h3 id="writing-data">Writing Data</h3>
+<h2 id="writing-data">Writing Data</h2>
 <p>The Admin UI has a &quot;Write Data&quot; link in the top menu bar.
 This link pops up a modal dialog that will accept points in the <a href="/dsdb/write_protocols/line.html">line protocol</a> format.</p>
-<h3 id="querying-data">Querying Data</h3>
+<h2 id="querying-data">Querying Data</h2>
 <p>The Admin UI has a &quot;Query&quot; box where you can enter any valid <a href="/dsdb/query_language/spec.html">DSDBQL</a> command, including database administration and schema exploration commands.
 The &quot;Query Templates&quot; pull-down menu will pre-populate the Query box with a number of common DSDBQL queries.</p>
       </div>

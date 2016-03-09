@@ -50,7 +50,7 @@
 			  });	
 		  })
     </script>
-    <link href='http://fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
+    <link href='//fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
   </head>
 
   <body>
@@ -137,8 +137,6 @@
                 <ul class="menu3" >
                   <li><a id="dsdb-datasource-diamond" class="" href="/dsdb/data_sources/diamond.html">Diamond</a></li>
                   <li><a id="dsdb-datasource-opentsdb" class="" href="/dsdb/data_sources/opentsdb.html">OpenTSDB</a></li>
-                  <li><a id="dsdb-datasource-carbon" class="" href="/dsdb/data_sources/carbon.html">Carbon</a></li>
-                  <li><a id="dsdb-datasource-collectd" class="" href="/dsdb/data_sources/collectd.html">Collectd</a></li>
                 </ul>
               </li>
               <li><a class="fold">Guides</a>
@@ -172,10 +170,6 @@
                   <li><a id="dsdb-tools-overview" class="" href="/dsdb/tools/index.html">Tools Overview</a></li>
                   <li><a id="dsdb-tools-shell" class="" href="/dsdb/tools/shell.html">CLI/Shell</a></li>
                   <li><a id="dsdb-tools-webadmin" class="" href="/dsdb/tools/web_admin.html">Web Admin Interface</a></li>
-                  <li><a id="dsdb-tools-grafana" class="" href="/dsdb/tools/grafana.html">Grafana Dashboards</a></li>
-                  <li><a id="dsdb-tools-telegraf" class="" href="/dsdb/tools/telegraf.html">Telegraf Metrics Collection</a></li>
-                  <li><a id="dsdb-tools-chronograf" class="" href="/dsdb/tools/chronograf.html">Chronograf Dashboards</a></li>
-                  <li><a id="dsdb-tools-kapacitor" class="" href="/dsdb/tools/kapacitor.html">Kapacitor Monitoring</a></li>
                 </ul>
               </li>
               <li><a class="fold">Write Protocols</a>
@@ -223,7 +217,7 @@
 
     <div class="side_right">
       <div class="doc">
-        <h2 id="scheam-exploration">Scheam Exploration</h2>
+        <h1 id="scheam-exploration">Scheam Exploration</h1>
 <p>DSDBQL is an SQL-like query language for interacting with data in DSDB.
 The following sections cover useful query syntax for exploring your schema (that is, how you set up your time series data):</p>
 <ul>
@@ -240,7 +234,7 @@ See the <a href="/dsdb/guides/querying_data.html">Querying Data</a> guide for ho
 <p><strong>Sample data</strong></p>
 <p>This document uses the same sample data as the <a href="/dsdb/query_language/data_exploration.html">Data Exploration</a> page.
 The data are described and are available for download on the <a href="/dsdb/sample_data/data_download.html">Sample Data</a> page.</p>
-<h3 id="see-all-databases-with">See all databases with <code>SHOW DATABASES</code></h3>
+<h2 id="see-all-databases-with">See all databases with <code>SHOW DATABASES</code></h2>
 <p>Get a list of all the databases in your system by entering:</p>
 <pre><code class="language-sql">SHOW DATABASES</code></pre>
 <p>CLI example:</p>
@@ -249,7 +243,7 @@ name: databases
 ---------------
 name
 NOAA_water_database</code></pre>
-<h3 id="explore-retention-policies-with">Explore retention policies with <code>SHOW RETENTION POLICIES</code></h3>
+<h2 id="explore-retention-policies-with">Explore retention policies with <code>SHOW RETENTION POLICIES</code></h2>
 <p>The <code>SHOW RETENTION POLICIES</code> query lists the existing <a href="/dsdb/concepts/glossary.html#retention-policy-rp">retention policies</a> on a given database, and it takes the following form:</p>
 <pre><code class="language-sql">SHOW RETENTION POLICIES ON &lt;database_name&gt;</code></pre>
 <p>CLI example:</p>
@@ -266,7 +260,7 @@ default             0              1               false
 two_days_only      48h0m0s       1             false
 one_day_only        24h0m0s      1             false
 three_days_only  72h0m0s         1             true</code></pre>
-<h3 id="explore-series-with">Explore series with <code>SHOW SERIES</code></h3>
+<h2 id="explore-series-with">Explore series with <code>SHOW SERIES</code></h2>
 <p>The <code>SHOW SERIES</code> query returns the distinct <a href="/dsdb/concepts/glossary.html#series">series</a> in your database and takes the following form, where the <code>FROM</code> and <code>WHERE</code> clauses are optional:</p>
 <pre><code class="language-sql">SHOW SERIES [FROM &lt;measurement_name&gt; [WHERE &lt;tag_key&gt;='&lt;tag_value&gt;']]</code></pre>
 <p>Return all series in the database <code>NOAA_water_database</code>:</p>
@@ -332,7 +326,7 @@ _key                                                             location       
 h2o_quality,location=coyote_creek,randtag=1    coyote_creek    1
 h2o_quality,location=coyote_creek,randtag=2    coyote_creek    2
 h2o_quality,location=coyote_creek,randtag=3    coyote_creek    3</code></pre>
-<h3 id="explore-measurements-with">Explore measurements with <code>SHOW MEASUREMENTS</code></h3>
+<h2 id="explore-measurements-with">Explore measurements with <code>SHOW MEASUREMENTS</code></h2>
 <p>The <code>SHOW MEASUREMENTS</code> query returns the <a href="/dsdb/concepts/glossary.html#measurement">measurements</a> in your database and it takes the following form:</p>
 <pre><code class="language-sql">SHOW MEASUREMENTS [WITH MEASUREMENT &lt;regular_expression&gt;] [WHERE &lt;tag_key&gt;=&lt;'tag_value'&gt;]</code></pre>
 <p>Return all measurements in the <code>NOAA_water_database</code> database:</p>
@@ -372,7 +366,7 @@ h2o_feet
 h2o_pH
 h2o_quality
 h2o_temperature</code></pre>
-<h3 id="explore-tag-keys-with-show-tag-keys">Explore tag keys with SHOW TAG KEYS</h3>
+<h2 id="explore-tag-keys-with-show-tag-keys">Explore tag keys with SHOW TAG KEYS</h2>
 <p><code>SHOW TAG KEYS</code> returns the <a href="/dsdb/concepts/glossary.html#tag-key">tag keys</a> associated with each measurement and takes the following form, where the <code>FROM</code> clause is optional:</p>
 <pre><code class="language-sql">SHOW TAG KEYS [FROM &lt;measurement_name&gt;]</code></pre>
 <p>Return all tag keys that are in the database <code>NOAA_water_database</code>:</p>
@@ -412,7 +406,7 @@ Notice that each of the five measurements has the tag key <code>location</code> 
 ---------------------
 tagKey
 location</code></pre>
-<h3 id="explore-tag-values-with-show-tag-values">Explore tag values with SHOW TAG VALUES</h3>
+<h2 id="explore-tag-values-with-show-tag-values">Explore tag values with SHOW TAG VALUES</h2>
 <p>The <code>SHOW TAG VALUES</code> query returns the set of <a href="/dsdb/concepts/glossary.html#tag-value">tag values</a> for a specific tag key across all measurements in the database.
 It takes the following form, where the <code>FROM</code> clause is optional:</p>
 <pre><code class="language-sql">SHOW TAG VALUES [FROM &lt;measurement_name&gt;] WITH KEY = &lt;tag_key&gt;</code></pre>
@@ -430,7 +424,7 @@ randtag
 <p>CLI response:</p>
 <pre><code class="language-sh"></code></pre>
 <p>The measurement <code>average_temperature</code> doesn't have the tag key <code>randtag</code> so DSDB returns nothing.</p>
-<h3 id="explore-field-keys-with">Explore field keys with <code>SHOW FIELD KEYS</code></h3>
+<h2 id="explore-field-keys-with">Explore field keys with <code>SHOW FIELD KEYS</code></h2>
 <p>The <code>SHOW FIELD KEYS</code> query returns the <a href="/dsdb/concepts/glossary.html#field-key">field keys</a> across each measurement in the database.
 It takes the following form, where the <code>FROM</code> clause is optional:</p>
 <pre><code class="language-sql">SHOW FIELD KEYS [FROM &lt;measurement_name&gt;]</code></pre>

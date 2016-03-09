@@ -50,7 +50,7 @@
 			  });	
 		  })
     </script>
-    <link href='http://fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
+    <link href='//fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
   </head>
 
   <body>
@@ -137,8 +137,6 @@
                 <ul class="menu3" >
                   <li><a id="dsdb-datasource-diamond" class="" href="/dsdb/data_sources/diamond.html">Diamond</a></li>
                   <li><a id="dsdb-datasource-opentsdb" class="" href="/dsdb/data_sources/opentsdb.html">OpenTSDB</a></li>
-                  <li><a id="dsdb-datasource-carbon" class="" href="/dsdb/data_sources/carbon.html">Carbon</a></li>
-                  <li><a id="dsdb-datasource-collectd" class="" href="/dsdb/data_sources/collectd.html">Collectd</a></li>
                 </ul>
               </li>
               <li><a class="fold">Guides</a>
@@ -172,10 +170,6 @@
                   <li><a id="dsdb-tools-overview" class="" href="/dsdb/tools/index.html">Tools Overview</a></li>
                   <li><a id="dsdb-tools-shell" class="" href="/dsdb/tools/shell.html">CLI/Shell</a></li>
                   <li><a id="dsdb-tools-webadmin" class="" href="/dsdb/tools/web_admin.html">Web Admin Interface</a></li>
-                  <li><a id="dsdb-tools-grafana" class="" href="/dsdb/tools/grafana.html">Grafana Dashboards</a></li>
-                  <li><a id="dsdb-tools-telegraf" class="" href="/dsdb/tools/telegraf.html">Telegraf Metrics Collection</a></li>
-                  <li><a id="dsdb-tools-chronograf" class="" href="/dsdb/tools/chronograf.html">Chronograf Dashboards</a></li>
-                  <li><a id="dsdb-tools-kapacitor" class="" href="/dsdb/tools/kapacitor.html">Kapacitor Monitoring</a></li>
                 </ul>
               </li>
               <li><a class="fold">Write Protocols</a>
@@ -223,8 +217,8 @@
 
     <div class="side_right">
       <div class="doc">
-        <h2 id="storage-engine">Storage Engine</h2>
-<h3 id="properties-of-time-series-data">Properties of Time Series Data</h3>
+        <h1 id="storage-engine">Storage Engine</h1>
+<h2 id="properties-of-time-series-data">Properties of Time Series Data</h2>
 <p>The workload of time series data is quite different from normal database workloads.
 There are a number of factors that conspire to make it very difficult to get it to scale and perform well:</p>
 <ul>
@@ -258,7 +252,7 @@ You’ll then downsample and aggregate that data into lower precision, which you
 <p>The naive implementation would be to simply delete each record once it gets past its expiration time.
 However, that means that once you’re up to your window of retention, you’ll be doing just as many deletes as you do writes, which is something most storage engines aren’t designed for.</p>
 <p>Let’s dig into the details of the two types of storage engines we tried and how these properties had a significant impact on our performance.</p>
-<h4 id="leveldb-and-log-structured-merge-trees">LevelDB and Log Structured Merge Trees</h4>
+<h3 id="leveldb-and-log-structured-merge-trees">LevelDB and Log Structured Merge Trees</h3>
 <p>We picked LevelDB as the storage engine because it was what we used for time series data storage for the product that was the precursor to DSDB.</p>
 <p>We knew that it had great properties for write throughput and everything works fine.</p>
 <p>LevelDB is an implementation of a Log Structured Merge Tree (or LSM Tree) that was built as an open source project at Google.
@@ -296,7 +290,7 @@ LevelDB splits the data out over many small files.
 Having dozens or hundreds of these databases open in a single process ended up creating a big problem.
 It’s not something we found with a large number of users, but for anyone that was stressing the database to its limits, they were hitting this problem and we had no fix for it.
 There were simply too many file handles open.</p>
-<h4 id="optimized-erlang-ets-table-for-caching">Optimized Erlang ETS table for caching</h4>
+<h3 id="optimized-erlang-ets-table-for-caching">Optimized Erlang ETS table for caching</h3>
       </div>
 
               <div class="tract"><img src="/images/tract.png"/></div>

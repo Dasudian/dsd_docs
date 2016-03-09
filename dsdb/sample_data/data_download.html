@@ -50,7 +50,7 @@
 			  });	
 		  })
     </script>
-    <link href='http://fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
+    <link href='//fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
   </head>
 
   <body>
@@ -137,8 +137,6 @@
                 <ul class="menu3" >
                   <li><a id="dsdb-datasource-diamond" class="" href="/dsdb/data_sources/diamond.html">Diamond</a></li>
                   <li><a id="dsdb-datasource-opentsdb" class="" href="/dsdb/data_sources/opentsdb.html">OpenTSDB</a></li>
-                  <li><a id="dsdb-datasource-carbon" class="" href="/dsdb/data_sources/carbon.html">Carbon</a></li>
-                  <li><a id="dsdb-datasource-collectd" class="" href="/dsdb/data_sources/collectd.html">Collectd</a></li>
                 </ul>
               </li>
               <li><a class="fold">Guides</a>
@@ -172,10 +170,6 @@
                   <li><a id="dsdb-tools-overview" class="" href="/dsdb/tools/index.html">Tools Overview</a></li>
                   <li><a id="dsdb-tools-shell" class="" href="/dsdb/tools/shell.html">CLI/Shell</a></li>
                   <li><a id="dsdb-tools-webadmin" class="" href="/dsdb/tools/web_admin.html">Web Admin Interface</a></li>
-                  <li><a id="dsdb-tools-grafana" class="" href="/dsdb/tools/grafana.html">Grafana Dashboards</a></li>
-                  <li><a id="dsdb-tools-telegraf" class="" href="/dsdb/tools/telegraf.html">Telegraf Metrics Collection</a></li>
-                  <li><a id="dsdb-tools-chronograf" class="" href="/dsdb/tools/chronograf.html">Chronograf Dashboards</a></li>
-                  <li><a id="dsdb-tools-kapacitor" class="" href="/dsdb/tools/kapacitor.html">Kapacitor Monitoring</a></li>
                 </ul>
               </li>
               <li><a class="fold">Write Protocols</a>
@@ -223,15 +217,15 @@
 
     <div class="side_right">
       <div class="doc">
-        <h2 id="sample-data">Sample Data</h2>
+        <h1 id="sample-data">Sample Data</h1>
 <p>Download and write to any DSDB installation the sample data used in <a href="/dsdb/query_language/data_exploration.html">Data Exploration</a>, <a href="/dsdb/query_language/schema_exploration.html">Schema Exploration</a>, and <a href="/dsdb/query_language/functions.html">Functions</a>.</p>
-<h4 id="download-and-write-the-data-to-dsdb">Download and write the data to DSDB</h4>
+<h3 id="download-and-write-the-data-to-dsdb">Download and write the data to DSDB</h3>
 <p>The following instructions are compatible with DSDB versions 0.9.5+.</p>
 <p>From your terminal, download the text file that contains the data in <a href="/dsdb/write_protocols/line.html">line protocol</a> format:</p>
 <pre><code>curl https://s3-us-west-1.amazonaws.com/noaa.water.database.0.9/NOAA_data.txt &gt; NOAA_data.txt</code></pre>
 <p>Write the data to DSDB via the <a href="/dsdb/tools/shell.html">CLI</a>:</p>
 <pre><code>influx -import -path=NOAA_data.txt -precision=s</code></pre>
-<h4 id="test-queries">Test queries</h4>
+<h3 id="test-queries">Test queries</h3>
 <p>See all five measurements:</p>
 <pre><code class="language-sh">&gt; SHOW measurements
 name: measurements
@@ -258,7 +252,7 @@ time                             level description        location         water
 2015-08-18T00:06:00Z       between 6 and 9 feet    coyote_creek    8.005
 2015-08-18T00:06:00Z       below 3 feet               santa_monica     2.116
 2015-08-18T00:12:00Z       between 6 and 9 feet    coyote_creek    7.887</code></pre>
-<h4 id="data-sources-and-things-to-note">Data sources and things to note</h4>
+<h3 id="data-sources-and-things-to-note">Data sources and things to note</h3>
 <p>The sample data are publicly available data from the <a href="http://tidesandcurrents.noaa.gov/stations.html?type=Water+Levels">National Oceanic and Atmospheric Administration’s (NOAA) Center for Operational Oceanographic Products and Services</a>.
 The data include 15,258 observations of water levels (ft) collected every six seconds at two stations (Santa Monica, CA (ID 9410840) and Coyote Creek, CA (ID 9414575)) over the period from August 18, 2015 through September 18, 2015.</p>
 <p>Note that the measurements <code>average_temperature</code>, <code>h2o_pH</code>, <code>h2o_quality</code>, and <code>h2o_temperature</code> contain fictional data.

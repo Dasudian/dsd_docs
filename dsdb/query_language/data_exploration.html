@@ -50,7 +50,7 @@
 			  });	
 		  })
     </script>
-    <link href='http://fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
+    <link href='//fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
   </head>
 
   <body>
@@ -137,8 +137,6 @@
                 <ul class="menu3" >
                   <li><a id="dsdb-datasource-diamond" class="" href="/dsdb/data_sources/diamond.html">Diamond</a></li>
                   <li><a id="dsdb-datasource-opentsdb" class="" href="/dsdb/data_sources/opentsdb.html">OpenTSDB</a></li>
-                  <li><a id="dsdb-datasource-carbon" class="" href="/dsdb/data_sources/carbon.html">Carbon</a></li>
-                  <li><a id="dsdb-datasource-collectd" class="" href="/dsdb/data_sources/collectd.html">Collectd</a></li>
                 </ul>
               </li>
               <li><a class="fold">Guides</a>
@@ -172,10 +170,6 @@
                   <li><a id="dsdb-tools-overview" class="" href="/dsdb/tools/index.html">Tools Overview</a></li>
                   <li><a id="dsdb-tools-shell" class="" href="/dsdb/tools/shell.html">CLI/Shell</a></li>
                   <li><a id="dsdb-tools-webadmin" class="" href="/dsdb/tools/web_admin.html">Web Admin Interface</a></li>
-                  <li><a id="dsdb-tools-grafana" class="" href="/dsdb/tools/grafana.html">Grafana Dashboards</a></li>
-                  <li><a id="dsdb-tools-telegraf" class="" href="/dsdb/tools/telegraf.html">Telegraf Metrics Collection</a></li>
-                  <li><a id="dsdb-tools-chronograf" class="" href="/dsdb/tools/chronograf.html">Chronograf Dashboards</a></li>
-                  <li><a id="dsdb-tools-kapacitor" class="" href="/dsdb/tools/kapacitor.html">Kapacitor Monitoring</a></li>
                 </ul>
               </li>
               <li><a class="fold">Write Protocols</a>
@@ -223,7 +217,7 @@
 
     <div class="side_right">
       <div class="doc">
-        <h2 id="data-exploration">Data Exploration</h2>
+        <h1 id="data-exploration">Data Exploration</h1>
 <p>DSDBQL is an SQL-like query language for interacting with data in DSDB.
 The following sections cover useful query syntax for exploring your data.</p>
 <p>The basics:</p>
@@ -260,7 +254,7 @@ The following sections cover useful query syntax for exploring your data.</p>
 </ul>
 <p>The examples below query data using <a href="/dsdb/tools/shell.html">DSDB's Command Line Interface (CLI)</a>.
 See the <a href="/dsdb/guides/querying_data.html">Querying Data</a> guide for how to query data directly using the HTTP API.</p>
-<h5 id="sample-data">Sample data</h5>
+<h4 id="sample-data">Sample data</h4>
 <p><br>
 If you'd like to follow along with the queries in this document, see <a href="/dsdb/sample_data/data_download.html">Sample Data</a> for how to download and write the data to DSDB.</p>
 <p>This document uses publicly available data from the <a href="http://tidesandcurrents.noaa.gov/stations.html?type=Water+Levels">National Oceanic and Atmospheric Administration's (NOAA) Center for Operational Oceanographic Products and Services</a>.
@@ -285,10 +279,10 @@ All of the data are in the <code>NOAA_water_database</code> database.</p>
 <blockquote>
 <p><strong>Disclaimer:</strong> The <code>level description</code> field isn't part of the original NOAA data - we snuck it in there for the sake of having a field key with a special character and string <a href="/dsdb/concepts/glossary.html#field-value">field values</a>.</p>
 </blockquote>
-<h3 id="the-select-statement-and-the">The SELECT statement and the <code>WHERE</code> clause</h3>
+<h2 id="the-select-statement-and-the">The SELECT statement and the <code>WHERE</code> clause</h2>
 <p>DSDBQL's <code>SELECT</code> statement follows the form of an SQL <code>SELECT</code> statement where the <code>WHERE</code> clause is optional:</p>
 <pre><code class="language-sql">SELECT &lt;stuff&gt; FROM &lt;measurement_name&gt; WHERE &lt;some_conditions&gt;</code></pre>
-<h4 id="the-basic">The basic <code>SELECT</code> statement</h4>
+<h3 id="the-basic">The basic <code>SELECT</code> statement</h3>
 <hr />
 <p>The following three examples return everything from the measurement <code>h2o_feet</code> (see the CLI response at the end of this section).
 While they all return the same result, they get to that result in slightly different ways and serve to introduce some of the specifics of the <code>SELECT</code> syntax:</p>
@@ -324,7 +318,7 @@ time                             level description        location         water
 2015-09-18T21:30:00Z       between 3 and 6 feet    santa_monica    5.01
 2015-09-18T21:36:00Z       between 3 and 6 feet    santa_monica    5.066
 2015-09-18T21:42:00Z       between 3 and 6 feet    santa_monica    4.938</code></pre>
-<h4 id="the">The <code>SELECT</code> statement and arithmetic</h4>
+<h3 id="the">The <code>SELECT</code> statement and arithmetic</h3>
 <hr />
 <p>Perform basic arithmetic operations on fields that store floats and integers.</p>
 <p>Add two to the field <code>water_level</code>:</p>
@@ -353,7 +347,7 @@ time
 <p><strong>Note:</strong> When performing arithmetic on fields that store integers be aware that DSDB casts those integers to floats for all mathematical operations.
 This can lead to <a href="/dsdb/troubleshooting/frequently_encountered_issues.html#working-with-really-big-or-really-small-integers">overflow issues</a> for some numbers.</p>
 </blockquote>
-<h4 id="the-1">The <code>WHERE</code> clause</h4>
+<h3 id="the-1">The <code>WHERE</code> clause</h3>
 <hr />
 <p>Use a <code>WHERE</code> clause to filter your data based on tags, time ranges, and/or field values.</p>
 <p><strong>Tags</strong><br />
@@ -403,13 +397,13 @@ It supports using regular expressions to match tags, but not to match fields.</l
 <code>=~</code> matches against<br />
 <code>!~</code> doesn't match against  </li>
 </ul>
-<h3 id="the-group-by-clause">The GROUP BY clause</h3>
+<h2 id="the-group-by-clause">The GROUP BY clause</h2>
 <p>Use the <code>GROUP BY</code> clause to group data by tags and/or time intervals.
 To successfully implement <code>GROUP BY</code>,  append the<code>GROUP BY</code> clause to a <code>SELECT</code> statement and pair the <code>SELECT</code> statement with one of DSDBQL's <a href="/dsdb/query_language/functions.html">functions</a>.</p>
 <blockquote>
 <p><strong>Note:</strong> If your query includes both a <code>WHERE</code> clause and a <code>GROUP BY</code> clause, the <code>GROUP BY</code> clause must come after the <code>WHERE</code> clause.</p>
 </blockquote>
-<h4 id="the-basic-1">The basic <code>GROUP BY</code> clause</h4>
+<h3 id="the-basic-1">The basic <code>GROUP BY</code> clause</h3>
 <hr />
 <p><strong>GROUP BY tag values</strong><br />
 Calculate the <a href="../query_language/functions.html#mean"><code>MEAN()</code></a> <code>water_level</code> for the different tag values of <code>location</code>:</p>
@@ -517,7 +511,7 @@ Calculate the average <code>water_level</code> for the different tag values of <
 <ul>
 <li>Separate multiple <code>GROUP BY</code> arguments with a comma.</li>
 </ul>
-<h4 id="the-2">The <code>GROUP BY</code> clause and <code>fill()</code></h4>
+<h3 id="the-2">The <code>GROUP BY</code> clause and <code>fill()</code></h3>
 <hr />
 <p>By default, a <code>GROUP BY</code> interval with no data has <code>null</code> as its value in the output column.
 Use <code>fill()</code> to change the value reported for intervals that have no data.
@@ -566,8 +560,8 @@ time            mean
 <blockquote>
 <p><strong>Note:</strong> If you're <code>GROUP(ing) BY</code> several things (for example, both tags and a time interval) <code>fill()</code> must go at the end of the <code>GROUP BY</code> clause.</p>
 </blockquote>
-<h3 id="the-into-clause">The INTO clause</h3>
-<h4 id="relocate-data">Relocate data</h4>
+<h2 id="the-into-clause">The INTO clause</h2>
+<h3 id="relocate-data">Relocate data</h3>
 <p>Copy data to another database, retention policy, and measurement with the <code>INTO</code> clause:</p>
 <pre><code class="language-sql">SELECT &lt;field_key&gt; INTO &lt;different_measurement&gt; FROM &lt;current_measurement&gt; [WHERE &lt;stuff&gt;] [GROUP BY &lt;stuff&gt;]</code></pre>
 <p>Write the field <code>water_level</code> in <code>h2o_feet</code> to a new measurement (<code>h2o_feet_copy</code>) in the same database:</p>
@@ -589,7 +583,7 @@ time                           written
 This can cause DSDB to overwrite points that were previously differentiated by a tag value.
 Use <code>GROUP BY &lt;tag_key&gt;</code> to preserve tags as tags.</p>
 </blockquote>
-<h4 id="downsample-data">Downsample data</h4>
+<h3 id="downsample-data">Downsample data</h3>
 <p>Combine the <code>INTO</code> clause with an DSDBQL <a href="/dsdb/query_language/functions.html">function</a> and a <code>GROUP BY</code> clause to write the lower precision query results to a different measurement:</p>
 <pre><code class="language-sql">SELECT &lt;function&gt;(&lt;field_key&gt;) INTO &lt;different_measurement&gt; FROM &lt;current_measurement&gt; WHERE &lt;stuff&gt; GROUP BY &lt;stuff&gt;</code></pre>
 <blockquote>
@@ -656,13 +650,13 @@ Depending on the frequency of your data, the query results may be missing time i
 Use <a href="/dsdb/query_language/data_exploration.html#the-group-by-clause-and-fill">fill()</a> to ensure that every time interval appears in the results.</li>
 <li>The number of writes in the CLI response includes one write for every time interval in the query's time range even if there is no data for some of the time intervals.</li>
 </ul>
-<h3 id="limit-query-returns-with-limit-and-slimit">Limit query returns with LIMIT and SLIMIT</h3>
+<h2 id="limit-query-returns-with-limit-and-slimit">Limit query returns with LIMIT and SLIMIT</h2>
 <p>DSDBQL supports two different clauses to limit your query results.
 Currently, they are mutually exclusive so you may use one or the other, but not both in the same query.</p>
 <dt> Please note that using `LIMIT` and `SLIMIT` **without** a `GROUP BY *` clause can cause unexpected results.
 See [GitHub Issue #4232](https://github.com/dsdb/dsdb/issues/4232) for more information.
 </dt>
-<h4 id="limit-the-number-of-results-returned-per-series-with">Limit the number of results returned per series with <code>LIMIT</code></h4>
+<h3 id="limit-the-number-of-results-returned-per-series-with">Limit the number of results returned per series with <code>LIMIT</code></h3>
 <hr />
 <p>Use <code>LIMIT &lt;N&gt;</code> with <code>SELECT</code> and <code>GROUP BY *</code> to return the first N points from each series.</p>
 <p>Return the three oldest points from each series associated with the measurement <code>h2o_feet</code>:</p>
@@ -686,7 +680,7 @@ time                          water_level
 <blockquote>
 <p><strong>Note:</strong> If N is greater than the number of points in the series, DSDB returns all points in the series.</p>
 </blockquote>
-<h4 id="limit-the-number-of-series-returned-with">Limit the number of series returned with <code>SLIMIT</code></h4>
+<h3 id="limit-the-number-of-series-returned-with">Limit the number of series returned with <code>SLIMIT</code></h3>
 <hr />
 <p>Use <code>SLIMIT &lt;N&gt;</code> with <code>SELECT</code> and <code>GROUP BY *</code> to return every point from N <a href="/dsdb/concepts/glossary.html#series">series</a>.</p>
 <p>Return everything from one of the series associated with the measurement <code>h2o_feet</code>:</p>
@@ -706,7 +700,7 @@ time                          water_level
 <blockquote>
 <p><strong>Note:</strong> If N is greater than the number of series associated with the specified measurement, DSDB returns all points from every series.</p>
 </blockquote>
-<h3 id="sort-query-returns-with-order-by-time-desc">Sort query returns with ORDER BY time DESC</h3>
+<h2 id="sort-query-returns-with-order-by-time-desc">Sort query returns with ORDER BY time DESC</h2>
 <p>By default, DSDB returns results in ascending time order - so the first points that are returned are the oldest points by timestamp.
 Use <code>ORDER BY time DESC</code> to see the newest points by timestamp.</p>
 <p>Return the oldest five points from one series <strong>without</strong> <code>ORDER BY time DESC</code>:  </p>
@@ -753,7 +747,7 @@ time            water_level
 2015-09-18T21:30:00Z    5.01
 2015-09-18T21:24:00Z    5.013
 2015-09-18T21:18:00Z    5.072</code></pre>
-<h3 id="paginate-query-returns-with-offset">Paginate query returns with OFFSET</h3>
+<h2 id="paginate-query-returns-with-offset">Paginate query returns with OFFSET</h2>
 <p>Use <code>OFFSET</code> to paginate the results returned.
 For example, get the first three points written to a series:</p>
 <pre><code class="language-sql">&gt; SELECT water_level FROM h2o_feet WHERE location = 'coyote_creek' LIMIT 3</code></pre>
@@ -773,13 +767,13 @@ time            water_level
 2015-08-18T00:18:00Z    7.762
 2015-08-18T00:24:00Z    7.635
 2015-08-18T00:30:00Z    7.5</code></pre>
-<h3 id="multiple-statements-in-queries">Multiple statements in queries</h3>
+<h2 id="multiple-statements-in-queries">Multiple statements in queries</h2>
 <p>Separate multiple statements in a query with a semicolon.
 For example:
 <br>
 <br></p>
 <pre><code class="language-sql">&gt; SELECT mean(water_level) FROM h2o_feet WHERE time &gt; now() - 2w GROUP BY location,time(24h) fill(none); SELECT count(water_level) FROM h2o_feet WHERE time &gt; now() - 2w GROUP BY location,time(24h) fill(80)</code></pre>
-<h3 id="merge-series-in-queries">Merge series in queries</h3>
+<h2 id="merge-series-in-queries">Merge series in queries</h2>
 <p>In DSDB, queries merge series automatically.</p>
 <p>The <code>NOAA_water_database</code> database has two <a href="/dsdb/concepts/glossary.html#series">series</a>.
 The first series is made up of the measurement <code>h2o_feet</code> and the tag key <code>location</code> with the tag value <code>coyote_creek</code>.
@@ -802,11 +796,11 @@ time                          mean
 <p><strong>NOTE:</strong> In DSDB, <a href="https://en.wikipedia.org/wiki/Unix_time">epoch 0</a> (<code>1970-01-01T00:00:00Z</code>) is often used as a null timestamp equivalent.
 If you request a query that has no timestamp to return, such as an aggregation function with an unbounded time range, DSDB returns epoch 0 as the timestamp.</p>
 </blockquote>
-<h3 id="time-syntax-in-queries">Time syntax in queries</h3>
+<h2 id="time-syntax-in-queries">Time syntax in queries</h2>
 <p>DSDB is a time series database so, unsurprisingly, DSDBQL has a lot to do with specifying time ranges.
 If you do not specify start and end times in your query, they default to epoch 0 (<code>1970-01-01T00:00:00Z</code>) and <code>now()</code>.
 The following sections detail how to specify different start and end times in queries.</p>
-<h4 id="relative-time">Relative time</h4>
+<h3 id="relative-time">Relative time</h3>
 <hr />
 <p><code>now()</code> is the Unix time of the server at the time the query is executed on that server.
 Use <code>now()</code> to calculate a timestamp relative to the server's
@@ -826,7 +820,7 @@ Leaving that whitespace out can cause DSDB to return no results or an <code>erro
 <code>h</code> hours<br />
 <code>d</code> days<br />
 <code>w</code> weeks   </p>
-<h4 id="absolute-time">Absolute time</h4>
+<h3 id="absolute-time">Absolute time</h3>
 <hr />
 <p><strong>Date time strings</strong><br />
 Specify time with date time strings.
@@ -846,7 +840,7 @@ Epoch time is the number of nanoseconds that have elapsed since 00:00:00 Coordin
 Indicate the units of the timestamp at the end of the timestamp (see the section above for a list of acceptable time units).</p>
 <p>Return all points that occur after  <code>2014-01-01 00:00:00</code>:  </p>
 <pre><code class="language-sql">&gt; SELECT * FROM h2o_feet WHERE time &gt; 1388534400s</code></pre>
-<h3 id="regular-expressions-in-queries">Regular expressions in queries</h3>
+<h2 id="regular-expressions-in-queries">Regular expressions in queries</h2>
 <p>Regular expressions are surrounded by <code>/</code> characters and use <a href="http://golang.org/pkg/regexp/syntax.html">Golang's regular expression syntax</a>.
 Use regular expressions when selecting measurements and tags.</p>
 <blockquote>
@@ -856,7 +850,7 @@ You can only use regular expressions to match measurements and tags.</p>
 <p>The <a href="/dsdb/query_language/data_exploration.html#sample-data">sample data</a> need to be more intricate for the following sections.
 Assume that the database <code>NOAA_water_database</code> now holds several measurements: <code>h2o_feet</code>, <code>h2o_quality</code>, <code>h2o_pH</code>, <code>average_temperature</code>, and <code>h2o_temperature</code>.
 Please note that every measurement besides <code>h2o_feet</code> is fictional and contains fictional data.</p>
-<h4 id="regular-expressions-and-selecting-measurements">Regular expressions and selecting measurements</h4>
+<h3 id="regular-expressions-and-selecting-measurements">Regular expressions and selecting measurements</h3>
 <hr />
 <p>Select the oldest point from every measurement in the <code>NOAA_water_database</code> database:</p>
 <pre><code class="language-sql">&gt; SELECT * FROM /.*/ LIMIT 1</code></pre>
@@ -939,7 +933,7 @@ time                          degrees   location
 2015-08-18T00:06:00Z    65       coyote_creek
 2015-08-18T00:06:00Z    60       santa_monica
 2015-08-18T00:12:00Z    68       coyote_creek</code></pre>
-<h4 id="regular-expressions-and-specifying-tags">Regular expressions and specifying tags</h4>
+<h3 id="regular-expressions-and-specifying-tags">Regular expressions and specifying tags</h3>
 <hr />
 <p>Use regular expressions to specify tags in the <code>WHERE</code> clause.
 The relevant comparators include:<br />

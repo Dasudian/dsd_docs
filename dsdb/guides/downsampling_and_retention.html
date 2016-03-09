@@ -50,7 +50,7 @@
 			  });	
 		  })
     </script>
-    <link href='http://fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
+    <link href='//fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
   </head>
 
   <body>
@@ -137,8 +137,6 @@
                 <ul class="menu3" >
                   <li><a id="dsdb-datasource-diamond" class="" href="/dsdb/data_sources/diamond.html">Diamond</a></li>
                   <li><a id="dsdb-datasource-opentsdb" class="" href="/dsdb/data_sources/opentsdb.html">OpenTSDB</a></li>
-                  <li><a id="dsdb-datasource-carbon" class="" href="/dsdb/data_sources/carbon.html">Carbon</a></li>
-                  <li><a id="dsdb-datasource-collectd" class="" href="/dsdb/data_sources/collectd.html">Collectd</a></li>
                 </ul>
               </li>
               <li><a class="fold">Guides</a>
@@ -172,10 +170,6 @@
                   <li><a id="dsdb-tools-overview" class="" href="/dsdb/tools/index.html">Tools Overview</a></li>
                   <li><a id="dsdb-tools-shell" class="" href="/dsdb/tools/shell.html">CLI/Shell</a></li>
                   <li><a id="dsdb-tools-webadmin" class="" href="/dsdb/tools/web_admin.html">Web Admin Interface</a></li>
-                  <li><a id="dsdb-tools-grafana" class="" href="/dsdb/tools/grafana.html">Grafana Dashboards</a></li>
-                  <li><a id="dsdb-tools-telegraf" class="" href="/dsdb/tools/telegraf.html">Telegraf Metrics Collection</a></li>
-                  <li><a id="dsdb-tools-chronograf" class="" href="/dsdb/tools/chronograf.html">Chronograf Dashboards</a></li>
-                  <li><a id="dsdb-tools-kapacitor" class="" href="/dsdb/tools/kapacitor.html">Kapacitor Monitoring</a></li>
                 </ul>
               </li>
               <li><a class="fold">Write Protocols</a>
@@ -223,20 +217,20 @@
 
     <div class="side_right">
       <div class="doc">
-        <h2 id="downsampling-and-data-retention">Downsampling and Data Retention</h2>
+        <h1 id="downsampling-and-data-retention">Downsampling and Data Retention</h1>
 <p>DSDB can handle hundreds of thousands of data points per second.
 Working with that much data over a long period of time can create storage concerns.
 A natural solution is to downsample the data; keep the high precision raw data for only a limited time, and store the lower precision, summarized data for much longer or forever.</p>
 <p>This guide shows how to combine two DSDB features -- retention policies and continuous queries -- to automatically downsample and expire data.</p>
-<h3 id="retention-policies">Retention Policies</h3>
-<h4 id="definition">Definition</h4>
+<h2 id="retention-policies">Retention Policies</h2>
+<h3 id="definition">Definition</h3>
 <p>A retention policy (RP) is the part of DSDB's data structure that describes for how long DSDB keeps data (duration) and how many copies of those data are stored in the cluster (replication factor).
 A database can have several RPs and RPs are unique per database.</p>
-<h4 id="purpose">Purpose</h4>
+<h3 id="purpose">Purpose</h3>
 <p>In general, DSDB wasn't built to process deletes.
 One of the fundamental assumptions in its architecture is that deletes are infrequent and need not be highly performant.
 However, DSDB recognizes the necessity of purging data that have outlived their usefulness - that is the purpose of RPs.</p>
-<h4 id="working-with-rps">Working with RPs</h4>
+<h3 id="working-with-rps">Working with RPs</h3>
 <p>When you create a database, DSDB automatically creates an RP called <code>default</code> with an infinite duration and a replication factor set to the number of nodes in the cluster.
 <code>default</code> also serves as the <code>DEFAULT</code> RP; if you do not supply an explicit RP when you write a point to the database, the data are subject to the <code>DEFAULT</code> RP.</p>
 <p>DSDB automatically queries from and writes to the <code>DEFAULT</code> RP on a database.
@@ -250,17 +244,17 @@ It has an infinite duration and a replication factor set to the number of nodes 
 It is initially the <code>DEFAULT</code> RP as well, but that can be altered.</p>
 <p><code>DEFAULT</code>: The RP that DSDB writes to if you do not supply an explicit RP in the write.</p>
 </blockquote>
-<h3 id="continuous-queries">Continuous Queries</h3>
-<h4 id="definition-1">Definition</h4>
+<h2 id="continuous-queries">Continuous Queries</h2>
+<h3 id="definition-1">Definition</h3>
 <p>A continuous query (CQ) is an DSDBQL query that runs automatically and periodically within a database.
 CQs require a function in the <code>SELECT</code> clause and must include a <code>GROUP BY time()</code> clause.
 DSDB stores the results of the CQ in a specified measurement.</p>
-<h4 id="purpose-1">Purpose</h4>
+<h3 id="purpose-1">Purpose</h3>
 <p>CQs are optimal for regularly downsampling data - once you implement the CQ, DSDB automatically and periodically runs the query, and, instead of simply returning the results like a normal query, DSDB stores the results of a CQ in a measurement for future use.</p>
-<h4 id="working-with-cqs">Working with CQs</h4>
+<h3 id="working-with-cqs">Working with CQs</h3>
 <p>The section below offers a very brief introduction to creating CQs.
 See <a href="/docs/dsdb/query_language/continuous_queries.html">Continuous Queries</a> for a detailed discussion on how to create and manage CQs.</p>
-<h3 id="combining-rps-and-cqs---a-casestudy">Combining RPs and CQs - a casestudy</h3>
+<h2 id="combining-rps-and-cqs---a-casestudy">Combining RPs and CQs - a casestudy</h2>
 <p>We have real-time data that track the number of food orders to a restaurant via phone and via website at 10 second intervals.
 In the long run, we're only interested in the average number of orders by phone and by website at 30 minute intervals.
 In the next steps, we use RPs and CQs to make DSDB:</p>
@@ -271,12 +265,12 @@ In the next steps, we use RPs and CQs to make DSDB:</p>
 </ul>
 <p>The following steps work with a fictional <a href="/docs/dsdb/concepts/glossary.html#database">database</a> called <code>food_data</code> and the <a href="/docs/dsdb/concepts/glossary.html#measurement">measurement</a> <code>orders</code>.
 <code>orders</code> has two <a href="/docs/dsdb/concepts/glossary.html#field">fields</a>, <code>phone</code> and <code>website</code>, which store the number of orders that arrive via each channel every 10 seconds.</p>
-<h4 id="prepare-the-database">Prepare the database</h4>
+<h3 id="prepare-the-database">Prepare the database</h3>
 <p>Before writing the data to the database <code>food_data</code>, we perform the following steps.</p>
 <blockquote>
 <p><strong>Note:</strong> We do this before inserting any data because DSDB only performs CQs on new data, that is, data with timestamps that occur after the time at which we create the CQ.</p>
 </blockquote>
-<h5 id="create-a-new">Create a new <code>DEFAULT</code> RP</h5>
+<h4 id="create-a-new">Create a new <code>DEFAULT</code> RP</h4>
 <p>When we initially <a href="/docs/dsdb/query_language/database_management.html#create-a-database-with-create-database">created the database</a> <code>food_data</code>, DSDB automatically generated an RP called <code>default</code> with an infinite duration and a replication factor set to the number of nodes in the cluster.
 <code>default</code> is also the <code>DEFAULT</code> RP for <code>food_data</code>; if we do not supply an explicit RP when we write a point to the database, DSDB writes the point to <code>default</code> and it keeps those data forever.</p>
 <p>We want the <code>DEFAULT</code> RP on <code>food_data</code> to be a two hour policy.
@@ -292,7 +286,7 @@ Notice that there are two RPs in <code>food_data</code> (<code>default</code> an
 name              duration    replicaN    default
 default        0                1               false
 two_hours     2h0m0s           1                true</code></pre>
-<h5 id="create-the-cq">Create the CQ</h5>
+<h4 id="create-the-cq">Create the CQ</h4>
 <p>Now we create a CQ that automatically downsamples the 10 second level data to 30 minute level data:</p>
 <pre><code class="language-sql">&gt; CREATE CONTINUOUS QUERY cq_30m ON food_data BEGIN SELECT mean(website) AS mean_website,mean(phone) AS mean_phone INTO food_data."default".downsampled_orders FROM orders GROUP BY time(30m) END</code></pre>
 <p>That CQ makes DSDB automatically and periodically calculate the 30 minute average from the 10 second website order data and the 30 minute average from the 10 second phone order data.
@@ -304,7 +298,7 @@ To fully qualify a measurement, specify its database and RP with <code>&lt;datab
 If you do not fully qualify the measurement, DSDB writes the results of the query to the two hour RP <code>DEFAULT</code>.</p>
 </blockquote>
 <p>For a more detailed discussion on the <code>CREATE CONTINUOUS QUERY</code> syntax, see <a href="/docs/dsdb/query_language/continuous_queries.html">Continuous Queries</a>.</p>
-<h4 id="write-the-data-to-dsdb-and-see-the-results">Write the data to DSDB and see the results</h4>
+<h3 id="write-the-data-to-dsdb-and-see-the-results">Write the data to DSDB and see the results</h3>
 <p>Now that we've prepped <code>food_data</code>, we start writing the data to DSDB and let things run for a bit.
 After a while, we see that the database has two measurements: <code>orders</code> and <code>downsampled_orders</code>.</p>
 <p>A sample of the oldest data in <code>orders</code> - these are the raw 10 second data subject to the <code>two_hours</code> RP:</p>

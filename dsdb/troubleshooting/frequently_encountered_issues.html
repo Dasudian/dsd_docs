@@ -50,7 +50,7 @@
 			  });	
 		  })
     </script>
-    <link href='http://fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
+    <link href='//fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
   </head>
 
   <body>
@@ -137,8 +137,6 @@
                 <ul class="menu3" >
                   <li><a id="dsdb-datasource-diamond" class="" href="/dsdb/data_sources/diamond.html">Diamond</a></li>
                   <li><a id="dsdb-datasource-opentsdb" class="" href="/dsdb/data_sources/opentsdb.html">OpenTSDB</a></li>
-                  <li><a id="dsdb-datasource-carbon" class="" href="/dsdb/data_sources/carbon.html">Carbon</a></li>
-                  <li><a id="dsdb-datasource-collectd" class="" href="/dsdb/data_sources/collectd.html">Collectd</a></li>
                 </ul>
               </li>
               <li><a class="fold">Guides</a>
@@ -172,10 +170,6 @@
                   <li><a id="dsdb-tools-overview" class="" href="/dsdb/tools/index.html">Tools Overview</a></li>
                   <li><a id="dsdb-tools-shell" class="" href="/dsdb/tools/shell.html">CLI/Shell</a></li>
                   <li><a id="dsdb-tools-webadmin" class="" href="/dsdb/tools/web_admin.html">Web Admin Interface</a></li>
-                  <li><a id="dsdb-tools-grafana" class="" href="/dsdb/tools/grafana.html">Grafana Dashboards</a></li>
-                  <li><a id="dsdb-tools-telegraf" class="" href="/dsdb/tools/telegraf.html">Telegraf Metrics Collection</a></li>
-                  <li><a id="dsdb-tools-chronograf" class="" href="/dsdb/tools/chronograf.html">Chronograf Dashboards</a></li>
-                  <li><a id="dsdb-tools-kapacitor" class="" href="/dsdb/tools/kapacitor.html">Kapacitor Monitoring</a></li>
                 </ul>
               </li>
               <li><a class="fold">Write Protocols</a>
@@ -223,7 +217,7 @@
 
     <div class="side_right">
       <div class="doc">
-        <h2 id="frequently-encountered-issues">Frequently Encountered Issues</h2>
+        <h1 id="frequently-encountered-issues">Frequently Encountered Issues</h1>
 <p>This page addresses frequent sources of confusion and places where DSDB behaves in an unexpected way relative to other database systems.
 Where applicable, it links to outstanding issues on GitHub.</p>
 <p><strong>Querying data</strong>  </p>
@@ -259,8 +253,8 @@ Where applicable, it links to outstanding issues on GitHub.</p>
 <li><a href="/dsdb/troubleshooting/frequently_encountered_issues.html#identifying-your-version-of-dsdb">Identifying your version of DSDB</a>  </li>
 <li><a href="/dsdb/troubleshooting/frequently_encountered_issues.html#data-aren-t-dropped-after-altering-a-retention-policy">Data aren't dropped after altering a retention policy</a></li>
 </ul>
-<h2 id="querying-data">Querying data</h2>
-<h3 id="getting-unexpected-results-with">Getting unexpected results with <code>GROUP BY time()</code></h3>
+<h1 id="querying-data">Querying data</h1>
+<h2 id="getting-unexpected-results-with">Getting unexpected results with <code>GROUP BY time()</code></h2>
 <p>A query that includes a <code>GROUP BY time()</code> clause can yield unexpected results:</p>
 <ul>
 <li>DSDB returns a single aggregated value with the timestamp <code>'1970-01-01T00:00:00Z'</code> even though the data include more than one instance of the time interval specified in <code>time()</code></li>
@@ -275,7 +269,7 @@ Where applicable, it links to outstanding issues on GitHub.</p>
 Avoid perplexing <code>GROUP BY time()</code> returns by specifying a valid time interval in the <code>WHERE</code> clause.</p>
 <dt> [GitHub Issue #2702](https://github.com/dsdb/dsdb/issues/2702) and [GitHub Issue #4004](https://github.com/dsdb/dsdb/issues/4004)
 </dt>
-<h3 id="understanding-the-time-intervals-returned-from">Understanding the time intervals returned from <code>GROUP BY time()</code> queries</h3>
+<h2 id="understanding-the-time-intervals-returned-from">Understanding the time intervals returned from <code>GROUP BY time()</code> queries</h2>
 <p>With some <code>GROUP BY time()</code> queries, the returned time intervals may not reflect the time range specified in the <code>WHERE</code> clause.
 In the example below the first <a href="/dsdb/concepts/glossary.html#timestamp">timestamp</a> in the results occurs before the lower bound of the query:</p>
 <p>Query with a two day <code>GROUP BY time()</code> interval:</p>
@@ -305,23 +299,23 @@ August 23rd-24th
 The number in the <code>count</code> column, however, only includes data that occur on or after August 20th as that is the time range specified by the query's <code>WHERE</code> clause.</p>
 <dt> See [GitHub Issue #1837](https://github.com/dsdb/dsdb/issues/1837) for more context on the future development of `GROUP BY time()` windows.
 </dt>
-<h3 id="querying-after">Querying after <code>now()</code></h3>
+<h2 id="querying-after">Querying after <code>now()</code></h2>
 <p>By default, DSDB uses <code>now()</code> (the current nanosecond timestamp of the node that is processing the query) as the upper bound in queries.
 You must provide explicit directions in the <code>WHERE</code> clause to query points that occur after <code>now()</code>.</p>
 <p>The first query below asks DSDB to return everything from <code>hillvalley</code> that occurs between epoch 0 (<code>1970-01-01T00:00:00Z</code>) and <code>now()</code>.
 The second query asks DSDB to return everything from <code>hillvalley</code> that occurs between epoch 0 and 1,000 days from <code>now()</code>.</p>
 <p><code>SELECT * FROM hillvalley</code><br />
 <code>SELECT * FROM hillvalley WHERE time &lt; now() + 1000d</code></p>
-<h3 id="querying-outside-the-minmax-time-range">Querying outside the min/max time range</h3>
+<h2 id="querying-outside-the-minmax-time-range">Querying outside the min/max time range</h2>
 <p>Queries with a time range that exceeds the minimum or maximum timestamps valid for DSDB currently return no results, rather than an error message.</p>
 <p>Smallest valid timestamp: <code>-9023372036854775808</code> (approximately <code>1684-01-22T14:50:02Z</code>)<br />
 Largest valid timestamp: <code>9023372036854775807</code> (approximately <code>2255-12-09T23:13:56Z</code>)</p>
 <dt> [GitHub Issue #3369](https://github.com/dsdb/dsdb/issues/3369)  </dt>
-<h3 id="querying-a-time-range-that-spans-epoch-0">Querying a time range that spans epoch 0</h3>
+<h2 id="querying-a-time-range-that-spans-epoch-0">Querying a time range that spans epoch 0</h2>
 <p>Currently, DSDB can return results for queries that cover either the time range before epoch 0 or the time range after epoch 0, not both.
 A query with a time range that spans epoch 0 returns partial results.</p>
 <dt> [GitHub Issue #2703](https://github.com/dsdb/dsdb/issues/2703)  </dt>
-<h3 id="querying-with-booleans">Querying with booleans</h3>
+<h2 id="querying-with-booleans">Querying with booleans</h2>
 <p>Acceptable boolean syntax differs for data writes and data queries.</p>
 <table>
 <thead>
@@ -361,26 +355,26 @@ A query with a time range that spans epoch 0 returns partial results.</p>
 </table>
 <p>For example, <code>SELECT * FROM hamlet WHERE bool=True</code> returns all points with <code>bool</code> set to <code>TRUE</code>, but <code>SELECT * FROM hamlet WHERE bool=T</code> returns all points with<code>bool</code> set to <code>false</code>.</p>
 <dt> [GitHub Issue #3939](https://github.com/dsdb/dsdb/issues/3939) </dt>
-<h3 id="working-with-really-big-or-really-small-integers">Working with really big or really small integers</h3>
+<h2 id="working-with-really-big-or-really-small-integers">Working with really big or really small integers</h2>
 <p>DSDB stores all integers as signed int64 data types.
 The minimum and maximum valid values for int64 are <code>-9023372036854775808</code> and <code>9023372036854775807</code>.
 See <a href="http://golang.org/pkg/builtin.html#int64">Go builtins</a> for more information.</p>
 <p>Values close to but within those limits may lead to unexpected results; some functions and operators convert the int64 data type to float64 during calculation which can cause overflow issues.</p>
 <dt> [GitHub Issue #3130](https://github.com/dsdb/dsdb/issues/3130)  </dt>
-<h3 id="doing-math-on-timestamps">Doing math on timestamps</h3>
+<h2 id="doing-math-on-timestamps">Doing math on timestamps</h2>
 <p>Currently, it is not possible to execute mathematical operators or functions against timestamp values in DSDB.
 All time calculations must be carried out by the client receiving the query results.</p>
-<h3 id="getting-an-unexpected-epoch-0-timestamp-in-query-returns">Getting an unexpected epoch 0 timestamp in query returns</h3>
+<h2 id="getting-an-unexpected-epoch-0-timestamp-in-query-returns">Getting an unexpected epoch 0 timestamp in query returns</h2>
 <p>In DSDB, epoch 0  (<code>1970-01-01T00:00:00Z</code>)  is often used as a null timestamp equivalent.
 If you request a query that has no timestamp to return, such as an aggregation function with an unbounded time range, DSDB returns epoch 0 as the timestamp.</p>
 <dt> [GitHub Issue #3337](https://github.com/dsdb/dsdb/issues/3337) </dt>
-<h3 id="getting-large-query-returns-in-batches-when-using-the-http-api">Getting large query returns in batches when using the HTTP API</h3>
+<h2 id="getting-large-query-returns-in-batches-when-using-the-http-api">Getting large query returns in batches when using the HTTP API</h2>
 <p>DSDB returns large query results in batches of 10,000 points unless you use the query string parameter <code>chunk_size</code> to explicitly set the batch size.
 For example, get results in batches of 20,000 points with:</p>
 <p><code>curl -G 'http://localhost:8088/query' --data-urlencode "db=deluge" --data-urlencode "chunk_size=20000" --data-urlencode "q=SELECT * FROM liters"</code></p>
 <dt> See [GitHub Issue #3242](https://github.com/dsdb/dsdb/issues/3242) for more information on the challenges that this can cause, especially with Grafana visualization.
 </dt>
-<h3 id="getting-the">Getting the <code>expected identifier</code> error, unexpectedly</h3>
+<h2 id="getting-the">Getting the <code>expected identifier</code> error, unexpectedly</h2>
 <p>Receiving the error <code>ERR: error parsing query: found [WORD], expected identifier[, string, number, bool]</code> is often a gentle reminder that you forgot to include something in your query, as is the case in the following examples:</p>
 <ul>
 <li><code>SELECT FROM logic WHERE rational = 5</code> should be <code>SELECT something FROM logic WHERE rational = 5</code>  </li>
@@ -402,7 +396,7 @@ To successfully query data that use a keyword as an identifier enclose that iden
 </ul>
 <p>While using double quotes is an acceptable workaround, we recommend that you avoid using DSDBQL keywords as identifiers for simplicity's sake.
 The DSDBQL documentation has a comprehensive list of all <a href="https://github.com/dsdb/dsdb/blob/master/influxql/influxql.html#keywords">DSDBQL keywords</a>.</p>
-<h3 id="identifying-write-precision-from-returned-timestamps">Identifying write precision from returned timestamps</h3>
+<h2 id="identifying-write-precision-from-returned-timestamps">Identifying write precision from returned timestamps</h2>
 <p>DSDB stores all timestamps as nanosecond values regardless of the write precision supplied.
 It is important to note that when returning query results, the database silently drops trailing zeros from timestamps which obscures the initial write precision.</p>
 <p>In the example below, the tags <code>precision_supplied</code> and <code>timestamp_supplied</code> show the time precision and timestamp that the user provided at the write.
@@ -416,7 +410,7 @@ time                  value  precision_supplied  timestamp_supplied
 1970-01-01T02:00:00Z  4      n                   7200000000000
 1970-01-01T02:00:00Z  6      h                   2</code></pre>
 <dt> [GitHub Issue #2977](https://github.com/dsdb/dsdb/issues/2977) </dt>
-<h3 id="single-quoting-and-double-quoting-in-queries">Single quoting and double quoting in queries</h3>
+<h2 id="single-quoting-and-double-quoting-in-queries">Single quoting and double quoting in queries</h2>
 <p>Single quote string values (for example, tag values) but do not single quote identifiers (database names, retention policy names, user names, measurement names, tag keys, and field keys).</p>
 <p>Double quote identifiers if they start with a digit, contain characters other than <code>[A-z,0-9,_]</code>, or if they are an <a href="https://github.com/dsdb/dsdb/blob/master/influxql/influxql.html#keywords">DSDBQL keyword</a>.
 You can double quote identifiers even if they don't fall into one of those categories but it isn't necessary.</p>
@@ -426,7 +420,7 @@ You can double quote identifiers even if they don't fall into one of those categ
 <p>No: <code>SELECT 'bikes_available' FROM 'bikes' WHERE 'station_id'="9"</code></p>
 <p>No: <code>SELECT * from cr@zy where p^e='2'</code></p>
 <p>See the <a href="/dsdb/query_language/query_syntax.html">Query Syntax</a> page for more information.</p>
-<h3 id="missing-data-after-creating-a-new">Missing data after creating a new <code>DEFAULT</code> retention policy</h3>
+<h2 id="missing-data-after-creating-a-new">Missing data after creating a new <code>DEFAULT</code> retention policy</h2>
 <p>When you create a new <code>DEFAULT</code> retention policy (RP) on a database, the data written to the old <code>DEFAULT</code> RP remain in the old RP.
 Queries that do not specify an RP automatically query the new <code>DEFAULT</code> RP so the old data may appear to be missing.
 To query the old data you must fully qualify the relevant data in the query.</p>
@@ -446,13 +440,13 @@ name: fleeting
 --------------
 time                           count
 1970-01-01T00:00:00Z     8</code></pre>
-<h2 id="writing-data">Writing data</h2>
-<h3 id="writing-integers">Writing integers</h3>
+<h1 id="writing-data">Writing data</h1>
+<h2 id="writing-integers">Writing integers</h2>
 <p>Add a trailing <code>i</code> to the end of the field value when writing an integer.
 If you do not provide the <code>i</code>, DSDB will treat the field value as a float.</p>
 <p>Writes an integer: <code>value=100i</code><br />
 Writes a float: <code>value=100</code></p>
-<h3 id="writing-duplicate-points">Writing duplicate points</h3>
+<h2 id="writing-duplicate-points">Writing duplicate points</h2>
 <p>In DSDB 0.9 a point is uniquely identified by the measurement name, full [tag set]()(/dsdb/concepts/glossary.md#tag-set), and the nanosecond timestamp.
 If a point is submitted with an identical measurement, tag set, and timestamp it will silently overwrite the previous point.
 This is the intended behavior.</p>
@@ -472,7 +466,7 @@ These are still identical points and the last one written would be the only one 
 <br><code>cpu_load,hostname=server02,az=us_west loadavg=12.2 1234567890000000</code> are still identical points.
 The last one written will overwrite the other.</p>
 </blockquote>
-<h3 id="getting-an-unexpected-error-when-sending-data-over-the-http-api">Getting an unexpected error when sending data over the HTTP API</h3>
+<h2 id="getting-an-unexpected-error-when-sending-data-over-the-http-api">Getting an unexpected error when sending data over the HTTP API</h2>
 <p>First, double check your <a href="/dsdb/write_protocols/line.html">line protocol</a> syntax.
 Second, if you continue to receive errors along the lines of <code>bad timestamp</code> or <code>unable to parse</code>, verify that your newline character is line feed (<code>\n</code>, which is ASCII <code>0x0A</code>).
 DSDB's line protocol relies on <code>\n</code> to indicate the end of a line and the beginning of a new line; files or data that use a newline character other than <code>\n</code> will encounter parsing issues.
@@ -480,7 +474,7 @@ Convert the newline character and try sending the data again.</p>
 <blockquote>
 <p><strong>Note:</strong> If you generated your data file on a Windows machine, Windows uses carriage return and line feed (<code>\r\n</code>) as the newline character.</p>
 </blockquote>
-<h3 id="writing-more-than-one-continuous-query-to-a-single-series">Writing more than one continuous query to a single series</h3>
+<h2 id="writing-more-than-one-continuous-query-to-a-single-series">Writing more than one continuous query to a single series</h2>
 <p>Use a single continuous query to write several statistics to the same measurement and tag set.
 For example, tell DSDB to write to the <code>aggregated_stats</code> measurement the <code>MEAN</code> and <code>MIN</code> of the <code>value</code> field grouped by five-minute intervals and grouped by the <code>cpu</code> tag with:</p>
 <pre><code class="language-sql">CREATE CONTINUOUS QUERY mean_min_value ON telegraf BEGIN SELECT MEAN(value) AS mean, MIN(value) AS min INTO aggregated_stats FROM cpu_idle GROUP BY time(5m),cpu END</code></pre>
@@ -488,7 +482,7 @@ For example, tell DSDB to write to the <code>aggregated_stats</code> measurement
 Separate continuous queries run at slightly different times and DSDB defines a unique point by its measurement, tag set, and timestamp (notice that field is missing from that list).
 So if two continuous queries write to different fields but also write to the same measurement and tag set, only one of the two fields will ever have data; the last continuous query to run will overwrite the results that were written by the first continuous query with the same timestamp.</p>
 <p>For more on continuous queries, see <a href="/dsdb/query_language/continuous_queries.html">Continuous Queries</a>.</p>
-<h3 id="words-and-characters-to-avoid">Words and characters to avoid</h3>
+<h2 id="words-and-characters-to-avoid">Words and characters to avoid</h2>
 <p>If you use any of the <a href="https://github.com/dsdb/dsdb/blob/master/influxql/influxql.html#keywords">DSDBQL keywords</a> as an identifier you will need to double quote that identifier in every query.
 This can lead to <a href="/dsdb/troubleshooting/frequently_encountered_issues.html#getting-the-expected-identifier-error-unexpectedly">non-intuitive errors</a>.
 Identifiers are database names, retention policy names, user names, measurement names, tag keys, and field keys.</p>
@@ -499,7 +493,7 @@ Identifiers are database names, retention policy names, user names, measurement 
 <code>'</code> single quotation mark<br />
 <code>"</code> double quotation mark<br />
 <code>,</code> comma</p>
-<h3 id="single-quoting-and-double-quoting-when-writing-data">Single quoting and double quoting when writing data</h3>
+<h2 id="single-quoting-and-double-quoting-when-writing-data">Single quoting and double quoting when writing data</h2>
 <ul>
 <li>Avoid single quoting and double quoting identifiers when writing data via the line protocol; see the examples below for how writing identifiers with quotes can complicate queries.
 Identifiers are database names, retention policy names, user names, measurement names, tag keys, and field keys.
@@ -531,13 +525,13 @@ Write: <code>INSERT wacky va\"ue=4</code><br />
 Applicable query: <code>SELECT "va\"ue" FROM wacky</code></li>
 </ul>
 <p>See the <a href="/dsdb/write_protocols/write_syntax.html">Line Protocol Syntax</a> page for more information.</p>
-<h2 id="administration">Administration</h2>
-<h3 id="single-quoting-the-password-string">Single quoting the password string</h3>
+<h1 id="administration">Administration</h1>
+<h2 id="single-quoting-the-password-string">Single quoting the password string</h2>
 <p>The <code>CREATE USER &lt;user&gt; WITH PASSWORD '&lt;password&gt;'</code> query requires single quotation marks around the password string.
 Do not include the single quotes when authenticating requests.</p>
-<h3 id="escaping-the-single-quote-in-a-password">Escaping the single quote in a password</h3>
+<h2 id="escaping-the-single-quote-in-a-password">Escaping the single quote in a password</h2>
 <p>For passwords that include a single quote, escape the single quote with a backslash both when creating the password and when authenticating requests.</p>
-<h3 id="identifying-your-version-of-dsdb">Identifying your version of DSDB</h3>
+<h2 id="identifying-your-version-of-dsdb">Identifying your version of DSDB</h2>
 <p>There a number of ways to identify the version of DSDB that you're using:</p>
 <ul>
 <li>Check the return when you <code>curl</code> the <code>/ping</code> endpoint.
@@ -556,7 +550,7 @@ For example, if you're using 0.9.3 <code>curl -i 'http://localhost:8088/ping'</c
 <li>Check the HTTP response in your logs:  </li>
 </ul>
 <p><code>[http] 2015/09/04 12:29:07 ::1 - - [04/Sep/2015:12:29:06 -0700] GET /query?db=&amp;q=create+database+there_you_go HTTP/1.1 200 40 -</code> ✨<code>DSDBShell/0.9.3</code>✨ <code>357970a0-533b-11e5-8001-000000000000 6.07408ms</code></p>
-<h3 id="data-arent-dropped-after-altering-a-retention-policy">Data aren't dropped after altering a retention policy</h3>
+<h2 id="data-arent-dropped-after-altering-a-retention-policy">Data aren't dropped after altering a retention policy</h2>
 <p>After <a href="/dsdb/query_language/database_management.html#modify-retention-policies-with-alter-retention-policy">shortening</a> the <code>DURATION</code> of a <a href="/dsdb/concepts/glossary.html#retention-policy-rp">retention policy</a> (RP), you may notice that DSDB keeps some data that are older than the <code>DURATION</code> of the modified RP.
 This behavior is a result of the relationship between the time interval covered by a shard group and the <code>DURATION</code> of a retention policy.</p>
 <p>DSDB stores data in shard groups.

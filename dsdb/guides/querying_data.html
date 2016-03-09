@@ -50,7 +50,7 @@
 			  });	
 		  })
     </script>
-    <link href='http://fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
+    <link href='//fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
   </head>
 
   <body>
@@ -137,8 +137,6 @@
                 <ul class="menu3" >
                   <li><a id="dsdb-datasource-diamond" class="" href="/dsdb/data_sources/diamond.html">Diamond</a></li>
                   <li><a id="dsdb-datasource-opentsdb" class="" href="/dsdb/data_sources/opentsdb.html">OpenTSDB</a></li>
-                  <li><a id="dsdb-datasource-carbon" class="" href="/dsdb/data_sources/carbon.html">Carbon</a></li>
-                  <li><a id="dsdb-datasource-collectd" class="" href="/dsdb/data_sources/collectd.html">Collectd</a></li>
                 </ul>
               </li>
               <li><a class="fold">Guides</a>
@@ -172,10 +170,6 @@
                   <li><a id="dsdb-tools-overview" class="" href="/dsdb/tools/index.html">Tools Overview</a></li>
                   <li><a id="dsdb-tools-shell" class="" href="/dsdb/tools/shell.html">CLI/Shell</a></li>
                   <li><a id="dsdb-tools-webadmin" class="" href="/dsdb/tools/web_admin.html">Web Admin Interface</a></li>
-                  <li><a id="dsdb-tools-grafana" class="" href="/dsdb/tools/grafana.html">Grafana Dashboards</a></li>
-                  <li><a id="dsdb-tools-telegraf" class="" href="/dsdb/tools/telegraf.html">Telegraf Metrics Collection</a></li>
-                  <li><a id="dsdb-tools-chronograf" class="" href="/dsdb/tools/chronograf.html">Chronograf Dashboards</a></li>
-                  <li><a id="dsdb-tools-kapacitor" class="" href="/dsdb/tools/kapacitor.html">Kapacitor Monitoring</a></li>
                 </ul>
               </li>
               <li><a class="fold">Write Protocols</a>
@@ -223,8 +217,8 @@
 
     <div class="side_right">
       <div class="doc">
-        <h2 id="querying-data">Querying Data</h2>
-<h3 id="querying-data-using-the-http-api">Querying data using the HTTP API</h3>
+        <h1 id="querying-data">Querying Data</h1>
+<h2 id="querying-data-using-the-http-api">Querying data using the HTTP API</h2>
 <p>The HTTP API is the primary means for querying data in DSDB (see the <a href="/docs/dsdb/tools/shell.html">command line interface</a> and <a href="/docs/dsdb/clients/api.html">client libraries</a> for alternative ways to query the database).</p>
 <p>To perform a query send a <code>GET</code> request to the <code>/query</code> endpoint, set the URL parameter <code>db</code> as the target database, and set the URL parameter <code>q</code> as your query.
 The example below uses the HTTP API to query the same database that you encountered in <a href="/docs/dsdb/guides/writing_data.html">Writing Data</a>.
@@ -267,7 +261,7 @@ If an error occurs, DSDB sets an <code>"error"</code> key with an explanation of
 <p><strong>Note:</strong> Appending <code>pretty=true</code> to the URL enables pretty-printed JSON output.
 While this is useful for debugging or when querying directly with tools like <code>curl</code>, it is not recommended for production use as it consumes unnecessary network bandwidth.</p>
 </blockquote>
-<h4 id="multiple-queries">Multiple queries</h4>
+<h3 id="multiple-queries">Multiple queries</h3>
 <hr />
 <p>Send multiple queries to DSDB in a single API call.
 Simply delimit each query using a semicolon, for example:<br />
@@ -321,24 +315,24 @@ Simply delimit each query using a semicolon, for example:<br />
         }
     ]
 }</code></pre>
-<h4 id="other-options-when-querying-data">Other options when querying data</h4>
+<h3 id="other-options-when-querying-data">Other options when querying data</h3>
 <hr />
-<h5 id="timestamp-format">Timestamp Format</h5>
+<h4 id="timestamp-format">Timestamp Format</h4>
 <p>Everything in DSDB is stored and reported in UTC.
 By default, timestamps are returned in RFC3339 UTC and have nanosecond precision, for example <code>2015-08-04T19:05:14.318570484Z</code>.
 If you want timestamps in Unix epoch format include in your request the query string parameter <code>epoch</code> where <code>epoch=[h,m,s,ms,u,ns]</code>.
 For example, get epoch in seconds with:<br />
 <br></p>
 <pre><code class="language-sh">curl -G 'http://localhost:8088/query' --data-urlencode "db=mydb" --data-urlencode "epoch=s" --data-urlencode "q=SELECT value FROM cpu_load_short WHERE region='us-west'"</code></pre>
-<h5 id="authentication">Authentication</h5>
+<h4 id="authentication">Authentication</h4>
 <p>Authentication in DSDB is disabled by default.
 See <a href="/docs/dsdb/administration/authentication_and_authorization.html">Authentication and Authorization</a> for how to enable and set up authentication.</p>
-<h5 id="chunk-size">Chunk size</h5>
+<h4 id="chunk-size">Chunk size</h4>
 <p>For large queries, results are returned in batches of 10,000 points unless you use the query string parameter <code>chunk_size</code> to explicitly set the batch size.
 For example, get your results in batches of 20,000 points with:<br />
 <br></p>
 <pre><code class="language-sh">curl -G 'http://localhost:8088/query' --data-urlencode "db=deluge" --data-urlencode "chunk_size=20000" --data-urlencode "q=SELECT * FROM liters"</code></pre>
-<h4 id="dsdbql">DSDBQL</h4>
+<h3 id="dsdbql">DSDBQL</h3>
 <hr />
 <p>Now that you know how to query data, check out the <a href="/docs/dsdb/query_language/data_exploration.html">Data Exploration page</a> to get acquainted with DSDBQL.</p>
       </div>

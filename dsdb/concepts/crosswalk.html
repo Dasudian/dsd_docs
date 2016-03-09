@@ -50,7 +50,7 @@
 			  });	
 		  })
     </script>
-    <link href='http://fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
+    <link href='//fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
   </head>
 
   <body>
@@ -137,8 +137,6 @@
                 <ul class="menu3" >
                   <li><a id="dsdb-datasource-diamond" class="" href="/dsdb/data_sources/diamond.html">Diamond</a></li>
                   <li><a id="dsdb-datasource-opentsdb" class="" href="/dsdb/data_sources/opentsdb.html">OpenTSDB</a></li>
-                  <li><a id="dsdb-datasource-carbon" class="" href="/dsdb/data_sources/carbon.html">Carbon</a></li>
-                  <li><a id="dsdb-datasource-collectd" class="" href="/dsdb/data_sources/collectd.html">Collectd</a></li>
                 </ul>
               </li>
               <li><a class="fold">Guides</a>
@@ -172,10 +170,6 @@
                   <li><a id="dsdb-tools-overview" class="" href="/dsdb/tools/index.html">Tools Overview</a></li>
                   <li><a id="dsdb-tools-shell" class="" href="/dsdb/tools/shell.html">CLI/Shell</a></li>
                   <li><a id="dsdb-tools-webadmin" class="" href="/dsdb/tools/web_admin.html">Web Admin Interface</a></li>
-                  <li><a id="dsdb-tools-grafana" class="" href="/dsdb/tools/grafana.html">Grafana Dashboards</a></li>
-                  <li><a id="dsdb-tools-telegraf" class="" href="/dsdb/tools/telegraf.html">Telegraf Metrics Collection</a></li>
-                  <li><a id="dsdb-tools-chronograf" class="" href="/dsdb/tools/chronograf.html">Chronograf Dashboards</a></li>
-                  <li><a id="dsdb-tools-kapacitor" class="" href="/dsdb/tools/kapacitor.html">Kapacitor Monitoring</a></li>
                 </ul>
               </li>
               <li><a class="fold">Write Protocols</a>
@@ -223,14 +217,14 @@
 
     <div class="side_right">
       <div class="doc">
-        <h2 id="comparison-to-sql">Comparison to SQL</h2>
+        <h1 id="comparison-to-sql">Comparison to SQL</h1>
 <p>This page gives SQL users an overview of how DSDB is like an SQL database and how it's not.
 It highlights some of the major distinctions between the two and provides a loose crosswalk between the different database terminologies and query languages.</p>
-<h3 id="in-general">In general...</h3>
+<h2 id="in-general">In general...</h2>
 <p>DSDB is designed to work with time-series data.
 SQL databases can handle time-series but weren't created strictly for that purpose.
 In short, DSDB is made to store a large volume of time-series data and perform real-time analysis on those data, quickly.</p>
-<h4 id="timing-is-everything">Timing is everything</h4>
+<h3 id="timing-is-everything">Timing is everything</h3>
 <p>In DSDB, a timestamp identifies a single point in any given data series.
 This is like an SQL database table where the primary key is pre-set by the system and is always time.</p>
 <p>DSDB also recognizes that your schema preferences may change over time.
@@ -238,7 +232,7 @@ In DSDB you don't have to define schemas up front.
 Data points can have one of the fields on a measurement, all of the fields on a measurement, or any number in-between.
 You can add new fields to a measurement simply by writing a point for that new field.
 If you need an explanation of the terms measurements, tags, and fields check out the next section for an SQL database to DSDB terminology crosswalk.</p>
-<h3 id="terminology">Terminology</h3>
+<h2 id="terminology">Terminology</h2>
 <p>The table below is a (very) simple example of a table  called <code>foodships</code> in an SQL database
 with the unindexed column <code>#_foodships</code> and the indexed columns <code>park_id</code>, <code>planet</code>, and <code>time</code>.</p>
 <pre><code class="language-sql">+---------+---------+---------------------+--------------+
@@ -314,7 +308,7 @@ SQL <code>JOIN</code>s aren't available for DSDB measurements; your schema desig
 And, as we mentioned above, a measurement is like an SQL table where the primary index is always pre-set to time.
 DSDB timestamps must be in UNIX epoch (GMT) or formatted as a date-time string valid under RFC3339.</p>
 <p>For more detailed descriptions of the DSDB terms mentioned in this section see our <a href="/dsdb/concepts/glossary.html">Glossary of Terms</a>.</p>
-<h3 id="influxql-and-sql">InfluxQL and SQL</h3>
+<h2 id="influxql-and-sql">InfluxQL and SQL</h2>
 <p>InfluxQL is an SQL-like query language for interacting with DSDB.
 It has been lovingly crafted to feel familiar to those coming from other
 SQL or SQL-like environments while also providing features specific
@@ -376,7 +370,7 @@ See our <a href="/dsdb/query_language/data_exploration.html">data exploration</a
 InfluxQL functions include <code>COUNT</code>, <code>MIN</code>, <code>MAX</code>, <code>MEDIAN</code>, <code>DERIVATIVE</code> and more.
 For a full list check out the <a href="/dsdb/query_language/functions.html">functions</a> page.</p>
 <p>Now that you have the general idea, check out our <a href="/dsdb/introduction/getting_started.html">Getting Started Guide</a>.</p>
-<h3 id="a-note-on-why-dsdb-isnt-crud">A note on why DSDB isn't CRUD...</h3>
+<h2 id="a-note-on-why-dsdb-isnt-crud">A note on why DSDB isn't CRUD...</h2>
 <p>DSDB is a database that has been optimized for time series data.
 This data commonly comes from sources like distributed sensor groups, click data from large websites, or lists of financial transactions.</p>
 <p>One thing this data has in common is that it is more useful in the aggregate.

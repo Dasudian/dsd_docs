@@ -50,7 +50,7 @@
 			  });	
 		  })
     </script>
-    <link href='http://fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
+    <link href='//fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
   </head>
 
   <body>
@@ -137,8 +137,6 @@
                 <ul class="menu3" >
                   <li><a id="dsdb-datasource-diamond" class="" href="/dsdb/data_sources/diamond.html">Diamond</a></li>
                   <li><a id="dsdb-datasource-opentsdb" class="" href="/dsdb/data_sources/opentsdb.html">OpenTSDB</a></li>
-                  <li><a id="dsdb-datasource-carbon" class="" href="/dsdb/data_sources/carbon.html">Carbon</a></li>
-                  <li><a id="dsdb-datasource-collectd" class="" href="/dsdb/data_sources/collectd.html">Collectd</a></li>
                 </ul>
               </li>
               <li><a class="fold">Guides</a>
@@ -172,10 +170,6 @@
                   <li><a id="dsdb-tools-overview" class="" href="/dsdb/tools/index.html">Tools Overview</a></li>
                   <li><a id="dsdb-tools-shell" class="" href="/dsdb/tools/shell.html">CLI/Shell</a></li>
                   <li><a id="dsdb-tools-webadmin" class="" href="/dsdb/tools/web_admin.html">Web Admin Interface</a></li>
-                  <li><a id="dsdb-tools-grafana" class="" href="/dsdb/tools/grafana.html">Grafana Dashboards</a></li>
-                  <li><a id="dsdb-tools-telegraf" class="" href="/dsdb/tools/telegraf.html">Telegraf Metrics Collection</a></li>
-                  <li><a id="dsdb-tools-chronograf" class="" href="/dsdb/tools/chronograf.html">Chronograf Dashboards</a></li>
-                  <li><a id="dsdb-tools-kapacitor" class="" href="/dsdb/tools/kapacitor.html">Kapacitor Monitoring</a></li>
                 </ul>
               </li>
               <li><a class="fold">Write Protocols</a>
@@ -223,7 +217,7 @@
 
     <div class="side_right">
       <div class="doc">
-        <h2 id="authentication-and-authorization">Authentication and Authorization</h2>
+        <h1 id="authentication-and-authorization">Authentication and Authorization</h1>
 <p>This document covers setting up and managing authentication and authorization in DSDB.</p>
 <p><a href="/dsdb/administration/authentication_and_authorization.html#authentication">Authentication</a></p>
 <ul>
@@ -257,14 +251,14 @@
 <p><strong>Note:</strong> Authentication and authorization should not be relied upon to prevent access and protect data from malicious actors.
 If additional security or compliance features are desired, DSDB should be run behind a third-party service.</p>
 </blockquote>
-<h3 id="authentication">Authentication</h3>
+<h2 id="authentication">Authentication</h2>
 <p>DSDB's HTTP API and the command line interface (CLI), which connects to the database using the API, include simple, built-in authentication based on user credentials.
 When you enable authentication DSDB only executes HTTP requests that are sent with valid credentials.</p>
 <blockquote>
 <p><strong>Note:</strong> Authentication only occurs at the HTTP request scope.
 Plugins do not currently have the ability to authenticate requests and service endpoints (for example, Graphite, collectd, etc.) are not authenticated.</p>
 </blockquote>
-<h4 id="set-up-authentication">Set up authentication</h4>
+<h3 id="set-up-authentication">Set up authentication</h3>
 <hr />
 <ol>
 <li>
@@ -277,7 +271,7 @@ Enable authentication by setting the <code>auth-enabled</code> option to <code>t
 <pre><code>[http]  
 enabled = true  
 bind-address = ":8088"  
-auth-enabled = true ## ✨
+auth-enabled = true # ✨
 log-enabled = true  
 write-tracing = false  
 pprof-enabled = false  
@@ -290,9 +284,9 @@ https-certificate = "/etc/ssl/dsdb.pem"  </code></pre>
 <blockquote>
 <p><strong>Note:</strong> If you enable authentication and have no users, DSDB will <strong>not</strong> enforce authentication until you create the first admin user, and DSDB will only accept the <a href="/dsdb/administration/authentication_and_authorization.html#create-a-new-admin-user">query</a> that creates an admin user.</p>
 </blockquote>
-<h4 id="authenticating-requests">Authenticating requests</h4>
+<h3 id="authenticating-requests">Authenticating requests</h3>
 <hr />
-<h5 id="authenticate-using-the-http-api">Authenticate using the HTTP API</h5>
+<h4 id="authenticate-using-the-http-api">Authenticate using the HTTP API</h4>
 <p>There are two options for authenticating with the HTTP API.</p>
 <ul>
 <li>Authenticate with Basic Authentication as described in <a href="http://tools.ietf.org/html/rfc2617">RFC 2617, Section 2</a> - this is the preferred method for providing user credentials.</li>
@@ -311,7 +305,7 @@ See the section on <a href="/dsdb/administration/authentication_and_authorizatio
 <blockquote>
 <p><strong>Note:</strong> DSDB redacts passwords when you enable authentication. </p>
 </blockquote>
-<h5 id="authenticate-using-the-cli">Authenticate using the CLI</h5>
+<h4 id="authenticate-using-the-cli">Authenticate using the CLI</h4>
 <p>There are two options for authenticating with the CLI.</p>
 <ul>
 <li>
@@ -329,12 +323,12 @@ DSDB shell 0.9.1
 <pre><code class="language-sh">influx -username todd -password dsdb4ever</code></pre>
 </li>
 </ul>
-<h3 id="authorization">Authorization</h3>
+<h2 id="authorization">Authorization</h2>
 <p>Authorization is only enforced once you've <a href="/dsdb/administration/authentication_and_authorization.html#set-up-authentication">enabled authentication</a>.
 By default, authentication is disabled, all credentials are silently ignored, and all users have all privileges.</p>
-<h4 id="user-types-and-their-privileges">User types and their privileges</h4>
+<h3 id="user-types-and-their-privileges">User types and their privileges</h3>
 <hr />
-<h5 id="admin-users">Admin users</h5>
+<h4 id="admin-users">Admin users</h4>
 <p>Admin users have <code>READ</code> and <code>WRITE</code> access to all databases and full access to the following administrative queries:</p>
 <p>Database management:<br />
 &nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>CREATE DATABASE</code>, and <code>DROP DATABASE</code><br />
@@ -350,40 +344,40 @@ By default, authentication is disabled, all credentials are silently ignored, an
 &nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;General user management:<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/dsdb/administration/authentication_and_authorization.html#re-set-a-user-s-password"><code>SET PASSWORD</code></a> and <a href="/dsdb/administration/authentication_and_authorization.html#drop-a-user"><code>DROP USER</code></a>  </p>
 <p>See <a href="/dsdb/administration/authentication_and_authorization.html#user-management-commands">below</a> for a complete discussion of the user management commands.</p>
-<h5 id="non-admin-users">Non-admin users</h5>
+<h4 id="non-admin-users">Non-admin users</h4>
 <p>Non-admin users can have one of the following three privileges per database:<br />
 &nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>READ</code><br />
 &nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>WRITE</code><br />
 &nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>ALL</code> (both <code>READ</code> and <code>WRITE</code> access)</p>
 <p><code>READ</code>, <code>WRITE</code>, and <code>ALL</code> privileges are controlled per user per database.
 A new non-admin user has no access to any database until they are specifically <a href="/dsdb/administration/authentication_and_authorization.html#grant-read-write-or-all-database-privileges-to-an-existing-user">granted privileges to a database</a> by an admin user.</p>
-<h4 id="user-management-commands">User management commands</h4>
+<h3 id="user-management-commands">User management commands</h3>
 <hr />
-<h5 id="admin-user-management">Admin user management</h5>
+<h4 id="admin-user-management">Admin user management</h4>
 <ul>
 <li>
-<h6><code>CREATE</code> a new admin user:</h6>
+<h5><code>CREATE</code> a new admin user:</h5>
 <pre><code class="language-sql">CREATE USER &lt;username&gt; WITH PASSWORD '&lt;password&gt;' WITH ALL PRIVILEGES</code></pre>
 <p>CLI example:</p>
 <pre><code class="language-sh">&gt; CREATE USER paul WITH PASSWORD 'timeseries4days' WITH ALL PRIVILEGES
 &gt;</code></pre>
 </li>
 <li>
-<h6><code>GRANT</code> administrative privileges to an existing user:</h6>
+<h5><code>GRANT</code> administrative privileges to an existing user:</h5>
 <pre><code class="language-sql">GRANT ALL PRIVILEGES TO &lt;username&gt;</code></pre>
 <p>CLI example:</p>
 <pre><code class="language-sh">&gt; GRANT ALL PRIVILEGES TO todd
 &gt;</code></pre>
 </li>
 <li>
-<h6><code>REVOKE</code> administrative privileges from an admin user:</h6>
+<h5><code>REVOKE</code> administrative privileges from an admin user:</h5>
 <pre><code class="language-sql">REVOKE ALL PRIVILEGES FROM &lt;username&gt;</code></pre>
 <p>CLI example:</p>
 <pre><code class="language-sh">&gt; REVOKE ALL PRIVILEGES FROM todd
 &gt;</code></pre>
 </li>
 <li>
-<h6><code>SHOW</code> all existing users and their admin status:</h6>
+<h5><code>SHOW</code> all existing users and their admin status:</h5>
 <pre><code class="language-sql">SHOW USERS</code></pre>
 <p>CLI example:</p>
 <pre><code class="language-sh">&gt; SHOW USERS
@@ -394,10 +388,10 @@ hermione false
 dobby    false</code></pre>
 </li>
 </ul>
-<h5 id="non-admin-user-management">Non-admin user management</h5>
+<h4 id="non-admin-user-management">Non-admin user management</h4>
 <ul>
 <li>
-<h6><code>CREATE</code> a new non-admin user:</h6>
+<h5><code>CREATE</code> a new non-admin user:</h5>
 <pre><code class="language-sql">CREATE USER &lt;username&gt; WITH PASSWORD '&lt;password&gt;'</code></pre>
 <p>CLI example:</p>
 <pre><code class="language-sh">&gt; CREATE USER todd WITH PASSWORD 'dsdb41yf3'
@@ -409,7 +403,7 @@ For passwords that include a single quote or a newline character, escape the sin
 </blockquote>
 </li>
 <li>
-<h6><code>GRANT</code> <code>READ</code>, <code>WRITE</code> or <code>ALL</code> database privileges to an existing user:</h6>
+<h5><code>GRANT</code> <code>READ</code>, <code>WRITE</code> or <code>ALL</code> database privileges to an existing user:</h5>
 <pre><code class="language-sql">GRANT [READ,WRITE,ALL] ON &lt;database_name&gt; TO &lt;username&gt;</code></pre>
 <p>CLI examples:</p>
 <p><code>GRANT</code> <code>READ</code> access to <code>todd</code> on the <code>NOAA_water_database</code> database:</p>
@@ -420,7 +414,7 @@ For passwords that include a single quote or a newline character, escape the sin
 &gt;</code></pre>
 </li>
 <li>
-<h6><code>REVOKE</code> <code>READ</code>, <code>WRITE</code>, or <code>ALL</code> database privileges from an existing user:</h6>
+<h5><code>REVOKE</code> <code>READ</code>, <code>WRITE</code>, or <code>ALL</code> database privileges from an existing user:</h5>
 <pre><code class="language-sql">REVOKE [READ,WRITE,ALL] ON &lt;database_name&gt; FROM &lt;username&gt;</code></pre>
 <p>CLI examples:</p>
 <p><code>REVOKE</code> <code>ALL</code> privileges from <code>todd</code> on the <code>NOAA_water_database</code> database:</p>
@@ -434,7 +428,7 @@ For passwords that include a single quote or a newline character, escape the sin
 </blockquote>
 </li>
 <li>
-<h6><code>SHOW</code> a user's database privileges:</h6>
+<h5><code>SHOW</code> a user's database privileges:</h5>
 <pre><code class="language-sql">SHOW GRANTS FOR &lt;user_name&gt;</code></pre>
 <p>CLI example:</p>
 <pre><code class="language-sh">&gt; SHOW GRANTS FOR todd
@@ -444,10 +438,10 @@ another_database_name       READ
 yet_another_database_name   ALL PRIVILEGES</code></pre>
 </li>
 </ul>
-<h5 id="general-admin-and-non-admin-user-management">General admin and non-admin user management</h5>
+<h4 id="general-admin-and-non-admin-user-management">General admin and non-admin user management</h4>
 <ul>
 <li>
-<h6 id="re">Re<code>SET</code> a user's password:</h6>
+<h5 id="re">Re<code>SET</code> a user's password:</h5>
 <pre><code class="language-sql">SET PASSWORD FOR &lt;username&gt; = '&lt;password&gt;'</code></pre>
 <p>CLI example:</p>
 <pre><code class="language-sh">&gt; SET PASSWORD FOR todd = 'dsdb4ever'
@@ -459,14 +453,14 @@ For passwords that include a single quote or a newline character, escape the sin
 </blockquote>
 </li>
 <li>
-<h6><code>DROP</code> a user:</h6>
+<h5><code>DROP</code> a user:</h5>
 <pre><code class="language-sql">DROP USER &lt;username&gt;</code></pre>
 <p>CLI example:</p>
 <pre><code class="language-sh">&gt; DROP USER todd
 &gt;</code></pre>
 </li>
 </ul>
-<h3 id="authentication-and-authorization-http-errors">Authentication and authorization HTTP errors</h3>
+<h2 id="authentication-and-authorization-http-errors">Authentication and authorization HTTP errors</h2>
 <p>Requests with invalid credentials and requests by unauthorized users yield the <code>HTTP 401 Unauthorized</code> response.</p>
       </div>
 

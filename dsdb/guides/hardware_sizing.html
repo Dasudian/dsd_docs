@@ -50,7 +50,7 @@
 			  });	
 		  })
     </script>
-    <link href='http://fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
+    <link href='//fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
   </head>
 
   <body>
@@ -137,8 +137,6 @@
                 <ul class="menu3" >
                   <li><a id="dsdb-datasource-diamond" class="" href="/dsdb/data_sources/diamond.html">Diamond</a></li>
                   <li><a id="dsdb-datasource-opentsdb" class="" href="/dsdb/data_sources/opentsdb.html">OpenTSDB</a></li>
-                  <li><a id="dsdb-datasource-carbon" class="" href="/dsdb/data_sources/carbon.html">Carbon</a></li>
-                  <li><a id="dsdb-datasource-collectd" class="" href="/dsdb/data_sources/collectd.html">Collectd</a></li>
                 </ul>
               </li>
               <li><a class="fold">Guides</a>
@@ -172,10 +170,6 @@
                   <li><a id="dsdb-tools-overview" class="" href="/dsdb/tools/index.html">Tools Overview</a></li>
                   <li><a id="dsdb-tools-shell" class="" href="/dsdb/tools/shell.html">CLI/Shell</a></li>
                   <li><a id="dsdb-tools-webadmin" class="" href="/dsdb/tools/web_admin.html">Web Admin Interface</a></li>
-                  <li><a id="dsdb-tools-grafana" class="" href="/dsdb/tools/grafana.html">Grafana Dashboards</a></li>
-                  <li><a id="dsdb-tools-telegraf" class="" href="/dsdb/tools/telegraf.html">Telegraf Metrics Collection</a></li>
-                  <li><a id="dsdb-tools-chronograf" class="" href="/dsdb/tools/chronograf.html">Chronograf Dashboards</a></li>
-                  <li><a id="dsdb-tools-kapacitor" class="" href="/dsdb/tools/kapacitor.html">Kapacitor Monitoring</a></li>
                 </ul>
               </li>
               <li><a class="fold">Write Protocols</a>
@@ -223,7 +217,7 @@
 
     <div class="side_right">
       <div class="doc">
-        <h2 id="hardware-sizing-guidelines">Hardware Sizing Guidelines</h2>
+        <h1 id="hardware-sizing-guidelines">Hardware Sizing Guidelines</h1>
 <p>This guide offers general hardware recommendations for DSDB and addresses some frequently asked questions about hardware sizing. The recommendations are only for the <code>tsm1</code> storage engine. Instances still running <a href="/dsdb/administration/upgrading.html#convert-b1-and-bz1-shards-to-tsm1">unconverted</a> <code>b1</code> or <code>bz1</code> shards may have different performance characteristics. See the <a href="/dsdb/guides/hardware_sizing.html">DSDB 0.9 sizing guide</a> for more detail.</p>
 <p>Single node:</p>
 <ul>
@@ -238,7 +232,7 @@
 <li><a href="/dsdb/guides/hardware_sizing.html#general-hardware-guidelines-for-clusters">General hardware guidelines for clusters</a></li>
 <li><a href="/dsdb/guides/hardware_sizing.html#how-should-i-configure-my-hardware-1">How should I configure my hardware?</a></li>
 </ul>
-<h3 id="general-hardware-guidelines-for-a-single-node">General hardware guidelines for a single node</h3>
+<h2 id="general-hardware-guidelines-for-a-single-node">General hardware guidelines for a single node</h2>
 <p>We define the load that you'll be placing on DSDB by the number of writes per second, the number of queries per second, and the number of unique <a href="/dsdb/concepts/glossary.html#series">series</a>. Based on your load, we make general CPU, RAM, and IOPS recommendations.</p>
 <table>
 <thead>
@@ -276,39 +270,39 @@
 </tr>
 </tbody>
 </table>
-<h5 id="low-load-recommendations">Low load recommendations</h5>
+<h4 id="low-load-recommendations">Low load recommendations</h4>
 <ul>
 <li>CPU: 2-4   </li>
 <li>RAM: 2-4 GB   </li>
 <li>IOPS: 500   </li>
 </ul>
-<h5 id="moderate-load-recommendations">Moderate load recommendations</h5>
+<h4 id="moderate-load-recommendations">Moderate load recommendations</h4>
 <ul>
 <li>CPU: 4-6  </li>
 <li>RAM: 8-32GB  </li>
 <li>IOPS: 501.000  </li>
 </ul>
-<h5 id="high-load-recommendations">High load recommendations</h5>
+<h4 id="high-load-recommendations">High load recommendations</h4>
 <ul>
 <li>CPU: 8+  </li>
 <li>RAM: 32+ GB  </li>
 <li>IOPS: 1000+  </li>
 </ul>
-<h5 id="probably-infeasible-load">Probably infeasible load</h5>
+<h4 id="probably-infeasible-load">Probably infeasible load</h4>
 <p>Performance at this scale is a significant challenge and may not be achievable. Please contact us at <a href="mailto:sales@dsdb.com">sales@dsdb.com</a> for assistance with tuning your systems.</p>
-<h3 id="when-do-i-need-more-ram">When do I need more RAM?</h3>
+<h2 id="when-do-i-need-more-ram">When do I need more RAM?</h2>
 <p>In general, having more RAM helps queries return faster. There is no known downside to adding more RAM.</p>
 <p>The major component that affects your RAM needs is series cardinality. Series cardinality is the total number of <a href="/dsdb/concepts/glossary.html#series">series</a> in a database. If you have one measurement with two tags, and each tag has 1,000 possible values then the series cardinality is 1 million. A series cardinality around or above 10 million can cause OOM failures even with large amounts of RAM. If this is the case, you can usually address the problem by redesigning your <a href="/dsdb/concepts/glossary.html#schema">schema</a>.</p>
 <p>The increase in RAM needs relative to series cardinality is exponential where the exponent is between one and two:</p>
 <p><img src="/img/dsdb/series-cardinality.png" alt="Series Cardinality" /></p>
-<h3 id="what-kind-of-storage-do-i-need">What kind of storage do I need?</h3>
+<h2 id="what-kind-of-storage-do-i-need">What kind of storage do I need?</h2>
 <p>DSDB is designed to run on SSDs.  Performance is lower on spinning disk drives and may not function properly under increasing loads.</p>
-<h3 id="how-much-storage-do-i-need">How much storage do I need?</h3>
+<h2 id="how-much-storage-do-i-need">How much storage do I need?</h2>
 <p>Database names, <a href="/dsdb/concepts/glossary.html#measurement">measurements</a>, <a href="/dsdb/concepts/glossary.html#tag-key">tag keys</a>, <a href="/dsdb/concepts/glossary.html#field-key">field keys</a>, and <a href="/dsdb/concepts/glossary.html#tag-value">tag values</a> are stored only once and always as strings. Only <a href="/dsdb/concepts/glossary.html#field-value">field values</a> and <a href="/dsdb/concepts/glossary.html#timestamp">timestamps</a> are stored per-point.</p>
 <p>Non-string values require approximately three bytes. String values require variable space as determined by string compression.</p>
-<h3 id="how-should-i-configure-my-hardware">How should I configure my hardware?</h3>
+<h2 id="how-should-i-configure-my-hardware">How should I configure my hardware?</h2>
 <p>When running DSDB in a production environment the <code>wal</code> directory and the <code>data</code> directory should be on separate storage devices. This optimization significantly reduces disk contention when the system is under heavy write load. This is an important consideration if the write load is highly variable. If the write load does not vary by more than 15% the optimization is probably unneeded.</p>
-<h3 id="general-hardware-guidelines-for-clusters">General hardware guidelines for clusters</h3>
+<h2 id="general-hardware-guidelines-for-clusters">General hardware guidelines for clusters</h2>
 <p>Minimum hardware requirements:</p>
 <ul>
 <li>CPU: 2</li>
@@ -317,7 +311,7 @@
 </ul>
 <p>When running a cluster every member should have at least two cores.</p>
 <p>For better performance, we recommend having 8 GB RAM and 4 CPUs or more.</p>
-<h3 id="how-should-i-configure-my-hardware-differently-from-a-single-node-instance">How should I configure my hardware differently from a single-node instance?</h3>
+<h2 id="how-should-i-configure-my-hardware-differently-from-a-single-node-instance">How should I configure my hardware differently from a single-node instance?</h2>
 <p>Place the <code>hh</code> directory on a separate storage device from the <code>wal</code> and <code>data</code> directories. This significantly reduces disk contention when the cluster is under heavy write load. For more information on setting up a cluster, see <a href="/dsdb/guides/clustering.html">Clustering setup</a>.</p>
       </div>
 

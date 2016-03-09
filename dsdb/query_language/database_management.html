@@ -50,7 +50,7 @@
 			  });	
 		  })
     </script>
-    <link href='http://fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
+    <link href='//fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
   </head>
 
   <body>
@@ -137,8 +137,6 @@
                 <ul class="menu3" >
                   <li><a id="dsdb-datasource-diamond" class="" href="/dsdb/data_sources/diamond.html">Diamond</a></li>
                   <li><a id="dsdb-datasource-opentsdb" class="" href="/dsdb/data_sources/opentsdb.html">OpenTSDB</a></li>
-                  <li><a id="dsdb-datasource-carbon" class="" href="/dsdb/data_sources/carbon.html">Carbon</a></li>
-                  <li><a id="dsdb-datasource-collectd" class="" href="/dsdb/data_sources/collectd.html">Collectd</a></li>
                 </ul>
               </li>
               <li><a class="fold">Guides</a>
@@ -172,10 +170,6 @@
                   <li><a id="dsdb-tools-overview" class="" href="/dsdb/tools/index.html">Tools Overview</a></li>
                   <li><a id="dsdb-tools-shell" class="" href="/dsdb/tools/shell.html">CLI/Shell</a></li>
                   <li><a id="dsdb-tools-webadmin" class="" href="/dsdb/tools/web_admin.html">Web Admin Interface</a></li>
-                  <li><a id="dsdb-tools-grafana" class="" href="/dsdb/tools/grafana.html">Grafana Dashboards</a></li>
-                  <li><a id="dsdb-tools-telegraf" class="" href="/dsdb/tools/telegraf.html">Telegraf Metrics Collection</a></li>
-                  <li><a id="dsdb-tools-chronograf" class="" href="/dsdb/tools/chronograf.html">Chronograf Dashboards</a></li>
-                  <li><a id="dsdb-tools-kapacitor" class="" href="/dsdb/tools/kapacitor.html">Kapacitor Monitoring</a></li>
                 </ul>
               </li>
               <li><a class="fold">Write Protocols</a>
@@ -223,7 +217,7 @@
 
     <div class="side_right">
       <div class="doc">
-        <h2 id="database-management">Database Management</h2>
+        <h1 id="database-management">Database Management</h1>
 <p>DSDBQL offers a full suite of administrative commands.</p>
 <ul>
 <li>
@@ -246,8 +240,8 @@ See the <a href="/dsdb/guides/querying_data.html">Querying Data</a> guide for mo
 <p><strong>Note:</strong> When authentication is enabled, only admin users can execute most of the commands listed on this page.
 See the documentation on <a href="/dsdb/administration/authentication_and_authorization.html">authentication and authorization</a> for more information.</p>
 </blockquote>
-<h3 id="data-management">Data Management</h3>
-<h4 id="create-a-database-with-create-database">Create a database with CREATE DATABASE</h4>
+<h2 id="data-management">Data Management</h2>
+<h3 id="create-a-database-with-create-database">Create a database with CREATE DATABASE</h3>
 <hr />
 <p>The <code>CREATE DATABASE</code> query takes the following form:</p>
 <pre><code class="language-sql">CREATE DATABASE [IF NOT EXISTS] &lt;database_name&gt; [WITH [DURATION &lt;duration&gt;] [REPLICATION &lt;n&gt;] [NAME &lt;retention-policy-name&gt;]]</code></pre>
@@ -263,7 +257,7 @@ See the documentation on <a href="/dsdb/administration/authentication_and_author
 <p>When specifying a retention policy you can include one or more of the attributes <code>DURATION</code>, <code>REPLICATION</code>, and <code>NAME</code>.
 For more on retention policies, see <a href="/dsdb/query_language/database_management.html#retention-policy-management">Retention Policy Management</a></p>
 <p>A successful <code>CREATE DATABASE</code> query returns an empty result.</p>
-<h4 id="delete-a-database-with-drop-database">Delete a database with DROP DATABASE</h4>
+<h3 id="delete-a-database-with-drop-database">Delete a database with DROP DATABASE</h3>
 <hr />
 <p>The <code>DROP DATABASE</code> query deletes all of the data, measurements, series, continuous queries, and retention policies from the specified database.
 The query takes the following form:</p>
@@ -275,7 +269,7 @@ The query takes the following form:</p>
 <pre><code class="language-sh">&gt; DROP DATABASE IF EXISTS NOAA_water_database
 &gt;</code></pre>
 <p>A successful <code>DROP DATABASE</code> query returns an empty result.</p>
-<h4 id="delete-series-with-drop-series">Delete series with DROP SERIES</h4>
+<h3 id="delete-series-with-drop-series">Delete series with DROP SERIES</h3>
 <hr />
 <p>The <code>DROP SERIES</code> query deletes all points from <a href="/dsdb/concepts/glossary.html#series">series</a> in a database.
 The query takes the following form, where you must specify either the <code>FROM</code> clause or the <code>WHERE</code> clause:</p>
@@ -290,7 +284,7 @@ The query takes the following form, where you must specify either the <code>FROM
 <dt> `DROP SERIES` does not support time intervals in the `WHERE` clause.
 See GitHub Issue [#1647](https://github.com/dsdb/dsdb/issues/1647) for more information).
 </dt>
-<h4 id="delete-measurements-with-drop-measurement">Delete measurements with DROP MEASUREMENT</h4>
+<h3 id="delete-measurements-with-drop-measurement">Delete measurements with DROP MEASUREMENT</h3>
 <hr />
 <p>The <code>DROP MEASUREMENT</code> query deletes all data and series from the specified <a href="/dsdb/concepts/glossary.html#measurement">measurement</a> and, unlike <code>DROP SERIES</code>, it also deletes the measurement from the index.
 The query takes the following form:</p>
@@ -305,11 +299,11 @@ It does not drop the associated continuous queries.</p>
 <dt> Currently, DSDB does not support regular expressions with `DROP MEASUREMENTS`.
 See GitHub Issue [#4275](https://github.com/dsdb/dsdb/issues/4275) for more information.
 </dt>
-<h3 id="retention-policy-management">Retention Policy Management</h3>
+<h2 id="retention-policy-management">Retention Policy Management</h2>
 <p>The following sections cover how to create, alter, and delete retention policies.
 Note that when you create a database, DSDB automatically creates a retention policy named <code>default</code> which has infinite retention.
 You may disable that auto-creation in the configuration file.</p>
-<h4 id="create-retention-policies-with-create-retention-policy">Create retention policies with CREATE RETENTION POLICY</h4>
+<h3 id="create-retention-policies-with-create-retention-policy">Create retention policies with CREATE RETENTION POLICY</h3>
 <hr />
 <p>The <code>CREATE RETENTION POLICY</code> query takes the following form, where <code>DEFAULT</code> is optional:</p>
 <pre><code class="language-sql">CREATE RETENTION POLICY &lt;retention_policy_name&gt; ON &lt;database_name&gt; DURATION &lt;duration&gt; REPLICATION &lt;n&gt; [DEFAULT]</code></pre>
@@ -343,7 +337,7 @@ See GitHub Issue [#3634](https://github.com/dsdb/dsdb/issues/3634) for more info
 <p><strong>Note:</strong> You can also specify a new retention policy in the <code>CREATE DATABASE</code> query.
 See <a href="/dsdb/query_language/database_management.html#create-a-database-with-create-database">Create a database with CREATE DATABASE</a>.</p>
 </blockquote>
-<h4 id="modify-retention-policies-with-alter-retention-policy">Modify retention policies with ALTER RETENTION POLICY</h4>
+<h3 id="modify-retention-policies-with-alter-retention-policy">Modify retention policies with ALTER RETENTION POLICY</h3>
 <hr />
 <p>The <code>ALTER RETENTION POLICY</code> query takes the following form, where you must declare at least one of the retention policy attributes <code>DURATION</code>, <code>REPLICATION</code>, or <code>DEFAULT</code>:</p>
 <pre><code class="language-sql">ALTER RETENTION POLICY &lt;retention_policy_name&gt; ON &lt;database_name&gt; DURATION &lt;duration&gt; REPLICATION &lt;n&gt; [DEFAULT]</code></pre>
@@ -355,7 +349,7 @@ See <a href="/dsdb/query_language/database_management.html#create-a-database-wit
 &gt;</code></pre>
 <p>In the last example, <code>what_is_time</code> retains its original replication factor of 1.</p>
 <p>A successful <code>ALTER RETENTION POLICY</code> query returns an empty result.</p>
-<h4 id="delete-retention-policies-with-drop-retention-policy">Delete retention policies with DROP RETENTION POLICY</h4>
+<h3 id="delete-retention-policies-with-drop-retention-policy">Delete retention policies with DROP RETENTION POLICY</h3>
 <p>Delete all measurements and data in a specific retention policy with:</p>
 <pre><code class="language-sql">DROP RETENTION POLICY &lt;retention_policy_name&gt; ON &lt;database_name&gt;</code></pre>
 <p>Delete the retention policy <code>what_is_time</code> in the <code>NOAA_water_database</code> database:  </p>

@@ -50,7 +50,7 @@
 			  });	
 		  })
     </script>
-    <link href='http://fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
+    <link href='//fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
   </head>
 
   <body>
@@ -137,8 +137,6 @@
                 <ul class="menu3" >
                   <li><a id="dsdb-datasource-diamond" class="" href="/dsdb/data_sources/diamond.html">Diamond</a></li>
                   <li><a id="dsdb-datasource-opentsdb" class="" href="/dsdb/data_sources/opentsdb.html">OpenTSDB</a></li>
-                  <li><a id="dsdb-datasource-carbon" class="" href="/dsdb/data_sources/carbon.html">Carbon</a></li>
-                  <li><a id="dsdb-datasource-collectd" class="" href="/dsdb/data_sources/collectd.html">Collectd</a></li>
                 </ul>
               </li>
               <li><a class="fold">Guides</a>
@@ -172,10 +170,6 @@
                   <li><a id="dsdb-tools-overview" class="" href="/dsdb/tools/index.html">Tools Overview</a></li>
                   <li><a id="dsdb-tools-shell" class="" href="/dsdb/tools/shell.html">CLI/Shell</a></li>
                   <li><a id="dsdb-tools-webadmin" class="" href="/dsdb/tools/web_admin.html">Web Admin Interface</a></li>
-                  <li><a id="dsdb-tools-grafana" class="" href="/dsdb/tools/grafana.html">Grafana Dashboards</a></li>
-                  <li><a id="dsdb-tools-telegraf" class="" href="/dsdb/tools/telegraf.html">Telegraf Metrics Collection</a></li>
-                  <li><a id="dsdb-tools-chronograf" class="" href="/dsdb/tools/chronograf.html">Chronograf Dashboards</a></li>
-                  <li><a id="dsdb-tools-kapacitor" class="" href="/dsdb/tools/kapacitor.html">Kapacitor Monitoring</a></li>
                 </ul>
               </li>
               <li><a class="fold">Write Protocols</a>
@@ -223,14 +217,14 @@
 
     <div class="side_right">
       <div class="doc">
-        <h2 id="write-syntax">Write Syntax</h2>
+        <h1 id="write-syntax">Write Syntax</h1>
 <p>Syntax is always a challenge to remember, so here's a reference</p>
-<h3 id="line-protocol">Line Protocol</h3>
+<h2 id="line-protocol">Line Protocol</h2>
 <p>The syntax for the line protocol is</p>
 <p><code>measurement[,tag_key1=tag_value1...] field_key=field_value[,field_key2=field_value2] [timestamp]</code></p>
 <p>For example:</p>
 <pre><code class="language-sh">measurement,tkey1=tval1,tkey2=tval2 fkey=fval,fkey2=fval2 1234567890000000000</code></pre>
-<h4 id="whitespace">Whitespace</h4>
+<h3 id="whitespace">Whitespace</h3>
 <p>A space must exist between the measurement and the field(s), or between the tag(s) and the field(s) if tags are
 provided.
 The measurement and tags must be separated by a single comma <code>,</code> with no whitespace.</p>
@@ -248,23 +242,23 @@ measurement foo=bar value=12
 measurement,foo=bar,value=12 1439587925
 measurement,foo=bar
 measurement,foo=bar 1439587925</code></pre>
-<h4 id="timestamps">Timestamps</h4>
+<h3 id="timestamps">Timestamps</h3>
 <p>Timestamps are not required.
 When no timestamp is provided the server will insert the point with the local server
 timestamp.
 If a timestamp is provided it must be separated from the field(s) by a space.
 Timestamps must be in Unix time and are assumed to be in nanoseconds.
 A different precision can be specified, see the HTTP syntax for details.</p>
-<h4 id="key-value-separator">Key-value Separator</h4>
+<h3 id="key-value-separator">Key-value Separator</h3>
 <p>Tag keys and values, and field keys and values must be separated by the equals sign <code>=</code> without spaces.</p>
-<h4 id="escaping-characters">Escaping Characters</h4>
+<h3 id="escaping-characters">Escaping Characters</h3>
 <p>If a tag key, tag value, or field key contains a space <code>`, comma</code>,<code>, or an equals sign</code>=<code>it must be escaped using the backslash character</code>`.
 Backslash characters do not need to be escaped.
 Commas <code>,</code> and spaces <code>` will also need to be escaped for measurements, though equals signs</code>=` do not.</p>
-<h4 id="comments">Comments</h4>
+<h3 id="comments">Comments</h3>
 <p><code>#</code> at the beginning of the line is a valid comment character for the line protocol.
 All subsequent characters are ignored.</p>
-<h4 id="data-types">Data Types</h4>
+<h3 id="data-types">Data Types</h3>
 <p>Measurements, tag keys, tag values, and field keys are always stored as strings in the database.</p>
 <p><code>string</code> values have a length limit of 64 KB.
 All Unicode characters should be valid, although commas and spaces require escaping.
@@ -280,35 +274,35 @@ The field <code>bikes_present=15i</code> stores an integer and the field <code>b
 <p><code>string</code> values for field values must be double-quoted.
 Double-quotes contained within the string must be escaped.
 All other characters are supported without escaping.</p>
-<h4 id="examples">Examples</h4>
-<h5 id="simplest-valid-point-measurement--field">Simplest Valid Point (measurement + field)</h5>
+<h3 id="examples">Examples</h3>
+<h4 id="simplest-valid-point-measurement--field">Simplest Valid Point (measurement + field)</h4>
 <pre><code>disk_free value=442221834240i</code></pre>
-<h5 id="with-timestamp">With Timestamp</h5>
+<h4 id="with-timestamp">With Timestamp</h4>
 <pre><code>disk_free value=442221834240i 1435362189575692182</code></pre>
-<h5 id="with-tags">With Tags</h5>
+<h4 id="with-tags">With Tags</h4>
 <pre><code>disk_free,hostname=server01,disk_type=SSD value=442221834240i</code></pre>
-<h5 id="with-tags-with-timestamp">With Tags, With Timestamp</h5>
+<h4 id="with-tags-with-timestamp">With Tags, With Timestamp</h4>
 <pre><code>disk_free,hostname=server01,disk_type=SSD value=442221834240i 1435362189575692182</code></pre>
-<h5 id="multiple-fields">Multiple Fields</h5>
+<h4 id="multiple-fields">Multiple Fields</h4>
 <pre><code>disk_free free_space=442221834240i,disk_type="SSD" 1435362189575692182</code></pre>
-<h5 id="escaping-commas-and-spaces">Escaping Commas and Spaces</h5>
+<h4 id="escaping-commas-and-spaces">Escaping Commas and Spaces</h4>
 <pre><code>total\ disk\ free,volumes=/net\,/home\,/ value=442221834240i 1435362189575692182</code></pre>
 <p>In the above example, the measurement is written as <code>total disk free</code> and the tag key <code>volumes</code> has a tag value of <code>/net,/home,/</code></p>
-<h5 id="escaping-equals-signs">Escaping Equals Signs</h5>
+<h4 id="escaping-equals-signs">Escaping Equals Signs</h4>
 <pre><code>disk_free,a\=b=y\=z value=442221834240i</code></pre>
 <p>In the above example, the tag key <code>a=b</code> has a tag value of <code>y=z</code></p>
-<h5 id="with-backslash-in-tag-value">With Backslash in Tag Value</h5>
+<h4 id="with-backslash-in-tag-value">With Backslash in Tag Value</h4>
 <pre><code>disk_free,path=C:\Windows value=442221834240i</code></pre>
 <p>Backslashes do not need to be escaped when used in strings.
 Unless followed by a comma, space, or equals sign backslashes are treated as a normal character.</p>
-<h5 id="escaping-field-key">Escaping Field Key</h5>
+<h4 id="escaping-field-key">Escaping Field Key</h4>
 <pre><code>disk_free value=442221834240i,working\ directories="C:\My Documents\Stuff for examples,C:\My Documents"</code></pre>
 <p>In the above example, the second field key is <code>working directories</code> and the corresponding field value is <code>C:\My Documents\Stuff for examples,C:\My Documents</code>.</p>
-<h5 id="showing-all-escaping-and-quoting-behavior">Showing all escaping and quoting behavior</h5>
+<h4 id="showing-all-escaping-and-quoting-behavior">Showing all escaping and quoting behavior</h4>
 <pre><code>"measurement\ with\ quotes",tag\ key\ with\ spaces=tag\,value\,with"commas" field_key\\\\="string field value, only \" need be quoted"</code></pre>
 <p>In the above example, the measurement is <code>"measurement with quotes"</code>, the tag key is <code>tag key with spaces</code>, the
 tag value is <code>tag,value,with"commas"</code>, the field key is <code>field_key\\\\</code> and the field value is <code>string field value, only " need be quoted</code>.</p>
-<h4 id="caveats">Caveats</h4>
+<h3 id="caveats">Caveats</h3>
 <blockquote>
 <p><strong>Note:</strong> Prior to version 0.9.3, integers were numeric values that did not include a decimal (e.g.
 1, 345, 2015, -10) and were not followed by a trailing <code>i</code>.
@@ -330,19 +324,19 @@ Keywords in DSDB are referenced on the <a href="/dsdb/v1.0/query_language/spec/"
 There is no need to quote or escape keywords in the write syntax.</p>
 <p>All values in DSDB are case-sensitive: <code>MyDB</code> != <code>mydb</code> != <code>MYDB</code>.
 The exception is Keywords, which are case-insensitive.</p>
-<h3 id="cli">CLI</h3>
+<h2 id="cli">CLI</h2>
 <p>To write points using the command line interface, use the <code>insert</code> command.</p>
-<h5 id="write-a-point-with-the-cli">Write a Point with the CLI</h5>
+<h4 id="write-a-point-with-the-cli">Write a Point with the CLI</h4>
 <pre><code class="language-bash">&gt; insert disk_free,hostname=server01 value=442221834240i 1435362189575692182</code></pre>
 <p>The CLI will return nothing on success and should give an informative parser error if the point cannot be written.
 There is currently no way to write a batch of points using the CLI, each point must be inserted individually.</p>
-<h3 id="http">HTTP</h3>
+<h2 id="http">HTTP</h2>
 <p>To write points using HTTP, POST to the <code>/write</code> endpoint at port <code>8086</code>.
 You must specify the target database in the query string using <code>db=&lt;target_database&gt;</code>.</p>
 <p>You may optionally provide a target retention policy, specify the precision of any supplied timestamps, and pass any required authentication in the query string.</p>
 <p>Successful writes will return a <code>204</code> HTTP Status Code.
 Writes will return a <code>400</code> for invalid syntax.</p>
-<h4 id="query-string-parameters-for-writes">Query String Parameters for Writes</h4>
+<h3 id="query-string-parameters-for-writes">Query String Parameters for Writes</h3>
 <p>The following query string parameters can be passed as part of the GET string when using the HTTP API:</p>
 <ul>
 <li><code>db=&lt;database&gt;</code> REQUIRED - sets the target database for the write</li>
@@ -362,28 +356,28 @@ In this context, &quot;valid node&quot; means a node that hosts a copy of the sh
 In a clustered system, the replication factor should equal the number of valid nodes.</li>
 </ul></li>
 </ul>
-<h5 id="write-a-point-with">Write a Point with <code>curl</code></h5>
+<h4 id="write-a-point-with">Write a Point with <code>curl</code></h4>
 <pre><code class="language-bash">curl -X POST 'http://localhost:8086/write?db=mydb' --data-binary 'disk_free,hostname=server01 value=442221834240i 1435362189575692182'</code></pre>
-<h5 id="write-a-point-to-a-non-default-retention-policy">Write a Point to a non-default Retention Policy</h5>
+<h4 id="write-a-point-to-a-non-default-retention-policy">Write a Point to a non-default Retention Policy</h4>
 <p>Use the <code>rp=&lt;retention_policy</code> query string parameter to supply a target retention policy.
 If not specified, the default retention policy for the target database will be used.</p>
 <pre><code class="language-bash">curl -X POST 'http://localhost:8086/write?db=mydb&amp;rp=six_month_rollup' --data-binary 'disk_free,hostname=server01 value=442221834240i 1435362189575692182'</code></pre>
-<h5 id="write-a-point-using-authentication">Write a Point Using Authentication</h5>
+<h4 id="write-a-point-using-authentication">Write a Point Using Authentication</h4>
 <p>Use the <code>u=&lt;user&gt;</code> and <code>p=&lt;password&gt;</code> to pass the authentication details, if required.</p>
 <pre><code class="language-bash">curl -X POST 'http://localhost:8086/write?db=mydb&amp;u=root&amp;p=123456' --data-binary 'disk_free,hostname=server01 value=442221834240i 1435362189575692182'</code></pre>
-<h5 id="specify-non-nanosecond-timestamps">Specify Non-nanosecond Timestamps</h5>
+<h4 id="specify-non-nanosecond-timestamps">Specify Non-nanosecond Timestamps</h4>
 <p>Use the <code>precision=[n,u,ms,s,m,h]</code> query string parameter to supply a precision for the timestamps.</p>
 <p>All timestamps are assumed to be Unix nanoseconds unless otherwise specified.
 If you provide timestamps in any unit other than nanoseconds, you must supply the appropriate precision in the URL query string.
 Use <code>n</code>, <code>u</code>, <code>ms</code>, <code>s</code>, <code>m</code>, and <code>h</code> for nanoseconds, microseconds, milliseconds, seconds, minutes, and hours, respectively.</p>
 <pre><code class="language-bash">curl -X POST 'http://localhost:8086/write?db=mydb&amp;precision=ms' --data-binary 'disk_free value=442221834240i 1435362189575'</code></pre>
-<h5 id="write-a-batch-of-points-with">Write a Batch of Points with <code>curl</code></h5>
+<h4 id="write-a-batch-of-points-with">Write a Batch of Points with <code>curl</code></h4>
 <p>You can also pass a file using the <code>@</code> flag.
 The file can contain a batch of points, one per line.
 Points must be separated by newline characters <code>\n</code>.
 Batches should be 5000 points or fewer for best performance.</p>
 <p><code>curl -X POST 'http://localhost:8086/write?db=&lt;database&gt;' --data-binary @&lt;filename&gt;</code></p>
-<h4 id="caveats-1">Caveats</h4>
+<h3 id="caveats-1">Caveats</h3>
 <p>Use <code>curl</code>'s <code>--data-binary</code> encoding method for all writes in the line protocol format.
 Using any encoding method other than <code>--data-binary</code> is likely to lead to issues with writing points.
 <code>-d</code>, <code>--data-urlencode</code>, and <code>--data-ascii</code> may all strip out newlines or introduce new unintended formatting.</p>

@@ -50,7 +50,7 @@
 			  });	
 		  })
     </script>
-    <link href='http://fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
+    <link href='//fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
   </head>
 
   <body>
@@ -137,8 +137,6 @@
                 <ul class="menu3" >
                   <li><a id="dsdb-datasource-diamond" class="" href="/dsdb/data_sources/diamond.html">Diamond</a></li>
                   <li><a id="dsdb-datasource-opentsdb" class="" href="/dsdb/data_sources/opentsdb.html">OpenTSDB</a></li>
-                  <li><a id="dsdb-datasource-carbon" class="" href="/dsdb/data_sources/carbon.html">Carbon</a></li>
-                  <li><a id="dsdb-datasource-collectd" class="" href="/dsdb/data_sources/collectd.html">Collectd</a></li>
                 </ul>
               </li>
               <li><a class="fold">Guides</a>
@@ -172,10 +170,6 @@
                   <li><a id="dsdb-tools-overview" class="" href="/dsdb/tools/index.html">Tools Overview</a></li>
                   <li><a id="dsdb-tools-shell" class="" href="/dsdb/tools/shell.html">CLI/Shell</a></li>
                   <li><a id="dsdb-tools-webadmin" class="" href="/dsdb/tools/web_admin.html">Web Admin Interface</a></li>
-                  <li><a id="dsdb-tools-grafana" class="" href="/dsdb/tools/grafana.html">Grafana Dashboards</a></li>
-                  <li><a id="dsdb-tools-telegraf" class="" href="/dsdb/tools/telegraf.html">Telegraf Metrics Collection</a></li>
-                  <li><a id="dsdb-tools-chronograf" class="" href="/dsdb/tools/chronograf.html">Chronograf Dashboards</a></li>
-                  <li><a id="dsdb-tools-kapacitor" class="" href="/dsdb/tools/kapacitor.html">Kapacitor Monitoring</a></li>
                 </ul>
               </li>
               <li><a class="fold">Write Protocols</a>
@@ -223,13 +217,13 @@
 
     <div class="side_right">
       <div class="doc">
-        <h2 id="dsd-dac_cloud-api-">DSD DAC_CLOUD API 指导手册</h2>
-<h3 id="">引言</h3>
+        <h1 id="dsd-dac_cloud-api-">DSD DAC_CLOUD API 指导手册</h1>
+<h2 id="">引言</h2>
 <p>DSD DAC_CLOUD API提供了功能丰富但使用简单的服务器开发的C++ API，该API极大的降低了服务器开发与维护难度，降低开发成本，缩短开发周期。用户无需关注服务器的负载均衡性能等问题，只需关注简单的业务逻辑，如同开发简单的单机应用，就可以实现丰富的服务器应用。</p>
-<h3 id="-1">安装环境</h3>
+<h2 id="-1">安装环境</h2>
 <p>安装环境就是编译环境，目前只支持<br />
 Ubuntu 14.06和Ubuntu 14.10  </p>
-<h3 id="-2">编译方法</h3>
+<h2 id="-2">编译方法</h2>
 <ol>
 <li>下载并解压SDK到指定目录   </li>
 <li>修改工程的Makefile，添加CLOUD_API_C的头文件引用路径和动态库的链接路径<br />
@@ -246,16 +240,16 @@ CFLAGS+= -I$(INCLUDE_DIR) -g -O0 -fexceptions
 LDFLAGS+= -L$(LIB_DIR) -ldsdcloud dm_test: dm_test.o   
 gcc -o dm_test dm_test.o $(CFLAGS) $(LDFLAGS) dm_test.o:dm_test.c   
 gcc  -c dm_test.c $(CFLAGS)`   </code></pre>
-<h3 id="api-">API 类</h3>
+<h2 id="api-">API 类</h2>
 <p>API 类是该sdk的主要类，developers调用该类与erlang虚拟机交互，处理http请求或其他服务请求。开发者需要引用头文件<code>dsd_cloud.hpp</code></p>
-<h4 id="-3">名称空间</h4>
+<h3 id="-3">名称空间</h3>
 <p>API 类在dsd_cloud名称空间下  </p>
-<h4 id="-4">属性</h4>
+<h3 id="-4">属性</h3>
 <ol>
 <li>ASYNC : static final int类型，值为1，标示异步请求类型  </li>
 <li>SYNC : static final int类型，值为-1，标示同步请求类型  </li>
 </ol>
-<h4 id="-5">方法</h4>
+<h3 id="-5">方法</h3>
 <ol>
 <li>
 <p><code>staici int thread_count()</code><br />
@@ -761,11 +755,11 @@ IN  pattern ：取消订阅的服务名称<br />
 <strong>返回值：</strong><br />
 成功，返回0；失败，返回非0   </li>
 </ol>
-<h3 id="function_object_cxx-">function_object_cxx 类</h3>
+<h2 id="function_object_cxx-">function_object_cxx 类</h2>
 <p>function_object_cxx类为API 类方法subscribe的回调接口类，该类是个纯虚函数，开发者如果调用 <code>int subscribe(std::string const &amp; pattern, function_object_cxx * object)</code>方法，需要生成一个子类，并且需要实现operator()方法。</p>
-<h4 id="-6">属性</h4>
+<h3 id="-6">属性</h3>
 <p>请参见相关方法</p>
-<h4 id="-7">方法</h4>
+<h3 id="-7">方法</h3>
 <ol>
 <li><code>virtual void operator() (API const &amp;, int const command, char const * const name, char const * const pattern, void const * const request_info, uint32_t const request_info_size, void const * const request, uint32_t const request_size, uint32_t timeout, int8_t priority, char const * const trans_id, char const * const pid, uint32_t const pid_size) = 0</code><br />
 <strong>描述：</strong><br />
@@ -784,7 +778,7 @@ developers需要实现该方法，处理服务请求<br />
 <code>IN pid</code>  转发请求的pid<br />
 <strong>返回值：</strong>  </li>
 </ol>
-<h3 id="dsd_log">Dsd_log</h3>
+<h2 id="dsd_log">Dsd_log</h2>
 <p>开发者调用如下函数打印日志，引用头文件<code>dsd_log.h</code> 。  </p>
 <ol>
 <li>
@@ -830,13 +824,13 @@ debug级别打印日志，该函数用法与printf一样<br />
 <strong>参数：</strong><br />
 <strong>返回值：</strong>   </li>
 </ol>
-<h3 id="dsd_mchdb">dsd_mchdb类</h3>
+<h2 id="dsd_mchdb">dsd_mchdb类</h2>
 <p>DSD dac cloud api 提供了访问memcacahed数据库的方法。开发者只需要引用头文件<code>dsd_mchdb.hpp</code> 。  </p>
-<h4 id="-8">名称空间</h4>
+<h3 id="-8">名称空间</h3>
 <p>dsd_mchdb类在dsd_cloud名称下</p>
-<h4 id="-9">属性</h4>
+<h3 id="-9">属性</h3>
 <p>请参见相关方法</p>
-<h4 id="-10">方法</h4>
+<h3 id="-10">方法</h3>
 <ol>
 <li>
 <p><code>dsd_mchdb(API &amp;m)</code><br />
@@ -996,13 +990,13 @@ debug级别打印日志，该函数用法与printf一样<br />
 <strong>返回值：</strong><br />
 成功返回0，失败返回非0</li>
 </ol>
-<h3 id="dsd_dsdb">dsd_dsdb类</h3>
+<h2 id="dsd_dsdb">dsd_dsdb类</h2>
 <p>DSD dac cloud api 提供了访问dsdb数据库的方法。</p>
-<h4 id="-11">名称空间</h4>
+<h3 id="-11">名称空间</h3>
 <p>dsd_dsdb 类在dsd_cloud中 </p>
-<h4 id="-12">属性</h4>
+<h3 id="-12">属性</h3>
 <p>请参见相关方法</p>
-<h4 id="-13">方法</h4>
+<h3 id="-13">方法</h3>
 <ol>
 <li>
 <p><code>dsd_dsdb(API &amp;m)</code><br />
@@ -1356,13 +1350,13 @@ dsdb支持分页查询，分页查询返回的结果携带查询下一页请求�
 <strong>返回值：</strong><br />
 成功返回0，失败返回非0</li>
 </ol>
-<h3 id="dsdb_search_cond-">dsdb_search_cond 类</h3>
+<h2 id="dsdb_search_cond-">dsdb_search_cond 类</h2>
 <p>dac cloud api 支持用户按组合条件查询，dsd_search_cond类就是为了方便developers按条件查询dsdb数据库</p>
-<h4 id="-14">名称空间</h4>
+<h3 id="-14">名称空间</h3>
 <p>dsd_search_cond 类在dsd_cloud中 </p>
-<h4 id="-15">属性</h4>
+<h3 id="-15">属性</h3>
 <p>请参见相关方法</p>
-<h4 id="-16">方法</h4>
+<h3 id="-16">方法</h3>
 <ol>
 <li>
 <p><code>dsdb_search_cond()</code><br />
@@ -1408,13 +1402,13 @@ dsdb支持分页查询，分页查询返回的结果携带查询下一页请求�
 <code>IN end</code> : 最大值<br />
 <strong>返回值：</strong></li>
 </ol>
-<h3 id="dsd_redis-">dsd_redis 类</h3>
+<h2 id="dsd_redis-">dsd_redis 类</h2>
 <p>Dsd dac cloud api 提供了简单的访问redis数据库的方法。</p>
-<h4 id="-17">名称空间</h4>
+<h3 id="-17">名称空间</h3>
 <p>Dsd_redis 类在dsd_cloud中 </p>
-<h4 id="-18">属性</h4>
+<h3 id="-18">属性</h3>
 <p>请参见相关方法</p>
-<h4 id="-19">方法</h4>
+<h3 id="-19">方法</h3>
 <ol>
 <li>
 <p><code>dsd_redis(API m)</code><br />
@@ -1444,7 +1438,7 @@ dsdb支持分页查询，分页查询返回的结果携带查询下一页请求�
 <strong>返回值：</strong><br />
 返回dsd_redis_reply结构体。  </li>
 </ol>
-<h3 id="dsd_redis_reply-">dsd_redis_reply 结构体</h3>
+<h2 id="dsd_redis_reply-">dsd_redis_reply 结构体</h2>
 <p>该结构体格式如下：  </p>
 <pre><code class="language-c">{
    int err;
