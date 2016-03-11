@@ -21,9 +21,12 @@ branch: gh-pages
 # baseUrl: http://docs.dasudian.com
 
 navs:
-  solution:
-    text: "解决方案"
-    absoluteUrl: http://dasudian.com/solution
+  datahub:
+    text: "IoT Data Hub"
+    absoluteUrl: http://dasudian.com/datahub
+  product_service:
+    text: "产品服务"
+    absoluteUrl: http://dasudian.com/product_service
   docs:
     text: "文档"
     absoluteUrl: /
