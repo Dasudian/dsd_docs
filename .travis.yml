@@ -9,6 +9,8 @@ env:
     - secure: D40Bm9b5ejs/FJm4Mnf/xyGGg6eZVU4YjOjwUwK1KKPCNPFGr8wpD4vojXyPvMXFpx5j7FmZfnuu4InZQArAYXsRn0zQzdm61dK1f14zocD62UWHsdBwzwDCQZ/GHzlaxxzufhR5vAUVlT0Ux+VcDlBvKSz96ps8t5zyqic0ce1rUcrbavJhALh4ZvfvZ+KwD284Sy6ImfvFFy22eleKZt5qDQmzBcdERnGJgjPhwd9R+4rPiTljDqKGnufWv1nsWgyu2OYeQTZUQSDAAl3CsgOhlrAtQc6eENvrGM4pJo/VlK2T9J4qMKedRX1rnDSK+Gkp0l7EhugqQ3zIYtyer0Kclwu8T2OXcslsgTpmN8chjxCy+TkeETiPgAeCUNgk8kFfxTt6UX49cXe/Y9tMte1RMzfjGN8WGnH5l9VOIOsxuTnqOvhrbPu1ZKiKhY6Lh2aOzPbYhSMlvuP1vSUudnEsNAP5IRAE/SBG1AeBbpYkeqMpuWZ4bFB/kte1HRkUFWcYGk1SLHFwihjvlPgM2HqIlQi4OoW104toQ7Nq5sLXw22UIWh/KLoqk3j26mcoXjV0tASSmhf2kldR4Ja7Q2Vt280ehIcYJVzSP7nzibht9LmVRxmT4IVUfEao5nmQ8j/U90nEXzpFvOxhNzDurbT2elUZvEfvtMIwhGyT8j0=
 before_script:
   - composer install --no-progress
+  - git config --global user.email "mz@dasudian.com"
+  - git config --global user.name "mengz"
   # - npm install minifier -g
 script:
   - vendor/bin/couscous deploy
