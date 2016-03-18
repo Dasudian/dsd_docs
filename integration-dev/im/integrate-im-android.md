@@ -21,7 +21,7 @@ AppKey: ec55784a5db3268a
 ### 导入库和jar包
 拷贝libdsd_im.so到libs/armeabi目录下，如果没有armeabi目录，请手动创建该目录。
 拷贝dsd-lib-IM-v1到libs目录下，如下图所示。<br/>
-![导入.so到工程目录下](doc/1.png)
+![导入.so到工程目录下](images-android/1.png)
 
 ### 配置权限
 如下图所示,在AndroidManifest.xml中加入如下内容使能必要的访问权限.
@@ -34,7 +34,7 @@ AppKey: ec55784a5db3268a
 <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
 <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 ```
-![配置网络访问权限](doc/2.png)
+![配置网络访问权限](images-android/2.png)
 
 ## 初始化SDK
 ### 实现如下接口
