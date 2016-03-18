@@ -5,8 +5,8 @@
 
 Demo App:
 ```
-AppID: 101_94lhb27aW3ahNRymR6_A
-AppKey: 2571cc86c9de6190
+AppID: 3_95F8TwKfyN7Lj35j8q_A
+AppKey: ec55784a5db3268a
 ```
 
 ## 下载SDK
@@ -104,12 +104,14 @@ int dsdInit(String serverAddress, String version, String appID, String appKey, S
 1.使用大数点公有云服务器，非VIP用户可以发送的最大消息长度为1024个字节。
 2.所有发送消息相关的函数，消息都必须以如下JSON格式发送。
 ```
-{"t":"0|1|2","b":"msg content"}
-@t： 消息类型
-	0 txt
+{"t":"0|1|2|3|4","b":"msg content"}
+@t： Message Type
+	0 text
 	1 image
 	2 audio
-@b： 消息内容
+    3 video
+	4 HTML5 page
+@b： 消息内容,如果消息为image或audio等多媒体消息，则为该多媒体的URL。
 ```
 同步发送
 ```java
