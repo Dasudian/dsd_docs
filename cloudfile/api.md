@@ -6,7 +6,7 @@
 我们可以用如下的HTML表单来描述表单上传的基本用法：
     
 ```html
-<form method="post" action="http://upload.dasudian.com/"
+<form method="post" action="http://cf.dasudian.net/"
      enctype="multipart/form-data">
      <input name="token" type="hidden" value="<access_token>">
      <input name="<custom_name>" type="hidden" value="<custom_value>">
@@ -31,7 +31,7 @@
 <br>
 提交以上这个HTML表单而生成的HTTP请求内容大致如下所示：
 
-    POST http://upload.qiniu.com/
+    POST http://cf.dasudian.net/
     Content-Type: multipart/form-data; boundary=<Boundary>
     --<Boundary>
   
