@@ -15,14 +15,14 @@
 <table  border="1" width="600px">
 <tbody>
 <tr style="background-color:#EDEDED"><td align="center">名称</td><td align="center">类型</td><td align="center">必填</td><td align="center">说明</td></tr>
-<tr><td align="center">appid</td><td align="center">string</td><td align="center">是</td><td align="center">appid 为用户在创建App时大数点提供</td></tr>
-<tr><td align="center">appsec</td><td align="center">string</td><td align="center">是</td><td align="center">appsec 为用户在创建App时大数点提供</td></tr>
+<tr><td align="center">appid</td><td align="center">string</td><td align="center">是</td><td align="center">appid 为用户在大数点开发者平台创建App时生成的AppID</td></tr>
+<tr><td align="center">appsec</td><td align="center">string</td><td align="center">是</td><td align="center">appsec 为用户大数点开发者平台创建App时生成的AppKey</td></tr>
 </tbody>
 </table>
 
 ### 请求实例
 
-    curl -v -k https://ex.ap.dasudian.net/auc_app -d '{"appid":"139_A_92ECUvrZ4A6IrP3tz6", "appsec":"0a03d9c67217092b"}' -H"content-type:application/json"
+    curl -v -k https://ex.ap.dasudian.net/auc_app -d '{"appid":"139_A_92ECUvrZ4A6*****", "appsec":"*******7092b"}' -H"content-type:application/json"
 
 ### 返回结果说明
 
