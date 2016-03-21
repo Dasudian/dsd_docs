@@ -6,8 +6,7 @@
   
 ### 请求方法
   
-请求时使用`POST`方式请求`https://ex.ap.dasudian.net/auc_app`，`domain`为要请求服务器的地址
-注:`Content-Type`请设置为`Content-Type:application/json`
+请求时使用`POST`方式请求`https://ex.ap.dasudian.net/auc_app`， 注:`Content-Type`请设置为`Content-Type:application/json`
 
 ### 请求参数说明
 
@@ -44,8 +43,7 @@
 
 ### 请求方法
 
-请求时使用`POST`方式请求`https://aaa.dasudian.net/pre_register`，`domain`为要请求服务器的地址
-注:`Content-Type`请设置为`Content-Type:application/json`
+请求时使用`POST`方式请求`https://aaa.dasudian.net/pre_register`，注:`Content-Type`请设置为`Content-Type:application/json`
 
 ### 请求参数说明
 
@@ -82,8 +80,7 @@
 
 ### 请求方法
 
-请求时使用`POST`方式请求`https://aaa.dasudian.net/verify_code`，`domain`为要请求服务器的地址
-注:`Content-Type`请设置为`Content-Type:application/json`
+请求时使用`POST`方式请求`https://aaa.dasudian.net/verify_code`，注:`Content-Type`请设置为`Content-Type:application/json`
 
 ### 请求参数说明
 
@@ -119,8 +116,7 @@
 
 ### 请求方法
 
-请求时使用`POST`方式请求`https://aaa.dasudian.net/register`，`domain`为要请求服务器的地址
-注:`Content-Type`请设置为`Content-Type:application/json`
+请求时使用`POST`方式请求`https://aaa.dasudian.net/register`，注:`Content-Type`请设置为`Content-Type:application/json`
 
 ### 请求参数说明
 
@@ -163,8 +159,7 @@
 
 ### 请求方法
 
-请求时使用`POST`方式请求`https://aaa.dasudian.net/login`，`domain`为要请求服务器的地址
-注:`Content-Type`请设置为`Content-Type:application/json`
+请求时使用`POST`方式请求`https://aaa.dasudian.net/login`，注:`Content-Type`请设置为`Content-Type:application/json`
 
 ### 请求参数说明
 
@@ -201,8 +196,7 @@
 
 ### 请求方法
 
-请求时使用`GET`方式请求`https://aaa.dasudian.net/auto_login`，`domain`为要请求服务器的地址
-注:在请求时必须带上登录时服务器返回的`cookie`
+请求时使用`GET`方式请求`https://aaa.dasudian.net/auto_login`，注:在请求时必须带上登录时服务器返回的`cookie`
 
 ### 请求参数说明
 
@@ -237,8 +231,7 @@
 
 ### 请求方法
 
-请求时使用`POST`方式请求`https://aaa.dasudian.net/get_user`，`domain`为要请求服务器的地址
-注:`Content-Type`请设置为`Content-Type:application/json`
+请求时使用`POST`方式请求`https://aaa.dasudian.net/get_user`，注:`Content-Type`请设置为`Content-Type:application/json`
 
 ### 请求参数说明
 
@@ -282,8 +275,7 @@
 
 ### 请求方法
 
-请求时使用`POST`方式请求`https://aaa.dasudian.net/update_portrait`，`domain`为要请求服务器的地址
-注:`Content-Type`请设置为`Content-Type:application/json`,在请求时必须带上服务器返回的`cookie`
+请求时使用`POST`方式请求`https://aaa.dasudian.net/update_portrait`，注:`Content-Type`请设置为`Content-Type:application/json`,在请求时必须带上服务器返回的`cookie`
 
 ### 请求参数说明
 
@@ -319,8 +311,7 @@
 
 ### 请求方法
 
-请求时使用`POST`方式请求`https://aaa.dasudian.net/request_vericode`，`domain`为要请求服务器的地址
-注:`Content-Type`请设置为`Content-Type:application/json`
+请求时使用`POST`方式请求`https://aaa.dasudian.net/request_vericode`，注:`Content-Type`请设置为`Content-Type:application/json`
 
 ### 请求参数说明
 
@@ -357,8 +348,7 @@
 
 ### 请求方法
 
-请求时使用`POST`方式请求`https://aaa.dasudian.net/forget_password`，`domain`为要请求服务器的地址
-注:`Content-Type`请设置为`Content-Type:application/json`,在请求时必须带上请求验证码时服务器返回的`cookie`
+请求时使用`POST`方式请求`https://aaa.dasudian.net/forget_password`，注:`Content-Type`请设置为`Content-Type:application/json`,在请求时必须带上请求验证码时服务器返回的`cookie`
 
 ### 请求参数说明
 
@@ -396,8 +386,7 @@
 
 ### 请求方法
 
-请求时使用`POST`方式请求`https://aaa.dasudian.net/change_password`，`domain`为要请求服务器的地址
-注:`Content-Type`请设置为`Content-Type:application/json`,在请求时必须带上登录时服务器返回的`cookie`
+请求时使用`POST`方式请求`https://aaa.dasudian.net/change_password`，注:`Content-Type`请设置为`Content-Type:application/json`,在请求时必须带上登录时服务器返回的`cookie`
 
 ### 请求参数说明
 
@@ -434,8 +423,7 @@
 
 ### 请求方法
 
-请求时使用`POST`方式请求`https://aaa.dasudian.net/change_name`，`domain`为要请求服务器的地址
-注:`Content-Type`请设置为`Content-Type:application/json`,在请求时必须带上登录时服务器返回的`cookie`
+请求时使用`POST`方式请求`https://aaa.dasudian.net/change_name`，注:`Content-Type`请设置为`Content-Type:application/json`,在请求时必须带上登录时服务器返回的`cookie`
 
 ### 请求参数说明
 
@@ -471,8 +459,7 @@
 
 ### 请求方法
 
-请求时使用`POST`方式请求`https://aaa.dasudian.net/change_signature`，`domain`为要请求服务器的地址
-注:`Content-Type`请设置为`Content-Type:application/json`,在请求时必须带上登录时服务器返回的`cookie`
+请求时使用`POST`方式请求`https://aaa.dasudian.net/change_signature`，注:`Content-Type`请设置为`Content-Type:application/json`,在请求时必须带上登录时服务器返回的`cookie`
 
 ### 请求参数说明
 
@@ -508,8 +495,7 @@
 
 ### 请求方法
 
-请求时使用`POST`方式请求`https://aaa.dasudian.net/sync_contact`，`domain`为要请求服务器的地址
-注:`Content-Type`请设置为`Content-Type:application/json`,在请求时必须带上登录时服务器返回的`cookie`
+请求时使用`POST`方式请求`https://aaa.dasudian.net/sync_contact`，注:`Content-Type`请设置为`Content-Type:application/json`,在请求时必须带上登录时服务器返回的`cookie`
 
 ### 请求参数说明
 
@@ -545,8 +531,7 @@
 
 ### 请求方法
 
-请求时使用`POST`方式请求`https://aaa.dasudian.net/get_contact`，`domain`为要请求服务器的地址
-注:`Content-Type`请设置为`Content-Type:application/json`,在请求时必须带上登录时服务器返回的`cookie`
+请求时使用`POST`方式请求`https://aaa.dasudian.net/get_contact`，注:`Content-Type`请设置为`Content-Type:application/json`,在请求时必须带上登录时服务器返回的`cookie`
 
 ### 请求参数说明
 
@@ -586,8 +571,7 @@
 
 ### 请求方法
 
-请求时使用`POST`方式请求`https://aaa.dasudian.net/qq_oauth2`，`domain`为要请求服务器的地址
-注:`Content-Type`请设置为`Content-Type:application/json`
+请求时使用`POST`方式请求`https://aaa.dasudian.net/qq_oauth2`，注:`Content-Type`请设置为`Content-Type:application/json`
 
 ### 请求参数说明
 
@@ -630,8 +614,7 @@
 
 ### 请求方法
 
-请求时使用`POST`方式请求`https://aaa.dasudian.net/wechat_oauth2`，`domain`为要请求服务器的地址
-注:`Content-Type`请设置为`Content-Type:application/json`
+请求时使用`POST`方式请求`https://aaa.dasudian.net/wechat_oauth2`，注:`Content-Type`请设置为`Content-Type:application/json`
 
 ### 请求参数说明
 
@@ -672,8 +655,7 @@
 
 ### 请求方法
 
-请求时使用`POST`方式请求`https://aaa.dasudian.net/oauth_user_info`，`domain`为要请求服务器的地址
-注:`Content-Type`请设置为`Content-Type:application/json`
+请求时使用`POST`方式请求`https://aaa.dasudian.net/oauth_user_info`，注:`Content-Type`请设置为`Content-Type:application/json`
 
 ### 请求参数说明
 
@@ -718,8 +700,7 @@
 
 ### 请求方法
 
-请求时使用`POST`方式请求`https://aaa.dasudian.net/oauth_users_info_list`，`domain`为要请求服务器的地址
-注:`Content-Type`请设置为`Content-Type:application/json`
+请求时使用`POST`方式请求`https://aaa.dasudian.net/oauth_users_info_list`，注:`Content-Type`请设置为`Content-Type:application/json`
 
 ### 请求参数说明
 
