@@ -263,14 +263,14 @@
 <tbody>
 <tr style="background-color:#EDEDED"><td align="center">名称</td><td align="center">类型</td><td align="center">说明</td></tr>
 <tr><td align="center">result</td><td align="center">string</td><td align="center">请求结果，success:成功 fail:失败</td></tr>
-<tr><td align="center">phone_num</td><td align="center">string</td><td align="center">是</td><td align="center">手机号码</td></tr>
-<tr><td align="center">name</td><td align="center">string</td><td align="center">是</td><td align="center">名字</td></tr>
-<tr><td align="center">sex</td><td align="center">string</td><td align="center">是</td><td align="center">性别</td></tr>
-<tr><td align="center">birthday</td><td align="center">string</td><td align="center">是</td><td align="center">生日</td></tr>
-<tr><td align="center">portrait</td><td align="center">string</td><td align="center">是</td><td align="center">头像地td></tr>
-<tr><td align="center">email</td><td align="center">string</td><td align="center">是</td><td align="center">邮箱地址</td></tr>
-<tr><td align="center">area</td><td align="center">string</td><td align="center">是</td><td align="center">地区</td></tr>
-<tr><td align="center">signature</td><td align="center">string</td><td align="center">是</td><td align="center">个性签名</td></tr>
+<tr><td align="center">phone_num</td><td align="center">string</td><td align="center">手机号码</td></tr>
+<tr><td align="center">name</td><td align="center">string</td><td align="center">名字</td></tr>
+<tr><td align="center">sex</td><td align="center">string</td><td align="center">性别</td></tr>
+<tr><td align="center">birthday</td><td align="center">string</td><td align="center">生日</td></tr>
+<tr><td align="center">portrait</td><td align="center">string</td><td align="center">头像地址</td></tr>
+<tr><td align="center">email</td><td align="center">string</td><td align="center">邮箱地址</td></tr>
+<tr><td align="center">area</td><td align="center">string</td><td align="center">地区</td></tr>
+<tr><td align="center">signature</td><td align="center">string</td><td align="center">个性签名</td></tr>
 </tbody>
 </table>
 
@@ -307,7 +307,7 @@
 <tbody>
 <tr style="background-color:#EDEDED"><td align="center">名称</td><td align="center">类型</td><td align="center">说明</td></tr>
 <tr><td align="center">result</td><td align="center">string</td><td align="center">请求结果，success:成功 fail:失败</td></tr>
-<tr><td align="center">portrait</td><td align="center">string</td><td align="center">是</td><td align="center">头像地址</td></tr>
+<tr><td align="center">portrait</td><td align="center">string</td><td align="center">头像地址</td></tr>
 </tbody>
 </table>
 
@@ -345,7 +345,7 @@
 <tbody>
 <tr style="background-color:#EDEDED"><td align="center">名称</td><td align="center">类型</td><td align="center">说明</td></tr>
 <tr><td align="center">result</td><td align="center">string</td><td align="center">请求结果，success:成功 fail:失败</td></tr>
-<tr><td align="center">veri_code</td><td align="center">string</td><td align="center">是</td><td align="center">验证码</td></tr>
+<tr><td align="center">veri_code</td><td align="center">string</td><td align="center">验证码</td></tr>
 </tbody>
 </table>
 
