@@ -1,15 +1,15 @@
-# 大数点 AAA 系统API
+# 大数点Cloud AAA 开放接口API
  
-### 1.获取 token
+## 1.获取 token
 
   在接入大数点`AAA`系统之前，都需要先获取`token`，后续所有的请求都需要带上`token`作为接入的凭证
   
-#### 请求方法
+### 请求方法
   
-请求时使用`POST`方式请求`https://{domain}/auc_app`，`domain`为要请求服务器的地址
+请求时使用`POST`方式请求`https://ex.ap.dasudian.net/auc_app`，`domain`为要请求服务器的地址
 注:`Content-Type`请设置为`Content-Type:application/json`
 
-#### 请求参数说明
+### 请求参数说明
 
 请求参数统一使用`Json`格式，字段说明如下：
 <table  border="1" width="600px">
@@ -20,11 +20,11 @@
 </tbody>
 </table>
 
-#### 请求实例
+### 请求实例
 
-    curl -v -k https://localhost:8443/auc_app -d '{"appid":"139_A_92ECUvrZ4A6IrP3tz6", "appsec":"0a03d9c67217092b"}' -H"content-type:application/json"
+    curl -v -k https://ex.ap.dasudian.net/auc_app -d '{"appid":"139_A_92ECUvrZ4A6IrP3tz6", "appsec":"0a03d9c67217092b"}' -H"content-type:application/json"
 
-#### 返回结果说明
+### 返回结果说明
 
 返回结果也统一使用`Json`格式，`Content-Type`为`Content-Type:application/json`，字段说明如下：
 
@@ -36,18 +36,18 @@
 </tbody>
 </table>
 
-#### 返回实例
+### 返回实例
     {"result":,"token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}
     
 
-### 2.注册
+## 2.注册
 
-#### 请求方法
+### 请求方法
 
-请求时使用`POST`方式请求`https://{domain}/pre_register`，`domain`为要请求服务器的地址
+请求时使用`POST`方式请求`https://aaa.dasudian.net/pre_register`，`domain`为要请求服务器的地址
 注:`Content-Type`请设置为`Content-Type:application/json`
 
-#### 请求参数说明
+### 请求参数说明
 
 请求参数统一使用`Json`格式，字段说明如下：
 <table  border="1" width="600px">
@@ -58,11 +58,11 @@
 </tbody>
 </table>
 
-#### 请求实例
+### 请求实例
 
-    curl -v https://localhost:8443/pre_register -v -k -XPOST -H"Content-Type: application/json" -d '{"phone_num": "13618074451","token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'
+    curl -v https://aaa.dasudian.net/pre_register -v -k -XPOST -H"Content-Type: application/json" -d '{"phone_num": "13618074451","token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'
 
-#### 返回结果说明
+### 返回结果说明
 
 返回结果也统一使用`Json`格式，`Content-Type`为`Content-Type:application/json`，字段说明如下：
 
@@ -74,18 +74,18 @@
 </tbody>
 </table>
 
-#### 返回实例
+### 返回实例
     {"result":"success","veri_code":"pinysl"}
 
 
-### 3.验证码校验
+## 3.验证码校验
 
-#### 请求方法
+### 请求方法
 
-请求时使用`POST`方式请求`https://{domain}/verify_code`，`domain`为要请求服务器的地址
+请求时使用`POST`方式请求`https://aaa.dasudian.net/verify_code`，`domain`为要请求服务器的地址
 注:`Content-Type`请设置为`Content-Type:application/json`
 
-#### 请求参数说明
+### 请求参数说明
 
 请求参数统一使用`Json`格式，字段说明如下：
 <table  border="1" width="600px">
@@ -97,11 +97,11 @@
 </tbody>
 </table>
 
-#### 请求实例
+### 请求实例
 
-    curl -v https://localhost:8443/verify_code -v -k -XPOST -H"Content-Type: application/json" -d '{"phone_num": "13618074451","veri_code":"pinysl","token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'
+    curl -v https://aaa.dasudian.net/verify_code -v -k -XPOST -H"Content-Type: application/json" -d '{"phone_num": "13618074451","veri_code":"pinysl","token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'
 
-#### 返回结果说明
+### 返回结果说明
 
 返回结果也统一使用`Json`格式，`Content-Type`为`Content-Type:application/json`，字段说明如下：
 
@@ -112,17 +112,17 @@
 </tbody>
 </table>
 
-#### 返回实例
+### 返回实例
     {"result":"success"}
     
-### 4.提交注册信息
+## 4.提交注册信息
 
-#### 请求方法
+### 请求方法
 
-请求时使用`POST`方式请求`https://{domain}/register`，`domain`为要请求服务器的地址
+请求时使用`POST`方式请求`https://aaa.dasudian.net/register`，`domain`为要请求服务器的地址
 注:`Content-Type`请设置为`Content-Type:application/json`
 
-#### 请求参数说明
+### 请求参数说明
 
 请求参数统一使用`Json`格式，字段说明如下：
 <table  border="1" width="600px">
@@ -141,11 +141,11 @@
 </tbody>
 </table>
 
-#### 请求实例
+### 请求实例
 
-    curl -v https://localhost:8443/register -v -k -XPOST -H"Content-Type: application/json" -d '{"phone_num":"13618074451","name":"test",  "sex":"male","birthday":120000,"password":"123456","email":"barco@dasudian.com", "area":"广东/深圳","veri_code":"pinysl",  "signature":"a","token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'
+    curl -v https://aaa.dasudian.net/register -v -k -XPOST -H"Content-Type: application/json" -d '{"phone_num":"13618074451","name":"test",  "sex":"male","birthday":120000,"password":"123456","email":"barco@dasudian.com", "area":"广东/深圳","veri_code":"pinysl",  "signature":"a","token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'
 
-#### 返回结果说明
+### 返回结果说明
 
 返回结果也统一使用`Json`格式，`Content-Type`为`Content-Type:application/json`，字段说明如下：
 
@@ -156,17 +156,17 @@
 </tbody>
 </table>
 
-#### 返回实例
+### 返回实例
     {"result":"success"}    
 
-### 5.用户登录
+## 5.用户登录
 
-#### 请求方法
+### 请求方法
 
-请求时使用`POST`方式请求`https://{domain}/login`，`domain`为要请求服务器的地址
+请求时使用`POST`方式请求`https://aaa.dasudian.net/login`，`domain`为要请求服务器的地址
 注:`Content-Type`请设置为`Content-Type:application/json`
 
-#### 请求参数说明
+### 请求参数说明
 
 请求参数统一使用`Json`格式，字段说明如下：
 <table  border="1" width="600px">
@@ -178,11 +178,11 @@
 </tbody>
 </table>
 
-#### 请求实例
+### 请求实例
 
-    curl -v https://localhost:8443/login -v -k -XPOST -H"Content-Type: application/json" -d '{"phone_num":"13618074451","password":"123456","token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'
+    curl -v https://aaa.dasudian.net/login -v -k -XPOST -H"Content-Type: application/json" -d '{"phone_num":"13618074451","password":"123456","token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'
 
-#### 返回结果说明
+### 返回结果说明
 
 返回结果也统一使用`Json`格式，`Content-Type`为`Content-Type:application/json`，字段说明如下：
 
@@ -193,18 +193,18 @@
 </tbody>
 </table>
 
-#### 返回实例
+### 返回实例
     {"result":"success"}  
          
 
-### 6.自动登录
+## 6.自动登录
 
-#### 请求方法
+### 请求方法
 
-请求时使用`GET`方式请求`https://{domain}/auto_login`，`domain`为要请求服务器的地址
+请求时使用`GET`方式请求`https://aaa.dasudian.net/auto_login`，`domain`为要请求服务器的地址
 注:在请求时必须带上登录时服务器返回的`cookie`
 
-#### 请求参数说明
+### 请求参数说明
 
 请求参数统一使用`Json`格式，字段说明如下：
 <table  border="1" width="600px">
@@ -214,11 +214,11 @@
 </tbody>
 </table>
 
-#### 请求实例
+### 请求实例
 
-    curl https://localhost:8443/auto_login?token=g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f -v -k -XGET --cookie "_Dasudian_Auth=g2gDaARrACBjOGMxOWViNjc5NzY3OWI3ODAwOWQxMTlmZjY5ZWJiOW0AAAAEdGVzdGgCaANiAAAH32EFYQtoA2ELYTJhIG0AAABR1Brh37P2scdkhXSftzn2QAJN78ZPeFMV3zUlTWcw21HYYcNKZZmfftUyNPQ%2BDDINtYmcbyL9z6%2Bmulx8jqcaFYYPnldoWSqzS8UtG%2BGZpiJ%2BawAUMjdlZDI5YTQxY2RlNGI4YjJjMDJtAAAAFNC5w3GjDdhBNN9VF0m%2BAB1nxFPN; Version=1; Expires=Mon, 11-May-2015 03:50:32 GMT; Max-Age=604800; Domain=dasudian.net; Path=/; HttpOnly"
+    curl https://aaa.dasudian.net/auto_login?token=g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f -v -k -XGET --cookie "_Dasudian_Auth=g2gDaARrACBjOGMxOWViNjc5NzY3OWI3ODAwOWQxMTlmZjY5ZWJiOW0AAAAEdGVzdGgCaANiAAAH32EFYQtoA2ELYTJhIG0AAABR1Brh37P2scdkhXSftzn2QAJN78ZPeFMV3zUlTWcw21HYYcNKZZmfftUyNPQ%2BDDINtYmcbyL9z6%2Bmulx8jqcaFYYPnldoWSqzS8UtG%2BGZpiJ%2BawAUMjdlZDI5YTQxY2RlNGI4YjJjMDJtAAAAFNC5w3GjDdhBNN9VF0m%2BAB1nxFPN; Version=1; Expires=Mon, 11-May-2015 03:50:32 GMT; Max-Age=604800; Domain=dasudian.net; Path=/; HttpOnly"
 
-#### 返回结果说明
+### 返回结果说明
 
 返回结果也统一使用`Json`格式，`Content-Type`为`Content-Type:application/json`，字段说明如下：
 
@@ -229,18 +229,18 @@
 </tbody>
 </table>
 
-#### 返回实例
+### 返回实例
     {"result":"success"}   
             
 
-### 7.查看个人信息
+## 7.查看个人信息
 
-#### 请求方法
+### 请求方法
 
-请求时使用`POST`方式请求`https://{domain}/get_user`，`domain`为要请求服务器的地址
+请求时使用`POST`方式请求`https://aaa.dasudian.net/get_user`，`domain`为要请求服务器的地址
 注:`Content-Type`请设置为`Content-Type:application/json`
 
-#### 请求参数说明
+### 请求参数说明
 
 请求参数统一使用`Json`格式，字段说明如下：
 <table  border="1" width="600px">
@@ -251,11 +251,11 @@
 </tbody>
 </table>
 
-#### 请求实例
+### 请求实例
 
-    curl -v https://localhost:8443/get_user -v -k -XPOST -H"Content-Type: application/json" -d '{"phone_num":"13618074451","token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'
+    curl -v https://aaa.dasudian.net/get_user -v -k -XPOST -H"Content-Type: application/json" -d '{"phone_num":"13618074451","token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'
 
-#### 返回结果说明
+### 返回结果说明
 
 返回结果也统一使用`Json`格式，`Content-Type`为`Content-Type:application/json`，字段说明如下：
 
@@ -274,18 +274,18 @@
 </tbody>
 </table>
 
-#### 返回实例
+### 返回实例
     {"result":"success","info":{"name":"\u6e38\u8857","birthday":120000,"sex":"male","phone_num":"13618074451","email":"barco@dasudian.com","area":"\u5e7f\u4e1c/\u6df1\u5733","portrait":"8vcKSfPVD9U1jR5EAq","signature":"Change the world!"}}             
   
 
-### 8.设置头像
+## 8.设置头像
 
-#### 请求方法
+### 请求方法
 
-请求时使用`POST`方式请求`https://{domain}/update_portrait`，`domain`为要请求服务器的地址
+请求时使用`POST`方式请求`https://aaa.dasudian.net/update_portrait`，`domain`为要请求服务器的地址
 注:`Content-Type`请设置为`Content-Type:application/json`,在请求时必须带上服务器返回的`cookie`
 
-#### 请求参数说明
+### 请求参数说明
 
 请求参数统一使用`Json`格式，字段说明如下：
 <table  border="1" width="600px">
@@ -295,11 +295,11 @@
 </tbody>
 </table>
 
-#### 请求实例
+### 请求实例
 
-    curl https://localhost:8443/update_portrait -v -i -k -XPOST -H "Content-Type: image/png" --data-binary @/home/dasudian/test.png --cookie "_Dasudian_Auth=g2gDaARrACBjOGMxOWViNjc5NzY3OWI3ODAwOWQxMTlmZjY5ZWJiOW0AAAAEdGVzdGgCaANiAAAH32EFYQtoA2ELYTJhIG0AAABR1Brh37P2scdkhXSftzn2QAJN78ZPeFMV3zUlTWcw21HYYcNKZZmfftUyNPQ%2BDDINtYmcbyL9z6%2Bmulx8jqcaFYYPnldoWSqzS8UtG%2BGZpiJ%2BawAUMjdlZDI5YTQxY2RlNGI4YjJjMDJtAAAAFNC5w3GjDdhBNN9VF0m%2BAB1nxFPN; Version=1; Expires=Mon, 11-May-2015 03:50:32 GMT; Max-Age=604800; Domain=dasudian.net; Path=/; HttpOnly" -d '{"token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'
+    curl https://aaa.dasudian.net/update_portrait -v -i -k -XPOST -H "Content-Type: image/png" --data-binary @/home/dasudian/test.png --cookie "_Dasudian_Auth=g2gDaARrACBjOGMxOWViNjc5NzY3OWI3ODAwOWQxMTlmZjY5ZWJiOW0AAAAEdGVzdGgCaANiAAAH32EFYQtoA2ELYTJhIG0AAABR1Brh37P2scdkhXSftzn2QAJN78ZPeFMV3zUlTWcw21HYYcNKZZmfftUyNPQ%2BDDINtYmcbyL9z6%2Bmulx8jqcaFYYPnldoWSqzS8UtG%2BGZpiJ%2BawAUMjdlZDI5YTQxY2RlNGI4YjJjMDJtAAAAFNC5w3GjDdhBNN9VF0m%2BAB1nxFPN; Version=1; Expires=Mon, 11-May-2015 03:50:32 GMT; Max-Age=604800; Domain=dasudian.net; Path=/; HttpOnly" -d '{"token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'
 
-#### 返回结果说明
+### 返回结果说明
 
 返回结果也统一使用`Json`格式，`Content-Type`为`Content-Type:application/json`，字段说明如下：
 
@@ -311,18 +311,18 @@
 </tbody>
 </table>
 
-#### 返回实例
+### 返回实例
     {"result":"success","portrait":"8vcKSfPVD9U1jR5EAq"}      
            
 
-### 9.获取验证码
+## 9.获取验证码
 
-#### 请求方法
+### 请求方法
 
-请求时使用`POST`方式请求`https://{domain}/request_vericode`，`domain`为要请求服务器的地址
+请求时使用`POST`方式请求`https://aaa.dasudian.net/request_vericode`，`domain`为要请求服务器的地址
 注:`Content-Type`请设置为`Content-Type:application/json`
 
-#### 请求参数说明
+### 请求参数说明
 
 请求参数统一使用`Json`格式，字段说明如下：
 <table  border="1" width="600px">
@@ -333,11 +333,11 @@
 </tbody>
 </table>
 
-#### 请求实例
+### 请求实例
 
-    curl https://localhost:8443/request_vericode -v -k -XPOST -H"Content-Type: application/json" -d '{"phone_num": "13618074451","token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'
+    curl https://aaa.dasudian.net/request_vericode -v -k -XPOST -H"Content-Type: application/json" -d '{"phone_num": "13618074451","token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'
 
-#### 返回结果说明
+### 返回结果说明
 
 返回结果也统一使用`Json`格式，`Content-Type`为`Content-Type:application/json`，字段说明如下：
 
@@ -349,18 +349,18 @@
 </tbody>
 </table>
 
-#### 返回实例
+### 返回实例
     {"result":"success","veri_code":"pinysl"}
                  
                  
-### 10.忘记密码
+## 10.忘记密码
 
-#### 请求方法
+### 请求方法
 
-请求时使用`POST`方式请求`https://{domain}/forget_password`，`domain`为要请求服务器的地址
+请求时使用`POST`方式请求`https://aaa.dasudian.net/forget_password`，`domain`为要请求服务器的地址
 注:`Content-Type`请设置为`Content-Type:application/json`,在请求时必须带上请求验证码时服务器返回的`cookie`
 
-#### 请求参数说明
+### 请求参数说明
 
 请求参数统一使用`Json`格式，字段说明如下：
 <table  border="1" width="600px">
@@ -373,11 +373,11 @@
 </tbody>
 </table>
 
-#### 请求实例
+### 请求实例
 
-    curl https://localhost:8443/forget_password -v -k -XPOST -H"Content-Type: application/json" --cookie "_Dasudian_Auth=g2gDaARrACBjOGMxOWViNjc5NzY3OWI3ODAwOWQxMTlmZjY5ZWJiOW0AAAAEdGVzdGgCaANiAAAH32EFYQtoA2ELYTJhIG0AAABR1Brh37P2scdkhXSftzn2QAJN78ZPeFMV3zUlTWcw21HYYcNKZZmfftUyNPQ%2BDDINtYmcbyL9z6%2Bmulx8jqcaFYYPnldoWSqzS8UtG%2BGZpiJ%2BawAUMjdlZDI5YTQxY2RlNGI4YjJjMDJtAAAAFNC5w3GjDdhBNN9VF0m%2BAB1nxFPN; Version=1; Expires=Mon, 11-May-2015 03:50:32 GMT; Max-Age=604800; Domain=dasudian.net; Path=/; HttpOnly" -d '{"phone_num": "13618074451", "veri_code":"pinysl", "password":"Ibelieve","token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'
+    curl https://aaa.dasudian.net/forget_password -v -k -XPOST -H"Content-Type: application/json" --cookie "_Dasudian_Auth=g2gDaARrACBjOGMxOWViNjc5NzY3OWI3ODAwOWQxMTlmZjY5ZWJiOW0AAAAEdGVzdGgCaANiAAAH32EFYQtoA2ELYTJhIG0AAABR1Brh37P2scdkhXSftzn2QAJN78ZPeFMV3zUlTWcw21HYYcNKZZmfftUyNPQ%2BDDINtYmcbyL9z6%2Bmulx8jqcaFYYPnldoWSqzS8UtG%2BGZpiJ%2BawAUMjdlZDI5YTQxY2RlNGI4YjJjMDJtAAAAFNC5w3GjDdhBNN9VF0m%2BAB1nxFPN; Version=1; Expires=Mon, 11-May-2015 03:50:32 GMT; Max-Age=604800; Domain=dasudian.net; Path=/; HttpOnly" -d '{"phone_num": "13618074451", "veri_code":"pinysl", "password":"Ibelieve","token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'
 
-#### 返回结果说明
+### 返回结果说明
 
 返回结果也统一使用`Json`格式，`Content-Type`为`Content-Type:application/json`，字段说明如下：
 
@@ -388,18 +388,18 @@
 </tbody>
 </table>
 
-#### 返回实例
+### 返回实例
     {"result":"success"}  
 
                      
-### 11.修改密码
+## 11.修改密码
 
-#### 请求方法
+### 请求方法
 
-请求时使用`POST`方式请求`https://{domain}/change_password`，`domain`为要请求服务器的地址
+请求时使用`POST`方式请求`https://aaa.dasudian.net/change_password`，`domain`为要请求服务器的地址
 注:`Content-Type`请设置为`Content-Type:application/json`,在请求时必须带上登录时服务器返回的`cookie`
 
-#### 请求参数说明
+### 请求参数说明
 
 请求参数统一使用`Json`格式，字段说明如下：
 <table  border="1" width="600px">
@@ -411,11 +411,11 @@
 </tbody>
 </table>
 
-#### 请求实例
+### 请求实例
 
-    curl https://localhost:8443/change_password -v -k -XPOST -H"Content-Type: application/json" --cookie "_Dasudian_Auth=g2gDaARrACBjOGMxOWViNjc5NzY3OWI3ODAwOWQxMTlmZjY5ZWJiOW0AAAAEdGVzdGgCaANiAAAH32EFYQtoA2ELYTJhIG0AAABR1Brh37P2scdkhXSftzn2QAJN78ZPeFMV3zUlTWcw21HYYcNKZZmfftUyNPQ%2BDDINtYmcbyL9z6%2Bmulx8jqcaFYYPnldoWSqzS8UtG%2BGZpiJ%2BawAUMjdlZDI5YTQxY2RlNGI4YjJjMDJtAAAAFNC5w3GjDdhBNN9VF0m%2BAB1nxFPN; Version=1; Expires=Mon, 11-May-2015 03:50:32 GMT; Max-Age=604800; Domain=dasudian.net; Path=/; HttpOnly" -d '{"old_password":"Ibelieve", "new_password":"Iloveyou","token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'
+    curl https://aaa.dasudian.net/change_password -v -k -XPOST -H"Content-Type: application/json" --cookie "_Dasudian_Auth=g2gDaARrACBjOGMxOWViNjc5NzY3OWI3ODAwOWQxMTlmZjY5ZWJiOW0AAAAEdGVzdGgCaANiAAAH32EFYQtoA2ELYTJhIG0AAABR1Brh37P2scdkhXSftzn2QAJN78ZPeFMV3zUlTWcw21HYYcNKZZmfftUyNPQ%2BDDINtYmcbyL9z6%2Bmulx8jqcaFYYPnldoWSqzS8UtG%2BGZpiJ%2BawAUMjdlZDI5YTQxY2RlNGI4YjJjMDJtAAAAFNC5w3GjDdhBNN9VF0m%2BAB1nxFPN; Version=1; Expires=Mon, 11-May-2015 03:50:32 GMT; Max-Age=604800; Domain=dasudian.net; Path=/; HttpOnly" -d '{"old_password":"Ibelieve", "new_password":"Iloveyou","token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'
 
-#### 返回结果说明
+### 返回结果说明
 
 返回结果也统一使用`Json`格式，`Content-Type`为`Content-Type:application/json`，字段说明如下：
 
@@ -426,18 +426,18 @@
 </tbody>
 </table>
 
-#### 返回实例
+### 返回实例
     {"result":"success"}                      
     
     
-### 12.修改用户名称
+## 12.修改用户名称
 
-#### 请求方法
+### 请求方法
 
-请求时使用`POST`方式请求`https://{domain}/change_name`，`domain`为要请求服务器的地址
+请求时使用`POST`方式请求`https://aaa.dasudian.net/change_name`，`domain`为要请求服务器的地址
 注:`Content-Type`请设置为`Content-Type:application/json`,在请求时必须带上登录时服务器返回的`cookie`
 
-#### 请求参数说明
+### 请求参数说明
 
 请求参数统一使用`Json`格式，字段说明如下：
 <table  border="1" width="600px">
@@ -448,11 +448,11 @@
 </tbody>
 </table>
 
-#### 请求实例
+### 请求实例
 
-    curl https://localhost:8443/change_name -v -k -XPOST -H"Content-Type: application/json" --cookie "_Dasudian_Auth=g2gDaARrACBjOGMxOWViNjc5NzY3OWI3ODAwOWQxMTlmZjY5ZWJiOW0AAAAEdGVzdGgCaANiAAAH32EFYQtoA2ELYTJhIG0AAABR1Brh37P2scdkhXSftzn2QAJN78ZPeFMV3zUlTWcw21HYYcNKZZmfftUyNPQ%2BDDINtYmcbyL9z6%2Bmulx8jqcaFYYPnldoWSqzS8UtG%2BGZpiJ%2BawAUMjdlZDI5YTQxY2RlNGI4YjJjMDJtAAAAFNC5w3GjDdhBNN9VF0m%2BAB1nxFPN; Version=1; Expires=Mon, 11-May-2015 03:50:32 GMT; Max-Age=604800; Domain=dasudian.net; Path=/; HttpOnly" -d '{"name":"游街","token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'
+    curl https://aaa.dasudian.net/change_name -v -k -XPOST -H"Content-Type: application/json" --cookie "_Dasudian_Auth=g2gDaARrACBjOGMxOWViNjc5NzY3OWI3ODAwOWQxMTlmZjY5ZWJiOW0AAAAEdGVzdGgCaANiAAAH32EFYQtoA2ELYTJhIG0AAABR1Brh37P2scdkhXSftzn2QAJN78ZPeFMV3zUlTWcw21HYYcNKZZmfftUyNPQ%2BDDINtYmcbyL9z6%2Bmulx8jqcaFYYPnldoWSqzS8UtG%2BGZpiJ%2BawAUMjdlZDI5YTQxY2RlNGI4YjJjMDJtAAAAFNC5w3GjDdhBNN9VF0m%2BAB1nxFPN; Version=1; Expires=Mon, 11-May-2015 03:50:32 GMT; Max-Age=604800; Domain=dasudian.net; Path=/; HttpOnly" -d '{"name":"游街","token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'
 
-#### 返回结果说明
+### 返回结果说明
 
 返回结果也统一使用`Json`格式，`Content-Type`为`Content-Type:application/json`，字段说明如下：
 
@@ -463,18 +463,18 @@
 </tbody>
 </table>
 
-#### 返回实例
+### 返回实例
     {"result":"success"}
           
 
-### 13.修改个性签名
+## 13.修改个性签名
 
-#### 请求方法
+### 请求方法
 
-请求时使用`POST`方式请求`https://{domain}/change_signature`，`domain`为要请求服务器的地址
+请求时使用`POST`方式请求`https://aaa.dasudian.net/change_signature`，`domain`为要请求服务器的地址
 注:`Content-Type`请设置为`Content-Type:application/json`,在请求时必须带上登录时服务器返回的`cookie`
 
-#### 请求参数说明
+### 请求参数说明
 
 请求参数统一使用`Json`格式，字段说明如下：
 <table  border="1" width="600px">
@@ -485,11 +485,11 @@
 </tbody>
 </table>
 
-#### 请求实例
+### 请求实例
 
-    curl https://localhost:8443/change_signature -v -k -XPOST -H"Content-Type: application/json" --cookie "_Dasudian_Auth=g2gDaARrACBjOGMxOWViNjc5NzY3OWI3ODAwOWQxMTlmZjY5ZWJiOW0AAAAEdGVzdGgCaANiAAAH32EFYQtoA2ELYTJhIG0AAABR1Brh37P2scdkhXSftzn2QAJN78ZPeFMV3zUlTWcw21HYYcNKZZmfftUyNPQ%2BDDINtYmcbyL9z6%2Bmulx8jqcaFYYPnldoWSqzS8UtG%2BGZpiJ%2BawAUMjdlZDI5YTQxY2RlNGI4YjJjMDJtAAAAFNC5w3GjDdhBNN9VF0m%2BAB1nxFPN; Version=1; Expires=Mon, 11-May-2015 03:50:32 GMT; Max-Age=604800; Domain=dasudian.net; Path=/; HttpOnly" -d '{"signature":"Change the world!","token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'
+    curl https://aaa.dasudian.net/change_signature -v -k -XPOST -H"Content-Type: application/json" --cookie "_Dasudian_Auth=g2gDaARrACBjOGMxOWViNjc5NzY3OWI3ODAwOWQxMTlmZjY5ZWJiOW0AAAAEdGVzdGgCaANiAAAH32EFYQtoA2ELYTJhIG0AAABR1Brh37P2scdkhXSftzn2QAJN78ZPeFMV3zUlTWcw21HYYcNKZZmfftUyNPQ%2BDDINtYmcbyL9z6%2Bmulx8jqcaFYYPnldoWSqzS8UtG%2BGZpiJ%2BawAUMjdlZDI5YTQxY2RlNGI4YjJjMDJtAAAAFNC5w3GjDdhBNN9VF0m%2BAB1nxFPN; Version=1; Expires=Mon, 11-May-2015 03:50:32 GMT; Max-Age=604800; Domain=dasudian.net; Path=/; HttpOnly" -d '{"signature":"Change the world!","token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'
 
-#### 返回结果说明
+### 返回结果说明
 
 返回结果也统一使用`Json`格式，`Content-Type`为`Content-Type:application/json`，字段说明如下：
 
@@ -500,18 +500,18 @@
 </tbody>
 </table>
 
-#### 返回实例
+### 返回实例
     {"result":"success"}  
              
              
-### 14.同步联系人
+## 14.同步联系人
 
-#### 请求方法
+### 请求方法
 
-请求时使用`POST`方式请求`https://{domain}/sync_contact`，`domain`为要请求服务器的地址
+请求时使用`POST`方式请求`https://aaa.dasudian.net/sync_contact`，`domain`为要请求服务器的地址
 注:`Content-Type`请设置为`Content-Type:application/json`,在请求时必须带上登录时服务器返回的`cookie`
 
-#### 请求参数说明
+### 请求参数说明
 
 请求参数统一使用`Json`格式，字段说明如下：
 <table  border="1" width="600px">
@@ -522,11 +522,11 @@
 </tbody>
 </table>
 
-#### 请求实例
+### 请求实例
 
-    curl https://localhost:8443/sync_contact -v -k -XPOST -H"Content-Type: application/json" --cookie "_Dasudian_Auth=g2gDaARrACBjOGMxOWViNjc5NzY3OWI3ODAwOWQxMTlmZjY5ZWJiOW0AAAAEdGVzdGgCaANiAAAH32EFYQtoA2ELYTJhIG0AAABR1Brh37P2scdkhXSftzn2QAJN78ZPeFMV3zUlTWcw21HYYcNKZZmfftUyNPQ%2BDDINtYmcbyL9z6%2Bmulx8jqcaFYYPnldoWSqzS8UtG%2BGZpiJ%2BawAUMjdlZDI5YTQxY2RlNGI4YjJjMDJtAAAAFNC5w3GjDdhBNN9VF0m%2BAB1nxFPN; Version=1; Expires=Mon, 11-May-2015 03:50:32 GMT; Max-Age=604800; Domain=dasudian.net; Path=/; HttpOnly" -d '{"contacts":["13761975289","+8618565618719","18565618719"],"token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'
+    curl https://aaa.dasudian.net/sync_contact -v -k -XPOST -H"Content-Type: application/json" --cookie "_Dasudian_Auth=g2gDaARrACBjOGMxOWViNjc5NzY3OWI3ODAwOWQxMTlmZjY5ZWJiOW0AAAAEdGVzdGgCaANiAAAH32EFYQtoA2ELYTJhIG0AAABR1Brh37P2scdkhXSftzn2QAJN78ZPeFMV3zUlTWcw21HYYcNKZZmfftUyNPQ%2BDDINtYmcbyL9z6%2Bmulx8jqcaFYYPnldoWSqzS8UtG%2BGZpiJ%2BawAUMjdlZDI5YTQxY2RlNGI4YjJjMDJtAAAAFNC5w3GjDdhBNN9VF0m%2BAB1nxFPN; Version=1; Expires=Mon, 11-May-2015 03:50:32 GMT; Max-Age=604800; Domain=dasudian.net; Path=/; HttpOnly" -d '{"contacts":["13761975289","+8618565618719","18565618719"],"token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'
 
-#### 返回结果说明
+### 返回结果说明
 
 返回结果也统一使用`Json`格式，`Content-Type`为`Content-Type:application/json`，字段说明如下：
 
@@ -537,18 +537,18 @@
 </tbody>
 </table>
 
-#### 返回实例
+### 返回实例
     {"result":"success"}  
                  
 
 ### 15.获取联系人
 
-#### 请求方法
+### 请求方法
 
-请求时使用`POST`方式请求`https://{domain}/get_contact`，`domain`为要请求服务器的地址
+请求时使用`POST`方式请求`https://aaa.dasudian.net/get_contact`，`domain`为要请求服务器的地址
 注:`Content-Type`请设置为`Content-Type:application/json`,在请求时必须带上登录时服务器返回的`cookie`
 
-#### 请求参数说明
+### 请求参数说明
 
 请求参数统一使用`Json`格式，字段说明如下：
 <table  border="1" width="600px">
@@ -559,11 +559,11 @@
 </tbody>
 </table>
 
-#### 请求实例
+### 请求实例
 
-    curl https://localhost:8443/get_contact -v -k -XPOST -H"Content-Type: application/json"  -d '{"phone_num":"13618074451","token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'
+    curl https://aaa.dasudian.net/get_contact -v -k -XPOST -H"Content-Type: application/json"  -d '{"phone_num":"13618074451","token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'
 
-#### 返回结果说明
+### 返回结果说明
 
 返回结果也统一使用`Json`格式，`Content-Type`为`Content-Type:application/json`，字段说明如下：
 
@@ -576,20 +576,20 @@
 </tbody>
 </table>
 
-#### 返回实例
+### 返回实例
     {"result":"success","phone_number":"13618074451","contacts", ["13761975289","+8618565618719","18565618719"]}}
                       
 
-### 16.从qq拉取用户信息并保存
+## 16.从qq拉取用户信息并保存
 
 用户通过App 进行oauth授权后（由App 完成），AAA 系统可以从qq服务器拉取用户信息并保存
 
-#### 请求方法
+### 请求方法
 
-请求时使用`POST`方式请求`https://{domain}/qq_oauth2`，`domain`为要请求服务器的地址
+请求时使用`POST`方式请求`https://aaa.dasudian.net/qq_oauth2`，`domain`为要请求服务器的地址
 注:`Content-Type`请设置为`Content-Type:application/json`
 
-#### 请求参数说明
+### 请求参数说明
 
 请求参数统一使用`Json`格式，字段说明如下：
 <table  border="1" width="600px">
@@ -604,11 +604,11 @@
 </table>
 
 
-#### 请求实例
+### 请求实例
 
-    curl https://localhost:8443/qq_oauth2 -v -k -XPOST -H"Content-Type: application/json"  -d '{"uid":"B36DAECCCB8BAEDB73901211CA983DDD","access_token":"4D732B0E58BA3949FF78E7CDCF673799","appid":"102_A_123","consumer_key":"1104748755","token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'
+    curl https://aaa.dasudian.net/qq_oauth2 -v -k -XPOST -H"Content-Type: application/json"  -d '{"uid":"B36DAECCCB8BAEDB73901211CA983DDD","access_token":"4D732B0E58BA3949FF78E7CDCF673799","appid":"102_A_123","consumer_key":"1104748755","token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'
 
-#### 返回结果说明
+### 返回结果说明
 
 返回结果也统一使用`Json`格式，`Content-Type`为`Content-Type:application/json`，字段说明如下：
 
@@ -620,20 +620,20 @@
 </tbody>
 </table>
 
-#### 返回实例
+### 返回实例
     {"result":"success","user_id":"B36DAECCCB8BAEDB73901211CA983DDD"} 
                           
                           
-### 17.从wechat拉取用户信息并保存
+## 17.从wechat拉取用户信息并保存
 
 用户通过App 进行oauth授权后（由App 完成），AAA 系统可以从wechat服务器拉取用户信息并保存
 
-#### 请求方法
+### 请求方法
 
-请求时使用`POST`方式请求`https://{domain}/wechat_oauth2`，`domain`为要请求服务器的地址
+请求时使用`POST`方式请求`https://aaa.dasudian.net/wechat_oauth2`，`domain`为要请求服务器的地址
 注:`Content-Type`请设置为`Content-Type:application/json`
 
-#### 请求参数说明
+### 请求参数说明
 
 请求参数统一使用`Json`格式，字段说明如下：
 <table  border="1" width="600px">
@@ -648,11 +648,11 @@
 </table>
 
 
-#### 请求实例
+### 请求实例
 
-    curl https://localhost:8443/wechat_oauth2 -v -k -XPOST -H"Content-Type: application/json"  -d '{"uid":"ol3mowZbXbnon9RIa9WN0ZRSHgog","access_token":"OezXcEiiBSKSxW0eoylIeBC_zks4eNeowidNnxPR-B88SUtdMKtz1mfO7xhtyToJsYU0b6cyAHU5qDhOmVB23XGQQJRmR9D0MFk40zor-A668QKeu4QVzKZWWkr10ZdCTCI2iF-icsDNUzeFoTMPLg","appid":"102_A_123","token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'
+    curl https://aaa.dasudian.net/wechat_oauth2 -v -k -XPOST -H"Content-Type: application/json"  -d '{"uid":"ol3mowZbXbnon9RIa9WN0ZRSHgog","access_token":"OezXcEiiBSKSxW0eoylIeBC_zks4eNeowidNnxPR-B88SUtdMKtz1mfO7xhtyToJsYU0b6cyAHU5qDhOmVB23XGQQJRmR9D0MFk40zor-A668QKeu4QVzKZWWkr10ZdCTCI2iF-icsDNUzeFoTMPLg","appid":"102_A_123","token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'
 
-#### 返回结果说明
+### 返回结果说明
 
 返回结果也统一使用`Json`格式，`Content-Type`为`Content-Type:application/json`，字段说明如下：
 
@@ -664,18 +664,18 @@
 </tbody>
 </table>
 
-#### 返回实例
+### 返回实例
     {"result":"success","user_id":"ol3mowZbXbnon9RIa9WN0ZRSHgog"}     
                            
                            
-### 18.从服务器上获取保存的QQ和wechat授权用户信息
+## 18.从服务器上获取保存的QQ和wechat授权用户信息
 
-#### 请求方法
+### 请求方法
 
-请求时使用`POST`方式请求`https://{domain}/oauth_user_info`，`domain`为要请求服务器的地址
+请求时使用`POST`方式请求`https://aaa.dasudian.net/oauth_user_info`，`domain`为要请求服务器的地址
 注:`Content-Type`请设置为`Content-Type:application/json`
 
-#### 请求参数说明
+### 请求参数说明
 
 请求参数统一使用`Json`格式，字段说明如下：
 <table  border="1" width="600px">
@@ -689,11 +689,11 @@
 </table>
 
 
-#### 请求实例
+### 请求实例
 
-    curl https://localhost:8443/oauth_user_info -v -k -XPOST -H"Content-Type: application/json"  -d '{"uid":"B36DAECCCB8BAEDB73901211CA983DDD","type":1,"appid":"102_A_123"，"token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'
+    curl https://aaa.dasudian.net/oauth_user_info -v -k -XPOST -H"Content-Type: application/json"  -d '{"uid":"B36DAECCCB8BAEDB73901211CA983DDD","type":1,"appid":"102_A_123"，"token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'
 
-#### 返回结果说明
+### 返回结果说明
 
 返回结果也统一使用`Json`格式，`Content-Type`为`Content-Type:application/json`，字段说明如下：
 
@@ -710,18 +710,18 @@
 </tbody>
 </table>
 
-#### 返回实例
+### 返回实例
     {"result":"success","user_info":{"user_id":"B36DAECCCB8BAEDB73901211CA983DDD","nickname":"\u98ce\u4e91\u518d\u8d77","sex":"\u7537","headimgurl":"http://q.qlogo.cn/qqapp/1104748755/B36DAECCCB8BAEDB73901211CA983DDD/100","province":"\u5e7f\u4e1c","city":"\u6c55\u5934","country":"none"}}
 
 
-### 18.从服务器上获取保存的QQ和wechat授权用户信息列表
+## 18.从服务器上获取保存的QQ和wechat授权用户信息列表
 
-#### 请求方法
+### 请求方法
 
-请求时使用`POST`方式请求`https://{domain}/oauth_users_info_list`，`domain`为要请求服务器的地址
+请求时使用`POST`方式请求`https://aaa.dasudian.net/oauth_users_info_list`，`domain`为要请求服务器的地址
 注:`Content-Type`请设置为`Content-Type:application/json`
 
-#### 请求参数说明
+### 请求参数说明
 
 请求参数统一使用`Json`格式，字段说明如下：
 <table  border="1" width="600px">
@@ -737,11 +737,11 @@
 </table>
 
 
-#### 请求实例
+### 请求实例
 
-    curl https://localhost:8443/oauth_users_info_list -v -k -XPOST -H"Content-Type: application/json"  -d '{"uid":"B36DAECCCB8BAEDB73901211CA983DDD","type":1,"appid":"102_A_123","start":0,"rows":10,"token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'
+    curl https://aaa.dasudian.net/oauth_users_info_list -v -k -XPOST -H"Content-Type: application/json"  -d '{"uid":"B36DAECCCB8BAEDB73901211CA983DDD","type":1,"appid":"102_A_123","start":0,"rows":10,"token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'
 
-#### 返回结果说明
+### 返回结果说明
 
 返回结果也统一使用`Json`格式，`Content-Type`为`Content-Type:application/json`，字段说明如下：
 
@@ -759,5 +759,5 @@
 </tbody>
 </table>
 
-#### 返回实例
+### 返回实例
     {"result":"success","users_info":[{"user_id":"B36DAECCCB8BAEDB73901211CA983DDD","nickname":"\u98ce\u4e91\u518d\u8d77","sex":"\u7537","headimgurl":"http://q.qlogo.cn/qqapp/1104748755/B36DAECCCB8BAEDB73901211CA983DDD/100","province":"\u5e7f\u4e1c","city":"\u6c55\u5934","country":"none"}],"total_num":1}
