@@ -213,6 +213,18 @@
               </li>
             </ul>
           </li>
+          <li><a class="fold">大数点云账户系统AAA</a>
+            <ul class="menu2" >
+              <li><a id="aaa-overview" class="" href="/aaa/index.html">AAA介绍</a></li>
+              <li><a id="aaa-api" class="" href="/aaa/api.html">AAA API</a></li>
+            </ul>
+          </li>
+          <li><a class="fold">大数点云存储服务CloudFile</a>
+            <ul class="menu2" >
+              <li><a id="cf-overview" class="" href="/cloudfile/index.html">CloudFile介绍</a></li>
+              <li><a id="cf-api" class="" href="/cloudfile/api.html">CloudFile API</a></li>
+            </ul>
+          </li>
         </ul>
     </div>
 
@@ -222,8 +234,8 @@
 <p>到<a href="https://dev.dasudian.com">大数点开发者平台</a>注册成为大数点合作伙伴并创建应用，每创建一个应用大数点平台会为其生成一个AppID和AppKey，AppID在大数点平台唯一标识一个应用，而AppKey可以被更新。AppID和AppKey将在您的代码里使用，保证您的应用与大数点平台间的安全传输。</p>
 <p>若您还没有注册，请使用如下Demo App作测试：</p>
 <p>Demo App:</p>
-<pre><code>AppID: 101_94lhb27aW3ahNRymR6_A
-AppKey: 2571cc86c9de6190</code></pre>
+<pre><code>AppID: 3_95F8TwKfyN7Lj35j8q_A
+AppKey: ec55784a5db3268a</code></pre>
 <h2 id="sdk">下载SDK</h2>
 <p>到<a href="http://main.dasudian.com/downloads/sdk/latest/im-sdk-android.zip">大数点官网</a>下载IM SDK.</p>
 <h2 id="sdk-1">SDK内容</h2>
@@ -235,7 +247,7 @@ AppKey: 2571cc86c9de6190</code></pre>
 <h3 id="jar">导入库和jar包</h3>
 <p>拷贝libdsd_im.so到libs/armeabi目录下，如果没有armeabi目录，请手动创建该目录。
 拷贝dsd-lib-IM-v1到libs目录下，如下图所示。<br/>
-<img src="doc/1.png" alt="导入.so到工程目录下" /></p>
+<img src="images-android/1.png" alt="导入.so到工程目录下" /></p>
 <h3 id="-2">配置权限</h3>
 <p>如下图所示,在AndroidManifest.xml中加入如下内容使能必要的访问权限.</p>
 <pre><code class="language-xml">&lt;!-- 访问网络权限 --&gt;
@@ -245,7 +257,7 @@ AppKey: 2571cc86c9de6190</code></pre>
 &lt;uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /&gt;
 &lt;uses-permission android:name="android.permission.CHANGE_WIFI_STATE" /&gt;
 &lt;uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /&gt;</code></pre>
-<p><img src="doc/2.png" alt="配置网络访问权限" /></p>
+<p><img src="images-android/2.png" alt="配置网络访问权限" /></p>
 <h2 id="sdk-2">初始化SDK</h2>
 <h3 id="-3">实现如下接口</h3>
 <pre><code>public class MainActivity extends Activity implements DsdClientInterface</code></pre>
@@ -342,12 +354,14 @@ int dsdInit(String serverAddress, String version, String appID, String appKey, S
 <p>注意：
 1.使用大数点公有云服务器，非VIP用户可以发送的最大消息长度为1024个字节。
 2.所有发送消息相关的函数，消息都必须以如下JSON格式发送。</p>
-<pre><code>{"t":"0|1|2","b":"msg content"}
-@t： 消息类型
-    0 txt
+<pre><code>{"t":"0|1|2|3|4","b":"msg content"}
+@t： Message Type
+    0 text
     1 image
     2 audio
-@b： 消息内容</code></pre>
+    3 video
+    4 HTML5 page
+@b： 消息内容,如果消息为image或audio等多媒体消息，则为该多媒体的URL。</code></pre>
 <p>同步发送</p>
 <pre><code class="language-java">/**
  * 同步单播消息.该函数会阻塞到收到服务器的ack或者超时后返回.
