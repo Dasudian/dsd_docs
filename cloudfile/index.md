@@ -1,6 +1,5 @@
 ---
 title: "大数点云存储服务CloudFile"
-currentMenu: cf-principal
-parent1: cloudfile
+currentMenu: cf-overview
+parent1: dsd-cloudfile
 ---
-

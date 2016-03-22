@@ -290,3 +290,21 @@ menu:
             datahub-sdk-embededc:
               text: "Embeded C"
               relativeUrl: datahub/sdk/embeded_c.html
+    dsd-aaa:
+      name: "大数点云账户系统AAA"
+      items:
+        aaa-overview:
+          text: "AAA介绍"
+          relativeUrl: aaa/index.html
+        aaa-api:
+          text: "AAA API"
+          relativeUrl: aaa/api.html
+    dsd-cloudfile:
+      name: "大数点云存储服务CloudFile"
+      items:
+        cf-overview:
+          text: "CloudFile介绍"
+          relativeUrl: cloudfile/index.html
+        cf-api:
+          text: "CloudFile API"
+          relativeUrl: cloudfile/api.html

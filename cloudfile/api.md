@@ -1,3 +1,9 @@
+---
+title: "CloudFile API"
+currentMenu: cf-api
+parent1: dsd-cloudfile
+---
+
 # 大数点 cloud-file 使用指导
 
 ## 1. 上传
