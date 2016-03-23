@@ -5,6 +5,7 @@ parent1: dsd-aaa
 ---
 
 # 大数点Cloud AAA 开放接口API
+大数点Cloud AAA是一个面向移动互联网和物联网的用户管理云服务，通过开放的标准REST API提供基于手机号的用户注册、验证、登录、用户信息提交与修改、头像管理、第三方登录等用户管理功能。开发者只需登录[大数点开发者平台](https://dev.dasudian.com)注册一个应用获取AppID和AppKey，便可使用该用户管理云服务和开放接口。在开发者后台，还可以随时进行用户的查询、删除、冻结等管理，实时的数据分析与报表让您实时掌控App使用情况和用户情况。
  
 ## 1.获取 token
 
@@ -37,19 +38,21 @@ parent1: dsd-aaa
 <tbody>
 <tr style="background-color:#EDEDED"><td align="center">名称</td><td align="center">类型</td><td align="center">说明</td></tr>
 <tr><td align="center">result</td><td align="center">integer</td><td align="center">请求结果，success:成功 fail:失败</td></tr>
+<tr><td align="center">url</td><td align="center">string</td><td align="center">Cloud AAA的服务地址URL</td></tr>
 <tr><td align="center">token</td><td align="center">string</td><td align="center">接入服务时要带的凭证，只有正确的token才能被允许接入服务。</td></tr>
 </tbody>
 </table>
 
 ### 返回实例
-    {"result":,"token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}
+    {"result":“success", "url":"https://aaa.dasudian.net","token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}
     
+* 以下接口为Cloud AAA的功能性接口，每个接口的访问地址都为以上返回的`url`加上接口名称，且每个接口的调用都需带上`token`作为一个必选请求参数。
 
-## 2.注册
+## 2.手机号注册
 
 ### 请求方法
 
-请求时使用`POST`方式请求`https://aaa.dasudian.net/pre_register`，注:`Content-Type`请设置为`Content-Type:application/json`
+请求时使用`POST`方式请求`{Cloud AAA的服务地址URL}/pre_register`，注:`Content-Type`请设置为`Content-Type:application/json`
 
 ### 请求参数说明
 
@@ -86,7 +89,7 @@ parent1: dsd-aaa
 
 ### 请求方法
 
-请求时使用`POST`方式请求`https://aaa.dasudian.net/verify_code`，注:`Content-Type`请设置为`Content-Type:application/json`
+请求时使用`POST`方式请求`{Cloud AAA的服务地址URL}/verify_code`，注:`Content-Type`请设置为`Content-Type:application/json`
 
 ### 请求参数说明
 
@@ -122,7 +125,7 @@ parent1: dsd-aaa
 
 ### 请求方法
 
-请求时使用`POST`方式请求`https://aaa.dasudian.net/register`，注:`Content-Type`请设置为`Content-Type:application/json`
+请求时使用`POST`方式请求`https://{Cloud AAA的服务地址URL}/register`，注:`Content-Type`请设置为`Content-Type:application/json`
 
 ### 请求参数说明
 
@@ -165,7 +168,7 @@ parent1: dsd-aaa
 
 ### 请求方法
 
-请求时使用`POST`方式请求`https://aaa.dasudian.net/login`，注:`Content-Type`请设置为`Content-Type:application/json`
+请求时使用`POST`方式请求`https://{Cloud AAA的服务地址URL}/login`，注:`Content-Type`请设置为`Content-Type:application/json`
 
 ### 请求参数说明
 
@@ -237,7 +240,7 @@ parent1: dsd-aaa
 
 ### 请求方法
 
-请求时使用`POST`方式请求`https://aaa.dasudian.net/get_user`，注:`Content-Type`请设置为`Content-Type:application/json`
+请求时使用`POST`方式请求`https://{Cloud AAA的服务地址URL}/get_user`，注:`Content-Type`请设置为`Content-Type:application/json`
 
 ### 请求参数说明
 
@@ -281,7 +284,7 @@ parent1: dsd-aaa
 
 ### 请求方法
 
-请求时使用`POST`方式请求`https://aaa.dasudian.net/update_portrait`，注:`Content-Type`请设置为`Content-Type:application/json`,在请求时必须带上服务器返回的`cookie`
+请求时使用`POST`方式请求`https://{Cloud AAA的服务地址URL}/update_portrait`，注:`Content-Type`请设置为`Content-Type:application/json`,在请求时必须带上服务器返回的`cookie`
 
 ### 请求参数说明
 
@@ -317,7 +320,7 @@ parent1: dsd-aaa
 
 ### 请求方法
 
-请求时使用`POST`方式请求`https://aaa.dasudian.net/request_vericode`，注:`Content-Type`请设置为`Content-Type:application/json`
+请求时使用`POST`方式请求`https://{Cloud AAA的服务地址URL}/request_vericode`，注:`Content-Type`请设置为`Content-Type:application/json`
 
 ### 请求参数说明
 
@@ -354,7 +357,7 @@ parent1: dsd-aaa
 
 ### 请求方法
 
-请求时使用`POST`方式请求`https://aaa.dasudian.net/forget_password`，注:`Content-Type`请设置为`Content-Type:application/json`,在请求时必须带上请求验证码时服务器返回的`cookie`
+请求时使用`POST`方式请求`https://{Cloud AAA的服务地址URL}/forget_password`，注:`Content-Type`请设置为`Content-Type:application/json`,在请求时必须带上请求验证码时服务器返回的`cookie`
 
 ### 请求参数说明
 
@@ -392,7 +395,7 @@ parent1: dsd-aaa
 
 ### 请求方法
 
-请求时使用`POST`方式请求`https://aaa.dasudian.net/change_password`，注:`Content-Type`请设置为`Content-Type:application/json`,在请求时必须带上登录时服务器返回的`cookie`
+请求时使用`POST`方式请求`https://{Cloud AAA的服务地址URL}/change_password`，注:`Content-Type`请设置为`Content-Type:application/json`,在请求时必须带上登录时服务器返回的`cookie`
 
 ### 请求参数说明
 
@@ -429,7 +432,7 @@ parent1: dsd-aaa
 
 ### 请求方法
 
-请求时使用`POST`方式请求`https://aaa.dasudian.net/change_name`，注:`Content-Type`请设置为`Content-Type:application/json`,在请求时必须带上登录时服务器返回的`cookie`
+请求时使用`POST`方式请求`https://{Cloud AAA的服务地址URL}/change_name`，注:`Content-Type`请设置为`Content-Type:application/json`,在请求时必须带上登录时服务器返回的`cookie`
 
 ### 请求参数说明
 
@@ -465,7 +468,7 @@ parent1: dsd-aaa
 
 ### 请求方法
 
-请求时使用`POST`方式请求`https://aaa.dasudian.net/change_signature`，注:`Content-Type`请设置为`Content-Type:application/json`,在请求时必须带上登录时服务器返回的`cookie`
+请求时使用`POST`方式请求`https://{Cloud AAA的服务地址URL}/change_signature`，注:`Content-Type`请设置为`Content-Type:application/json`,在请求时必须带上登录时服务器返回的`cookie`
 
 ### 请求参数说明
 
@@ -501,7 +504,7 @@ parent1: dsd-aaa
 
 ### 请求方法
 
-请求时使用`POST`方式请求`https://aaa.dasudian.net/sync_contact`，注:`Content-Type`请设置为`Content-Type:application/json`,在请求时必须带上登录时服务器返回的`cookie`
+请求时使用`POST`方式请求`https://{Cloud AAA的服务地址URL}/sync_contact`，注:`Content-Type`请设置为`Content-Type:application/json`,在请求时必须带上登录时服务器返回的`cookie`
 
 ### 请求参数说明
 
@@ -537,7 +540,7 @@ parent1: dsd-aaa
 
 ### 请求方法
 
-请求时使用`POST`方式请求`https://aaa.dasudian.net/get_contact`，注:`Content-Type`请设置为`Content-Type:application/json`,在请求时必须带上登录时服务器返回的`cookie`
+请求时使用`POST`方式请求`https://{Cloud AAA的服务地址URL}/get_contact`，注:`Content-Type`请设置为`Content-Type:application/json`,在请求时必须带上登录时服务器返回的`cookie`
 
 ### 请求参数说明
 
@@ -577,7 +580,7 @@ parent1: dsd-aaa
 
 ### 请求方法
 
-请求时使用`POST`方式请求`https://aaa.dasudian.net/qq_oauth2`，注:`Content-Type`请设置为`Content-Type:application/json`
+请求时使用`POST`方式请求`https://{Cloud AAA的服务地址URL}/qq_oauth2`，注:`Content-Type`请设置为`Content-Type:application/json`
 
 ### 请求参数说明
 
@@ -620,7 +623,7 @@ parent1: dsd-aaa
 
 ### 请求方法
 
-请求时使用`POST`方式请求`https://aaa.dasudian.net/wechat_oauth2`，注:`Content-Type`请设置为`Content-Type:application/json`
+请求时使用`POST`方式请求`https://{Cloud AAA的服务地址URL}/wechat_oauth2`，注:`Content-Type`请设置为`Content-Type:application/json`
 
 ### 请求参数说明
 
@@ -661,7 +664,7 @@ parent1: dsd-aaa
 
 ### 请求方法
 
-请求时使用`POST`方式请求`https://aaa.dasudian.net/oauth_user_info`，注:`Content-Type`请设置为`Content-Type:application/json`
+请求时使用`POST`方式请求`https://{Cloud AAA的服务地址URL}/oauth_user_info`，注:`Content-Type`请设置为`Content-Type:application/json`
 
 ### 请求参数说明
 
@@ -706,7 +709,7 @@ parent1: dsd-aaa
 
 ### 请求方法
 
-请求时使用`POST`方式请求`https://aaa.dasudian.net/oauth_users_info_list`，注:`Content-Type`请设置为`Content-Type:application/json`
+请求时使用`POST`方式请求`https://{Cloud AAA的服务地址URL}/oauth_users_info_list`，注:`Content-Type`请设置为`Content-Type:application/json`
 
 ### 请求参数说明
 
