@@ -89,7 +89,7 @@ parent1: dsd-aaa
 
 ### 请求方法
 
-请求时使用`POST`方式请求`{Cloud AAA的服务地址URL}/verify_code`，注:`Content-Type`请设置为`Content-Type:application/json`
+请求时使用`POST`方式请求`{Cloud AAA的服务地址URL}/verify_code`，注:`Content-Type`请设置为`Content-Type:application/json`,在请求时必须带上服务器返回的cookie
 
 ### 请求参数说明
 
@@ -105,7 +105,7 @@ parent1: dsd-aaa
 
 ### 请求实例
 
-    curl -v https://aaa.dasudian.net/verify_code -v -k -XPOST -H"Content-Type: application/json" -d '{"phone_num": "13618074451","veri_code":"pinysl","token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'
+    curl -v https://aaa.dasudian.net/verify_code -v -k -XPOST -H"Content-Type: application/json" -d '{"phone_num": "13618074451","veri_code":"pinysl","token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}' --cookie "_Dasudian_Auth=g2gDaARrACBjOGMxOWViNjc5NzY3OWI3ODAwOWQxMTlmZjY5ZWJiOW0AAAAEdGVzdGgCaANiAAAH32EFYQtoA2ELYTJhIG0AAABR1Brh37P2scdkhXSftzn2QAJN78ZPeFMV3zUlTWcw21HYYcNKZZmfftUyNPQ%2BDDINtYmcbyL9z6%2Bmulx8jqcaFYYPnldoWSqzS8UtG%2BGZpiJ%2BawAUMjdlZDI5YTQxY2RlNGI4YjJjMDJtAAAAFNC5w3GjDdhBNN9VF0m%2BAB1nxFPN; Version=1; Expires=Mon, 11-May-2015 03:50:32 GMT; Max-Age=604800; Domain=dasudian.net; Path=/; HttpOnly"
 
 ### 返回结果说明
 
@@ -125,7 +125,7 @@ parent1: dsd-aaa
 
 ### 请求方法
 
-请求时使用`POST`方式请求`https://{Cloud AAA的服务地址URL}/register`，注:`Content-Type`请设置为`Content-Type:application/json`
+请求时使用`POST`方式请求`https://{Cloud AAA的服务地址URL}/register`，注:`Content-Type`请设置为`Content-Type:application/json`,在请求时必须带上服务器返回的cookie
 
 ### 请求参数说明
 
@@ -148,7 +148,7 @@ parent1: dsd-aaa
 
 ### 请求实例
 
-    curl -v https://aaa.dasudian.net/register -v -k -XPOST -H"Content-Type: application/json" -d '{"phone_num":"13618074451","name":"test",  "sex":"male","birthday":120000,"password":"123456","email":"barco@dasudian.com", "area":"广东/深圳","veri_code":"pinysl",  "signature":"a","token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'
+    curl -v https://aaa.dasudian.net/register -v -k -XPOST -H"Content-Type: application/json" -d '{"phone_num":"13618074451","name":"test",  "sex":"male","birthday":120000,"password":"123456","email":"barco@dasudian.com", "area":"广东/深圳","veri_code":"pinysl",  "signature":"a","token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}' --cookie "_Dasudian_Auth=g2gDaARrACBjOGMxOWViNjc5NzY3OWI3ODAwOWQxMTlmZjY5ZWJiOW0AAAAEdGVzdGgCaANiAAAH32EFYQtoA2ELYTJhIG0AAABR1Brh37P2scdkhXSftzn2QAJN78ZPeFMV3zUlTWcw21HYYcNKZZmfftUyNPQ%2BDDINtYmcbyL9z6%2Bmulx8jqcaFYYPnldoWSqzS8UtG%2BGZpiJ%2BawAUMjdlZDI5YTQxY2RlNGI4YjJjMDJtAAAAFNC5w3GjDdhBNN9VF0m%2BAB1nxFPN; Version=1; Expires=Mon, 11-May-2015 03:50:32 GMT; Max-Age=604800; Domain=dasudian.net; Path=/; HttpOnly"
 
 ### 返回结果说明
 
