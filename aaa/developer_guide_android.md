@@ -1,8 +1,8 @@
 ## 集成前准备
-到[大数点开发者平台](https://dev.dasudian.com/)注册成为大数点合作伙伴并创建应用
+到[大数点开发者平台](https://dev.dasudian.com/)注册成为大数点合作伙伴并创建应用。
 
 ## 下载SDK
-到[大数点官网](https://dev.dasudian.com/sdk/)下载AAA SDK.
+到[大数点官网](http://main.dasudian.com/downloads/sdk/latest/)下载AAA SDK。
 
 ## SDK内容
 
@@ -90,11 +90,25 @@ public static native String dsdAAARegister(String phoneNumber, String veriCode,
 ```java
 /**
  * 登录。注册成功后，就可以使用注册时得手机号和密码登录了。
+ * 登录成功后，在成功的json字符串里面会返回cookie。
+ * 开发者需要将该cookie保存起来，在下一次登录时，使用api dsdAAAAutoLogin传入保存的cookie即可快速登录，
+ * 不需要再重新提交电话号码和密码来登录。
  * @param phoneNumber  手机号
  * @param password     密码
- * @return json格式字符串，eg：成功{"result":"success"}，失败{"result":"fail","reason":"reason..."}
+ * @return json格式字符串，eg：成功{"result":"success","cookie":"cookie content...."}，
+ * 失败{"result":"fail","reason":"reason..."}
  */
 public static native String dsdAAALogin(String phoneNumber, String password);
+```
+
+```java
+/**
+ * 使用cookie自动登录
+ * @param cookie 登录成功时返回的cookie。使用账号密码登录成功后，系统会返回cookie。
+ * 开发者将该cookie保存下来并传入该api即可实现用户快速登录。
+ * @return json格式字符串，eg：成功{"result":"success"}，失败{"result":"fail","reason":"reason..."}
+ */
+public static native String dsdAAAAutoLogin(String cookie);
 ```
 
 ### 获取用户信息
@@ -190,8 +204,10 @@ public static native String dsdAAAForgetPassword(String phoneNumber, String veri
 
 ```java
 /**
- * 同步联系人到服务器，需要先登录。
- * @param contacts 联系人列表。eg:"\"13788888888\",\"18588888888\",\"18288888888\""
+ * 同步联系人到服务器，需要先登录。该api的作用是上传手机联系人到服务器后，
+ * 调用dsdAAAGetContact可以获取到有哪些联系人也在使用该服务。
+ * @param contacts 联系人列表，必须是json数组格式。
+ * eg:["18288888888","18288888888"，"+8618288888888"...]
  * @return json格式字符串，eg：成功{"result":"success"}，失败{"result":"fail","reason":"reason..."}
  */
 public static native String dsdAAASyncContact(String contacts);
@@ -199,7 +215,7 @@ public static native String dsdAAASyncContact(String contacts);
 
 ```java
 /**
- * 获取联系人列表，需要先登录。
+ * 获取联系人列表，需要先登录。同步联系人过后，就可以调用该方法获取在联系人当中有哪些联系人也注册了该app。
  * @param phoneNumber  登录时的电话号码
  * @return json格式字符串，{"result":"success","phone_number":"13618074451","contacts", 
  * ["13761975289","+8618565618719","18565618719"]}}
