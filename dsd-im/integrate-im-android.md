@@ -1,3 +1,11 @@
+---
+title: IM Android集成
+currentMenu: im-android
+parent1: dsd-im
+---
+
+# Android上集成IM服务
+
 ## 集成前准备
 到[大数点开发者平台](https://dev.dasudian.com)注册成为大数点合作伙伴并创建应用，每创建一个应用大数点平台会为其生成一个AppID和AppKey，AppID在大数点平台唯一标识一个应用，而AppKey可以被更新。AppID和AppKey将在您的代码里使用，保证您的应用与大数点平台间的安全传输。
 

@@ -1,6 +1,6 @@
 ---
 title: "DAC介绍"
-currentMenu: dac-principal
+currentMenu: dac-index
 parent1: dsd-dac
 ---
 

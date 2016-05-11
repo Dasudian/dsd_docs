@@ -1,3 +1,11 @@
+---
+title: "AAA Android"
+currentMenu: aaa-android
+parent1: dsd-aaa
+---
+
+# Android上集成AAA服务
+
 ## 集成前准备
 到[大数点开发者平台](https://dev.dasudian.com/)注册成为大数点合作伙伴并创建应用。
 

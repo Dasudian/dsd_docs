@@ -1,10 +1,11 @@
 ---
-title: "大数点Cloud AAA 开放接口API"
+title: "大数点Cloud AAA接口API"
 currentMenu: aaa-api
 parent1: dsd-aaa
 ---
 
 # 大数点Cloud AAA 开放接口API
+
 大数点Cloud AAA是一个面向移动互联网和物联网的用户管理云服务，通过开放的标准REST API提供基于手机号的用户注册、验证、登录、用户信息提交与修改、头像管理、第三方登录等用户管理功能。开发者只需登录[大数点开发者平台](https://dev.dasudian.com)注册一个应用获取AppID和AppKey，便可使用该用户管理云服务和开放接口。在开发者后台，还可以随时进行用户的查询、删除、冻结等管理，实时的数据分析与报表让您实时掌控App使用情况和用户情况。
  
 ## 1.获取 token

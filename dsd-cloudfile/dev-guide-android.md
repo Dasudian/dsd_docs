@@ -1,3 +1,11 @@
+---
+title: "CloudFile-Android"
+currentMenu: cf-android
+parent1: dsd-cloudfile
+---
+
+# Android上集成CloudFile服务
+
 ## 集成前准备
 到[大数点开发者平台](https://dev.dasudian.com/)注册成为大数点合作伙伴并创建应用
 

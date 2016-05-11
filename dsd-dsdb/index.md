@@ -1,6 +1,6 @@
 ---
 title: DSDB Documentation
-currentMenu: dsdb-overview
+currentMenu: dsdb-index
 parent1: dsd-dsdb
 ---
 
