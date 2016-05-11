@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="大数点物联网开发者平台文档，基于大数点物联网平台，帮助开发者快速构建物联网应用">
-    <title>大数点文档中心</title>
+    <title>Server Monitoring</title>
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
@@ -100,7 +100,7 @@
             </ul>
           </li>
           <li><a class="fold">DSD Database (DSDB)</a>
-            <ul class="menu2" >
+            <ul class="menu2" style="display: block;">
               <li><a id="dsdb-index" class="" href="/dsd-dsdb/">DSDB Overview</a></li>
               <li><a class="fold">Introduction</a>
                 <ul class="menu3" >
@@ -110,13 +110,13 @@
                 </ul>
               </li>
               <li><a class="fold">Administration</a>
-                <ul class="menu3" >
+                <ul class="menu3" style="display: block;">
                   <li><a id="dsdb-admin-overview" class="" href="/dsd-dsdb/administration/index.html">administration Overview</a></li>
                   <li><a id="dsdb-authent&amp;authori" class="" href="/dsd-dsdb/administration/authentication_and_authorization.html">Authentication&Authorization</a></li>
                   <li><a id="dsdb-backup&amp;restore" class="" href="/dsd-dsdb/administration/backup_and_restore.html">Backup&Restore</a></li>
                   <li><a id="dsdb-configuration" class="" href="/dsd-dsdb/administration/config.html">Configuration</a></li>
                   <li><a id="dsdb-logs" class="" href="/dsd-dsdb/administration/logs.html">Logs</a></li>
-                  <li><a id="dsdb-monitoring" class="" href="/dsd-dsdb/administration/statistics.html">Server Monitoring</a></li>
+                  <li><a id="dsdb-monitoring" class="active" href="/dsd-dsdb/administration/statistics.html">Server Monitoring</a></li>
                   <li><a id="dsdb-upgrade" class="" href="/dsd-dsdb/administration/upgrading.html">Upgrading</a></li>
                 </ul>
               </li>
@@ -240,98 +240,60 @@
 
     <div class="side_right">
       <div class="doc">
-        <h1 id="">大数点开发者文档中心</h1>
-<p>欢迎来到大数点开发文档中心，请阅读以下章节：　　</p>
-<h3 id="data-hub">Data Hub</h3>
-<ul>
-<li><a href="dsd-datahub/index.html">Data Hub Overview</a>  </li>
-<li>SDK<br />
-&nbsp; - <a href="dsd-datahub/sdk/embeded_c.html">Embeded C API</a><br />
-&nbsp; - <a href="dsd-datahub/sdk/javascript.html">JavaScript API</a>  </li>
-</ul>
-<h3 id="ds-database">DS database</h3>
-<ul>
-<li><a href="dsd-dsdb/index.html">DSDB Overview</a>  </li>
-<li>Introduction<br />
-&nbsp; - <a href="dsd-dsdb/introduction/installation.html">Installation</a><br />
-&nbsp; - <a href="dsd-dsdb/introduction//getting_started.html">Getting Started</a>  </li>
-<li>Administration<br />
-&nbsp; - <a href="dsd-dsdb/administration/authentication_and_authorization.html">Authentication and Authorization</a><br />
-&nbsp; - <a href="dsd-dsdb/administration/backup_and_restore.html">Backup and Restore</a><br />
-&nbsp; - <a href="dsd-dsdb/administration/config.html">Configuration</a><br />
-&nbsp; - <a href="dsd-dsdb/administration/logs.html">Logs</a><br />
-&nbsp; - <a href="dsd-dsdb/administration/statistics.html">Server Monitoring</a><br />
-&nbsp; - <a href="dsd-dsdb/administration/upgrading.html">Upgrading from previous versions</a>  </li>
-<li>Clients<br />
-&nbsp; - <a href="dsd-dsdb/clients/api.html">HTTP API Client Libraries</a>  </li>
-<li>Concepts
-&nbsp; - <a href="dsd-dsdb/concepts/key_concepts.html">Key Concepts</a><br />
-&nbsp; - <a href="dsd-dsdb/concepts/schema_and_data_layout.html">Schema and Data Layout</a><br />
-&nbsp; - <a href="dsd-dsdb/concepts/insights_tradeoffs.html">Design Insights and Tradeoffs</a><br />
-&nbsp; - <a href="dsd-dsdb/concepts/api.html">HTTP API Endpoints</a><br />
-&nbsp; - <a href="dsd-dsdb/concepts/storage_engine.html">Storage Engine</a><br />
-&nbsp; - <a href="dsd-dsdb/concepts/glossary.html">Glossary of Terms</a>  </li>
-<li>Data Sources<br />
-&nbsp; - <a href="dsd-dsdb/data_sources/diamond.html">Diamond</a><br />
-&nbsp; - <a href="dsd-dsdb/data_sources/opentsdb.html">OpenTSDB</a>  </li>
-<li>Guides<br />
-&nbsp; - <a href="dsd-dsdb/guides/clustering.html">Clustering</a><br />
-&nbsp; - <a href="dsd-dsdb/guides/downsampling_and_retention.html">Downsampling and Data Retention</a><br />
-&nbsp; - <a href="dsd-dsdb/guides/hardware_sizing.html">Hardware Sizing Guidelines</a><br />
-&nbsp; - <a href="dsd-dsdb/guides/querying_data.html">Querying Data</a><br />
-&nbsp; - <a href="dsd-dsdb/guides/writing_data.html">Writing Data</a>  </li>
-<li>Query Language<br />
-&nbsp; - <a href="dsd-dsdb/query_language/continuous_queries.html">Continuous Queries</a><br />
-&nbsp; - <a href="dsd-dsdb/query_language/data_exploration.html">Data Exploration</a><br />
-&nbsp; - <a href="dsd-dsdb/query_language/database_management.html">Database Management</a><br />
-&nbsp; - <a href="dsd-dsdb/query_language/functions.html">Functions</a><br />
-&nbsp; - <a href="dsd-dsdb/query_language/math_operators.html">Mathematical Operators</a><br />
-&nbsp; - <a href="dsd-dsdb/query_language/schema_exploration.html">Scheam Exploration</a><br />
-&nbsp; - <a href="dsd-dsdb/query_language/spec.html">Query Language Reference</a>  </li>
-<li>Sample Data<br />
-&nbsp; - <a href="dsd-dsdb/sample_data/data_download.html">Sample Data Download</a>  </li>
-<li>Tools<br />
-&nbsp; - <a href="dsd-dsdb/tools/shell.html">CLI/Shell</a><br />
-&nbsp; - <a href="dsd-dsdb/tools/web_admin.html">Web Admin Interface</a>  </li>
-<li>Troubleshooting<br />
-&nbsp; - <a href="dsd-dsdb/troubleshooting/frequently_encountered_issues.html">Frequently Encountered Issues</a><br />
-&nbsp; - <a href="dsd-dsdb/troubleshooting/system_monitoring.html">System Monitoring</a>  </li>
-<li>Write Protocols<br />
-&nbsp; - <a href="dsd-dsdb/write_protocols/collectd.html">Service - CollectD</a><br />
-&nbsp; - <a href="dsd-dsdb/write_protocols/graphite.html">Service - Graphite</a><br />
-&nbsp; - <a href="dsd-dsdb/write_protocols/json.html">JSON Protocol</a><br />
-&nbsp; - <a href="dsd-dsdb/write_protocols/line.html">Line Protocol</a><br />
-&nbsp; - <a href="dsd-dsdb/write_protocols/opentsdb.html">Service - OpenTSDB</a><br />
-&nbsp; - <a href="dsd-dsdb/write_protocols/udp.html">Service - UDP</a><br />
-&nbsp; - <a href="dsd-dsdb/write_protocols/write_syntax.html">Write Syntax</a>  </li>
-</ul>
-<h3 id="dsd-appapi-container-dac">DSD App/API Container (DAC)</h3>
-<ul>
-<li><a href="dsd-dac/index.html">DAC Overview</a>  </li>
-<li><a href="dsd-dac/dac_cloud_api_java.html">DAC JAVA API</a>  </li>
-<li><a href="dsd-dac/dac_cloud_api_c.html">DAC C API</a>  </li>
-<li><a href="dsd-dac/dac_cloud_api_cpp.html">DAC C++ API</a>  </li>
-</ul>
-<h3 id="im-amp-psh-cloud">IM &amp; Psh Cloud</h3>
-<ul>
-<li><a href="dsd-im/index.html">IM服务简介</a>  </li>
-<li><a href="dsd-im/integrate-im-android.html">Android上集成IM服务</a>  </li>
-<li><a href="dsd-im/integrate-im-ios.html">iOS上集成IM服务</a>  </li>
-</ul>
-<h3 id="aaa">大数点云账户管理AAA</h3>
-<ul>
-<li><a href="dsd-aaa/index.html">AAA介绍</a>  </li>
-<li><a href="dsd-aaa/dev-guide-android.html">Android上集成AAA服务</a>  </li>
-<li><a href="dsd-aaa/dev-guide-ios.html">iOS上集成IM服务</a>  </li>
-<li><a href="dsd-aaa/aaa-api.html">AAA API</a>  </li>
-</ul>
-<h3 id="cloudfile">大数点云存储服务CloudFile</h3>
-<ul>
-<li><a href="dsd-cloudfile/index.html">CloudFile介绍</a>  </li>
-<li><a href="dsd-cloudfile/dev-guide-android.html">Android上集成CloudFile服务</a>  </li>
-<li><a href="dsd-cloudfile/dev-guide-ios.html">iOS上集成CloudFile服务</a>  </li>
-<li><a href="dsd-cloudfile/api.html">CloudFile API</a></li>
-</ul>
+        <h1 id="server-monitoring">Server Monitoring</h1>
+<p>DSDB can display statistical and diagnostic information about each node.
+This information can be very useful for troubleshooting and performance monitoring.</p>
+<h2 id="show-stats">SHOW STATS</h2>
+<p>To see node stats execute the command <code>SHOW STATS</code>.
+An example is shown below.</p>
+<pre><code class="language-sql">SHOW STATS</code></pre>
+<pre><code class="language-json">{
+    "results": [
+        {
+            "series": [
+                {
+                    "name": "server",
+                    "columns": [
+                        "broadcastMessageRx",
+                        "batchWriteRx",
+                        "pointWriteRx",
+                        "writeSeriesMessageTx"
+                    ],
+                    "values": [
+                        [
+                            37
+                        ],
+                        [
+                            299984
+                        ],
+                        [
+                            2789
+                        ],
+                        [
+                            25
+                        ]
+                    ]
+                }
+            ]
+        }
+    ]
+}</code></pre>
+<p>The statistics returned by <code>SHOW STATS</code> are stored in memory only, and are reset to zero when the node is restarted.</p>
+<h2 id="show-diagnostics">SHOW DIAGNOSTICS</h2>
+<p>To see node diagnostics execute the command <code>SHOW DIAGNOSTICS</code>.
+This returns information such as build information, uptime, hostname, server configuration, memory usage, and Go runtime diagnostics.</p>
+<h2 id="internal-monitoring">Internal Monitoring</h2>
+<p>DSDB also writes statistical and diagnostic information to database named <code>_internal</code>, which records metrics on the internal runtime and service performance.
+The <code>_internal</code> database can be queried and manipulated like any other DSDB database.
+Check out the <a href="https://github.com/Dasudian/dsdb/blob/master/monitor/index.html">monitor service README</a> and the <a href="https://dsdb.com/blog/2015/09/22/monitoring_internal_show_stats.html">internal monitoring blog post</a> for more detail.</p>
+<h2 id="useful-commands">Useful Commands</h2>
+<p>Below are a collection of commands to find useful performance metrics about your DSDB instance. </p>
+<p>To find the number of unique series in a database run the following command: </p>
+<pre><code class="language-bash">$ influx -execute "SHOW SERIES" -database "mydb" | sed '/name: .*/d' | sed '/\-\-/d' | sed '/_key/d' | sed '/^$/d' | wc -l</code></pre>
+<p>To find the number of points per second being written to the instance. Must have the <code>monotor</code> service enabled:</p>
+<pre><code class="language-bash">$ influx -execute 'select derivative(pointReq, 1s) from "write" where time &gt; now() - 5m' -database '_internal' -precision 'rfc3339'</code></pre>
+<p>To find the number of writes separated by database since the beginnning of the log file:</p>
+<pre><code class="language-bash">$ grep 'POST' /var/log/dsdb/influxd.log | awk '{ print $10 }' | sort | uniq -c </code></pre>
       </div>
 
               <div class="tract"><img src="/images/tract.png"/></div>

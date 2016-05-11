@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="大数点物联网开发者平台文档，基于大数点物联网平台，帮助开发者快速构建物联网应用">
-    <title>大数点文档中心</title>
+    <title>AAA iOS</title>
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
@@ -220,10 +220,10 @@
             </ul>
           </li>
           <li><a class="fold">大数点云账户管理AAA Cloud</a>
-            <ul class="menu2" >
+            <ul class="menu2" style="display: block;">
               <li><a id="aaa-index" class="" href="/dsd-aaa/">AAA简介</a></li>
               <li><a id="aaa-android" class="" href="/dsd-aaa/dev-guide-android.html">Android上集成AAA服务</a></li>
-              <li><a id="aaa-ios" class="" href="/dsd-aaa/dev-guide-ios.html">iOS上集成AAA服务</a></li>
+              <li><a id="aaa-ios" class="active" href="/dsd-aaa/dev-guide-ios.html">iOS上集成AAA服务</a></li>
               <li><a id="aaa-api" class="" href="/dsd-aaa/aaa-api.html">AAA API</a></li>
             </ul>
           </li>
@@ -240,98 +240,250 @@
 
     <div class="side_right">
       <div class="doc">
-        <h1 id="">大数点开发者文档中心</h1>
-<p>欢迎来到大数点开发文档中心，请阅读以下章节：　　</p>
-<h3 id="data-hub">Data Hub</h3>
+        <h1 id="iosaaa">iOS上集成AAA服务</h1>
+<h2 id="">集成前准备</h2>
+<p>到<a href="https://dev.dasudian.com/">大数点开发者平台</a>注册成为大数点合作伙伴并创建应用</p>
+<h2 id="sdk">下载SDK</h2>
+<p>到<a href="https://dev.dasudian.com/sdk/">大数点官网</a>下载AAA SDK.</p>
+<h2 id="sdk-1">SDK内容</h2>
 <ul>
-<li><a href="dsd-datahub/index.html">Data Hub Overview</a>  </li>
-<li>SDK<br />
-&nbsp; - <a href="dsd-datahub/sdk/embeded_c.html">Embeded C API</a><br />
-&nbsp; - <a href="dsd-datahub/sdk/javascript.html">JavaScript API</a>  </li>
+<li>libdsd_aaa.a</li>
+<li>dsdAAAClient.h</li>
+<li>User.h</li>
 </ul>
-<h3 id="ds-database">DS database</h3>
-<ul>
-<li><a href="dsd-dsdb/index.html">DSDB Overview</a>  </li>
-<li>Introduction<br />
-&nbsp; - <a href="dsd-dsdb/introduction/installation.html">Installation</a><br />
-&nbsp; - <a href="dsd-dsdb/introduction//getting_started.html">Getting Started</a>  </li>
-<li>Administration<br />
-&nbsp; - <a href="dsd-dsdb/administration/authentication_and_authorization.html">Authentication and Authorization</a><br />
-&nbsp; - <a href="dsd-dsdb/administration/backup_and_restore.html">Backup and Restore</a><br />
-&nbsp; - <a href="dsd-dsdb/administration/config.html">Configuration</a><br />
-&nbsp; - <a href="dsd-dsdb/administration/logs.html">Logs</a><br />
-&nbsp; - <a href="dsd-dsdb/administration/statistics.html">Server Monitoring</a><br />
-&nbsp; - <a href="dsd-dsdb/administration/upgrading.html">Upgrading from previous versions</a>  </li>
-<li>Clients<br />
-&nbsp; - <a href="dsd-dsdb/clients/api.html">HTTP API Client Libraries</a>  </li>
-<li>Concepts
-&nbsp; - <a href="dsd-dsdb/concepts/key_concepts.html">Key Concepts</a><br />
-&nbsp; - <a href="dsd-dsdb/concepts/schema_and_data_layout.html">Schema and Data Layout</a><br />
-&nbsp; - <a href="dsd-dsdb/concepts/insights_tradeoffs.html">Design Insights and Tradeoffs</a><br />
-&nbsp; - <a href="dsd-dsdb/concepts/api.html">HTTP API Endpoints</a><br />
-&nbsp; - <a href="dsd-dsdb/concepts/storage_engine.html">Storage Engine</a><br />
-&nbsp; - <a href="dsd-dsdb/concepts/glossary.html">Glossary of Terms</a>  </li>
-<li>Data Sources<br />
-&nbsp; - <a href="dsd-dsdb/data_sources/diamond.html">Diamond</a><br />
-&nbsp; - <a href="dsd-dsdb/data_sources/opentsdb.html">OpenTSDB</a>  </li>
-<li>Guides<br />
-&nbsp; - <a href="dsd-dsdb/guides/clustering.html">Clustering</a><br />
-&nbsp; - <a href="dsd-dsdb/guides/downsampling_and_retention.html">Downsampling and Data Retention</a><br />
-&nbsp; - <a href="dsd-dsdb/guides/hardware_sizing.html">Hardware Sizing Guidelines</a><br />
-&nbsp; - <a href="dsd-dsdb/guides/querying_data.html">Querying Data</a><br />
-&nbsp; - <a href="dsd-dsdb/guides/writing_data.html">Writing Data</a>  </li>
-<li>Query Language<br />
-&nbsp; - <a href="dsd-dsdb/query_language/continuous_queries.html">Continuous Queries</a><br />
-&nbsp; - <a href="dsd-dsdb/query_language/data_exploration.html">Data Exploration</a><br />
-&nbsp; - <a href="dsd-dsdb/query_language/database_management.html">Database Management</a><br />
-&nbsp; - <a href="dsd-dsdb/query_language/functions.html">Functions</a><br />
-&nbsp; - <a href="dsd-dsdb/query_language/math_operators.html">Mathematical Operators</a><br />
-&nbsp; - <a href="dsd-dsdb/query_language/schema_exploration.html">Scheam Exploration</a><br />
-&nbsp; - <a href="dsd-dsdb/query_language/spec.html">Query Language Reference</a>  </li>
-<li>Sample Data<br />
-&nbsp; - <a href="dsd-dsdb/sample_data/data_download.html">Sample Data Download</a>  </li>
-<li>Tools<br />
-&nbsp; - <a href="dsd-dsdb/tools/shell.html">CLI/Shell</a><br />
-&nbsp; - <a href="dsd-dsdb/tools/web_admin.html">Web Admin Interface</a>  </li>
-<li>Troubleshooting<br />
-&nbsp; - <a href="dsd-dsdb/troubleshooting/frequently_encountered_issues.html">Frequently Encountered Issues</a><br />
-&nbsp; - <a href="dsd-dsdb/troubleshooting/system_monitoring.html">System Monitoring</a>  </li>
-<li>Write Protocols<br />
-&nbsp; - <a href="dsd-dsdb/write_protocols/collectd.html">Service - CollectD</a><br />
-&nbsp; - <a href="dsd-dsdb/write_protocols/graphite.html">Service - Graphite</a><br />
-&nbsp; - <a href="dsd-dsdb/write_protocols/json.html">JSON Protocol</a><br />
-&nbsp; - <a href="dsd-dsdb/write_protocols/line.html">Line Protocol</a><br />
-&nbsp; - <a href="dsd-dsdb/write_protocols/opentsdb.html">Service - OpenTSDB</a><br />
-&nbsp; - <a href="dsd-dsdb/write_protocols/udp.html">Service - UDP</a><br />
-&nbsp; - <a href="dsd-dsdb/write_protocols/write_syntax.html">Write Syntax</a>  </li>
-</ul>
-<h3 id="dsd-appapi-container-dac">DSD App/API Container (DAC)</h3>
-<ul>
-<li><a href="dsd-dac/index.html">DAC Overview</a>  </li>
-<li><a href="dsd-dac/dac_cloud_api_java.html">DAC JAVA API</a>  </li>
-<li><a href="dsd-dac/dac_cloud_api_c.html">DAC C API</a>  </li>
-<li><a href="dsd-dac/dac_cloud_api_cpp.html">DAC C++ API</a>  </li>
-</ul>
-<h3 id="im-amp-psh-cloud">IM &amp; Psh Cloud</h3>
-<ul>
-<li><a href="dsd-im/index.html">IM服务简介</a>  </li>
-<li><a href="dsd-im/integrate-im-android.html">Android上集成IM服务</a>  </li>
-<li><a href="dsd-im/integrate-im-ios.html">iOS上集成IM服务</a>  </li>
-</ul>
-<h3 id="aaa">大数点云账户管理AAA</h3>
-<ul>
-<li><a href="dsd-aaa/index.html">AAA介绍</a>  </li>
-<li><a href="dsd-aaa/dev-guide-android.html">Android上集成AAA服务</a>  </li>
-<li><a href="dsd-aaa/dev-guide-ios.html">iOS上集成IM服务</a>  </li>
-<li><a href="dsd-aaa/aaa-api.html">AAA API</a>  </li>
-</ul>
-<h3 id="cloudfile">大数点云存储服务CloudFile</h3>
-<ul>
-<li><a href="dsd-cloudfile/index.html">CloudFile介绍</a>  </li>
-<li><a href="dsd-cloudfile/dev-guide-android.html">Android上集成CloudFile服务</a>  </li>
-<li><a href="dsd-cloudfile/dev-guide-ios.html">iOS上集成CloudFile服务</a>  </li>
-<li><a href="dsd-cloudfile/api.html">CloudFile API</a></li>
-</ul>
+<h2 id="-1">配置工程</h2>
+<p>将以上三个文件导入到工程目录下即可使用.</p>
+<h2 id="sdk-2">使用SDK</h2>
+<h3 id="-2">用户类的属性字段说明</h3>
+<pre><code>/**
+*   用户类的属性字段说明
+* @param phoneNumber 电话号码
+* @param veriCode    验证码，
+* @param name        用户名
+* @param sex         性别，请使用male和female，提交后不可修改
+* @param birthday    生日，提交后不可修改。
+* @param password    密码，由字母数字下划线组成，可修改。
+* @param email       邮箱
+* @param area        地域信息，eg：广东省/深圳市/南山区
+* @param signature   个性签名。
+*/
+</code></pre>
+<h3 id="sdk-3">初始化SDK</h3>
+<p>在开始调用后面的api之前需要使用该方法初始化sdk，只有初始化sdk成功后，调用后面的api才能成功。
+该方法主要用于大数点对用户信息进行验证。</p>
+<pre><code>/**
+*  1.初始化SDK方法
+*
+*  @param appid         注册app时获取的appid
+*  @param appkey        在AAA注册app时获取的appkey
+*  @param serveraddress 服务器地址
+*
+*  @return 成功返回当前一个对象实例,失败返回nil.
+*/
+
+- (id)initWithAppid:(NSString *)appid Appkey:(NSString *)appkey ServerAddress:(NSString *)serveraddress;
+</code></pre>
+<h3 id="-3">注册手机号</h3>
+<pre><code>/**
+*  2. 注册手机号
+*
+*  @param phoneNumber 手机号码
+*  @return json字符串  eg：成功{"result":"success","veri_code":"pinysl"}，veri_code为获取的验证码，在下一步的验证手机号中将用到。失败{"result":"fail","reason":"reason..."}
+*/
+- (NSString *)dsdAAARegisterUserPhoneNumber:(NSString *)phonenumber;
+</code></pre>
+<h3 id="-4">验证手机号</h3>
+<pre><code>/**
+*  3.验证手机号
+*
+*  @param phoneNumber  手机号码
+*  @param code         短信验证码
+*  @return  eg：成功{"result":"success"}，失败{"result":"fail","reason":"reason..."}
+*/
+- (NSString *)dsdAAAVerifyCodeWithphoneNumber:(NSString *)phonenumber code:(NSString *)code;
+</code></pre>
+<h3 id="-5">注册用户信息</h3>
+<pre><code>/**
+*  4.注册用户信息
+*
+*  @param user  用户User对象的一个实例
+*
+*  @return  json格式字符串，eg：成功{"result":"success"}，失败{"result":"fail","reason":"reason..."}
+*/
+
+- (NSString *)dsdAAARegisterWithUser:(User *)user;
+</code></pre>
+<h3 id="-6">手机号登陆</h3>
+<pre><code>/**
+*  5.手机号登陆
+*
+*  @param phoneNumber  手机号码
+*  @param password     密码
+*
+*  @return json格式字符串，eg：成功{"result":"success"}，失败{"result":"fail","reason":"reason..."}
+*/
+- (NSString *)dsdAAALoginWithphoneNumber:(NSString *)phonenumber passWord:(NSString *)password;
+</code></pre>
+<h3 id="-7">自动登陆</h3>
+<pre><code>/**
+*  6.自动登陆
+*
+*
+*  @return  json格式字符串，eg：成功{"result":"success"}，失败{"result":"fail","reason":"reason..."}
+*/
+-(NSString *)dsdAAAAutoLogin;
+</code></pre>
+<h3 id="-8">查看个人信息</h3>
+<pre><code>/**
+*  7.查看个人信息，需要先登录
+*  @param phoneNumber  手机号码
+*
+*  @return json格式字符串，eg：成功
+* {"result":"success","info":{"name":"dasudian","birthday":"19921015",
+* "sex":"male","phone_num":"13618074451","email":"hr@dasudian.com",
+* "area":"广东省/深圳市/南山区","portrait":"8vcKSfPVD9U1jR5EAq",
+* "signature":"Change the world!"}}
+* 失败{"result":"fail","reason":"reason..."}
+*/
+- (NSString *)dsdAAAGetUserWithphoneNumber:(NSString *)phonenumber;
+</code></pre>
+<h3 id="-9">设置头像</h3>
+<pre><code>/**
+*  8.设置头像，需要先登录
+*
+*  @param imagePath 头像图像路径
+*
+*  @return json格式字符串 成功返回图片的url，失败{"result":"fail","reason":"reason..."}
+*/
+- (NSString *)dsdAAASetIconWithimagePath:(NSString *)imagepath;
+</code></pre>
+<h3 id="-10">获取验证码</h3>
+<pre><code>/**
+*  9.获取验证码（仅用于忘记密码时获取验证码）
+*
+*  @param phoneNumber  手机号码
+*  @return json格式字符串，eg：成功{"result":"success","veri_code":"pinysl"}，
+* 失败{"result":"fail","reason":"reason..."}
+*/
+- (NSString *)dsdAAARequestVericodeWithphoneNumber:(NSString *)phonenumber;
+</code></pre>
+<h3 id="-11">忘记密码</h3>
+<pre><code>/**
+*  10.忘记密码
+*
+*  @param phonenumber  手机号码
+*  @param verifycode   验证码
+*  @param newpassword  新密码
+*
+*  @return @return json格式字符串，eg：成功{"result":"success"}，失败{"result":"fail","reason":"reason..."}
+*/
+
+- (NSString *)dsdAAAForgetPasswordWithphoneNumber:(NSString *)phonenumber verifyCode:(NSString *)verifycode Password:(NSString *)password;
+</code></pre>
+<h3 id="-12">修改密码</h3>
+<pre><code>/**
+*  11.修改密码
+*
+*  @param oldpassword 旧密码
+*  @param nwepassword 新密码
+*
+*  @return  json格式字符串，eg：成功{"result":"success"}，失败{"result":"fail","reason":"reason..."}
+*/
+- (NSString *)dsdAAAChangePasswdWitholdPassword:(NSString *)oldpassword newPassword:(NSString *)newpassword;
+</code></pre>
+<h3 id="-13">修改用户名称</h3>
+<pre><code>/**
+*  12.修改用户名称
+*
+*  @param newname  新用户名
+*
+*  @return json格式字符串，eg：成功{"result":"success"}，失败{"result":"fail","reason":"reason..."}
+*/
+- (NSString *)dsdAAAChangeNameWithnewName:(NSString *)newname;
+</code></pre>
+<h3 id="-14">修改个性签名</h3>
+<pre><code>/**
+*  13.修改个性签名
+*
+*  @param signature 新签名
+*
+*  @return json格式字符串，eg：成功{"result":"success"}，失败{"result":"fail","reason":"reason..."}
+*/
+- (NSString *)dsdAAAChangeSignatureWithSignature:(NSString *)signature;
+</code></pre>
+<h3 id="-15">同步联系人</h3>
+<pre><code>/**
+*  14.同步联系人,需要先登录
+*
+*  @param contacts  联系人列表
+*
+*  @return json格式字符串，eg：成功{"result":"success"}，失败{"result":"fail","reason":"reason..."}
+*/
+- (NSString *)dsdAAASyncContactWithContacts:(NSString *)contacts;
+</code></pre>
+<h3 id="-16">获取联系人列表</h3>
+<pre><code>/**
+*   15.获取联系人列表,需要先登录
+*
+*  @param phonenumber  登录时的手机号码
+*
+*  @return  json格式字符串，{"result":"success","phone_number":"13618074451","contacts",
+* ["13761975289","+8618565618719","18565618719"]}}
+*/
+- (NSString *)dsdAAAGetContactWithphoneNumber:(NSString *)phonenumber;
+</code></pre>
+<h3 id="qq">从qq拉取用户信息并保存</h3>
+<pre><code>/**
+*  16.从qq拉取用户信息并保存
+*
+*  @param uid         即openid用户的ID，与QQ号码一一对应
+*  @param accesstoken 使用Authorization_Code获取
+*  @param consumerkey 即oauth_consumer_key 申请QQ登录成功后，分配给应用的appid
+*
+*  @return
+*/
+- (NSString *)dsdAAAqqWithUid:(NSString *)uid accessToken:(NSString *)accesstoken consumerKye:(NSString *)consumerkey;
+</code></pre>
+<h3 id="wechat">从wechat拉取用户信息并保存</h3>
+<pre><code>/**
+*  17.从wechat拉取用户信息并保存
+*
+*  @param uid         即openid 用户的唯一标识。
+*  @param accesstoken 调用接口凭证,由微信提供
+*  @param consumerkey 即oauth_consumer_key 申请QQ登录成功后，分配给应用的appid
+*
+*  @return 
+*/
+- (NSString *)dsdAAAwechatWithUid:(NSString *)uid accessToken:(NSString *)accesstoken consumerKey:(NSString *)consumerkey;
+</code></pre>
+<h3 id="qqwechat">从服务器上获取保存的QQ和wechat授权用户信息</h3>
+<pre><code>/**
+*  18.从服务器上获取保存的QQ和wechat授权用户信息
+*
+*  @param uid     即openid 用户的唯一标识。
+*  @param type    1 -&gt; QQ 2 -&gt; WeChat
+*
+*  @return  
+
+*/
+- (NSString *)dsdAAAOauthUserInfoWithUid:(NSString *)uid Type:(NSInteger)type;
+</code></pre>
+<h3 id="qqwechat-1">从服务器上面获取保存的QQ和wechat授权的用户信息列表</h3>
+<pre><code>/**
+*  19.从服务器上面获取保存的QQ和wechat授权的用户信息列表
+*
+*  @param uid      即openid 用户的唯一标识。
+*  @param type     1 -&gt; QQ 2 -&gt; WeChat
+*  @param start    请求起始位置
+*  @param num      请求的行数
+*
+*  @return  
+
+*/
+- (NSString *)dsdAAAOauthUserInfoListWithUid:(NSString *)uid Type:(NSInteger)type Start:(NSInteger)start Num:(NSInteger)num;
+</code></pre>
+<h2 id="ios">下载ios示例程序</h2>
+<p><a href="https://github.com/Dasudian/aaasdk-example-ios">下载ios示例程序</a></p>
       </div>
 
               <div class="tract"><img src="/images/tract.png"/></div>

@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="大数点物联网开发者平台文档，基于大数点物联网平台，帮助开发者快速构建物联网应用">
-    <title>大数点文档中心</title>
+    <title>Downsampling and Data Retention</title>
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
@@ -100,7 +100,7 @@
             </ul>
           </li>
           <li><a class="fold">DSD Database (DSDB)</a>
-            <ul class="menu2" >
+            <ul class="menu2" style="display: block;">
               <li><a id="dsdb-index" class="" href="/dsd-dsdb/">DSDB Overview</a></li>
               <li><a class="fold">Introduction</a>
                 <ul class="menu3" >
@@ -146,9 +146,9 @@
                 </ul>
               </li>
               <li><a class="fold">Guides</a>
-                <ul class="menu3" >
+                <ul class="menu3" style="display: block;">
                   <li><a id="dsdb-guides-clustering" class="" href="/dsd-dsdb/guides/clustering.html">Clustering</a></li>
-                  <li><a id="dsdb-guides-ddr" class="" href="/dsd-dsdb/guides/downsampling_and_retention.html">Downsampling and Data Retention</a></li>
+                  <li><a id="dsdb-guides-ddr" class="active" href="/dsd-dsdb/guides/downsampling_and_retention.html">Downsampling and Data Retention</a></li>
                   <li><a id="dsdb-guides-hsg" class="" href="/dsd-dsdb/guides/hardware_sizing.html">Hardware Sizing Guidelines</a></li>
                   <li><a id="dsdb-guides-querying" class="" href="/dsd-dsdb/guides/querying_data.html">Querying Data</a></li>
                   <li><a id="dsdb-guides-writing" class="" href="/dsd-dsdb/guides/writing_data.html">Writing Data</a></li>
@@ -240,98 +240,121 @@
 
     <div class="side_right">
       <div class="doc">
-        <h1 id="">大数点开发者文档中心</h1>
-<p>欢迎来到大数点开发文档中心，请阅读以下章节：　　</p>
-<h3 id="data-hub">Data Hub</h3>
+        <h1 id="downsampling-and-data-retention">Downsampling and Data Retention</h1>
+<p>DSDB can handle hundreds of thousands of data points per second.
+Working with that much data over a long period of time can create storage concerns.
+A natural solution is to downsample the data; keep the high precision raw data for only a limited time, and store the lower precision, summarized data for much longer or forever.</p>
+<p>This guide shows how to combine two DSDB features -- retention policies and continuous queries -- to automatically downsample and expire data.</p>
+<h2 id="retention-policies">Retention Policies</h2>
+<h3 id="definition">Definition</h3>
+<p>A retention policy (RP) is the part of DSDB's data structure that describes for how long DSDB keeps data (duration) and how many copies of those data are stored in the cluster (replication factor).
+A database can have several RPs and RPs are unique per database.</p>
+<h3 id="purpose">Purpose</h3>
+<p>In general, DSDB wasn't built to process deletes.
+One of the fundamental assumptions in its architecture is that deletes are infrequent and need not be highly performant.
+However, DSDB recognizes the necessity of purging data that have outlived their usefulness - that is the purpose of RPs.</p>
+<h3 id="working-with-rps">Working with RPs</h3>
+<p>When you create a database, DSDB automatically creates an RP called <code>default</code> with an infinite duration and a replication factor set to the number of nodes in the cluster.
+<code>default</code> also serves as the <code>DEFAULT</code> RP; if you do not supply an explicit RP when you write a point to the database, the data are subject to the <code>DEFAULT</code> RP.</p>
+<p>DSDB automatically queries from and writes to the <code>DEFAULT</code> RP on a database.
+To query from or write to a different RP, you must fully qualify the measurement, that is, specify the database and retention policy with the measurement name: <code>&lt;database_name&gt;."&lt;retention_policy&gt;".&lt;measurement_name&gt;</code>.</p>
+<p>You can also create, alter, and delete you own RPs, and you can change the database's <code>DEFAULT</code> RP.
+See <a href="/docs/dsdb/query_language/database_management.html#retention-policy-management">Database management</a> for more on RP management.</p>
+<blockquote>
+<p><strong>Clarifying</strong> <code>default</code> <strong>vs.</strong> <code>DEFAULT</code></p>
+<p><code>default</code>: The name of the RP that DSDB automatically generates when you create a new database.
+It has an infinite duration and a replication factor set to the number of nodes in the cluster.
+It is initially the <code>DEFAULT</code> RP as well, but that can be altered.</p>
+<p><code>DEFAULT</code>: The RP that DSDB writes to if you do not supply an explicit RP in the write.</p>
+</blockquote>
+<h2 id="continuous-queries">Continuous Queries</h2>
+<h3 id="definition-1">Definition</h3>
+<p>A continuous query (CQ) is an DSDBQL query that runs automatically and periodically within a database.
+CQs require a function in the <code>SELECT</code> clause and must include a <code>GROUP BY time()</code> clause.
+DSDB stores the results of the CQ in a specified measurement.</p>
+<h3 id="purpose-1">Purpose</h3>
+<p>CQs are optimal for regularly downsampling data - once you implement the CQ, DSDB automatically and periodically runs the query, and, instead of simply returning the results like a normal query, DSDB stores the results of a CQ in a measurement for future use.</p>
+<h3 id="working-with-cqs">Working with CQs</h3>
+<p>The section below offers a very brief introduction to creating CQs.
+See <a href="/docs/dsdb/query_language/continuous_queries.html">Continuous Queries</a> for a detailed discussion on how to create and manage CQs.</p>
+<h2 id="combining-rps-and-cqs---a-casestudy">Combining RPs and CQs - a casestudy</h2>
+<p>We have real-time data that track the number of food orders to a restaurant via phone and via website at 10 second intervals.
+In the long run, we're only interested in the average number of orders by phone and by website at 30 minute intervals.
+In the next steps, we use RPs and CQs to make DSDB:</p>
 <ul>
-<li><a href="dsd-datahub/index.html">Data Hub Overview</a>  </li>
-<li>SDK<br />
-&nbsp; - <a href="dsd-datahub/sdk/embeded_c.html">Embeded C API</a><br />
-&nbsp; - <a href="dsd-datahub/sdk/javascript.html">JavaScript API</a>  </li>
+<li>automatically delete the raw 10 second level data that are older than two hours</li>
+<li>automatically aggregate the 10 second level data to 30 minute level data</li>
+<li>keep the 30 minute level data forever</li>
 </ul>
-<h3 id="ds-database">DS database</h3>
-<ul>
-<li><a href="dsd-dsdb/index.html">DSDB Overview</a>  </li>
-<li>Introduction<br />
-&nbsp; - <a href="dsd-dsdb/introduction/installation.html">Installation</a><br />
-&nbsp; - <a href="dsd-dsdb/introduction//getting_started.html">Getting Started</a>  </li>
-<li>Administration<br />
-&nbsp; - <a href="dsd-dsdb/administration/authentication_and_authorization.html">Authentication and Authorization</a><br />
-&nbsp; - <a href="dsd-dsdb/administration/backup_and_restore.html">Backup and Restore</a><br />
-&nbsp; - <a href="dsd-dsdb/administration/config.html">Configuration</a><br />
-&nbsp; - <a href="dsd-dsdb/administration/logs.html">Logs</a><br />
-&nbsp; - <a href="dsd-dsdb/administration/statistics.html">Server Monitoring</a><br />
-&nbsp; - <a href="dsd-dsdb/administration/upgrading.html">Upgrading from previous versions</a>  </li>
-<li>Clients<br />
-&nbsp; - <a href="dsd-dsdb/clients/api.html">HTTP API Client Libraries</a>  </li>
-<li>Concepts
-&nbsp; - <a href="dsd-dsdb/concepts/key_concepts.html">Key Concepts</a><br />
-&nbsp; - <a href="dsd-dsdb/concepts/schema_and_data_layout.html">Schema and Data Layout</a><br />
-&nbsp; - <a href="dsd-dsdb/concepts/insights_tradeoffs.html">Design Insights and Tradeoffs</a><br />
-&nbsp; - <a href="dsd-dsdb/concepts/api.html">HTTP API Endpoints</a><br />
-&nbsp; - <a href="dsd-dsdb/concepts/storage_engine.html">Storage Engine</a><br />
-&nbsp; - <a href="dsd-dsdb/concepts/glossary.html">Glossary of Terms</a>  </li>
-<li>Data Sources<br />
-&nbsp; - <a href="dsd-dsdb/data_sources/diamond.html">Diamond</a><br />
-&nbsp; - <a href="dsd-dsdb/data_sources/opentsdb.html">OpenTSDB</a>  </li>
-<li>Guides<br />
-&nbsp; - <a href="dsd-dsdb/guides/clustering.html">Clustering</a><br />
-&nbsp; - <a href="dsd-dsdb/guides/downsampling_and_retention.html">Downsampling and Data Retention</a><br />
-&nbsp; - <a href="dsd-dsdb/guides/hardware_sizing.html">Hardware Sizing Guidelines</a><br />
-&nbsp; - <a href="dsd-dsdb/guides/querying_data.html">Querying Data</a><br />
-&nbsp; - <a href="dsd-dsdb/guides/writing_data.html">Writing Data</a>  </li>
-<li>Query Language<br />
-&nbsp; - <a href="dsd-dsdb/query_language/continuous_queries.html">Continuous Queries</a><br />
-&nbsp; - <a href="dsd-dsdb/query_language/data_exploration.html">Data Exploration</a><br />
-&nbsp; - <a href="dsd-dsdb/query_language/database_management.html">Database Management</a><br />
-&nbsp; - <a href="dsd-dsdb/query_language/functions.html">Functions</a><br />
-&nbsp; - <a href="dsd-dsdb/query_language/math_operators.html">Mathematical Operators</a><br />
-&nbsp; - <a href="dsd-dsdb/query_language/schema_exploration.html">Scheam Exploration</a><br />
-&nbsp; - <a href="dsd-dsdb/query_language/spec.html">Query Language Reference</a>  </li>
-<li>Sample Data<br />
-&nbsp; - <a href="dsd-dsdb/sample_data/data_download.html">Sample Data Download</a>  </li>
-<li>Tools<br />
-&nbsp; - <a href="dsd-dsdb/tools/shell.html">CLI/Shell</a><br />
-&nbsp; - <a href="dsd-dsdb/tools/web_admin.html">Web Admin Interface</a>  </li>
-<li>Troubleshooting<br />
-&nbsp; - <a href="dsd-dsdb/troubleshooting/frequently_encountered_issues.html">Frequently Encountered Issues</a><br />
-&nbsp; - <a href="dsd-dsdb/troubleshooting/system_monitoring.html">System Monitoring</a>  </li>
-<li>Write Protocols<br />
-&nbsp; - <a href="dsd-dsdb/write_protocols/collectd.html">Service - CollectD</a><br />
-&nbsp; - <a href="dsd-dsdb/write_protocols/graphite.html">Service - Graphite</a><br />
-&nbsp; - <a href="dsd-dsdb/write_protocols/json.html">JSON Protocol</a><br />
-&nbsp; - <a href="dsd-dsdb/write_protocols/line.html">Line Protocol</a><br />
-&nbsp; - <a href="dsd-dsdb/write_protocols/opentsdb.html">Service - OpenTSDB</a><br />
-&nbsp; - <a href="dsd-dsdb/write_protocols/udp.html">Service - UDP</a><br />
-&nbsp; - <a href="dsd-dsdb/write_protocols/write_syntax.html">Write Syntax</a>  </li>
-</ul>
-<h3 id="dsd-appapi-container-dac">DSD App/API Container (DAC)</h3>
-<ul>
-<li><a href="dsd-dac/index.html">DAC Overview</a>  </li>
-<li><a href="dsd-dac/dac_cloud_api_java.html">DAC JAVA API</a>  </li>
-<li><a href="dsd-dac/dac_cloud_api_c.html">DAC C API</a>  </li>
-<li><a href="dsd-dac/dac_cloud_api_cpp.html">DAC C++ API</a>  </li>
-</ul>
-<h3 id="im-amp-psh-cloud">IM &amp; Psh Cloud</h3>
-<ul>
-<li><a href="dsd-im/index.html">IM服务简介</a>  </li>
-<li><a href="dsd-im/integrate-im-android.html">Android上集成IM服务</a>  </li>
-<li><a href="dsd-im/integrate-im-ios.html">iOS上集成IM服务</a>  </li>
-</ul>
-<h3 id="aaa">大数点云账户管理AAA</h3>
-<ul>
-<li><a href="dsd-aaa/index.html">AAA介绍</a>  </li>
-<li><a href="dsd-aaa/dev-guide-android.html">Android上集成AAA服务</a>  </li>
-<li><a href="dsd-aaa/dev-guide-ios.html">iOS上集成IM服务</a>  </li>
-<li><a href="dsd-aaa/aaa-api.html">AAA API</a>  </li>
-</ul>
-<h3 id="cloudfile">大数点云存储服务CloudFile</h3>
-<ul>
-<li><a href="dsd-cloudfile/index.html">CloudFile介绍</a>  </li>
-<li><a href="dsd-cloudfile/dev-guide-android.html">Android上集成CloudFile服务</a>  </li>
-<li><a href="dsd-cloudfile/dev-guide-ios.html">iOS上集成CloudFile服务</a>  </li>
-<li><a href="dsd-cloudfile/api.html">CloudFile API</a></li>
-</ul>
+<p>The following steps work with a fictional <a href="/docs/dsdb/concepts/glossary.html#database">database</a> called <code>food_data</code> and the <a href="/docs/dsdb/concepts/glossary.html#measurement">measurement</a> <code>orders</code>.
+<code>orders</code> has two <a href="/docs/dsdb/concepts/glossary.html#field">fields</a>, <code>phone</code> and <code>website</code>, which store the number of orders that arrive via each channel every 10 seconds.</p>
+<h3 id="prepare-the-database">Prepare the database</h3>
+<p>Before writing the data to the database <code>food_data</code>, we perform the following steps.</p>
+<blockquote>
+<p><strong>Note:</strong> We do this before inserting any data because DSDB only performs CQs on new data, that is, data with timestamps that occur after the time at which we create the CQ.</p>
+</blockquote>
+<h4 id="create-a-new">Create a new <code>DEFAULT</code> RP</h4>
+<p>When we initially <a href="/docs/dsdb/query_language/database_management.html#create-a-database-with-create-database">created the database</a> <code>food_data</code>, DSDB automatically generated an RP called <code>default</code> with an infinite duration and a replication factor set to the number of nodes in the cluster.
+<code>default</code> is also the <code>DEFAULT</code> RP for <code>food_data</code>; if we do not supply an explicit RP when we write a point to the database, DSDB writes the point to <code>default</code> and it keeps those data forever.</p>
+<p>We want the <code>DEFAULT</code> RP on <code>food_data</code> to be a two hour policy.
+To create our new RP, we enter the following command:</p>
+<pre><code class="language-sql">&gt; CREATE RETENTION POLICY two_hours ON food_data DURATION 2h REPLICATION 1 DEFAULT</code></pre>
+<p>That query makes the <code>two_hours</code> RP the <code>DEFAULT</code> RP in <code>food_data</code>.
+When we write data to the database and do not supply an RP in the write, DSDB automatically stores those data in the <code>two_hours</code> RP.
+Once those data have timestamps that are older than two hours, DSDB deletes those data.
+For a more detailed discussion on the <code>CREATE RETENTION POLICY</code> syntax, see <a href="/docs/dsdb/query_language/database_management.html#retention-policy-management">Database Management</a>.</p>
+<p>To clarify, we've included the results from the <a href="/docs/dsdb/query_language/schema_exploration.html#explore-retention-policies-with-show-retention-policies"><code>SHOW RETENTION POLICIES</code></a> query below.
+Notice that there are two RPs in <code>food_data</code> (<code>default</code> and <code>two_hours</code>) and that the third column identifies <code>two_hours</code> as the <code>DEFAULT</code> RP.</p>
+<pre><code class="language-sh">&gt; SHOW RETENTION POLICIES ON food_data
+name              duration    replicaN    default
+default        0                1               false
+two_hours     2h0m0s           1                true</code></pre>
+<h4 id="create-the-cq">Create the CQ</h4>
+<p>Now we create a CQ that automatically downsamples the 10 second level data to 30 minute level data:</p>
+<pre><code class="language-sql">&gt; CREATE CONTINUOUS QUERY cq_30m ON food_data BEGIN SELECT mean(website) AS mean_website,mean(phone) AS mean_phone INTO food_data."default".downsampled_orders FROM orders GROUP BY time(30m) END</code></pre>
+<p>That CQ makes DSDB automatically and periodically calculate the 30 minute average from the 10 second website order data and the 30 minute average from the 10 second phone order data.
+DSDB also writes the CQ's results into the measurement <code>downsampled_orders</code> and to the RP <code>default</code>; DSDB stores the aggregated data in <code>downsampled_orders</code> forever.</p>
+<blockquote>
+<p><strong>Note:</strong> You must specify the RP in the <code>INTO</code> clause to write the results of the query to an RP other than the <code>DEFAULT</code> RP.
+In the CQ above, we write the results of the query to the infinite RP <code>default</code> by fully qualifying the measurement.
+To fully qualify a measurement, specify its database and RP with <code>&lt;database_name&gt;."&lt;retention_policy&gt;".&lt;measurement_name&gt;</code>.
+If you do not fully qualify the measurement, DSDB writes the results of the query to the two hour RP <code>DEFAULT</code>.</p>
+</blockquote>
+<p>For a more detailed discussion on the <code>CREATE CONTINUOUS QUERY</code> syntax, see <a href="/docs/dsdb/query_language/continuous_queries.html">Continuous Queries</a>.</p>
+<h3 id="write-the-data-to-dsdb-and-see-the-results">Write the data to DSDB and see the results</h3>
+<p>Now that we've prepped <code>food_data</code>, we start writing the data to DSDB and let things run for a bit.
+After a while, we see that the database has two measurements: <code>orders</code> and <code>downsampled_orders</code>.</p>
+<p>A sample of the oldest data in <code>orders</code> - these are the raw 10 second data subject to the <code>two_hours</code> RP:</p>
+<pre><code class="language-sh">&gt; SELECT * FROM orders LIMIT 5
+name: orders
+-----------------
+time                                    phone   website
+2015-12-04T20:00:11Z     1       6
+2015-12-04T20:00:20Z        9        10
+2015-12-04T20:00:30Z        2        17
+2015-12-04T20:00:40Z        3        10
+2015-12-04T20:00:50Z        1        15</code></pre>
+<p>We submitted this query on 12/04/2015 at 22:08:19 UTC  - notice that the oldest data have timestamps that are no older than around two hours ago<sup><a href="#retentionconfig">1</a></sup>.</p>
+<p>A sample of the oldest data in <code>downsampled_orders</code> - these are the aggregated data subject to the <code>default</code> RP:</p>
+<pre><code class="language-sh">&gt; SELECT * FROM food_data."default".downsampled_orders LIMIT 5
+name: downsampled_orders
+------------------------
+time                           mean_phone              mean_website
+2015-12-03T22:30:00Z     4.318181818181818   9.254545454545454
+2015-12-03T23:00:00Z     4.266666666666667   9.827777777777778
+2015-12-03T23:30:00Z     4.766666666666667   9.677777777777777
+2015-12-04T00:00:00Z     4.405555555555556   8.5
+2015-12-04T00:30:00Z     4.788888888888889   9.383333333333333</code></pre>
+<p>Notice that the timestamps in <code>downsampled_orders</code> occur at 30 minute intervals and that the measurement has timestamps that are older than those in the <code>orders</code> measurement.
+The data in <code>downsampled_orders</code> aren't subject to the <code>two_hours</code> RP.</p>
+<blockquote>
+<p><strong>Note:</strong> You must specify the RP in your query to select data that are subject to an RP other than the <code>DEFAULT</code> RP.
+In the second <code>SELECT</code> statement, we get the CQ results by fully qualifying the measurement.
+To fully qualify a measurement, specify its database and RP with <code>&lt;database_name&gt;."&lt;retention_policy&gt;".&lt;measurement_name&gt;</code>.</p>
+</blockquote>
+<p>Using a combination of RPs and CQs, we've made DSDB automatically downsample data and expire old data. Now that you have a general understanding of how these features can work together, we recommend looking at the detailed documentation on <a href="/docs/dsdb/query_language/continuous_queries.html">CQs</a> and <a href="/docs/dsdb/query_language/database_management.html#retention-policy-management">RPs</a> to see all that they can do for you.</p>
+<p><a name="retentionconfig">1</a>: By default, DSDB checks to enforce an RP every 30 minutes so you may have data that are older than two hours between checks.
+The rate at which DSDB checks to enforce an RP is a configurable setting, see <a href="/docs/dsdb/administration/config.html#retention">Database Configuration</a>.</p>
       </div>
 
               <div class="tract"><img src="/images/tract.png"/></div>

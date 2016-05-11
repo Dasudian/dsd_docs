@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="大数点物联网开发者平台文档，基于大数点物联网平台，帮助开发者快速构建物联网应用">
-    <title>大数点文档中心</title>
+    <title>iOS上集成IM功能</title>
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
@@ -208,10 +208,10 @@
             </ul>
           </li>
           <li><a class="fold">IM &amp; Push Cloud</a>
-            <ul class="menu2" >
+            <ul class="menu2" style="display: block;">
               <li><a id="im-index" class="" href="/dsd-im/">IM服务简介</a></li>
               <li><a id="im-android" class="" href="/dsd-im/integrate-im-android.html">Android上集成IM功能</a></li>
-              <li><a id="im-ios" class="" href="/dsd-im/integrate-im-ios.html">iOS上集成IM功能</a></li>
+              <li><a id="im-ios" class="active" href="/dsd-im/integrate-im-ios.html">iOS上集成IM功能</a></li>
             </ul>
           </li>
           <li><a class="fold">MQ Cloud</a>
@@ -240,98 +240,351 @@
 
     <div class="side_right">
       <div class="doc">
-        <h1 id="">大数点开发者文档中心</h1>
-<p>欢迎来到大数点开发文档中心，请阅读以下章节：　　</p>
-<h3 id="data-hub">Data Hub</h3>
+        <h1 id="iosim">iOS上集成IM功能</h1>
+<h2 id="">集成前准备</h2>
+<p>到<a href="https://dev.dasudian.com/">大数点开发者平台</a>注册成为大数点合作伙伴并创建应用，每创建一个应用大数点平台会为其生成一个AppID和AppKey，AppID在大数点平台唯一标识一个应用，而AppKey可以被更新。AppID和AppKey将在您的代码里使用，保证您的应用与大数点平台间的安全传输。</p>
+<p>若您还没有注册，请使用如下Demo App作测试：</p>
+<p>Demo App:</p>
+<pre><code>AppID: 3_95F8TwKfyN7Lj35j8q_A
+AppKey: ec55784a5db3268a</code></pre>
+<h2 id="sdkdemo">下载SDK和Demo</h2>
+<p><a href="http://main.dasudian.com/downloads/sdk/latest/im-sdk-ios.zip">SDK</a><br />
+<a href="https://github.com/Dasudian/imsdk-example-ios/archive/v1.0.0.zip">Demo</a></p>
+<h2 id="-1">制作并上传推送证书</h2>
+<p>如果不需要实现离线推送功能，请忽略这步</p>
+<p>step1. 打开苹果开发者网站</p>
+<p><img src="images/ios-im_1.jpg" alt="Alt one" /></p>
+<p>step2. 从Member Center进入Certificates, Identifiers &amp; Profiles</p>
+<p><img src="images/ios-im_2.jpg" alt="Alt two" /></p>
+<p>step3. 选择要制作的推送证书</p>
+<p><img src="images/ios-im_3.jpg" alt="Alt three" /></p>
 <ul>
-<li><a href="dsd-datahub/index.html">Data Hub Overview</a>  </li>
-<li>SDK<br />
-&nbsp; - <a href="dsd-datahub/sdk/embeded_c.html">Embeded C API</a><br />
-&nbsp; - <a href="dsd-datahub/sdk/javascript.html">JavaScript API</a>  </li>
+<li>对于开发环境(sandbox)的推送证书, 请选择 Apple Push Notification service SSL (Sandbox) </li>
+<li>对于生产环境(production)的推送证书, 请选择 Apple Push Notification service SSL (Production)</li>
 </ul>
-<h3 id="ds-database">DS database</h3>
+<p>step4. 选择对应的APP ID
+<img src="images/ios-im_4.jpg" alt="Alt four" /></p>
+<p>step5. 根据Certificate Assistant的提示, 创建Certificate Request </p>
+<p><img src="images/ios-im_5.jpg" alt="Alt five" /></p>
+<p>step6. 上传上一步中创建的Certificate Request文件</p>
+<p><img src="images/ios-im_6.jpg" alt="Alt six" /></p>
+<p>step7. 上传完毕后, 推送证书就被正确生成了, 之后我们下载下来这个证书, 并双击导入系统</p>
+<p><img src="images/ios-im_7.jpg" alt="Alt seven" />  </p>
+<h2 id="-2">上传推送证书</h2>
+<p>step1. 打开Application –&gt; Utilities –&gt; Keychain Access应用, 我们会看到有刚刚我们制作好的推送证书。</p>
+<p>step2. 打开浏览器进入<a href="https://dev.dasudian.com">大数点开发者平台</a></p>
+<p>step3. 登录大数点开发者平台。</p>
+<p>step4. 输入了正确的账号后, 选择对应的APP。</p>
+<p>step5. 填写的证书名称。</p>
+<p>这个名称是个有意义的名字, 与推送直接相关. 上传之前导出的P12文件, 密码则为此P12文件的密码, 证书类型请根据具体情况选择 </p>
+<p>创建的是Apple Push Notification service SSL Sandbox请选择开发环境; Apple Push Notification service SSL Production请选择生产环境) </p>
+<p>step6. 上传 </p>
+<p>请注意正确选择是生产环境还是测试环境的证书</p>
 <ul>
-<li><a href="dsd-dsdb/index.html">DSDB Overview</a>  </li>
-<li>Introduction<br />
-&nbsp; - <a href="dsd-dsdb/introduction/installation.html">Installation</a><br />
-&nbsp; - <a href="dsd-dsdb/introduction//getting_started.html">Getting Started</a>  </li>
-<li>Administration<br />
-&nbsp; - <a href="dsd-dsdb/administration/authentication_and_authorization.html">Authentication and Authorization</a><br />
-&nbsp; - <a href="dsd-dsdb/administration/backup_and_restore.html">Backup and Restore</a><br />
-&nbsp; - <a href="dsd-dsdb/administration/config.html">Configuration</a><br />
-&nbsp; - <a href="dsd-dsdb/administration/logs.html">Logs</a><br />
-&nbsp; - <a href="dsd-dsdb/administration/statistics.html">Server Monitoring</a><br />
-&nbsp; - <a href="dsd-dsdb/administration/upgrading.html">Upgrading from previous versions</a>  </li>
-<li>Clients<br />
-&nbsp; - <a href="dsd-dsdb/clients/api.html">HTTP API Client Libraries</a>  </li>
-<li>Concepts
-&nbsp; - <a href="dsd-dsdb/concepts/key_concepts.html">Key Concepts</a><br />
-&nbsp; - <a href="dsd-dsdb/concepts/schema_and_data_layout.html">Schema and Data Layout</a><br />
-&nbsp; - <a href="dsd-dsdb/concepts/insights_tradeoffs.html">Design Insights and Tradeoffs</a><br />
-&nbsp; - <a href="dsd-dsdb/concepts/api.html">HTTP API Endpoints</a><br />
-&nbsp; - <a href="dsd-dsdb/concepts/storage_engine.html">Storage Engine</a><br />
-&nbsp; - <a href="dsd-dsdb/concepts/glossary.html">Glossary of Terms</a>  </li>
-<li>Data Sources<br />
-&nbsp; - <a href="dsd-dsdb/data_sources/diamond.html">Diamond</a><br />
-&nbsp; - <a href="dsd-dsdb/data_sources/opentsdb.html">OpenTSDB</a>  </li>
-<li>Guides<br />
-&nbsp; - <a href="dsd-dsdb/guides/clustering.html">Clustering</a><br />
-&nbsp; - <a href="dsd-dsdb/guides/downsampling_and_retention.html">Downsampling and Data Retention</a><br />
-&nbsp; - <a href="dsd-dsdb/guides/hardware_sizing.html">Hardware Sizing Guidelines</a><br />
-&nbsp; - <a href="dsd-dsdb/guides/querying_data.html">Querying Data</a><br />
-&nbsp; - <a href="dsd-dsdb/guides/writing_data.html">Writing Data</a>  </li>
-<li>Query Language<br />
-&nbsp; - <a href="dsd-dsdb/query_language/continuous_queries.html">Continuous Queries</a><br />
-&nbsp; - <a href="dsd-dsdb/query_language/data_exploration.html">Data Exploration</a><br />
-&nbsp; - <a href="dsd-dsdb/query_language/database_management.html">Database Management</a><br />
-&nbsp; - <a href="dsd-dsdb/query_language/functions.html">Functions</a><br />
-&nbsp; - <a href="dsd-dsdb/query_language/math_operators.html">Mathematical Operators</a><br />
-&nbsp; - <a href="dsd-dsdb/query_language/schema_exploration.html">Scheam Exploration</a><br />
-&nbsp; - <a href="dsd-dsdb/query_language/spec.html">Query Language Reference</a>  </li>
-<li>Sample Data<br />
-&nbsp; - <a href="dsd-dsdb/sample_data/data_download.html">Sample Data Download</a>  </li>
-<li>Tools<br />
-&nbsp; - <a href="dsd-dsdb/tools/shell.html">CLI/Shell</a><br />
-&nbsp; - <a href="dsd-dsdb/tools/web_admin.html">Web Admin Interface</a>  </li>
-<li>Troubleshooting<br />
-&nbsp; - <a href="dsd-dsdb/troubleshooting/frequently_encountered_issues.html">Frequently Encountered Issues</a><br />
-&nbsp; - <a href="dsd-dsdb/troubleshooting/system_monitoring.html">System Monitoring</a>  </li>
-<li>Write Protocols<br />
-&nbsp; - <a href="dsd-dsdb/write_protocols/collectd.html">Service - CollectD</a><br />
-&nbsp; - <a href="dsd-dsdb/write_protocols/graphite.html">Service - Graphite</a><br />
-&nbsp; - <a href="dsd-dsdb/write_protocols/json.html">JSON Protocol</a><br />
-&nbsp; - <a href="dsd-dsdb/write_protocols/line.html">Line Protocol</a><br />
-&nbsp; - <a href="dsd-dsdb/write_protocols/opentsdb.html">Service - OpenTSDB</a><br />
-&nbsp; - <a href="dsd-dsdb/write_protocols/udp.html">Service - UDP</a><br />
-&nbsp; - <a href="dsd-dsdb/write_protocols/write_syntax.html">Write Syntax</a>  </li>
+<li>在您阅读此文档时，我们假定您已经具备了基础的 iOS 应用开发经验，并能够理解相关基础概念。</li>
 </ul>
-<h3 id="dsd-appapi-container-dac">DSD App/API Container (DAC)</h3>
+<h2 id="sdk">下载SDK</h2>
 <ul>
-<li><a href="dsd-dac/index.html">DAC Overview</a>  </li>
-<li><a href="dsd-dac/dac_cloud_api_java.html">DAC JAVA API</a>  </li>
-<li><a href="dsd-dac/dac_cloud_api_c.html">DAC C API</a>  </li>
-<li><a href="dsd-dac/dac_cloud_api_cpp.html">DAC C++ API</a>  </li>
+<li>注: 由于iOS编译的特殊性，为了方便开发者使用，我们将i386 x86_64 armv7 armv7s arm64几个平台都合并到了一起，所以SDK的静态库(.a文件)比较大。实际集成编译出ipa后，根据调用功能的多少，实际只会增加2MB左右。 </li>
 </ul>
-<h3 id="im-amp-psh-cloud">IM &amp; Psh Cloud</h3>
+<h2 id="sdk-1">SDK目录讲解</h2>
+<p>从官网上下载下来的包中分为如下三部分：</p>
+<p>第一部分：libdsd_im.a是ios的sdk静态库，将其直接导入到工程目录下即可使用。</p>
+<p>第二部分：DSDIMClient.h是ios接口文件，里面有大数点IM提供的所有方法，将其直接导入到工程目录下即可使用。</p>
+<p>第三部分：RELEASENOTE.md当前版本的SDK功能说明和更新说明。</p>
+<h2 id="-3">配置工程</h2>
+<p>1.导入SDK </p>
+<p>将下载好的SDK文件拖入到项目中，并勾选上Destination </p>
+<p><img src="images/ios-im_8.jpg" alt="Alt ten" /></p>
+<p>2.设置工程属性</p>
+<p>向Build Phases → Link Binary With Libraries 中添加依赖库 </p>
+<p><img src="images/ios-im_9.jpg" alt="Alt event" /></p>
+<p>SDK依赖库有 libz.tbd.</p>
+<h2 id="sdk-2">集成SDK基础功能</h2>
+<p>SDK中的回调目前都是用代理实现的方法，方法简单易懂，方便用户实现各种回调的操作。</p>
+<p>SDK中基本客户端类提供了基本的单播，组播，广播等一系列方法，同时客户端类也定义了一系列的协议用于回调，比如收到单播消息的回调，收到广播消息的回调。客户端类功能简单易懂且功能全面。</p>
+<h2 id="sdk-3">初始化SDK</h2>
+<pre><code> /**
+ *  初始化sdk,退出时需要调用dsdDisConnect()来销毁分配得内存.
+ *
+ *  @param ocversion sdk的版本号
+ *  @param ocappid   注册的appid
+ *  @param ocappkey  注册app获取的appkey
+ *  @param ocuserid  userid
+ *  @param ocuserinfo 用户需要的统计信息
+ *  @param ocdevicetoken 设备的device token
+ *  @param ocserveraddress  用户填写的服务器地址(如果写nil，默认为大数点公有云服务器地址);
+ *  @return 成功返回当前的一个实例
+ */
+- (id)initWith:(NSString *)ocversion
+         appID:(NSString *)ocappid
+        appKey:(NSString *)ockey
+        userId:(NSString *)ocuserid
+      userinfo:(NSString *)ocuserinfo
+   devicetoken:(NSString *)ocdevicetoken
+ serverAddress:(NSString *)ocserveraddress;
+</code></pre>
+<h2 id="-4">登录</h2>
+<pre><code>
+  /**
+ *
+ *  重新连接/连接成功的回调
+ *  @param reason  连接成功，reason=5
+ *  @param data    服务器返回的数据，成功返回为nil
+ *  @param len      返回的data的数据长度
+ */
+
+@optional
+
+- (void)dsdCallbackConnect:(NSInteger)reason data:(NSString *)data lenth:(NSInteger)len;
+</code></pre>
+<h2 id="-5">重连</h2>
+<p>当掉线时，IOS SDK会自动重连，只需要监听重连相关的回调，无需进行任何操作。 </p>
+<h2 id="-6">退出登录</h2>
+<p>当主动退出登录的时候调用方法 ：- (void)dsdDisConnect;</p>
+<pre><code>  /**
+ *  退出登录，退出后将收不到远程推送的消息。
+ */
+- (void)dsdDisConnect;
+</code></pre>
+<h2 id="-7">消息格式定义</h2>
+<p>必须要指出的是不论是发消息还是接收消息，其中msg格式为：{“t”:&quot;*&quot; , &quot;b&quot;:&quot;string&quot;}这个字段中的t指的是消息类型（必填项），b指的是消息体我们发出的消息内容。</p>
+<p>t为0:发出的消息类型是文本类型。</p>
+<p>t为1:发出的消息类型是图片类型。</p>
+<p>t为2:发出的消息类型是语音类型。</p>
+<p>t为3:发出的消息类型是视频类型。</p>
+<p>t为4:发出的消息类型是html5类型。</p>
+<p>同时需要注意的是在异步发送消息的时候，messageid是必须要带的。</p>
+<h2 id="-8">异步单播发送消息：</h2>
+<p>在代码中导入客户端基本类 调用异步发送单播消息方法就OK了。
+使用大数点公有云服务器，非VIP用户可以发送的最大消息长度为1024个字节。</p>
+<pre><code>/**
+ *  异步发送单播消息,该方法不会阻塞主线程.
+ *
+ *  @param formuserid 用户id
+ *  @param userlist   消息接收者列表
+ *  @param number     消息接收者数量
+ *  @param message    消息内容，必须是json字符串
+ *  @param messageid  消息序列号，用户指定得msgid,如果发送成功,该msgid会在回调方法里返回给用户(字符串类型，最好不要重复)
+ */
+- (void)dsdAsyncSend:(NSString *)fromuserid
+           userlist:(NSArray *)userlist
+             number:(NSInteger )number
+            message:(NSString *)message
+          messageid:(NSString *)messageid;
+</code></pre>
+<h2 id="-9">同步单播发送消息：</h2>
+<pre><code>
+/**
+ *  同步发送单播消息.该方法会阻塞主线程.
+ *
+ *  @param formuserid   用户的id
+ *  @param userlist     消息接收者列表
+ *  @param number       消息接收者数量
+ *  @param message      消息内容，必须是字符串
+ *
+ *  @return   成功返回0，失败返回-1
+ */
+- (NSInteger)dsdSyncSend:(NSString *)fromuserid
+                userlist:(NSArray *)userlist
+                  number:(NSInteger)number
+                 message:(NSString *)message;
+</code></pre>
+<h2 id="-10">收到单播消息的回调：</h2>
+<pre><code> /**
+ *  收到单播消息的回调
+ *
+ *  @param reason  收到单播消息成功，reason=2
+ *  @param data    发送成功 返回data数据结构为：
+ {
+ "msg":"消息内容",
+ "from":"发送消息者",
+ "time":"发送消息的时间"
+ } 
+
+ *  @param len     返回的data的数据长度
+ */
+@optional
+- (void)dsdCallbackReceive:(NSInteger)reason data:(NSString *)data lenth:(NSInteger)len;
+</code></pre>
+<h2 id="-11">同步发送组播消息</h2>
+<pre><code>/**
+ *  同步发送组播消息,该方法会阻塞主线程.
+ *
+ *  @param formuserid  用户id
+ *  @param groupid     group id
+ *  @param message     消息内容，必须是json字符串类型
+ *
+ *  @return 成功返回0，失败返回-1。
+ */
+
+- (NSInteger )dsdSyncMulticast:(NSString *)fromuserid
+                       groupid:(NSString *)groupid
+                       message:(NSString *)message;
+</code></pre>
+<h2 id="-12">异步发送组播消息</h2>
+<pre><code>/**
+ *  异步发送组播消息,该方法不会阻塞主线程.
+ *
+ *  @param formuserid 用户id
+ *  @param groupid    groupid
+ *  @param message    消息内容,必须是json字符串格式
+ *  @param messageid  消息序列号，用户指定得msgid,如果发送成功,该msgid会在回调方法里返回给用户(字符串类型，最好不要重复)
+
+ */
+
+- (void)dsdAsyncMulticast:(NSString *)fromuserid
+                            groupid:(NSString *)groupid
+                            message:(NSString *)message
+                          messageid:(NSString *)messageid;
+</code></pre>
 <ul>
-<li><a href="dsd-im/index.html">IM服务简介</a>  </li>
-<li><a href="dsd-im/integrate-im-android.html">Android上集成IM服务</a>  </li>
-<li><a href="dsd-im/integrate-im-ios.html">iOS上集成IM服务</a>  </li>
+<li>特别注意的地方是异步发送组播最后多了一个参数messageid，该missageid会在所有异步发送消息的代理回调方法里的参数data中返回给用户，开发者可以通过messageid来知道哪些消息发送成功了。</li>
 </ul>
-<h3 id="aaa">大数点云账户管理AAA</h3>
-<ul>
-<li><a href="dsd-aaa/index.html">AAA介绍</a>  </li>
-<li><a href="dsd-aaa/dev-guide-android.html">Android上集成AAA服务</a>  </li>
-<li><a href="dsd-aaa/dev-guide-ios.html">iOS上集成IM服务</a>  </li>
-<li><a href="dsd-aaa/aaa-api.html">AAA API</a>  </li>
-</ul>
-<h3 id="cloudfile">大数点云存储服务CloudFile</h3>
-<ul>
-<li><a href="dsd-cloudfile/index.html">CloudFile介绍</a>  </li>
-<li><a href="dsd-cloudfile/dev-guide-android.html">Android上集成CloudFile服务</a>  </li>
-<li><a href="dsd-cloudfile/dev-guide-ios.html">iOS上集成CloudFile服务</a>  </li>
-<li><a href="dsd-cloudfile/api.html">CloudFile API</a></li>
-</ul>
+<h2 id="-13">收到组播消息的回调</h2>
+<pre><code>/**
+ *   收到组播消息的回调
+ *
+ *  @param reason 收到组播消息成功，reason=3
+ *  @param data   发送成功 返回data数据结构为：
+ {
+ "msg":"消息内容",
+ "from":"发送消息者",
+ "time":"发送消息的时间"
+ "groupid":"组id"
+
+ }
+ *  @param len    返回的data的数据长度
+ */
+@optional
+- (void)dsdCallbackReceiveGroup:(NSInteger)reason data:(NSString *)data lenth:(NSInteger)len;
+</code></pre>
+<h2 id="-14">同步发送广播消息</h2>
+<pre><code>/**
+ *  同步得发送广播消息,该方法会阻塞主线程.
+ *
+ *  @param formuserid  发送者id
+ *  @param message     消息内容，必须是json字符串格式
+ *
+ *  @return  成功返回0，失败返回-1；
+ */
+
+- (NSInteger)dsdSyncBroadcast:(NSString *)fromuserid message:(NSString *)message;
+</code></pre>
+<h2 id="-15">异步发送广播消息</h2>
+<pre><code>/**
+ *  异步发送广播消息,该方法不会阻塞主线程
+ *
+ *  @param formuserid  发送者id
+ *  @param message     消息内容，必须是json字符串格式
+ *  @param messageid   消息序列号，用户指定得msgid,如果发送成功,该msgid会在回调方法里返回给用户(字符串类型，最好不要重复)
+
+ */
+
+- (void)dsdAsyncBroadcast:(NSString *)fromuserid
+                            message:(NSString *)message
+                          messageid:(NSString *)messageid;
+
+        一般选择此方法发送广播消息。</code></pre>
+<h2 id="-16">收到广播消息的回调</h2>
+<pre><code>/**
+ *  收到广播消息的回调
+ *
+ *  @param reason 收到广播消息成功，reason=4
+ *  @param data   发送成功 返回data数据结构为：
+ {
+
+ "msg":"消息内容",
+ "from":"发送消息者",
+ "time":"发送消息的时间"
+
+ }
+ *  @param len    返回的data的数据长度
+ */
+@optional
+- (void)dsdCallbackReceiveBroad:(NSInteger)reason data:(NSString *)data lenth:(NSInteger)len;
+</code></pre>
+<h2 id="-17">创建组</h2>
+<pre><code>/**
+ *  创建组,该方法会阻塞主线程.
+ *
+ *  @param creatuserid  创建者的userid
+ *  @param groupName    组名，字符串类型
+ *
+ *  @return   成功返回组id，失败返回nil。
+ */
+
+- (NSString *)dsdCreateGroup:(NSString *)creatuserid groupName:(NSString *)groupName;
+</code></pre>
+<h2 id="-18">加入组</h2>
+<pre><code>/**
+ *  加入组,该方法会阻塞主线程
+ *
+ *  @param joinuserid  加入者的userid
+ *  @param groupid     加入组的组id，必须是字符串类型
+ *
+ *  @return 成功返回0，失败返回-1.
+ */
+
+- (NSInteger) dsdJoinGroup:(NSString *)joinuserid groupid:(NSString *)groupid;
+</code></pre>
+<h2 id="-19">离开组</h2>
+<pre><code>/**
+ *  离开组,该方法会阻塞主线程.
+ *
+ *  @param leaveuserid  离开者的userid
+ *  @param groupid      组的id
+ *
+ *  @return 成功返回0，失败返回-1.
+ */
+- (NSInteger) dsdLeaveGroup:(NSString *)leaveuserid groupid:(NSString *)groupid;
+</code></pre>
+<h2 id="-20">将某人踢出组</h2>
+<pre><code>/**
+ *  将某人踢出组
+ *
+ *  @param creatuserid  组的创建者id
+ *  @param groupid      组的id
+ *  @param groupmember  被踢出的人的id
+ *
+ *  @return 成功返回0，失败返回-1.
+ */
+- (NSInteger)dsdKickOutGroup:(NSString *)creatuserid
+                     groupid:(NSString *)groupid
+                 groupmember:(NSString *)groupmember;
+</code></pre>
+<h2 id="-21">踢出组的回调：</h2>
+<pre><code>/**
+ *  踢出组的回调
+ *
+ *  @param reason  踢出成功，reason=6
+ *  @param data    成功，data为nil
+ *  @param len     返回的data的数据长度
+ */
+@optional
+- (void)dsdCallbackKickOutGroup:(NSInteger)reason data:(NSString *)data lenth:(NSInteger)len;
+</code></pre>
+<h2 id="-22">发送异步消息的回调</h2>
+<pre><code>/**
+ *  发送所有的异步消息的回调
+ *
+ *  @param reason 发送异步消息成功，reason=1；
+ *  @param data   发送成功 返回data为messageid
+ *  @param len    返回的data的数据长度。
+ */
+@optional
+- (void)dsdCallbackAsyncSend:(NSInteger)reason data:(NSString *)data lenth:(NSInteger)len;
+</code></pre>
+<h3 id="sdk-4">此方法是sdk层封装的一个转换方法，用户可以用自己的方法去实现解析接收到的消息。</h3>
+<pre><code>/**
+ *  增加的一种数据转化方法，可以自己去解析回调方法中传回来的data值。
+ *
+ *  @param jsonString 传入的字符串
+ *
+ *  @return 返回解析后的字典
+ */
+- (NSDictionary *)dsdJsonToDict:(NSString *)jsonString;
+</code></pre>
       </div>
 
               <div class="tract"><img src="/images/tract.png"/></div>

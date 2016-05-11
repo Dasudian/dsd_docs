@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="大数点物联网开发者平台文档，基于大数点物联网平台，帮助开发者快速构建物联网应用">
+    <title>Data Exploration</title>
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/doc.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/highlight.js/9.2.0/styles/dark.min.css" rel="stylesheet">
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+    <script>
+      $(function() {
+        // $(".document .side_left ul li a").click(function() {
+        //   $(".document .side_left ul li a").removeClass("active");
+        //   $(this).addClass("active");
+        // })
+        $(".menu1>li>a.fold").click(function(){
+				  $(".menu1 a.fold").css("background-image","url(/images/number_down.png)");
+				  $(".menu2,.menu3").slideUp();
+			  })
+			  $(".menu2>li>a.fold").click(function(){
+          $(".menu2 a.fold").css("background-image","url(/images/number_down.png)");
+          $(".menu3").slideUp();
+        })
+        $(".fold").click(function() {
+          if ($(this).next("ul").is(":hidden")) {
+            $(this).css("background-image", "url(/images/number_up.png)");
+            $(this).next("ul").slideDown();
+          } else {
+            $(this).css("background-image", "url(/images/number_down.png)");
+            $(this).next("ul").slideUp();
+          }
+        })
+      })
+      $(function(){
+			  $(".side_right").scroll( function() { 
+				  var scrollValue=$(".side_right").scrollTop();
+				  scrollValue > 100 ? $('div[class=scroll]').fadeIn():$('div[class=scroll]').fadeOut();
+			  });	
+			  $('#scroll').click(function(){
+				  $(".side_right").animate({scrollTop:0},200);	
+			  });	
+		  })
+    </script>
+    <link href='//fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="https://dev.dasudian.com"><img src="/images/logo.png"/></a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="http://dasudian.com/datahub" >IoT Data Hub</a></li>
+            <li><a href="http://dasudian.com/product_service" >产品服务</a></li>
+            <li><a href="/" >文档</a></li>
+            <li><a href="http://dasudian.com/price" >定价</a></li>
+            <li><a href="https://www.github.com/Dasudian"  target="_blank" >社区</a></li>
+            <li><a href="https://dev.dasudian.com/login/view" class="btn-small" target="_blank">登录</a></li>
+            <li><a href="https://dev.dasudian.com/sign_up/view" class="btn-small" target="_blank">注册</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid0 document">
+      <div class="side_left">
+        <ul class="menu1">
+          <li><a class="fold">大数点物联网平台简介</a>
+            <ul class="menu2" >
+              <li><a id="intro-index" class="" href="/dsd-intro/index.html">简介</a></li>
+            </ul>
+          </li>
+          <li><a class="fold">Data Hub</a>
+            <ul class="menu2" >
+              <li><a id="datahub-index" class="" href="/dsd-datahub/">Data Hub Overview</a></li>
+              <li><a class="fold">SDK</a>
+                <ul class="menu3" >
+                  <li><a id="datahub-sdk-js" class="" href="/dsd-datahub/sdk/javascript.html">JavaScript</a></li>
+                  <li><a id="datahub-sdk-embededc" class="" href="/dsd-datahub/sdk/embeded_c.html">Embeded C</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><a class="fold">DSD Database (DSDB)</a>
+            <ul class="menu2" style="display: block;">
+              <li><a id="dsdb-index" class="" href="/dsd-dsdb/">DSDB Overview</a></li>
+              <li><a class="fold">Introduction</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-intro-overview" class="" href="/dsd-dsdb/introduction/index.html">Overview</a></li>
+                  <li><a id="dsdb-intro-installation" class="" href="/dsd-dsdb/introduction/installation.html">Installation</a></li>
+                  <li><a id="dsdb-intro-start" class="" href="/dsd-dsdb/introduction/getting_started.html">Getting Started</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Administration</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-admin-overview" class="" href="/dsd-dsdb/administration/index.html">administration Overview</a></li>
+                  <li><a id="dsdb-authent&amp;authori" class="" href="/dsd-dsdb/administration/authentication_and_authorization.html">Authentication&Authorization</a></li>
+                  <li><a id="dsdb-backup&amp;restore" class="" href="/dsd-dsdb/administration/backup_and_restore.html">Backup&Restore</a></li>
+                  <li><a id="dsdb-configuration" class="" href="/dsd-dsdb/administration/config.html">Configuration</a></li>
+                  <li><a id="dsdb-logs" class="" href="/dsd-dsdb/administration/logs.html">Logs</a></li>
+                  <li><a id="dsdb-monitoring" class="" href="/dsd-dsdb/administration/statistics.html">Server Monitoring</a></li>
+                  <li><a id="dsdb-upgrade" class="" href="/dsd-dsdb/administration/upgrading.html">Upgrading</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Clients</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-clients-overview" class="" href="/dsd-dsdb/clients/index.html">Clients Overview</a></li>
+                  <li><a id="dsdb-clients-httpapi" class="" href="/dsd-dsdb/clients/api.html">HTTP API</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Concepts</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-concepts-overview" class="" href="/dsd-dsdb/concepts/index.html">Concepts Overview</a></li>
+                  <li><a id="dsdb-key-concepts" class="" href="/dsd-dsdb/concepts/key_concepts.html">Key Concepts</a></li>
+                  <li><a id="dsdb-concepts-arch" class="" href="/dsd-dsdb/concepts/how_dsdb_works.html">Architecture</a></li>
+                  <li><a id="dsdb-concepts-schema-data-layout" class="" href="/dsd-dsdb/concepts/schema_and_data_layout.html">Scheam Design</a></li>
+                  <li><a id="dsdb-concepts-insights-tradeoffs" class="" href="/dsd-dsdb/concepts/insights_tradeoffs.html">Insights Tradeoffs</a></li>
+                  <li><a id="dsdb-concepts-api-endpoints" class="" href="/dsd-dsdb/concepts/api.html">API Endpoints&Ports</a></li>
+                  <li><a id="dsdb-concepts-storage-engine" class="" href="/dsd-dsdb/concepts/storage_engine.html">Storage Engine</a></li>
+                  <li><a id="dsdb-concepts-glossary" class="" href="/dsd-dsdb/concepts/glossary.html">Glossary of Terms</a></li>
+                  <li><a id="dsdb-concepts-vs-sql" class="" href="/dsd-dsdb/concepts/crosswalk.html">Comparison to SQL</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Data Sources</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-datasource-diamond" class="" href="/dsd-dsdb/data_sources/diamond.html">Diamond</a></li>
+                  <li><a id="dsdb-datasource-opentsdb" class="" href="/dsd-dsdb/data_sources/opentsdb.html">OpenTSDB</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Guides</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-guides-clustering" class="" href="/dsd-dsdb/guides/clustering.html">Clustering</a></li>
+                  <li><a id="dsdb-guides-ddr" class="" href="/dsd-dsdb/guides/downsampling_and_retention.html">Downsampling and Data Retention</a></li>
+                  <li><a id="dsdb-guides-hsg" class="" href="/dsd-dsdb/guides/hardware_sizing.html">Hardware Sizing Guidelines</a></li>
+                  <li><a id="dsdb-guides-querying" class="" href="/dsd-dsdb/guides/querying_data.html">Querying Data</a></li>
+                  <li><a id="dsdb-guides-writing" class="" href="/dsd-dsdb/guides/writing_data.html">Writing Data</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Query Language</a>
+                <ul class="menu3" style="display: block;">
+                  <li><a id="dsdb-querylang-overview" class="" href="/dsd-dsdb/query_language/index.html">Overview</a></li>
+                  <li><a id="dsdb-querylang-dataexp" class="active" href="/dsd-dsdb/query_language/data_exploration.html">Data Exploration</a></li>
+                  <li><a id="dsdb-querylang-scheamexp" class="" href="/dsd-dsdb/query_language/schema_exploration.html">Schema Exploration</a></li>
+                  <li><a id="dsdb-querylang-func" class="" href="/dsd-dsdb/query_language/functions.html">Functions</a></li>
+                  <li><a id="dsdb-querylang-contq" class="" href="/dsd-dsdb/query_language/continuous_queries.html">Continuous Queries</a></li>
+                  <li><a id="dsdb-querylang-spec" class="" href="/dsd-dsdb/query_language/spec.html">Query Language Reference</a></li>
+                  <li><a id="dsdb-querylang-mgmt" class="" href="/dsd-dsdb/query_language/database_management.html">Database Management</a></li>
+                  <li><a id="dsdb-querylang-math" class="" href="/dsd-dsdb/query_language/math_operators.html">Mathematical Operators</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Sample Data</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-sampledata-down" class="" href="/dsd-dsdb/sample_data/data_download.html">Sample Data Download</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Tools</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-tools-overview" class="" href="/dsd-dsdb/tools/index.html">Tools Overview</a></li>
+                  <li><a id="dsdb-tools-shell" class="" href="/dsd-dsdb/tools/shell.html">CLI/Shell</a></li>
+                  <li><a id="dsdb-tools-webadmin" class="" href="/dsd-dsdb/tools/web_admin.html">Web Admin Interface</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Write Protocols</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-writepro-overview" class="" href="/dsd-dsdb/write_protocols/">Overview</a></li>
+                  <li><a id="dsdb-writepro-line" class="" href="/dsd-dsdb/write_protocols/line.html">Line Protocol</a></li>
+                  <li><a id="dsdb-writepro-syntax" class="" href="/dsd-dsdb/write_protocols/write_syntax.html">Write Syntax</a></li>
+                  <li><a id="dsdb-writepro-json" class="" href="/dsd-dsdb/write_protocols/json.html">JSON Protocol</a></li>
+                  <li><a id="dsdb-writepro-udp" class="" href="/dsd-dsdb/write_protocols/udp.html">Service - UDP</a></li>
+                  <li><a id="dsdb-writepro-graphite" class="" href="/dsd-dsdb/write_protocols/graphite.html">Service - Graphite</a></li>
+                  <li><a id="dsdb-writepro-opentsdb" class="" href="/dsd-dsdb/write_protocols/opentsdb.html">Servcie - OpenTSDB</a></li>
+                  <li><a id="dsdb-writepro-collectd" class="" href="/dsd-dsdb/write_protocols/collectd.html">Service - CollectD</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Troubleshooting</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-troubleshoot-overview" class="" href="/dsd-dsdb/troubleshooting/index.html">Troubleshooting Overview</a></li>
+                  <li><a id="dsdb-troubleshoot-fei" class="" href="/dsd-dsdb/troubleshooting/frequently_encountered_issues.html">Frequently Encountered Issues</a></li>
+                  <li><a id="dsdb-troubleshoot-monitor" class="" href="/dsd-dsdb/troubleshooting/system_monitoring.html">System Monitoring</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><a class="fold">DSD App/API Container (DAC)</a>
+            <ul class="menu2" >
+              <li><a id="dac-index" class="" href="/dsd-dac/">DAC介绍</a></li>
+              <li><a id="dac-java-api" class="" href="/dsd-dac/dac_cloud_api_java.html">DAC Java API</a></li>
+              <li><a id="dac-c-api" class="" href="/dsd-dac/dac_cloud_api_c.html">DAC C API</a></li>
+              <li><a id="dac-cpp-api" class="" href="/dsd-dac/dac_cloud_api_cpp.html">DAC C++ API</a></li>
+            </ul>
+          </li>
+          <li><a class="fold">IM &amp; Push Cloud</a>
+            <ul class="menu2" >
+              <li><a id="im-index" class="" href="/dsd-im/">IM服务简介</a></li>
+              <li><a id="im-android" class="" href="/dsd-im/integrate-im-android.html">Android上集成IM功能</a></li>
+              <li><a id="im-ios" class="" href="/dsd-im/integrate-im-ios.html">iOS上集成IM功能</a></li>
+            </ul>
+          </li>
+          <li><a class="fold">MQ Cloud</a>
+            <ul class="menu2" >
+              <li><a id="mq-index" class="" href="/dsd-mq/">MQ服务简介</a></li>
+            </ul>
+          </li>
+          <li><a class="fold">大数点云账户管理AAA Cloud</a>
+            <ul class="menu2" >
+              <li><a id="aaa-index" class="" href="/dsd-aaa/">AAA简介</a></li>
+              <li><a id="aaa-android" class="" href="/dsd-aaa/dev-guide-android.html">Android上集成AAA服务</a></li>
+              <li><a id="aaa-ios" class="" href="/dsd-aaa/dev-guide-ios.html">iOS上集成AAA服务</a></li>
+              <li><a id="aaa-api" class="" href="/dsd-aaa/aaa-api.html">AAA API</a></li>
+            </ul>
+          </li>
+          <li><a class="fold">大数点云存储CloudFile</a>
+            <ul class="menu2" >
+              <li><a id="cf-index" class="" href="/dsd-cloudfile/">CloudFile介绍</a></li>
+              <li><a id="cf-android" class="" href="/dsd-cloudfile/dev-guide-android.html">Android上集成CloudFile服务</a></li>
+              <li><a id="cf-ios" class="" href="/dsd-cloudfile/dev-guide-ios.html">iOS上集成CloudFile服务</a></li>
+              <li><a id="cf-api" class="" href="/dsd-cloudfile/cf-api.html">CloudFile API</a></li>
+            </ul>
+          </li>
+        </ul>
+    </div>
+
+    <div class="side_right">
+      <div class="doc">
+        <h1 id="data-exploration">Data Exploration</h1>
+<p>DSDBQL is an SQL-like query language for interacting with data in DSDB.
+The following sections cover useful query syntax for exploring your data.</p>
+<p>The basics:</p>
+<ul>
+<li><a href="/dsdb/query_language/data_exploration.html#the-select-statement-and-the-where-clause">The <code>SELECT</code> statement and the <code>WHERE</code> clause</a><br />
+&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/dsdb/query_language/data_exploration.html#the-basic-select-statement">The basic <code>SELECT</code> statement</a><br />
+&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/dsdb/query_language/data_exploration.html#the-select-statement-and-arithmetic">The <code>SELECT</code> statement and arithmetic</a><br />
+&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/dsdb/query_language/data_exploration.html#the-where-clause">The <code>WHERE</code> clause</a></li>
+<li><a href="/dsdb/query_language/data_exploration.html#the-group-by-clause">The <code>GROUP BY</code> clause</a><br />
+&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/dsdb/query_language/data_exploration.html#the-basic-group-by-clause">The basic <code>GROUP BY</code> clause</a><br />
+&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/dsdb/query_language/data_exploration.html#the-group-by-clause-and-fill">The <code>GROUP BY</code> clause and <code>fill()</code></a>  </li>
+<li><a href="/dsdb/query_language/data_exploration.html#the-into-clause">The <code>INTO</code> clause</a><br />
+&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/dsdb/query_language/data_exploration.html#relocate-data">Relocate data</a><br />
+&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/dsdb/query_language/data_exploration.html#downsample-data">Downsample data</a>    </li>
+</ul>
+<p>Limit and sort your results:</p>
+<ul>
+<li><a href="/dsdb/query_language/data_exploration.html#limit-query-returns-with-limit-and-slimit">Limit query returns with <code>LIMIT</code> and <code>SLIMIT</code></a><br />
+&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/dsdb/query_language/data_exploration.html#limit-the-number-of-results-returned-per-series-with-limit">Limit results per series with <code>LIMIT</code></a><br />
+&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/dsdb/query_language/data_exploration.html#limit-the-number-of-series-returned-with-slimit">Limit the number of series returned with <code>SLIMIT</code></a>  </li>
+<li><a href="/dsdb/query_language/data_exploration.html#sort-query-returns-with-order-by-time-desc">Sort query returns with <code>ORDER BY time DESC</code></a></li>
+<li><a href="/dsdb/query_language/data_exploration.html#paginate-query-returns-with-offset">Paginate query returns with <code>OFFSET</code></a></li>
+</ul>
+<p>General tips on query syntax:</p>
+<ul>
+<li><a href="/dsdb/query_language/data_exploration.html#multiple-statements-in-queries">Multiple statements in queries</a></li>
+<li><a href="/dsdb/query_language/data_exploration.html#merge-series-in-queries">Merge series in queries</a></li>
+<li><a href="/dsdb/query_language/data_exploration.html#time-syntax-in-queries">Time syntax in queries</a><br />
+&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/dsdb/query_language/data_exploration.html#relative-time">Relative time</a><br />
+&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/dsdb/query_language/data_exploration.html#absolute-time">Absolute time</a></li>
+<li><a href="/dsdb/query_language/data_exploration.html#regular-expressions-in-queries">Regular expressions in queries</a><br />
+&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/dsdb/query_language/data_exploration.html#regular-expressions-and-selecting-measurements">Regular expressions and selecting measurements</a><br />
+&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/dsdb/query_language/data_exploration.html#regular-expressions-and-specifying-tags">Regular expressions and specifying tags</a></li>
+</ul>
+<p>The examples below query data using <a href="/dsdb/tools/shell.html">DSDB's Command Line Interface (CLI)</a>.
+See the <a href="/dsdb/guides/querying_data.html">Querying Data</a> guide for how to query data directly using the HTTP API.</p>
+<h4 id="sample-data">Sample data</h4>
+<p><br>
+If you'd like to follow along with the queries in this document, see <a href="/dsdb/sample_data/data_download.html">Sample Data</a> for how to download and write the data to DSDB.</p>
+<p>This document uses publicly available data from the <a href="http://tidesandcurrents.noaa.gov/stations.html?type=Water+Levels">National Oceanic and Atmospheric Administration's (NOAA) Center for Operational Oceanographic Products and Services</a>.
+The data include water levels (ft) collected every six seconds at two stations (Santa Monica, CA (ID 9410840) and Coyote Creek, CA (ID 9414575)) over the period from August 18, 2015 through September 18, 2015.</p>
+<p>A subsample of the data in the measurement <code>h2o_feet</code>:</p>
+<pre><code>name: h2o_feet
+--------------
+time                             level description        location         water_level
+2015-08-18T00:00:00Z       below 3 feet               santa_monica     2.064
+2015-08-18T00:00:00Z       between 6 and 9 feet    coyote_creek    8.12
+2015-08-18T00:06:00Z       between 6 and 9 feet    coyote_creek    8.005
+2015-08-18T00:06:00Z       below 3 feet               santa_monica     2.116
+2015-08-18T00:12:00Z       between 6 and 9 feet    coyote_creek    7.887
+2015-08-18T00:12:00Z       below 3 feet               santa_monica     2.028
+2015-08-18T00:18:00Z       between 6 and 9 feet    coyote_creek    7.762
+2015-08-18T00:18:00Z       below 3 feet               santa_monica     2.126
+2015-08-18T00:24:00Z       between 6 and 9 feet    coyote_creek    7.635
+2015-08-18T00:24:00Z       below 3 feet               santa_monica     2.041</code></pre>
+<p>The <a href="/dsdb/concepts/glossary.html#series">series</a> are made up of the <a href="/dsdb/concepts/glossary.html#measurement">measurement</a> <code>h2o_feet</code> and the <a href="/dsdb/concepts/glossary.html#tag-key">tag key</a> <code>location</code> with the <a href="/dsdb/concepts/glossary.html#tag-value">tag values</a> <code>santa_monica</code> and <code>coyote_creek</code>.
+There are two <a href="/dsdb/concepts/glossary.html#field">fields</a>: <code>water_level</code> which stores floats and <code>level description</code> which stores strings.
+All of the data are in the <code>NOAA_water_database</code> database.</p>
+<blockquote>
+<p><strong>Disclaimer:</strong> The <code>level description</code> field isn't part of the original NOAA data - we snuck it in there for the sake of having a field key with a special character and string <a href="/dsdb/concepts/glossary.html#field-value">field values</a>.</p>
+</blockquote>
+<h2 id="the-select-statement-and-the">The SELECT statement and the <code>WHERE</code> clause</h2>
+<p>DSDBQL's <code>SELECT</code> statement follows the form of an SQL <code>SELECT</code> statement where the <code>WHERE</code> clause is optional:</p>
+<pre><code class="language-sql">SELECT &lt;stuff&gt; FROM &lt;measurement_name&gt; WHERE &lt;some_conditions&gt;</code></pre>
+<h3 id="the-basic">The basic <code>SELECT</code> statement</h3>
+<hr />
+<p>The following three examples return everything from the measurement <code>h2o_feet</code> (see the CLI response at the end of this section).
+While they all return the same result, they get to that result in slightly different ways and serve to introduce some of the specifics of the <code>SELECT</code> syntax:</p>
+<p>Select everything from <code>h2o_feet</code> with <code>*</code>:</p>
+<pre><code class="language-sql"> &gt; SELECT * FROM h2o_feet</code></pre>
+<p>Select everything from <code>h2o_feet</code> by specifying each tag key and field key:</p>
+<pre><code class="language-sql"> &gt; SELECT "level description",location,water_level FROM h2o_feet</code></pre>
+<ul>
+<li>
+<p>Separate multiple fields and tags of interest with a comma.
+Note that you must specify at least one field in the <code>SELECT</code> statement.</p>
+</li>
+<li>
+<p>Leave identifiers unquoted unless they start with a digit, contain characters other than <code>[A-z,0-9,_]</code>, or if they are an <a href="https://github.com/dsdb/dsdb/blob/master/influxql/influxql.html#keywords">DSDBQL keyword</a> - then you need to double quote them.
+Identifiers are database names, retention policy names, user names, measurement names, tag keys, and field keys.</p>
+<p>Select everything from <code>h2o_feet</code> by fully qualifying the measurement:</p>
+<pre><code class="language-sql">&gt; SELECT * FROM NOAA_water_database."default".h2o_feet</code></pre>
+</li>
+<li>Fully qualify a measurement if you wish to query data from a different database or from a retention policy other than the default <a href="/dsdb/concepts/glossary.html#retention-policy">retention policy</a>.
+A fully qualified measurement takes the following form:  
+<pre><code>"&lt;database&gt;"."&lt;retention policy&gt;"."&lt;measurement&gt;"</code></pre></li>
+</ul>
+<p>The CLI response for all three queries:</p>
+<pre><code>name: h2o_feet
+--------------
+time                             level description        location         water_level
+2015-08-18T00:00:00Z       below 3 feet               santa_monica     2.064
+2015-08-18T00:00:00Z       between 6 and 9 feet    coyote_creek    8.12
+2015-08-18T00:06:00Z       between 6 and 9 feet    coyote_creek    8.005
+2015-08-18T00:06:00Z       below 3 feet               santa_monica     2.116
+[...]
+2015-09-18T21:24:00Z       between 3 and 6 feet    santa_monica    5.013
+2015-09-18T21:30:00Z       between 3 and 6 feet    santa_monica    5.01
+2015-09-18T21:36:00Z       between 3 and 6 feet    santa_monica    5.066
+2015-09-18T21:42:00Z       between 3 and 6 feet    santa_monica    4.938</code></pre>
+<h3 id="the">The <code>SELECT</code> statement and arithmetic</h3>
+<hr />
+<p>Perform basic arithmetic operations on fields that store floats and integers.</p>
+<p>Add two to the field <code>water_level</code>:</p>
+<pre><code class="language-sql">&gt; SELECT water_level + 2 FROM h2o_feet</code></pre>
+<p>CLI response:</p>
+<pre><code class="language-sh">name: h2o_feet
+--------------
+time
+2015-08-18T00:00:00Z    4.064
+2015-08-18T00:00:00Z    10.12
+[...]
+2015-09-18T21:36:00Z    7.066
+2015-09-18T21:42:00Z    6.938</code></pre>
+<p>Another example that works:</p>
+<pre><code class="language-sql">&gt; SELECT (water_level * 2) + 4 from h2o_feet</code></pre>
+<p>CLI response:</p>
+<pre><code class="language-sh">name: h2o_feet
+--------------
+time
+2015-08-18T00:00:00Z    8.128
+2015-08-18T00:00:00Z    20.24
+[...]
+2015-09-18T21:36:00Z    14.132
+2015-09-18T21:42:00Z    13.876</code></pre>
+<blockquote>
+<p><strong>Note:</strong> When performing arithmetic on fields that store integers be aware that DSDB casts those integers to floats for all mathematical operations.
+This can lead to <a href="/dsdb/troubleshooting/frequently_encountered_issues.html#working-with-really-big-or-really-small-integers">overflow issues</a> for some numbers.</p>
+</blockquote>
+<h3 id="the-1">The <code>WHERE</code> clause</h3>
+<hr />
+<p>Use a <code>WHERE</code> clause to filter your data based on tags, time ranges, and/or field values.</p>
+<p><strong>Tags</strong><br />
+Return data where the tag key <code>location</code> has the tag value <code>santa_monica</code>:  </p>
+<pre><code class="language-sql">&gt; SELECT water_level FROM h2o_feet WHERE location = 'santa_monica'</code></pre>
+<ul>
+<li>Always single quote tag values in queries - they are strings.
+Note that double quotes do not work when specifying tag values and can cause queries to silently fail.</li>
+</ul>
+<blockquote>
+<p><strong>Note:</strong> Tags are indexed so queries on tag keys or tag values are more performant than queries on fields.</p>
+</blockquote>
+<p>Return data where the tag key <code>location</code> has no tag value (more on regular expressions <a href="/dsdb/query_language/data_exploration.html#regular-expressions-in-queries">later</a>):</p>
+<pre><code class="language-sql">&gt; SELECT * FROM h2o_feet WHERE location !~ /.*/</code></pre>
+<p>Return data where the tag key <code>location</code> has a value:</p>
+<pre><code class="language-sql">&gt; SELECT * FROM h2o_feet WHERE location =~ /.*/</code></pre>
+<p><strong>Time ranges</strong><br />
+Return data from the past seven days:</p>
+<pre><code class="language-sql">&gt; SELECT * FROM h2o_feet WHERE time &gt; now() - 7d</code></pre>
+<ul>
+<li><code>now()</code> is the Unix time of the server at the time the query is executed on that server.
+For more on <code>now()</code> and other ways to specify time in queries, see <a href="/dsdb/query_language/data_exploration.html#time-syntax-in-queries">time syntax in queries</a>.</li>
+</ul>
+<p><strong>Field values</strong><br />
+Return data where the tag key <code>location</code> has the tag value <code>coyote_creek</code> and the field <code>water_level</code> is greater than 8 feet:</p>
+<pre><code class="language-sql">&gt; SELECT * FROM h2o_feet WHERE location = 'coyote_creek' AND  water_level &gt; 8</code></pre>
+<p>Return data where the tag key <code>location</code> has the tag value <code>santa_monica</code> and the field <code>level description</code> equals <code>'below 3 feet'</code>:</p>
+<pre><code class="language-sql">&gt; SELECT * FROM h2o_feet WHERE location = 'santa_monica' AND "level description" = 'below 3 feet'</code></pre>
+<ul>
+<li>Always single quote field values that are strings.
+Note that double quotes do not work when specifying string field values and can cause queries to silently fail.</li>
+</ul>
+<blockquote>
+<p><strong>Note:</strong> Fields are not indexed; queries on fields are not as performant as those on tags.</p>
+</blockquote>
+<p>More on the <code>WHERE</code> clause in DSDBQL:</p>
+<ul>
+<li>The <code>WHERE</code> clause supports comparisons against strings, booleans, floats, integers, and against the <code>time</code> of the timestamp.
+It supports using regular expressions to match tags, but not to match fields.</li>
+<li>Chain logic together using <code>AND</code>  and <code>OR</code>, and separate using <code>(</code> and <code>)</code>.</li>
+<li>Acceptable comparators include:<br />
+<code>=</code> equal to<br />
+<code>&lt;&gt;</code> not equal to<br />
+<code>!=</code> not equal to<br />
+<code>&gt;</code> greater than<br />
+<code>&lt;</code> less than<br />
+<code>=~</code> matches against<br />
+<code>!~</code> doesn't match against  </li>
+</ul>
+<h2 id="the-group-by-clause">The GROUP BY clause</h2>
+<p>Use the <code>GROUP BY</code> clause to group data by tags and/or time intervals.
+To successfully implement <code>GROUP BY</code>,  append the<code>GROUP BY</code> clause to a <code>SELECT</code> statement and pair the <code>SELECT</code> statement with one of DSDBQL's <a href="/dsdb/query_language/functions.html">functions</a>.</p>
+<blockquote>
+<p><strong>Note:</strong> If your query includes both a <code>WHERE</code> clause and a <code>GROUP BY</code> clause, the <code>GROUP BY</code> clause must come after the <code>WHERE</code> clause.</p>
+</blockquote>
+<h3 id="the-basic-1">The basic <code>GROUP BY</code> clause</h3>
+<hr />
+<p><strong>GROUP BY tag values</strong><br />
+Calculate the <a href="../query_language/functions.html#mean"><code>MEAN()</code></a> <code>water_level</code> for the different tag values of <code>location</code>:</p>
+<pre><code class="language-sql">&gt; SELECT MEAN(water_level) FROM h2o_feet GROUP BY location</code></pre>
+<p>CLI response:</p>
+<pre><code class="language-sh">name: h2o_feet
+tags: location=coyote_creek
+time            mean
+----            ----
+1970-01-01T00:00:00Z    5.359342451341403
+
+name: h2o_feet
+tags: location=santa_monica
+time            mean
+----            ----
+1970-01-01T00:00:00Z    3.5308634701.0053</code></pre>
+<blockquote>
+<p><strong>Note:</strong> In DSDB, <a href="https://en.wikipedia.org/wiki/Unix_time">epoch 0</a> (<code>1970-01-01T00:00:00Z</code>) is often used as a null timestamp equivalent.
+If you request a query that has no timestamp to return, such as an aggregation function with an unbounded time range, DSDB returns epoch 0 as the timestamp.</p>
+</blockquote>
+<p>Calculate the <a href="../query_language/functions.html#mean"><code>MEAN()</code></a> <code>index</code> for every tag set in <code>h2o_quality</code>:</p>
+<pre><code class="language-sql">&gt; SELECT MEAN(index) FROM h2o_quality GROUP BY *</code></pre>
+<p>CLI response:</p>
+<pre><code class="language-sh">name: h2o_quality
+tags: location = coyote_creek, randtag = 1
+time                           mean
+----                           ----
+1970-01-01T00:00:00Z     50.69033760186263
+
+name: h2o_quality
+tags: location = coyote_creek, randtag = 2
+time                           mean
+----                           ----
+1970-01-01T00:00:00Z     49.661867544220485
+
+name: h2o_quality
+tags: location = coyote_creek, randtag = 3
+time                           mean
+----                           ----
+1970-01-01T00:00:00Z     49.360939907550076
+
+name: h2o_quality
+tags: location = santa_monica, randtag = 1
+time                           mean
+----                           ----
+1970-01-01T00:00:00Z     49.132712456344585
+
+name: h2o_quality
+tags: location = santa_monica, randtag = 2
+time                           mean
+----                           ----
+1970-01-01T00:00:00Z     50.2937984496124
+
+name: h2o_quality
+tags: location = santa_monica, randtag = 3
+time                           mean
+----                           ----
+1970-01-01T00:00:00Z     49.99919903884662</code></pre>
+<p><strong>GROUP BY time intervals</strong><br />
+<a href="../query_language/functions.html#count"><code>COUNT()</code></a> the number of <code>water_level</code> points between August 18, 2015 at midnight and September 18 at 5:00pm at two day intervals:</p>
+<pre><code class="language-sql">&gt; SELECT COUNT(water_level) FROM h2o_feet WHERE time &gt;= '2015-08-18T00:00:00Z' AND time &lt;= '2015-09-18T17:00:00Z' AND location='coyote_creek' GROUP BY time(2d)</code></pre>
+<p>CLI response:</p>
+<pre><code class="language-sh">name: h2o_feet
+----------
+time                           count
+2015-08-17T00:00:00Z     240
+2015-08-19T00:00:00Z     480
+2015-08-21T00:00:00Z     480
+2015-08-23T00:00:00Z     480
+2015-08-25T00:00:00Z     480
+2015-08-27T00:00:00Z     480
+2015-08-29T00:00:00Z     480
+2015-08-31T00:00:00Z     480
+2015-09-02T00:00:00Z     480
+2015-09-04T00:00:00Z     479
+2015-09-06T00:00:00Z     480
+2015-09-08T00:00:00Z     480
+2015-09-10T00:00:00Z     480
+2015-09-12T00:00:00Z     480
+2015-09-14T00:00:00Z     480
+2015-09-16T00:00:00Z     480
+2015-09-18T00:00:00Z     165</code></pre>
+<p>Notice that each timestamp represents a two day interval and that the value in the <code>count</code> field is the number of <code>water_level</code> points that occurred in that two day interval.
+You could get the same results by querying the data 17 times - that is, one <code>COUNT()</code> query for every two days between August 18, 2015 at midnight and September 18 at 5:00pm - but that could take a while.</p>
+<blockquote>
+<p><strong>Note:</strong> The first timestamp in the CLI response (<code>2015-08-17T00:00:00Z</code>) occurs before the lower bound of the query's time range (<code>2015-08-18T00:00:00Z</code>).
+See <a href="/dsdb/troubleshooting/frequently_encountered_issues.html#understanding-the-time-intervals-returned-from-group-by-time-queries">Frequently Encountered Issues</a> for an explanation of the time intervals returned from <code>GROUP BY time()</code> queries.</p>
+</blockquote>
+<p>Other things to note about <code>GROUP BY time()</code>:</p>
+<ul>
+<li>DSDBQL requires a <code>WHERE</code> clause if you're using <code>GROUP BY</code> with <code>time()</code>.
+Note that unless you specify a different upper and lower bound for the time range, <code>GROUP BY</code> uses <code>epoch 0</code> as the lower bound and <code>now()</code> as the upper bound for the query - this can lead to <a href="/dsdb/troubleshooting/frequently_encountered_issues.html#getting-unexpected-results-with-group-by-time">unexpected results</a>.</li>
+<li>Valid units for <code>time()</code> are:<br />
+<br>
+<code>u</code> microseconds<br />
+<code>s</code> seconds<br />
+<code>m</code> minutes<br />
+<code>h</code> hours<br />
+<code>d</code> days<br />
+<code>w</code> weeks   </li>
+</ul>
+<p><strong>GROUP BY tag values AND a time interval</strong><br />
+Calculate the average <code>water_level</code> for the different tag values of <code>location</code> in the last two weeks at 6 hour intervals:</p>
+<pre><code class="language-sql">&gt; SELECT MEAN(water_level) FROM h2o_feet WHERE time &gt; now() - 2w GROUP BY location,time(6h)</code></pre>
+<ul>
+<li>Separate multiple <code>GROUP BY</code> arguments with a comma.</li>
+</ul>
+<h3 id="the-2">The <code>GROUP BY</code> clause and <code>fill()</code></h3>
+<hr />
+<p>By default, a <code>GROUP BY</code> interval with no data has <code>null</code> as its value in the output column.
+Use <code>fill()</code> to change the value reported for intervals that have no data.
+<code>fill()</code> options include:</p>
+<ul>
+<li>Any numerical value</li>
+<li><code>null</code> - sets <code>null</code> as the value for intervals with no data</li>
+<li><code>previous</code> - copies the value from the previous interval for intervals with no data</li>
+<li><code>none</code> - skips intervals with no data to report</li>
+</ul>
+<p>Follow the ✨ in the examples below to see what <code>fill()</code> can do.</p>
+<p><strong>GROUP BY without fill()</strong></p>
+<pre><code class="language-sql">&gt; SELECT MEAN(water_level) FROM h2o_feet WHERE time &gt;= '2015-08-18' AND time &lt; '2015-09-24' GROUP BY time(10d)</code></pre>
+<p>CLI response:</p>
+<pre><code class="language-sh">name: h2o_feet
+----------
+time            mean
+2015-08-13T00:00:00Z    4.306212083333333
+2015-08-23T00:00:00Z    4.328549999999998
+2015-09-02T00:00:00Z    4.44695286757038
+2015-09-12T00:00:00Z    4.701986209010117
+✨2015-09-22T00:00:00Z</code></pre>
+<p><strong>GROUP BY with fill()</strong><br />
+Use <code>fill()</code> with <code>-100</code>:  </p>
+<pre><code class="language-sql">&gt; SELECT MEAN(water_level) FROM h2o_feet WHERE time &gt;= '2015-08-18' AND time &lt; '2015-09-24' GROUP BY time(10d) fill(-100)</code></pre>
+<p>CLI response:  </p>
+<pre><code class="language-sh">name: h2o_feet
+----------
+time            mean
+2015-08-13T00:00:00Z    4.306212083333323
+2015-08-23T00:00:00Z    4.328549999999999
+2015-09-02T00:00:00Z    4.4469528675703796
+2015-09-12T00:00:00Z    4.701986209010117
+✨2015-09-22T00:00:00Z   -100</code></pre>
+<p>Use <code>fill()</code> with <code>none</code>:</p>
+<pre><code class="language-sql">&gt; SELECT MEAN(water_level) FROM h2o_feet WHERE time &gt;= '2015-08-18' AND time &lt; '2015-09-24' GROUP BY time(10d) fill(none)</code></pre>
+<p>CLI response:  </p>
+<pre><code>name: h2o_feet
+----------
+time            mean
+2015-08-13T00:00:00Z    4.306212083333333
+2015-08-23T00:00:00Z    4.32855
+2015-09-02T00:00:00Z    4.4469528675703796
+2015-09-12T00:00:00Z    4.701986209010117
+✨</code></pre>
+<blockquote>
+<p><strong>Note:</strong> If you're <code>GROUP(ing) BY</code> several things (for example, both tags and a time interval) <code>fill()</code> must go at the end of the <code>GROUP BY</code> clause.</p>
+</blockquote>
+<h2 id="the-into-clause">The INTO clause</h2>
+<h3 id="relocate-data">Relocate data</h3>
+<p>Copy data to another database, retention policy, and measurement with the <code>INTO</code> clause:</p>
+<pre><code class="language-sql">SELECT &lt;field_key&gt; INTO &lt;different_measurement&gt; FROM &lt;current_measurement&gt; [WHERE &lt;stuff&gt;] [GROUP BY &lt;stuff&gt;]</code></pre>
+<p>Write the field <code>water_level</code> in <code>h2o_feet</code> to a new measurement (<code>h2o_feet_copy</code>) in the same database:</p>
+<pre><code class="language-sql">&gt; SELECT water_level INTO h2o_feet_copy FROM h2o_feet WHERE location = 'coyote_creek'</code></pre>
+<p>The CLI response shows the number of points that DSDB wrote to <code>h2o_feet_copy</code>:</p>
+<pre><code>name: result
+------------
+time                           written
+1970-01-01T00:00:00Z     7604</code></pre>
+<p>Write the field <code>water_level</code> in <code>h2o_feet</code> to a new measurement (<code>h2o_feet_copy</code>) and to the retention policy <code>default</code> in the database <code>where_else</code>:</p>
+<pre><code class="language-sql">&gt; SELECT water_level INTO where_else."default".h2o_feet_copy FROM h2o_feet WHERE location = 'coyote_creek'</code></pre>
+<p>CLI response:</p>
+<pre><code class="language-sh">name: result
+------------
+time                           written
+1970-01-01T00:00:00Z     7604</code></pre>
+<blockquote>
+<p><strong>Note</strong>: If you use <code>SELECT *</code> with <code>INTO</code>, the query converts tags in the current measurement to fields in the new measurement.
+This can cause DSDB to overwrite points that were previously differentiated by a tag value.
+Use <code>GROUP BY &lt;tag_key&gt;</code> to preserve tags as tags.</p>
+</blockquote>
+<h3 id="downsample-data">Downsample data</h3>
+<p>Combine the <code>INTO</code> clause with an DSDBQL <a href="/dsdb/query_language/functions.html">function</a> and a <code>GROUP BY</code> clause to write the lower precision query results to a different measurement:</p>
+<pre><code class="language-sql">SELECT &lt;function&gt;(&lt;field_key&gt;) INTO &lt;different_measurement&gt; FROM &lt;current_measurement&gt; WHERE &lt;stuff&gt; GROUP BY &lt;stuff&gt;</code></pre>
+<blockquote>
+<p><strong>Note:</strong> The <code>INTO</code> queries in this section downsample old data, that is, data that have already been written to DSDB.
+If you want DSDB to automatically query and downsample all future data see <a href="/dsdb/query_language/continuous_queries.html">Continuous Queries</a>.</p>
+</blockquote>
+<p>Calculate the average <code>water_level</code> in <code>santa_monica</code>, and write the results to a new measurement (<code>average</code>) in the same database:</p>
+<pre><code class="language-sql">&gt; SELECT mean(water_level) INTO average FROM h2o_feet WHERE location = 'santa_monica' AND time &gt;= '2015-08-18T00:00:00Z' AND time &lt;= '2015-08-18T00:30:00Z' GROUP BY time(12m)</code></pre>
+<p>The CLI response shows the number of points that DSDB wrote to the new measurement:</p>
+<pre><code class="language-sh">name: result
+------------
+time                           written
+1970-01-01T00:00:00Z     3</code></pre>
+<p>To see the query results, select everything from the new measurement <code>average</code> in <code>NOAA_water_database</code>:</p>
+<pre><code class="language-sh">&gt; SELECT * FROM average
+name: average
+-------------
+time                           mean
+2015-08-18T00:00:00Z     2.09
+2015-08-18T00:12:00Z     2.077
+2015-08-18T00:24:00Z     2.0460000000000003</code></pre>
+<p>Calculate the average <code>water_level</code> and the max <code>water_level</code> in <code>santa_monica</code>, and write the results to a new measurement (<code>aggregates</code>) in a different database (<code>where_else</code>):</p>
+<pre><code class="language-sql">&gt; SELECT mean(water_level), max(water_level) INTO where_else."default".aggregates FROM h2o_feet WHERE location = 'santa_monica' AND time &gt;= '2015-08-18T00:00:00Z' AND time &lt;= '2015-08-18T00:30:00Z' GROUP BY time(12m)</code></pre>
+<p>CLI response:</p>
+<pre><code class="language-sh">name: result
+------------
+time                           written
+1970-01-01T00:00:00Z     3</code></pre>
+<p>Select everything from the new measurement <code>aggregates</code> in the database <code>where_else</code>:</p>
+<pre><code class="language-sh">&gt; SELECT * FROM where_else."default".aggregates
+name: aggregates
+----------------
+time                           max     mean
+2015-08-18T00:00:00Z     2.116   2.09
+2015-08-18T00:12:00Z     2.126   2.077
+2015-08-18T00:24:00Z     2.051   2.0460000000000003</code></pre>
+<p>Calculate the average <code>degrees</code> for all temperature measurements (<code>h2o_temperature</code> and <code>average_temperature</code>) in the <code>NOAA_water_database</code> and write the results to new measurements with the same names in a different database (<code>where_else</code>).
+<code>:MEASUREMENT</code> tells DSDB to write the query results to measurements with the same names as those targeted by the query:</p>
+<pre><code class="language-sql">&gt; SELECT mean(degrees) INTO where_else."default".:MEASUREMENT FROM /temperature/ WHERE time &gt;= '2015-08-18T00:00:00Z' AND time &lt;= '2015-08-18T00:30:00Z' GROUP BY time(12m)</code></pre>
+<p>CLI response:</p>
+<pre><code class="language-sh">name: result
+------------
+time                           written
+1970-01-01T00:00:00Z     6</code></pre>
+<p>Select the <code>mean</code> field from all new temperature measurements in the database <code>where_else</code>.</p>
+<pre><code class="language-sh">&gt; SELECT mean FROM where_else."default"./temperature/
+name: average_temperature
+-------------------------
+time                           mean
+2015-08-18T00:00:00Z     78.5
+2015-08-18T00:12:00Z     84
+2015-08-18T00:24:00Z     74.75
+
+name: h2o_temperature
+---------------------
+time                            mean
+2015-08-18T00:00:00Z      63.75
+2015-08-18T00:12:00Z      63.5
+2015-08-18T00:24:00Z      63.5</code></pre>
+<p>More on downsampling with <code>INTO</code>:</p>
+<ul>
+<li>DSDB does not store null values.
+Depending on the frequency of your data, the query results may be missing time intervals.
+Use <a href="/dsdb/query_language/data_exploration.html#the-group-by-clause-and-fill">fill()</a> to ensure that every time interval appears in the results.</li>
+<li>The number of writes in the CLI response includes one write for every time interval in the query's time range even if there is no data for some of the time intervals.</li>
+</ul>
+<h2 id="limit-query-returns-with-limit-and-slimit">Limit query returns with LIMIT and SLIMIT</h2>
+<p>DSDBQL supports two different clauses to limit your query results.
+Currently, they are mutually exclusive so you may use one or the other, but not both in the same query.</p>
+<dt> Please note that using `LIMIT` and `SLIMIT` **without** a `GROUP BY *` clause can cause unexpected results.
+See [GitHub Issue #4232](https://github.com/dsdb/dsdb/issues/4232) for more information.
+</dt>
+<h3 id="limit-the-number-of-results-returned-per-series-with">Limit the number of results returned per series with <code>LIMIT</code></h3>
+<hr />
+<p>Use <code>LIMIT &lt;N&gt;</code> with <code>SELECT</code> and <code>GROUP BY *</code> to return the first N points from each series.</p>
+<p>Return the three oldest points from each series associated with the measurement <code>h2o_feet</code>:</p>
+<pre><code class="language-sql">&gt; SELECT water_level FROM h2o_feet GROUP BY * LIMIT 3</code></pre>
+<p>CLI response:</p>
+<pre><code class="language-sh">name: h2o_feet
+tags: location=coyote_creek
+time                          water_level
+----                          -----------
+2015-08-18T00:00:00Z    8.12
+2015-08-18T00:06:00Z    8.005
+2015-08-18T00:12:00Z    7.887
+
+name: h2o_feet
+tags: location=santa_monica
+time                          water_level
+----                          -----------
+2015-08-18T00:00:00Z    2.064
+2015-08-18T00:06:00Z    2.116
+2015-08-18T00:12:00Z    2.028</code></pre>
+<blockquote>
+<p><strong>Note:</strong> If N is greater than the number of points in the series, DSDB returns all points in the series.</p>
+</blockquote>
+<h3 id="limit-the-number-of-series-returned-with">Limit the number of series returned with <code>SLIMIT</code></h3>
+<hr />
+<p>Use <code>SLIMIT &lt;N&gt;</code> with <code>SELECT</code> and <code>GROUP BY *</code> to return every point from N <a href="/dsdb/concepts/glossary.html#series">series</a>.</p>
+<p>Return everything from one of the series associated with the measurement <code>h2o_feet</code>:</p>
+<pre><code class="language-sql">&gt; SELECT water_level FROM h2o_feet GROUP BY * SLIMIT 1</code></pre>
+<p>CLI response:</p>
+<pre><code class="language-sh">name: h2o_feet
+tags: location=coyote_creek
+time                          water_level
+----                          -----
+2015-08-18T00:00:00Z    8.12
+2015-08-18T00:06:00Z    8.005
+2015-08-18T00:12:00Z    7.887
+[...]
+2015-09-18T16:12:00Z    3.402
+2015-09-18T16:18:00Z    3.314
+2015-09-18T16:24:00Z    3.235</code></pre>
+<blockquote>
+<p><strong>Note:</strong> If N is greater than the number of series associated with the specified measurement, DSDB returns all points from every series.</p>
+</blockquote>
+<h2 id="sort-query-returns-with-order-by-time-desc">Sort query returns with ORDER BY time DESC</h2>
+<p>By default, DSDB returns results in ascending time order - so the first points that are returned are the oldest points by timestamp.
+Use <code>ORDER BY time DESC</code> to see the newest points by timestamp.</p>
+<p>Return the oldest five points from one series <strong>without</strong> <code>ORDER BY time DESC</code>:  </p>
+<pre><code class="language-sql">&gt; SELECT water_level FROM h2o_feet WHERE location = 'santa_monica' LIMIT 5</code></pre>
+<p>CLI response:  </p>
+<pre><code class="language-sh">name: h2o_feet
+----------
+time            water_level
+2015-08-18T00:00:00Z    2.064
+2015-08-18T00:06:00Z    2.116
+2015-08-18T00:12:00Z    2.028
+2015-08-18T00:18:00Z    2.126
+2015-08-18T00:24:00Z    2.041</code></pre>
+<p>Now include  <code>ORDER BY time DESC</code> to get the newest five points from the same series:  </p>
+<pre><code class="language-sql">&gt; SELECT water_level FROM h2o_feet WHERE location = 'santa_monica' ORDER BY time DESC LIMIT 5</code></pre>
+<p>CLI response:  </p>
+<pre><code class="language-sh">name: h2o_feet
+----------
+time            water_level
+2015-09-18T21:42:00Z    4.938
+2015-09-18T21:36:00Z    5.066
+2015-09-18T21:30:00Z    5.01
+2015-09-18T21:24:00Z    5.013
+2015-09-18T21:18:00Z    5.072</code></pre>
+<p>Finally, use <code>GROUP BY</code> with <code>ORDER BY time DESC</code> to return the last five points from each series:  </p>
+<pre><code class="language-sql">&gt; SELECT water_level FROM h2o_feet GROUP BY location ORDER BY time DESC LIMIT 5</code></pre>
+<p>CLI response:</p>
+<pre><code class="language-sh">name: h2o_feet
+tags: location=coyote_creek
+time            water_level
+----            -----------
+2015-09-18T16:24:00Z    3.235
+2015-09-18T16:18:00Z    3.314
+2015-09-18T16:12:00Z    3.402
+2015-09-18T16:06:00Z    3.497
+2015-09-18T16:00:00Z    3.599
+
+name: h2o_feet
+tags: location=santa_monica
+time            water_level
+----            -----------
+2015-09-18T21:42:00Z    4.938
+2015-09-18T21:36:00Z    5.066
+2015-09-18T21:30:00Z    5.01
+2015-09-18T21:24:00Z    5.013
+2015-09-18T21:18:00Z    5.072</code></pre>
+<h2 id="paginate-query-returns-with-offset">Paginate query returns with OFFSET</h2>
+<p>Use <code>OFFSET</code> to paginate the results returned.
+For example, get the first three points written to a series:</p>
+<pre><code class="language-sql">&gt; SELECT water_level FROM h2o_feet WHERE location = 'coyote_creek' LIMIT 3</code></pre>
+<p>CLI response:  </p>
+<pre><code class="language-sh">name: h2o_feet
+----------
+time            water_level
+2015-08-18T00:00:00Z    8.12
+2015-08-18T00:06:00Z    8.005
+2015-08-18T00:12:00Z    7.887</code></pre>
+<p>Then get the second three points from that same series:</p>
+<pre><code class="language-sql">&gt; SELECT water_level FROM h2o_feet WHERE location = 'coyote_creek' LIMIT 3 OFFSET 3</code></pre>
+<p>CLI response:</p>
+<pre><code class="language-sh">name: h2o_feet
+----------
+time            water_level
+2015-08-18T00:18:00Z    7.762
+2015-08-18T00:24:00Z    7.635
+2015-08-18T00:30:00Z    7.5</code></pre>
+<h2 id="multiple-statements-in-queries">Multiple statements in queries</h2>
+<p>Separate multiple statements in a query with a semicolon.
+For example:
+<br>
+<br></p>
+<pre><code class="language-sql">&gt; SELECT mean(water_level) FROM h2o_feet WHERE time &gt; now() - 2w GROUP BY location,time(24h) fill(none); SELECT count(water_level) FROM h2o_feet WHERE time &gt; now() - 2w GROUP BY location,time(24h) fill(80)</code></pre>
+<h2 id="merge-series-in-queries">Merge series in queries</h2>
+<p>In DSDB, queries merge series automatically.</p>
+<p>The <code>NOAA_water_database</code> database has two <a href="/dsdb/concepts/glossary.html#series">series</a>.
+The first series is made up of the measurement <code>h2o_feet</code> and the tag key <code>location</code> with the tag value <code>coyote_creek</code>.
+The second series is made of up the measurement <code>h2o_feet</code> and the tag key <code>location</code> with the tag value <code>santa_monica</code>.</p>
+<p>The following query automatically merges those two series when it calculates the <a href="../query_language/functions.html#mean"><code>MEAN()</code></a> <code>water_level</code>:</p>
+<pre><code class="language-sql">&gt; SELECT MEAN(water_level) FROM h2o_feet</code></pre>
+<p>CLI response:</p>
+<pre><code class="language-sh">name: h2o_feet
+--------------
+time                          mean
+1970-01-01T00:00:00Z    4.442107025822523</code></pre>
+<p>If you only want the <code>MEAN()</code> <code>water_level</code> for the first series, specify the tag set in the <code>WHERE</code> clause:</p>
+<pre><code class="language-sql">&gt; SELECT MEAN(water_level) FROM h2o_feet WHERE location = 'coyote_creek'</code></pre>
+<p>CLI response:</p>
+<pre><code class="language-sh">name: h2o_feet
+--------------
+time                          mean
+1970-01-01T00:00:00Z    5.359342451341402</code></pre>
+<blockquote>
+<p><strong>NOTE:</strong> In DSDB, <a href="https://en.wikipedia.org/wiki/Unix_time">epoch 0</a> (<code>1970-01-01T00:00:00Z</code>) is often used as a null timestamp equivalent.
+If you request a query that has no timestamp to return, such as an aggregation function with an unbounded time range, DSDB returns epoch 0 as the timestamp.</p>
+</blockquote>
+<h2 id="time-syntax-in-queries">Time syntax in queries</h2>
+<p>DSDB is a time series database so, unsurprisingly, DSDBQL has a lot to do with specifying time ranges.
+If you do not specify start and end times in your query, they default to epoch 0 (<code>1970-01-01T00:00:00Z</code>) and <code>now()</code>.
+The following sections detail how to specify different start and end times in queries.</p>
+<h3 id="relative-time">Relative time</h3>
+<hr />
+<p><code>now()</code> is the Unix time of the server at the time the query is executed on that server.
+Use <code>now()</code> to calculate a timestamp relative to the server's
+current timestamp.</p>
+<p>Query data starting an hour ago and ending <code>now()</code>:</p>
+<pre><code class="language-sql">&gt; SELECT water_level FROM h2o_feet WHERE time &gt; now() - 1h</code></pre>
+<p>Query data that occur between epoch 0 and 1,000 days from <code>now()</code>:  </p>
+<pre><code class="language-sql">&gt; SELECT "level description" FROM h2o_feet WHERE time &lt; now() + 1000d</code></pre>
+<ul>
+<li>Note the whitespace between the operator and the time duration.
+Leaving that whitespace out can cause DSDB to return no results or an <code>error parsing query</code> error .</li>
+</ul>
+<p>The other options for specifying time durations with <code>now()</code> are listed below.
+<code>u</code> microseconds<br />
+<code>s</code> seconds<br />
+<code>m</code> minutes<br />
+<code>h</code> hours<br />
+<code>d</code> days<br />
+<code>w</code> weeks   </p>
+<h3 id="absolute-time">Absolute time</h3>
+<hr />
+<p><strong>Date time strings</strong><br />
+Specify time with date time strings.
+Date time strings can take two formats: <code>YYYY-MM-DD HH:MM:SS.nnnnnnnnn</code> and  <code>YYYY-MM-DDTHH:MM:SS.nnnnnnnnnZ</code>, where the second specification is <a href="https://www.ietf.org/rfc/rfc3339.txt">RFC3339</a>.
+Nanoseconds (<code>nnnnnnnnn</code>) are optional in both formats.</p>
+<p>The following two queries query data between August 18, 2015 23:00:01.232000000 and September 19, 2015 00:00:00.</p>
+<pre><code class="language-sql">&gt; SELECT water_level FROM h2o_feet WHERE time &gt; '2015-08-18 23:00:01.232000000' AND time &lt; '2015-09-19'</code></pre>
+<pre><code class="language-sql">&gt; SELECT water_level FROM h2o_feet WHERE time &gt; '2015-08-18T23:00:01.232000000Z' AND time &lt; '2015-09-19'</code></pre>
+<ul>
+<li>Single quote the date time string.
+DSDB fails to restrict data by date time strings that are double quoted.</li>
+<li>If you only specify the date, DSDB sets the time to <code>00:00:00</code>.</li>
+</ul>
+<p><strong>Epoch time</strong><br />
+Specify time with timestamps in epoch time.
+Epoch time is the number of nanoseconds that have elapsed since 00:00:00 Coordinated Universal Time (UTC), Thursday, 1 January 1970.
+Indicate the units of the timestamp at the end of the timestamp (see the section above for a list of acceptable time units).</p>
+<p>Return all points that occur after  <code>2014-01-01 00:00:00</code>:  </p>
+<pre><code class="language-sql">&gt; SELECT * FROM h2o_feet WHERE time &gt; 1388534400s</code></pre>
+<h2 id="regular-expressions-in-queries">Regular expressions in queries</h2>
+<p>Regular expressions are surrounded by <code>/</code> characters and use <a href="http://golang.org/pkg/regexp/syntax.html">Golang's regular expression syntax</a>.
+Use regular expressions when selecting measurements and tags.</p>
+<blockquote>
+<p><strong>Note:</strong> You cannot use regular expressions to match databases, retention policies, or fields.
+You can only use regular expressions to match measurements and tags.</p>
+</blockquote>
+<p>The <a href="/dsdb/query_language/data_exploration.html#sample-data">sample data</a> need to be more intricate for the following sections.
+Assume that the database <code>NOAA_water_database</code> now holds several measurements: <code>h2o_feet</code>, <code>h2o_quality</code>, <code>h2o_pH</code>, <code>average_temperature</code>, and <code>h2o_temperature</code>.
+Please note that every measurement besides <code>h2o_feet</code> is fictional and contains fictional data.</p>
+<h3 id="regular-expressions-and-selecting-measurements">Regular expressions and selecting measurements</h3>
+<hr />
+<p>Select the oldest point from every measurement in the <code>NOAA_water_database</code> database:</p>
+<pre><code class="language-sql">&gt; SELECT * FROM /.*/ LIMIT 1</code></pre>
+<p>CLI response:</p>
+<pre><code class="language-sh">name: average_temperature
+-------------------------
+time                          degrees   index   level description   location        pH  randtag water_level
+2015-08-18T00:00:00Z    85                                           santa_monica
+
+name: h2o_feet
+--------------
+time                          degrees   index   level description   location        pH  randtag water_level
+2015-08-18T00:00:00Z                        below 3 feet            santa_monica                     2.064
+
+name: h2o_pH
+------------
+time                          degrees   index   level description   location        pH  randtag water_level
+2015-08-18T00:00:00Z                                                   santa_monica 6
+
+name: h2o_quality
+-----------------
+time                          degrees   index   level description   location        pH  randtag water_level
+2015-08-18T00:00:00Z               41                                 coyote_creek        1
+
+name: h2o_temperature
+---------------------
+time                          degrees   index   level description   location        pH  randtag water_level
+2015-08-18T00:00:00Z    70                                           santa_monica</code></pre>
+<ul>
+<li>Alternatively, <code>SELECT</code> all of the measurements in <code>NOAA_water_database</code> by typing them out and separating each name with a comma (see below), but that could get tedious:
+<pre><code class="language-sql">&gt; SELECT * FROM average_temperature,h2o_feet,h2o_pH,h2o_quality,h2o_temperature LIMIT 1</code></pre></li>
+</ul>
+<p>Select the first three points from every measurement whose name starts with <code>h2o</code>:  </p>
+<pre><code class="language-sql">&gt; SELECT * FROM /^h2o/ LIMIT 3</code></pre>
+<p>CLI response:  </p>
+<pre><code class="language-sh">name: h2o_feet
+--------------
+time                          degrees   index   level description      location     pH  randtag water_level
+2015-08-18T00:00:00Z                        below 3 feet               santa_monica                 2.064
+2015-08-18T00:00:00Z                        between 6 and 9 feet    coyote_creek                    8.12
+2015-08-18T00:06:00Z                        between 6 and 9 feet    coyote_creek                    8.005
+
+name: h2o_pH
+------------
+time                          degrees   index   level description      location     pH  randtag water_level
+2015-08-18T00:00:00Z                                                      santa_monica  6
+2015-08-18T00:00:00Z                                                      coyote_creek  7
+2015-08-18T00:06:00Z                                                      coyote_creek  8
+
+name: h2o_quality
+-----------------
+time                          degrees   index   level description      location     pH  randtag water_level
+2015-08-18T00:00:00Z               99                           santa_monica          2
+2015-08-18T00:00:00Z               41                           coyote_creek          1
+2015-08-18T00:06:00Z               11                           coyote_creek          3
+
+name: h2o_temperature
+---------------------
+time                          degrees   index   level description      location     pH  randtag water_level
+2015-08-18T00:00:00Z    70                                                 santa_monica
+2015-08-18T00:00:00Z    60                                                 coyote_creek
+2015-08-18T00:06:00Z    65                                                 coyote_creek</code></pre>
+<p>Select the last 5 points from every measurement whose name contains <code>temperature</code>:</p>
+<pre><code class="language-sql">&gt; SELECT * FROM /.*temperature.*/ LIMIT 5</code></pre>
+<p>CLI response:</p>
+<pre><code class="language-sh">name: average_temperature
+-------------------------
+time                          degrees   location
+2015-08-18T00:00:00Z    85       santa_monica
+2015-08-18T00:00:00Z    82       coyote_creek
+2015-08-18T00:06:00Z    73       coyote_creek
+2015-08-18T00:06:00Z    74       santa_monica
+2015-08-18T00:12:00Z    86       coyote_creek
+
+name: h2o_temperature
+---------------------
+time                          degrees   location
+2015-08-18T00:00:00Z    70       santa_monica
+2015-08-18T00:00:00Z    60       coyote_creek
+2015-08-18T00:06:00Z    65       coyote_creek
+2015-08-18T00:06:00Z    60       santa_monica
+2015-08-18T00:12:00Z    68       coyote_creek</code></pre>
+<h3 id="regular-expressions-and-specifying-tags">Regular expressions and specifying tags</h3>
+<hr />
+<p>Use regular expressions to specify tags in the <code>WHERE</code> clause.
+The relevant comparators include:<br />
+<code>=~</code> matches against<br />
+<code>!~</code> doesn't match against</p>
+<p>Select the oldest four points from the measurement <code>h2o_feet</code> where the value of the tag <code>location</code> does not include an <code>a</code>:</p>
+<pre><code class="language-sql">&gt; SELECT * FROM h2o_feet WHERE location !~ /.*a.*/ LIMIT 4</code></pre>
+<p>CLI response:</p>
+<pre><code class="language-sh">name: h2o_feet
+--------------
+time                           level description        location         water_level
+2015-08-18T00:00:00Z     between 6 and 9 feet   coyote_creek     8.12
+2015-08-18T00:06:00Z     between 6 and 9 feet    coyote_creek    8.005
+2015-08-18T00:12:00Z     between 6 and 9 feet    coyote_creek    7.887
+2015-08-18T00:18:00Z     between 6 and 9 feet    coyote_creek    7.762</code></pre>
+<p>Select the oldest four points from the measurement <code>h2o_feet</code> where the value of the tag <code>location</code> includes a <code>y</code> or an <code>m</code> and <code>water_level</code> is greater than zero:</p>
+<pre><code class="language-sql">&gt; SELECT * FROM h2o_feet WHERE (location =~ /.*y.*/ OR location =~ /.*m.*.md) AND water_level &gt; 0 LIMIT 4</code></pre>
+<p>or
+<br>
+<br></p>
+<pre><code class="language-sql">&gt; SELECT * FROM h2o_feet WHERE location =~ /[ym]/ AND water_level &gt; 0 LIMIT 4</code></pre>
+<p>CLI response:</p>
+<pre><code>name: h2o_feet
+--------------
+time                           level description        location         water_level
+2015-08-18T00:00:00Z     below 3 feet               santa_monica     2.064
+2015-08-18T00:00:00Z     between 6 and 9 feet   coyote_creek     8.12
+2015-08-18T00:06:00Z     between 6 and 9 feet   coyote_creek     8.005
+2015-08-18T00:06:00Z     below 3 feet               santa_monica     2.116</code></pre>
+<p>See <a href="/dsdb/query_language/data_exploration.html#the-where-clause">the WHERE clause</a> section for an example of how to return data where a tag key has a value and an example of how to return data where a tag key has no value using regular expressions.</p>
+      </div>
+
+              <div class="tract"><img src="/images/tract.png"/></div>
+            <div class="clearfix"></div>
+      <div class="scroll" id="scroll" style="display:none;">
+			     <img src="/images/top.png"/>
+		  </div>
+    </div>
+  </div>
+  <script>hljs.initHighlightingOnLoad();</script>
+</body>
+
+</html>

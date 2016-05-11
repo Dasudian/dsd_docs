@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="大数点物联网开发者平台文档，基于大数点物联网平台，帮助开发者快速构建物联网应用">
-    <title>大数点文档中心</title>
+    <title>Installation</title>
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
@@ -100,12 +100,12 @@
             </ul>
           </li>
           <li><a class="fold">DSD Database (DSDB)</a>
-            <ul class="menu2" >
+            <ul class="menu2" style="display: block;">
               <li><a id="dsdb-index" class="" href="/dsd-dsdb/">DSDB Overview</a></li>
               <li><a class="fold">Introduction</a>
-                <ul class="menu3" >
+                <ul class="menu3" style="display: block;">
                   <li><a id="dsdb-intro-overview" class="" href="/dsd-dsdb/introduction/index.html">Overview</a></li>
-                  <li><a id="dsdb-intro-installation" class="" href="/dsd-dsdb/introduction/installation.html">Installation</a></li>
+                  <li><a id="dsdb-intro-installation" class="active" href="/dsd-dsdb/introduction/installation.html">Installation</a></li>
                   <li><a id="dsdb-intro-start" class="" href="/dsd-dsdb/introduction/getting_started.html">Getting Started</a></li>
                 </ul>
               </li>
@@ -240,98 +240,155 @@
 
     <div class="side_right">
       <div class="doc">
-        <h1 id="">大数点开发者文档中心</h1>
-<p>欢迎来到大数点开发文档中心，请阅读以下章节：　　</p>
-<h3 id="data-hub">Data Hub</h3>
+        <h1 id="installation">Installation</h1>
+<p>This page provides directions for installing, starting, and configuring DSDB.</p>
+<h2 id="requirements">Requirements</h2>
+<p>Installation of the DSDB package may require <code>root</code> or administrator privileges in order to complete successfully.</p>
+<h3 id="networking">Networking</h3>
+<p>By default, DSDB uses the following network ports:</p>
 <ul>
-<li><a href="dsd-datahub/index.html">Data Hub Overview</a>  </li>
-<li>SDK<br />
-&nbsp; - <a href="dsd-datahub/sdk/embeded_c.html">Embeded C API</a><br />
-&nbsp; - <a href="dsd-datahub/sdk/javascript.html">JavaScript API</a>  </li>
+<li>TCP port <code>8083</code> is used for DSDB's <a href="/dsdb/tools/web_admin.html">Admin panel</a></li>
+<li>TCP port <code>8088</code> is used for client-server communication over DSDB's HTTP API</li>
+<li>TCP ports <code>8088</code> and <code>8091</code> are required for clustered DSDB instances</li>
 </ul>
-<h3 id="ds-database">DS database</h3>
-<ul>
-<li><a href="dsd-dsdb/index.html">DSDB Overview</a>  </li>
-<li>Introduction<br />
-&nbsp; - <a href="dsd-dsdb/introduction/installation.html">Installation</a><br />
-&nbsp; - <a href="dsd-dsdb/introduction//getting_started.html">Getting Started</a>  </li>
-<li>Administration<br />
-&nbsp; - <a href="dsd-dsdb/administration/authentication_and_authorization.html">Authentication and Authorization</a><br />
-&nbsp; - <a href="dsd-dsdb/administration/backup_and_restore.html">Backup and Restore</a><br />
-&nbsp; - <a href="dsd-dsdb/administration/config.html">Configuration</a><br />
-&nbsp; - <a href="dsd-dsdb/administration/logs.html">Logs</a><br />
-&nbsp; - <a href="dsd-dsdb/administration/statistics.html">Server Monitoring</a><br />
-&nbsp; - <a href="dsd-dsdb/administration/upgrading.html">Upgrading from previous versions</a>  </li>
-<li>Clients<br />
-&nbsp; - <a href="dsd-dsdb/clients/api.html">HTTP API Client Libraries</a>  </li>
-<li>Concepts
-&nbsp; - <a href="dsd-dsdb/concepts/key_concepts.html">Key Concepts</a><br />
-&nbsp; - <a href="dsd-dsdb/concepts/schema_and_data_layout.html">Schema and Data Layout</a><br />
-&nbsp; - <a href="dsd-dsdb/concepts/insights_tradeoffs.html">Design Insights and Tradeoffs</a><br />
-&nbsp; - <a href="dsd-dsdb/concepts/api.html">HTTP API Endpoints</a><br />
-&nbsp; - <a href="dsd-dsdb/concepts/storage_engine.html">Storage Engine</a><br />
-&nbsp; - <a href="dsd-dsdb/concepts/glossary.html">Glossary of Terms</a>  </li>
-<li>Data Sources<br />
-&nbsp; - <a href="dsd-dsdb/data_sources/diamond.html">Diamond</a><br />
-&nbsp; - <a href="dsd-dsdb/data_sources/opentsdb.html">OpenTSDB</a>  </li>
-<li>Guides<br />
-&nbsp; - <a href="dsd-dsdb/guides/clustering.html">Clustering</a><br />
-&nbsp; - <a href="dsd-dsdb/guides/downsampling_and_retention.html">Downsampling and Data Retention</a><br />
-&nbsp; - <a href="dsd-dsdb/guides/hardware_sizing.html">Hardware Sizing Guidelines</a><br />
-&nbsp; - <a href="dsd-dsdb/guides/querying_data.html">Querying Data</a><br />
-&nbsp; - <a href="dsd-dsdb/guides/writing_data.html">Writing Data</a>  </li>
-<li>Query Language<br />
-&nbsp; - <a href="dsd-dsdb/query_language/continuous_queries.html">Continuous Queries</a><br />
-&nbsp; - <a href="dsd-dsdb/query_language/data_exploration.html">Data Exploration</a><br />
-&nbsp; - <a href="dsd-dsdb/query_language/database_management.html">Database Management</a><br />
-&nbsp; - <a href="dsd-dsdb/query_language/functions.html">Functions</a><br />
-&nbsp; - <a href="dsd-dsdb/query_language/math_operators.html">Mathematical Operators</a><br />
-&nbsp; - <a href="dsd-dsdb/query_language/schema_exploration.html">Scheam Exploration</a><br />
-&nbsp; - <a href="dsd-dsdb/query_language/spec.html">Query Language Reference</a>  </li>
-<li>Sample Data<br />
-&nbsp; - <a href="dsd-dsdb/sample_data/data_download.html">Sample Data Download</a>  </li>
-<li>Tools<br />
-&nbsp; - <a href="dsd-dsdb/tools/shell.html">CLI/Shell</a><br />
-&nbsp; - <a href="dsd-dsdb/tools/web_admin.html">Web Admin Interface</a>  </li>
-<li>Troubleshooting<br />
-&nbsp; - <a href="dsd-dsdb/troubleshooting/frequently_encountered_issues.html">Frequently Encountered Issues</a><br />
-&nbsp; - <a href="dsd-dsdb/troubleshooting/system_monitoring.html">System Monitoring</a>  </li>
-<li>Write Protocols<br />
-&nbsp; - <a href="dsd-dsdb/write_protocols/collectd.html">Service - CollectD</a><br />
-&nbsp; - <a href="dsd-dsdb/write_protocols/graphite.html">Service - Graphite</a><br />
-&nbsp; - <a href="dsd-dsdb/write_protocols/json.html">JSON Protocol</a><br />
-&nbsp; - <a href="dsd-dsdb/write_protocols/line.html">Line Protocol</a><br />
-&nbsp; - <a href="dsd-dsdb/write_protocols/opentsdb.html">Service - OpenTSDB</a><br />
-&nbsp; - <a href="dsd-dsdb/write_protocols/udp.html">Service - UDP</a><br />
-&nbsp; - <a href="dsd-dsdb/write_protocols/write_syntax.html">Write Syntax</a>  </li>
-</ul>
-<h3 id="dsd-appapi-container-dac">DSD App/API Container (DAC)</h3>
-<ul>
-<li><a href="dsd-dac/index.html">DAC Overview</a>  </li>
-<li><a href="dsd-dac/dac_cloud_api_java.html">DAC JAVA API</a>  </li>
-<li><a href="dsd-dac/dac_cloud_api_c.html">DAC C API</a>  </li>
-<li><a href="dsd-dac/dac_cloud_api_cpp.html">DAC C++ API</a>  </li>
-</ul>
-<h3 id="im-amp-psh-cloud">IM &amp; Psh Cloud</h3>
-<ul>
-<li><a href="dsd-im/index.html">IM服务简介</a>  </li>
-<li><a href="dsd-im/integrate-im-android.html">Android上集成IM服务</a>  </li>
-<li><a href="dsd-im/integrate-im-ios.html">iOS上集成IM服务</a>  </li>
-</ul>
-<h3 id="aaa">大数点云账户管理AAA</h3>
-<ul>
-<li><a href="dsd-aaa/index.html">AAA介绍</a>  </li>
-<li><a href="dsd-aaa/dev-guide-android.html">Android上集成AAA服务</a>  </li>
-<li><a href="dsd-aaa/dev-guide-ios.html">iOS上集成IM服务</a>  </li>
-<li><a href="dsd-aaa/aaa-api.html">AAA API</a>  </li>
-</ul>
-<h3 id="cloudfile">大数点云存储服务CloudFile</h3>
-<ul>
-<li><a href="dsd-cloudfile/index.html">CloudFile介绍</a>  </li>
-<li><a href="dsd-cloudfile/dev-guide-android.html">Android上集成CloudFile服务</a>  </li>
-<li><a href="dsd-cloudfile/dev-guide-ios.html">iOS上集成CloudFile服务</a>  </li>
-<li><a href="dsd-cloudfile/api.html">CloudFile API</a></li>
-</ul>
+<blockquote>
+<p>Note: In addition to the ports above,
+DSDB also offers multiple plugins that may require custom ports.
+All port mappings can be modified through the <a href="/dsdb/administration/config.html">configuration file</a>,
+which is located at <code>/etc/dsdb/dsdb.conf</code> for default installations.</p>
+</blockquote>
+<h2 id="installation-1">Installation</h2>
+<h3 id="ubuntu-amp-debian">Ubuntu &amp; Debian</h3>
+<p>Debian and Ubuntu users can install the latest stable version of DSDB using the <code>apt-get</code> package manager.
+For Ubuntu users, you can add the DSDBData repository by using the following commands:</p>
+<pre><code class="language-shell">curl -sL https://repos.dasudian.com/dsdb.key | sudo apt-key add -
+source /etc/lsb-release
+echo "deb https://repos.dasudian.com/${DISTRIB_ID,,} ${DISTRIB_CODENAME} stable" | sudo tee /etc/apt/sources.list.d/dsdb.list</code></pre>
+<p>For Debian users, you can add the DSDBData repository by using the following commands:</p>
+<pre><code class="language-shell">curl -sL https://repos.dasudian.com/dsdb.key | sudo apt-key add -
+source /etc/os-release
+test $VERSION_ID = "7" &amp;&amp; echo "deb https://repos.dasudian.com/debian wheezy stable" | sudo tee /etc/apt/sources.list.d/dsdb.list
+test $VERSION_ID = "8" &amp;&amp; echo "deb https://repos.dasudian.com/debian jessie stable" | sudo tee /etc/apt/sources.list.d/dsdb.list</code></pre>
+<p>And then to install and start the DSDB service:</p>
+<pre><code class="language-shell">sudo apt-get update &amp;&amp; sudo apt-get install dsdb
+sudo service dsdb start</code></pre>
+<h3 id="redhat-amp-centos">RedHat &amp; CentOS</h3>
+<p>RedHat and CentOS users can install the latest stable version of DSDB using the <code>yum</code> package manager:</p>
+<pre><code class="language-shell">cat &lt;&lt;EOF | sudo tee /etc/yum.repos.d/dsdb.repo
+[dsdb]
+name = DSDB Repository - RHEL \$releasever
+baseurl = https://repos.dasudian.com/rhel/\$releasever/\$basearch/stable
+enabled = 1
+gpgcheck = 1
+gpgkey = https://repos.dasudian.com/dsdb.key
+EOF</code></pre>
+<p>Once repository is added to the <code>yum</code> configuration,
+you can install and start the DSDB service by running:</p>
+<pre><code class="language-shell">sudo yum install dsdb
+sudo service dsdb start</code></pre>
+<h3 id="sles-amp-opensuse">SLES &amp; openSUSE</h3>
+<p>There are RPM packages provided by openSUSE Build Service for SUSE Linux users:</p>
+<pre><code class="language-shell"># add go repository
+zypper ar -f obs://devel:languages:go/ go
+# install latest dsdb
+zypper in dsdb</code></pre>
+<h3 id="freebsdpc-bsd">FreeBSD/PC-BSD</h3>
+<p>DSDB is part of the FreeBSD package system.
+It can be installed by running:</p>
+<pre><code class="language-shell">sudo pkg install dsdb</code></pre>
+<p>The configuration file is located at <code>/usr/local/etc/influxd.conf</code> with examples in <code>/usr/local/etc/influxd.conf.sample</code>.</p>
+<p>Start the backend by executing:</p>
+<pre><code class="language-shell">sudo service influxd onestart</code></pre>
+<p>To have DSDB start at system boot, add <code>influxd_enable="YES"</code> to <code>/etc/rc.conf</code>.</p>
+<h3 id="mac-os-x">Mac OS X</h3>
+<p>Users of OS X 10.8 and higher can install DSDB using the <a href="http://brew.sh/">Homebrew</a> package manager.
+Once <code>brew</code> is installed, you can install DSDB by running:</p>
+<pre><code class="language-shell">brew update
+brew install dsdb</code></pre>
+<p>To have <code>launchd</code> start DSDB at login, run:</p>
+<pre><code class="language-shell">ln -sfv /usr/local/opt/dsdb/*.plist ~/Library/LaunchAgents</code></pre>
+<p>And then to start DSDB now, run:</p>
+<pre><code class="language-shell">launchctl load ~/Library/LaunchAgents/homebrew.mxcl.dsdb.plist</code></pre>
+<p>Or, if you don't want/need launchctl, in a separate terminal window you can just run:</p>
+<pre><code class="language-shell">influxd -config /usr/local/etc/dsdb.conf</code></pre>
+<h2 id="hosted">Hosted</h2>
+<p>For users who don't want to install any software and are ready to use DSDB, you may want to check out our <a href="http://customers.dasudian.com">managed hosted DSDB offering</a>.</p>
+<p><a href="/dsdb/introduction/getting_started.html"><font size="6"><b>⇒ Now get started!</b></font></a></p>
+<h2 id="configuration">Configuration</h2>
+<p>For non-packaged installations, it is a best practice to generate a new configuration
+for each upgrade to ensure you have the latest features and settings.
+Any changes made in the old file will need to be manually ported to the newly generated file.
+Packaged installations will come with a configuration pre-installed,
+so this step may not be needed if you installed DSDB using a
+package manager (though it is handy to know either way).</p>
+<blockquote>
+<p>Note: Newly generated configuration files have no knowledge of any local customizations or settings.
+Please make sure to double-check any configuration changes prior to deploying them.</p>
+</blockquote>
+<p>To generate a new configuration file, run:</p>
+<pre><code class="language-shell">influxd config &gt; dsdb.generated.conf</code></pre>
+<p>And then edit the <code>dsdb.generated.conf</code> file to have the desired configuration settings.
+When launching DSDB, point the process to the correct configuration file using the <code>-config</code> option. For example, use:</p>
+<pre><code class="language-shell">influxd -config dsdb.generated.conf</code></pre>
+<p>To launch DSDB with your newly generated configuration. In addition, a valid configuration file can be displayed at any time using the command <code>influxd config</code>.</p>
+<p>If no <code>-config</code> option is supplied, DSDB will use an internal default configuration (equivalent to the output of <code>influxd config</code>).</p>
+<blockquote>
+<p>Note: The <code>influxd</code> command has two similarly named flags.
+The <code>config</code> flag prints a generated default configuration file to STDOUT but does not launch the <code>influxd</code> process.
+The <code>-config</code> flag takes a single argument, which is the path to the DSDB configuration file to use when launching the process.</p>
+</blockquote>
+<p>The <code>config</code> and <code>-config</code> flags can be combined to output the union of the internal default configuration and the configuration file passed to <code>-config</code>.
+The options specified in the configuration file will overwrite any internally generated configuration.</p>
+<pre><code class="language-shell">influxd config -config /etc/dsdb/dsdb.partial.conf</code></pre>
+<p>The output will show every option configured in the <code>dsdb.partial.conf</code> file and will substitute internal defaults for any configuration options not specified in that file.</p>
+<p>The example configuration file shipped with the installer is for information only.
+It is an identical file to the internally generated configuration except that the example file has comments.</p>
+<h2 id="hosting-on-aws">Hosting on AWS</h2>
+<h3 id="hardware">Hardware</h3>
+<p>We recommend using two SSD volumes.
+One for the <code>dsdb/wal</code> and one for the <code>dsdb/data</code>.
+Depending on your load each volume should have around 1k-3k provisioned IOPS.
+The <code>dsdb/data</code> volume should have more disk space with lower IOPS and the <code>dsdb/wal</code> volume should have less disk space with higher IOPS.</p>
+<p>Each machine should have a minimum of 8G RAM.</p>
+<p>We’ve seen the best performance with the C3 class of machines.</p>
+<h3 id="configuring-the-instance">Configuring the Instance</h3>
+<p>This example assumes that you are using two SSD volumes and that you have mounted them appropriately.
+This example also assumes that each of those volumes is mounted at <code>/mnt/influx</code> and <code>/mnt/db</code>.
+For more information on how to do that see the Amazon documentation on how to <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-add-volume-to-instance.html">Add a Volume to Your Instance</a>.</p>
+<h3 id="config-file">Config File</h3>
+<p>You'll have to update the config file appropriately for each DSDB instance you have.</p>
+<pre><code>...
+
+[meta]
+  dir = "/mnt/db/meta"
+  ...
+
+...
+
+[data]
+  dir = "/mnt/db/data"
+  ...
+wal-dir = "/mnt/influx/wal"
+  ...
+
+...
+
+[hinted-handoff]
+    ...
+dir = "/mnt/db/hh"
+    ...</code></pre>
+<h3 id="permissions">Permissions</h3>
+<p>When using non-standard directories for DSDB data and configurations, also be sure to set filesystem permissions correctly:</p>
+<pre><code class="language-shell">chown dsdb:dsdb /mnt/influx
+chown dsdb:dsdb /mnt/db</code></pre>
+<h3 id="other-considerations">Other Considerations</h3>
+<p>If you're planning on using a cluster, you may also want to set <code>-join</code> flags for the <code>INFLUXD_OPTS</code> variable in <code>/etc/default/dsdb</code>.
+For example:</p>
+<pre><code>INFLUXD_OPTS='[-join hostname_1:port_1[,hostname_2:port_2]]'</code></pre>
+<p>For more detailed instructions on how to set up a cluster, please see the <a href="/dsdb/guides/clustering.html">Clustering</a> section.</p>
+<h2 id="nightly-and-development-versions">Nightly and Development Versions</h2>
+<p>Nightly packages are available for Linux through the DSDBData package repository by using the <code>nightly</code> channel.
+Other package options can be found on the <a href="https://dasudian.com/downloads/">downloads page</a></p>
       </div>
 
               <div class="tract"><img src="/images/tract.png"/></div>

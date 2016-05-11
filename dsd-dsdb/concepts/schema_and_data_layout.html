@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="大数点物联网开发者平台文档，基于大数点物联网平台，帮助开发者快速构建物联网应用">
-    <title>大数点文档中心</title>
+    <title>Schema Design</title>
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
@@ -100,7 +100,7 @@
             </ul>
           </li>
           <li><a class="fold">DSD Database (DSDB)</a>
-            <ul class="menu2" >
+            <ul class="menu2" style="display: block;">
               <li><a id="dsdb-index" class="" href="/dsd-dsdb/">DSDB Overview</a></li>
               <li><a class="fold">Introduction</a>
                 <ul class="menu3" >
@@ -127,11 +127,11 @@
                 </ul>
               </li>
               <li><a class="fold">Concepts</a>
-                <ul class="menu3" >
+                <ul class="menu3" style="display: block;">
                   <li><a id="dsdb-concepts-overview" class="" href="/dsd-dsdb/concepts/index.html">Concepts Overview</a></li>
                   <li><a id="dsdb-key-concepts" class="" href="/dsd-dsdb/concepts/key_concepts.html">Key Concepts</a></li>
                   <li><a id="dsdb-concepts-arch" class="" href="/dsd-dsdb/concepts/how_dsdb_works.html">Architecture</a></li>
-                  <li><a id="dsdb-concepts-schema-data-layout" class="" href="/dsd-dsdb/concepts/schema_and_data_layout.html">Scheam Design</a></li>
+                  <li><a id="dsdb-concepts-schema-data-layout" class="active" href="/dsd-dsdb/concepts/schema_and_data_layout.html">Scheam Design</a></li>
                   <li><a id="dsdb-concepts-insights-tradeoffs" class="" href="/dsd-dsdb/concepts/insights_tradeoffs.html">Insights Tradeoffs</a></li>
                   <li><a id="dsdb-concepts-api-endpoints" class="" href="/dsd-dsdb/concepts/api.html">API Endpoints&Ports</a></li>
                   <li><a id="dsdb-concepts-storage-engine" class="" href="/dsd-dsdb/concepts/storage_engine.html">Storage Engine</a></li>
@@ -240,97 +240,145 @@
 
     <div class="side_right">
       <div class="doc">
-        <h1 id="">大数点开发者文档中心</h1>
-<p>欢迎来到大数点开发文档中心，请阅读以下章节：　　</p>
-<h3 id="data-hub">Data Hub</h3>
+        <h1 id="scheam-design">Scheam Design</h1>
+<p>Every DSDB use case is special and your <a href="/dsdb/concepts/glossary.html#schema">schema</a> will reflect that uniqueness.
+There are, however, general guidelines to follow and pitfalls to avoid when designing your schema.</p>
+<h2 id="encouraged-schema-design">Encouraged Schema Design</h2>
+<p>In no particular order, we recommend that you:</p>
 <ul>
-<li><a href="dsd-datahub/index.html">Data Hub Overview</a>  </li>
-<li>SDK<br />
-&nbsp; - <a href="dsd-datahub/sdk/embeded_c.html">Embeded C API</a><br />
-&nbsp; - <a href="dsd-datahub/sdk/javascript.html">JavaScript API</a>  </li>
+<li>
+<p><em>Encode meta data in tags</em></p>
+<p><a href="/dsdb/concepts/glossary.html#tag">Tags</a> are indexed and <a href="/dsdb/concepts/glossary.html#field">fields</a> are not indexed.
+This means that queries on tags are more performant than those on fields.</p>
+<p>In general, your queries should guide what gets stored as a tag and what gets stored as a field:</p>
+<ul>
+<li>Store data in tags if they're commonly-queried meta data</li>
+<li>Store data in tags if you plan to use them with <code>GROUP BY()</code></li>
+<li>Store data in fields if you plan to use them with an <a href="/dsdb/query_language/functions.html">InfluxQL function</a></li>
+<li>Store data in fields if you <em>need</em> them to be something other than a string - <a href="/dsdb/concepts/glossary.html#tag-value">tag values</a> are always interpreted as strings</li>
 </ul>
-<h3 id="ds-database">DS database</h3>
-<ul>
-<li><a href="dsd-dsdb/index.html">DSDB Overview</a>  </li>
-<li>Introduction<br />
-&nbsp; - <a href="dsd-dsdb/introduction/installation.html">Installation</a><br />
-&nbsp; - <a href="dsd-dsdb/introduction//getting_started.html">Getting Started</a>  </li>
-<li>Administration<br />
-&nbsp; - <a href="dsd-dsdb/administration/authentication_and_authorization.html">Authentication and Authorization</a><br />
-&nbsp; - <a href="dsd-dsdb/administration/backup_and_restore.html">Backup and Restore</a><br />
-&nbsp; - <a href="dsd-dsdb/administration/config.html">Configuration</a><br />
-&nbsp; - <a href="dsd-dsdb/administration/logs.html">Logs</a><br />
-&nbsp; - <a href="dsd-dsdb/administration/statistics.html">Server Monitoring</a><br />
-&nbsp; - <a href="dsd-dsdb/administration/upgrading.html">Upgrading from previous versions</a>  </li>
-<li>Clients<br />
-&nbsp; - <a href="dsd-dsdb/clients/api.html">HTTP API Client Libraries</a>  </li>
-<li>Concepts
-&nbsp; - <a href="dsd-dsdb/concepts/key_concepts.html">Key Concepts</a><br />
-&nbsp; - <a href="dsd-dsdb/concepts/schema_and_data_layout.html">Schema and Data Layout</a><br />
-&nbsp; - <a href="dsd-dsdb/concepts/insights_tradeoffs.html">Design Insights and Tradeoffs</a><br />
-&nbsp; - <a href="dsd-dsdb/concepts/api.html">HTTP API Endpoints</a><br />
-&nbsp; - <a href="dsd-dsdb/concepts/storage_engine.html">Storage Engine</a><br />
-&nbsp; - <a href="dsd-dsdb/concepts/glossary.html">Glossary of Terms</a>  </li>
-<li>Data Sources<br />
-&nbsp; - <a href="dsd-dsdb/data_sources/diamond.html">Diamond</a><br />
-&nbsp; - <a href="dsd-dsdb/data_sources/opentsdb.html">OpenTSDB</a>  </li>
-<li>Guides<br />
-&nbsp; - <a href="dsd-dsdb/guides/clustering.html">Clustering</a><br />
-&nbsp; - <a href="dsd-dsdb/guides/downsampling_and_retention.html">Downsampling and Data Retention</a><br />
-&nbsp; - <a href="dsd-dsdb/guides/hardware_sizing.html">Hardware Sizing Guidelines</a><br />
-&nbsp; - <a href="dsd-dsdb/guides/querying_data.html">Querying Data</a><br />
-&nbsp; - <a href="dsd-dsdb/guides/writing_data.html">Writing Data</a>  </li>
-<li>Query Language<br />
-&nbsp; - <a href="dsd-dsdb/query_language/continuous_queries.html">Continuous Queries</a><br />
-&nbsp; - <a href="dsd-dsdb/query_language/data_exploration.html">Data Exploration</a><br />
-&nbsp; - <a href="dsd-dsdb/query_language/database_management.html">Database Management</a><br />
-&nbsp; - <a href="dsd-dsdb/query_language/functions.html">Functions</a><br />
-&nbsp; - <a href="dsd-dsdb/query_language/math_operators.html">Mathematical Operators</a><br />
-&nbsp; - <a href="dsd-dsdb/query_language/schema_exploration.html">Scheam Exploration</a><br />
-&nbsp; - <a href="dsd-dsdb/query_language/spec.html">Query Language Reference</a>  </li>
-<li>Sample Data<br />
-&nbsp; - <a href="dsd-dsdb/sample_data/data_download.html">Sample Data Download</a>  </li>
-<li>Tools<br />
-&nbsp; - <a href="dsd-dsdb/tools/shell.html">CLI/Shell</a><br />
-&nbsp; - <a href="dsd-dsdb/tools/web_admin.html">Web Admin Interface</a>  </li>
-<li>Troubleshooting<br />
-&nbsp; - <a href="dsd-dsdb/troubleshooting/frequently_encountered_issues.html">Frequently Encountered Issues</a><br />
-&nbsp; - <a href="dsd-dsdb/troubleshooting/system_monitoring.html">System Monitoring</a>  </li>
-<li>Write Protocols<br />
-&nbsp; - <a href="dsd-dsdb/write_protocols/collectd.html">Service - CollectD</a><br />
-&nbsp; - <a href="dsd-dsdb/write_protocols/graphite.html">Service - Graphite</a><br />
-&nbsp; - <a href="dsd-dsdb/write_protocols/json.html">JSON Protocol</a><br />
-&nbsp; - <a href="dsd-dsdb/write_protocols/line.html">Line Protocol</a><br />
-&nbsp; - <a href="dsd-dsdb/write_protocols/opentsdb.html">Service - OpenTSDB</a><br />
-&nbsp; - <a href="dsd-dsdb/write_protocols/udp.html">Service - UDP</a><br />
-&nbsp; - <a href="dsd-dsdb/write_protocols/write_syntax.html">Write Syntax</a>  </li>
+</li>
+<li>
+<p><em>Avoid using InfluxQL Keywords as identifier names</em></p>
+<p>This isn't necessary, but it simplifies writing queries; you won't have to wrap those identifiers in double quotes.
+Identifiers are are database names, <a href="/dsdb/concepts/glossary.html#retention-policy-rp">retention policy</a> names, <a href="/dsdb/concepts/glossary.html#user">user</a> names, <a href="/dsdb/concepts/glossary.html#measurement">measurement</a> names, <a href="/dsdb/concepts/glossary.html#tag-key">tag keys</a>, and <a href="/dsdb/concepts/glossary.html#field-key">field keys</a>.
+See <a href="https://github.com/dasudian/dsdb/blob/master/dsdbql/influxql.html#keywords">InfluxQL Keywords</a> for words to avoid.</p>
+<p>Note that you will also need to wrap identifiers in double quotes in queries if they contain characters other than <code>[A-z,_]</code>.</p>
+</li>
 </ul>
-<h3 id="dsd-appapi-container-dac">DSD App/API Container (DAC)</h3>
+<h2 id="discouraged-schema-design">Discouraged Schema Design</h2>
+<p>In no particular order, we recommend that you:</p>
 <ul>
-<li><a href="dsd-dac/index.html">DAC Overview</a>  </li>
-<li><a href="dsd-dac/dac_cloud_api_java.html">DAC JAVA API</a>  </li>
-<li><a href="dsd-dac/dac_cloud_api_c.html">DAC C API</a>  </li>
-<li><a href="dsd-dac/dac_cloud_api_cpp.html">DAC C++ API</a>  </li>
+<li>
+<p><em>Don't have too many series</em></p>
+<p>See <a href="/dsdb/guides/hardware_sizing.html#general-hardware-guidelines-for-a-single-node">Hardware Sizing Guidelines</a> for <a href="/dsdb/concepts/glossary.html#series-cardinality">series cardinality</a> recommendations based on your hardware.</p>
+<p><a href="/dsdb/concepts/glossary.html#tag">Tags</a> that specify highly variable information like UUIDs, hashes, and random strings can increase your series cardinality to uncomfortable levels.
+If you need that information in your database, consider storing the high-cardinality data as a field rather than a tag (note that query performance will be slower).</p>
+</li>
+<li>
+<p><em>Don't differentiate data with measurement names</em></p>
+<p>In general, taking this step will simplify your queries.
+DSDB queries merge data that fall within the same <a href="/dsdb/concepts/glossary.html#measurement">measurement</a>; it's better to differentiate data with <a href="/dsdb/concepts/glossary.html#tag">tags</a> than with detailed measurement names.</p>
+<p>Example:</p>
+</li>
 </ul>
-<h3 id="im-amp-psh-cloud">IM &amp; Psh Cloud</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Schema 1</th>
+<th style="text-align: left;">Schema 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><em>Measurement:</em> <code>blueberries.field-1.region-north</code></td>
+<td style="text-align: left;"><em>Measurement:</em> <code>blueberries</code>; <em>Tags:</em> <code>field = 1</code> and <code>region = north</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><em>Measurement:</em>  <code>blueberries.field-2.region-midwest</code></td>
+<td style="text-align: left;"><em>Measurement:</em> <code>blueberries</code>; <em>Tags:</em> <code>field = 2</code> and <code>region = midwest</code></td>
+</tr>
+</tbody>
+</table>
+<pre><code>Assume that each measurement contains a single field key called `value`.
+The following queries calculate the average of `value` across all fields and all regions.
+Notice that, even at this small scale, this is harder to do under Schema 1.
+
+*Schema 1*
+```
+&gt; SELECT mean(value) FROM /^blueberries/
+name: blueberries.field-1.region-north
+--------------------------------------
+time                    mean
+1970-01-01T00:00:00Z    444
+
+name: blueberries.field-2.region-midwest
+----------------------------------------
+time                    mean
+1970-01-01T00:00:00Z    33766.666666666664
+```
+Then calculate the mean yourself.
+
+*Schema 2*
+```
+&gt; SELECT mean(value) FROM blueberries
+name: blueberries
+-----------------
+time                    mean
+1970-01-01T00:00:00Z    17105.333333333332
+```</code></pre>
 <ul>
-<li><a href="dsd-im/index.html">IM服务简介</a>  </li>
-<li><a href="dsd-im/integrate-im-android.html">Android上集成IM服务</a>  </li>
-<li><a href="dsd-im/integrate-im-ios.html">iOS上集成IM服务</a>  </li>
+<li>
+<p><em>Don't put more than one piece of information in one tag</em></p>
+<p>Similar to the point above, taking this step will simplify your queries.
+It will reduce your need for regular expressions.</p>
+<p>Example:</p>
+</li>
 </ul>
-<h3 id="aaa">大数点云账户管理AAA</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Tagset 1</th>
+<th style="text-align: left;">Tagset 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>location = field-1.region-north</code></td>
+<td style="text-align: left;"><code>field = 1</code> and <code>region = north</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>location = field-2.region-north</code></td>
+<td style="text-align: left;"><code>field = 2</code> and <code>region = north</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>location = field-2.region-midwest</code></td>
+<td style="text-align: left;"><code>field = 2</code> and <code>region = north</code></td>
+</tr>
+</tbody>
+</table>
+<pre><code>Assume that each [tag set](/dsdb/concepts/glossary.html#tag-set) falls in the [measurement](/dsdb/concepts/glossary.html#measurement) `blueberries` and is associated with a [field](/dsdb/concepts/glossary.html#field) called `value`.
+The following queries calculate the average of `value` for blueberries that fall in the `north`.
+While both queries are relatively simple, you can imagine that the regex could get much more complicated if Schema 1 contained a more complex tag value.
+
+*Schema 1*
+```
+&gt; SELECT mean(value) FROM blueberries WHERE location =~ /north/
+```
+
+*Schema 2*
+```
+&gt; SELECT mean(value) FROM blueberries WHERE region = 'north'
+```</code></pre>
 <ul>
-<li><a href="dsd-aaa/index.html">AAA介绍</a>  </li>
-<li><a href="dsd-aaa/dev-guide-android.html">Android上集成AAA服务</a>  </li>
-<li><a href="dsd-aaa/dev-guide-ios.html">iOS上集成IM服务</a>  </li>
-<li><a href="dsd-aaa/aaa-api.html">AAA API</a>  </li>
-</ul>
-<h3 id="cloudfile">大数点云存储服务CloudFile</h3>
-<ul>
-<li><a href="dsd-cloudfile/index.html">CloudFile介绍</a>  </li>
-<li><a href="dsd-cloudfile/dev-guide-android.html">Android上集成CloudFile服务</a>  </li>
-<li><a href="dsd-cloudfile/dev-guide-ios.html">iOS上集成CloudFile服务</a>  </li>
-<li><a href="dsd-cloudfile/api.html">CloudFile API</a></li>
+<li>
+<p><em>Don't use the same name for a field key and tag key</em></p>
+<p>You won't be able to query the <a href="/dsdb/concepts/glossary.html#tag-key">tag key</a> if the tag key is the same as a <a href="/dsdb/concepts/glossary.html#field-key">field key</a> in your schema.
+Be sure to differentiate your tag keys and field keys.</p>
+<dt>
+See GitHub Issue [#4630](https://github.com/dasudian/dsdb/issues/4630) for more information.
+</dt>
+</li>
 </ul>
       </div>
 

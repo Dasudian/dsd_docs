@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="大数点物联网开发者平台文档，基于大数点物联网平台，帮助开发者快速构建物联网应用">
-    <title>大数点文档中心</title>
+    <title>Database Management</title>
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
@@ -100,7 +100,7 @@
             </ul>
           </li>
           <li><a class="fold">DSD Database (DSDB)</a>
-            <ul class="menu2" >
+            <ul class="menu2" style="display: block;">
               <li><a id="dsdb-index" class="" href="/dsd-dsdb/">DSDB Overview</a></li>
               <li><a class="fold">Introduction</a>
                 <ul class="menu3" >
@@ -155,14 +155,14 @@
                 </ul>
               </li>
               <li><a class="fold">Query Language</a>
-                <ul class="menu3" >
+                <ul class="menu3" style="display: block;">
                   <li><a id="dsdb-querylang-overview" class="" href="/dsd-dsdb/query_language/index.html">Overview</a></li>
                   <li><a id="dsdb-querylang-dataexp" class="" href="/dsd-dsdb/query_language/data_exploration.html">Data Exploration</a></li>
                   <li><a id="dsdb-querylang-scheamexp" class="" href="/dsd-dsdb/query_language/schema_exploration.html">Schema Exploration</a></li>
                   <li><a id="dsdb-querylang-func" class="" href="/dsd-dsdb/query_language/functions.html">Functions</a></li>
                   <li><a id="dsdb-querylang-contq" class="" href="/dsd-dsdb/query_language/continuous_queries.html">Continuous Queries</a></li>
                   <li><a id="dsdb-querylang-spec" class="" href="/dsd-dsdb/query_language/spec.html">Query Language Reference</a></li>
-                  <li><a id="dsdb-querylang-mgmt" class="" href="/dsd-dsdb/query_language/database_management.html">Database Management</a></li>
+                  <li><a id="dsdb-querylang-mgmt" class="active" href="/dsd-dsdb/query_language/database_management.html">Database Management</a></li>
                   <li><a id="dsdb-querylang-math" class="" href="/dsd-dsdb/query_language/math_operators.html">Mathematical Operators</a></li>
                 </ul>
               </li>
@@ -240,98 +240,149 @@
 
     <div class="side_right">
       <div class="doc">
-        <h1 id="">大数点开发者文档中心</h1>
-<p>欢迎来到大数点开发文档中心，请阅读以下章节：　　</p>
-<h3 id="data-hub">Data Hub</h3>
+        <h1 id="database-management">Database Management</h1>
+<p>DSDBQL offers a full suite of administrative commands.</p>
 <ul>
-<li><a href="dsd-datahub/index.html">Data Hub Overview</a>  </li>
-<li>SDK<br />
-&nbsp; - <a href="dsd-datahub/sdk/embeded_c.html">Embeded C API</a><br />
-&nbsp; - <a href="dsd-datahub/sdk/javascript.html">JavaScript API</a>  </li>
+<li>
+<p><a href="/dsdb/query_language/database_management.html#data-management">Data management</a><br />
+&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/dsdb/query_language/database_management.html#create-a-database-with-create-database">Create a database with <code>CREATE DATABASE</code></a><br />
+&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/dsdb/query_language/database_management.html#delete-a-database-with-drop-database">Delete a database with <code>DROP DATABASE</code></a><br />
+&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/dsdb/query_language/database_management.html#delete-series-with-drop-series">Delete series with <code>DROP SERIES</code></a><br />
+&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/dsdb/query_language/database_management.html#delete-measurements-with-drop-measurement">Delete measurements with <code>DROP MEASUREMENT</code></a>  </p>
+</li>
+<li><a href="/dsdb/query_language/database_management.html#retention-policy-management">Retention policy management</a><br />
+&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/dsdb/query_language/database_management.html#create-retention-policies-with-create-retention-policy">Create retention policies with <code>CREATE RETENTION POLICY</code></a><br />
+&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/dsdb/query_language/database_management.html#modify-retention-policies-with-alter-retention-policy">Modify retention policies with <code>ALTER RETENTION POLICY</code></a><br />
+&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/dsdb/query_language/database_management.html#delete-retention-policies-with-drop-retention-policy">Delete retention policies with <code>DROP RETENTION POLICY</code></a>  </li>
 </ul>
-<h3 id="ds-database">DS database</h3>
+<p>If you're looking for <code>SHOW</code> queries (for example, <code>SHOW DATABASES</code> or <code>SHOW RETENTION POLICIES</code>), see <a href="/dsdb/query_language/schema_exploration">Schema Exploration</a>.</p>
+<p>The examples in the sections below use DSDB's <a href="/dsdb/introduction/getting_started.html">Command Line Interface (CLI)</a>.
+You can also execute the commands using the HTTP API; simply  send a <code>GET</code> request to the <code>/query</code> endpoint and include the command in the URL parameter <code>q</code>.
+See the <a href="/dsdb/guides/querying_data.html">Querying Data</a> guide for more on using the HTTP API.</p>
+<blockquote>
+<p><strong>Note:</strong> When authentication is enabled, only admin users can execute most of the commands listed on this page.
+See the documentation on <a href="/dsdb/administration/authentication_and_authorization.html">authentication and authorization</a> for more information.</p>
+</blockquote>
+<h2 id="data-management">Data Management</h2>
+<h3 id="create-a-database-with-create-database">Create a database with CREATE DATABASE</h3>
+<hr />
+<p>The <code>CREATE DATABASE</code> query takes the following form:</p>
+<pre><code class="language-sql">CREATE DATABASE [IF NOT EXISTS] &lt;database_name&gt; [WITH [DURATION &lt;duration&gt;] [REPLICATION &lt;n&gt;] [NAME &lt;retention-policy-name&gt;]]</code></pre>
+<p>Create the database <code>NOAA_water_database</code>:</p>
+<pre><code class="language-sh">&gt; CREATE DATABASE NOAA_water_database
+&gt;</code></pre>
+<p>Create the database <code>NOAA_water_database</code> only if it doesn't exist:</p>
+<pre><code class="language-sh">&gt; CREATE DATABASE IF NOT EXISTS NOAA_water_database
+&gt;</code></pre>
+<p>Create the database <code>NOAA_water_database</code> with a new retention policy called <code>liquid</code>:</p>
+<pre><code class="language-sh">&gt; CREATE DATABASE NOAA_water_database WITH DURATION 3d REPLICATION 3 NAME liquid
+&gt;</code></pre>
+<p>When specifying a retention policy you can include one or more of the attributes <code>DURATION</code>, <code>REPLICATION</code>, and <code>NAME</code>.
+For more on retention policies, see <a href="/dsdb/query_language/database_management.html#retention-policy-management">Retention Policy Management</a></p>
+<p>A successful <code>CREATE DATABASE</code> query returns an empty result.</p>
+<h3 id="delete-a-database-with-drop-database">Delete a database with DROP DATABASE</h3>
+<hr />
+<p>The <code>DROP DATABASE</code> query deletes all of the data, measurements, series, continuous queries, and retention policies from the specified database.
+The query takes the following form:</p>
+<pre><code class="language-sql">DROP DATABASE [IF EXISTS] &lt;database_name&gt;</code></pre>
+<p>Drop the database NOAA_water_database:</p>
+<pre><code class="language-sh">&gt; DROP DATABASE NOAA_water_database
+&gt;</code></pre>
+<p>Drop the database NOAA_water_database only if it exists:</p>
+<pre><code class="language-sh">&gt; DROP DATABASE IF EXISTS NOAA_water_database
+&gt;</code></pre>
+<p>A successful <code>DROP DATABASE</code> query returns an empty result.</p>
+<h3 id="delete-series-with-drop-series">Delete series with DROP SERIES</h3>
+<hr />
+<p>The <code>DROP SERIES</code> query deletes all points from <a href="/dsdb/concepts/glossary.html#series">series</a> in a database.
+The query takes the following form, where you must specify either the <code>FROM</code> clause or the <code>WHERE</code> clause:</p>
+<pre><code class="language-sql">DROP SERIES FROM &lt;measurement_name[,measurement_name]&gt; WHERE &lt;tag_key&gt;='&lt;tag_value&gt;'</code></pre>
+<p>Delete all series from a single measurement:</p>
+<pre><code class="language-sql">&gt; DROP SERIES FROM h2o_feet</code></pre>
+<p>Delete series that have a specific tag set from a single measurement:</p>
+<pre><code class="language-sql">&gt; DROP SERIES FROM h2o_feet WHERE location = 'santa_monica'</code></pre>
+<p>Delete all points in the series that have a specific tag set from all measurements in the database:</p>
+<pre><code class="language-sql">&gt; DROP SERIES WHERE location = 'santa_monica'</code></pre>
+<p>A successful <code>DROP SERIES</code> query returns an empty result.</p>
+<dt> `DROP SERIES` does not support time intervals in the `WHERE` clause.
+See GitHub Issue [#1647](https://github.com/dsdb/dsdb/issues/1647) for more information).
+</dt>
+<h3 id="delete-measurements-with-drop-measurement">Delete measurements with DROP MEASUREMENT</h3>
+<hr />
+<p>The <code>DROP MEASUREMENT</code> query deletes all data and series from the specified <a href="/dsdb/concepts/glossary.html#measurement">measurement</a> and, unlike <code>DROP SERIES</code>, it also deletes the measurement from the index.
+The query takes the following form:</p>
+<pre><code class="language-sql">DROP MEASUREMENT &lt;measurement_name&gt;</code></pre>
+<p>Delete the measurement <code>h2o_feet</code>:</p>
+<pre><code class="language-sql">&gt; DROP MEASUREMENT h2o_feet</code></pre>
+<blockquote>
+<p><strong>Note:</strong> <code>DROP MEASUREMENT</code> drops all data and series in the measurement.
+It does not drop the associated continuous queries.</p>
+</blockquote>
+<p>A successful <code>DROP MEASUREMENT</code> query returns an empty result.</p>
+<dt> Currently, DSDB does not support regular expressions with `DROP MEASUREMENTS`.
+See GitHub Issue [#4275](https://github.com/dsdb/dsdb/issues/4275) for more information.
+</dt>
+<h2 id="retention-policy-management">Retention Policy Management</h2>
+<p>The following sections cover how to create, alter, and delete retention policies.
+Note that when you create a database, DSDB automatically creates a retention policy named <code>default</code> which has infinite retention.
+You may disable that auto-creation in the configuration file.</p>
+<h3 id="create-retention-policies-with-create-retention-policy">Create retention policies with CREATE RETENTION POLICY</h3>
+<hr />
+<p>The <code>CREATE RETENTION POLICY</code> query takes the following form, where <code>DEFAULT</code> is optional:</p>
+<pre><code class="language-sql">CREATE RETENTION POLICY &lt;retention_policy_name&gt; ON &lt;database_name&gt; DURATION &lt;duration&gt; REPLICATION &lt;n&gt; [DEFAULT]</code></pre>
 <ul>
-<li><a href="dsd-dsdb/index.html">DSDB Overview</a>  </li>
-<li>Introduction<br />
-&nbsp; - <a href="dsd-dsdb/introduction/installation.html">Installation</a><br />
-&nbsp; - <a href="dsd-dsdb/introduction//getting_started.html">Getting Started</a>  </li>
-<li>Administration<br />
-&nbsp; - <a href="dsd-dsdb/administration/authentication_and_authorization.html">Authentication and Authorization</a><br />
-&nbsp; - <a href="dsd-dsdb/administration/backup_and_restore.html">Backup and Restore</a><br />
-&nbsp; - <a href="dsd-dsdb/administration/config.html">Configuration</a><br />
-&nbsp; - <a href="dsd-dsdb/administration/logs.html">Logs</a><br />
-&nbsp; - <a href="dsd-dsdb/administration/statistics.html">Server Monitoring</a><br />
-&nbsp; - <a href="dsd-dsdb/administration/upgrading.html">Upgrading from previous versions</a>  </li>
-<li>Clients<br />
-&nbsp; - <a href="dsd-dsdb/clients/api.html">HTTP API Client Libraries</a>  </li>
-<li>Concepts
-&nbsp; - <a href="dsd-dsdb/concepts/key_concepts.html">Key Concepts</a><br />
-&nbsp; - <a href="dsd-dsdb/concepts/schema_and_data_layout.html">Schema and Data Layout</a><br />
-&nbsp; - <a href="dsd-dsdb/concepts/insights_tradeoffs.html">Design Insights and Tradeoffs</a><br />
-&nbsp; - <a href="dsd-dsdb/concepts/api.html">HTTP API Endpoints</a><br />
-&nbsp; - <a href="dsd-dsdb/concepts/storage_engine.html">Storage Engine</a><br />
-&nbsp; - <a href="dsd-dsdb/concepts/glossary.html">Glossary of Terms</a>  </li>
-<li>Data Sources<br />
-&nbsp; - <a href="dsd-dsdb/data_sources/diamond.html">Diamond</a><br />
-&nbsp; - <a href="dsd-dsdb/data_sources/opentsdb.html">OpenTSDB</a>  </li>
-<li>Guides<br />
-&nbsp; - <a href="dsd-dsdb/guides/clustering.html">Clustering</a><br />
-&nbsp; - <a href="dsd-dsdb/guides/downsampling_and_retention.html">Downsampling and Data Retention</a><br />
-&nbsp; - <a href="dsd-dsdb/guides/hardware_sizing.html">Hardware Sizing Guidelines</a><br />
-&nbsp; - <a href="dsd-dsdb/guides/querying_data.html">Querying Data</a><br />
-&nbsp; - <a href="dsd-dsdb/guides/writing_data.html">Writing Data</a>  </li>
-<li>Query Language<br />
-&nbsp; - <a href="dsd-dsdb/query_language/continuous_queries.html">Continuous Queries</a><br />
-&nbsp; - <a href="dsd-dsdb/query_language/data_exploration.html">Data Exploration</a><br />
-&nbsp; - <a href="dsd-dsdb/query_language/database_management.html">Database Management</a><br />
-&nbsp; - <a href="dsd-dsdb/query_language/functions.html">Functions</a><br />
-&nbsp; - <a href="dsd-dsdb/query_language/math_operators.html">Mathematical Operators</a><br />
-&nbsp; - <a href="dsd-dsdb/query_language/schema_exploration.html">Scheam Exploration</a><br />
-&nbsp; - <a href="dsd-dsdb/query_language/spec.html">Query Language Reference</a>  </li>
-<li>Sample Data<br />
-&nbsp; - <a href="dsd-dsdb/sample_data/data_download.html">Sample Data Download</a>  </li>
-<li>Tools<br />
-&nbsp; - <a href="dsd-dsdb/tools/shell.html">CLI/Shell</a><br />
-&nbsp; - <a href="dsd-dsdb/tools/web_admin.html">Web Admin Interface</a>  </li>
-<li>Troubleshooting<br />
-&nbsp; - <a href="dsd-dsdb/troubleshooting/frequently_encountered_issues.html">Frequently Encountered Issues</a><br />
-&nbsp; - <a href="dsd-dsdb/troubleshooting/system_monitoring.html">System Monitoring</a>  </li>
-<li>Write Protocols<br />
-&nbsp; - <a href="dsd-dsdb/write_protocols/collectd.html">Service - CollectD</a><br />
-&nbsp; - <a href="dsd-dsdb/write_protocols/graphite.html">Service - Graphite</a><br />
-&nbsp; - <a href="dsd-dsdb/write_protocols/json.html">JSON Protocol</a><br />
-&nbsp; - <a href="dsd-dsdb/write_protocols/line.html">Line Protocol</a><br />
-&nbsp; - <a href="dsd-dsdb/write_protocols/opentsdb.html">Service - OpenTSDB</a><br />
-&nbsp; - <a href="dsd-dsdb/write_protocols/udp.html">Service - UDP</a><br />
-&nbsp; - <a href="dsd-dsdb/write_protocols/write_syntax.html">Write Syntax</a>  </li>
+<li>
+<p><code>DURATION</code> determines how long DSDB keeps the data - the options for specifying the duration of the retention policy are listed below.
+Note that the minimum retention period is one hour.
+<code>m</code> minutes<br />
+<code>h</code> hours<br />
+<code>d</code> days<br />
+<code>w</code> weeks<br />
+<code>INF</code> infinite</p>
+<dt> Currently, the `DURATION` attribute supports only single units.
+For example, you cannot express the duration `7230m` as `120h 30m`.
+See GitHub Issue [#3634](https://github.com/dsdb/dsdb/issues/3634) for more information.
+</dt>
+</li>
+<li>
+<p><code>REPLICATION</code> determines how many independent copies of each point are stored in the cluster, where <code>n</code> is the number of data nodes.</p>
+</li>
+<li><code>DEFAULT</code> sets the new retention policy as the default retention policy for the database.</li>
 </ul>
-<h3 id="dsd-appapi-container-dac">DSD App/API Container (DAC)</h3>
-<ul>
-<li><a href="dsd-dac/index.html">DAC Overview</a>  </li>
-<li><a href="dsd-dac/dac_cloud_api_java.html">DAC JAVA API</a>  </li>
-<li><a href="dsd-dac/dac_cloud_api_c.html">DAC C API</a>  </li>
-<li><a href="dsd-dac/dac_cloud_api_cpp.html">DAC C++ API</a>  </li>
-</ul>
-<h3 id="im-amp-psh-cloud">IM &amp; Psh Cloud</h3>
-<ul>
-<li><a href="dsd-im/index.html">IM服务简介</a>  </li>
-<li><a href="dsd-im/integrate-im-android.html">Android上集成IM服务</a>  </li>
-<li><a href="dsd-im/integrate-im-ios.html">iOS上集成IM服务</a>  </li>
-</ul>
-<h3 id="aaa">大数点云账户管理AAA</h3>
-<ul>
-<li><a href="dsd-aaa/index.html">AAA介绍</a>  </li>
-<li><a href="dsd-aaa/dev-guide-android.html">Android上集成AAA服务</a>  </li>
-<li><a href="dsd-aaa/dev-guide-ios.html">iOS上集成IM服务</a>  </li>
-<li><a href="dsd-aaa/aaa-api.html">AAA API</a>  </li>
-</ul>
-<h3 id="cloudfile">大数点云存储服务CloudFile</h3>
-<ul>
-<li><a href="dsd-cloudfile/index.html">CloudFile介绍</a>  </li>
-<li><a href="dsd-cloudfile/dev-guide-android.html">Android上集成CloudFile服务</a>  </li>
-<li><a href="dsd-cloudfile/dev-guide-ios.html">iOS上集成CloudFile服务</a>  </li>
-<li><a href="dsd-cloudfile/api.html">CloudFile API</a></li>
-</ul>
+<p>Create a retention policy called <code>one_day_only</code> for the database <code>NOAA_water_database</code> with a one day duration and a replication factor of one:</p>
+<pre><code class="language-sql">&gt; CREATE RETENTION POLICY one_day_only ON NOAA_water_database DURATION 1d REPLICATION 1
+&gt;</code></pre>
+<p>Create the same retention policy as the one in the example above, but set it as the default retention policy for the database.</p>
+<pre><code class="language-sql">&gt; CREATE RETENTION POLICY one_day_only ON NOAA_water_database DURATION 1d REPLICATION 1 DEFAULT
+&gt;</code></pre>
+<p>A successful <code>CREATE RETENTION POLICY</code> query returns an empty response.</p>
+<blockquote>
+<p><strong>Note:</strong> You can also specify a new retention policy in the <code>CREATE DATABASE</code> query.
+See <a href="/dsdb/query_language/database_management.html#create-a-database-with-create-database">Create a database with CREATE DATABASE</a>.</p>
+</blockquote>
+<h3 id="modify-retention-policies-with-alter-retention-policy">Modify retention policies with ALTER RETENTION POLICY</h3>
+<hr />
+<p>The <code>ALTER RETENTION POLICY</code> query takes the following form, where you must declare at least one of the retention policy attributes <code>DURATION</code>, <code>REPLICATION</code>, or <code>DEFAULT</code>:</p>
+<pre><code class="language-sql">ALTER RETENTION POLICY &lt;retention_policy_name&gt; ON &lt;database_name&gt; DURATION &lt;duration&gt; REPLICATION &lt;n&gt; [DEFAULT]</code></pre>
+<p>First, create the retention policy <code>what_is_time</code> with a <code>DURATION</code> of two days:</p>
+<pre><code class="language-sql">&gt; CREATE RETENTION POLICY what_is_time ON NOAA_water_database DURATION 2d REPLICATION 1
+&gt;</code></pre>
+<p>Modify <code>what_is_time</code> to have a three week <code>DURATION</code> and make it the <code>DEFAULT</code> retention policy for <code>NOAA_water_database</code>.</p>
+<pre><code class="language-sql">&gt; ALTER RETENTION POLICY what_is_time ON NOAA_water_database DURATION 3w DEFAULT
+&gt;</code></pre>
+<p>In the last example, <code>what_is_time</code> retains its original replication factor of 1.</p>
+<p>A successful <code>ALTER RETENTION POLICY</code> query returns an empty result.</p>
+<h3 id="delete-retention-policies-with-drop-retention-policy">Delete retention policies with DROP RETENTION POLICY</h3>
+<p>Delete all measurements and data in a specific retention policy with:</p>
+<pre><code class="language-sql">DROP RETENTION POLICY &lt;retention_policy_name&gt; ON &lt;database_name&gt;</code></pre>
+<p>Delete the retention policy <code>what_is_time</code> in the <code>NOAA_water_database</code> database:  </p>
+<pre><code class="language-sh">&gt; DROP RETENTION POLICY what_is_time ON NOAA_water_database
+&gt;</code></pre>
+<p>A successful <code>DROP RETENTION POLICY</code> query returns an empty result.</p>
+<blockquote>
+<p><strong>Note:</strong> If you attempt <code>DROP</code> a retention policy that is the default retention policy for the database DSDB does not delete the policy and returns the error: <code>ERR: retention policy is default</code>.
+<code>CREATE</code> a new default policy or <code>ALTER</code> an already existing policy to be the default before deleting the retention policy.</p>
+</blockquote>
       </div>
 
               <div class="tract"><img src="/images/tract.png"/></div>

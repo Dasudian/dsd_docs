@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="大数点物联网开发者平台文档，基于大数点物联网平台，帮助开发者快速构建物联网应用">
+    <title>Frequently Encountered Issues</title>
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/doc.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/highlight.js/9.2.0/styles/dark.min.css" rel="stylesheet">
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+    <script>
+      $(function() {
+        // $(".document .side_left ul li a").click(function() {
+        //   $(".document .side_left ul li a").removeClass("active");
+        //   $(this).addClass("active");
+        // })
+        $(".menu1>li>a.fold").click(function(){
+				  $(".menu1 a.fold").css("background-image","url(/images/number_down.png)");
+				  $(".menu2,.menu3").slideUp();
+			  })
+			  $(".menu2>li>a.fold").click(function(){
+          $(".menu2 a.fold").css("background-image","url(/images/number_down.png)");
+          $(".menu3").slideUp();
+        })
+        $(".fold").click(function() {
+          if ($(this).next("ul").is(":hidden")) {
+            $(this).css("background-image", "url(/images/number_up.png)");
+            $(this).next("ul").slideDown();
+          } else {
+            $(this).css("background-image", "url(/images/number_down.png)");
+            $(this).next("ul").slideUp();
+          }
+        })
+      })
+      $(function(){
+			  $(".side_right").scroll( function() { 
+				  var scrollValue=$(".side_right").scrollTop();
+				  scrollValue > 100 ? $('div[class=scroll]').fadeIn():$('div[class=scroll]').fadeOut();
+			  });	
+			  $('#scroll').click(function(){
+				  $(".side_right").animate({scrollTop:0},200);	
+			  });	
+		  })
+    </script>
+    <link href='//fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="https://dev.dasudian.com"><img src="/images/logo.png"/></a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="http://dasudian.com/datahub" >IoT Data Hub</a></li>
+            <li><a href="http://dasudian.com/product_service" >产品服务</a></li>
+            <li><a href="/" >文档</a></li>
+            <li><a href="http://dasudian.com/price" >定价</a></li>
+            <li><a href="https://www.github.com/Dasudian"  target="_blank" >社区</a></li>
+            <li><a href="https://dev.dasudian.com/login/view" class="btn-small" target="_blank">登录</a></li>
+            <li><a href="https://dev.dasudian.com/sign_up/view" class="btn-small" target="_blank">注册</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid0 document">
+      <div class="side_left">
+        <ul class="menu1">
+          <li><a class="fold">大数点物联网平台简介</a>
+            <ul class="menu2" >
+              <li><a id="intro-index" class="" href="/dsd-intro/index.html">简介</a></li>
+            </ul>
+          </li>
+          <li><a class="fold">Data Hub</a>
+            <ul class="menu2" >
+              <li><a id="datahub-index" class="" href="/dsd-datahub/">Data Hub Overview</a></li>
+              <li><a class="fold">SDK</a>
+                <ul class="menu3" >
+                  <li><a id="datahub-sdk-js" class="" href="/dsd-datahub/sdk/javascript.html">JavaScript</a></li>
+                  <li><a id="datahub-sdk-embededc" class="" href="/dsd-datahub/sdk/embeded_c.html">Embeded C</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><a class="fold">DSD Database (DSDB)</a>
+            <ul class="menu2" style="display: block;">
+              <li><a id="dsdb-index" class="" href="/dsd-dsdb/">DSDB Overview</a></li>
+              <li><a class="fold">Introduction</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-intro-overview" class="" href="/dsd-dsdb/introduction/index.html">Overview</a></li>
+                  <li><a id="dsdb-intro-installation" class="" href="/dsd-dsdb/introduction/installation.html">Installation</a></li>
+                  <li><a id="dsdb-intro-start" class="" href="/dsd-dsdb/introduction/getting_started.html">Getting Started</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Administration</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-admin-overview" class="" href="/dsd-dsdb/administration/index.html">administration Overview</a></li>
+                  <li><a id="dsdb-authent&amp;authori" class="" href="/dsd-dsdb/administration/authentication_and_authorization.html">Authentication&Authorization</a></li>
+                  <li><a id="dsdb-backup&amp;restore" class="" href="/dsd-dsdb/administration/backup_and_restore.html">Backup&Restore</a></li>
+                  <li><a id="dsdb-configuration" class="" href="/dsd-dsdb/administration/config.html">Configuration</a></li>
+                  <li><a id="dsdb-logs" class="" href="/dsd-dsdb/administration/logs.html">Logs</a></li>
+                  <li><a id="dsdb-monitoring" class="" href="/dsd-dsdb/administration/statistics.html">Server Monitoring</a></li>
+                  <li><a id="dsdb-upgrade" class="" href="/dsd-dsdb/administration/upgrading.html">Upgrading</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Clients</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-clients-overview" class="" href="/dsd-dsdb/clients/index.html">Clients Overview</a></li>
+                  <li><a id="dsdb-clients-httpapi" class="" href="/dsd-dsdb/clients/api.html">HTTP API</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Concepts</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-concepts-overview" class="" href="/dsd-dsdb/concepts/index.html">Concepts Overview</a></li>
+                  <li><a id="dsdb-key-concepts" class="" href="/dsd-dsdb/concepts/key_concepts.html">Key Concepts</a></li>
+                  <li><a id="dsdb-concepts-arch" class="" href="/dsd-dsdb/concepts/how_dsdb_works.html">Architecture</a></li>
+                  <li><a id="dsdb-concepts-schema-data-layout" class="" href="/dsd-dsdb/concepts/schema_and_data_layout.html">Scheam Design</a></li>
+                  <li><a id="dsdb-concepts-insights-tradeoffs" class="" href="/dsd-dsdb/concepts/insights_tradeoffs.html">Insights Tradeoffs</a></li>
+                  <li><a id="dsdb-concepts-api-endpoints" class="" href="/dsd-dsdb/concepts/api.html">API Endpoints&Ports</a></li>
+                  <li><a id="dsdb-concepts-storage-engine" class="" href="/dsd-dsdb/concepts/storage_engine.html">Storage Engine</a></li>
+                  <li><a id="dsdb-concepts-glossary" class="" href="/dsd-dsdb/concepts/glossary.html">Glossary of Terms</a></li>
+                  <li><a id="dsdb-concepts-vs-sql" class="" href="/dsd-dsdb/concepts/crosswalk.html">Comparison to SQL</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Data Sources</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-datasource-diamond" class="" href="/dsd-dsdb/data_sources/diamond.html">Diamond</a></li>
+                  <li><a id="dsdb-datasource-opentsdb" class="" href="/dsd-dsdb/data_sources/opentsdb.html">OpenTSDB</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Guides</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-guides-clustering" class="" href="/dsd-dsdb/guides/clustering.html">Clustering</a></li>
+                  <li><a id="dsdb-guides-ddr" class="" href="/dsd-dsdb/guides/downsampling_and_retention.html">Downsampling and Data Retention</a></li>
+                  <li><a id="dsdb-guides-hsg" class="" href="/dsd-dsdb/guides/hardware_sizing.html">Hardware Sizing Guidelines</a></li>
+                  <li><a id="dsdb-guides-querying" class="" href="/dsd-dsdb/guides/querying_data.html">Querying Data</a></li>
+                  <li><a id="dsdb-guides-writing" class="" href="/dsd-dsdb/guides/writing_data.html">Writing Data</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Query Language</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-querylang-overview" class="" href="/dsd-dsdb/query_language/index.html">Overview</a></li>
+                  <li><a id="dsdb-querylang-dataexp" class="" href="/dsd-dsdb/query_language/data_exploration.html">Data Exploration</a></li>
+                  <li><a id="dsdb-querylang-scheamexp" class="" href="/dsd-dsdb/query_language/schema_exploration.html">Schema Exploration</a></li>
+                  <li><a id="dsdb-querylang-func" class="" href="/dsd-dsdb/query_language/functions.html">Functions</a></li>
+                  <li><a id="dsdb-querylang-contq" class="" href="/dsd-dsdb/query_language/continuous_queries.html">Continuous Queries</a></li>
+                  <li><a id="dsdb-querylang-spec" class="" href="/dsd-dsdb/query_language/spec.html">Query Language Reference</a></li>
+                  <li><a id="dsdb-querylang-mgmt" class="" href="/dsd-dsdb/query_language/database_management.html">Database Management</a></li>
+                  <li><a id="dsdb-querylang-math" class="" href="/dsd-dsdb/query_language/math_operators.html">Mathematical Operators</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Sample Data</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-sampledata-down" class="" href="/dsd-dsdb/sample_data/data_download.html">Sample Data Download</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Tools</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-tools-overview" class="" href="/dsd-dsdb/tools/index.html">Tools Overview</a></li>
+                  <li><a id="dsdb-tools-shell" class="" href="/dsd-dsdb/tools/shell.html">CLI/Shell</a></li>
+                  <li><a id="dsdb-tools-webadmin" class="" href="/dsd-dsdb/tools/web_admin.html">Web Admin Interface</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Write Protocols</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-writepro-overview" class="" href="/dsd-dsdb/write_protocols/">Overview</a></li>
+                  <li><a id="dsdb-writepro-line" class="" href="/dsd-dsdb/write_protocols/line.html">Line Protocol</a></li>
+                  <li><a id="dsdb-writepro-syntax" class="" href="/dsd-dsdb/write_protocols/write_syntax.html">Write Syntax</a></li>
+                  <li><a id="dsdb-writepro-json" class="" href="/dsd-dsdb/write_protocols/json.html">JSON Protocol</a></li>
+                  <li><a id="dsdb-writepro-udp" class="" href="/dsd-dsdb/write_protocols/udp.html">Service - UDP</a></li>
+                  <li><a id="dsdb-writepro-graphite" class="" href="/dsd-dsdb/write_protocols/graphite.html">Service - Graphite</a></li>
+                  <li><a id="dsdb-writepro-opentsdb" class="" href="/dsd-dsdb/write_protocols/opentsdb.html">Servcie - OpenTSDB</a></li>
+                  <li><a id="dsdb-writepro-collectd" class="" href="/dsd-dsdb/write_protocols/collectd.html">Service - CollectD</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Troubleshooting</a>
+                <ul class="menu3" style="display: block;">
+                  <li><a id="dsdb-troubleshoot-overview" class="" href="/dsd-dsdb/troubleshooting/index.html">Troubleshooting Overview</a></li>
+                  <li><a id="dsdb-troubleshoot-fei" class="active" href="/dsd-dsdb/troubleshooting/frequently_encountered_issues.html">Frequently Encountered Issues</a></li>
+                  <li><a id="dsdb-troubleshoot-monitor" class="" href="/dsd-dsdb/troubleshooting/system_monitoring.html">System Monitoring</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><a class="fold">DSD App/API Container (DAC)</a>
+            <ul class="menu2" >
+              <li><a id="dac-index" class="" href="/dsd-dac/">DAC介绍</a></li>
+              <li><a id="dac-java-api" class="" href="/dsd-dac/dac_cloud_api_java.html">DAC Java API</a></li>
+              <li><a id="dac-c-api" class="" href="/dsd-dac/dac_cloud_api_c.html">DAC C API</a></li>
+              <li><a id="dac-cpp-api" class="" href="/dsd-dac/dac_cloud_api_cpp.html">DAC C++ API</a></li>
+            </ul>
+          </li>
+          <li><a class="fold">IM &amp; Push Cloud</a>
+            <ul class="menu2" >
+              <li><a id="im-index" class="" href="/dsd-im/">IM服务简介</a></li>
+              <li><a id="im-android" class="" href="/dsd-im/integrate-im-android.html">Android上集成IM功能</a></li>
+              <li><a id="im-ios" class="" href="/dsd-im/integrate-im-ios.html">iOS上集成IM功能</a></li>
+            </ul>
+          </li>
+          <li><a class="fold">MQ Cloud</a>
+            <ul class="menu2" >
+              <li><a id="mq-index" class="" href="/dsd-mq/">MQ服务简介</a></li>
+            </ul>
+          </li>
+          <li><a class="fold">大数点云账户管理AAA Cloud</a>
+            <ul class="menu2" >
+              <li><a id="aaa-index" class="" href="/dsd-aaa/">AAA简介</a></li>
+              <li><a id="aaa-android" class="" href="/dsd-aaa/dev-guide-android.html">Android上集成AAA服务</a></li>
+              <li><a id="aaa-ios" class="" href="/dsd-aaa/dev-guide-ios.html">iOS上集成AAA服务</a></li>
+              <li><a id="aaa-api" class="" href="/dsd-aaa/aaa-api.html">AAA API</a></li>
+            </ul>
+          </li>
+          <li><a class="fold">大数点云存储CloudFile</a>
+            <ul class="menu2" >
+              <li><a id="cf-index" class="" href="/dsd-cloudfile/">CloudFile介绍</a></li>
+              <li><a id="cf-android" class="" href="/dsd-cloudfile/dev-guide-android.html">Android上集成CloudFile服务</a></li>
+              <li><a id="cf-ios" class="" href="/dsd-cloudfile/dev-guide-ios.html">iOS上集成CloudFile服务</a></li>
+              <li><a id="cf-api" class="" href="/dsd-cloudfile/cf-api.html">CloudFile API</a></li>
+            </ul>
+          </li>
+        </ul>
+    </div>
+
+    <div class="side_right">
+      <div class="doc">
+        <h1 id="frequently-encountered-issues">Frequently Encountered Issues</h1>
+<p>This page addresses frequent sources of confusion and places where DSDB behaves in an unexpected way relative to other database systems.
+Where applicable, it links to outstanding issues on GitHub.</p>
+<p><strong>Querying data</strong>  </p>
+<ul>
+<li><a href="/dsdb/troubleshooting/frequently_encountered_issues.html#getting-unexpected-results-with-group-by-time">Getting unexpected results with <code>GROUP BY time()</code></a></li>
+<li><a href="/dsdb/troubleshooting/frequently_encountered_issues.html#understanding-the-time-intervals-returned-from-group-by-time-queries">Understanding the time intervals returned from <code>GROUP BY time()</code> queries</a>    </li>
+<li><a href="/dsdb/troubleshooting/frequently_encountered_issues.html#querying-after-now">Querying after <code>now()</code></a>  </li>
+<li><a href="/dsdb/troubleshooting/frequently_encountered_issues.html#querying-outside-the-min-max-time-range">Querying outside the min/max time range</a>  </li>
+<li><a href="/dsdb/troubleshooting/frequently_encountered_issues.html#querying-a-time-range-that-spans-epoch-0">Querying a time range that spans epoch 0</a>  </li>
+<li><a href="/dsdb/troubleshooting/frequently_encountered_issues.html#querying-with-booleans">Querying with booleans</a>  </li>
+<li><a href="/dsdb/troubleshooting/frequently_encountered_issues.html#working-with-really-big-or-really-small-integers">Working with really big or really small integers</a></li>
+<li><a href="/dsdb/troubleshooting/frequently_encountered_issues.html#doing-math-on-timestamps">Doing math on timestamps</a>  </li>
+<li><a href="/dsdb/troubleshooting/frequently_encountered_issues.html#getting-an-unexpected-epoch-0-timestamp-in-query-returns">Getting an unexpected epoch 0 timestamp in query returns</a>  </li>
+<li><a href="/dsdb/troubleshooting/frequently_encountered_issues.html#getting-large-query-returns-in-batches-when-using-the-http-api">Getting large query returns in batches when using the HTTP API</a>  </li>
+<li><a href="/dsdb/troubleshooting/frequently_encountered_issues.html#getting-the-expected-identifier-error-unexpectedly">Getting the <code>expected identifier</code> error, unexpectedly</a></li>
+<li><a href="/dsdb/troubleshooting/frequently_encountered_issues.html#identifying-write-precision-from-returned-timestamps">Identifying write precision from returned timestamps</a>  </li>
+<li><a href="/dsdb/troubleshooting/frequently_encountered_issues.html#single-quoting-and-double-quoting-in-queries">Single quoting and double quoting in queries</a>  </li>
+<li><a href="/dsdb/troubleshooting/frequently_encountered_issues.html#missing-data-after-creating-a-new-default-retention-policy">Missing data after creating a new <code>DEFAULT</code> retention policy</a></li>
+</ul>
+<p><strong>Writing data</strong>  </p>
+<ul>
+<li><a href="/dsdb/troubleshooting/frequently_encountered_issues.html#writing-integers">Writing integers</a>   </li>
+<li><a href="/dsdb/troubleshooting/frequently_encountered_issues.html#writing-duplicate-points">Writing duplicate points</a>  </li>
+<li><a href="/dsdb/troubleshooting/frequently_encountered_issues.html#getting-an-unexpected-error-when-sending-data-over-the-http-api">Getting an unexpected error when sending data over the HTTP API</a></li>
+<li><a href="/dsdb/troubleshooting/frequently_encountered_issues.html#writing-more-than-one-continuous-query-to-a-single-series">Writing more than one continuous query to a single series</a></li>
+<li><a href="/dsdb/troubleshooting/frequently_encountered_issues.html#words-and-characters-to-avoid">Words and characters to avoid</a>  </li>
+<li><a href="/dsdb/troubleshooting/frequently_encountered_issues.html#single-quoting-and-double-quoting-when-writing-data">Single quoting and double quoting when writing data</a>  </li>
+</ul>
+<p><strong>Administration</strong>  </p>
+<ul>
+<li><a href="/dsdb/troubleshooting/frequently_encountered_issues.html#single-quoting-the-password-string">Single quoting the password string</a></li>
+<li><a href="/dsdb/troubleshooting/frequently_encountered_issues.html#escaping-the-single-quote-in-a-password">Escaping the single quote in a password</a>  </li>
+<li><a href="/dsdb/troubleshooting/frequently_encountered_issues.html#identifying-your-version-of-dsdb">Identifying your version of DSDB</a>  </li>
+<li><a href="/dsdb/troubleshooting/frequently_encountered_issues.html#data-aren-t-dropped-after-altering-a-retention-policy">Data aren't dropped after altering a retention policy</a></li>
+</ul>
+<h1 id="querying-data">Querying data</h1>
+<h2 id="getting-unexpected-results-with">Getting unexpected results with <code>GROUP BY time()</code></h2>
+<p>A query that includes a <code>GROUP BY time()</code> clause can yield unexpected results:</p>
+<ul>
+<li>DSDB returns a single aggregated value with the timestamp <code>'1970-01-01T00:00:00Z'</code> even though the data include more than one instance of the time interval specified in <code>time()</code></li>
+<li>DSDB returns <code>ERR: too many points in the group by interval. maybe you forgot to specify a where time clause?</code> even though the query includes a <code>WHERE</code> time clause.</li>
+</ul>
+<p>Those returns typically proceed from the combination of the following two features of DSDB:</p>
+<ul>
+<li>By default, DSDB uses epoch 0 (<code>1970-01-01T00:00:00Z</code>) as the lower bound and <code>now()</code> as the upper bound in queries.</li>
+<li>A query that includes <code>GROUP BY time()</code> must cover fewer than 100,000 instances of the supplied time interval</li>
+</ul>
+<p>If your <code>WHERE</code> time clause is simply <code>WHERE time &lt; now()</code> DSDB queries the data back to epoch 0 - that behavior often causes the query to breach the 100,000 instances rule and DSDB returns a confusing error or result.
+Avoid perplexing <code>GROUP BY time()</code> returns by specifying a valid time interval in the <code>WHERE</code> clause.</p>
+<dt> [GitHub Issue #2702](https://github.com/dsdb/dsdb/issues/2702) and [GitHub Issue #4004](https://github.com/dsdb/dsdb/issues/4004)
+</dt>
+<h2 id="understanding-the-time-intervals-returned-from">Understanding the time intervals returned from <code>GROUP BY time()</code> queries</h2>
+<p>With some <code>GROUP BY time()</code> queries, the returned time intervals may not reflect the time range specified in the <code>WHERE</code> clause.
+In the example below the first <a href="/dsdb/concepts/glossary.html#timestamp">timestamp</a> in the results occurs before the lower bound of the query:</p>
+<p>Query with a two day <code>GROUP BY time()</code> interval:</p>
+<pre><code class="language-sh">
+&gt; SELECT count(water_level) FROM h2o_feet WHERE time &gt;= <u><b>'2015-08-20T00:00:00Z'</b></u> AND time </code></pre>
+<p>Results:</p>
+<pre><code class="language-sh">name: h2o_feet
+--------------
+time                     count
+<u><b>2015-08-19T00:00:00Z</b></u>        240
+2015-08-21T00:00:00Z     480
+2015-08-23T00:00:00Z     241
+</code></pre>
+<p>DSDB queries the <code>GROUP BY time()</code> intervals that fall within the <code>WHERE time</code> clause.
+<code>GROUP BY time()</code> intervals always fall on rounded calendar time boundaries.
+Because they're rounded time boundaries, the start and end timestamps may appear to include more data than those covered by the query's <code>WHERE time</code> clause.</p>
+<p>For the example above, DSDB works with two day intervals based on round number calendar days.
+The rounded two day buckets in August are as follows (explanation continues below):</p>
+<pre><code>August 1st-2nd
+August 3rd-4th
+[...]
+August 19th-20th
+August 21st-22nd
+August 23rd-24th
+[...]</code></pre>
+<p>Because DSDB automatically groups together August 19th and August 20th, August 19th is the first timestamp to appear in the results despite not being within the query's time range.
+The number in the <code>count</code> column, however, only includes data that occur on or after August 20th as that is the time range specified by the query's <code>WHERE</code> clause.</p>
+<dt> See [GitHub Issue #1837](https://github.com/dsdb/dsdb/issues/1837) for more context on the future development of `GROUP BY time()` windows.
+</dt>
+<h2 id="querying-after">Querying after <code>now()</code></h2>
+<p>By default, DSDB uses <code>now()</code> (the current nanosecond timestamp of the node that is processing the query) as the upper bound in queries.
+You must provide explicit directions in the <code>WHERE</code> clause to query points that occur after <code>now()</code>.</p>
+<p>The first query below asks DSDB to return everything from <code>hillvalley</code> that occurs between epoch 0 (<code>1970-01-01T00:00:00Z</code>) and <code>now()</code>.
+The second query asks DSDB to return everything from <code>hillvalley</code> that occurs between epoch 0 and 1,000 days from <code>now()</code>.</p>
+<p><code>SELECT * FROM hillvalley</code><br />
+<code>SELECT * FROM hillvalley WHERE time &lt; now() + 1000d</code></p>
+<h2 id="querying-outside-the-minmax-time-range">Querying outside the min/max time range</h2>
+<p>Queries with a time range that exceeds the minimum or maximum timestamps valid for DSDB currently return no results, rather than an error message.</p>
+<p>Smallest valid timestamp: <code>-9023372036854775808</code> (approximately <code>1684-01-22T14:50:02Z</code>)<br />
+Largest valid timestamp: <code>9023372036854775807</code> (approximately <code>2255-12-09T23:13:56Z</code>)</p>
+<dt> [GitHub Issue #3369](https://github.com/dsdb/dsdb/issues/3369)  </dt>
+<h2 id="querying-a-time-range-that-spans-epoch-0">Querying a time range that spans epoch 0</h2>
+<p>Currently, DSDB can return results for queries that cover either the time range before epoch 0 or the time range after epoch 0, not both.
+A query with a time range that spans epoch 0 returns partial results.</p>
+<dt> [GitHub Issue #2703](https://github.com/dsdb/dsdb/issues/2703)  </dt>
+<h2 id="querying-with-booleans">Querying with booleans</h2>
+<p>Acceptable boolean syntax differs for data writes and data queries.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Boolean syntax</th>
+<th style="text-align: left;">Writes</th>
+<th style="text-align: left;">Queries</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>t</code>,<code>f</code></td>
+<td style="text-align: left;">👍</td>
+<td style="text-align: left;">❌</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>T</code>,<code>F</code></td>
+<td style="text-align: left;">👍</td>
+<td style="text-align: left;">❌</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>true</code>,<code>false</code></td>
+<td style="text-align: left;">👍</td>
+<td style="text-align: left;">👍</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>True</code>,<code>False</code></td>
+<td style="text-align: left;">👍</td>
+<td style="text-align: left;">👍</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>TRUE</code>,<code>FALSE</code></td>
+<td style="text-align: left;">👍</td>
+<td style="text-align: left;">👍</td>
+</tr>
+</tbody>
+</table>
+<p>For example, <code>SELECT * FROM hamlet WHERE bool=True</code> returns all points with <code>bool</code> set to <code>TRUE</code>, but <code>SELECT * FROM hamlet WHERE bool=T</code> returns all points with<code>bool</code> set to <code>false</code>.</p>
+<dt> [GitHub Issue #3939](https://github.com/dsdb/dsdb/issues/3939) </dt>
+<h2 id="working-with-really-big-or-really-small-integers">Working with really big or really small integers</h2>
+<p>DSDB stores all integers as signed int64 data types.
+The minimum and maximum valid values for int64 are <code>-9023372036854775808</code> and <code>9023372036854775807</code>.
+See <a href="http://golang.org/pkg/builtin.html#int64">Go builtins</a> for more information.</p>
+<p>Values close to but within those limits may lead to unexpected results; some functions and operators convert the int64 data type to float64 during calculation which can cause overflow issues.</p>
+<dt> [GitHub Issue #3130](https://github.com/dsdb/dsdb/issues/3130)  </dt>
+<h2 id="doing-math-on-timestamps">Doing math on timestamps</h2>
+<p>Currently, it is not possible to execute mathematical operators or functions against timestamp values in DSDB.
+All time calculations must be carried out by the client receiving the query results.</p>
+<h2 id="getting-an-unexpected-epoch-0-timestamp-in-query-returns">Getting an unexpected epoch 0 timestamp in query returns</h2>
+<p>In DSDB, epoch 0  (<code>1970-01-01T00:00:00Z</code>)  is often used as a null timestamp equivalent.
+If you request a query that has no timestamp to return, such as an aggregation function with an unbounded time range, DSDB returns epoch 0 as the timestamp.</p>
+<dt> [GitHub Issue #3337](https://github.com/dsdb/dsdb/issues/3337) </dt>
+<h2 id="getting-large-query-returns-in-batches-when-using-the-http-api">Getting large query returns in batches when using the HTTP API</h2>
+<p>DSDB returns large query results in batches of 10,000 points unless you use the query string parameter <code>chunk_size</code> to explicitly set the batch size.
+For example, get results in batches of 20,000 points with:</p>
+<p><code>curl -G 'http://localhost:8088/query' --data-urlencode "db=deluge" --data-urlencode "chunk_size=20000" --data-urlencode "q=SELECT * FROM liters"</code></p>
+<dt> See [GitHub Issue #3242](https://github.com/dsdb/dsdb/issues/3242) for more information on the challenges that this can cause, especially with Grafana visualization.
+</dt>
+<h2 id="getting-the">Getting the <code>expected identifier</code> error, unexpectedly</h2>
+<p>Receiving the error <code>ERR: error parsing query: found [WORD], expected identifier[, string, number, bool]</code> is often a gentle reminder that you forgot to include something in your query, as is the case in the following examples:</p>
+<ul>
+<li><code>SELECT FROM logic WHERE rational = 5</code> should be <code>SELECT something FROM logic WHERE rational = 5</code>  </li>
+<li><code>SELECT * FROM WHERE rational = 5</code> should be <code>SELECT * FROM logic WHERE rational = 5</code></li>
+</ul>
+<p>In other cases, your query seems complete but you receive the same error:</p>
+<ul>
+<li><code>SELECT field FROM why</code>  </li>
+<li><code>SELECT * FROM why WHERE tag = '1'</code>  </li>
+<li><code>SELECT * FROM grant WHERE why = 9</code></li>
+</ul>
+<p>In the last three queries, and in most unexpected <code>expected identifier</code> errors, at least one of the identifiers in the query is an DSDBQL keyword.
+Identifiers are database names, retention policy names, user names, measurement names, tag keys, and field keys.
+To successfully query data that use a keyword as an identifier enclose that identifier in double quotes, so the examples above become:</p>
+<ul>
+<li><code>SELECT "field" FROM why</code>  </li>
+<li><code>SELECT * FROM why WHERE "tag" = '1'</code>  </li>
+<li><code>SELECT * FROM "grant" WHERE why = 9</code></li>
+</ul>
+<p>While using double quotes is an acceptable workaround, we recommend that you avoid using DSDBQL keywords as identifiers for simplicity's sake.
+The DSDBQL documentation has a comprehensive list of all <a href="https://github.com/dsdb/dsdb/blob/master/influxql/influxql.html#keywords">DSDBQL keywords</a>.</p>
+<h2 id="identifying-write-precision-from-returned-timestamps">Identifying write precision from returned timestamps</h2>
+<p>DSDB stores all timestamps as nanosecond values regardless of the write precision supplied.
+It is important to note that when returning query results, the database silently drops trailing zeros from timestamps which obscures the initial write precision.</p>
+<p>In the example below, the tags <code>precision_supplied</code> and <code>timestamp_supplied</code> show the time precision and timestamp that the user provided at the write.
+Because DSDB silently drops trailing zeros on returned timestamps, the write precision is not recognizable in the returned timestamps.
+<br></p>
+<pre><code class="language-sh">name: trails
+-------------
+time                  value  precision_supplied  timestamp_supplied
+1970-01-01T01:00:00Z  3      n                   3600000000000
+1970-01-01T01:00:00Z  5      h                   1
+1970-01-01T02:00:00Z  4      n                   7200000000000
+1970-01-01T02:00:00Z  6      h                   2</code></pre>
+<dt> [GitHub Issue #2977](https://github.com/dsdb/dsdb/issues/2977) </dt>
+<h2 id="single-quoting-and-double-quoting-in-queries">Single quoting and double quoting in queries</h2>
+<p>Single quote string values (for example, tag values) but do not single quote identifiers (database names, retention policy names, user names, measurement names, tag keys, and field keys).</p>
+<p>Double quote identifiers if they start with a digit, contain characters other than <code>[A-z,0-9,_]</code>, or if they are an <a href="https://github.com/dsdb/dsdb/blob/master/influxql/influxql.html#keywords">DSDBQL keyword</a>.
+You can double quote identifiers even if they don't fall into one of those categories but it isn't necessary.</p>
+<p>Yes: <code>SELECT bikes_available FROM bikes WHERE station_id='9'</code></p>
+<p>Yes: <code>SELECT "bikes_available" FROM "bikes" WHERE "station_id"='9'</code></p>
+<p>Yes: <code>SELECT * from "cr@zy" where "p^e"='2'</code></p>
+<p>No: <code>SELECT 'bikes_available' FROM 'bikes' WHERE 'station_id'="9"</code></p>
+<p>No: <code>SELECT * from cr@zy where p^e='2'</code></p>
+<p>See the <a href="/dsdb/query_language/query_syntax.html">Query Syntax</a> page for more information.</p>
+<h2 id="missing-data-after-creating-a-new">Missing data after creating a new <code>DEFAULT</code> retention policy</h2>
+<p>When you create a new <code>DEFAULT</code> retention policy (RP) on a database, the data written to the old <code>DEFAULT</code> RP remain in the old RP.
+Queries that do not specify an RP automatically query the new <code>DEFAULT</code> RP so the old data may appear to be missing.
+To query the old data you must fully qualify the relevant data in the query.</p>
+<p>Example:</p>
+<p>All of the data in the measurement <code>fleeting</code> fall under the <code>DEFAULT</code> RP called <code>one_hour</code>:</p>
+<pre><code class="language-sh">&gt; SELECT count(flounders) FROM fleeting
+name: fleeting
+--------------
+time                           count
+1970-01-01T00:00:00Z     8</code></pre>
+<p>We <a href="/dsdb/query_language/database_management.html#create-retention-policies-with-create-retention-policy">create</a> a new <code>DEFAULT</code> RP (<code>two_hour</code>) and perform the same query:</p>
+<pre><code class="language-sh">&gt; SELECT count(flounders) FROM fleeting
+&gt;</code></pre>
+<p>To query the old data, we must specify the old <code>DEFAULT</code> RP by fully qualifying <code>fleeting</code>:</p>
+<pre><code class="language-sh">&gt; SELECT count(flounders) FROM fish.one_hour.fleeting
+name: fleeting
+--------------
+time                           count
+1970-01-01T00:00:00Z     8</code></pre>
+<h1 id="writing-data">Writing data</h1>
+<h2 id="writing-integers">Writing integers</h2>
+<p>Add a trailing <code>i</code> to the end of the field value when writing an integer.
+If you do not provide the <code>i</code>, DSDB will treat the field value as a float.</p>
+<p>Writes an integer: <code>value=100i</code><br />
+Writes a float: <code>value=100</code></p>
+<h2 id="writing-duplicate-points">Writing duplicate points</h2>
+<p>In DSDB 0.9 a point is uniquely identified by the measurement name, full [tag set]()(/dsdb/concepts/glossary.md#tag-set), and the nanosecond timestamp.
+If a point is submitted with an identical measurement, tag set, and timestamp it will silently overwrite the previous point.
+This is the intended behavior.</p>
+<p>For example,
+<br><code>cpu_load,hostname=server02,az=us_west value=24.5 1234567890000000</code> and
+<br><code>cpu_load,hostname=server02,az=us_west value=5.24 1234567890000000</code> are identical points.
+The last one written will overwrite the other.</p>
+<p>In order to store both points, simply introduce an arbitrary new tag to enforce uniqueness.
+<br><code>cpu_load,hostname=server02,az=us_west,uniq=1 value=24.5 1234567890000000</code> and
+<br><code>cpu_load,hostname=server02,az=us_west,uniq=2 value=5.24 1234567890000000</code> are now unique points, and each will persist in the database.</p>
+<p>You can also increment the timestamp by a nanosecond:
+<br><code>cpu_load,hostname=server02,az=us_west,uniq=1 value=24.5 1234567890000000</code> and
+<br><code>cpu_load,hostname=server02,az=us_west,uniq=2 value=5.24 1234567890000001</code> are now unique points, and each will persist in the database.</p>
+<blockquote>
+<p><strong>Note:</strong>  The field set has nothing to do with the uniqueness of a point.
+These are still identical points and the last one written would be the only one to persist:<br><code>cpu_load,hostname=server02,az=us_west value=24.5 1234567890000000</code> and
+<br><code>cpu_load,hostname=server02,az=us_west loadavg=12.2 1234567890000000</code> are still identical points.
+The last one written will overwrite the other.</p>
+</blockquote>
+<h2 id="getting-an-unexpected-error-when-sending-data-over-the-http-api">Getting an unexpected error when sending data over the HTTP API</h2>
+<p>First, double check your <a href="/dsdb/write_protocols/line.html">line protocol</a> syntax.
+Second, if you continue to receive errors along the lines of <code>bad timestamp</code> or <code>unable to parse</code>, verify that your newline character is line feed (<code>\n</code>, which is ASCII <code>0x0A</code>).
+DSDB's line protocol relies on <code>\n</code> to indicate the end of a line and the beginning of a new line; files or data that use a newline character other than <code>\n</code> will encounter parsing issues.
+Convert the newline character and try sending the data again.</p>
+<blockquote>
+<p><strong>Note:</strong> If you generated your data file on a Windows machine, Windows uses carriage return and line feed (<code>\r\n</code>) as the newline character.</p>
+</blockquote>
+<h2 id="writing-more-than-one-continuous-query-to-a-single-series">Writing more than one continuous query to a single series</h2>
+<p>Use a single continuous query to write several statistics to the same measurement and tag set.
+For example, tell DSDB to write to the <code>aggregated_stats</code> measurement the <code>MEAN</code> and <code>MIN</code> of the <code>value</code> field grouped by five-minute intervals and grouped by the <code>cpu</code> tag with:</p>
+<pre><code class="language-sql">CREATE CONTINUOUS QUERY mean_min_value ON telegraf BEGIN SELECT MEAN(value) AS mean, MIN(value) AS min INTO aggregated_stats FROM cpu_idle GROUP BY time(5m),cpu END</code></pre>
+<p>If you create two separate continuous queries (one for calculating the <code>MEAN</code> and one for calculating the <code>MIN</code>), the <code>aggregated_stats</code> measurement will appear to be missing data.
+Separate continuous queries run at slightly different times and DSDB defines a unique point by its measurement, tag set, and timestamp (notice that field is missing from that list).
+So if two continuous queries write to different fields but also write to the same measurement and tag set, only one of the two fields will ever have data; the last continuous query to run will overwrite the results that were written by the first continuous query with the same timestamp.</p>
+<p>For more on continuous queries, see <a href="/dsdb/query_language/continuous_queries.html">Continuous Queries</a>.</p>
+<h2 id="words-and-characters-to-avoid">Words and characters to avoid</h2>
+<p>If you use any of the <a href="https://github.com/dsdb/dsdb/blob/master/influxql/influxql.html#keywords">DSDBQL keywords</a> as an identifier you will need to double quote that identifier in every query.
+This can lead to <a href="/dsdb/troubleshooting/frequently_encountered_issues.html#getting-the-expected-identifier-error-unexpectedly">non-intuitive errors</a>.
+Identifiers are database names, retention policy names, user names, measurement names, tag keys, and field keys.</p>
+<p>To keep regular expressions and quoting simple, avoid using the following characters in identifiers:  </p>
+<p><code>\</code> backslash<br />
+<code>^</code> circumflex accent<br />
+<code>$</code> dollar sign<br />
+<code>'</code> single quotation mark<br />
+<code>"</code> double quotation mark<br />
+<code>,</code> comma</p>
+<h2 id="single-quoting-and-double-quoting-when-writing-data">Single quoting and double quoting when writing data</h2>
+<ul>
+<li>Avoid single quoting and double quoting identifiers when writing data via the line protocol; see the examples below for how writing identifiers with quotes can complicate queries.
+Identifiers are database names, retention policy names, user names, measurement names, tag keys, and field keys.
+<br>
+<br>
+Write with a double-quoted measurement: <code>INSERT "bikes" bikes_available=3</code><br />
+Applicable query: <code>SELECT * FROM "\"bikes\""</code>
+<br>
+<br>
+Write with a single-quoted measurement: <code>INSERT 'bikes' bikes_available=3</code><br />
+Applicable query: <code>SELECT * FROM "\'bikes\'"</code>
+<br>
+<br>
+Write with an unquoted measurement: <code>INSERT bikes bikes_available=3</code><br />
+Applicable query: <code>SELECT * FROM bikes</code>
+<br>
+<br></li>
+<li>Double quote field values that are strings.
+<br>
+<br>
+Write: <code>INSERT bikes happiness="level 2"</code><br />
+Applicable query: <code>SELECT * FROM bikes WHERE happiness='level 2'</code>
+<br>
+<br></li>
+<li>Special characters should be escaped with a backslash and not placed in quotes.
+<br>
+<br>
+Write: <code>INSERT wacky va\"ue=4</code><br />
+Applicable query: <code>SELECT "va\"ue" FROM wacky</code></li>
+</ul>
+<p>See the <a href="/dsdb/write_protocols/write_syntax.html">Line Protocol Syntax</a> page for more information.</p>
+<h1 id="administration">Administration</h1>
+<h2 id="single-quoting-the-password-string">Single quoting the password string</h2>
+<p>The <code>CREATE USER &lt;user&gt; WITH PASSWORD '&lt;password&gt;'</code> query requires single quotation marks around the password string.
+Do not include the single quotes when authenticating requests.</p>
+<h2 id="escaping-the-single-quote-in-a-password">Escaping the single quote in a password</h2>
+<p>For passwords that include a single quote, escape the single quote with a backslash both when creating the password and when authenticating requests.</p>
+<h2 id="identifying-your-version-of-dsdb">Identifying your version of DSDB</h2>
+<p>There a number of ways to identify the version of DSDB that you're using:</p>
+<ul>
+<li>Check the return when you <code>curl</code> the <code>/ping</code> endpoint.
+For example, if you're using 0.9.3 <code>curl -i 'http://localhost:8088/ping'</code> returns:  </li>
+</ul>
+<p><code>HTTP/1.1 204 No Content</code><br />
+<code>Request-Id: b7d7e0d6-5339-11e5-80bb-000000000000</code><br />
+✨<code>X-DSDBdb-Version: 0.9.3</code>✨
+<code>Date: Fri, 04 Sep 2015 19:18:26 GMT</code></p>
+<ul>
+<li>Check the text that appears when you <a href="/dsdb/tools/shell.html">launch</a> the CLI:</li>
+</ul>
+<p><code>Connected to http://localhost:8088</code> ✨<code>version 0.9.3</code>✨<br />
+<code>DSDB shell 0.9.3</code></p>
+<ul>
+<li>Check the HTTP response in your logs:  </li>
+</ul>
+<p><code>[http] 2015/09/04 12:29:07 ::1 - - [04/Sep/2015:12:29:06 -0700] GET /query?db=&amp;q=create+database+there_you_go HTTP/1.1 200 40 -</code> ✨<code>DSDBShell/0.9.3</code>✨ <code>357970a0-533b-11e5-8001-000000000000 6.07408ms</code></p>
+<h2 id="data-arent-dropped-after-altering-a-retention-policy">Data aren't dropped after altering a retention policy</h2>
+<p>After <a href="/dsdb/query_language/database_management.html#modify-retention-policies-with-alter-retention-policy">shortening</a> the <code>DURATION</code> of a <a href="/dsdb/concepts/glossary.html#retention-policy-rp">retention policy</a> (RP), you may notice that DSDB keeps some data that are older than the <code>DURATION</code> of the modified RP.
+This behavior is a result of the relationship between the time interval covered by a shard group and the <code>DURATION</code> of a retention policy.</p>
+<p>DSDB stores data in shard groups.
+A single shard group covers a specific time interval; DSDB determines that time interval by looking at the <code>DURATION</code> of the relevant RP.
+The table below outlines the relationship between the <code>DURATION</code> of an RP and the time interval of a shard group:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">RP duration</th>
+<th style="text-align: left;">Shard group interval</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">&lt; 2 days</td>
+<td style="text-align: left;">1 hour</td>
+</tr>
+<tr>
+<td style="text-align: left;">&gt;= 2 days and &lt;= 6 months</td>
+<td style="text-align: left;">1 day</td>
+</tr>
+<tr>
+<td style="text-align: left;">&gt; 6 months</td>
+<td style="text-align: left;">7 days</td>
+</tr>
+</tbody>
+</table>
+<p>If you shorten the <code>DURATION</code> of an RP and the shard group interval also shrinks, DSDB may be forced to keep data that are older than the new <code>DURATION</code>.
+This happens because DSDB cannot divide the old, longer shard group into new, shorter shard groups; it must keep all of the data in the longer shard group even if only a small part of those data overlaps with the new <code>DURATION</code>.</p>
+<p><em>Example: Moving from an infinite RP to a three day RP</em></p>
+<p>Figure 1 shows the shard groups for our example database (<code>example_db</code>) after 11 days.
+The database uses the automatically generated <code>default</code> retention policy with an infinite (<code>INF</code>) <code>DURATION</code> so each shard group interval is seven days.
+On day 11, DSDB is no longer writing to <code>Shard Group 1</code> and <code>Shard Group 2</code> has four days worth of data:</p>
+<blockquote>
+<p><strong>Figure 1</strong>
+<img src="/img/dsdb/fei/alter-rp-inf.png" alt="Retention policy duration infinite" /></p>
+</blockquote>
+<p>On day 11, we notice that <code>example_db</code> is accruing data too fast; we want to delete, and keep deleting, all data older than three days.
+We do this by <a href="/dsdb/query_language/database_management.html#modify-retention-policies-with-alter-retention-policy">altering</a> the retention policy:
+<br>
+<br></p>
+<pre><code>&gt; ALTER RETENTION POLICY default ON example_db DURATION 3d</code></pre>
+<p>At the next <a href="/dsdb/administration/config.html#retention">retention policy enforcement check</a>, DSDB immediately drops <code>Shard Group 1</code> because all of its data are older than 3 days.
+DSDB does not drop <code>Shard Group 2</code>.
+This is because DSDB cannot divide existing shard groups and some data in <code>Shard Group 2</code> still fall within the new three day retention policy.</p>
+<p>Figure 2 shows the shard groups for <code>example_db</code> five days after the retention policy change.
+Notice that the new shard groups span one day intervals.
+All of the data in <code>Shard Group 2</code> remain in the database because the shard group still has data within the retention policy's three day <code>DURATION</code>:</p>
+<blockquote>
+<p><strong>Figure 2</strong>
+<img src="/img/dsdb/fei/alter-rp-3d.png" alt="Retention policy duration three days" /></p>
+</blockquote>
+<p>After day 17, all data within the past 3 days will be in one day shard groups.
+DSDB will then be able to drop <code>Shard Group 2</code> and <code>example_db</code> will have only 3 days worth of data.</p>
+<blockquote>
+<p><strong>Note:</strong> The time it takes for DSDB to adjust to the new retention policy may be longer depending on your shard precreation configuration setting.
+See <a href="/dsdb/administration/config.html#shard-precreation">Database Configuration</a> for more on that setting.</p>
+</blockquote>
+      </div>
+
+              <div class="tract"><img src="/images/tract.png"/></div>
+            <div class="clearfix"></div>
+      <div class="scroll" id="scroll" style="display:none;">
+			     <img src="/images/top.png"/>
+		  </div>
+    </div>
+  </div>
+  <script>hljs.initHighlightingOnLoad();</script>
+</body>
+
+</html>

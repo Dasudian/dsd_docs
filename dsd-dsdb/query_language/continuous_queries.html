@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="大数点物联网开发者平台文档，基于大数点物联网平台，帮助开发者快速构建物联网应用">
+    <title>Continuous Queries</title>
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/doc.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/highlight.js/9.2.0/styles/dark.min.css" rel="stylesheet">
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+    <script>
+      $(function() {
+        // $(".document .side_left ul li a").click(function() {
+        //   $(".document .side_left ul li a").removeClass("active");
+        //   $(this).addClass("active");
+        // })
+        $(".menu1>li>a.fold").click(function(){
+				  $(".menu1 a.fold").css("background-image","url(/images/number_down.png)");
+				  $(".menu2,.menu3").slideUp();
+			  })
+			  $(".menu2>li>a.fold").click(function(){
+          $(".menu2 a.fold").css("background-image","url(/images/number_down.png)");
+          $(".menu3").slideUp();
+        })
+        $(".fold").click(function() {
+          if ($(this).next("ul").is(":hidden")) {
+            $(this).css("background-image", "url(/images/number_up.png)");
+            $(this).next("ul").slideDown();
+          } else {
+            $(this).css("background-image", "url(/images/number_down.png)");
+            $(this).next("ul").slideUp();
+          }
+        })
+      })
+      $(function(){
+			  $(".side_right").scroll( function() { 
+				  var scrollValue=$(".side_right").scrollTop();
+				  scrollValue > 100 ? $('div[class=scroll]').fadeIn():$('div[class=scroll]').fadeOut();
+			  });	
+			  $('#scroll').click(function(){
+				  $(".side_right").animate({scrollTop:0},200);	
+			  });	
+		  })
+    </script>
+    <link href='//fonts.useso.com/css?family=Open+Sans:300|Source+Code+Pro:400' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="https://dev.dasudian.com"><img src="/images/logo.png"/></a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="http://dasudian.com/datahub" >IoT Data Hub</a></li>
+            <li><a href="http://dasudian.com/product_service" >产品服务</a></li>
+            <li><a href="/" >文档</a></li>
+            <li><a href="http://dasudian.com/price" >定价</a></li>
+            <li><a href="https://www.github.com/Dasudian"  target="_blank" >社区</a></li>
+            <li><a href="https://dev.dasudian.com/login/view" class="btn-small" target="_blank">登录</a></li>
+            <li><a href="https://dev.dasudian.com/sign_up/view" class="btn-small" target="_blank">注册</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid0 document">
+      <div class="side_left">
+        <ul class="menu1">
+          <li><a class="fold">大数点物联网平台简介</a>
+            <ul class="menu2" >
+              <li><a id="intro-index" class="" href="/dsd-intro/index.html">简介</a></li>
+            </ul>
+          </li>
+          <li><a class="fold">Data Hub</a>
+            <ul class="menu2" >
+              <li><a id="datahub-index" class="" href="/dsd-datahub/">Data Hub Overview</a></li>
+              <li><a class="fold">SDK</a>
+                <ul class="menu3" >
+                  <li><a id="datahub-sdk-js" class="" href="/dsd-datahub/sdk/javascript.html">JavaScript</a></li>
+                  <li><a id="datahub-sdk-embededc" class="" href="/dsd-datahub/sdk/embeded_c.html">Embeded C</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><a class="fold">DSD Database (DSDB)</a>
+            <ul class="menu2" style="display: block;">
+              <li><a id="dsdb-index" class="" href="/dsd-dsdb/">DSDB Overview</a></li>
+              <li><a class="fold">Introduction</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-intro-overview" class="" href="/dsd-dsdb/introduction/index.html">Overview</a></li>
+                  <li><a id="dsdb-intro-installation" class="" href="/dsd-dsdb/introduction/installation.html">Installation</a></li>
+                  <li><a id="dsdb-intro-start" class="" href="/dsd-dsdb/introduction/getting_started.html">Getting Started</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Administration</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-admin-overview" class="" href="/dsd-dsdb/administration/index.html">administration Overview</a></li>
+                  <li><a id="dsdb-authent&amp;authori" class="" href="/dsd-dsdb/administration/authentication_and_authorization.html">Authentication&Authorization</a></li>
+                  <li><a id="dsdb-backup&amp;restore" class="" href="/dsd-dsdb/administration/backup_and_restore.html">Backup&Restore</a></li>
+                  <li><a id="dsdb-configuration" class="" href="/dsd-dsdb/administration/config.html">Configuration</a></li>
+                  <li><a id="dsdb-logs" class="" href="/dsd-dsdb/administration/logs.html">Logs</a></li>
+                  <li><a id="dsdb-monitoring" class="" href="/dsd-dsdb/administration/statistics.html">Server Monitoring</a></li>
+                  <li><a id="dsdb-upgrade" class="" href="/dsd-dsdb/administration/upgrading.html">Upgrading</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Clients</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-clients-overview" class="" href="/dsd-dsdb/clients/index.html">Clients Overview</a></li>
+                  <li><a id="dsdb-clients-httpapi" class="" href="/dsd-dsdb/clients/api.html">HTTP API</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Concepts</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-concepts-overview" class="" href="/dsd-dsdb/concepts/index.html">Concepts Overview</a></li>
+                  <li><a id="dsdb-key-concepts" class="" href="/dsd-dsdb/concepts/key_concepts.html">Key Concepts</a></li>
+                  <li><a id="dsdb-concepts-arch" class="" href="/dsd-dsdb/concepts/how_dsdb_works.html">Architecture</a></li>
+                  <li><a id="dsdb-concepts-schema-data-layout" class="" href="/dsd-dsdb/concepts/schema_and_data_layout.html">Scheam Design</a></li>
+                  <li><a id="dsdb-concepts-insights-tradeoffs" class="" href="/dsd-dsdb/concepts/insights_tradeoffs.html">Insights Tradeoffs</a></li>
+                  <li><a id="dsdb-concepts-api-endpoints" class="" href="/dsd-dsdb/concepts/api.html">API Endpoints&Ports</a></li>
+                  <li><a id="dsdb-concepts-storage-engine" class="" href="/dsd-dsdb/concepts/storage_engine.html">Storage Engine</a></li>
+                  <li><a id="dsdb-concepts-glossary" class="" href="/dsd-dsdb/concepts/glossary.html">Glossary of Terms</a></li>
+                  <li><a id="dsdb-concepts-vs-sql" class="" href="/dsd-dsdb/concepts/crosswalk.html">Comparison to SQL</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Data Sources</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-datasource-diamond" class="" href="/dsd-dsdb/data_sources/diamond.html">Diamond</a></li>
+                  <li><a id="dsdb-datasource-opentsdb" class="" href="/dsd-dsdb/data_sources/opentsdb.html">OpenTSDB</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Guides</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-guides-clustering" class="" href="/dsd-dsdb/guides/clustering.html">Clustering</a></li>
+                  <li><a id="dsdb-guides-ddr" class="" href="/dsd-dsdb/guides/downsampling_and_retention.html">Downsampling and Data Retention</a></li>
+                  <li><a id="dsdb-guides-hsg" class="" href="/dsd-dsdb/guides/hardware_sizing.html">Hardware Sizing Guidelines</a></li>
+                  <li><a id="dsdb-guides-querying" class="" href="/dsd-dsdb/guides/querying_data.html">Querying Data</a></li>
+                  <li><a id="dsdb-guides-writing" class="" href="/dsd-dsdb/guides/writing_data.html">Writing Data</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Query Language</a>
+                <ul class="menu3" style="display: block;">
+                  <li><a id="dsdb-querylang-overview" class="" href="/dsd-dsdb/query_language/index.html">Overview</a></li>
+                  <li><a id="dsdb-querylang-dataexp" class="" href="/dsd-dsdb/query_language/data_exploration.html">Data Exploration</a></li>
+                  <li><a id="dsdb-querylang-scheamexp" class="" href="/dsd-dsdb/query_language/schema_exploration.html">Schema Exploration</a></li>
+                  <li><a id="dsdb-querylang-func" class="" href="/dsd-dsdb/query_language/functions.html">Functions</a></li>
+                  <li><a id="dsdb-querylang-contq" class="active" href="/dsd-dsdb/query_language/continuous_queries.html">Continuous Queries</a></li>
+                  <li><a id="dsdb-querylang-spec" class="" href="/dsd-dsdb/query_language/spec.html">Query Language Reference</a></li>
+                  <li><a id="dsdb-querylang-mgmt" class="" href="/dsd-dsdb/query_language/database_management.html">Database Management</a></li>
+                  <li><a id="dsdb-querylang-math" class="" href="/dsd-dsdb/query_language/math_operators.html">Mathematical Operators</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Sample Data</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-sampledata-down" class="" href="/dsd-dsdb/sample_data/data_download.html">Sample Data Download</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Tools</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-tools-overview" class="" href="/dsd-dsdb/tools/index.html">Tools Overview</a></li>
+                  <li><a id="dsdb-tools-shell" class="" href="/dsd-dsdb/tools/shell.html">CLI/Shell</a></li>
+                  <li><a id="dsdb-tools-webadmin" class="" href="/dsd-dsdb/tools/web_admin.html">Web Admin Interface</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Write Protocols</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-writepro-overview" class="" href="/dsd-dsdb/write_protocols/">Overview</a></li>
+                  <li><a id="dsdb-writepro-line" class="" href="/dsd-dsdb/write_protocols/line.html">Line Protocol</a></li>
+                  <li><a id="dsdb-writepro-syntax" class="" href="/dsd-dsdb/write_protocols/write_syntax.html">Write Syntax</a></li>
+                  <li><a id="dsdb-writepro-json" class="" href="/dsd-dsdb/write_protocols/json.html">JSON Protocol</a></li>
+                  <li><a id="dsdb-writepro-udp" class="" href="/dsd-dsdb/write_protocols/udp.html">Service - UDP</a></li>
+                  <li><a id="dsdb-writepro-graphite" class="" href="/dsd-dsdb/write_protocols/graphite.html">Service - Graphite</a></li>
+                  <li><a id="dsdb-writepro-opentsdb" class="" href="/dsd-dsdb/write_protocols/opentsdb.html">Servcie - OpenTSDB</a></li>
+                  <li><a id="dsdb-writepro-collectd" class="" href="/dsd-dsdb/write_protocols/collectd.html">Service - CollectD</a></li>
+                </ul>
+              </li>
+              <li><a class="fold">Troubleshooting</a>
+                <ul class="menu3" >
+                  <li><a id="dsdb-troubleshoot-overview" class="" href="/dsd-dsdb/troubleshooting/index.html">Troubleshooting Overview</a></li>
+                  <li><a id="dsdb-troubleshoot-fei" class="" href="/dsd-dsdb/troubleshooting/frequently_encountered_issues.html">Frequently Encountered Issues</a></li>
+                  <li><a id="dsdb-troubleshoot-monitor" class="" href="/dsd-dsdb/troubleshooting/system_monitoring.html">System Monitoring</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><a class="fold">DSD App/API Container (DAC)</a>
+            <ul class="menu2" >
+              <li><a id="dac-index" class="" href="/dsd-dac/">DAC介绍</a></li>
+              <li><a id="dac-java-api" class="" href="/dsd-dac/dac_cloud_api_java.html">DAC Java API</a></li>
+              <li><a id="dac-c-api" class="" href="/dsd-dac/dac_cloud_api_c.html">DAC C API</a></li>
+              <li><a id="dac-cpp-api" class="" href="/dsd-dac/dac_cloud_api_cpp.html">DAC C++ API</a></li>
+            </ul>
+          </li>
+          <li><a class="fold">IM &amp; Push Cloud</a>
+            <ul class="menu2" >
+              <li><a id="im-index" class="" href="/dsd-im/">IM服务简介</a></li>
+              <li><a id="im-android" class="" href="/dsd-im/integrate-im-android.html">Android上集成IM功能</a></li>
+              <li><a id="im-ios" class="" href="/dsd-im/integrate-im-ios.html">iOS上集成IM功能</a></li>
+            </ul>
+          </li>
+          <li><a class="fold">MQ Cloud</a>
+            <ul class="menu2" >
+              <li><a id="mq-index" class="" href="/dsd-mq/">MQ服务简介</a></li>
+            </ul>
+          </li>
+          <li><a class="fold">大数点云账户管理AAA Cloud</a>
+            <ul class="menu2" >
+              <li><a id="aaa-index" class="" href="/dsd-aaa/">AAA简介</a></li>
+              <li><a id="aaa-android" class="" href="/dsd-aaa/dev-guide-android.html">Android上集成AAA服务</a></li>
+              <li><a id="aaa-ios" class="" href="/dsd-aaa/dev-guide-ios.html">iOS上集成AAA服务</a></li>
+              <li><a id="aaa-api" class="" href="/dsd-aaa/aaa-api.html">AAA API</a></li>
+            </ul>
+          </li>
+          <li><a class="fold">大数点云存储CloudFile</a>
+            <ul class="menu2" >
+              <li><a id="cf-index" class="" href="/dsd-cloudfile/">CloudFile介绍</a></li>
+              <li><a id="cf-android" class="" href="/dsd-cloudfile/dev-guide-android.html">Android上集成CloudFile服务</a></li>
+              <li><a id="cf-ios" class="" href="/dsd-cloudfile/dev-guide-ios.html">iOS上集成CloudFile服务</a></li>
+              <li><a id="cf-api" class="" href="/dsd-cloudfile/cf-api.html">CloudFile API</a></li>
+            </ul>
+          </li>
+        </ul>
+    </div>
+
+    <div class="side_right">
+      <div class="doc">
+        <h1 id="continuous-queries">Continuous Queries</h1>
+<p>When writing large amounts of data to DSDB, you may often want to downsample the raw data, that is, use <code>GROUP BY time()</code> with an DSDBQL <a href="/dsdb/query_language/functions.html">function</a> to change the high frequency data into lower frequency data. Repeatedly running the same queries by hand can be tedious. DSDB's continuous queries (CQ) simplify the downsampling process; CQs run automatically and write the query results to another measurement.</p>
+<ul>
+<li><a href="/dsdb/query_language/continuous_queries.html#cq-definition">CQ definition</a></li>
+<li><a href="/dsdb/query_language/continuous_queries.html#influxql-for-creating-a-cq">DSDBQL for creating a CQ</a><br />
+&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/dsdb/query_language/continuous_queries.html#the-create-continuous-query-statement">The <code>CREATE CONTINUOUS QUERY</code> statement</a><br />
+&nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/dsdb/query_language/continuous_queries.html#cqs-with-backreferencing">CQs with backreferencing</a>  </li>
+<li><a href="/dsdb/query_language/continuous_queries.html#list-cqs-with-show">List CQs with <code>SHOW</code></a></li>
+<li><a href="/dsdb/query_language/continuous_queries.html#delete-cqs-with-drop">Delete CQs with <code>DROP</code></a></li>
+<li><a href="/dsdb/query_language/continuous_queries.html#backfilling">Backfilling</a></li>
+<li><a href="/dsdb/query_language/continuous_queries.html#further-reading">Further reading</a></li>
+</ul>
+<h2 id="cq-definition">CQ definition</h2>
+<p>A CQ is an DSDBQL query that the system runs automatically and periodically within a database. DSDB stores the results of the CQ in a specified <a href="/dsdb/concepts/glossary.html#measurement">measurement</a>. CQs require a function in the <code>SELECT</code> clause and must include a <code>GROUP BY time()</code> clause.</p>
+<p>The time ranges of the CQ results have round-number boundaries that are set internally by the database. There is currently no way for users to alter the start or end times of the intervals.</p>
+<p>Only admin users are allowed to work with continuous queries. For more on user privileges, see <a href="/dsdb/administration/authentication_and_authorization.html#user-types-and-their-privileges">Authentication and Authorization</a>.</p>
+<blockquote>
+<p><strong>Note:</strong> CQs only execute on data received after the CQ's creation. If you'd like to downsample data written to DSDB before the CQ was created, see the examples in <a href="/dsdb/query_language/data_exploration.html#downsample-data">Data Exploration</a>.</p>
+</blockquote>
+<h2 id="dsdbql-for-creating-a-cq">DSDBQL for creating a CQ</h2>
+<h3 id="the">The <code>CREATE CONTINUOUS QUERY</code> statement</h3>
+<pre><code class="language-sql">CREATE CONTINUOUS QUERY &lt;cq_name&gt; ON &lt;database_name&gt; [RESAMPLE [EVERY &lt;interval&gt;] [FOR &lt;interval&gt;]] BEGIN SELECT &lt;function&gt;(&lt;stuff&gt;)[,&lt;function&gt;(&lt;stuff&gt;)] INTO &lt;different_measurement&gt; FROM &lt;current_measurement&gt; [WHERE &lt;stuff&gt;] GROUP BY time(&lt;interval&gt;)[,&lt;stuff&gt;] END</code></pre>
+<p>The <code>CREATE CONTINUOUS QUERY</code> statement is essentially an DSDBQL query surrounded by <code>CREATE CONTINUOUS QUERY [...] BEGIN</code> and <code>END</code>.
+The following discussion breaks the CQ statement into its meta portion (everything between <code>CREATE</code> and <code>BEGIN</code>) and query portion (everything between <code>BEGIN</code> and <code>END</code>).</p>
+<h4 id="meta-syntax">Meta syntax:</h4>
+<pre><code>CREATE CONTINUOUS QUERY ON &lt;database_name&gt; [RESAMPLE [EVERY &lt;interval&gt;] [FOR &lt;interval&gt;]]</code></pre>
+<p>A CQ belongs to a database.
+Specify the database where you want the CQ to live with <code>ON &lt;database_name&gt;</code>.  </p>
+<p>The optional <code>RESAMPLE</code> clause determines how often DSDB runs the CQ (<code>EVERY &lt;interval&gt;</code>) and the time range over which DSDB runs the CQ (<code>FOR &lt;interval&gt;</code>).
+If included, the <code>RESAMPLE</code> clause must specify either <code>EVERY</code>, or <code>FOR</code>, or both.
+Without the <code>RESAMPLE</code> clause, DSDB runs the CQ at the same interval as the <code>GROUP BY time()</code> interval and it calculates the query for the most recent <code>GROUP BY time()</code> interval (that is, where time is between <code>now()</code> and <code>now()</code> minus the <code>GROUP BY time()</code> interval).</p>
+<h4 id="query-syntax">Query syntax:</h4>
+<pre><code>BEGIN SELECT &lt;function&gt;(&lt;stuff&gt;)[,&lt;function&gt;(&lt;stuff&gt;)] INTO &lt;different_measurement&gt; FROM &lt;current_measurement&gt; [WHERE &lt;stuff&gt;] GROUP BY time(&lt;interval&gt;)[,&lt;stuff&gt;] END</code></pre>
+<p>The query portion of the statement differs from a typical <code>SELECT [...] GROUP BY (time)</code> statement in two ways:</p>
+<ol>
+<li>
+<p>The <code>INTO</code> clause:
+This is where you specify the destination measurement for the query results.</p>
+</li>
+<li>The optional <code>WHERE</code> clause:
+Because CQs run on regularly incremented time intervals you don't need to (and shouldn't!) specify a time range in the <code>WHERE</code> clause. When included, the CQ's <code>WHERE</code> clause should filter information about tags.</li>
+</ol>
+<h4 id="cq-examples">CQ examples:</h4>
+<ul>
+<li>
+<p>Create a CQ with one function:</p>
+<pre><code class="language-sql">&gt; CREATE CONTINUOUS QUERY minnie ON world BEGIN SELECT min(mouse) INTO min_mouse FROM zoo GROUP BY time(30m) END</code></pre>
+<p>Once executed, DSDB automatically calculates the 30 minute minimum of the field <code>mouse</code> in the measurement <code>zoo</code>, and it writes the results to the measurement <code>min_mouse</code>.
+Note that the CQ <code>minnie</code> only exists in the database <code>world</code>.</p>
+</li>
+<li>
+<p>Create a CQ with one function and write the results to another <a href="/dsdb/concepts/glossary.html#retention-policy-rp">retention policy</a>:</p>
+<pre><code class="language-sql">&gt; CREATE CONTINUOUS QUERY minnie_jr ON world BEGIN SELECT min(mouse) INTO world."7days".min_mouse FROM world."1day".zoo GROUP BY time(30m) END</code></pre>
+<p>The CQ <code>minnie_jr</code> acts in the same way as the CQ <code>minnie</code>, however, DSDB calculates the 30 minute minimum of the field <code>mouse</code> in the measurement <code>zoo</code> and under the retention policy <code>1day</code>, and it automatically writes the results of the query to the measurement <code>min_mouse</code> under the retention policy <code>7days</code>.</p>
+<p>Combining CQs and retention policies provides a useful way to automatically downsample data and expire the unnecessary raw data.
+For a complete discussion on this topic, see <a href="/dsdb/guides/downsampling_and_retention.html">Downsampling and Data Retention</a>.</p>
+</li>
+<li>
+<p>Create a CQ with two functions:</p>
+<pre><code class="language-sql">&gt; CREATE CONTINUOUS QUERY minnie_maximus ON world BEGIN SELECT min(mouse),max(imus) INTO min_max_mouse FROM zoo GROUP BY time(30m) END</code></pre>
+<p>The CQ <code>minnie_maximus</code> automatically calculates the 30 minute minimum of the field <code>mouse</code> and the 30 minute maximum of the field <code>imus</code> (both fields are in the measurement <code>zoo</code>), and it writes the results to the measurement <code>min_max_mouse</code>.</p>
+<blockquote>
+<p><strong>Note:</strong> If we create two CQs, one CQ to calculate the minimum and one CQ to calculate the maximum and we write the results to the same measurement, the data in the destination measurement may appear to be missing data.
+For a complete explanation, see <a href="/dsdb/troubleshooting/frequently_encountered_issues.html#writing-more-than-one-continuous-query-to-a-single-series">Frequently Encountered Issues</a>.   </p>
+</blockquote>
+</li>
+<li>
+<p>Create a CQ with two functions and personalize the <a href="/dsdb/concepts/glossary.html#field-key">field keys</a> in the results:</p>
+<pre><code class="language-sql">&gt; CREATE CONTINUOUS QUERY minnie_maximus_1 ON world BEGIN SELECT min(mouse) AS minuscule,max(imus) AS monstrous INTO min_max_mouse FROM zoo GROUP BY time(30m) END</code></pre>
+<p>The CQ <code>minnie_maximus_1</code> acts in the same way as <code>minnie_maximus</code>, however, DSDB names field keys <code>miniscule</code> and <code>monstrous</code> in the destination measurement instead of <code>min</code> and <code>max</code>.
+For more on <code>AS</code>, see <a href="/dsdb/query_language/functions.html#rename-the-output-column-s-title-with-as">Functions</a>.</p>
+</li>
+<li>
+<p>Create a CQ with a 30 minute <code>GROUP BY time()</code> interval that runs every 15 minutes:</p>
+<pre><code class="language-sql">&gt; CREATE CONTINUOUS QUERY vampires ON transylvania RESAMPLE EVERY 15m BEGIN SELECT count(dracula) INTO vampire_populations FROM raw_vampires GROUP BY time(30m) END</code></pre>
+<p>Without <code>RESAMPLE EVERY 15m</code>, <code>vampires</code> would run every 30 minutes - the same interval as the <code>GROUP BY time()</code> interval.</p>
+</li>
+<li>
+<p>Create a CQ with a 30 minute <code>GROUP BY time()</code> interval that runs every 30 minutes and computes the query for all <code>GROUP BY time()</code> intervals within the last hour:</p>
+<pre><code class="language-sql">&gt; CREATE CONTINUOUS QUERY vampires_1 ON transylvania RESAMPLE FOR 60m BEGIN SELECT count(dracula) INTO vampire_populations_1 FROM raw_vampires GROUP BY time(30m) END</code></pre>
+<p>DSDB runs <code>vampires_1</code> every 30 minutes (the same interval as the <code>GROUP BY time()</code> interval) and it computes two queries per run:
+one where time is between <code>now()</code> and <code>now() - 30m</code> and one where time is between <code>now() - 30m</code> and <code>now() - 60m</code>.
+Without the <code>RESAMPLE</code> clause, DSDB would compute the query for only one 30 minute interval, that is, where time is between <code>now()</code> and <code>now() - 30m</code>.</p>
+</li>
+<li>
+<p>Create a CQ with a 30 minute <code>GROUP BY time()</code> interval that runs every 15 minutes and computes the query for all <code>GROUP BY time()</code> intervals within the last hour:</p>
+<pre><code class="language-sql">&gt; CREATE CONTINUOUS QUERY vampires_2 ON transylvania RESAMPLE EVERY 15m FOR 60m BEGIN SELECT count(dracula) INTO vampire_populations_2 FROM raw_vampires GROUP BY time(30m) END</code></pre>
+<p><code>vampires_2</code> runs every 15 minutes and computes two queries per run:
+one where time is between <code>now()</code> and <code>now() - 30m</code> and one where time is between <code>now() - 30m</code> and <code>now() - 60m</code></p>
+</li>
+</ul>
+<h3 id="cqs-with-backreferencing">CQs with backreferencing</h3>
+<p>Use <code>:MEASUREMENT</code> in the <code>INTO</code> statement to backreference measurement names:</p>
+<pre><code class="language-sql">CREATE CONTINUOUS QUERY &lt;cq_name&gt; ON &lt;database_name&gt; BEGIN SELECT &lt;function&gt;(&lt;stuff&gt;)[,&lt;function&gt;(&lt;stuff&gt;)] INTO &lt;database_name&gt;.&lt;retention_policy&gt;.:MEASUREMENT FROM &lt;/relevant_measurement(s)/&gt; [WHERE &lt;stuff&gt;] GROUP BY time(&lt;interval&gt;)[,&lt;stuff&gt;] END</code></pre>
+<p><em>CQ backreferencing example:</em>
+<br>
+<br></p>
+<pre><code class="language-sql">&gt; CREATE CONTINUOUS QUERY elsewhere ON fantasy BEGIN SELECT mean(value) INTO reality."default".:MEASUREMENT FROM /elf/ GROUP BY time(10m) END</code></pre>
+<p>The CQ <code>elsewhere</code> automatically calculates the 10 minute average of the field <code>value</code> in each <code>elf</code> measurement in the database <code>fantasy</code>. It writes the results to the already-existing database <code>reality</code>, preserving all of the measurement names in <code>fantasy</code>.</p>
+<p>A sample of the data in <code>fantasy</code>:</p>
+<pre><code class="language-sh">&gt; SHOW MEASUREMENTS
+name: measurements
+------------------
+name
+elf1
+elf2
+wizard
+&gt;
+&gt; SELECT * FROM elf1
+name: cpu_usage_idle
+--------------------
+time                           value
+2015-12-19T01:15:30Z     97.76333874796951
+2015-12-19T01:15:40Z     98.3129217695576
+[...]
+2015-12-19T01:36:00Z     94.71778221778222
+2015-12-19T01:35:50Z     87.8</code></pre>
+<p>A sample of the data in <code>reality</code> after <code>elsewhere</code> runs for a bit:</p>
+<pre><code class="language-sh">&gt; SHOW MEASUREMENTS
+name: measurements
+------------------
+name
+elf1
+elf2
+&gt;
+&gt; SELECT * FROM elf1
+name: elf1
+--------------------
+time                           mean
+2015-12-19T01:10:00Z     97.11668879244841
+2015-12-19T01:20:00Z     94.50035091670394
+2015-12-19T01:30:00Z     95.99739053789172</code></pre>
+<h2 id="list-cqs-with">List CQs with <code>SHOW</code></h2>
+<p>List every CQ by database with:</p>
+<pre><code class="language-sql">SHOW CONTINUOUS QUERIES</code></pre>
+<p><em>Example:</em></p>
+<pre><code class="language-sh">&gt; SHOW CONTINUOUS QUERIES
+name: reality
+-------------
+name    query
+
+name: fantasy
+-------------
+name             query
+elsewhere    CREATE CONTINUOUS QUERY elsewhere ON fantasy BEGIN SELECT mean(value) INTO reality."default".:MEASUREMENT FROM fantasy."default"./cpu/ WHERE cpu = 'cpu-total' GROUP BY time(10m) END</code></pre>
+<p>The output shows that the database <code>reality</code> has no CQs and the database <code>fantasy</code> has one CQ called <code>elsewhere</code>.</p>
+<h2 id="delete-cqs-with">Delete CQs with <code>DROP</code></h2>
+<p>Delete a CQ from a specific database with:</p>
+<pre><code class="language-sql">DROP CONTINUOUS QUERY &lt;cq_name&gt; ON &lt;database_name&gt;</code></pre>
+<p><em>Example:</em></p>
+<pre><code class="language-sh">&gt; DROP CONTINUOUS QUERY elsewhere ON fantasy
+&gt;</code></pre>
+<p>A successful <code>DROP CONTINUOUS QUERY</code> returns an empty response.</p>
+<h2 id="backfilling">Backfilling</h2>
+<p>CQs do not backfill data, that is, they do not compute results for data written to the database before the CQ existed. Instead, users can backfill data with the <code>INTO</code> clause. Unlike CQs, backfill queries require a <code>WHERE</code> clause with a <code>time</code> restriction.</p>
+<h3 id="examples">Examples</h3>
+<p>Here is a basic backfill example:</p>
+<pre><code class="language-sql">&gt; SELECT min(temp) as min_temp, max(temp) as max_temp INTO "reading.minmax.5m" FROM reading
+WHERE time &gt;= '2015-12-14 00:05:20' AND time &lt; '2015-12-15 00:05:20'
+GROUP BY time(5m)</code></pre>
+<p>Tags (<code>sensor_id</code> in the example below) can be used optionally in the same way as in CQs:</p>
+<pre><code class="language-sql">&gt; SELECT min(temp) as min_temp, max(temp) as max_temp INTO "reading.minmax.5m" FROM reading
+WHERE time &gt;= '2015-12-14 00:05:20' AND time &lt; '2015-12-15 00:05:20'
+GROUP BY time(5m), sensor_id</code></pre>
+<p>To prevent the backfill from creating a huge number of &quot;empty&quot; points containing only <code>null</code> values, <a href="/dsdb/query_language/data_exploration.html#the-group-by-clause-and-fill">fill()</a> can be used at the end of the query:</p>
+<pre><code class="language-sql">&gt; SELECT min(temp) as min_temp, max(temp) as max_temp INTO "reading.minmax.5m" FROM reading
+WHERE time &gt;= '2015-12-14 00:05:20' AND time &lt; '2015-12-15 00:05:20'
+GROUP BY time(5m), fill(none)</code></pre>
+<p>If you would like to further break down the queries and run them with even more control, you can add additional <code>WHERE</code> clauses:</p>
+<pre><code class="language-sql">&gt; SELECT min(temp) as min_temp, max(temp) as max_temp INTO "reading.minmax.5m" FROM reading
+WHERE sensor_id="EG-21442" AND time &gt;= '2015-12-14 00:05:20' AND time &lt; '2015-12-15 00:05:20'
+GROUP BY time(5m)</code></pre>
+<h2 id="further-reading">Further reading</h2>
+<p>Now that you know how to create CQs with DSDB, check out <a href="/dsdb/guides/downsampling_and_retention.html">Downsampling and Data Retention</a> for how to combine CQs with retention policies to automatically downsample data and expire unnecessary data.</p>
+      </div>
+
+              <div class="tract"><img src="/images/tract.png"/></div>
+            <div class="clearfix"></div>
+      <div class="scroll" id="scroll" style="display:none;">
+			     <img src="/images/top.png"/>
+		  </div>
+    </div>
+  </div>
+  <script>hljs.initHighlightingOnLoad();</script>
+</body>
+
+</html>
