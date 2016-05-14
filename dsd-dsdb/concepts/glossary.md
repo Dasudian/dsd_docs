@@ -111,7 +111,7 @@ A node that participates in the raft consensus group. A meta node may also be a 
 Related entries: [cluster](/dsdb/concepts/glossary.md#cluster), [data node](/dsdb/concepts/glossary.md#data-node), [node](/dsdb/concepts/glossary.md#node)
 
 ## node
-An independent `influxd` process.
+An independent `dsdb` process.
 
 Related entries: [cluster](/dsdb/concepts/glossary.md#cluster), [server](/dsdb/concepts/glossary.md#server)
 

@@ -10,7 +10,7 @@ parent1: dsd-dsdb
 When writing large amounts of data to DSDB, you may often want to downsample the raw data, that is, use `GROUP BY time()` with an DSDBQL [function](/dsdb/query_language/functions.md) to change the high frequency data into lower frequency data. Repeatedly running the same queries by hand can be tedious. DSDB's continuous queries (CQ) simplify the downsampling process; CQs run automatically and write the query results to another measurement.
 
 * [CQ definition](/dsdb/query_language/continuous_queries.md#cq-definition)
-* [DSDBQL for creating a CQ](/dsdb/query_language/continuous_queries.md#influxql-for-creating-a-cq)  
+* [DSDBQL for creating a CQ](/dsdb/query_language/continuous_queries.md#dsdbql-for-creating-a-cq)  
 &nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[The `CREATE CONTINUOUS QUERY` statement](/dsdb/query_language/continuous_queries.md#the-create-continuous-query-statement)  
 &nbsp;&nbsp;&nbsp;◦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[CQs with backreferencing](/dsdb/query_language/continuous_queries.md#cqs-with-backreferencing)  
 * [List CQs with `SHOW`](/dsdb/query_language/continuous_queries.md#list-cqs-with-show)

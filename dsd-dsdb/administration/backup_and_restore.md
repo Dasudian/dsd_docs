@@ -20,7 +20,7 @@ which retention policies are enabled. While a node is running, you can
 create a backup of your instance's metastore by running the command:
 
 ```
-influxd backup /path/to/backup
+dsdb backup /path/to/backup
 ```
 
 Where `/path/to/backup` can be replaced with the directory where you
@@ -29,7 +29,7 @@ the backup will only record the current state of the system
 metastore. For example, the command:
 
 ```sh
-$ influxd backup /tmp/backup
+$ dsdb backup /tmp/backup
 2016/02/01 17:15:03 backing up metastore to /tmp/backup/meta.00
 2016/02/01 17:15:03 backup complete
 ```
@@ -42,7 +42,7 @@ directory will be created if it doesn't already exist).
 To backup a database, you will need to add the `-database` flag:
 
 ```
-influxd backup -database mydatabase /path/to/backup
+dsdb backup -database mydatabase /path/to/backup
 ```
 
 Where `mydatabase` is the name of the database you would like to
@@ -74,7 +74,7 @@ retention policy for the `telegraf` database since midnight UTC on
 February 1st, 2016 by using the command:
 
 ```
-$ influxd backup -database telegraf -retention default -since 2016-02-01T00:00:00Z /tmp/backup
+$ dsdb backup -database telegraf -retention default -since 2016-02-01T00:00:00Z /tmp/backup
 2016/02/01 18:02:36 backing up rp=default since 2016-02-01 00:00:00 +0000 UTC
 2016/02/01 18:02:36 backing up metastore to /tmp/backup/meta.01
 2016/02/01 18:02:36 backing up db=telegraf rp=default shard=2 to /tmp/backup/telegraf.default.00002.01 since 2016-02-01 00:00:00 +0000 UTC
@@ -90,14 +90,14 @@ To capture a backup from a remote node, specify the host and port of
 the remote instance using the `-host` configuration switch:
 
 ```sh
-$ influxd backup -database mydatabase -host 10.0.0.1:8088 /tmp/mysnapshot
+$ dsdb backup -database mydatabase -host 10.0.0.1:8088 /tmp/mysnapshot
 ```
 
 Where all of the flags above still apply to remote hosts.
 
 ## Restore
 
-To restore a backup, you will need to use the `influxd restore` command.
+To restore a backup, you will need to use the `dsdb restore` command.
 
 > **Note:** Restoring from backup is only supported while the DSDB daemon is stopped.
 
@@ -105,7 +105,7 @@ In order to restore from a backup, you will need to provide the path
 to the backup. The command:
 
 ```
-influxd restore /tmp/backup
+dsdb restore /tmp/backup
 ```
 
 Will attempt to restore the contents of the `/tmp/backup`. The
@@ -137,7 +137,7 @@ steps. First, the metastore needs to be restored so that DSDB
 knows which databases exist:
 
 ```
-$ influxd restore -metadir /var/lib/dsdb/meta /tmp/backup
+$ dsdb restore -metadir /var/lib/dsdb/meta /tmp/backup
 Using metastore snapshot: /tmp/backup/meta.00
 ```
 
@@ -147,7 +147,7 @@ database to `/tmp/backup`, so let's restore that same dataset. To
 restore the `telegraf` database:
 
 ```
-$ influxd restore -database telegraf -datadir /var/lib/dsdb/data /tmp/backup                                                                         
+$ dsdb restore -database telegraf -datadir /var/lib/dsdb/data /tmp/backup                                                                         
 Restoring from backup /tmp/backup/telegraf.*
 unpacking /var/lib/dsdb/data/telegraf/default/2/000000004-000000003.tsm
 unpacking /var/lib/dsdb/data/telegraf/default/2/000000005-000000001.tsm

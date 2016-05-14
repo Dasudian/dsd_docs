@@ -7,29 +7,29 @@ parent1: dsd-dsdb
 
 # CLI/Shell
 
-The DSDB's command line interface (`influx`) is an interactive shell for the HTTP API.
-Use `influx` to write data (manually or from a file), query data interactively, and view query output in different formats.
+The DSDB's command line interface (`dsdb`) is an interactive shell for the HTTP API.
+Use `dsdb` to write data (manually or from a file), query data interactively, and view query output in different formats.
 
-* [Launch `influx`](/dsdb/tools/shell.md#launch-influx)
-* [`influx` Arguments](/dsdb/tools/shell.md#influx-arguments)
-* [`influx` Commands](/dsdb/tools/shell.md#influx-commands)
+* [Launch `dsdb`](/dsdb/tools/shell.md#launch-dsdb)
+* [`dsdb` Arguments](/dsdb/tools/shell.md#dsdb-arguments)
+* [`dsdb` Commands](/dsdb/tools/shell.md#dsdb-commands)
 
-## Launch `influx`
-If you [install](https://influxdata.com/downloads/) DSDB via a package manager, the CLI is installed at `/usr/bin/influx` (`/usr/local/bin/influx` on OS X).
+## Launch `dsdb`
+If you [install](https://dsdbata.com/downloads/) DSDB via a package manager, the CLI is installed at `/usr/bin/dsdb` (`/usr/local/bin/dsdb` on OS X).
 
-To access the CLI, first launch the `influxd` database process and then launch `influx` in your terminal.
+To access the CLI, first launch the `dsdb` database process and then launch `dsdb` in your terminal.
 Once you've entered the shell and successfully connected to an DSDB node, you'll see the following output:
 <br>
 <br>
 ```sh
-$ influx
+$ dsdb
 Connected to http://localhost:8086 version 1.0.x
 DSDB shell 1.0.x
 ```
 
-## `influx` Arguments
-There are several arguments you can pass into `influx` when starting.
-List them with `$ influx --help`.
+## `dsdb` Arguments
+There are several arguments you can pass into `dsdb` when starting.
+List them with `$ dsdb --help`.
 The list below offers a brief discussion of each option.
 We provide detailed information on `-execute`, `-format`, and `-import` at the end of this section.
 
@@ -41,18 +41,18 @@ Use with `-import`.
 Set the write consistency level.
 
 `-database 'database name'`  
-The database to which `influx` connects.
+The database to which `dsdb` connects.
 
 `-execute 'command'`  
 Execute an [DSDBQL](/dsdb/query_language/data_exploration.md) command and quit.
-See [-execute](/dsdb/tools/shell.md#execute-an-influxql-command-and-quit-with-execute).
+See [-execute](/dsdb/tools/shell.md#execute-an-dsdbql-command-and-quit-with-execute).
 
 `-format 'json|csv|column'`  
 Specifies the format of the server responses.
 See [-format](/dsdb/tools/shell.md#specify-the-format-of-the-server-responses-with-format).
 
 `-host 'host name'`  
-The host to which `influx` connects.
+The host to which `dsdb` connects.
 By default, DSDB runs on localhost.
 
 `-import`  
@@ -60,20 +60,20 @@ Import new data from a file or import a previously [exported](https://github.com
 See [-import](/dsdb/tools/shell.md#import-data-from-a-file-with-import).
 
 `-password 'password'`  
-The password `influx` uses to connect to the server.
-`influx` will prompt for a password if you leave it blank (`-password ''`).
+The password `dsdb` uses to connect to the server.
+`dsdb` will prompt for a password if you leave it blank (`-password ''`).
 
 `-path`  
 The path to the file to import.
 Use with `-import`.
 
 `-port 'port #'`  
-The port to which `influx` connects.
+The port to which `dsdb` connects.
 By default, DSDB runs on port `8086`.
 
 `-pps`  
 How many points per second the import will allow.
-By default, pps is zero and influx will not throttle importing.
+By default, pps is zero and dsdb will not throttle importing.
 Use with `-import`.
 
 `-precision 'rfc3339|h|m|s|ms|u|ns'`  
@@ -91,7 +91,7 @@ Turns on pretty print for the `json` format.
 Use https for requests.
 
 `-username 'username'`  
-The username `influx` uses to connect to the server.
+The username `dsdb` uses to connect to the server.
 
 `-version`  
 Display the DSDB version and exit.
@@ -99,7 +99,7 @@ Display the DSDB version and exit.
 ### Execute an DSDBQL command and quit with `-execute`
 Execute queries that don't require a database specification:
 ```sh
-$ influx -execute 'SHOW DATABASES'
+$ dsdb -execute 'SHOW DATABASES'
 name: databases
 ---------------
 name
@@ -111,7 +111,7 @@ pirates
 
 Execute queries that do require a database specification, and change the timestamp precision:
 ```sh
-$ influx -execute 'SELECT * FROM h2o_feet LIMIT 3' -database=NOAA_water_database -precision=rfc3339
+$ dsdb -execute 'SELECT * FROM h2o_feet LIMIT 3' -database=NOAA_water_database -precision=rfc3339
 name: h2o_feet
 --------------
 time			               level description	    location	     water_level
@@ -123,7 +123,7 @@ time			               level description	    location	     water_level
 ### Specify the format of the server responses with `-format`
 The default format is `column`:
 ```sh
-$ influx -format=column
+$ dsdb -format=column
 [...]
 > SHOW DATABASES
 name: databases
@@ -137,7 +137,7 @@ pirates
 
 Change the format to `csv`:
 ```sh
-$ influx -format=csv
+$ dsdb -format=csv
 [...]
 > SHOW DATABASES
 name,name
@@ -149,7 +149,7 @@ databases,pirates
 
 Change the format to `json`:
 ```sh
-$ influx -format=json
+$ dsdb -format=json
 [...]
 > SHOW DATABASES
 {"results":[{"series":[{"name":"databases","columns":["name"],"values":[["NOAA_water_database"],["_internal"],["telegraf"],["pirates"]]}]}]}
@@ -157,7 +157,7 @@ $ influx -format=json
 
 Change the format to `json` and turn on pretty print:
 ```sh
-$ influx -format=json -pretty
+$ dsdb -format=json -pretty
 [...]
 > SHOW DATABASES
 {
@@ -218,7 +218,7 @@ treasures,captain_id=crunch value=109 1439858880
 
 Command:
 ```
-$influx -import -path=datarrr.txt -precision=s
+$dsdb -import -path=datarrr.txt -precision=s
 ```
 
 Results:
@@ -228,7 +228,7 @@ Results:
 2015/12/22 12:25:06 Failed 0 inserts
 ```
 
-> **Note:** For large datasets, `influx` writes out a status message every 100,000 points.
+> **Note:** For large datasets, `dsdb` writes out a status message every 100,000 points.
 For example:
 <br>
 <br>
@@ -241,7 +241,7 @@ Points per second (PPS): 54634
 Things to note about `-import`:
 
 * Allow the database to ingest points by using `-pps` to set the number of points per second allowed by the import.
-By default, pps is zero and `influx` does not throttle importing.
+By default, pps is zero and `dsdb` does not throttle importing.
 * Imports work with `.gz` files, just include `-compressed` in the command.
 * If your data file has more than 5,000 points, it may be necessary to split that file into several files in order to write your data in batches to DSDB.
 By default, the HTTP request times out after five seconds.
@@ -249,7 +249,7 @@ DSDB will still attempt to write the points after that time out but there will b
 
 > **Note:** For how to export data from DSDB version 0.8.9, see [Exporting from 0.8.9](https://github.com/dsdb/dsdb/blob/master/importer/README.md#.
 
-## `influx` Commands
+## `dsdb` Commands
 Enter `help` in the CLI for a partial list of the available commands.
 
 ### Commands
@@ -258,18 +258,18 @@ We provide detailed information on `insert` at the end of this section.
 
 `auth`  
 Prompts you for your username and password.
-`influx` uses those credentials when querying a database.
+`dsdb` uses those credentials when querying a database.
 
 `connect <host:port>`  
 Connect to a different server without exiting the shell.
-By default, `influx` connects to `localhost:8086`.
-If you do not specify either the host or the port, `influx` assumes the default setting for the missing attribute.
+By default, `dsdb` connects to `localhost:8086`.
+If you do not specify either the host or the port, `dsdb` assumes the default setting for the missing attribute.
 
 `consistency <level>`  
 Sets the write consistency level: `any`, `one`, `quorum`, or `all`.
 
 `exit`                
-Quits the `influx` shell.
+Quits the `dsdb` shell.
 
 `format <format>`  
 Specifies the format of the server responses: `json`, `csv`, or `column`.
@@ -278,7 +278,7 @@ See the description of [-format](/dsdb/tools/shell.md#specify-the-format-of-the-
 `history`  
 Displays your command history.
 To use the history while in the shell, simply use the "up" arrow.
-`influx` stores your last 1,000 commands in your home directory in `.influx_history`.
+`dsdb` stores your last 1,000 commands in your home directory in `.dsdb_history`.
 
 `insert`  
 Write data using line protocol.
@@ -296,15 +296,15 @@ Outputs the current settings for the shell including the `Host`, `Username`, `Da
 
 `use <db_name>`  
 Sets the current database.
-Once `influx` sets the current database, there is no need to specify that database in queries.
-`influx` automatically queries the current database and its `DEFAULT` retention policy.
+Once `dsdb` sets the current database, there is no need to specify that database in queries.
+`dsdb` automatically queries the current database and its `DEFAULT` retention policy.
 
 #### Write data to DSDB with `insert`
 Enter `insert` followed by the data in [line protocol](/dsdb/write_protocols/line.md) to write data to DSDB.
 Use `insert into <retention policy> <line protocol>` to write data to a specific [retention policy](/dsdb/concepts/glossary.md#retention-policy-rp).
 
 Write data to a single field in the measurement `treasures` with the tag `captain_id = pirate_king`.
-`influx` automatically writes the point to the database's `DEFAULT` retention policy.
+`dsdb` automatically writes the point to the database's `DEFAULT` retention policy.
 ```
 > INSERT treasures,captain_id=pirate_king value=2
 >
@@ -317,10 +317,10 @@ Using retention policy oneday
 >
 ```
 
-Note that once you specify a retention policy with `INSERT INTO`, `influx` automatically writes data to that retention policy.
+Note that once you specify a retention policy with `INSERT INTO`, `dsdb` automatically writes data to that retention policy.
 This occurs even for later `INSERT` entries that do not include an `INTO` clause.
 Restarting the CLI will revert to using the `DEFAULT` retention policy.
 
 ### Queries
-Execute all DSDBQL queries in `influx`.
+Execute all DSDBQL queries in `dsdb`.
 See [Data Exploration](/dsdb/query_language/data_exploration.md), [Schema Exploration](/dsdb/query_language/schema_exploration.md), [Database Management](/dsdb/query_language/database_management.md), [Authentication and Authorization](/dsdb/administration/authentication_and_authorization.md) for DSDBQL documentation.

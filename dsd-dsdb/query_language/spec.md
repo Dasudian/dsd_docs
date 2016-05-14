@@ -351,7 +351,7 @@ CREATE RETENTION POLICY "10m.events" ON somedb DURATION 10m REPLICATION 2 DEFAUL
 
 ### CREATE SUBSCRIPTION
 
-Subscriptions tell DSDB to send all the data it receives to [Kapacitor](https://docs.influxdata.com/kapacitor/introduction.md).
+Subscriptions tell DSDB to send all the data it receives to [Kapacitor](https://docs.dsdbata.com/kapacitor/introduction.md).
 
 ```
 create_subscription_stmt = "CREATE SUBSCRIPTION" subscription_name "ON" db_name "." retention_policy "DESTINATIONS" ("ANY"|"ALL") host { "," host} .

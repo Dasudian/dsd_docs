@@ -88,7 +88,7 @@ There are two options for authenticating with the HTTP API.
 Example:
 
 ```bash
-curl -G http://localhost:8088/query -u todd:dsdb4ever --data-urlencode "q=SHOW DATABASES"
+curl -G http://localhost:8088/query -u dasudian:dsdb4ever --data-urlencode "q=SHOW DATABASES"
 ```
 
 * Authenticate by providing query parameters in the URL.
@@ -98,7 +98,7 @@ Set `u` as the username and `p` as the password.
 Example:
 
 ```bash
-curl -G http://localhost:8088/query --data-urlencode "u=todd" --data-urlencode "p=dsdb4ever" --data-urlencode "q=SHOW DATABASES"
+curl -G http://localhost:8088/query --data-urlencode "u=dasudian" --data-urlencode "p=dsdb4ever" --data-urlencode "q=SHOW DATABASES"
 ```
 
 The queries in both examples assume that the user is an [admin user](/dsdb/administration/authentication_and_authorization.md#admin-users).
@@ -116,10 +116,10 @@ There are two options for authenticating with the CLI.
     Example:
 
     ```sh
-$ influx
+$ dsdb
 Connected to http://localhost:8088 version 0.9.1
 DSDB shell 0.9.1
-> auth todd dsdb4ever
+> auth dasudian dsdb4ever
 >
     ```
 
@@ -128,7 +128,7 @@ DSDB shell 0.9.1
     Example:
 
     ```sh
-influx -username todd -password dsdb4ever
+dsdb -username dasudian -password dsdb4ever
     ```
 
 ## Authorization
@@ -192,7 +192,7 @@ GRANT ALL PRIVILEGES TO <username>
     CLI example:
 
     ```sh
-> GRANT ALL PRIVILEGES TO todd
+> GRANT ALL PRIVILEGES TO dasudian
 >
     ```
 
@@ -205,7 +205,7 @@ REVOKE ALL PRIVILEGES FROM <username>
     CLI example:
 
     ```sh
-> REVOKE ALL PRIVILEGES FROM todd
+> REVOKE ALL PRIVILEGES FROM dasudian
 >
     ```
 
@@ -220,7 +220,7 @@ SHOW USERS
     ```sh
 > SHOW USERS
 user 	 admin
-todd     false
+dasudian     false
 paul     true
 hermione false
 dobby    false
@@ -236,7 +236,7 @@ CREATE USER <username> WITH PASSWORD '<password>'
     CLI example:
 
     ```sh
-> CREATE USER todd WITH PASSWORD 'dsdb41yf3'
+> CREATE USER dasudian WITH PASSWORD 'dsdb41yf3'
 >
     ```
     > **Note:** The password [string](/dsdb/query_language/query_syntax.md#string-literals-single-quoted) must be wrapped in single quotes.
@@ -251,17 +251,17 @@ GRANT [READ,WRITE,ALL] ON <database_name> TO <username>
 
     CLI examples:
 
-    `GRANT` `READ` access to `todd` on the `NOAA_water_database` database:
+    `GRANT` `READ` access to `dasudian` on the `NOAA_water_database` database:
 
     ```sh
-> GRANT READ ON NOAA_water_database TO todd
+> GRANT READ ON NOAA_water_database TO dasudian
 >
     ```
 
-    `GRANT` `ALL` access to `todd` on the `NOAA_water_database` database:
+    `GRANT` `ALL` access to `dasudian` on the `NOAA_water_database` database:
 
     ```sh
-> GRANT ALL ON NOAA_water_database TO todd
+> GRANT ALL ON NOAA_water_database TO dasudian
 >
     ```
 
@@ -273,17 +273,17 @@ REVOKE [READ,WRITE,ALL] ON <database_name> FROM <username>
 
     CLI examples:
 
-    `REVOKE` `ALL` privileges from `todd` on the `NOAA_water_database` database:
+    `REVOKE` `ALL` privileges from `dasudian` on the `NOAA_water_database` database:
 
     ```sh
-> REVOKE ALL ON NOAA_water_database FROM todd
+> REVOKE ALL ON NOAA_water_database FROM dasudian
 >
     ```
 
-    `REVOKE` `WRITE` privileges from `todd` on the `NOAA_water_database` database:
+    `REVOKE` `WRITE` privileges from `dasudian` on the `NOAA_water_database` database:
 
     ```sh
-> REVOKE WRITE ON NOAA_water_database FROM todd
+> REVOKE WRITE ON NOAA_water_database FROM dasudian
 >
     ```
 
@@ -298,7 +298,7 @@ SHOW GRANTS FOR <user_name>
     CLI example:
 
     ```sh
-> SHOW GRANTS FOR todd
+> SHOW GRANTS FOR dasudian
 database		            privilege
 NOAA_water_database	        WRITE
 another_database_name	    READ
@@ -316,7 +316,7 @@ SET PASSWORD FOR <username> = '<password>'
     CLI example:
 
     ```sh
-> SET PASSWORD FOR todd = 'dsdb4ever'
+> SET PASSWORD FOR dasudian = 'dsdb4ever'
 >
     ```
 
@@ -333,7 +333,7 @@ DROP USER <username>
     CLI example:
 
     ```sh
-> DROP USER todd
+> DROP USER dasudian
 >
     ```
 

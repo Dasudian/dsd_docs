@@ -69,13 +69,13 @@ Below are a collection of commands to find useful performance metrics about your
 
 To find the number of unique series in a database run the following command: 
 ```bash
-$ influx -execute "SHOW SERIES" -database "mydb" | sed '/name: .*/d' | sed '/\-\-/d' | sed '/_key/d' | sed '/^$/d' | wc -l
+$ dsdb -execute "SHOW SERIES" -database "mydb" | sed '/name: .*/d' | sed '/\-\-/d' | sed '/_key/d' | sed '/^$/d' | wc -l
 ```
 To find the number of points per second being written to the instance. Must have the `monotor` service enabled:
 ```bash
-$ influx -execute 'select derivative(pointReq, 1s) from "write" where time > now() - 5m' -database '_internal' -precision 'rfc3339'
+$ dsdb -execute 'select derivative(pointReq, 1s) from "write" where time > now() - 5m' -database '_internal' -precision 'rfc3339'
 ```
 To find the number of writes separated by database since the beginnning of the log file:
 ```bash
-$ grep 'POST' /var/log/dsdb/influxd.log | awk '{ print $10 }' | sort | uniq -c 
+$ grep 'POST' /var/log/dsdb/dsdbd.log | awk '{ print $10 }' | sort | uniq -c 
 ```

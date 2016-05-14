@@ -95,15 +95,15 @@ It can be installed by running:
 sudo pkg install dsdb
 ```
 
-The configuration file is located at `/usr/local/etc/influxd.conf` with examples in `/usr/local/etc/influxd.conf.sample`.
+The configuration file is located at `/usr/local/etc/dsdb.conf` with examples in `/usr/local/etc/dsdb.conf.sample`.
 
 Start the backend by executing:
 
 ```shell
-sudo service influxd onestart
+sudo service dsdb onestart
 ```
 
-To have DSDB start at system boot, add `influxd_enable="YES"` to `/etc/rc.conf`.
+To have DSDB start at system boot, add `dsdb_enable="YES"` to `/etc/rc.conf`.
 
 ### Mac OS X
 
@@ -130,7 +130,7 @@ launchctl load ~/Library/LaunchAgents/homebrew.mxcl.dsdb.plist
 Or, if you don't want/need launchctl, in a separate terminal window you can just run:
 
 ```shell
-influxd -config /usr/local/etc/dsdb.conf
+dsdb -config /usr/local/etc/dsdb.conf
 ```
 
 ## Hosted
@@ -154,29 +154,29 @@ Please make sure to double-check any configuration changes prior to deploying th
 To generate a new configuration file, run:
 
 ```shell
-influxd config > dsdb.generated.conf
+dsdb config > dsdb.generated.conf
 ```
 
 And then edit the `dsdb.generated.conf` file to have the desired configuration settings.
 When launching DSDB, point the process to the correct configuration file using the `-config` option. For example, use:
 
 ```shell
-influxd -config dsdb.generated.conf
+dsdb -config dsdb.generated.conf
 ```
 
-To launch DSDB with your newly generated configuration. In addition, a valid configuration file can be displayed at any time using the command `influxd config`.
+To launch DSDB with your newly generated configuration. In addition, a valid configuration file can be displayed at any time using the command `dsdb config`.
 
-If no `-config` option is supplied, DSDB will use an internal default configuration (equivalent to the output of `influxd config`).
+If no `-config` option is supplied, DSDB will use an internal default configuration (equivalent to the output of `dsdb config`).
 
-> Note: The `influxd` command has two similarly named flags.
-The `config` flag prints a generated default configuration file to STDOUT but does not launch the `influxd` process.
+> Note: The `dsdb` command has two similarly named flags.
+The `config` flag prints a generated default configuration file to STDOUT but does not launch the `dsdb` process.
 The `-config` flag takes a single argument, which is the path to the DSDB configuration file to use when launching the process.
 
 The `config` and `-config` flags can be combined to output the union of the internal default configuration and the configuration file passed to `-config`.
 The options specified in the configuration file will overwrite any internally generated configuration.
 
 ```shell
-influxd config -config /etc/dsdb/dsdb.partial.conf
+dsdb config -config /etc/dsdb/dsdb.partial.conf
 ```
 
 The output will show every option configured in the `dsdb.partial.conf` file and will substitute internal defaults for any configuration options not specified in that file.
@@ -200,7 +200,7 @@ We’ve seen the best performance with the C3 class of machines.
 ### Configuring the Instance
 
 This example assumes that you are using two SSD volumes and that you have mounted them appropriately.
-This example also assumes that each of those volumes is mounted at `/mnt/influx` and `/mnt/db`.
+This example also assumes that each of those volumes is mounted at `/mnt/dsdb` and `/mnt/db`.
 For more information on how to do that see the Amazon documentation on how to [Add a Volume to Your Instance](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-add-volume-to-instance.html).
 
 ### Config File
@@ -218,7 +218,7 @@ You'll have to update the config file appropriately for each DSDB instance you h
 [data]
   dir = "/mnt/db/data"
   ...
-wal-dir = "/mnt/influx/wal"
+wal-dir = "/mnt/dsdb/wal"
   ...
 
 ...
@@ -234,7 +234,7 @@ dir = "/mnt/db/hh"
 When using non-standard directories for DSDB data and configurations, also be sure to set filesystem permissions correctly:
 
 ```shell
-chown dsdb:dsdb /mnt/influx
+chown dsdb:dsdb /mnt/dsdb
 chown dsdb:dsdb /mnt/db
 ```
 

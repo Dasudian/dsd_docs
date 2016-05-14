@@ -12,16 +12,16 @@ Depending on your use case, this log information can be written to another locat
 
 ## Running DSDB directly
 
-If you run DSDB directly, using `influxd`, all logs will be written to `stderr`.
+If you run DSDB directly, using `dsdb`, all logs will be written to `stderr`.
 You may redirect this log output as you would any output to `stderr` like so:
 
 ```sh
-influxd 2>$HOME/my_log_file
+dsdb 2>$HOME/my_log_file
 ```
 
 ## Launched as a service
 
-If DSDB was installed using a pre-built package, and then launched as a service, `stderr` is redirected to `/var/log/dsdb/influxd.log`, and all log data will be written to that file.
+If DSDB was installed using a pre-built package, and then launched as a service, `stderr` is redirected to `/var/log/dsdb/dsdb.log`, and all log data will be written to that file.
 You can override this location by setting the variable `STDERR` in the file `/etc/default/dsdb`.
 
 >**Note:** On OSX the logs, by default, are stored in the file `/usr/local/var/log/dsdb.log`

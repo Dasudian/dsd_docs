@@ -115,14 +115,14 @@ DSDB timestamps must be in UNIX epoch (GMT) or formatted as a date-time string v
 
 For more detailed descriptions of the DSDB terms mentioned in this section see our [Glossary of Terms](/dsdb/concepts/glossary.md).
 
-## InfluxQL and SQL
+## DSDBQL and SQL
 
-InfluxQL is an SQL-like query language for interacting with DSDB.
+DSDBQL is an SQL-like query language for interacting with DSDB.
 It has been lovingly crafted to feel familiar to those coming from other
 SQL or SQL-like environments while also providing features specific
 to storing and analyzing time series data.
 
-InfluxQL's `SELECT` statement follows the form of an SQL `SELECT` statement:
+DSDBQL's `SELECT` statement follows the form of an SQL `SELECT` statement:
 
 ```sql
 SELECT <stuff> FROM <measurement_name> WHERE <some_conditions>
@@ -146,7 +146,7 @@ If you wanted to see data for the planet `Saturn` after 12:00:01 UTC on April 16
 SELECT * FROM foodships WHERE planet = 'Saturn' AND time > '2015-04-16 12:00:01'
 ```
 
-As shown in the example above, InfluxQL allows you to specify the time range of your query in the `WHERE` clause.
+As shown in the example above, DSDBQL allows you to specify the time range of your query in the `WHERE` clause.
 You can use date-time strings wrapped in single quotes that have the
 format `YYYY-MM-DD HH:MM:SS.mmm`
 ( `mmm` is milliseconds and is optional, and you can also specify microseconds or nanoseconds).
@@ -170,9 +170,9 @@ The options for specifying time durations with `now()` are:
 
 <br/>
 
-InfluxQL also supports regular expressions, arithmetic in expressions, `SHOW` statements, and `GROUP BY` statements.
+DSDBQL also supports regular expressions, arithmetic in expressions, `SHOW` statements, and `GROUP BY` statements.
 See our [data exploration](/dsdb/query_language/data_exploration.md) page for an in-depth discussion of those topics.
-InfluxQL functions include `COUNT`, `MIN`, `MAX`, `MEDIAN`, `DERIVATIVE` and more.
+DSDBQL functions include `COUNT`, `MIN`, `MAX`, `MEDIAN`, `DERIVATIVE` and more.
 For a full list check out the [functions](/dsdb/query_language/functions.md) page.
 
 Now that you have the general idea, check out our [Getting Started Guide](/dsdb/introduction/getting_started.md).

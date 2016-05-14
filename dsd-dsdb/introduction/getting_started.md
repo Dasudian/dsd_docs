@@ -8,7 +8,7 @@ parent1: dsd-dsdb
 # Getting Started
 
 With DSDB [installed](/dsdb/introduction/installation.md), you're ready to start doing some awesome things.
-In this section we'll use the `influx` command line interface (CLI), which is included in all
+In this section we'll use the `dsdb` command line interface (CLI), which is included in all
 DSDB packages and is a lightweight and simple way to interact with the database.
 The CLI communicates with DSDB directly by making requests to the DSDB HTTP API over port `8088` by default.
 
@@ -18,21 +18,21 @@ for examples with the `curl` application.
 
 ## Creating a database
 
-If you've installed DSDB locally, the `influx` command should be available via the command line.
-Executing `influx` will start the CLI and automatically connect to the local DSDB instance
-(assuming you have already started the server with `service dsdb start` or by running `influxd` directly).
+If you've installed DSDB locally, the `dsdb` command should be available via the command line.
+Executing `dsdb` will start the CLI and automatically connect to the local DSDB instance
+(assuming you have already started the server with `service dsdb start` or by running `dsdb` directly).
 The output should look like this:
 
 ```sh
-$ influx
+$ dsdb
 Connected to http://localhost:8088 version 1.0.0
 DSDB shell 1.0.0
 > 
 ```
 
 > **Note:** The DSDB HTTP API runs on port `8088` by default.
-Therefore, `influx` will connect to port `8088` and `localhost` by default.
-If you need to alter these defaults, run `influx --help`.
+Therefore, `dsdb` will connect to port `8088` and `localhost` by default.
+If you need to alter these defaults, run `dsdb --help`.
 
 The command line is now ready to take input in the form of the DSDB Query Language (a.k.a DSDBQL) statements.
 To exit the DSDBQL shell, type `exit` and hit return.
