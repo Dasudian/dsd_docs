@@ -1,6 +1,6 @@
 ---
-title: "HTTP API Client Libraries"
-currentMenu: "dsdb-clients-httpapi"
+title: "API Client Libraries"
+currentMenu: "dsdb-clients-api"
 parent2: dsdb-clients
 parent1: dsd-dsdb
 ---
@@ -12,11 +12,11 @@ Most should be fully compatible with DSDB version 1.0.
 Functionality will vary, and there are, as yet, no standard features that all libraries must implement in order to be listed here.
 Libraries that have been updated for DSDB version 1.0 are listed in **bold**. 
 
-## Erlang UDP
-- [DSDB Erlang UDP](https://github.com/dasudian/dsdb_udp)
+## Erlang
+- [DSDB Erlang](https://github.com/dasudian/dsdb-erlang)
 
 ## Go
-- [DSDB Go](https://github.com/dasudian/dsdb/blob/master/client/README.md)
+- [DSDB Go](https://github.com/dasudian/dsdb-go)
 
 ## Haskell
 - [DSDB Haskell](https://github.com/dasudian/dsdb-haskell)
@@ -25,17 +25,11 @@ Libraries that have been updated for DSDB version 1.0 are listed in **bold**.
 - [DSDB Java](https://github.com/dasudian/dsdb-java)
 
 ## JavaScript/Node.js
-- [node-dsdb](https://github.com/dasudian/node-dsdb)
-- [js-dsdb](https://github.com/dasudian/js-dsdb)
-
-## Lisp
-- [cl-dsdb](https://github.com/dasudian/cl-dsdb)
+- [DSDB Node](https://github.com/dasudian/dsdb-node)
+- [DSDB JS](https://github.com/dasudian/dsdb-js)
 
 ## .Net
-- [DSDB.Net](https://github.com/dasudian/DSDB.Net)
-
-## Perl
-- [DSDB::LineProtocol](https://github.com/dasudian/dsdb-perl)
+- [DSDB .Net](https://github.com/dasudian/DSDB.Net)
 
 ## PHP
 - [DSDB PHP](https://github.com/dasudian/dsdb-php)
@@ -50,7 +44,4 @@ Libraries that have been updated for DSDB version 1.0 are listed in **bold**.
 - [DSDB Ruby](https://github.com/dasudian/dsdb-ruby)
 
 ## Scala
-- [scala-dsdb-client](https://github.com/dasudian/scala-dsdb-client)
-
-## SNMP
-- [influxsnmp](https://github.com/dasudian/dsdbsnmp)
+- [DSDB Scala](https://github.com/dasudian/dsdb-scala)
