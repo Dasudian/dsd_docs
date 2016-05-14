@@ -5,11 +5,11 @@ parent2: dsdb-clients
 parent1: dsd-dsdb
 ---
 
-# HTTP API Client Libraries
+# API Client Libraries
 
 This is a list of the client libraries which have some support for DSDB version 1.0.
 Most should be fully compatible with DSDB version 1.0. 
-Functionality will vary, and there are, as yet, no standard features that all libraries must implement in order to be listed here.
+Functionality will vary with the continuous development of DSDB and there are, as yet, no standard features that all libraries must implement in order to be listed here.
 Libraries that have been updated for DSDB version 1.0 are listed in **bold**. 
 
 ## Erlang
