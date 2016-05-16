@@ -1,7 +1,7 @@
 ---
-title: 大数点物联网平台简介
+title: 工业物联网平台介绍
 currentMenu: intro-index
 parent1: dsd-intro
 ---
 
-# 大数点物联网平台简介
+# 工业物联网平台介绍

@@ -22,17 +22,17 @@ branch: gh-pages
 
 navs:
   datahub:
-    text: "IoT Data Hub"
-    absoluteUrl: http://dasudian.com/datahub
+    text: "IoT DataHub"
+    absoluteUrl: https://dev.dasudian.com/datahub
   product_service:
     text: "产品服务"
-    absoluteUrl: http://dasudian.com/product_service
+    absoluteUrl: https://dev.dasudian.com/product_service
   docs:
     text: "文档"
     absoluteUrl: /
   price:
     text: "定价"
-    absoluteUrl: http://dasudian.com/price
+    absoluteUrl: https://dev.dasudian.com/price
   community:
     text: "社区"
     absoluteUrl: https://www.github.com/Dasudian
@@ -41,27 +41,33 @@ navs:
 menu:
   menu1s:
     dsd-intro:
-      name: "大数点物联网平台简介"
+      name: "大数点物联网平台"
       items:
         intro-index:
-          text: "简介"
+          text: "工业物联网平台介绍"
           relativeUrl: dsd-intro/index.html
     dsd-datahub:
-      name: "Data Hub"
+      name: "IoT DataHub"
       items:
         datahub-index:
-          text: "Data Hub Overview"
+          text: "Overview"
           relativeUrl: dsd-datahub/
       menu2s:
         datahub-sdk:
           name: "SDK"
           items:
-            datahub-sdk-js:
-              text: "JavaScript"
-              relativeUrl: dsd-datahub/sdk/javascript.html
             datahub-sdk-embededc:
               text: "Embeded C"
               relativeUrl: dsd-datahub/sdk/embeded_c.html
+            datahub-sdk-csharp:
+              text: "C#"
+              relativeUrl: dsd-datahub/sdk/csharp.html
+            datahub-sdk-java:
+              text: "Java"
+              relativeUrl: dsd-datahub/sdk/java.html
+            datahub-sdk-js:
+              text: "JavaScript"
+              relativeUrl: dsd-datahub/sdk/javascript.html
     dsd-dsdb:
       name: "DSD Database (DSDB)"
       items:
@@ -256,7 +262,7 @@ menu:
               text: "System Monitoring"
               relativeUrl: dsd-dsdb/troubleshooting/system_monitoring.html
     dsd-dac:
-      name: "DSD App/API Container (DAC)"
+      name: "DSD App Container"
       items:
         dac-index:
           text: "DAC介绍"
@@ -274,20 +280,32 @@ menu:
       name: "IM & Push Cloud"
       items:
         im-index:
-          text: "IM服务简介"
+          text: "IM服务介绍"
           relativeUrl: dsd-im/
         im-android:
-          text: "Android上集成IM功能"
+          text: "Android上集成IM服务"
           relativeUrl: dsd-im/integrate-im-android.html
         im-ios:
-          text: "iOS上集成IM功能"
+          text: "iOS上集成IM服务"
           relativeUrl: dsd-im/integrate-im-ios.html
+        im-linux:
+          text: "Linux上集成IM服务"
+          relativeUrl: dsd-im/integrate-im-linux.html
     dsd-mq:
       name: "MQ Cloud"
       items:
         mq-index:
-          text: "MQ服务简介"
+          text: "MQ服务介绍"
           relativeUrl: dsd-mq/
+        mq-android:
+          text: "Android上集成MQ服务"
+          relativeUrl: dsd-mq/integrate-mq-android.html
+        mq-ios:
+          text: "iOS上集成MQ服务"
+          relativeUrl: dsd-mq/integrate-mq-ios.html
+        mq-linux:
+          text: "Linux上集成MQ服务"
+          relativeUrl: dsd-mq/integrate-mq-linux.html
     dsd-aaa:
       name: "大数点云账户管理AAA Cloud"
       items:
@@ -301,7 +319,7 @@ menu:
           text: "iOS上集成AAA服务"
           relativeUrl: dsd-aaa/dev-guide-ios.html
         aaa-api:
-          text: "AAA API"
+          text: "REST API"
           relativeUrl: dsd-aaa/aaa-api.html
     dsd-cloudfile:
       name: "大数点云存储CloudFile"
@@ -316,5 +334,5 @@ menu:
           text: "iOS上集成CloudFile服务"
           relativeUrl: dsd-cloudfile/dev-guide-ios.html
         cf-api:
-          text: "CloudFile API"
+          text: "REST API"
           relativeUrl: dsd-cloudfile/cf-api.html
