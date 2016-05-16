@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="大数点物联网开发者平台文档，基于大数点物联网平台，帮助开发者快速构建物联网应用">
-    <title>HTTP API Client Libraries</title>
+    <title>API Client Libraries</title>
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
@@ -68,10 +68,10 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="http://dasudian.com/datahub" >IoT Data Hub</a></li>
-            <li><a href="http://dasudian.com/product_service" >产品服务</a></li>
+            <li><a href="https://dev.dasudian.com/datahub" >IoT DataHub</a></li>
+            <li><a href="https://dev.dasudian.com/product_service" >产品服务</a></li>
             <li><a href="/" >文档</a></li>
-            <li><a href="http://dasudian.com/price" >定价</a></li>
+            <li><a href="https://dev.dasudian.com/price" >定价</a></li>
             <li><a href="https://www.github.com/Dasudian"  target="_blank" >社区</a></li>
             <li><a href="https://dev.dasudian.com/login/view" class="btn-small" target="_blank">登录</a></li>
             <li><a href="https://dev.dasudian.com/sign_up/view" class="btn-small" target="_blank">注册</a></li>
@@ -83,18 +83,20 @@
     <div class="container-fluid0 document">
       <div class="side_left">
         <ul class="menu1">
-          <li><a class="fold">大数点物联网平台简介</a>
+          <li><a class="fold">大数点物联网平台</a>
             <ul class="menu2" >
-              <li><a id="intro-index" class="" href="/dsd-intro/index.html">简介</a></li>
+              <li><a id="intro-index" class="" href="/dsd-intro/index.html">工业物联网平台介绍</a></li>
             </ul>
           </li>
-          <li><a class="fold">Data Hub</a>
+          <li><a class="fold">IoT DataHub</a>
             <ul class="menu2" >
-              <li><a id="datahub-index" class="" href="/dsd-datahub/">Data Hub Overview</a></li>
+              <li><a id="datahub-index" class="" href="/dsd-datahub/">Overview</a></li>
               <li><a class="fold">SDK</a>
                 <ul class="menu3" >
-                  <li><a id="datahub-sdk-js" class="" href="/dsd-datahub/sdk/javascript.html">JavaScript</a></li>
                   <li><a id="datahub-sdk-embededc" class="" href="/dsd-datahub/sdk/embeded_c.html">Embeded C</a></li>
+                  <li><a id="datahub-sdk-csharp" class="" href="/dsd-datahub/sdk/csharp.html">C#</a></li>
+                  <li><a id="datahub-sdk-java" class="" href="/dsd-datahub/sdk/java.html">Java</a></li>
+                  <li><a id="datahub-sdk-js" class="" href="/dsd-datahub/sdk/javascript.html">JavaScript</a></li>
                 </ul>
               </li>
             </ul>
@@ -123,7 +125,7 @@
               <li><a class="fold">Clients</a>
                 <ul class="menu3" style="display: block;">
                   <li><a id="dsdb-clients-overview" class="" href="/dsd-dsdb/clients/index.html">Clients Overview</a></li>
-                  <li><a id="dsdb-clients-httpapi" class="active" href="/dsd-dsdb/clients/api.html">HTTP API</a></li>
+                  <li><a id="dsdb-clients-httpapi" class="" href="/dsd-dsdb/clients/api.html">HTTP API</a></li>
                 </ul>
               </li>
               <li><a class="fold">Concepts</a>
@@ -199,7 +201,7 @@
               </li>
             </ul>
           </li>
-          <li><a class="fold">DSD App/API Container (DAC)</a>
+          <li><a class="fold">DSD App Container</a>
             <ul class="menu2" >
               <li><a id="dac-index" class="" href="/dsd-dac/">DAC介绍</a></li>
               <li><a id="dac-java-api" class="" href="/dsd-dac/dac_cloud_api_java.html">DAC Java API</a></li>
@@ -209,14 +211,18 @@
           </li>
           <li><a class="fold">IM &amp; Push Cloud</a>
             <ul class="menu2" >
-              <li><a id="im-index" class="" href="/dsd-im/">IM服务简介</a></li>
-              <li><a id="im-android" class="" href="/dsd-im/integrate-im-android.html">Android上集成IM功能</a></li>
-              <li><a id="im-ios" class="" href="/dsd-im/integrate-im-ios.html">iOS上集成IM功能</a></li>
+              <li><a id="im-index" class="" href="/dsd-im/">IM服务介绍</a></li>
+              <li><a id="im-android" class="" href="/dsd-im/integrate-im-android.html">Android上集成IM服务</a></li>
+              <li><a id="im-ios" class="" href="/dsd-im/integrate-im-ios.html">iOS上集成IM服务</a></li>
+              <li><a id="im-linux" class="" href="/dsd-im/integrate-im-linux.html">Linux上集成IM服务</a></li>
             </ul>
           </li>
           <li><a class="fold">MQ Cloud</a>
             <ul class="menu2" >
-              <li><a id="mq-index" class="" href="/dsd-mq/">MQ服务简介</a></li>
+              <li><a id="mq-index" class="" href="/dsd-mq/">MQ服务介绍</a></li>
+              <li><a id="mq-android" class="" href="/dsd-mq/integrate-mq-android.html">Android上集成MQ服务</a></li>
+              <li><a id="mq-ios" class="" href="/dsd-mq/integrate-mq-ios.html">iOS上集成MQ服务</a></li>
+              <li><a id="mq-linux" class="" href="/dsd-mq/integrate-mq-linux.html">Linux上集成MQ服务</a></li>
             </ul>
           </li>
           <li><a class="fold">大数点云账户管理AAA Cloud</a>
@@ -224,7 +230,7 @@
               <li><a id="aaa-index" class="" href="/dsd-aaa/">AAA简介</a></li>
               <li><a id="aaa-android" class="" href="/dsd-aaa/dev-guide-android.html">Android上集成AAA服务</a></li>
               <li><a id="aaa-ios" class="" href="/dsd-aaa/dev-guide-ios.html">iOS上集成AAA服务</a></li>
-              <li><a id="aaa-api" class="" href="/dsd-aaa/aaa-api.html">AAA API</a></li>
+              <li><a id="aaa-api" class="" href="/dsd-aaa/aaa-api.html">REST API</a></li>
             </ul>
           </li>
           <li><a class="fold">大数点云存储CloudFile</a>
@@ -232,7 +238,7 @@
               <li><a id="cf-index" class="" href="/dsd-cloudfile/">CloudFile介绍</a></li>
               <li><a id="cf-android" class="" href="/dsd-cloudfile/dev-guide-android.html">Android上集成CloudFile服务</a></li>
               <li><a id="cf-ios" class="" href="/dsd-cloudfile/dev-guide-ios.html">iOS上集成CloudFile服务</a></li>
-              <li><a id="cf-api" class="" href="/dsd-cloudfile/cf-api.html">CloudFile API</a></li>
+              <li><a id="cf-api" class="" href="/dsd-cloudfile/cf-api.html">REST API</a></li>
             </ul>
           </li>
         </ul>
@@ -240,18 +246,18 @@
 
     <div class="side_right">
       <div class="doc">
-        <h1 id="http-api-client-libraries">HTTP API Client Libraries</h1>
+        <h1 id="api-client-libraries">API Client Libraries</h1>
 <p>This is a list of the client libraries which have some support for DSDB version 1.0.
 Most should be fully compatible with DSDB version 1.0.
-Functionality will vary, and there are, as yet, no standard features that all libraries must implement in order to be listed here.
+Functionality will vary with the continuous development of DSDB and there are, as yet, no standard features that all libraries must implement in order to be listed here.
 Libraries that have been updated for DSDB version 1.0 are listed in <strong>bold</strong>. </p>
-<h2 id="erlang-udp">Erlang UDP</h2>
+<h2 id="erlang">Erlang</h2>
 <ul>
-<li><a href="https://github.com/dasudian/dsdb_udp">DSDB Erlang UDP</a></li>
+<li><a href="https://github.com/dasudian/dsdb-erlang">DSDB Erlang</a></li>
 </ul>
 <h2 id="go">Go</h2>
 <ul>
-<li><a href="https://github.com/dasudian/dsdb/blob/master/client/index.html">DSDB Go</a></li>
+<li><a href="https://github.com/dasudian/dsdb-go">DSDB Go</a></li>
 </ul>
 <h2 id="haskell">Haskell</h2>
 <ul>
@@ -263,20 +269,12 @@ Libraries that have been updated for DSDB version 1.0 are listed in <strong>bold
 </ul>
 <h2 id="javascriptnodejs">JavaScript/Node.js</h2>
 <ul>
-<li><a href="https://github.com/dasudian/node-dsdb">node-dsdb</a></li>
-<li><a href="https://github.com/dasudian/js-dsdb">js-dsdb</a></li>
-</ul>
-<h2 id="lisp">Lisp</h2>
-<ul>
-<li><a href="https://github.com/dasudian/cl-dsdb">cl-dsdb</a></li>
+<li><a href="https://github.com/dasudian/dsdb-node">DSDB Node</a></li>
+<li><a href="https://github.com/dasudian/dsdb-js">DSDB JS</a></li>
 </ul>
 <h2 id="net">.Net</h2>
 <ul>
-<li><a href="https://github.com/dasudian/DSDB.Net">DSDB.Net</a></li>
-</ul>
-<h2 id="perl">Perl</h2>
-<ul>
-<li><a href="https://github.com/dasudian/dsdb-perl">DSDB::LineProtocol</a></li>
+<li><a href="https://github.com/dasudian/DSDB.Net">DSDB .Net</a></li>
 </ul>
 <h2 id="php">PHP</h2>
 <ul>
@@ -296,11 +294,7 @@ Libraries that have been updated for DSDB version 1.0 are listed in <strong>bold
 </ul>
 <h2 id="scala">Scala</h2>
 <ul>
-<li><a href="https://github.com/dasudian/scala-dsdb-client">scala-dsdb-client</a></li>
-</ul>
-<h2 id="snmp">SNMP</h2>
-<ul>
-<li><a href="https://github.com/dasudian/dsdbsnmp">influxsnmp</a></li>
+<li><a href="https://github.com/dasudian/dsdb-scala">DSDB Scala</a></li>
 </ul>
       </div>
 
