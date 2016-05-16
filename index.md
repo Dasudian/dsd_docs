@@ -4,13 +4,19 @@ currentMenu: index
 
 # 大数点开发者文档中心
 
-欢迎来到大数点开发文档中心，请阅读以下章节：　　
+欢迎来到大数点开发文档中心，请阅读以下章节:  
 
-### Data Hub
+### 大数点物联网平台
 
-- [Data Hub Overview](dsd-datahub/index.md)  
+- [工业物联网平台介绍](dsd-intro/index.md)  
+
+### IoT DataHub
+
+- [Overview](dsd-datahub/index.md)  
 - SDK  
 &nbsp; - [Embeded C API](dsd-datahub/sdk/embeded_c.md)  
+&nbsp; - [C# API](dsd-datahub/sdk/csharp.md)  
+&nbsp; - [Java API](dsd-datahub/sdk/java.md)  
 &nbsp; - [JavaScript API](dsd-datahub/sdk/javascript.md)  
 
 ### DS database
@@ -69,29 +75,37 @@ currentMenu: index
 &nbsp; - [Service - UDP](dsd-dsdb/write_protocols/udp.md)  
 &nbsp; - [Write Syntax](dsd-dsdb/write_protocols/write_syntax.md)  
 
-### DSD App/API Container (DAC)
+### DSD App Container
 
-- [DAC Overview](dsd-dac/index.md)  
+- [DAC 介绍](dsd-dac/index.md)  
 - [DAC JAVA API](dsd-dac/dac_cloud_api_java.md)  
 - [DAC C API](dsd-dac/dac_cloud_api_c.md)  
 - [DAC C++ API](dsd-dac/dac_cloud_api_cpp.md)  
 
 ### IM & Psh Cloud
 
-- [IM服务简介](dsd-im/index.md)  
+- [IM服务介绍](dsd-im/index.md)  
 - [Android上集成IM服务](dsd-im/integrate-im-android.md)  
 - [iOS上集成IM服务](dsd-im/integrate-im-ios.md)  
+- [Linux上集成IM服务](dsd-im/integrate-im-linux.md)  
+
+### MQ Cloud
+
+- [MQ服务介绍](dsd-mq/index.md)  
+- [Android上集成MQ服务](dsd-mq/integrate-mq-android.md)  
+- [iOS上集成MQ服务](dsd-mq/integrate-mq-ios.md)  
+- [Linux上集成MQ服务](dsd-mq/integrate-mq-linux.md)  
 
 ### 大数点云账户管理AAA
 
 - [AAA介绍](dsd-aaa/index.md)  
 - [Android上集成AAA服务](dsd-aaa/dev-guide-android.md)  
 - [iOS上集成IM服务](dsd-aaa/dev-guide-ios.md)  
-- [AAA API](dsd-aaa/aaa-api.md)  
+- [REST API](dsd-aaa/aaa-api.md)  
 
 ### 大数点云存储服务CloudFile
 
 - [CloudFile介绍](dsd-cloudfile/index.md)  
 - [Android上集成CloudFile服务](dsd-cloudfile/dev-guide-android.md)  
 - [iOS上集成CloudFile服务](dsd-cloudfile/dev-guide-ios.md)  
-- [CloudFile API](dsd-cloudfile/api.md)
+- [REST API](dsd-cloudfile/api.md)
