@@ -24,19 +24,20 @@ parent1: dsd-aaa
 ## 使用SDK
 
 ### 用户类的属性字段说明
-
 ```
 /**
 *   用户类的属性字段说明
 * @param phoneNumber 电话号码
-* @param veriCode    验证码，
-* @param name        用户名
+* @param veriCode    验证码，使用dsdAAARegisterPhoneNumber获得的验证码。
+* @param name        用户昵称，可在登录后修改
 * @param sex         性别，请使用male和female，提交后不可修改
-* @param birthday    生日，提交后不可修改。
+* @param birthday    生日，提交后不可修改。eg：19921015，
 * @param password    密码，由字母数字下划线组成，可修改。
 * @param email       邮箱
-* @param area        地域信息，eg：广东省/深圳市/南山区
-* @param signature   个性签名。
+* @param devicetype  设备类型，eg:iphone6S iphone5
+* @param province    省份，eg：广东省
+* @param city        城市, eg:深圳市
+* @param signature   个性签名，可修改。eg：大数据点亮生活。
 */
 
 ```
@@ -94,7 +95,7 @@ parent1: dsd-aaa
 /**
 *  4.注册用户信息
 *
-*  @param user  用户User对象的一个实例
+*  @param user  用户User对象的一个实例（user的各项属性为必填项）
 *
 *  @return  json格式字符串，eg：成功{"result":"success"}，失败{"result":"fail","reason":"reason..."}
 */
@@ -117,7 +118,6 @@ parent1: dsd-aaa
 *  @return json格式字符串，eg：成功{"result":"success"}，失败{"result":"fail","reason":"reason..."}
 */
 - (NSString *)dsdAAALoginWithphoneNumber:(NSString *)phonenumber passWord:(NSString *)password;
-
 ```
 
 ### 自动登陆
@@ -125,11 +125,11 @@ parent1: dsd-aaa
 ```
 /**
 *  6.自动登陆
-*
+*   @param cookie  手机号登录成功后获得的cookie。
 *
 *  @return  json格式字符串，eg：成功{"result":"success"}，失败{"result":"fail","reason":"reason..."}
 */
--(NSString *)dsdAAAAutoLogin;
+-(NSString *)dsdAAAAutoLoginwithCookie:(NSString *)cookie;
 
 
 ```
@@ -142,14 +142,10 @@ parent1: dsd-aaa
 *  @param phoneNumber  手机号码
 *
 *  @return json格式字符串，eg：成功
-* {"result":"success","info":{"name":"dasudian","birthday":"19921015",
-* "sex":"male","phone_num":"13618074451","email":"hr@dasudian.com",
-* "area":"广东省/深圳市/南山区","portrait":"8vcKSfPVD9U1jR5EAq",
-* "signature":"Change the world!"}}
+* {"result":"success","info":{"name":"Hhg","birthday":"Dff","sex":"男","phone_num":"18995744333","email":"Fffg","country":"undefined","province":"","city":"Uhhh","avatar":"97PTppvGPkjxTpTxoG","signature":"Gfghh","last_login":"2016-04-21T05:59:46.376Z","device":"undefined","login_counter":"9","type":"0"}}
 * 失败{"result":"fail","reason":"reason..."}
 */
 - (NSString *)dsdAAAGetUserWithphoneNumber:(NSString *)phonenumber;
-
 
 ```
 ### 设置头像
@@ -163,7 +159,8 @@ parent1: dsd-aaa
 *
 *  @return json格式字符串 成功返回图片的url，失败{"result":"fail","reason":"reason..."}
 */
-- (NSString *)dsdAAASetIconWithimagePath:(NSString *)imagepath;
+- (NSString *)dsdAAASetAvatarWithimagePath:(NSString *)imagepath;
+
 
 ```
 
@@ -215,6 +212,7 @@ parent1: dsd-aaa
 */
 - (NSString *)dsdAAAChangePasswdWitholdPassword:(NSString *)oldpassword newPassword:(NSString *)newpassword;
 
+
 ```
 ### 修改用户名称
 
@@ -242,12 +240,13 @@ parent1: dsd-aaa
 - (NSString *)dsdAAAChangeSignatureWithSignature:(NSString *)signature;
 
 
+
 ```
 ### 同步联系人
 
 ```
 /**
-*  14.同步联系人,需要先登录
+*  14.同步联系人,需要先用手机号登录
 *
 *  @param contacts  联系人列表
 *
@@ -261,7 +260,7 @@ parent1: dsd-aaa
 
 ```
 /**
-*   15.获取联系人列表,需要先登录
+*   15.获取联系人列表,需要先用手机号登录
 *
 *  @param phonenumber  登录时的手机号码
 *
@@ -269,6 +268,7 @@ parent1: dsd-aaa
 * ["13761975289","+8618565618719","18565618719"]}}
 */
 - (NSString *)dsdAAAGetContactWithphoneNumber:(NSString *)phonenumber;
+
 
 ```
 ### 从qq拉取用户信息并保存
@@ -279,11 +279,11 @@ parent1: dsd-aaa
 *
 *  @param uid         即openid用户的ID，与QQ号码一一对应
 *  @param accesstoken 使用Authorization_Code获取
-*  @param consumerkey 即oauth_consumer_key 申请QQ登录成功后，分配给应用的appid
-*
-*  @return
+*  @param devicetype  设备的类型
+*  @param consumerkey 即oauth_consumer_key 申请QQ登录成功后，分配给应用的appid*
+*  @return  成功返回{"result":"success","user_id":"0AF9F87032E74E777FB9F82F147ED3E8"}
 */
-- (NSString *)dsdAAAqqWithUid:(NSString *)uid accessToken:(NSString *)accesstoken consumerKye:(NSString *)consumerkey;
+- (NSString *)dsdAAAqqWithUid:(NSString *)uid accessToken:(NSString *)accesstoken devicetype:(NSString *)devicetype consumerKye:(NSString *)consumerkey;
 
 
 ```
@@ -295,11 +295,12 @@ parent1: dsd-aaa
 *
 *  @param uid         即openid 用户的唯一标识。
 *  @param accesstoken 调用接口凭证,由微信提供
+*  @parma devicetype  设备的类型
 *  @param consumerkey 即oauth_consumer_key 申请QQ登录成功后，分配给应用的appid
 *
-*  @return 
+*  @return  成功返回{"result":"success","user_id":"o6xF5xDoCJJpX0clVI4XBjUL_2qM"}
 */
-- (NSString *)dsdAAAwechatWithUid:(NSString *)uid accessToken:(NSString *)accesstoken consumerKey:(NSString *)consumerkey;
+- (NSString *)dsdAAAwechatWithUid:(NSString *)uid accessToken:(NSString *)accesstoken devicetype:(NSString *)devicetype consumerKey:(NSString *)consumerkey;
 
 
 
@@ -311,13 +312,11 @@ parent1: dsd-aaa
 *  18.从服务器上获取保存的QQ和wechat授权用户信息
 *
 *  @param uid     即openid 用户的唯一标识。
-*  @param type    1 -> QQ 2 -> WeChat
 *
-*  @return  
+*  @return  成功返回从AAA服务器上获取的授权用户信息
 
 */
-- (NSString *)dsdAAAOauthUserInfoWithUid:(NSString *)uid Type:(NSInteger)type;
-
+- (NSString *)dsdAAAOauthUserInfoWithopenid:(NSString *)openid;
 
 ```
 ### 从服务器上面获取保存的QQ和wechat授权的用户信息列表
@@ -326,16 +325,30 @@ parent1: dsd-aaa
 /**
 *  19.从服务器上面获取保存的QQ和wechat授权的用户信息列表
 *
-*  @param uid      即openid 用户的唯一标识。
+*  @param openid   即openid 用户的唯一标识。
 *  @param type     1 -> QQ 2 -> WeChat
 *  @param start    请求起始位置
 *  @param num      请求的行数
 *
-*  @return  
+*  @return  成功返回授权的用户信息列表
 
 */
-- (NSString *)dsdAAAOauthUserInfoListWithUid:(NSString *)uid Type:(NSInteger)type Start:(NSInteger)start Num:(NSInteger)num;
+- (NSString *)dsdAAAOauthUserInfoListWithopenid:(NSString *)openid Type:(NSInteger)type Start:(NSInteger)start Num:(NSInteger)num;
 
+
+
+```
+### 获取头像
+```
+/**
+*  20.获取头像数据
+*  @param uuid     即设置头像成功后返回的avatar，或者获取用户信息中返回的avatar.
+*
+*  @return         返回图片的二进制数据。
+
+*/
+
+- (NSData *)getimage:(NSString *)uuid;
 
 ```
 
