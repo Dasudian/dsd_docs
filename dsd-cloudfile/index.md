@@ -4,7 +4,6 @@ currentMenu: cf-index
 parent1: dsd-cloudfile
 ---
 
-# CloudFile服务简介
 #CloudFile服务简介
 
 ![cloudfile](img/cloudfile.jpg)
