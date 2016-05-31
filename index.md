@@ -75,7 +75,7 @@ currentMenu: index
 &nbsp; - [Service - UDP](dsd-dsdb/write_protocols/udp.md)  
 &nbsp; - [Write Syntax](dsd-dsdb/write_protocols/write_syntax.md)  
 
-### DSD App Container
+### DSD API Container (DAC)
 
 - [DAC 介绍](dsd-dac/index.md)  
 - [DAC JAVA API](dsd-dac/dac_cloud_api_java.md)  
