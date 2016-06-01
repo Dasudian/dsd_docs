@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="大数点物联网开发者平台文档，基于大数点物联网平台，帮助开发者快速构建物联网应用">
-    <title>Linux上集成IM服务</title>
+    <title>大数点文档中心</title>
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
@@ -210,11 +210,11 @@
             </ul>
           </li>
           <li><a class="fold">IM &amp; Push Cloud</a>
-            <ul class="menu2" style="display: block;">
+            <ul class="menu2" >
               <li><a id="im-index" class="" href="/dsd-im/">IM服务介绍</a></li>
               <li><a id="im-android" class="" href="/dsd-im/integrate-im-android.html">Android上集成IM服务</a></li>
               <li><a id="im-ios" class="" href="/dsd-im/integrate-im-ios.html">iOS上集成IM服务</a></li>
-              <li><a id="im-linux" class="active" href="/dsd-im/integrate-im-linux.html">Linux上集成IM服务</a></li>
+              <li><a id="im-linux" class="" href="/dsd-im/integrate-im-linux.html">Linux上集成IM服务</a></li>
             </ul>
           </li>
           <li><a class="fold">MQ Cloud</a>
@@ -246,7 +246,162 @@
 
     <div class="side_right">
       <div class="doc">
-        <h1 id="linuxim">Linux上集成IM服务</h1>
+        <h1 id="iosaaa">iOS上集成AAA服务</h1>
+<h2 id="">集成前准备</h2>
+<p>到<a href="https://dev.dasudian.com/">大数点开发者平台</a>注册成为大数点合作伙伴并创建应用</p>
+<h2 id="sdk">下载SDK</h2>
+<p>到<a href="https://dev.dasudian.com/sdk/">大数点官网</a>下载SDK.</p>
+<h2 id="sdk-1">SDK内容</h2>
+<ul>
+<li>lib（需要的库）</li>
+<li>header (需要的头文件)</li>
+</ul>
+<h2 id="-1">配置工程</h2>
+<p>将以上文件夹中的文件导入到工程目录下即可使用.</p>
+<h2 id="sdk-2">使用SDK</h2>
+<h3 id="-2">参数说明</h3>
+<pre><code>enum callBackReason{
+sendMsgSuccess = 1,//发送消息成功
+msgUnicast,//收到单播消息
+msgMulticast,//收到组播消息
+msgBroadcast,//收到广播消息
+connectSuccess,//连接成功
+kickedOutGroup,//踢人的回调
+disConnect,//断开连接
+loginOnAnotherClient//账号在另外一台设备上登录
+};
+
+/**  统一参数说明：
+*   reason:回调的原因，callBackReason。
+*   data:回调函数返回的内容。
+*   len:回调内容的长度。
+*   
+*/
+</code></pre>
+<h3 id="-3">初始化</h3>
+<pre><code>/**
+* 初始化sdk,退出时需要调用dsdDisConnect()来销毁分配得内存.
+* @param  serverAddress 服务器地址
+* @param  version      "1.0"
+* @param  appId        app的id
+* @param  appSpec      app得描述信息
+* @param  userId       用户名
+* @param  opt          用户可选信息，用于后台统计和推送；
+*                      必须为JSON，格式如下
+*                      {"ctype":"0|1"，....}其中0代表Android，1代表iOS
+* @param  clientID     设备id
+* @param  userFunction 注册进sdk得回调函数,该函数会在下面几种情况被调用.
+*                      1:用户发送得异步消息成功
+*                      2:收到服务器发来的单播,组播,广播消息
+*                      3:连接服务器成功
+*                      4:该用户被提出某个组播组
+*                      5:与服务器断开连接
+* @return              成功:0,失败:-1
+*/
+int dsdInit(char* serverAddress,char* version, char * appId ,char *appSpec ,char *userId, char *opt, char* clientID, userCallback userFunction);
+</code></pre>
+<h3 id="-4">同步单播</h3>
+<pre><code>/**
+* 同步单播消息.该函数会阻塞到收到服务器得ack或者超时后返回.
+* @param  from       发送消息得人
+* @param  toUserlist 目标用户列表
+* @param  users      目标用户个数
+* @param  msg        消息内容
+* @return            成功:0,失败:-1
+*/
+int dsdSyncSendWithAck(char* from, char** toUserlist, int users, char *msg);</code></pre>
+<h3 id="-5">异步单播</h3>
+<pre><code>/**
+* 异步发送单播消息,该函数不会阻塞调用者.
+* @param from       发送者
+* @param toUserlist 目标用户列表
+* @param users      目标用户个数
+* @param msg        消息内容
+* @param msgid      用户指定得msgid,如果发送成功,该msgid会在回调函数中上报.
+*/
+void dsdAsyncSendWithAck(char *from, char **toUserlist, int users, char* msg, char *msgid);
+</code></pre>
+<h3 id="-6">同步组播</h3>
+<pre><code>/**
+* 同步得发送组播消息,该函数会阻塞到收到服务器得ack或者超时后返回.
+* @param  user    发送者
+* @param  groupid 组id
+* @param  msg     消息内容
+* @return         成功:0,失败:-1
+*/
+int dsdSyncMulticastwithAck(char* user, char* groupid, char* msg);
+</code></pre>
+<h3 id="-7">异步组播</h3>
+<pre><code>/**
+* 异步得发送组播消息,该函数不会阻塞调用者.
+* @param user    发送者
+* @param groupid 组id
+* @param msg     消息内容
+* @param msgid   用户指定得msgid,如果发送成功,该msgid会在回调函数中上报.
+*/
+void dsdAsyncMulticastwithAck(char* user, char* groupid, char* msg, char* msgid);
+</code></pre>
+<h3 id="-8">同步广播</h3>
+<pre><code>/**
+* 同步得发送广播消息,该函数会阻塞到收到服务器得ack或者超时后返回.
+* @param  user 发送者
+* @param  msg  消息内容
+* @return      成功:0,失败:-1
+*/
+int dsdSyncBroadcastWithAck(char* user, char* msg);
+</code></pre>
+<h3 id="-9">异步广播</h3>
+<pre><code>/**
+* 异步得发送广播消息,该函数不会阻塞调用者.
+* @param user  发送者
+* @param msg   消息内容
+* @param msgid 用户指定得msgid,如果发送成功,该msgid会在回调函数中上报.
+*/
+void dsdAsyncBroadcastWithAck(char* user, char* msg, char* msgid);
+</code></pre>
+<h3 id="-10">创建组</h3>
+<pre><code>/**
+* 创建组播组,该函数会阻塞到收到服务器得ack或者超时后返回.
+* @param  user      用户名
+* @param  groupName 组名
+* @return           成功:返回组播组得id,失败:NULL
+*/
+DSD_UUID dsdCreateGroup(char *user, char *groupName);
+</code></pre>
+<h3 id="-11">加入组</h3>
+<pre><code>/**
+* 加入组播组,该函数会阻塞到收到服务器得ack或者超时后返回.
+* @param  user    用户名
+* @param  groupid dsdCreateGroup函数返回得组播组id
+* @return         成功:0,失败-1
+*/
+int dsdJoinGroup(char *user , DSD_UUID groupid);
+</code></pre>
+<h3 id="-12">离开组</h3>
+<pre><code>/**
+* 离开组播组,该函数会阻塞到收到服务器得ack或者超时后返回.
+* @param  user    离开得用户
+* @param  groupid dsdCreateGroup函数返回得组播组id
+* @return         成功:0,失败:-1
+*/
+int dsdLeaveGroup(char *user, DSD_UUID groupid);
+</code></pre>
+<h3 id="-13">踢出组</h3>
+<pre><code>/**
+* 将某人踢出组播组,该函数会阻塞到收到服务器得ack或者超时后返回.
+* @param  user        组播组拥有者
+* @param  groupid     dsdCreateGroup函数返回得组播组id
+* @param  groupmember 要踢出得人
+* @return             成功:0,失败-1
+*/
+int dsdKickOutGroup(char* user, DSD_UUID groupid, char* groupmember);
+</code></pre>
+<h3 id="-14">释放资源</h3>
+<pre><code>/**
+* 与dsdInit()配合使用,该函数用于清楚sdk分配得内存.
+*/
+void dsdDisConnect(void);
+</code></pre>
       </div>
 
               <div class="tract"><img src="/images/tract.png"/></div>

@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="大数点物联网开发者平台文档，基于大数点物联网平台，帮助开发者快速构建物联网应用">
-    <title>大数点Cloud AAA接口API</title>
+    <title>大数点文档中心</title>
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
@@ -226,11 +226,11 @@
             </ul>
           </li>
           <li><a class="fold">大数点云账户管理AAA Cloud</a>
-            <ul class="menu2" style="display: block;">
+            <ul class="menu2" >
               <li><a id="aaa-index" class="" href="/dsd-aaa/">AAA简介</a></li>
               <li><a id="aaa-android" class="" href="/dsd-aaa/dev-guide-android.html">Android上集成AAA服务</a></li>
               <li><a id="aaa-ios" class="" href="/dsd-aaa/dev-guide-ios.html">iOS上集成AAA服务</a></li>
-              <li><a id="aaa-api" class="active" href="/dsd-aaa/aaa-api.html">REST API</a></li>
+              <li><a id="aaa-api" class="" href="/dsd-aaa/aaa-api.html">REST API</a></li>
             </ul>
           </li>
           <li><a class="fold">大数点云存储CloudFile</a>
@@ -246,13 +246,13 @@
 
     <div class="side_right">
       <div class="doc">
-        <h1 id="cloud-aaa-api">大数点Cloud AAA 开放接口API</h1>
-<p>大数点Cloud AAA是一个面向移动互联网和物联网的用户管理云服务，通过开放的标准REST API提供基于手机号的用户注册、验证、登录、用户信息提交与修改、头像管理、第三方登录等用户管理功能。开发者只需登录<a href="https://dev.dasudian.com">大数点开发者平台</a>注册一个应用获取AppID和AppKey，便可使用该用户管理云服务和开放接口。在开发者后台，还可以随时进行用户的查询、删除、冻结等管理，实时的数据分析与报表让您实时掌控App使用情况和用户情况。</p>
-<h2 id="1-token">1.获取 token</h2>
+        <h1 id="-aaa-api">大数点 AAA 系统API</h1>
+<h3 id="1-token">1.获取 token</h3>
 <p>在接入大数点<code>AAA</code>系统之前，都需要先获取<code>token</code>，后续所有的请求都需要带上<code>token</code>作为接入的凭证</p>
-<h3 id="">请求方法</h3>
-<p>请求时使用<code>POST</code>方式请求<code>https://ex.ap.dasudian.net/auc_app</code>， 注:<code>Content-Type</code>请设置为<code>Content-Type:application/json</code></p>
-<h3 id="-1">请求参数说明</h3>
+<h4 id="">请求方法</h4>
+<p>请求时使用<code>POST</code>方式请求<code>https://{domain}/auc_app</code>，<code>domain</code>为要请求服务器的地址
+注:<code>Content-Type</code>请设置为<code>Content-Type:application/json</code></p>
+<h4 id="-1">请求参数说明</h4>
 <p>请求参数统一使用<code>Json</code>格式，字段说明如下：</p>
 <table border="1" width="600px"><tbody><tr style="background-color:#EDEDED"><td align="center">名称</td>
 <td align="center">类型</td>
@@ -261,15 +261,15 @@
 </tr><tr><td align="center">appid</td>
 <td align="center">string</td>
 <td align="center">是</td>
-<td align="center">appid 为用户在大数点开发者平台创建App时生成的AppID</td>
+<td align="center">appid 为用户在创建App时大数点提供</td>
 </tr><tr><td align="center">appsec</td>
 <td align="center">string</td>
 <td align="center">是</td>
-<td align="center">appsec 为用户大数点开发者平台创建App时生成的AppKey</td>
+<td align="center">appsec 为用户在创建App时大数点提供</td>
 </tr></tbody></table>
-<h3 id="-2">请求实例</h3>
-<pre><code>curl -v -k https://ex.ap.dasudian.net/auc_app -d '{"appid":"139_A_92ECUvrZ4A6*****", "appsec":"*******7092b"}' -H"content-type:application/json"</code></pre>
-<h3 id="-3">返回结果说明</h3>
+<h4 id="-2">请求实例</h4>
+<pre><code>curl -v -k https://localhost:8443/auc_app -d '{"appid":"139_A_92ECUvrZ4A6IrP3tz6", "appsec":"0a03d9c67217092b"}' -H"content-type:application/json"</code></pre>
+<h4 id="-3">返回结果说明</h4>
 <p>返回结果也统一使用<code>Json</code>格式，<code>Content-Type</code>为<code>Content-Type:application/json</code>，字段说明如下：</p>
 <table border="1" width="600px"><tbody><tr style="background-color:#EDEDED"><td align="center">名称</td>
 <td align="center">类型</td>
@@ -277,22 +277,17 @@
 </tr><tr><td align="center">result</td>
 <td align="center">integer</td>
 <td align="center">请求结果，success:成功 fail:失败</td>
-</tr><tr><td align="center">url</td>
-<td align="center">string</td>
-<td align="center">Cloud AAA的服务地址URL</td>
 </tr><tr><td align="center">token</td>
 <td align="center">string</td>
 <td align="center">接入服务时要带的凭证，只有正确的token才能被允许接入服务。</td>
 </tr></tbody></table>
-<h3 id="-4">返回实例</h3>
-<pre><code>{"result":“success", "url":"https://aaa.dasudian.net","token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}</code></pre>
-<ul>
-<li>以下接口为Cloud AAA的功能性接口，每个接口的访问地址都为以上返回的<code>url</code>加上接口名称，且每个接口的调用都需带上<code>token</code>作为一个必选请求参数。</li>
-</ul>
-<h2 id="2">2.手机号注册</h2>
-<h3 id="-5">请求方法</h3>
-<p>请求时使用<code>POST</code>方式请求<code>{Cloud AAA的服务地址URL}/pre_register</code>，注:<code>Content-Type</code>请设置为<code>Content-Type:application/json</code></p>
-<h3 id="-6">请求参数说明</h3>
+<h4 id="-4">返回实例</h4>
+<pre><code>{"result":,"token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}</code></pre>
+<h3 id="2">2.注册</h3>
+<h4 id="-5">请求方法</h4>
+<p>请求时使用<code>POST</code>方式请求<code>https://{domain}/pre_register</code>，<code>domain</code>为要请求服务器的地址
+注:<code>Content-Type</code>请设置为<code>Content-Type:application/json</code></p>
+<h4 id="-6">请求参数说明</h4>
 <p>请求参数统一使用<code>Json</code>格式，字段说明如下：</p>
 <table border="1" width="600px"><tbody><tr style="background-color:#EDEDED"><td align="center">名称</td>
 <td align="center">类型</td>
@@ -302,14 +297,10 @@
 <td align="center">string</td>
 <td align="center">是</td>
 <td align="center">手机号码</td>
-</tr><tr><td align="center">token</td>
-<td align="center">string</td>
-<td align="center">是</td>
-<td align="center">用户请求auc_app接口时返回</td>
 </tr></tbody></table>
-<h3 id="-7">请求实例</h3>
-<pre><code>curl -v https://aaa.dasudian.net/pre_register -v -k -XPOST -H"Content-Type: application/json" -d '{"phone_num": "13618074451","token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'</code></pre>
-<h3 id="-8">返回结果说明</h3>
+<h4 id="-7">请求实例</h4>
+<pre><code>curl -v https://localhost:8443/pre_register?token=g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f -v -k -XPOST -H"Content-Type: application/json" -d '{"phone_num": "13618074451"}'</code></pre>
+<h4 id="-8">返回结果说明</h4>
 <p>返回结果也统一使用<code>Json</code>格式，<code>Content-Type</code>为<code>Content-Type:application/json</code>，字段说明如下：</p>
 <table border="1" width="600px"><tbody><tr style="background-color:#EDEDED"><td align="center">名称</td>
 <td align="center">类型</td>
@@ -321,12 +312,13 @@
 <td align="center">string</td>
 <td align="center">验证码，会由短信平台发送至相应手机号。</td>
 </tr></tbody></table>
-<h3 id="-9">返回实例</h3>
+<h4 id="-9">返回实例</h4>
 <pre><code>{"result":"success","veri_code":"pinysl"}</code></pre>
-<h2 id="3">3.验证码校验</h2>
-<h3 id="-10">请求方法</h3>
-<p>请求时使用<code>POST</code>方式请求<code>{Cloud AAA的服务地址URL}/verify_code</code>，注:<code>Content-Type</code>请设置为<code>Content-Type:application/json</code>,在请求时必须带上服务器返回的cookie</p>
-<h3 id="-11">请求参数说明</h3>
+<h3 id="3">3.验证码校验</h3>
+<h4 id="-10">请求方法</h4>
+<p>请求时使用<code>POST</code>方式请求<code>https://{domain}/verify_code</code>，<code>domain</code>为要请求服务器的地址
+注:<code>Content-Type</code>请设置为<code>Content-Type:application/json</code>,在请求时必须带上服务器返回的<code>cookie</code></p>
+<h4 id="-11">请求参数说明</h4>
 <p>请求参数统一使用<code>Json</code>格式，字段说明如下：</p>
 <table border="1" width="600px"><tbody><tr style="background-color:#EDEDED"><td align="center">名称</td>
 <td align="center">类型</td>
@@ -340,14 +332,10 @@
 <td align="center">string</td>
 <td align="center">是</td>
 <td align="center">验证码</td>
-</tr><tr><td align="center">token</td>
-<td align="center">string</td>
-<td align="center">是</td>
-<td align="center">用户请求auc_app接口时返回</td>
 </tr></tbody></table>
-<h3 id="-12">请求实例</h3>
-<pre><code>curl -v https://aaa.dasudian.net/verify_code -v -k -XPOST -H"Content-Type: application/json" -d '{"phone_num": "13618074451","veri_code":"pinysl","token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}' --cookie "_Dasudian_Auth=g2gDaARrACBjOGMxOWViNjc5NzY3OWI3ODAwOWQxMTlmZjY5ZWJiOW0AAAAEdGVzdGgCaANiAAAH32EFYQtoA2ELYTJhIG0AAABR1Brh37P2scdkhXSftzn2QAJN78ZPeFMV3zUlTWcw21HYYcNKZZmfftUyNPQ%2BDDINtYmcbyL9z6%2Bmulx8jqcaFYYPnldoWSqzS8UtG%2BGZpiJ%2BawAUMjdlZDI5YTQxY2RlNGI4YjJjMDJtAAAAFNC5w3GjDdhBNN9VF0m%2BAB1nxFPN; Version=1; Expires=Mon, 11-May-2015 03:50:32 GMT; Max-Age=604800; Domain=dasudian.net; Path=/; HttpOnly"</code></pre>
-<h3 id="-13">返回结果说明</h3>
+<h4 id="-12">请求实例</h4>
+<pre><code>curl -v https://localhost:8443/verify_code?token=g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f -v -k -XPOST -H"Content-Type: application/json" -d '{"phone_num": "13618074451","veri_code":"pinysl"}' --cookie "_Dasudian_Auth=g2gDaARrACBjOGMxOWViNjc5NzY3OWI3ODAwOWQxMTlmZjY5ZWJiOW0AAAAEdGVzdGgCaANiAAAH32EFYQtoA2ELYTJhIG0AAABR1Brh37P2scdkhXSftzn2QAJN78ZPeFMV3zUlTWcw21HYYcNKZZmfftUyNPQ%2BDDINtYmcbyL9z6%2Bmulx8jqcaFYYPnldoWSqzS8UtG%2BGZpiJ%2BawAUMjdlZDI5YTQxY2RlNGI4YjJjMDJtAAAAFNC5w3GjDdhBNN9VF0m%2BAB1nxFPN; Version=1; Expires=Mon, 11-May-2015 03:50:32 GMT; Max-Age=604800; Domain=dasudian.net; Path=/; HttpOnly"</code></pre>
+<h4 id="-13">返回结果说明</h4>
 <p>返回结果也统一使用<code>Json</code>格式，<code>Content-Type</code>为<code>Content-Type:application/json</code>，字段说明如下：</p>
 <table border="1" width="600px"><tbody><tr style="background-color:#EDEDED"><td align="center">名称</td>
 <td align="center">类型</td>
@@ -356,12 +344,13 @@
 <td align="center">string</td>
 <td align="center">请求结果，success:成功 fail:失败</td>
 </tr></tbody></table>
-<h3 id="-14">返回实例</h3>
+<h4 id="-14">返回实例</h4>
 <pre><code>{"result":"success"}</code></pre>
-<h2 id="4">4.提交注册信息</h2>
-<h3 id="-15">请求方法</h3>
-<p>请求时使用<code>POST</code>方式请求<code>https://{Cloud AAA的服务地址URL}/register</code>，注:<code>Content-Type</code>请设置为<code>Content-Type:application/json</code>,在请求时必须带上服务器返回的cookie</p>
-<h3 id="-16">请求参数说明</h3>
+<h3 id="4">4.提交注册信息</h3>
+<h4 id="-15">请求方法</h4>
+<p>请求时使用<code>POST</code>方式请求<code>https://{domain}/register</code>，<code>domain</code>为要请求服务器的地址
+注:<code>Content-Type</code>请设置为<code>Content-Type:application/json</code>,在请求时必须带上服务器返回的<code>cookie</code></p>
+<h4 id="-16">请求参数说明</h4>
 <p>请求参数统一使用<code>Json</code>格式，字段说明如下：</p>
 <table border="1" width="600px"><tbody><tr style="background-color:#EDEDED"><td align="center">名称</td>
 <td align="center">类型</td>
@@ -380,13 +369,13 @@
 <td align="center">是</td>
 <td align="center">名字</td>
 </tr><tr><td align="center">sex</td>
-<td align="center">string</td>
+<td align="center">int</td>
 <td align="center">是</td>
-<td align="center">性别</td>
+<td align="center">性别 用户的性别，值为1时是男性，值为2时是女性，值为0时是未知</td>
 </tr><tr><td align="center">birthday</td>
 <td align="center">string</td>
 <td align="center">是</td>
-<td align="center">生日</td>
+<td align="center">生日 格式 YYYY-MM-DD</td>
 </tr><tr><td align="center">password</td>
 <td align="center">string</td>
 <td align="center">是</td>
@@ -395,22 +384,26 @@
 <td align="center">string</td>
 <td align="center">是</td>
 <td align="center">邮箱地址</td>
-</tr><tr><td align="center">area</td>
+</tr><tr><td align="center">province</td>
 <td align="center">string</td>
 <td align="center">是</td>
-<td align="center">地区</td>
+<td align="center">省</td>
+</tr><tr><td align="center">city</td>
+<td align="center">string</td>
+<td align="center">是</td>
+<td align="center">市</td>
 </tr><tr><td align="center">signature</td>
 <td align="center">string</td>
 <td align="center">是</td>
 <td align="center">个性签名</td>
-</tr><tr><td align="center">token</td>
+</tr><tr><td align="center">device</td>
 <td align="center">string</td>
 <td align="center">是</td>
-<td align="center">用户请求auc_app接口时返回</td>
+<td align="center">设各名称</td>
 </tr></tbody></table>
-<h3 id="-17">请求实例</h3>
-<pre><code>curl -v https://aaa.dasudian.net/register -v -k -XPOST -H"Content-Type: application/json" -d '{"phone_num":"13618074451","name":"test",  "sex":"male","birthday":120000,"password":"123456","email":"barco@dasudian.com", "area":"广东/深圳","veri_code":"pinysl",  "signature":"a","token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}' --cookie "_Dasudian_Auth=g2gDaARrACBjOGMxOWViNjc5NzY3OWI3ODAwOWQxMTlmZjY5ZWJiOW0AAAAEdGVzdGgCaANiAAAH32EFYQtoA2ELYTJhIG0AAABR1Brh37P2scdkhXSftzn2QAJN78ZPeFMV3zUlTWcw21HYYcNKZZmfftUyNPQ%2BDDINtYmcbyL9z6%2Bmulx8jqcaFYYPnldoWSqzS8UtG%2BGZpiJ%2BawAUMjdlZDI5YTQxY2RlNGI4YjJjMDJtAAAAFNC5w3GjDdhBNN9VF0m%2BAB1nxFPN; Version=1; Expires=Mon, 11-May-2015 03:50:32 GMT; Max-Age=604800; Domain=dasudian.net; Path=/; HttpOnly"</code></pre>
-<h3 id="-18">返回结果说明</h3>
+<h4 id="-17">请求实例</h4>
+<pre><code>curl -v https://localhost:8443/register?token=g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f -v -k -XPOST -H"Content-Type: application/json" -d '{"phone_num":"13618074451","name":"test",  "sex":"male","birthday":120000,"password":"123456","email":"barco@dasudian.com", "province":"广东","city":"深圳","veri_code":"pinysl",  "signature":"a","device":"iphone20"}' --cookie "_Dasudian_Auth=g2gDaARrACBjOGMxOWViNjc5NzY3OWI3ODAwOWQxMTlmZjY5ZWJiOW0AAAAEdGVzdGgCaANiAAAH32EFYQtoA2ELYTJhIG0AAABR1Brh37P2scdkhXSftzn2QAJN78ZPeFMV3zUlTWcw21HYYcNKZZmfftUyNPQ%2BDDINtYmcbyL9z6%2Bmulx8jqcaFYYPnldoWSqzS8UtG%2BGZpiJ%2BawAUMjdlZDI5YTQxY2RlNGI4YjJjMDJtAAAAFNC5w3GjDdhBNN9VF0m%2BAB1nxFPN; Version=1; Expires=Mon, 11-May-2015 03:50:32 GMT; Max-Age=604800; Domain=dasudian.net; Path=/; HttpOnly"</code></pre>
+<h4 id="-18">返回结果说明</h4>
 <p>返回结果也统一使用<code>Json</code>格式，<code>Content-Type</code>为<code>Content-Type:application/json</code>，字段说明如下：</p>
 <table border="1" width="600px"><tbody><tr style="background-color:#EDEDED"><td align="center">名称</td>
 <td align="center">类型</td>
@@ -419,12 +412,13 @@
 <td align="center">string</td>
 <td align="center">请求结果，success:成功 fail:失败</td>
 </tr></tbody></table>
-<h3 id="-19">返回实例</h3>
+<h4 id="-19">返回实例</h4>
 <pre><code>{"result":"success"}    </code></pre>
-<h2 id="5">5.用户登录</h2>
-<h3 id="-20">请求方法</h3>
-<p>请求时使用<code>POST</code>方式请求<code>https://{Cloud AAA的服务地址URL}/login</code>，注:<code>Content-Type</code>请设置为<code>Content-Type:application/json</code></p>
-<h3 id="-21">请求参数说明</h3>
+<h3 id="5">5.用户登录</h3>
+<h4 id="-20">请求方法</h4>
+<p>请求时使用<code>POST</code>方式请求<code>https://{domain}/login</code>，<code>domain</code>为要请求服务器的地址
+注:<code>Content-Type</code>请设置为<code>Content-Type:application/json</code></p>
+<h4 id="-21">请求参数说明</h4>
 <p>请求参数统一使用<code>Json</code>格式，字段说明如下：</p>
 <table border="1" width="600px"><tbody><tr style="background-color:#EDEDED"><td align="center">名称</td>
 <td align="center">类型</td>
@@ -438,14 +432,10 @@
 <td align="center">string</td>
 <td align="center">是</td>
 <td align="center">密码</td>
-</tr><tr><td align="center">token</td>
-<td align="center">string</td>
-<td align="center">是</td>
-<td align="center">用户请求auc_app接口时返回</td>
 </tr></tbody></table>
-<h3 id="-22">请求实例</h3>
-<pre><code>curl -v https://aaa.dasudian.net/login -v -k -XPOST -H"Content-Type: application/json" -d '{"phone_num":"13618074451","password":"123456","token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'</code></pre>
-<h3 id="-23">返回结果说明</h3>
+<h4 id="-22">请求实例</h4>
+<pre><code>curl -v https://localhost:8443/login?token=g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f -v -k -XPOST -H"Content-Type: application/json" -d '{"phone_num":"13618074451","password":"123456"}'</code></pre>
+<h4 id="-23">返回结果说明</h4>
 <p>返回结果也统一使用<code>Json</code>格式，<code>Content-Type</code>为<code>Content-Type:application/json</code>，字段说明如下：</p>
 <table border="1" width="600px"><tbody><tr style="background-color:#EDEDED"><td align="center">名称</td>
 <td align="center">类型</td>
@@ -454,25 +444,15 @@
 <td align="center">string</td>
 <td align="center">请求结果，success:成功 fail:失败</td>
 </tr></tbody></table>
-<h3 id="-24">返回实例</h3>
+<h4 id="-24">返回实例</h4>
 <pre><code>{"result":"success"}  </code></pre>
-<h2 id="6">6.自动登录</h2>
-<h3 id="-25">请求方法</h3>
-<p>请求时使用<code>GET</code>方式请求<code>https://aaa.dasudian.net/auto_login</code>，注:在请求时必须带上登录时服务器返回的<code>cookie</code></p>
-<h3 id="-26">请求参数说明</h3>
-<p>请求参数统一使用<code>Json</code>格式，字段说明如下：</p>
-<table border="1" width="600px"><tbody><tr style="background-color:#EDEDED"><td align="center">名称</td>
-<td align="center">类型</td>
-<td align="center">必填</td>
-<td align="center">说明</td>
-</tr><tr><td align="center">token</td>
-<td align="center">string</td>
-<td align="center">是</td>
-<td align="center">用户请求auc_app接口时返回</td>
-</tr></tbody></table>
-<h3 id="-27">请求实例</h3>
-<pre><code>curl https://aaa.dasudian.net/auto_login?token=g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f -v -k -XGET --cookie "_Dasudian_Auth=g2gDaARrACBjOGMxOWViNjc5NzY3OWI3ODAwOWQxMTlmZjY5ZWJiOW0AAAAEdGVzdGgCaANiAAAH32EFYQtoA2ELYTJhIG0AAABR1Brh37P2scdkhXSftzn2QAJN78ZPeFMV3zUlTWcw21HYYcNKZZmfftUyNPQ%2BDDINtYmcbyL9z6%2Bmulx8jqcaFYYPnldoWSqzS8UtG%2BGZpiJ%2BawAUMjdlZDI5YTQxY2RlNGI4YjJjMDJtAAAAFNC5w3GjDdhBNN9VF0m%2BAB1nxFPN; Version=1; Expires=Mon, 11-May-2015 03:50:32 GMT; Max-Age=604800; Domain=dasudian.net; Path=/; HttpOnly"</code></pre>
-<h3 id="-28">返回结果说明</h3>
+<h3 id="6">6.自动登录</h3>
+<h4 id="-25">请求方法</h4>
+<p>请求时使用<code>GET</code>方式请求<code>https://{domain}/auto_login</code>，<code>domain</code>为要请求服务器的地址
+注:在请求时必须带上登录时服务器返回的<code>cookie</code></p>
+<h4 id="-26">请求实例</h4>
+<pre><code>curl https://localhost:8443/auto_login?token=g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f -v -k -XGET --cookie "_Dasudian_Auth=g2gDaARrACBjOGMxOWViNjc5NzY3OWI3ODAwOWQxMTlmZjY5ZWJiOW0AAAAEdGVzdGgCaANiAAAH32EFYQtoA2ELYTJhIG0AAABR1Brh37P2scdkhXSftzn2QAJN78ZPeFMV3zUlTWcw21HYYcNKZZmfftUyNPQ%2BDDINtYmcbyL9z6%2Bmulx8jqcaFYYPnldoWSqzS8UtG%2BGZpiJ%2BawAUMjdlZDI5YTQxY2RlNGI4YjJjMDJtAAAAFNC5w3GjDdhBNN9VF0m%2BAB1nxFPN; Version=1; Expires=Mon, 11-May-2015 03:50:32 GMT; Max-Age=604800; Domain=dasudian.net; Path=/; HttpOnly"</code></pre>
+<h4 id="-27">返回结果说明</h4>
 <p>返回结果也统一使用<code>Json</code>格式，<code>Content-Type</code>为<code>Content-Type:application/json</code>，字段说明如下：</p>
 <table border="1" width="600px"><tbody><tr style="background-color:#EDEDED"><td align="center">名称</td>
 <td align="center">类型</td>
@@ -481,12 +461,13 @@
 <td align="center">string</td>
 <td align="center">请求结果，success:成功 fail:失败</td>
 </tr></tbody></table>
-<h3 id="-29">返回实例</h3>
+<h4 id="-28">返回实例</h4>
 <pre><code>{"result":"success"}   </code></pre>
-<h2 id="7">7.查看个人信息</h2>
-<h3 id="-30">请求方法</h3>
-<p>请求时使用<code>POST</code>方式请求<code>https://{Cloud AAA的服务地址URL}/get_user</code>，注:<code>Content-Type</code>请设置为<code>Content-Type:application/json</code></p>
-<h3 id="-31">请求参数说明</h3>
+<h3 id="7">7.查看个人信息</h3>
+<h4 id="-29">请求方法</h4>
+<p>请求时使用<code>POST</code>方式请求<code>https://{domain}/get_user</code>，<code>domain</code>为要请求服务器的地址
+注:<code>Content-Type</code>请设置为<code>Content-Type:application/json</code></p>
+<h4 id="-30">请求参数说明</h4>
 <p>请求参数统一使用<code>Json</code>格式，字段说明如下：</p>
 <table border="1" width="600px"><tbody><tr style="background-color:#EDEDED"><td align="center">名称</td>
 <td align="center">类型</td>
@@ -496,14 +477,10 @@
 <td align="center">string</td>
 <td align="center">是</td>
 <td align="center">手机号码</td>
-</tr><tr><td align="center">token</td>
-<td align="center">string</td>
-<td align="center">是</td>
-<td align="center">用户请求auc_app接口时返回</td>
 </tr></tbody></table>
-<h3 id="-32">请求实例</h3>
-<pre><code>curl -v https://aaa.dasudian.net/get_user -v -k -XPOST -H"Content-Type: application/json" -d '{"phone_num":"13618074451","token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'</code></pre>
-<h3 id="-33">返回结果说明</h3>
+<h4 id="-31">请求实例</h4>
+<pre><code>curl -v https://localhost:8443/get_user?token=g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f -v -k -XPOST -H"Content-Type: application/json" -d '{"phone_num":"13618074451"}'</code></pre>
+<h4 id="-32">返回结果说明</h4>
 <p>返回结果也统一使用<code>Json</code>格式，<code>Content-Type</code>为<code>Content-Type:application/json</code>，字段说明如下：</p>
 <table border="1" width="600px"><tbody><tr style="background-color:#EDEDED"><td align="center">名称</td>
 <td align="center">类型</td>
@@ -523,38 +500,37 @@
 </tr><tr><td align="center">birthday</td>
 <td align="center">string</td>
 <td align="center">生日</td>
-</tr><tr><td align="center">portrait</td>
+</tr><tr><td align="center">avatar</td>
 <td align="center">string</td>
 <td align="center">头像地址</td>
 </tr><tr><td align="center">email</td>
 <td align="center">string</td>
 <td align="center">邮箱地址</td>
-</tr><tr><td align="center">area</td>
+</tr><tr><td align="center">country</td>
 <td align="center">string</td>
-<td align="center">地区</td>
+<td align="center">国家</td>
+</tr><tr><td align="center">province</td>
+<td align="center">string</td>
+<td align="center">省</td>
+</tr><tr><td align="center">city</td>
+<td align="center">string</td>
+<td align="center">市</td>
 </tr><tr><td align="center">signature</td>
 <td align="center">string</td>
 <td align="center">个性签名</td>
-</tr></tbody></table>
-<h3 id="-34">返回实例</h3>
-<pre><code>{"result":"success","info":{"name":"\u6e38\u8857","birthday":120000,"sex":"male","phone_num":"13618074451","email":"barco@dasudian.com","area":"\u5e7f\u4e1c/\u6df1\u5733","portrait":"8vcKSfPVD9U1jR5EAq","signature":"Change the world!"}}             </code></pre>
-<h2 id="8">8.设置头像</h2>
-<h3 id="-35">请求方法</h3>
-<p>请求时使用<code>POST</code>方式请求<code>https://{Cloud AAA的服务地址URL}/update_portrait</code>，注:<code>Content-Type</code>请设置为<code>Content-Type:application/json</code>,在请求时必须带上服务器返回的<code>cookie</code></p>
-<h3 id="-36">请求参数说明</h3>
-<p>请求参数统一使用<code>Json</code>格式，字段说明如下：</p>
-<table border="1" width="600px"><tbody><tr style="background-color:#EDEDED"><td align="center">名称</td>
-<td align="center">类型</td>
-<td align="center">必填</td>
-<td align="center">说明</td>
-</tr><tr><td align="center">token</td>
+</tr><tr><td align="center">type</td>
 <td align="center">string</td>
-<td align="center">是</td>
-<td align="center">用户请求auc_app接口时返回</td>
+<td align="center">类型 0：注册用户 1：qq用户 2：wechat用户</td>
 </tr></tbody></table>
-<h3 id="-37">请求实例</h3>
-<pre><code>curl https://aaa.dasudian.net/update_portrait -v -i -k -XPOST -H "Content-Type: image/png" --data-binary @/home/dasudian/test.png --cookie "_Dasudian_Auth=g2gDaARrACBjOGMxOWViNjc5NzY3OWI3ODAwOWQxMTlmZjY5ZWJiOW0AAAAEdGVzdGgCaANiAAAH32EFYQtoA2ELYTJhIG0AAABR1Brh37P2scdkhXSftzn2QAJN78ZPeFMV3zUlTWcw21HYYcNKZZmfftUyNPQ%2BDDINtYmcbyL9z6%2Bmulx8jqcaFYYPnldoWSqzS8UtG%2BGZpiJ%2BawAUMjdlZDI5YTQxY2RlNGI4YjJjMDJtAAAAFNC5w3GjDdhBNN9VF0m%2BAB1nxFPN; Version=1; Expires=Mon, 11-May-2015 03:50:32 GMT; Max-Age=604800; Domain=dasudian.net; Path=/; HttpOnly" -d '{"token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'</code></pre>
-<h3 id="-38">返回结果说明</h3>
+<h4 id="-33">返回实例</h4>
+<pre><code>{"result":"success","info":{"name":"\u6e38\u8857","birthday":120000,"sex":"男","phone_num":"13618074451","email":"barco@dasudian.com","country":"中国","province":"广东","city":"深圳","avatar":"8vcKSfPVD9U1jR5EAq","signature":"Change the world!","type":"0"}}             </code></pre>
+<h3 id="8">8.设置头像</h3>
+<h4 id="-34">请求方法</h4>
+<p>请求时使用<code>POST</code>方式请求<code>https://{domain}/update_avatar</code>，<code>domain</code>为要请求服务器的地址
+注:<code>Content-Type</code>请设置为<code>Content-Type:application/json</code>,在请求时必须带上服务器返回的<code>cookie</code></p>
+<h4 id="-35">请求实例</h4>
+<pre><code>curl https://localhost:8443/update_avatar?token=g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f -v -i -k -XPOST -H "Content-Type: image/png" --data-binary @/home/dasudian/test.png --cookie "_Dasudian_Auth=g2gDaARrACBjOGMxOWViNjc5NzY3OWI3ODAwOWQxMTlmZjY5ZWJiOW0AAAAEdGVzdGgCaANiAAAH32EFYQtoA2ELYTJhIG0AAABR1Brh37P2scdkhXSftzn2QAJN78ZPeFMV3zUlTWcw21HYYcNKZZmfftUyNPQ%2BDDINtYmcbyL9z6%2Bmulx8jqcaFYYPnldoWSqzS8UtG%2BGZpiJ%2BawAUMjdlZDI5YTQxY2RlNGI4YjJjMDJtAAAAFNC5w3GjDdhBNN9VF0m%2BAB1nxFPN; Version=1; Expires=Mon, 11-May-2015 03:50:32 GMT; Max-Age=604800; Domain=dasudian.net; Path=/; HttpOnly"</code></pre>
+<h4 id="-36">返回结果说明</h4>
 <p>返回结果也统一使用<code>Json</code>格式，<code>Content-Type</code>为<code>Content-Type:application/json</code>，字段说明如下：</p>
 <table border="1" width="600px"><tbody><tr style="background-color:#EDEDED"><td align="center">名称</td>
 <td align="center">类型</td>
@@ -562,16 +538,17 @@
 </tr><tr><td align="center">result</td>
 <td align="center">string</td>
 <td align="center">请求结果，success:成功 fail:失败</td>
-</tr><tr><td align="center">portrait</td>
+</tr><tr><td align="center">avatar</td>
 <td align="center">string</td>
 <td align="center">头像地址</td>
 </tr></tbody></table>
-<h3 id="-39">返回实例</h3>
-<pre><code>{"result":"success","portrait":"8vcKSfPVD9U1jR5EAq"}      </code></pre>
-<h2 id="9">9.获取验证码</h2>
-<h3 id="-40">请求方法</h3>
-<p>请求时使用<code>POST</code>方式请求<code>https://{Cloud AAA的服务地址URL}/request_vericode</code>，注:<code>Content-Type</code>请设置为<code>Content-Type:application/json</code></p>
-<h3 id="-41">请求参数说明</h3>
+<h4 id="-37">返回实例</h4>
+<pre><code>{"result":"success","avatar":"8vcKSfPVD9U1jR5EAq"}      </code></pre>
+<h3 id="9">9.获取验证码</h3>
+<h4 id="-38">请求方法</h4>
+<p>请求时使用<code>POST</code>方式请求<code>https://{domain}/request_vericode</code>，<code>domain</code>为要请求服务器的地址
+注:<code>Content-Type</code>请设置为<code>Content-Type:application/json</code></p>
+<h4 id="-39">请求参数说明</h4>
 <p>请求参数统一使用<code>Json</code>格式，字段说明如下：</p>
 <table border="1" width="600px"><tbody><tr style="background-color:#EDEDED"><td align="center">名称</td>
 <td align="center">类型</td>
@@ -581,14 +558,10 @@
 <td align="center">string</td>
 <td align="center">是</td>
 <td align="center">手机号码</td>
-</tr><tr><td align="center">token</td>
-<td align="center">string</td>
-<td align="center">是</td>
-<td align="center">用户请求auc_app接口时返回</td>
 </tr></tbody></table>
-<h3 id="-42">请求实例</h3>
-<pre><code>curl https://aaa.dasudian.net/request_vericode -v -k -XPOST -H"Content-Type: application/json" -d '{"phone_num": "13618074451","token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'</code></pre>
-<h3 id="-43">返回结果说明</h3>
+<h4 id="-40">请求实例</h4>
+<pre><code>curl https://localhost:8443/request_vericode?token=g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f -v -k -XPOST -H"Content-Type: application/json" -d '{"phone_num": "13618074451"}'</code></pre>
+<h4 id="-41">返回结果说明</h4>
 <p>返回结果也统一使用<code>Json</code>格式，<code>Content-Type</code>为<code>Content-Type:application/json</code>，字段说明如下：</p>
 <table border="1" width="600px"><tbody><tr style="background-color:#EDEDED"><td align="center">名称</td>
 <td align="center">类型</td>
@@ -600,12 +573,13 @@
 <td align="center">string</td>
 <td align="center">验证码</td>
 </tr></tbody></table>
-<h3 id="-44">返回实例</h3>
+<h4 id="-42">返回实例</h4>
 <pre><code>{"result":"success","veri_code":"pinysl"}</code></pre>
-<h2 id="10">10.忘记密码</h2>
-<h3 id="-45">请求方法</h3>
-<p>请求时使用<code>POST</code>方式请求<code>https://{Cloud AAA的服务地址URL}/forget_password</code>，注:<code>Content-Type</code>请设置为<code>Content-Type:application/json</code>,在请求时必须带上请求验证码时服务器返回的<code>cookie</code></p>
-<h3 id="-46">请求参数说明</h3>
+<h3 id="10">10.忘记密码</h3>
+<h4 id="-43">请求方法</h4>
+<p>请求时使用<code>POST</code>方式请求<code>https://{domain}/forget_password</code>，<code>domain</code>为要请求服务器的地址
+注:<code>Content-Type</code>请设置为<code>Content-Type:application/json</code>,在请求时必须带上请求验证码时服务器返回的<code>cookie</code></p>
+<h4 id="-44">请求参数说明</h4>
 <p>请求参数统一使用<code>Json</code>格式，字段说明如下：</p>
 <table border="1" width="600px"><tbody><tr style="background-color:#EDEDED"><td align="center">名称</td>
 <td align="center">类型</td>
@@ -623,14 +597,10 @@
 <td align="center">string</td>
 <td align="center">是</td>
 <td align="center">密码</td>
-</tr><tr><td align="center">token</td>
-<td align="center">string</td>
-<td align="center">是</td>
-<td align="center">用户请求auc_app接口时返回</td>
 </tr></tbody></table>
-<h3 id="-47">请求实例</h3>
-<pre><code>curl https://aaa.dasudian.net/forget_password -v -k -XPOST -H"Content-Type: application/json" --cookie "_Dasudian_Auth=g2gDaARrACBjOGMxOWViNjc5NzY3OWI3ODAwOWQxMTlmZjY5ZWJiOW0AAAAEdGVzdGgCaANiAAAH32EFYQtoA2ELYTJhIG0AAABR1Brh37P2scdkhXSftzn2QAJN78ZPeFMV3zUlTWcw21HYYcNKZZmfftUyNPQ%2BDDINtYmcbyL9z6%2Bmulx8jqcaFYYPnldoWSqzS8UtG%2BGZpiJ%2BawAUMjdlZDI5YTQxY2RlNGI4YjJjMDJtAAAAFNC5w3GjDdhBNN9VF0m%2BAB1nxFPN; Version=1; Expires=Mon, 11-May-2015 03:50:32 GMT; Max-Age=604800; Domain=dasudian.net; Path=/; HttpOnly" -d '{"phone_num": "13618074451", "veri_code":"pinysl", "password":"Ibelieve","token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'</code></pre>
-<h3 id="-48">返回结果说明</h3>
+<h4 id="-45">请求实例</h4>
+<pre><code>curl https://localhost:8443/forget_password?token=g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f -v -k -XPOST -H"Content-Type: application/json" --cookie "_Dasudian_Auth=g2gDaARrACBjOGMxOWViNjc5NzY3OWI3ODAwOWQxMTlmZjY5ZWJiOW0AAAAEdGVzdGgCaANiAAAH32EFYQtoA2ELYTJhIG0AAABR1Brh37P2scdkhXSftzn2QAJN78ZPeFMV3zUlTWcw21HYYcNKZZmfftUyNPQ%2BDDINtYmcbyL9z6%2Bmulx8jqcaFYYPnldoWSqzS8UtG%2BGZpiJ%2BawAUMjdlZDI5YTQxY2RlNGI4YjJjMDJtAAAAFNC5w3GjDdhBNN9VF0m%2BAB1nxFPN; Version=1; Expires=Mon, 11-May-2015 03:50:32 GMT; Max-Age=604800; Domain=dasudian.net; Path=/; HttpOnly" -d '{"phone_num": "13618074451", "veri_code":"pinysl", "password":"Ibelieve"}'</code></pre>
+<h4 id="-46">返回结果说明</h4>
 <p>返回结果也统一使用<code>Json</code>格式，<code>Content-Type</code>为<code>Content-Type:application/json</code>，字段说明如下：</p>
 <table border="1" width="600px"><tbody><tr style="background-color:#EDEDED"><td align="center">名称</td>
 <td align="center">类型</td>
@@ -639,12 +609,13 @@
 <td align="center">string</td>
 <td align="center">请求结果，success:成功 fail:失败</td>
 </tr></tbody></table>
-<h3 id="-49">返回实例</h3>
+<h4 id="-47">返回实例</h4>
 <pre><code>{"result":"success"}  </code></pre>
-<h2 id="11">11.修改密码</h2>
-<h3 id="-50">请求方法</h3>
-<p>请求时使用<code>POST</code>方式请求<code>https://{Cloud AAA的服务地址URL}/change_password</code>，注:<code>Content-Type</code>请设置为<code>Content-Type:application/json</code>,在请求时必须带上登录时服务器返回的<code>cookie</code></p>
-<h3 id="-51">请求参数说明</h3>
+<h3 id="11">11.修改密码</h3>
+<h4 id="-48">请求方法</h4>
+<p>请求时使用<code>POST</code>方式请求<code>https://{domain}/change_password</code>，<code>domain</code>为要请求服务器的地址
+注:<code>Content-Type</code>请设置为<code>Content-Type:application/json</code>,在请求时必须带上登录时服务器返回的<code>cookie</code></p>
+<h4 id="-49">请求参数说明</h4>
 <p>请求参数统一使用<code>Json</code>格式，字段说明如下：</p>
 <table border="1" width="600px"><tbody><tr style="background-color:#EDEDED"><td align="center">名称</td>
 <td align="center">类型</td>
@@ -658,14 +629,10 @@
 <td align="center">string</td>
 <td align="center">是</td>
 <td align="center">新密码</td>
-</tr><tr><td align="center">token</td>
-<td align="center">string</td>
-<td align="center">是</td>
-<td align="center">用户请求auc_app接口时返回</td>
 </tr></tbody></table>
-<h3 id="-52">请求实例</h3>
-<pre><code>curl https://aaa.dasudian.net/change_password -v -k -XPOST -H"Content-Type: application/json" --cookie "_Dasudian_Auth=g2gDaARrACBjOGMxOWViNjc5NzY3OWI3ODAwOWQxMTlmZjY5ZWJiOW0AAAAEdGVzdGgCaANiAAAH32EFYQtoA2ELYTJhIG0AAABR1Brh37P2scdkhXSftzn2QAJN78ZPeFMV3zUlTWcw21HYYcNKZZmfftUyNPQ%2BDDINtYmcbyL9z6%2Bmulx8jqcaFYYPnldoWSqzS8UtG%2BGZpiJ%2BawAUMjdlZDI5YTQxY2RlNGI4YjJjMDJtAAAAFNC5w3GjDdhBNN9VF0m%2BAB1nxFPN; Version=1; Expires=Mon, 11-May-2015 03:50:32 GMT; Max-Age=604800; Domain=dasudian.net; Path=/; HttpOnly" -d '{"old_password":"Ibelieve", "new_password":"Iloveyou","token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'</code></pre>
-<h3 id="-53">返回结果说明</h3>
+<h4 id="-50">请求实例</h4>
+<pre><code>curl https://localhost:8443/change_password?token=g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f -v -k -XPOST -H"Content-Type: application/json" --cookie "_Dasudian_Auth=g2gDaARrACBjOGMxOWViNjc5NzY3OWI3ODAwOWQxMTlmZjY5ZWJiOW0AAAAEdGVzdGgCaANiAAAH32EFYQtoA2ELYTJhIG0AAABR1Brh37P2scdkhXSftzn2QAJN78ZPeFMV3zUlTWcw21HYYcNKZZmfftUyNPQ%2BDDINtYmcbyL9z6%2Bmulx8jqcaFYYPnldoWSqzS8UtG%2BGZpiJ%2BawAUMjdlZDI5YTQxY2RlNGI4YjJjMDJtAAAAFNC5w3GjDdhBNN9VF0m%2BAB1nxFPN; Version=1; Expires=Mon, 11-May-2015 03:50:32 GMT; Max-Age=604800; Domain=dasudian.net; Path=/; HttpOnly" -d '{"old_password":"Ibelieve", "new_password":"Iloveyou"}'</code></pre>
+<h4 id="-51">返回结果说明</h4>
 <p>返回结果也统一使用<code>Json</code>格式，<code>Content-Type</code>为<code>Content-Type:application/json</code>，字段说明如下：</p>
 <table border="1" width="600px"><tbody><tr style="background-color:#EDEDED"><td align="center">名称</td>
 <td align="center">类型</td>
@@ -674,12 +641,13 @@
 <td align="center">string</td>
 <td align="center">请求结果，success:成功 fail:失败</td>
 </tr></tbody></table>
-<h3 id="-54">返回实例</h3>
+<h4 id="-52">返回实例</h4>
 <pre><code>{"result":"success"}                      </code></pre>
-<h2 id="12">12.修改用户名称</h2>
-<h3 id="-55">请求方法</h3>
-<p>请求时使用<code>POST</code>方式请求<code>https://{Cloud AAA的服务地址URL}/change_name</code>，注:<code>Content-Type</code>请设置为<code>Content-Type:application/json</code>,在请求时必须带上登录时服务器返回的<code>cookie</code></p>
-<h3 id="-56">请求参数说明</h3>
+<h3 id="12">12.修改用户名称</h3>
+<h4 id="-53">请求方法</h4>
+<p>请求时使用<code>POST</code>方式请求<code>https://{domain}/change_name</code>，<code>domain</code>为要请求服务器的地址
+注:<code>Content-Type</code>请设置为<code>Content-Type:application/json</code>,在请求时必须带上登录时服务器返回的<code>cookie</code></p>
+<h4 id="-54">请求参数说明</h4>
 <p>请求参数统一使用<code>Json</code>格式，字段说明如下：</p>
 <table border="1" width="600px"><tbody><tr style="background-color:#EDEDED"><td align="center">名称</td>
 <td align="center">类型</td>
@@ -689,14 +657,10 @@
 <td align="center">string</td>
 <td align="center">是</td>
 <td align="center">新名字</td>
-</tr><tr><td align="center">token</td>
-<td align="center">string</td>
-<td align="center">是</td>
-<td align="center">用户请求auc_app接口时返回</td>
 </tr></tbody></table>
-<h3 id="-57">请求实例</h3>
-<pre><code>curl https://aaa.dasudian.net/change_name -v -k -XPOST -H"Content-Type: application/json" --cookie "_Dasudian_Auth=g2gDaARrACBjOGMxOWViNjc5NzY3OWI3ODAwOWQxMTlmZjY5ZWJiOW0AAAAEdGVzdGgCaANiAAAH32EFYQtoA2ELYTJhIG0AAABR1Brh37P2scdkhXSftzn2QAJN78ZPeFMV3zUlTWcw21HYYcNKZZmfftUyNPQ%2BDDINtYmcbyL9z6%2Bmulx8jqcaFYYPnldoWSqzS8UtG%2BGZpiJ%2BawAUMjdlZDI5YTQxY2RlNGI4YjJjMDJtAAAAFNC5w3GjDdhBNN9VF0m%2BAB1nxFPN; Version=1; Expires=Mon, 11-May-2015 03:50:32 GMT; Max-Age=604800; Domain=dasudian.net; Path=/; HttpOnly" -d '{"name":"游街","token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'</code></pre>
-<h3 id="-58">返回结果说明</h3>
+<h4 id="-55">请求实例</h4>
+<pre><code>curl https://localhost:8443/change_name?token=g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f -v -k -XPOST -H"Content-Type: application/json" --cookie "_Dasudian_Auth=g2gDaARrACBjOGMxOWViNjc5NzY3OWI3ODAwOWQxMTlmZjY5ZWJiOW0AAAAEdGVzdGgCaANiAAAH32EFYQtoA2ELYTJhIG0AAABR1Brh37P2scdkhXSftzn2QAJN78ZPeFMV3zUlTWcw21HYYcNKZZmfftUyNPQ%2BDDINtYmcbyL9z6%2Bmulx8jqcaFYYPnldoWSqzS8UtG%2BGZpiJ%2BawAUMjdlZDI5YTQxY2RlNGI4YjJjMDJtAAAAFNC5w3GjDdhBNN9VF0m%2BAB1nxFPN; Version=1; Expires=Mon, 11-May-2015 03:50:32 GMT; Max-Age=604800; Domain=dasudian.net; Path=/; HttpOnly" -d '{"name":"游街"}'</code></pre>
+<h4 id="-56">返回结果说明</h4>
 <p>返回结果也统一使用<code>Json</code>格式，<code>Content-Type</code>为<code>Content-Type:application/json</code>，字段说明如下：</p>
 <table border="1" width="600px"><tbody><tr style="background-color:#EDEDED"><td align="center">名称</td>
 <td align="center">类型</td>
@@ -705,12 +669,13 @@
 <td align="center">string</td>
 <td align="center">请求结果，success:成功 fail:失败</td>
 </tr></tbody></table>
-<h3 id="-59">返回实例</h3>
+<h4 id="-57">返回实例</h4>
 <pre><code>{"result":"success"}</code></pre>
-<h2 id="13">13.修改个性签名</h2>
-<h3 id="-60">请求方法</h3>
-<p>请求时使用<code>POST</code>方式请求<code>https://{Cloud AAA的服务地址URL}/change_signature</code>，注:<code>Content-Type</code>请设置为<code>Content-Type:application/json</code>,在请求时必须带上登录时服务器返回的<code>cookie</code></p>
-<h3 id="-61">请求参数说明</h3>
+<h3 id="13">13.修改个性签名</h3>
+<h4 id="-58">请求方法</h4>
+<p>请求时使用<code>POST</code>方式请求<code>https://{domain}/change_signature</code>，<code>domain</code>为要请求服务器的地址
+注:<code>Content-Type</code>请设置为<code>Content-Type:application/json</code>,在请求时必须带上登录时服务器返回的<code>cookie</code></p>
+<h4 id="-59">请求参数说明</h4>
 <p>请求参数统一使用<code>Json</code>格式，字段说明如下：</p>
 <table border="1" width="600px"><tbody><tr style="background-color:#EDEDED"><td align="center">名称</td>
 <td align="center">类型</td>
@@ -720,14 +685,10 @@
 <td align="center">string</td>
 <td align="center">是</td>
 <td align="center">新签名</td>
-</tr><tr><td align="center">token</td>
-<td align="center">string</td>
-<td align="center">是</td>
-<td align="center">用户请求auc_app接口时返回</td>
 </tr></tbody></table>
-<h3 id="-62">请求实例</h3>
-<pre><code>curl https://aaa.dasudian.net/change_signature -v -k -XPOST -H"Content-Type: application/json" --cookie "_Dasudian_Auth=g2gDaARrACBjOGMxOWViNjc5NzY3OWI3ODAwOWQxMTlmZjY5ZWJiOW0AAAAEdGVzdGgCaANiAAAH32EFYQtoA2ELYTJhIG0AAABR1Brh37P2scdkhXSftzn2QAJN78ZPeFMV3zUlTWcw21HYYcNKZZmfftUyNPQ%2BDDINtYmcbyL9z6%2Bmulx8jqcaFYYPnldoWSqzS8UtG%2BGZpiJ%2BawAUMjdlZDI5YTQxY2RlNGI4YjJjMDJtAAAAFNC5w3GjDdhBNN9VF0m%2BAB1nxFPN; Version=1; Expires=Mon, 11-May-2015 03:50:32 GMT; Max-Age=604800; Domain=dasudian.net; Path=/; HttpOnly" -d '{"signature":"Change the world!","token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'</code></pre>
-<h3 id="-63">返回结果说明</h3>
+<h4 id="-60">请求实例</h4>
+<pre><code>curl https://localhost:8443/change_signature?token=g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f -v -k -XPOST -H"Content-Type: application/json" --cookie "_Dasudian_Auth=g2gDaARrACBjOGMxOWViNjc5NzY3OWI3ODAwOWQxMTlmZjY5ZWJiOW0AAAAEdGVzdGgCaANiAAAH32EFYQtoA2ELYTJhIG0AAABR1Brh37P2scdkhXSftzn2QAJN78ZPeFMV3zUlTWcw21HYYcNKZZmfftUyNPQ%2BDDINtYmcbyL9z6%2Bmulx8jqcaFYYPnldoWSqzS8UtG%2BGZpiJ%2BawAUMjdlZDI5YTQxY2RlNGI4YjJjMDJtAAAAFNC5w3GjDdhBNN9VF0m%2BAB1nxFPN; Version=1; Expires=Mon, 11-May-2015 03:50:32 GMT; Max-Age=604800; Domain=dasudian.net; Path=/; HttpOnly" -d '{"signature":"Change the world!"}'</code></pre>
+<h4 id="-61">返回结果说明</h4>
 <p>返回结果也统一使用<code>Json</code>格式，<code>Content-Type</code>为<code>Content-Type:application/json</code>，字段说明如下：</p>
 <table border="1" width="600px"><tbody><tr style="background-color:#EDEDED"><td align="center">名称</td>
 <td align="center">类型</td>
@@ -736,12 +697,13 @@
 <td align="center">string</td>
 <td align="center">请求结果，success:成功 fail:失败</td>
 </tr></tbody></table>
-<h3 id="-64">返回实例</h3>
+<h4 id="-62">返回实例</h4>
 <pre><code>{"result":"success"}  </code></pre>
-<h2 id="14">14.同步联系人</h2>
-<h3 id="-65">请求方法</h3>
-<p>请求时使用<code>POST</code>方式请求<code>https://{Cloud AAA的服务地址URL}/sync_contact</code>，注:<code>Content-Type</code>请设置为<code>Content-Type:application/json</code>,在请求时必须带上登录时服务器返回的<code>cookie</code></p>
-<h3 id="-66">请求参数说明</h3>
+<h3 id="14">14.同步联系人</h3>
+<h4 id="-63">请求方法</h4>
+<p>请求时使用<code>POST</code>方式请求<code>https://{domain}/sync_contact</code>，<code>domain</code>为要请求服务器的地址
+注:<code>Content-Type</code>请设置为<code>Content-Type:application/json</code>,在请求时必须带上登录时服务器返回的<code>cookie</code></p>
+<h4 id="-64">请求参数说明</h4>
 <p>请求参数统一使用<code>Json</code>格式，字段说明如下：</p>
 <table border="1" width="600px"><tbody><tr style="background-color:#EDEDED"><td align="center">名称</td>
 <td align="center">类型</td>
@@ -751,14 +713,10 @@
 <td align="center">string</td>
 <td align="center">是</td>
 <td align="center">联系人列表</td>
-</tr><tr><td align="center">token</td>
-<td align="center">string</td>
-<td align="center">是</td>
-<td align="center">用户请求auc_app接口时返回</td>
 </tr></tbody></table>
-<h3 id="-67">请求实例</h3>
-<pre><code>curl https://aaa.dasudian.net/sync_contact -v -k -XPOST -H"Content-Type: application/json" --cookie "_Dasudian_Auth=g2gDaARrACBjOGMxOWViNjc5NzY3OWI3ODAwOWQxMTlmZjY5ZWJiOW0AAAAEdGVzdGgCaANiAAAH32EFYQtoA2ELYTJhIG0AAABR1Brh37P2scdkhXSftzn2QAJN78ZPeFMV3zUlTWcw21HYYcNKZZmfftUyNPQ%2BDDINtYmcbyL9z6%2Bmulx8jqcaFYYPnldoWSqzS8UtG%2BGZpiJ%2BawAUMjdlZDI5YTQxY2RlNGI4YjJjMDJtAAAAFNC5w3GjDdhBNN9VF0m%2BAB1nxFPN; Version=1; Expires=Mon, 11-May-2015 03:50:32 GMT; Max-Age=604800; Domain=dasudian.net; Path=/; HttpOnly" -d '{"contacts":["13761975289","+8618565618719","18565618719"],"token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'</code></pre>
-<h3 id="-68">返回结果说明</h3>
+<h4 id="-65">请求实例</h4>
+<pre><code>curl https://localhost:8443/sync_contact?token=g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f -v -k -XPOST -H"Content-Type: application/json" --cookie "_Dasudian_Auth=g2gDaARrACBjOGMxOWViNjc5NzY3OWI3ODAwOWQxMTlmZjY5ZWJiOW0AAAAEdGVzdGgCaANiAAAH32EFYQtoA2ELYTJhIG0AAABR1Brh37P2scdkhXSftzn2QAJN78ZPeFMV3zUlTWcw21HYYcNKZZmfftUyNPQ%2BDDINtYmcbyL9z6%2Bmulx8jqcaFYYPnldoWSqzS8UtG%2BGZpiJ%2BawAUMjdlZDI5YTQxY2RlNGI4YjJjMDJtAAAAFNC5w3GjDdhBNN9VF0m%2BAB1nxFPN; Version=1; Expires=Mon, 11-May-2015 03:50:32 GMT; Max-Age=604800; Domain=dasudian.net; Path=/; HttpOnly" -d '{"contacts":["13761975289","+8618565618719","18565618719"]}'</code></pre>
+<h4 id="-66">返回结果说明</h4>
 <p>返回结果也统一使用<code>Json</code>格式，<code>Content-Type</code>为<code>Content-Type:application/json</code>，字段说明如下：</p>
 <table border="1" width="600px"><tbody><tr style="background-color:#EDEDED"><td align="center">名称</td>
 <td align="center">类型</td>
@@ -767,12 +725,13 @@
 <td align="center">string</td>
 <td align="center">请求结果，success:成功 fail:失败</td>
 </tr></tbody></table>
-<h3 id="-69">返回实例</h3>
+<h4 id="-67">返回实例</h4>
 <pre><code>{"result":"success"}  </code></pre>
 <h3 id="15">15.获取联系人</h3>
-<h3 id="-70">请求方法</h3>
-<p>请求时使用<code>POST</code>方式请求<code>https://{Cloud AAA的服务地址URL}/get_contact</code>，注:<code>Content-Type</code>请设置为<code>Content-Type:application/json</code>,在请求时必须带上登录时服务器返回的<code>cookie</code></p>
-<h3 id="-71">请求参数说明</h3>
+<h4 id="-68">请求方法</h4>
+<p>请求时使用<code>POST</code>方式请求<code>https://{domain}/get_contact</code>，<code>domain</code>为要请求服务器的地址
+注:<code>Content-Type</code>请设置为<code>Content-Type:application/json</code>,在请求时必须带上登录时服务器返回的<code>cookie</code></p>
+<h4 id="-69">请求参数说明</h4>
 <p>请求参数统一使用<code>Json</code>格式，字段说明如下：</p>
 <table border="1" width="600px"><tbody><tr style="background-color:#EDEDED"><td align="center">名称</td>
 <td align="center">类型</td>
@@ -782,14 +741,10 @@
 <td align="center">string</td>
 <td align="center">是</td>
 <td align="center">联系人列表</td>
-</tr><tr><td align="center">token</td>
-<td align="center">string</td>
-<td align="center">是</td>
-<td align="center">用户请求auc_app接口时返回</td>
 </tr></tbody></table>
-<h3 id="-72">请求实例</h3>
-<pre><code>curl https://aaa.dasudian.net/get_contact -v -k -XPOST -H"Content-Type: application/json"  -d '{"phone_num":"13618074451","token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'</code></pre>
-<h3 id="-73">返回结果说明</h3>
+<h4 id="-70">请求实例</h4>
+<pre><code>curl https://localhost:8443/get_contact?token=g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f -v -k -XPOST -H"Content-Type: application/json"  -d '{"phone_num":"13618074451"}'</code></pre>
+<h4 id="-71">返回结果说明</h4>
 <p>返回结果也统一使用<code>Json</code>格式，<code>Content-Type</code>为<code>Content-Type:application/json</code>，字段说明如下：</p>
 <table border="1" width="600px"><tbody><tr style="background-color:#EDEDED"><td align="center">名称</td>
 <td align="center">类型</td>
@@ -804,13 +759,14 @@
 <td align="center">string</td>
 <td align="center">联系人列表</td>
 </tr></tbody></table>
-<h3 id="-74">返回实例</h3>
+<h4 id="-72">返回实例</h4>
 <pre><code>{"result":"success","phone_number":"13618074451","contacts", ["13761975289","+8618565618719","18565618719"]}}</code></pre>
-<h2 id="16qq">16.从qq拉取用户信息并保存</h2>
+<h3 id="16qq">16.从qq拉取用户信息并保存</h3>
 <p>用户通过App 进行oauth授权后（由App 完成），AAA 系统可以从qq服务器拉取用户信息并保存</p>
-<h3 id="-75">请求方法</h3>
-<p>请求时使用<code>POST</code>方式请求<code>https://{Cloud AAA的服务地址URL}/qq_oauth2</code>，注:<code>Content-Type</code>请设置为<code>Content-Type:application/json</code></p>
-<h3 id="-76">请求参数说明</h3>
+<h4 id="-73">请求方法</h4>
+<p>请求时使用<code>POST</code>方式请求<code>https://{domain}/qq_oauth2</code>，<code>domain</code>为要请求服务器的地址
+注:<code>Content-Type</code>请设置为<code>Content-Type:application/json</code></p>
+<h4 id="-74">请求参数说明</h4>
 <p>请求参数统一使用<code>Json</code>格式，字段说明如下：</p>
 <table border="1" width="600px"><tbody><tr style="background-color:#EDEDED"><td align="center">名称</td>
 <td align="center">类型</td>
@@ -824,22 +780,18 @@
 <td align="center">string</td>
 <td align="center">是</td>
 <td align="center">使用Authorization_Code获取</td>
-</tr><tr><td align="center">appid</td>
-<td align="center">string</td>
-<td align="center">是</td>
-<td align="center">在大数点开发平台创建应用时由大数点提供的唯一Id</td>
 </tr><tr><td align="center">consumer_key</td>
 <td align="center">string</td>
 <td align="center">是</td>
 <td align="center">即oauth_consumer_key   申请QQ登录成功后，分配给应用的appid</td>
-</tr><tr><td align="center">token</td>
+</tr><tr><td align="center">device</td>
 <td align="center">string</td>
 <td align="center">是</td>
-<td align="center">用户请求auc_app接口时返回</td>
+<td align="center">设务名称</td>
 </tr></tbody></table>
-<h3 id="-77">请求实例</h3>
-<pre><code>curl https://aaa.dasudian.net/qq_oauth2 -v -k -XPOST -H"Content-Type: application/json"  -d '{"uid":"B36DAECCCB8BAEDB73901211CA983DDD","access_token":"4D732B0E58BA3949FF78E7CDCF673799","appid":"102_A_123","consumer_key":"1104748755","token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'</code></pre>
-<h3 id="-78">返回结果说明</h3>
+<h4 id="-75">请求实例</h4>
+<pre><code>curl https://localhost:8443/qq_oauth2?token=g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f -v -k -XPOST -H"Content-Type: application/json"  -d '{"uid":"B36DAECCCB8BAEDB73901211CA983DDD","access_token":"4D732B0E58BA3949FF78E7CDCF673799","consumer_key":"1104748755","device":"iphone20"}'</code></pre>
+<h4 id="-76">返回结果说明</h4>
 <p>返回结果也统一使用<code>Json</code>格式，<code>Content-Type</code>为<code>Content-Type:application/json</code>，字段说明如下：</p>
 <table border="1" width="600px"><tbody><tr style="background-color:#EDEDED"><td align="center">名称</td>
 <td align="center">类型</td>
@@ -851,13 +803,14 @@
 <td align="center">string</td>
 <td align="center">即openid     用户的ID，与QQ号码一一对应。</td>
 </tr></tbody></table>
-<h3 id="-79">返回实例</h3>
+<h4 id="-77">返回实例</h4>
 <pre><code>{"result":"success","user_id":"B36DAECCCB8BAEDB73901211CA983DDD"} </code></pre>
-<h2 id="17wechat">17.从wechat拉取用户信息并保存</h2>
+<h3 id="17wechat">17.从wechat拉取用户信息并保存</h3>
 <p>用户通过App 进行oauth授权后（由App 完成），AAA 系统可以从wechat服务器拉取用户信息并保存</p>
-<h3 id="-80">请求方法</h3>
-<p>请求时使用<code>POST</code>方式请求<code>https://{Cloud AAA的服务地址URL}/wechat_oauth2</code>，注:<code>Content-Type</code>请设置为<code>Content-Type:application/json</code></p>
-<h3 id="-81">请求参数说明</h3>
+<h4 id="-78">请求方法</h4>
+<p>请求时使用<code>POST</code>方式请求<code>https://{domain}/wechat_oauth2</code>，<code>domain</code>为要请求服务器的地址
+注:<code>Content-Type</code>请设置为<code>Content-Type:application/json</code></p>
+<h4 id="-79">请求参数说明</h4>
 <p>请求参数统一使用<code>Json</code>格式，字段说明如下：</p>
 <table border="1" width="600px"><tbody><tr style="background-color:#EDEDED"><td align="center">名称</td>
 <td align="center">类型</td>
@@ -871,22 +824,18 @@
 <td align="center">string</td>
 <td align="center">是</td>
 <td align="center">调用接口凭证,由微信提供</td>
-</tr><tr><td align="center">appid</td>
-<td align="center">string</td>
-<td align="center">是</td>
-<td align="center">在大数点开发平台创建应用时由大数点提供的唯一Id</td>
 </tr><tr><td align="center">consumer_key</td>
 <td align="center">string</td>
 <td align="center">是</td>
 <td align="center">即oauth_consumer_key   申请QQ登录成功后，分配给应用的appid</td>
-</tr><tr><td align="center">token</td>
+</tr><tr><td align="center">device</td>
 <td align="center">string</td>
 <td align="center">是</td>
-<td align="center">用户请求auc_app接口时返回</td>
+<td align="center">设务名称</td>
 </tr></tbody></table>
-<h3 id="-82">请求实例</h3>
-<pre><code>curl https://aaa.dasudian.net/wechat_oauth2 -v -k -XPOST -H"Content-Type: application/json"  -d '{"uid":"ol3mowZbXbnon9RIa9WN0ZRSHgog","access_token":"OezXcEiiBSKSxW0eoylIeBC_zks4eNeowidNnxPR-B88SUtdMKtz1mfO7xhtyToJsYU0b6cyAHU5qDhOmVB23XGQQJRmR9D0MFk40zor-A668QKeu4QVzKZWWkr10ZdCTCI2iF-icsDNUzeFoTMPLg","appid":"102_A_123","token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'</code></pre>
-<h3 id="-83">返回结果说明</h3>
+<h4 id="-80">请求实例</h4>
+<pre><code>curl https://localhost:8443/wechat_oauth2?token=g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f -v -k -XPOST -H"Content-Type: application/json"  -d '{"uid":"ol3mowZbXbnon9RIa9WN0ZRSHgog","access_token":"OezXcEiiBSKSxW0eoylIeBC_zks4eNeowidNnxPR-B88SUtdMKtz1mfO7xhtyToJsYU0b6cyAHU5qDhOmVB23XGQQJRmR9D0MFk40zor-A668QKeu4QVzKZWWkr10ZdCTCI2iF-icsDNUzeFoTMPLg","device":"iphone20"}'</code></pre>
+<h4 id="-81">返回结果说明</h4>
 <p>返回结果也统一使用<code>Json</code>格式，<code>Content-Type</code>为<code>Content-Type:application/json</code>，字段说明如下：</p>
 <table border="1" width="600px"><tbody><tr style="background-color:#EDEDED"><td align="center">名称</td>
 <td align="center">类型</td>
@@ -898,12 +847,13 @@
 <td align="center">string</td>
 <td align="center">即openid     用户的唯一标识。</td>
 </tr></tbody></table>
-<h3 id="-84">返回实例</h3>
+<h4 id="-82">返回实例</h4>
 <pre><code>{"result":"success","user_id":"ol3mowZbXbnon9RIa9WN0ZRSHgog"}     </code></pre>
-<h2 id="18qqwechat">18.从服务器上获取保存的QQ和wechat授权用户信息</h2>
-<h3 id="-85">请求方法</h3>
-<p>请求时使用<code>POST</code>方式请求<code>https://{Cloud AAA的服务地址URL}/oauth_user_info</code>，注:<code>Content-Type</code>请设置为<code>Content-Type:application/json</code></p>
-<h3 id="-86">请求参数说明</h3>
+<h3 id="18qqwechat">18.从服务器上获取保存的QQ和wechat授权用户信息</h3>
+<h4 id="-83">请求方法</h4>
+<p>请求时使用<code>POST</code>方式请求<code>https://{domain}/get_user_by_id</code>，<code>domain</code>为要请求服务器的地址
+注:<code>Content-Type</code>请设置为<code>Content-Type:application/json</code></p>
+<h4 id="-84">请求参数说明</h4>
 <p>请求参数统一使用<code>Json</code>格式，字段说明如下：</p>
 <table border="1" width="600px"><tbody><tr style="background-color:#EDEDED"><td align="center">名称</td>
 <td align="center">类型</td>
@@ -913,22 +863,10 @@
 <td align="center">string</td>
 <td align="center">是</td>
 <td align="center">即openid    用户的唯一标识。</td>
-</tr><tr><td align="center">type</td>
-<td align="center">int</td>
-<td align="center">是</td>
-<td align="center"> 1 -&gt; QQ 2 -&gt; WeChat </td>
-</tr><tr><td align="center">appid</td>
-<td align="center">string</td>
-<td align="center">是</td>
-<td align="center">在大数点开发平台创建应用时由大数点提供的唯一Id</td>
-</tr><tr><td align="center">token</td>
-<td align="center">string</td>
-<td align="center">是</td>
-<td align="center">用户请求auc_app接口时返回</td>
 </tr></tbody></table>
-<h3 id="-87">请求实例</h3>
-<pre><code>curl https://aaa.dasudian.net/oauth_user_info -v -k -XPOST -H"Content-Type: application/json"  -d '{"uid":"B36DAECCCB8BAEDB73901211CA983DDD","type":1,"appid":"102_A_123"，"token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'</code></pre>
-<h3 id="-88">返回结果说明</h3>
+<h4 id="-85">请求实例</h4>
+<pre><code>curl https://localhost:8443/get_user_by_id?token=g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f -v -k -XPOST -H"Content-Type: application/json"  -d '{"uid":"B36DAECCCB8BAEDB73901211CA983DDD"}'</code></pre>
+<h4 id="-86">返回结果说明</h4>
 <p>返回结果也统一使用<code>Json</code>格式，<code>Content-Type</code>为<code>Content-Type:application/json</code>，字段说明如下：</p>
 <table border="1" width="600px"><tbody><tr style="background-color:#EDEDED"><td align="center">名称</td>
 <td align="center">类型</td>
@@ -936,52 +874,60 @@
 </tr><tr><td align="center">result</td>
 <td align="center">string</td>
 <td align="center">请求结果，success:成功 fail:失败</td>
-</tr><tr><td align="center">user_id</td>
+</tr><tr><td align="center">phone_num</td>
 <td align="center">string</td>
-<td align="center">即openid     用户的唯一标识。</td>
-</tr><tr><td align="center">nickname</td>
+<td align="center">手机号码</td>
+</tr><tr><td align="center">name</td>
 <td align="center">string</td>
-<td align="center">用户昵称</td>
-</tr><tr><td align="center">headimgurl</td>
+<td align="center">名字</td>
+</tr><tr><td align="center">sex</td>
 <td align="center">string</td>
-<td align="center">用户头像url</td>
+<td align="center">性别</td>
+</tr><tr><td align="center">birthday</td>
+<td align="center">string</td>
+<td align="center">生日</td>
+</tr><tr><td align="center">avatar</td>
+<td align="center">string</td>
+<td align="center">头像地址</td>
+</tr><tr><td align="center">email</td>
+<td align="center">string</td>
+<td align="center">邮箱地址</td>
+</tr><tr><td align="center">country</td>
+<td align="center">string</td>
+<td align="center">国家</td>
 </tr><tr><td align="center">province</td>
 <td align="center">string</td>
 <td align="center">省</td>
 </tr><tr><td align="center">city</td>
 <td align="center">string</td>
 <td align="center">市</td>
-</tr><tr><td align="center">country</td>
+</tr><tr><td align="center">signature</td>
 <td align="center">string</td>
-<td align="center">国家</td>
+<td align="center">个性签名</td>
+</tr><tr><td align="center">type</td>
+<td align="center">string</td>
+<td align="center">类型 0：注册用户 1：qq用户 2：wechat用户</td>
 </tr></tbody></table>
-<h3 id="-89">返回实例</h3>
-<pre><code>{"result":"success","user_info":{"user_id":"B36DAECCCB8BAEDB73901211CA983DDD","nickname":"\u98ce\u4e91\u518d\u8d77","sex":"\u7537","headimgurl":"http://q.qlogo.cn/qqapp/1104748755/B36DAECCCB8BAEDB73901211CA983DDD/100","province":"\u5e7f\u4e1c","city":"\u6c55\u5934","country":"none"}}</code></pre>
-<h2 id="18qqwechat-1">18.从服务器上获取保存的QQ和wechat授权用户信息列表</h2>
-<h3 id="-90">请求方法</h3>
-<p>请求时使用<code>POST</code>方式请求<code>https://{Cloud AAA的服务地址URL}/oauth_users_info_list</code>，注:<code>Content-Type</code>请设置为<code>Content-Type:application/json</code></p>
-<h3 id="-91">请求参数说明</h3>
+<h4 id="-87">返回实例</h4>
+<pre><code>{"result":"success","info":{"name":"\u6e38\u8857","birthday":120000,"sex":"男","phone_num":"13618074451","email":"barco@dasudian.com","country":"中国","province":"广东","city":"深圳","avatar":"8vcKSfPVD9U1jR5EAq","signature":"Change the world!","type":"0"}}             </code></pre>
+<h3 id="19">19.从服务器上获取用户信息列表</h3>
+<h4 id="-88">请求方法</h4>
+<p>请求时使用<code>POST</code>方式请求<code>https://{domain}/users_info_list</code>，<code>domain</code>为要请求服务器的地址
+注:<code>Content-Type</code>请设置为<code>Content-Type:application/json</code></p>
+<h4 id="-89">请求参数说明</h4>
 <p>请求参数统一使用<code>Json</code>格式，字段说明如下：</p>
 <table border="1" width="600px"><tbody><tr style="background-color:#EDEDED"><td align="center">名称</td>
 <td align="center">类型</td>
 <td align="center">必填</td>
 <td align="center">说明</td>
-</tr><tr><td align="center">uid</td>
+</tr><tr><td align="center">id</td>
 <td align="center">string</td>
 <td align="center">是</td>
-<td align="center">即openid    用户的唯一标识。</td>
+<td align="center">即openid     用户的唯一标识。</td>
 </tr><tr><td align="center">type</td>
 <td align="center">int</td>
-<td align="center">是</td>
-<td align="center"> 1 -&gt; QQ 2 -&gt; WeChat </td>
-</tr><tr><td align="center">appid</td>
-<td align="center">string</td>
-<td align="center">是</td>
-<td align="center">在大数点开发平台创建应用时由大数点提供的唯一Id</td>
-</tr><tr><td align="center">token</td>
-<td align="center">string</td>
-<td align="center">是</td>
-<td align="center">用户请求auc_app接口时返回</td>
+<td align="center">否</td>
+<td align="center"> 0 -&gt; 注册用户 1 -&gt; QQ 2 -&gt; WeChat 没有此字段则为全部用户</td>
 </tr><tr><td align="center">start</td>
 <td align="center">int</td>
 <td align="center">是</td>
@@ -991,9 +937,9 @@
 <td align="center">是</td>
 <td align="center">请求行数</td>
 </tr></tbody></table>
-<h3 id="-92">请求实例</h3>
-<pre><code>curl https://aaa.dasudian.net/oauth_users_info_list -v -k -XPOST -H"Content-Type: application/json"  -d '{"uid":"B36DAECCCB8BAEDB73901211CA983DDD","type":1,"appid":"102_A_123","start":0,"rows":10,"token":"g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f"}'</code></pre>
-<h3 id="-93">返回结果说明</h3>
+<h4 id="-90">请求实例</h4>
+<pre><code>curl https://localhost:8443/oauth_users_info_list?token=g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f -v -k -XPOST -H"Content-Type: application/json"  -d '{"uid":"B36DAECCCB8BAEDB73901211CA983DDD","type":1,,"start":0,"rows":10}'</code></pre>
+<h4 id="-91">返回结果说明</h4>
 <p>返回结果也统一使用<code>Json</code>格式，<code>Content-Type</code>为<code>Content-Type:application/json</code>，字段说明如下：</p>
 <table border="1" width="600px"><tbody><tr style="background-color:#EDEDED"><td align="center">名称</td>
 <td align="center">类型</td>
@@ -1001,30 +947,109 @@
 </tr><tr><td align="center">result</td>
 <td align="center">string</td>
 <td align="center">请求结果，success:成功 fail:失败</td>
-</tr><tr><td align="center">user_id</td>
+</tr><tr><td align="center">phone_num</td>
 <td align="center">string</td>
-<td align="center">即openid     用户的唯一标识。</td>
-</tr><tr><td align="center">nickname</td>
+<td align="center">手机号码</td>
+</tr><tr><td align="center">name</td>
 <td align="center">string</td>
-<td align="center">用户昵称</td>
-</tr><tr><td align="center">headimgurl</td>
+<td align="center">名字</td>
+</tr><tr><td align="center">sex</td>
 <td align="center">string</td>
-<td align="center">用户头像url</td>
+<td align="center">性别</td>
+</tr><tr><td align="center">birthday</td>
+<td align="center">string</td>
+<td align="center">生日</td>
+</tr><tr><td align="center">avatar</td>
+<td align="center">string</td>
+<td align="center">头像地址</td>
+</tr><tr><td align="center">email</td>
+<td align="center">string</td>
+<td align="center">邮箱地址</td>
+</tr><tr><td align="center">country</td>
+<td align="center">string</td>
+<td align="center">国家</td>
 </tr><tr><td align="center">province</td>
 <td align="center">string</td>
 <td align="center">省</td>
 </tr><tr><td align="center">city</td>
 <td align="center">string</td>
 <td align="center">市</td>
-</tr><tr><td align="center">country</td>
+</tr><tr><td align="center">signature</td>
 <td align="center">string</td>
-<td align="center">国家</td>
+<td align="center">个性签名</td>
+</tr><tr><td align="center">type</td>
+<td align="center">string</td>
+<td align="center">类型 0：注册用户 1：qq用户 2：wechat用户</td>
 </tr><tr><td align="center">total_num_</td>
 <td align="center">int</td>
 <td align="center">总条数</td>
 </tr></tbody></table>
-<h3 id="-94">返回实例</h3>
-<pre><code>{"result":"success","users_info":[{"user_id":"B36DAECCCB8BAEDB73901211CA983DDD","nickname":"\u98ce\u4e91\u518d\u8d77","sex":"\u7537","headimgurl":"http://q.qlogo.cn/qqapp/1104748755/B36DAECCCB8BAEDB73901211CA983DDD/100","province":"\u5e7f\u4e1c","city":"\u6c55\u5934","country":"none"}],"total_num":1}</code></pre>
+<h4 id="-92">返回实例</h4>
+<pre><code>{"result":"success","users_info":[{"name":"\u6e38\u8857","birthday":120000,"sex":"男","phone_num":"13618074451","email":"barco@dasudian.com","country":"中国","province":"广东","city":"深圳","avatar":"8vcKSfPVD9U1jR5EAq","signature":"Change the world!","type":"0"}],"total_num":1}</code></pre>
+<h3 id="20">20.获取用户头像</h3>
+<h4 id="-93">请求方法</h4>
+<p>请求时使用<code>GET</code>方式请求<code>https://{domain}/show_avatar</code>，<code>domain</code>为要请求服务器的地址</p>
+<h4 id="-94">请求参数说明</h4>
+<p>请求参数统一使用<code>Json</code>格式，字段说明如下：</p>
+<table border="1" width="600px"><tbody><tr style="background-color:#EDEDED"><td align="center">名称</td>
+<td align="center">类型</td>
+<td align="center">必填</td>
+<td align="center">说明</td>
+</tr><tr><td align="center">url</td>
+<td align="center">string</td>
+<td align="center">是</td>
+<td align="center">上传头像时返回</td>
+</tr><tr><td align="center">token</td>
+<td align="center">string</td>
+<td align="center">是</td>
+<td align="center">用户请求auc_app接口时返回</td>
+</tr></tbody></table>
+<h4 id="-95">请求实例</h4>
+<pre><code>curl -v -k -XGET https://localhost:8443/show_avatar?url=8vcKSfPVD9U1jR5EAq&amp;token=g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f</code></pre>
+<h4 id="-96">返回结果说明</h4>
+<p>如果成功则直接近回图片的二进制流，失败返回结果也统一使用<code>Json</code>格式，字段说明如下：</p>
+<table border="1" width="600px"><tbody><tr style="background-color:#EDEDED"><td align="center">名称</td>
+<td align="center">类型</td>
+<td align="center">说明</td>
+</tr><tr><td align="center">result</td>
+<td align="center">string</td>
+<td align="center">请求结果，fail:失败</td>
+</tr><tr><td align="center">reason</td>
+<td align="center">string</td>
+<td align="center">失败结果</td>
+</tr></tbody></table>
+<h4 id="-97">返回实例</h4>
+<pre><code>{"result":"fail","reason":"system_error"}    </code></pre>
+<h3 id="21qqwechat">21.获取用户状态(针对qq和wechat)</h3>
+<h4 id="-98">请求方法</h4>
+<p>请求时使用<code>GET</code>方式请求<code>https://{domain}/check_status</code>，<code>domain</code>为要请求服务器的地址</p>
+<h4 id="-99">请求参数说明</h4>
+<p>请求参数统一使用<code>Json</code>格式，字段说明如下：</p>
+<table border="1" width="600px"><tbody><tr style="background-color:#EDEDED"><td align="center">名称</td>
+<td align="center">类型</td>
+<td align="center">必填</td>
+<td align="center">说明</td>
+</tr><tr><td align="center">id</td>
+<td align="center">string</td>
+<td align="center">是</td>
+<td align="center">即openid     用户的唯一标识。</td>
+</tr></tbody></table>
+<h4 id="-100">请求实例</h4>
+<pre><code>curl -v http://localhost:8443/check_status?token=g2gCaAJoA2IAAAfgYQNhHGgDYQthLWEUbQAAAKbUGuHfs%2FaxwGSFdpqqNJo0ZUDrsjsZEVKyM1RIHnq4Wp5%2B2BFU6KhB2jxupmJcaUj03cs1dqeZ87XmbFjZvU9A3zblWncOe%2B5OkSZP58%2BnKSz9igQ0GURTqwLJ9l99vwB5WZ2sSGwrQZriSJ9Mq9bnDhUUHZ3LT45uCvUM%2FzgW9OZZAsp88xQfZ96vvUG%2FXV0mgJDZsIqMarVufoqqSSunO%2F43NM3f -v -k -XPOST -H"Content-Type: application/json" -d '{"id": "8d9396c99824e921c128456c91b4373d"}'</code></pre>
+<h4 id="-101">返回结果说明</h4>
+<p>返回结果也统一使用<code>Json</code>格式，字段说明如下：</p>
+<table border="1" width="600px"><tbody><tr style="background-color:#EDEDED"><td align="center">名称</td>
+<td align="center">类型</td>
+<td align="center">说明</td>
+</tr><tr><td align="center">result</td>
+<td align="center">string</td>
+<td align="center">请求结果，fail:失败</td>
+</tr><tr><td align="center">status</td>
+<td align="center">string</td>
+<td align="center">状态,disable:被冻结 active:正常 undefined:没有激活</td>
+</tr></tbody></table>
+<h4 id="-102">返回实例</h4>
+<pre><code>{"result":"success","status":"disable"}      </code></pre>
       </div>
 
               <div class="tract"><img src="/images/tract.png"/></div>
