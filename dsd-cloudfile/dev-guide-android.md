@@ -64,6 +64,7 @@ static int dsdCfInit(String aucServer, String version, String appId, String appK
 void dsdCfUpload(final String filePath, final DsdCloudFileListener listener)
 ```
 回调函数的接口说明如下
+
 ```
 public abstract interface DsdCloudFileListener {
 	// 上传失败的回调，参数error中将返回错误的原因
@@ -73,6 +74,20 @@ public abstract interface DsdCloudFileListener {
     public abstract void onSuccess(String url);
 }
 ```
+
+## 下载文件
+使用获取到的url，在后面加上token下载该文件。
+
+获取token
+```
+DsdLibCloudFile.getToken()
+```
+
+DsdCFUtils类下有一个下载的示例函数，您可以获取token编写自己的下载函数。
+```
+void download(final Context context, String url, final OnResult onResult)；
+```
+
 
 ## 清理SDK
 在程序退出，或则同一个设备换另外一个用户登录时，需要调用该函数清理SDK，清理后需要重新调用初始化函数，才能开始上传下载文件。
