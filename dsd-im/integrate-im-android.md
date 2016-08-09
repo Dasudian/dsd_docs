@@ -58,38 +58,37 @@ void setDsdIMCallback(DsdIMClientInterface dsdIMClientCallback)
 ```
 class ReceiveMsg implements DsdIMClientInterface {
 
-	@Override
-	public void onRecivedMsg(String content) {
-	}
+		@Override
+		public void onReceivedMsg(String content) {
+		}
 
-	@Override
-	public void onReconnectSuccess() {
-	}
+		@Override
+		public void onReconnectSuccess() {
+		}
 
-	@Override
-	public void onConnectionLost() {
-		System.out.println("onConnectionLost");
-	}
+		@Override
+		public void onConnectionLost() {
+		}
 
-	@Override
-	public void onKickedOutOfGroup(String content) {
-	}
+		@Override
+		public void onLoginOnAnotherClient() {
+		}
 
-	@Override
-	public void onLoginOnAnotherClient() {
-	}
+		@Override
+		public void onGroupMuted(String content) {
+		}
 
-	@Override
-	public void onGroupMuted(String content) {
-	}
+		@Override
+		public void onGroupUnmuted(String content) {
+		}
 
-	@Override
-	public void onGroupUnmuted(String content) {
+		@Override
+		public void onSystemGroupMsg(String content) {
+		}
 	}
-}
 ```
 
-onRecivedMsg消息
+onReceivedMsg消息
 ```
 {
 	"d":"0|1|2",  //0-单播，1-组播，2-广播
@@ -103,16 +102,6 @@ onRecivedMsg消息
 	"i":"6", // msgid
 	"t":"1470291040" // 消息时间戳
 }
-```
-
-onKickedOutOfGroup消息
-```
-{
-	"d" :"16" //dsdmethod
-	"f":"ocean" //fromuser
-	"g":"1001" //groupid
-	"t”: xxxxx //timestamp
-｝
 ```
 
 onGroupMuted消息
@@ -133,6 +122,20 @@ onGroupUnmuted消息
     "g":"1001" //groupid
     "ts”: xxxxx //timestamp
 }
+```
+
+onSystemGroupMsg消息
+```
+{  
+    "d":"38",               //dsdmethod  
+    "f":"Dasudian",         //fromuser  
+    "t":"14645433534",      //timestamp  
+    "m":{                   //msg body  
+        "t":1,              //Notification-type(1:群内某人被踢出，2：群组解散，3：某人离开群组，4：某人加入群组)  
+        "g":"gid1234567",   //group id  
+        "u":"U1"            //UserId,被操作的对象（群成员操作时才有,比如'当t=1时，表示被踢的UserID；当t=2，可以不传；当t=3/4时，表示离开/加入的UserId'）  
+    }  
+}  
 ```
 
 ### 链接服务器
