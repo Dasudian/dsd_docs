@@ -363,6 +363,99 @@ String dsdGetGroupMemberList(String user, String groupid);
 ｝
 ```
 
+## 添加组管理员
+
+```
+/**
+ * 添加组管理员
+ * @param owner    组拥有者
+ * @param groupId  组id
+ * @param userId   组成员
+ * @return 		   成功:0,失败:查看失败码
+ */
+int dsdAddGroupManager(String owner, String groupId, String userId);
+```
+
+## 移除组管理员
+
+```
+/**
+ * 移除组管理员
+ * @param owner   组拥有者
+ * @param groupId 组id
+ * @param userId  组成员
+ * @return		  成功:0,失败:查看失败码
+ */
+int dsdRemoveGroupManager(String owner, String groupId, String userId);
+```
+
+## 获取组管理员列表
+
+```
+/**
+ * 获取组管理员列表
+ * @param owner   组拥有者
+ * @param groupId 组id
+ * @return  	  成功：返回所有的成员，失败：null
+ */
+String dsdGetGroupManagerList(String owner, String groupId);
+```
+
+返回的组管理员列表格式
+```
+{
+    "d" :"44" //dsdmethod
+    "s" :0000 //status 0000：成功, 1XXX: 失败
+    ”gml“:[]//group manager list
+    "i”:　"xx " //msgid
+｝
+```
+
+## 获取历史消息
+
+```
+/**
+ * 获取历史消息
+ * @param userId   对方的名字
+ * @param count    获取条数,0：全部，num：num条历史消息
+ * @return    	   成功：返回json，失败：null
+ */
+String dsdGetHistoryMessage(String userId, int count);
+```
+
+## 清除历史消息
+```
+/**
+ * 清除历史消息
+ * @param userId  对方的名字
+ * @param type    0：清除所有的历史消息，1：清除msgIdList里面的消息
+ * @param msgIdList  json数组
+ * @return   	  成功:0,失败:查看失败码
+ */
+int dsdClearHistoryMessage(String userId, int type, String msgIdList);
+```
+
+## 获取离线消息
+
+```
+/**
+ * 获取离线消息
+ * @param userId  对方的名字
+ * @return        成功josn，失败null
+ */
+String dsdGetOfflieMessage(String userId);
+```
+
+## 清除离线消息/忽略离线消息
+```
+/**
+ * 清除离线消息/忽略离线消息
+ * @param userId   对方的名字
+ * @return		   成功:0,失败:查看失败码
+ */
+int dsdIgnoreUnreadMessage(String userId);
+```
+
 ## 退出登录
 
 ```
@@ -402,14 +495,16 @@ void dsdDisconnect();
 0000-成功
 1000-系统错误
 1001-被禁言
-1002-权限不够
+1002-权限不够，操作被拒绝
 1003-目标不存在
 1004-被拉黑
 1005-你已经是群成员，不能重复加入
-1006-消息存在敏感词，不允许
+1006-消息存在敏感词，不允许发送
 1007-无效的JSON数据结构
 1008-未知的Method
 1009-要操作的Group不存在
+1010-不是群内成员
+1011-要操作的GroupID为空
 ```
 
 ## 下载Android示例程序
