@@ -423,7 +423,18 @@ String dsdGetGroupManagerList(String owner, String groupId);
 String dsdGetHistoryMessage(String userId, int count);
 ```
 
+成功时消息格式：
+```
+{
+    "d" :"100" //dsdmethod
+    "s" :0000 //status 0000：成功, 1XXX: 失败
+    "ml":[]//msg list
+    "i”:　"xx " //msgid
+｝
+```
+
 ## 清除历史消息
+
 ```
 /**
  * 清除历史消息
@@ -435,25 +446,48 @@ String dsdGetHistoryMessage(String userId, int count);
 int dsdClearHistoryMessage(String userId, int type, String msgIdList);
 ```
 
-## 获取离线消息
+## 获取未读消息
 
 ```
 /**
- * 获取离线消息
- * @param userId  对方的名字
- * @return        成功josn，失败null
+ * 获取未读消息
+ * @return 成功返回json，失败返回null
  */
-String dsdGetOfflieMessage(String userId);
+public native String dsdGetUnreadMessage();
 ```
 
-## 清除离线消息/忽略离线消息
+成功时返回的消息格式：
+```
+{
+  "d" :"102" //dsdmethod
+  "s" :0000 //status 0000：成功, 1XXX: 失败
+  "i”:　"xx " //msgid
+  “ml”: [] // message list
+｝
+```
+
+## 忽略未读消息
+
 ```
 /**
- * 清除离线消息/忽略离线消息
- * @param userId   对方的名字
- * @return		   成功:0,失败:查看失败码
+ * 忽略未读消息
+ * @param type			0：忽略全部未读消息，1：忽略部分未读
+ * @param userIdList    当type为0时，传null；当type为1时，传要忽略的好友的消息id，格式为json数组
+ * 						["userId1","userId2",...]
+ * @return				成功:0,失败:查看错误码
  */
-int dsdIgnoreUnreadMessage(String userId);
+public native int dsdIgnoreUnreadMessages(int type, String userIdList);
+```
+
+## 消息设置为已读
+
+```
+/**
+ * 设置消息为已读
+ * @param userId    好友的id
+ * @return			成功:0,失败:查看错误码
+ */
+public native int dsdSendMessageReceipt(String userId);
 ```
 
 ## 退出登录
@@ -466,6 +500,7 @@ int dsdIgnoreUnreadMessage(String userId);
  */
 int dsdSignOut(String user);
 ```
+
 ## 与服务器断开链接
 
 ```java
