@@ -236,10 +236,11 @@ String dsdCreateGroup(String user);
 /**
  * 加入组播组,该函数会阻塞到收到服务器的ack或者超时后返回.
  * @param  user    用户名
- * @param  groupid dsdCreateGroup函数返回的组播组id
+ * @param  groupId 可以指定一个groupId，如果这个组不存在，服务器会创建一个组
+ * @param  groupName  和这个groupId绑定的gorup名字
  * @return         成功:0,失败:查看失败码
  */
-int dsdJoinGroup(String user, String groupId);
+int dsdJoinGroup(String user, String groupId, String groupName);
 ```
 
 ## 离开组
