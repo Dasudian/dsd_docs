@@ -126,16 +126,17 @@ onGroupUnmuted消息
 
 onSystemGroupMsg消息
 ```
-{  
+{
     "d":"38",               //dsdmethod  
     "f":"Dasudian",         //fromuser  
     "t":"14645433534",      //timestamp  
     "m":{                   //msg body  
-        "t":1,              //Notification-type(1:群内某人被踢出，2：群组解散，3：某人离开群组，4：某人加入群组)  
+        "t":1,              //Notification-type(1:群内踢人，2：解散群组，3：离开群组，4：加入群组,5：群内文本消息)  
         "g":"gid1234567",   //group id  
         "u":"U1"            //UserId,被操作的对象（群成员操作时才有,比如'当t=1时，表示被踢的UserID；当t=2，可以不传；当t=3/4时，表示离开/加入的UserId'）  
+        "b":"This is text content" //文本消息的具体内容（当t=5时，才有该字段）
     }  
-}  
+}
 ```
 
 ### 链接服务器
