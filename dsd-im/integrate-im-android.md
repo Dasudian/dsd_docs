@@ -169,7 +169,7 @@ int dsdInit(String serverAddress, String version,
  * @param nickname   用户昵称
  * @param avatarurl  用户头像url
  * @param location   用户所在地区
- * @param sex        用户性别
+ * @param sex        用户性别,0:男,1:女
  * @param signature  用户签名
  * @return           成功：0，失败：返回错误码
  */
