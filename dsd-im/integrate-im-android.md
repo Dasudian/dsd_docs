@@ -159,6 +159,23 @@ int dsdInit(String serverAddress, String version,
 			String option);
 ```
 
+### 设置用户信息
+
+在连接服务器成功后，发送消息前，需要先设置用户个人信息。
+```java
+/**
+ * 设置用户信息
+ * @param userid     用户唯一id
+ * @param nickname   用户昵称
+ * @param avatarurl  用户头像url
+ * @param location   用户所在地区
+ * @param sex        用户性别
+ * @param signature  用户签名
+ * @return           成功：0，失败：返回错误码
+ */
+int dsdSetUserInfo(String userid, String nickname, String avatarurl, String location, int sex, String signature);
+```
+
 ## 发送单播消息
 注意：
 1.使用大数点公有云服务器，非VIP用户可以发送的最大消息长度为1024个字节。
