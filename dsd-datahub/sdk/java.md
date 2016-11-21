@@ -10,32 +10,47 @@ parent1: dsd-datahub
 ## Class DataHubClient
 
 ### 初始化
+
+通过DataHubClient的Builder获取DataHubClient实例。
+
 ```
-public DataHubClient(java.lang.String userName,
-                     java.lang.String clientId,
-                     java.lang.String appId,
-                     java.lang.String appSec,
-                     ActionCallback callback,
-                     java.util.Map<java.lang.String,java.lang.Object> options)
-构造函数。Constructor，used to create a IoT instances.
+public DataHubClient.Builder(String instanceId, String instanceKey, String userName, 
+                    String clientId) throws ServiceException 
 Parameters:
 userName - 用户唯一标志符，可以是任意的字符串或则第三方标志符。
 users' unique identifier, could be anything from your app server or 3rd party identifier (e.g. openID)
 clientId - 客户端id，mac地址获取是UUID，用于服务器唯一标志一个用户，方便消息推送。
 (MAC address of mobile phone or other UUID), used for pushing message to specific clients.
-appId - app唯一标志符，从大数点官网注册获取，或者联系大数点客服人员获取。
+instanceId - app唯一标志符，从大数点官网注册获取，或者联系大数点客服人员获取。
 app's unique identifier within Dasudian Cloud,
 get it along with appKey while creating an app at [Dasudian Developer's Portal](dev.dasudian.com)
-appSec - app秘钥，从大数点官网注册获取，或者联系大数点客服人员获取。。
-app's secret to communicate with Dasudian Cloud, which is created together with AppID
-callback - 事件回调函数，查看ActionCallback类获取更多细节。
-A callback interface,see class ActionCallback for more detail.
-options - 可选设置，一般填null：
-1.key:aucUrl,value：String：指定AUC的地址，不指定将使用默认的AUC地址。
-2.key:mqttCleanSession,value: Boolean：是否清除会话。
-options param，usually be null:
-1:key:aucUrl,value:String,a url for private cloud.
-2:key:mqttCleanSession,value:key:Boolean,clean session or not.
+instanceKey - app秘钥，从大数点官网注册获取，或者联系大数点客服人员获取。。
+app's secret to communicate with Dasudian Cloud, which is created together with instanceId
+
+可选设置：
+1. Builder setCallback(ActionCallback callback)
+回调函数，用于监听SDK的各种状态，比如SDK连接断开，有新的消息到达，或者获取某条消息的发送结果。
+
+2. Builder setServerURI(String serverURI) 
+指定自己的服务器地址，不指定服务器地址，将使用默认的服务器地址。
+
+3. Builder setCleanSession(boolean cleanSession)
+设置是否清除会话。默认为true，即客户断开连接后，订阅的topic将会被清除。
+
+4. Builder setConnectionTimeout(int connectionTimeout)
+连接服务器的超时时间设置，默认是30s。
+
+5. Builder setCommandTimeout(int commandTimeout)
+设置sendRequest,subscribe,unsubscribe超时时间，默认是5秒。
+
+6. Builder setCertificate(InputStream certificate)
+如果使用私有证书，需要设置证书
+
+7. Builder setIgnoreCertificate(boolean value)
+是否忽略证书验证；true：忽略证书验证，false：不忽略证书验证，可以使用私有证书（目前服务器只支持私有证书），或者系统默认的证书
+
+8. DataHubClient build()
+获取到DataHubClient实例
 ```
 
 ### 连接服务器
