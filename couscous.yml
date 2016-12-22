@@ -21,22 +21,26 @@ branch: gh-pages
 # baseUrl: http://docs.dasudian.com
 
 navs:
-  datahub:
-    text: "IoT DataHub"
-    absoluteUrl: https://dev.dasudian.com/datahub
-  product_service:
+  service:
     text: "产品服务"
-    absoluteUrl: https://dev.dasudian.com/product_service
-  docs:
-    text: "文档"
-    absoluteUrl: /
-  price:
-    text: "定价"
-    absoluteUrl: https://dev.dasudian.com/price
-  community:
-    text: "社区"
-    absoluteUrl: https://www.github.com/Dasudian
-    outside: yes  
+    absoluteUrl: https://www.dasudian.com/service.html
+    outside: yes
+  solution:
+    text: "解决方案"
+    absoluteUrl: https://www.dasudian.com/solution.html
+    outside: yes
+  support:
+    text: "技术支持"
+    absoluteUrl: https://www.dasudian.com/support.html
+    outside: yes
+  contact_us:
+    text: "联系我们"
+    absoluteUrl: https://www.dasudian.com/contact.html
+    outside: yes
+  about_us:
+    text: "关于我们"
+    absoluteUrl: https://www.dasudian.com/about.html
+    outside: yes 
 
 menu:
   menu1s:
