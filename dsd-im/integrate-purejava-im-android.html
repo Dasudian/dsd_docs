@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="大数点物联网开发者平台文档，基于大数点物联网平台，帮助开发者快速构建物联网应用">
-    <title>注册和登陆</title>
+    <title>大数点文档中心</title>
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
@@ -246,7 +246,151 @@
 
     <div class="side_right">
       <div class="doc">
-        <h1 id="">注册和登陆</h1>
+        <h2 id="">初始化前准备</h2>
+<h3 id="sdk">获取sdk</h3>
+<p>联系大数点客服人员获取最新的sdk和开发文档。</p>
+<h3 id="-1">环境设置</h3>
+<p>拷贝im-java-sdk-1.0.jar到libs目录下，拷贝dsd_im.crt到res/raw目录下。</p>
+<h3 id="-2">设置网络访问权限</h3>
+<p>在AndroidManifest.xml添加如下的网络访问权限。</p>
+<pre><code>&lt;uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /&gt;
+&lt;uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/&gt;
+&lt;uses-permission android:name="android.permission.INTERNET" /&gt;
+&lt;uses-permission android:name="android.permission.READ_PHONE_STATE" /&gt;</code></pre>
+<h2 id="sdk-1">初始化SDK并登录</h2>
+<p>如果build客户端的时候，没有抛出异常，则sdk内部会自动重新连接服务器。</p>
+<pre><code>/**
+ * 连接服务器，并获取到client实例
+ * @param serverInfo 服务器信息 
+ * @param userInfo  用户个人信息
+ * @param context   context
+ * @param callback  sdk连接状态回调函数
+ * @return  Client 连接成功后，返回一个client对象   
+ * @throws ServiceException  连接失败时抛出异常
+ */
+public static Client build(ServerInfo serverInfo, UserInfo userInfo, Context context, ClientCallback callback) 
+            throws ServiceException</code></pre>
+<p>参数ServerInfo详细说明：</p>
+<pre><code>public class ServerInfo {
+    private URL aucAddress; // 服务器地址，为空则默认使用大数点提供的公有云服务
+    private String appId; // 联系大数点客服获取
+    private String appSec; // 联系大数点客服获取
+    private String userId; // 用户唯一id
+    private String clientId; // 设备唯一id
+    ......
+}</code></pre>
+<p>参数userInfo详细说明：</p>
+<pre><code>public class UserInfo {
+    public final static String MALE = "0";
+    public final static String FEMALE = "1";
+
+    private String userid; // 用户唯一id
+    private String nickname; // 用户昵称
+    private String avatarurl; // 用户头像url
+    private String location; // 用户所在地区
+    private String sex; // 用户性别,0:男,1:女
+    private String signature; // 用户签名
+    ......
+}</code></pre>
+<p>callback定义说明：</p>
+<pre><code>public interface ClientCallback {
+    // 连接成功时的回调
+    void onConnect();
+
+    // 连接失败时的回调
+    void onConnectError(String reason);
+
+    // 连接中途断开时的回调
+    void onConnectLost();
+}</code></pre>
+<h2 id="-3">聊天室</h2>
+<h3 id="-4">加入聊天室</h3>
+<pre><code>/**
+ * 加入聊天室，如果这个聊天室不存在，系统会根据roomId和name自动创建该聊天室
+ * @param roomId    聊天室id，需要保证唯一
+ * @param name      聊天室的别名
+ * @param callback  聊天室回调函数
+ * @return ChatRoom 加入聊天室成功后返回ChatRoom对象
+ * @throws ServiceException 加入聊天室失败或则sdk异常时抛出异常
+ */
+ChatRoom enterChatRoom(String roomId, String name, ChatRoomCallback callback) throws ServiceException </code></pre>
+<p>参数callback详细说明：</p>
+<pre><code>public interface ChatRoomCallback {
+    // 加入聊天室服务器返回的结果
+    void onEnterResult(int result);
+
+    // 退出聊天室服务器返回的结果
+    void onExitResult(int result);
+
+    // 收到聊天室消息时的回调函数
+    void onChatRoomMessage(Message message);
+
+    // 发送消息时，服务器返回的结果回调
+    void onChatRoomMessageDelivery(String id, int result);
+
+    // 聊天室系统通知消息
+    void onSystemNotification(Message message);
+}</code></pre>
+<h3 id="-5">发送消息</h3>
+<p>在加入聊天室成功后会返回一个与该聊天室对应的ChatRoom对象，通过这个ChatRoom对象的方法可以发送聊天室消息。
+下面是ChatRoom类的方法说明。</p>
+<pre><code>/**
+ * 发送文本消息
+ * @param content 要发送的内容
+ * @return Message 发送成功返回Message对象
+ * @throws ServiceException  发送失败时抛出异常
+ */
+Message sendTextMessage(String content) throws ServiceException</code></pre>
+<p>返回值Message说明：</p>
+<pre><code>public class Message {
+    ......
+
+    // 这条消息是谁发送的
+    private String senderId;
+
+    // 如果是聊天室消息，消息里面会有组的id
+    private String groupId;
+
+    // 如果是聊天室消息，消息里面会有组的名字
+    private String groupName;
+
+    // 消息的内容
+    private JsonNode content;
+
+    // 消息发送的时间
+    private String time;
+
+    // 消息id，每一条消息都有唯一的id。可以通过该id判断某条消息是否发送成功
+    private int id;
+
+    ......
+}</code></pre>
+<h3 id="-6">退出聊天室</h3>
+<pre><code>/**
+ * 退出聊天室
+ * @throws ServiceException 退出失败时抛出异常
+ */
+exit() throws ServiceException </code></pre>
+<h2 id="-7">获取聊天室列表</h2>
+<pre><code>/**
+ * 获取所有的聊天室
+ * @param callback  结果回调函数
+ * @throws ServiceException 失败时抛出异常
+ */
+public void getGroupList(GetGroupCallback callback) throws ServiceException</code></pre>
+<p>参数callback说明：</p>
+<pre><code>public interface GetGroupCallback {
+    void onResult(String result);
+    // result 是下面的json格式
+    {
+        "d" :"36" //dsdmethod
+        "s" :0000 //status 0000：成功, 1XXX: 失败
+        ”gl“:[]//group list
+        "i”:　"xx " //msgid
+    ｝
+}</code></pre>
+<h2 id="-8">退出登录</h2>
+<pre><code>logout();</code></pre>
       </div>
 
               <div class="tract"><img src="/images/tract.png"/></div>

@@ -68,13 +68,13 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="https://dev.dasudian.com/datahub" >IoT DataHub</a></li>
-            <li><a href="https://dev.dasudian.com/product_service" >产品服务</a></li>
-            <li><a href="/" >文档</a></li>
-            <li><a href="https://dev.dasudian.com/price" >定价</a></li>
-            <li><a href="https://www.github.com/Dasudian"  target="_blank" >社区</a></li>
-            <li><a href="https://dev.dasudian.com/login/view" class="btn-small" target="_blank">登录</a></li>
-            <li><a href="https://dev.dasudian.com/sign_up/view" class="btn-small" target="_blank">注册</a></li>
+            <li><a href="https://www.dasudian.com/service.html"  target="_blank" >产品服务</a></li>
+            <li><a href="https://www.dasudian.com/solution.html"  target="_blank" >解决方案</a></li>
+            <li><a href="https://www.dasudian.com/support.html"  target="_blank" >技术支持</a></li>
+            <li><a href="https://www.dasudian.com/contact.html"  target="_blank" >联系我们</a></li>
+            <li><a href="https://www.dasudian.com/about.html"  target="_blank" >关于我们</a></li>
+            <!-- <li><a href="https://dev.dasudian.com/login/view" class="btn-small" target="_blank">登录</a></li>
+            <li><a href="https://dev.dasudian.com/sign_up/view" class="btn-small" target="_blank">注册</a></li> -->
           </ul>
         </div>
       </div>
@@ -246,7 +246,174 @@
 
     <div class="side_right">
       <div class="doc">
-        <h1 id="datahub-c-sdk">DataHub C# SDK</h1>
+        <h2 id="sdk">获取sdk</h2>
+<p>联系大数点客服人员获取最新的sdk和文档，以及instanceId和instanceKey。
+instanceId和instanceKey用于sdk和大数点服务器建立安全的通信。</p>
+<h2 id="">集成前准备</h2>
+<p>在自己的项目中引入大数点IoT DataHub的动态库。将DataHub.dll和M2Mqtt.dll拷贝到你工程中exe文件的运行目录下。
+然后在你的项目中引用该dll库。</p>
+<h2 id="-1">初始化</h2>
+<p>使用DataHubClient的Builder创建一个DataHubClient实例。</p>
+<pre><code>string serverURI = "private server URI";// 私有云服务器地址，如果不设置该地址，则使用大数点公有云服务器
+string instanceId = "your instanceId";// 从大数点客服务获取的instanceId
+string instanceKey = "your instanceKey";// 从大数点客服获取的instanceKey
+string clientId = "your clientid"; // 客户端的唯一标识，不同的客户端id不能相同
+string userName = Guid.NewGuid().ToString(); // 用户名，可任意填写
+
+// create client instance
+DataHubClient client = new DataHubClient.Builder(instanceId, instanceKey, userName, clientId)
+    .SetServerURI(serverURI).Build();</code></pre>
+<p>DataHubClient.Builder详细说明</p>
+<pre><code>/// &lt;summary&gt;
+/// 使用该Builder获取DataHubClient实例
+/// &lt;/summary&gt;
+public class Builder
+{
+    ......
+
+    /// &lt;summary&gt;
+    /// 通过该Builer获取DataHubClient实例
+    /// &lt;/summary&gt;
+    /// &lt;param name="instanceId"&gt;联系大数点客服获取&lt;/param&gt;
+    /// &lt;param name="instanceKey"&gt;联系大数点客服获取&lt;/param&gt;
+    /// &lt;param name="userName"&gt;用户名，可任意填写&lt;/param&gt;
+    /// &lt;param name="clientId"&gt;客户端Id，唯一标识一个客户端，用于服务器向客户端推送消息，必须保证每个客户端Id不相同&lt;/param&gt;
+    public Builder(string instanceId, string instanceKey, string userName, string clientId)
+    {
+    }
+
+    /// &lt;summary&gt;
+    /// 设置私有云服务器地址
+    /// &lt;/summary&gt;
+    /// &lt;param name="serverURI"&gt;服务器地址&lt;/param&gt;
+    /// &lt;returns&gt;返回当前Builder&lt;/returns&gt;
+    public Builder SetServerURI(string serverURI)
+    {
+    }
+
+    /// &lt;summary&gt;
+    /// 设置是否清除会话
+    /// &lt;/summary&gt;
+    /// &lt;param name="cleanSession"&gt;true:清除会话，在客户端断开连接后，订阅的topic不会在服务器保存。
+    /// false：不清除会话，断开连接后订阅的topic会保留。&lt;/param&gt;
+    /// &lt;returns&gt;返回当前Builder&lt;/returns&gt;
+    public Builder SetCleanSession(bool cleanSession)
+    {
+    }
+
+    /// &lt;summary&gt;
+    /// 设置加密证书
+    /// &lt;/summary&gt;
+    /// &lt;param name="certificate"&gt;大数点提供的私有加密证书&lt;/param&gt;
+    /// &lt;returns&gt;返回当前Builder&lt;/returns&gt;
+    public Builder SetCertificate(X509Certificate certificate)
+    {
+    }
+
+    /// &lt;summary&gt;
+    /// 忽略加密证书
+    /// &lt;/summary&gt;
+    /// &lt;param name="ignoreCertificate"&gt;true：忽略加密证书。false：不忽略加密证书，则需要使用大数点私有加密证书&lt;/param&gt;
+    /// &lt;returns&gt;返回当前Builder&lt;/returns&gt;
+    public Builder SetIgnoreCertificate(bool ignoreCertificate)
+    {
+    }
+
+    /// &lt;summary&gt;
+    /// 设置是否开启sdk内部的自动重连功能
+    /// &lt;/summary&gt;
+    /// &lt;param name="automaticReconnect"&gt;true:开启sdk内部自动重连功能，
+    /// 在SDK与服务器断开连接后SDK会没5秒连接一次服务器直到连接成功；
+    /// false：不开启sdk内部自动重连功能&lt;/param&gt;
+    /// &lt;returns&gt;返回当前Builder&lt;/returns&gt;
+    public Builder SetAutomaticReconnect(bool automaticReconnect)
+    {
+    }
+
+    /// &lt;summary&gt;
+    /// 构建DataHubClient实例
+    /// &lt;/summary&gt;
+    /// &lt;returns&gt;返回DataHubClient实例&lt;/returns&gt;
+    public DataHubClient Build()
+    {
+    }
+}</code></pre>
+<h2 id="-2">设置回调函数</h2>
+<pre><code>// 接收服务器或者其他客户端发布的消息
+public event MessageEventHandler MessageReceived;
+// 监听发布消息的结果
+public event PublishedEventHandler Published;
+// 监听订阅结果
+public event SubscribedEventHandler Subscribed;
+// 监听取消订阅结果
+public event UnsubscribedEventHandler Unsubscribed;
+// 监听SDK与服务连接断开
+public event ConnectionLostEventHandler ConnectionLost;</code></pre>
+<h2 id="-3">连接服务器</h2>
+<pre><code>/// &lt;summary&gt;
+/// 连接服务器
+/// &lt;/summary&gt;
+/// &lt;returns&gt;成功：0；失败：查看错误码&lt;/returns&gt;
+public byte Connect()</code></pre>
+<h2 id="-4">订阅</h2>
+<p>该方法为异步方法，不会阻塞主线程。</p>
+<pre><code>/// &lt;summary&gt;
+/// 订阅
+/// &lt;/summary&gt;
+/// &lt;param name="topic"&gt;主题名&lt;/param&gt;
+/// &lt;param name="qos"&gt;服务质量&lt;/param&gt;
+/// &lt;returns&gt;成功：返回消息id，该id可以用来在Subscribed回调函数中用来确认消息是否发送成功；
+/// 失败：返回错误码&lt;/returns&gt;
+public int Subscribe(string topic, byte qos)</code></pre>
+<p>服务质量说明</p>
+<pre><code>// qos(quality of service),服务质量
+// 最多发送一次，发送失败了不会再发送
+public const byte QOS_LEVEL_AT_MOST_ONCE = 0x00;
+// 至少发送一次，可能会发送多次
+public const byte QOS_LEVEL_AT_LEAST_ONCE = 0x01;
+// 发送失败后会重发，但是会确保服务器只收到一次
+public const byte QOS_LEVEL_EXACTLY_ONCE = 0x02;</code></pre>
+<h2 id="-5">取消订阅</h2>
+<pre><code>/// &lt;summary&gt;
+/// 取消订阅
+/// &lt;/summary&gt;
+/// &lt;param name="topic"&gt;主题名&lt;/param&gt;
+/// &lt;returns&gt;成功：返回消息id，可以在Unsubscribed中确定消息是否发送成功；
+/// 失败：返回错误码&lt;/returns&gt;
+public int Unsubscribe(string topic)</code></pre>
+<h2 id="-6">发布消息</h2>
+<p>异步发送</p>
+<pre><code>/// &lt;summary&gt;
+/// 发送异步消息
+/// &lt;/summary&gt;
+/// &lt;param name="topic"&gt;主题名&lt;/param&gt;
+/// &lt;param name="message"&gt;消息内容&lt;/param&gt;
+/// &lt;param name="qos"&gt;服务质量&lt;/param&gt;
+/// &lt;returns&gt;成功：返回消息id，可在Published回调函数中确定消息是否发送成功；
+/// 失败：返回错误码&lt;/returns&gt;
+public int Publish(string topic, byte[] message, byte qos)</code></pre>
+<p>同步发送</p>
+<pre><code>/// &lt;summary&gt;
+/// 发送同步请求
+/// &lt;/summary&gt;
+/// &lt;param name="topic"&gt;主题名&lt;/param&gt;
+/// &lt;param name="message"&gt;消息内容&lt;/param&gt;
+/// &lt;param name="qos"&gt;服务质量&lt;/param&gt;
+/// &lt;param name="timeout"&gt;超时时间，多长时间没有收到服务的应答视为超时，单位ms&lt;/param&gt;
+/// &lt;returns&gt;返回结果码：成功：Constants.SUCCESS；失败：Constants.ERROR_SERVER_NOT_CONNECTED(服务器未连接),
+/// Constants.ERROR_SNED_TIMEOUT(发送超时)&lt;/returns&gt;
+public int SendRequest(string topic, byte[] message, byte qos, Int32 timeout)</code></pre>
+<h2 id="sdk-1">获取sdk连接状态</h2>
+<pre><code>/// &lt;summary&gt;
+/// 获取当前sdk与服务器的连接状态
+/// &lt;/summary&gt;
+/// &lt;returns&gt;true：sdk与服务器连接正常；false：sdk与服务器连接断开&lt;/returns&gt;
+public bool IsConnected()</code></pre>
+<h2 id="-7">断开与服务器的连接</h2>
+<pre><code>/// &lt;summary&gt;
+/// 断开与服务器的连接
+/// &lt;/summary&gt;
+public void Disconnect()</code></pre>
       </div>
 
               <div class="tract"><img src="/images/tract.png"/></div>

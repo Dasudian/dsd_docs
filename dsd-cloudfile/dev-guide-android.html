@@ -68,13 +68,13 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="https://dev.dasudian.com/datahub" >IoT DataHub</a></li>
-            <li><a href="https://dev.dasudian.com/product_service" >产品服务</a></li>
-            <li><a href="/" >文档</a></li>
-            <li><a href="https://dev.dasudian.com/price" >定价</a></li>
-            <li><a href="https://www.github.com/Dasudian"  target="_blank" >社区</a></li>
-            <li><a href="https://dev.dasudian.com/login/view" class="btn-small" target="_blank">登录</a></li>
-            <li><a href="https://dev.dasudian.com/sign_up/view" class="btn-small" target="_blank">注册</a></li>
+            <li><a href="https://www.dasudian.com/service.html"  target="_blank" >产品服务</a></li>
+            <li><a href="https://www.dasudian.com/solution.html"  target="_blank" >解决方案</a></li>
+            <li><a href="https://www.dasudian.com/support.html"  target="_blank" >技术支持</a></li>
+            <li><a href="https://www.dasudian.com/contact.html"  target="_blank" >联系我们</a></li>
+            <li><a href="https://www.dasudian.com/about.html"  target="_blank" >关于我们</a></li>
+            <!-- <li><a href="https://dev.dasudian.com/login/view" class="btn-small" target="_blank">登录</a></li>
+            <li><a href="https://dev.dasudian.com/sign_up/view" class="btn-small" target="_blank">注册</a></li> -->
           </ul>
         </div>
       </div>
@@ -301,6 +301,12 @@ void dsdCfUpload(final String filePath, final DsdCloudFileListener listener)</co
     // eg：在IM中发送图片时首先使用该函数将文件上传到服务器中，得到该文件的url。将该url发送出去，接收者就可以通过该url获取到发送的图片了。
     public abstract void onSuccess(String url);
 }</code></pre>
+<h2 id="-4">下载文件</h2>
+<p>使用获取到的url，在后面加上token下载该文件。</p>
+<p>获取token</p>
+<pre><code>DsdLibCloudFile.getToken()</code></pre>
+<p>DsdCFUtils类下有一个下载的示例函数，您可以获取token编写自己的下载函数。</p>
+<pre><code>void download(final Context context, String url, final OnResult onResult)；</code></pre>
 <h2 id="sdk-4">清理SDK</h2>
 <p>在程序退出，或则同一个设备换另外一个用户登录时，需要调用该函数清理SDK，清理后需要重新调用初始化函数，才能开始上传下载文件。
 该方法是DsdLibCloudFile类的一个静态方法。</p>

@@ -68,13 +68,13 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="https://dev.dasudian.com/datahub" >IoT DataHub</a></li>
-            <li><a href="https://dev.dasudian.com/product_service" >产品服务</a></li>
-            <li><a href="/" >文档</a></li>
-            <li><a href="https://dev.dasudian.com/price" >定价</a></li>
-            <li><a href="https://www.github.com/Dasudian"  target="_blank" >社区</a></li>
-            <li><a href="https://dev.dasudian.com/login/view" class="btn-small" target="_blank">登录</a></li>
-            <li><a href="https://dev.dasudian.com/sign_up/view" class="btn-small" target="_blank">注册</a></li>
+            <li><a href="https://www.dasudian.com/service.html"  target="_blank" >产品服务</a></li>
+            <li><a href="https://www.dasudian.com/solution.html"  target="_blank" >解决方案</a></li>
+            <li><a href="https://www.dasudian.com/support.html"  target="_blank" >技术支持</a></li>
+            <li><a href="https://www.dasudian.com/contact.html"  target="_blank" >联系我们</a></li>
+            <li><a href="https://www.dasudian.com/about.html"  target="_blank" >关于我们</a></li>
+            <!-- <li><a href="https://dev.dasudian.com/login/view" class="btn-small" target="_blank">登录</a></li>
+            <li><a href="https://dev.dasudian.com/sign_up/view" class="btn-small" target="_blank">注册</a></li> -->
           </ul>
         </div>
       </div>
@@ -248,11 +248,11 @@
       <div class="doc">
         <h1 id="androidim">Android上集成IM服务</h1>
 <h2 id="">集成前准备</h2>
-<p>到<a href="https://dev.dasudian.com">大数点开发者平台</a>注册成为大数点合作伙伴并创建应用，每创建一个应用大数点平台会为其生成一个AppID和AppKey，AppID在大数点平台唯一标识一个应用，而AppKey可以被更新。AppID和AppKey将在您的代码里使用，保证您的应用与大数点平台间的安全传输。</p>
+<p>到<a href="https://dev.dasudian.com">大数点开发者平台</a>注册成为大数点合作伙伴并创建应用，每创建一个应用大数点平台会为其生成一个AppID和AppSec，AppID在大数点平台唯一标识一个应用，而AppSec可以被更新。AppID和AppSec将在您的代码里使用，保证您的应用与大数点平台间的安全传输。</p>
 <p>若您还没有注册，请使用如下Demo App作测试：</p>
 <p>Demo App:</p>
-<pre><code>AppID: 3_95F8TwKfyN7Lj35j8q_A
-AppKey: ec55784a5db3268a</code></pre>
+<pre><code>AppID: 9_9AFja3v8muZumgSuiu_A
+AppKey: e844ae089ce9ccc0</code></pre>
 <h2 id="sdk">下载SDK</h2>
 <p>到<a href="http://main.dasudian.com/downloads/sdk/latest/im-sdk-android.zip">大数点官网</a>下载IM SDK.</p>
 <h2 id="sdk-1">SDK内容</h2>
@@ -263,111 +263,118 @@ AppKey: ec55784a5db3268a</code></pre>
 <h2 id="-1">配置工程</h2>
 <h3 id="jar">导入库和jar包</h3>
 <p>拷贝libdsd_im.so到libs/armeabi目录下，如果没有armeabi目录，请手动创建该目录。
-拷贝dsd-lib-IM-v1到libs目录下，如下图所示。<br/>
-<img src="images-android/1.png" alt="导入.so到工程目录下" /></p>
+拷贝dsd-lib-IM.jar到libs目录下。</p>
 <h3 id="-2">配置权限</h3>
-<p>如下图所示,在AndroidManifest.xml中加入如下内容使能必要的访问权限.</p>
-<pre><code class="language-xml">&lt;!-- 访问网络权限 --&gt;
-&lt;uses-permission android:name="android.permission.INTERNET"&gt;&lt;/uses-permission&gt;
-&lt;!-- 获取mac地址权限 --&gt;
-&lt;uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" /&gt;
-&lt;uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /&gt;
-&lt;uses-permission android:name="android.permission.CHANGE_WIFI_STATE" /&gt;
-&lt;uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /&gt;</code></pre>
-<p><img src="images-android/2.png" alt="配置网络访问权限" /></p>
+<p>在AndroidManifest.xml中加入如下内容使能必要的访问权限.</p>
+<pre><code class="language-xml">&lt;uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /&gt;
+&lt;uses-permission android:name="android.permission.INTERNET" /&gt;
+&lt;uses-permission android:name="android.permission.READ_PHONE_STATE" /&gt;
+&lt;uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /&gt;</code></pre>
 <h2 id="sdk-2">初始化SDK</h2>
-<h3 id="-3">实现如下接口</h3>
-<pre><code>public class MainActivity extends Activity implements DsdClientInterface</code></pre>
-<pre><code>@Override
-public void docallback(int event, String content, int len)</code></pre>
-<ul>
-<li>
-<p>注意：不要在该函数中刷新UI。</p>
-</li>
-<li>
-<p>接口函数实现,该接口函数是SDK的核心函数,该函数会在下面几种情况被调用.</p>
-<p>1.用户发送的异步消息成功</p>
-<p>2.收到服务器发来的单播,组播,广播消息</p>
-<p>3.连接服务器成功</p>
-<p>4.该用户被提出某个组播组</p>
-<p>5.与服务器连接断开</p>
-</li>
-<li>
-<p>参数说明</p>
-<table>
-<thead>
-<tr>
-<th>event</th>
-<th>content</th>
-<th>len</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1:异步发送消息成功</td>
-<td>发送该消息时的消息id</td>
-<td>消息id长度</td>
-</tr>
-<tr>
-<td>2:收到单播消息</td>
-<td>{&quot;msg&quot;:&quot;消息内容&quot;,&quot;from&quot;:&quot;发送消息者&quot;,&quot;time&quot;:&quot;发送消息的时间&quot;}</td>
-<td>JSON长度</td>
-</tr>
-<tr>
-<td>3:收到组播消息</td>
-<td>{&quot;msg&quot;:&quot;消息内容&quot;,&quot;from&quot;:&quot;发送消息者&quot;,&quot;time&quot;:&quot;发送消息的时间&quot;,&quot;groupid&quot;:&quot;组id&quot;}</td>
-<td>JSON长度</td>
-</tr>
-<tr>
-<td>4:收到广播消息</td>
-<td>{&quot;msg&quot;:&quot;消息内容&quot;,&quot;from&quot;:&quot;发送消息者&quot;,&quot;time&quot;:&quot;发送消息的时间&quot;}</td>
-<td>JSON长度</td>
-</tr>
-<tr>
-<td>5:连接服务器成功</td>
-<td>NULL</td>
-<td>0</td>
-</tr>
-<tr>
-<td>6:用户被踢出组播组</td>
-<td>NULL</td>
-<td>0</td>
-</tr>
-<tr>
-<td>7:与服务器链接断开</td>
-<td>NULL</td>
-<td>0</td>
-</tr>
-<tr>
-<td>8:用户在其它客户端登陆</td>
-<td>NULL</td>
-<td>0</td>
-</tr>
-</tbody>
-</table>
-</li>
-</ul>
+<h3 id="dsdimclient">获取DsdIMClient实例</h3>
+<pre><code>DsdIMClient dsdIMClient = DsdIMClient.getInstance();</code></pre>
+<h3 id="callback">设置callback接口</h3>
+<pre><code>void setDsdIMCallback(DsdIMClientInterface dsdIMClientCallback)</code></pre>
+<h3 id="-3">实现接口回调函数</h3>
+<pre><code>class ReceiveMsg implements DsdIMClientInterface {
+
+        @Override
+        public void onReceivedMsg(String content) {
+        }
+
+        @Override
+        public void onReconnectSuccess() {
+        }
+
+        @Override
+        public void onConnectionLost() {
+        }
+
+        @Override
+        public void onLoginOnAnotherClient() {
+        }
+
+        @Override
+        public void onGroupMuted(String content) {
+        }
+
+        @Override
+        public void onGroupUnmuted(String content) {
+        }
+
+        @Override
+        public void onSystemGroupMsg(String content) {
+        }
+    }</code></pre>
+<p>onReceivedMsg消息</p>
+<pre><code>{
+    "d":"0|1|2",  //0-单播，1-组播，2-广播
+    "f":"5289bb2a-cc53-4ad8-9a30-161b1aa680c7",  // 消息发送者
+    "g":"101_9AMQjXqiPkvgRKEef2_5289bb2a-cc53-4ad8-9a30-161b1aa680c7_1470291003", // groupId
+    "m": 
+    {
+        "b":"content", // 消息内容
+        "t":"1|2|3|4" //消息类型,0-text,1-image,3-audio,4-video
+    }, 
+    "i":"6", // msgid
+    "t":"1470291040" // 消息时间戳
+}</code></pre>
+<p>onGroupMuted消息</p>
+<pre><code>{
+    "d" :"25" //dsdmethod 禁言
+    "f":"ocean" //fromuser
+    "g":"1001" //groupid
+    "ts”: xxxxx //timestamp
+}</code></pre>
+<p>onGroupUnmuted消息</p>
+<pre><code>{
+    "d" :"28" //dsdmethod 取消禁言
+    "f":"ocean" //fromuser
+    "g":"1001" //groupid
+    "ts”: xxxxx //timestamp
+}</code></pre>
+<p>onSystemGroupMsg消息</p>
+<pre><code>{
+    "d":"38",               //dsdmethod  
+    "f":"Dasudian",         //fromuser  
+    "t":"14645433534",      //timestamp  
+    "m":{                   //msg body  
+        "t":1,              //Notification-type(1:群内踢人，2：解散群组，3：离开群组，4：加入群组,5：群内文本消息)  
+        "g":"gid1234567",   //group id  
+        "u":"U1"            //UserId,被操作的对象（群成员操作时才有,比如'当t=1时，表示被踢的UserID；当t=2，可以不传；当t=3/4时，表示离开/加入的UserId'）  
+        "b":"This is text content" //文本消息的具体内容（当t=5时，才有该字段）
+    }  
+}</code></pre>
 <h3 id="-4">链接服务器</h3>
-<pre><code class="language-java">// 获取sdk实例
-private DsdImClientJNI dsdClientTest = DsdImClientJNI.getInstance();</code></pre>
-<pre><code class="language-java">// 注册回调函数到SDK中,将callback函数注册到SDK中,SDK会在事件发生的时候回调该函数.
-// 其中this为实现了docallback()回调函数的类
-dsdClientTest.setCallfuc(this);</code></pre>
 <pre><code class="language-java">/**
  * 初始化sdk并链接服务器。
  * @param  serverAddress  服务器地址，为空则默认使用大数点提供的公有云服务
  * @param  version      "1.0"
  * @param  appID        app的id，在大数点开发者平台创建应用时获得
- * @param  appKey       app秘钥，在大数点开发者平台创建应用时获得
- * @param  userID       用户名,用户身份唯一标识
- * @param  opt          可选的用户信息，用于后台统计；
+ * @param  appSec       app秘钥，在大数点开发者平台创建应用时获得
+ * @param  userId       用户名,用户身份唯一标识
  *                      传null表示不统计，或者传一个用户信息的JSON，比如{"name":"jack","gender":"male","region":"Beijing"}
- * @param  clientID     客户端id（手机mac地址），用于服务器向客户端推送消息
- * @param  obj          DsdImClientJNI的实例对象
+ * @param  clientId     客户端的唯一id，用于服务器向客户端推送消息
+ * @param  option       可选的用户信息，用于后台统计；
  * @return              成功:0,失败:-1
  */
-int dsdInit(String serverAddress, String version, String appID, String appKey, String userID, String opt, String clientID, DsdImClientJNI obj);</code></pre>
-<h2 id="-5">发送单播消息</h2>
+int dsdInit(String serverAddress, String version,
+            String appId, String appSec, String userId, String clientId,
+            String option);</code></pre>
+<h3 id="-5">设置用户信息</h3>
+<p>在连接服务器成功后，发送消息前，需要先设置用户个人信息。</p>
+<pre><code class="language-java">/**
+ * 设置用户信息
+ * @param userid     用户唯一id
+ * @param nickname   用户昵称
+ * @param avatarurl  用户头像url
+ * @param location   用户所在地区
+ * @param sex        用户性别,0:男,1:女
+ * @param signature  用户签名
+ * @return           成功：0，失败：返回错误码
+ */
+int dsdSetUserInfo(String userid, String nickname, String avatarurl, String location, int sex, String signature);</code></pre>
+<h2 id="-6">发送单播消息</h2>
 <p>注意：
 1.使用大数点公有云服务器，非VIP用户可以发送的最大消息长度为1024个字节。
 2.所有发送消息相关的函数，消息都必须以如下JSON格式发送。</p>
@@ -379,100 +386,262 @@ int dsdInit(String serverAddress, String version, String appID, String appKey, S
     3 video
     4 HTML5 page
 @b： 消息内容,如果消息为image或audio等多媒体消息，则为该多媒体的URL。</code></pre>
-<p>同步发送</p>
 <pre><code class="language-java">/**
  * 同步单播消息.该函数会阻塞到收到服务器的ack或者超时后返回.
  * @param  from       发送消息的人
- * @param  toUserlist 目标用户列表
- * @param  users      目标用户个数
+ * @param  toUser     目标用户列表
  * @param  msg        消息内容,必须为JSON格式
- * @return            成功:0,失败:-1
+ * @return            成功:0,失败:查看失败码
  */
-int dsdSyncSendWithAck(String from, String[] toUserList, int users, String msg);</code></pre>
-<p>异步发送</p>
-<pre><code class="language-java">/**
- * 异步发送单播消息,该函数不会阻塞调用者.
- * @param from       发送者
- * @param toUserlist 目标用户列表
- * @param users      目标用户个数
- * @param msg        消息内容,必须为JSON格式
- * @param msgid      用户指定的msgid,如果发送成功,该msgid会在接口函数中上报.
- */
-void dsdAsyncSendWithAck(String from, String[] toUserList, int users, String msg, String msgid);</code></pre>
-<h2 id="-6">发送组播消息</h2>
-<p>同步发送</p>
+int dsdSendWithAck(String from, String toUser, String msg)；</code></pre>
+<h2 id="-7">发送组播消息</h2>
 <pre><code class="language-java">/**
  * 同步的发送组播消息,该函数会阻塞到收到服务器的ack或者超时后返回.
  * @param  user    发送者
  * @param  groupid 组id
  * @param  msg     消息内容
- * @return         成功:0,失败:-1
+ * @return         成功:0,失败:查看失败码
  */
-int dsdSyncMulticastwithAck(String user, String groupid, String msg);</code></pre>
-<p>异步发送</p>
-<pre><code class="language-java">/**
- * 异步的发送组播消息,该函数不会阻塞调用者.
- * @param user    发送者
- * @param groupid 组id
- * @param msg     消息内容
- * @param msgid   用户指定的msgid,如果发送成功,该msgid会在回调函数中上报.
- */
-void dsdAsyncMulticastwithAck(String user, String groupid, String msg, String msgid);</code></pre>
-<h2 id="-7">发送广播消息</h2>
-<p>同步广播</p>
-<pre><code class="language-java">/**
- * 同步的发送广播消息,该函数会阻塞到收到服务器的ack或者超时后返回.
- * @param  user 发送者
- * @param  msg  消息内容
- * @return      成功:0,失败:-1
- */
-int dsdSyncBroadcastWithAck(String user, String msg);</code></pre>
-<p>异步广播</p>
+int dsdMulticastwithAck(String user, String groupid, String msg)；</code></pre>
+<h2 id="-8">发送广播消息</h2>
 <pre><code class="language-java">/**
  * 异步的发送广播消息,该函数不会阻塞调用者.
  * @param user  发送者
  * @param msg   消息内容
- * @param msgid 用户指定的msgid,如果发送成功,该msgid会在回调函数中上报.
  */
-void dsdAsyncBroadcastWithAck(String user, String msg, String msgid);</code></pre>
-<h2 id="-8">创建组</h2>
+int dsdBroadcastWithAck(String user, String msg);</code></pre>
+<h2 id="-9">创建组</h2>
 <pre><code class="language-java">/**
  * 创建组播组,该函数会阻塞到收到服务器的ack或者超时后返回.
  * @param  user      用户名
- * @param  groupName 组名
  * @return           成功:返回组播组的id,失败:NULL
  */
-String dsdCreateGroup(String user, String groupName);</code></pre>
-<h2 id="-9">加入组</h2>
+String dsdCreateGroup(String user);</code></pre>
+<p>返回格式</p>
+<pre><code>{
+    "d" :"10" //dsdmethod
+    "s" : 0//status 0000：成功, 1XXX： 失败
+    ”g":”1111” //groupid
+    "i":"xxxx"//msgid
+｝</code></pre>
+<h2 id="-10">加入组</h2>
 <pre><code class="language-java">/**
  * 加入组播组,该函数会阻塞到收到服务器的ack或者超时后返回.
  * @param  user    用户名
- * @param  groupid dsdCreateGroup函数返回的组播组id
- * @return         成功:0,失败-1
+ * @param  groupId 可以指定一个groupId，如果这个组不存在，服务器会创建一个组
+ * @param  groupName  和这个groupId绑定的gorup名字
+ * @return         成功:0,失败:查看失败码
  */
-int dsdJoinGroup(String user, String groupid);</code></pre>
-<h2 id="-10">离开组</h2>
+int dsdJoinGroup(String user, String groupId, String groupName);</code></pre>
+<h2 id="-11">离开组</h2>
 <pre><code class="language-java">/**
  * 离开组播组,该函数会阻塞到收到服务器的ack或者超时后返回.
  * @param  user    离开的用户
  * @param  groupid dsdCreateGroup函数返回的组播组id
- * @return         成功:0,失败:-1
+ * @return         成功:0,失败:查看失败码
  */
-int dsdLeaveGroup(String user, String groupid);</code></pre>
-<h2 id="-11">将某人踢出组</h2>
+int dsdLeaveGroup(String user, String groupId);</code></pre>
+<h2 id="-12">将某人踢出组</h2>
 <pre><code class="language-java">/**
  * 将某人踢出组播组,该函数会阻塞到收到服务器的ack或者超时后返回.
  * @param  user        组播组拥有者
- * @param  groupid     dsdCreateGroup函数返回的组播组id
- * @param  groupmember 要踢出的人
- * @return             成功:0,失败-1
+ * @param  groupId     dsdCreateGroup函数返回的组播组id
+ * @param  groupMember 要踢出的人
+ * @return             成功:0,失败:查看失败码
  */
-int dsdKickOutGroup(String user, String groupid, String groupMember);</code></pre>
-<h2 id="-12">与服务器断开链接</h2>
+int dsdKickOutOfGroup(String user, String groupId, String groupMember)</code></pre>
+<h2 id="-13">组内将某人禁言</h2>
+<pre><code class="language-java">/**
+ * 组内将某人禁言
+ * @param user          创建组的人
+ * @param groupId       组id
+ * @param groupMember   被禁言人
+ * @return              成功:0,失败:查看失败码
+ */
+int dsdMuteGroup(String user, String groupId,
+        String groupMember);</code></pre>
+<h2 id="-14">组内取消对某人的禁言</h2>
+<pre><code class="language-java">/**
+ * 组内取消对某人的禁言
+ * @param user          创建组的人
+ * @param groupId       组id
+ * @param groupMember   组成员
+ * @return              成功:0,失败:查看失败码
+ */
+int dsdUnmuteGroup(String user, String groupId,
+        String groupMember);</code></pre>
+<h2 id="-15">将某人加入黑名单</h2>
+<pre><code class="language-java">/**
+ * 将某人加入黑名单
+ * @param sourceUser  用户
+ * @param targetUser  将谁加入黑名单
+ * @return            成功:0,失败:查看失败码
+ */
+int dsdAddToBlackList(String sourceUser, String targetUser);</code></pre>
+<h2 id="-16">将某人从黑名单移除</h2>
+<pre><code class="language-java">/**
+ * 将某人从黑名单移除
+ * @param sourceUser 用户
+ * @param targetUser 要移除的人
+ * @return  成功:0,失败:查看失败码
+ */
+int dsdRemoveFromBlackList(String sourceUser,
+        String targetUser);</code></pre>
+<h2 id="-17">获取当前所有的组</h2>
+<pre><code class="language-java">/**
+ * 获取当前所有的组
+ * @param user  用户名
+ * @return 成功：返回所有的组，失败：null
+ */
+String dsdGetAllGroupList(String user);</code></pre>
+<p>返回格式</p>
+<pre><code>{
+    "d" :"36" //dsdmethod
+    "s" :0000 //status 0000：成功, 1XXX: 失败
+    ”gl“:[]//group list
+    "i”:　"xx " //msgid
+｝</code></pre>
+<h2 id="-18">获取某个组内所有的成员</h2>
+<pre><code class="language-java">/**
+ * 获取某个组内所有的成员
+ * @param user      用户名
+ * @param groupid   组id
+ * @return   成功：返回所有的成员，失败：null
+ */
+String dsdGetGroupMemberList(String user, String groupid);</code></pre>
+<p>返回格式</p>
+<pre><code>{
+    "d" :"34" //dsdmethod
+    "s" :0000 //status 0000：成功, 1XXX: 失败
+    ”gml“:[]//group member list
+    "i”:　"xx " //msgid
+｝</code></pre>
+<h2 id="-19">添加组管理员</h2>
+<pre><code>/**
+ * 添加组管理员
+ * @param owner    组拥有者
+ * @param groupId  组id
+ * @param userId   组成员
+ * @return         成功:0,失败:查看失败码
+ */
+int dsdAddGroupManager(String owner, String groupId, String userId);</code></pre>
+<h2 id="-20">移除组管理员</h2>
+<pre><code>/**
+ * 移除组管理员
+ * @param owner   组拥有者
+ * @param groupId 组id
+ * @param userId  组成员
+ * @return        成功:0,失败:查看失败码
+ */
+int dsdRemoveGroupManager(String owner, String groupId, String userId);</code></pre>
+<h2 id="-21">获取组管理员列表</h2>
+<pre><code>/**
+ * 获取组管理员列表
+ * @param owner   组拥有者
+ * @param groupId 组id
+ * @return        成功：返回所有的成员，失败：null
+ */
+String dsdGetGroupManagerList(String owner, String groupId);</code></pre>
+<p>返回的组管理员列表格式</p>
+<pre><code>{
+    "d" :"44" //dsdmethod
+    "s" :0000 //status 0000：成功, 1XXX: 失败
+    ”gml“:[]//group manager list
+    "i”:　"xx " //msgid
+｝</code></pre>
+<h2 id="-22">获取历史消息</h2>
+<pre><code>/**
+ * 获取历史消息
+ * @param userId   对方的名字
+ * @param count    获取条数,0：全部，num：num条历史消息
+ * @return         成功：返回json，失败：null
+ */
+String dsdGetHistoryMessage(String userId, int count);</code></pre>
+<p>成功时消息格式：</p>
+<pre><code>{
+    "d" :"100" //dsdmethod
+    "s" :0000 //status 0000：成功, 1XXX: 失败
+    "ml":[]//msg list
+    "i”:　"xx " //msgid
+｝</code></pre>
+<h2 id="-23">清除历史消息</h2>
+<pre><code>/**
+ * 清除历史消息
+ * @param userId  对方的名字
+ * @param type    0：清除所有的历史消息，1：清除msgIdList里面的消息
+ * @param msgIdList  json数组
+ * @return        成功:0,失败:查看失败码
+ */
+int dsdClearHistoryMessage(String userId, int type, String msgIdList);</code></pre>
+<h2 id="-24">获取未读消息</h2>
+<pre><code>/**
+ * 获取未读消息
+ * @return 成功返回json，失败返回null
+ */
+public native String dsdGetUnreadMessage();</code></pre>
+<p>成功时返回的消息格式：</p>
+<pre><code>{
+  "d" :"102" //dsdmethod
+  "s" :0000 //status 0000：成功, 1XXX: 失败
+  "i”:　"xx " //msgid
+  “ml”: [] // message list
+｝</code></pre>
+<h2 id="-25">忽略未读消息</h2>
+<pre><code>/**
+ * 忽略未读消息
+ * @param type          0：忽略全部未读消息，1：忽略部分未读
+ * @param userIdList    当type为0时，传null；当type为1时，传要忽略的好友的消息id，格式为json数组
+ *                      ["userId1","userId2",...]
+ * @return              成功:0,失败:查看错误码
+ */
+public native int dsdIgnoreUnreadMessages(int type, String userIdList);</code></pre>
+<h2 id="-26">消息设置为已读</h2>
+<pre><code>/**
+ * 设置消息为已读
+ * @param userId    好友的id
+ * @return          成功:0,失败:查看错误码
+ */
+public native int dsdSendMessageReceipt(String userId);</code></pre>
+<h2 id="-27">退出登录</h2>
+<pre><code>/**
+ * 退出登录，切换用户时调用
+ * @param user 用户
+ * @return      成功：0，失败：查看错误列表
+ */
+int dsdSignOut(String user);</code></pre>
+<h2 id="-28">与服务器断开链接</h2>
 <pre><code class="language-java">/**
  * 退出登陆，调用该函数后将不会收到服务器的推送消息。
  */
-void dsdDisConnect();</code></pre>
+void dsdDisconnect();</code></pre>
+<h2 id="error-code">ERROR CODE</h2>
+<pre><code>客户端错误码
+2000-非法参数
+2001-已经初始化了
+2002-客户端初始化失败
+2003-连接服务器失败
+2004-连接服务器失败
+2005-连接服务器超时
+2006-发送消息超时
+2007-发送的消息太大
+2008-发送的消息不是json格式
+2009-分配内存失败
+2010-服务器未连接
+
+服务器端错误码
+0000-成功
+1000-系统错误
+1001-被禁言
+1002-权限不够，操作被拒绝
+1003-目标不存在
+1004-被拉黑
+1005-你已经是群成员，不能重复加入
+1006-消息存在敏感词，不允许发送
+1007-无效的JSON数据结构
+1008-未知的Method
+1009-要操作的Group不存在
+1010-不是群内成员
+1011-要操作的GroupID为空</code></pre>
 <h2 id="android">下载Android示例程序</h2>
 <p><a href="https://www.github.com/Dasudian/imsdk-example-android">下载Android示例程序</a></p>
       </div>
